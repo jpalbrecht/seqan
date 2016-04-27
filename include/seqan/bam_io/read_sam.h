@@ -451,7 +451,7 @@ readRecord(TIdString & meta, TSeqString & seq, TQualString & qual,
     OrFunctor<IsTab, AssertFunctor<NotFunctor<IsNewline>, ParseError, Sam> > nextEntry;
 
 
-    TIdString prevQName = meta;
+    TIdString nextQName = meta;
 
     clear(meta);
     clear(seq);
@@ -462,17 +462,6 @@ readRecord(TIdString & meta, TSeqString & seq, TQualString & qual,
     readUntil(meta, iter, nextEntry);
     skipOne(iter, IsTab());
 
-    while (prevQName == meta) {
-
-        skipLine(iter);
-        if ( atEnd( iter ) ) {
-            clear(meta);
-            return;
-        }
-        clear(meta);
-        readUntil(meta, iter, nextEntry);
-        skipOne(iter, IsTab());
-    }
 
     // Skip FLAG, RNAME, POS, MAPQ, CIGAR, RNEXT, PNEXT, TLEN
     for (unsigned i = 0; i < 8; ++i) {
@@ -510,8 +499,16 @@ readRecord(TIdString & meta, TSeqString & seq, TQualString & qual,
 
     // skip TAGS
     clear(buffer);
-    readLine(buffer, iter);
-}
+    TForwardIter nextIter;
+    do
+    {
+        skipLine(iter);
+        if ( atEnd(iter) )
+            return;
+        nextIter = iter;
+        readUntil(nextQName, nextIter, nextEntry);
+    } while ( nextQName == meta );
+
 
 // ----------------------------------------------------------------------------
 // Function readRecord()                          read sequence without quality
@@ -538,7 +535,7 @@ readRecord(TIdString & meta, TSeqString & seq,
     OrFunctor<IsTab, AssertFunctor<NotFunctor<IsNewline>, ParseError, Sam> > nextEntry;
 
 
-    CharString prevQName = meta;
+    CharString nextQName;
 
     clear(meta);
     clear(seq);
@@ -548,17 +545,6 @@ readRecord(TIdString & meta, TSeqString & seq,
     readUntil(meta, iter, nextEntry);
     skipOne(iter, IsTab());
 
-    while (prevQName == meta) {
-
-        skipLine(iter);
-        if ( atEnd( iter ) ) {
-            clear(meta);
-            return;
-        }
-        clear(meta);
-        readUntil(meta, iter, nextEntry);
-        skipOne(iter, IsTab());
-    }
 
     // Skip FLAG, RNAME, POS, MAPQ, CIGAR, RNEXT, PNEXT, TLEN
     for (unsigned i = 0; i < 8; ++i) {
@@ -579,7 +565,17 @@ readRecord(TIdString & meta, TSeqString & seq,
     if (atEnd(iter))
         return;
     skipLine(iter);
-    return;
+
+    TForwardIter* nextIter;
+    do
+    {
+        skipLine(iter);
+        if ( atEnd(iter) ) return;
+        nextIter = iter;
+        readUntil(nextQName, nextIter, nextEntry);
+    } while ( nextQName == meta );
+
+
 }
 
 }  // namespace seqan
