@@ -479,7 +479,7 @@ readRecord(TIdString & meta, TSeqString & seq, TQualString & qual,
         throw ParseError("This SAM file doesn't provide PHRED quality string. "
                                  "Consider using another version of readRecord without quality");
     }
-
+    /*
     // The following list of tags is optional.  A line break or EOF could also follow.
     if (atEnd(iter))
         return;
@@ -490,6 +490,7 @@ readRecord(TIdString & meta, TSeqString & seq, TQualString & qual,
 
     // skip TAGS
     skipLine(iter);
+     */
 
     TIdString nextQName;
     TForwardIter nextIter;
@@ -550,11 +551,12 @@ readRecord(TIdString & meta, TSeqString & seq,
         clear(seq);
     skipOne(iter, IsTab());
 
-
+    /*
     // skip QUAL & TAGS
     if (atEnd(iter))
         return;
     skipLine(iter);
+    */
 
     // find next entry with different id
     TIdString nextQName;
