@@ -434,24 +434,17 @@ inline void
 readRecord(TIdString & meta, TSeqString & seq, TQualString & qual,
            BamIOContext<TNameStore, TNameStoreCache, TStorageSpec> & context,
            TForwardIter & iter,
-           Sam const & /*tag*/)
-
-{
-
-    typedef typename Value<TSeqString>::Type                                TSeqAlphabet;
-    typedef typename Value<TQualString>::Type                               TQualAlphabet;
-    typedef typename SamIgnoreOrAssertFunctor_<TSeqAlphabet>::Type          TSeqIgnoreOrAssert;
-    typedef typename SamIgnoreFunctor_<TQualAlphabet>::Type                 TQualIgnore;
-    typedef typename SamIgnoreOrAssertFunctor_<TQualAlphabet>::Type         TQualIgnoreOrAssert;
+           Sam const & /*tag*/) {
+    typedef typename Value<TSeqString>::Type TSeqAlphabet;
+    typedef typename Value<TQualString>::Type TQualAlphabet;
+    typedef typename SamIgnoreOrAssertFunctor_<TSeqAlphabet>::Type TSeqIgnoreOrAssert;
+    typedef typename SamIgnoreOrAssertFunctor_<TQualAlphabet>::Type TQualIgnoreOrAssert;
 
     // fail, if we read "@" (did you miss to call readRecord(header, bamFile) first?)
     if (nextIs(iter, SamHeader()))
         SEQAN_THROW(ParseError("Unexpected SAM header encountered."));
 
     OrFunctor<IsTab, AssertFunctor<NotFunctor<IsNewline>, ParseError, Sam> > nextEntry;
-
-
-    TIdString nextQName = meta;
 
     clear(meta);
     clear(seq);
@@ -478,11 +471,11 @@ readRecord(TIdString & meta, TSeqString & seq, TQualString & qual,
     skipOne(iter, IsTab());
 
     // QUAL
-    readUntil( qual, iter, OrFunctor<IsTab, IsNewline>(), TQualIgnoreOrAssert() );
+    readUntil(qual, iter, OrFunctor<IsTab, IsNewline>(), TQualIgnoreOrAssert());
 
     // Handle case of missing quality: throw parse exception if there is no quality.
     // there is another version of readRecord that doesn't use quality
-    if ( qual == '*' ) {
+    if (qual == '*') {
         throw ParseError("This SAM file doesn't provide PHRED quality string. "
                                  "Consider using another version of readRecord without quality");
     }
@@ -490,25 +483,25 @@ readRecord(TIdString & meta, TSeqString & seq, TQualString & qual,
     // The following list of tags is optional.  A line break or EOF could also follow.
     if (atEnd(iter))
         return;
-    if (value(iter) != '\t')
-    {
+    if (value(iter) != '\t') {
         skipLine(iter);
         return;
     }
-    skipOne(iter, IsTab());
 
     // skip TAGS
-    clear(buffer);
+    skipLine(iter);
+
+    TIdString nextQName;
     TForwardIter nextIter;
     do
     {
         skipLine(iter);
-        if ( atEnd(iter) )
+        if (atEnd(iter))
             return;
         nextIter = iter;
         readUntil(nextQName, nextIter, nextEntry);
-    } while ( nextQName == meta );
-
+    } while (nextQName == meta);
+}
 
 // ----------------------------------------------------------------------------
 // Function readRecord()                          read sequence without quality
@@ -533,9 +526,6 @@ readRecord(TIdString & meta, TSeqString & seq,
         SEQAN_THROW(ParseError("Unexpected SAM header encountered."));
 
     OrFunctor<IsTab, AssertFunctor<NotFunctor<IsNewline>, ParseError, Sam> > nextEntry;
-
-
-    CharString nextQName;
 
     clear(meta);
     clear(seq);
@@ -566,7 +556,9 @@ readRecord(TIdString & meta, TSeqString & seq,
         return;
     skipLine(iter);
 
-    TForwardIter* nextIter;
+    // find next entry with different id
+    TIdString nextQName;
+    TForwardIter nextIter;
     do
     {
         skipLine(iter);
