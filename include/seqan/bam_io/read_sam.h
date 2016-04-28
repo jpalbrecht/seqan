@@ -427,22 +427,6 @@ struct SamIgnoreOrAssertFunctor_
 // Function readRecord()                          read sequence without quality
 // ----------------------------------------------------------------------------
 
-template <typename TForwardIter, typename TIdString>
-inline bool nextIdIs (TForwardIter & iter, TIdString & meta)
-{
-    unsigned long pos = position(iter);
-    for (unsigned i = 0; i < length(meta); ++i)
-    {
-        if ( *iter != meta[i] )
-        {
-            setPosition(iter, pos);
-            return false;
-        }
-        ++iter;
-    }
-    setPosition(iter, pos);
-    return true;
-}
 
 template <typename TIdString, typename TSeqString,
         typename TForwardIter>
@@ -464,7 +448,7 @@ _readRecord(TIdString & meta, TSeqString & seq,
     clear(meta);
     clear(seq);
 
-    // QNAME
+    // read QNAME
     readUntil(meta, iter, nextEntry);
     skipOne(iter, IsTab());
 
@@ -474,7 +458,7 @@ _readRecord(TIdString & meta, TSeqString & seq,
         skipOne(iter, IsTab());
     }
 
-    // SEQ
+    // read SEQ
     readUntil(seq, iter, nextEntry, TSeqIgnoreOrAssert());
     // Handle case of missing sequence:  Clear seq string as documented.
     if (seq == "*")
@@ -493,13 +477,19 @@ readRecord(TIdString & meta, TSeqString & seq,
 {
     _readRecord(meta, seq, iter, tag);
 
-    // find next entry with different id
+    // find next record with different id
+    OrFunctor<IsTab, AssertFunctor<NotFunctor<IsNewline>, ParseError, Sam> > nextEntry;
+    // we need nextIter in order to look what is the QName in the next record without going forward with the main iter
+    TForwardIter nextIter(iter.streamBuf);
+    TIdString nextQname;
     do
     {
         skipLine(iter);
+        skipLine(nextIter);
         if ( atEnd(iter) )
             return;
-    } while ( nextIdIs(iter, meta) );
+        readUntil(nextQname, nextIter, nextEntry);
+    } while ( isEqual(nextQname, meta) );
 }
 
 // ----------------------------------------------------------------------------
@@ -522,7 +512,7 @@ readRecord(TIdString & meta, TSeqString & seq, TQualString & qual,
 
     _readRecord( meta, seq, iter, tag);
 
-    // QUAL
+    // read QUAL
     readUntil(qual, iter, OrFunctor<IsTab, IsNewline>(), TQualIgnoreOrAssert());
 
     // Handle case of missing quality: throw parse exception if there is no quality.
@@ -532,13 +522,19 @@ readRecord(TIdString & meta, TSeqString & seq, TQualString & qual,
                                  "Consider using another version of readRecord without quality");
     }
 
-    // find next entry with different id
+    // find next record with different id
+    OrFunctor<IsTab, AssertFunctor<NotFunctor<IsNewline>, ParseError, Sam> > nextEntry;
+    // we need nextIter in order to look what is the QName in the next record without going forward with the main iter
+    TForwardIter nextIter(iter.streamBuf);
+    TIdString nextQname;
     do
     {
         skipLine(iter);
+        skipLine(nextIter);
         if ( atEnd(iter) )
             return;
-    } while ( nextIdIs( iter, meta ) );
+        readUntil(nextQname, nextIter, nextEntry);
+    } while ( isEqual(nextQname, meta) );
 }
 
 }  // namespace seqan
