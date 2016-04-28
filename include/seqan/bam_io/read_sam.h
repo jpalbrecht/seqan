@@ -431,7 +431,8 @@ template <typename TForwardIter, typename TIdString>
 inline bool nextIdIs (TForwardIter & iter, TIdString & meta)
 {
     unsigned long pos = position(iter);
-    for (unsigned i = 0; i < length(meta); ++i)
+    unsigned i = 0;
+    while ( i < length(meta) && value(iter) != '\t' )
     {
         if ( *iter != meta[i] )
         {
@@ -439,9 +440,15 @@ inline bool nextIdIs (TForwardIter & iter, TIdString & meta)
             return false;
         }
         ++iter;
+        ++i;
     }
-    setPosition(iter, pos);
-    return true;
+    if (i == length(meta) && value(iter) == '\t') {
+        setPosition(iter, pos);
+        return true;
+    } else {
+        setPosition(iter, pos);
+        return false;
+    }
 }
 
 template <typename TIdString, typename TSeqString,
