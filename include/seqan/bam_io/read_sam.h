@@ -444,6 +444,8 @@ readRecord(TIdString & meta, TSeqString & seq, TQualString & qual,
     if (nextIs(iter, SamHeader()))
         SEQAN_THROW(ParseError("Unexpected SAM header encountered."));
 
+
+
     OrFunctor<IsTab, AssertFunctor<NotFunctor<IsNewline>, ParseError, Sam> > nextEntry;
 
     clear(meta);
@@ -479,34 +481,36 @@ readRecord(TIdString & meta, TSeqString & seq, TQualString & qual,
         throw ParseError("This SAM file doesn't provide PHRED quality string. "
                                  "Consider using another version of readRecord without quality");
     }
-    /*
-    // The following list of tags is optional.  A line break or EOF could also follow.
-    if (atEnd(iter))
-        return;
-    if (value(iter) != '\t') {
-        skipLine(iter);
-        return;
-    }
 
-    // skip TAGS
-    skipLine(iter);
-     */
-
-    TIdString nextQName;
-    TForwardIter nextIter;
+    // find next entry with different id
     do
     {
         skipLine(iter);
-        if (atEnd(iter))
+        if ( atEnd(iter) )
             return;
-        nextIter = iter;
-        readUntil(nextQName, nextIter, nextEntry);
-    } while (nextQName == meta);
+    } while ( nextIdIs(iter, meta) );
 }
 
 // ----------------------------------------------------------------------------
 // Function readRecord()                          read sequence without quality
 // ----------------------------------------------------------------------------
+
+
+template <typename TForwardIter, typename TIdString>
+inline bool nextIdIs (TForwardIter & iter, TIdString & meta)
+{
+    unsigned long pos = position(iter);
+    for (unsigned i = 0; i < length(meta); ++i)
+    {
+        if ( *( ++iter ) != meta[i] )
+        {
+            setPosition(iter, pos);
+            return false;
+        }
+    }
+    setPosition(iter, pos);
+    return true;
+};
 
 template <typename TIdString, typename TSeqString,
         typename TNameStore, typename  TNameStoreCache, typename TStorageSpec,
@@ -549,27 +553,14 @@ readRecord(TIdString & meta, TSeqString & seq,
     // Handle case of missing sequence:  Clear seq string as documented.
     if (seq == "*")
         clear(seq);
-    skipOne(iter, IsTab());
-
-    /*
-    // skip QUAL & TAGS
-    if (atEnd(iter))
-        return;
-    skipLine(iter);
-    */
 
     // find next entry with different id
-    TIdString nextQName;
-    TForwardIter nextIter;
     do
     {
         skipLine(iter);
-        if ( atEnd(iter) ) return;
-        nextIter = iter;
-        readUntil(nextQName, nextIter, nextEntry);
-    } while ( nextQName == meta );
-
-
+        if ( atEnd(iter) )
+            return;
+    } while ( nextIdIs(iter, meta) );
 }
 
 }  // namespace seqan
