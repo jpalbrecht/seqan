@@ -427,6 +427,23 @@ struct SamIgnoreOrAssertFunctor_
 // Function readRecord()                             read sequence with quality
 // ----------------------------------------------------------------------------
 
+template <typename TForwardIter, typename TIdString>
+inline bool nextIdIs (TForwardIter & iter, TIdString & meta)
+{
+    unsigned long pos = position(iter);
+    for (unsigned i = 0; i < length(meta); ++i)
+    {
+        if ( *iter != meta[i] )
+        {
+            setPosition(iter, pos);
+            return false;
+        }
+        ++iter;
+    }
+    setPosition(iter, pos);
+    return true;
+};
+
 template <typename TIdString, typename TSeqString, typename TQualString,
         typename TNameStore, typename  TNameStoreCache, typename TStorageSpec,
         typename TForwardIter>
@@ -488,29 +505,13 @@ readRecord(TIdString & meta, TSeqString & seq, TQualString & qual,
         skipLine(iter);
         if ( atEnd(iter) )
             return;
-    } while ( nextIdIs(iter, meta) );
+    } while ( nextIdIs( iter, meta ) );
 }
 
 // ----------------------------------------------------------------------------
 // Function readRecord()                          read sequence without quality
 // ----------------------------------------------------------------------------
 
-
-template <typename TForwardIter, typename TIdString>
-inline bool nextIdIs (TForwardIter & iter, TIdString & meta)
-{
-    unsigned long pos = position(iter);
-    for (unsigned i = 0; i < length(meta); ++i)
-    {
-        if ( *( ++iter ) != meta[i] )
-        {
-            setPosition(iter, pos);
-            return false;
-        }
-    }
-    setPosition(iter, pos);
-    return true;
-};
 
 template <typename TIdString, typename TSeqString,
         typename TNameStore, typename  TNameStoreCache, typename TStorageSpec,
