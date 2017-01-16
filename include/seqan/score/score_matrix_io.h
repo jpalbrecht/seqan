@@ -36,12 +36,12 @@
 
 // TODO(holtgrew): We need to adapt this to the new I/O scheme.
 
-#ifndef INCLUDE_SEQAN_SCORE_SCORE_MATRIX_IO_H_
-#define INCLUDE_SEQAN_SCORE_SCORE_MATRIX_IO_H_
+#ifndef INCLUDE_SEQAN2_SCORE_SCORE_MATRIX_IO_H_
+#define INCLUDE_SEQAN2_SCORE_SCORE_MATRIX_IO_H_
 
-#include <seqan/stream.h>
+#include <seqan2/stream.h>
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -324,6 +324,6 @@ operator<<(TStream & target,
     return target;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_SCORE_SCORE_MATRIX_IO_H_
+#endif  // #ifndef INCLUDE_SEQAN2_SCORE_SCORE_MATRIX_IO_H_

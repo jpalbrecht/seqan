@@ -36,10 +36,10 @@
 // Smith-Waterman algorithm with declumping.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_LOCAL_ALIGNMENT_WATERMAN_EGGERT_IMPL_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_LOCAL_ALIGNMENT_WATERMAN_EGGERT_IMPL_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_LOCAL_ALIGNMENT_WATERMAN_EGGERT_IMPL_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_LOCAL_ALIGNMENT_WATERMAN_EGGERT_IMPL_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -340,7 +340,7 @@ _smithWatermanDeclump(LocalAlignmentFinder<TScoreValue> & sw ,
     TGapsHIter ali_it0_stop = begin(gapsH);
     TGapsVIter ali_it1_stop = begin(gapsV);
 
-    // SEQAN_ASSERT( endPosition(row0)- beginPosition(row0) == endPosition(row1)- beginPosition(row1) );
+    // SEQAN2_ASSERT( endPosition(row0)- beginPosition(row0) == endPosition(row1)- beginPosition(row1) );
 
     // TAlignIterator ali_it0 = iter(row0,endPosition(row0));
     // TAlignIterator ali_it1 = iter(row1,endPosition(row1));
@@ -746,6 +746,6 @@ _smithWatermanGetNext(Gaps<TSequenceH, TGapsSpecH> & gapsH,
     return getValue(sw_finder.matrix,next_best_end);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_LOCAL_ALIGNMENT_WATERMAN_EGGERT_IMPL_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_LOCAL_ALIGNMENT_WATERMAN_EGGERT_IMPL_H_

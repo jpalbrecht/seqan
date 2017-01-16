@@ -35,17 +35,17 @@
 // Utility macros for parallelism.
 // ==========================================================================
 
-#ifndef SEQAN_PARALLEL_PARALLEL_SPLITTING_H_
-#define SEQAN_PARALLEL_PARALLEL_SPLITTING_H_
+#ifndef SEQAN2_PARALLEL_PARALLEL_SPLITTING_H_
+#define SEQAN2_PARALLEL_PARALLEL_SPLITTING_H_
 
-namespace seqan {
+namespace seqan2 {
 
 struct Equidistant_;
 typedef Tag<Equidistant_> Equidistant;
 
 /*!
  * @class Splitter
- * @headerfile <seqan/parallel.h>
+ * @headerfile <seqan2/parallel.h>
  * @brief Splits an interval into subintervals.
  *
  * @signature template <typename TValue, typename TSpec>
@@ -94,7 +94,7 @@ typedef Tag<Equidistant_> Equidistant;
 /*!
  * @class Equidistant Splitter
  * @extends Splitter
- * @headerfile <seqan/parallel.h>
+ * @headerfile <seqan2/parallel.h>
  * @brief Splits an interval into equal-sized subintervals.
  *
  * @signature template <typename TValue>
@@ -161,7 +161,7 @@ public:
 
     TValue operator[] (TSize i) const
     {
-        SEQAN_ASSERT_LEQ_MSG(i, subintervalCount, "Trying to access an element behind the last one!");
+        SEQAN2_ASSERT_LEQ_MSG(i, subintervalCount, "Trying to access an element behind the last one!");
         return beginPos + blockLength * i + std::min(i, rest);
     }
 };
@@ -255,7 +255,7 @@ resize(Splitter<TValue, TSpec> &splitter, TSize newCount)
 
 /*!
  * @fn computeSplitters
- * @headerfile <seqan/parallel.h>
+ * @headerfile <seqan2/parallel.h>
  * @brief Compute splitters for a sequence of objects.
  *
  * @signature void computeSplitters(splitters, size, count);
@@ -293,7 +293,7 @@ void computeSplitters(TPosString & splitters, TSize size, TCount count)
 {
     typedef typename Value<TPosString>::Type TPos;
 
-    SEQAN_ASSERT_GEQ(count, (TCount)0);
+    SEQAN2_ASSERT_GEQ(count, (TCount)0);
 
     resize(splitters, count + 1);
 
@@ -312,9 +312,9 @@ void computeSplitters(TPosString & splitters, TSize size, TCount count)
     for (; i <= count; ++i, pos += blockLength)
         splitters[i] = pos;
 
-    SEQAN_ASSERT_EQ(back(splitters), static_cast<TPos>(size));
+    SEQAN2_ASSERT_EQ(back(splitters), static_cast<TPos>(size));
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_PARALLEL_PARALLEL_SPLITTING_H_
+#endif  // SEQAN2_PARALLEL_PARALLEL_SPLITTING_H_

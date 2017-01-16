@@ -32,10 +32,10 @@
 // Author: Enrico Siragusa <enrico.siragusa@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_FIND_LAMBDA_H
-#define SEQAN_FIND_LAMBDA_H
+#ifndef SEQAN2_FIND_LAMBDA_H
+#define SEQAN2_FIND_LAMBDA_H
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Metafunctions
@@ -236,4 +236,4 @@ inline void find(TText & text,
 
 }
 
-#endif  // #ifndef SEQAN_FIND_LAMBDA_H
+#endif  // #ifndef SEQAN2_FIND_LAMBDA_H

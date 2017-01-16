@@ -35,15 +35,15 @@
 // Utility macros for parallelism.
 // ==========================================================================
 
-#ifndef SEQAN_PARALLEL_PARALLEL_MACROS_H_
-#define SEQAN_PARALLEL_PARALLEL_MACROS_H_
+#ifndef SEQAN2_PARALLEL_PARALLEL_MACROS_H_
+#define SEQAN2_PARALLEL_PARALLEL_MACROS_H_
 
 /*!
- * @macro SEQAN_OMP_PRAGMA
- * @headerfile <seqan/parallel.h>
+ * @macro SEQAN2_OMP_PRAGMA
+ * @headerfile <seqan2/parallel.h>
  * @brief Portable conditional <tt>#pragma</tt> issuing if OpenMP is enabled.
  *
- * @signature SEQAN_OMP_PRAGMA(x)
+ * @signature SEQAN2_OMP_PRAGMA(x)
  *
  * @param x The string to issue behind <tt>#pragma omp</tt>.
  *
@@ -60,7 +60,7 @@
  * Parallelize loop with OpenMP if OpenMP is enabled:
  *
  * @code{.cpp}
- * SEQAN_OMP_PRAGMA(parallel for)  // becomes: #pragma omp parallel for
+ * SEQAN2_OMP_PRAGMA(parallel for)  // becomes: #pragma omp parallel for
  * for (int i = 0; i < x; ++i)
  * {
  *     // Do work.
@@ -70,7 +70,7 @@
  * Make an addition atomic if OpenMP is enabled:
  *
  * @code{.cpp}
- * SEQAN_OMP_PRAGMA(parallel atomic)  // becomes: #pragma omp parallel atomic
+ * SEQAN2_OMP_PRAGMA(parallel atomic)  // becomes: #pragma omp parallel atomic
  * i += 1;
  * @endcode
  */
@@ -81,16 +81,16 @@
 
 #if defined(COMPILER_MSVC) || defined(COMPILER_WINTEL)
   // MSVC __pragma-operator
-  #define SEQAN_OMP_PRAGMA(x) __pragma(omp x)
+  #define SEQAN2_OMP_PRAGMA(x) __pragma(omp x)
 #else
   // GCC _Pragma operator
-  #define SEQAN_DO_PRAGMA(x) _Pragma(# x)
-  #define SEQAN_OMP_PRAGMA(x) SEQAN_DO_PRAGMA(omp x)
+  #define SEQAN2_DO_PRAGMA(x) _Pragma(# x)
+  #define SEQAN2_OMP_PRAGMA(x) SEQAN2_DO_PRAGMA(omp x)
 #endif
 
 #else  // #ifdef _OPENMP
 
-#define SEQAN_OMP_PRAGMA(x)
+#define SEQAN2_OMP_PRAGMA(x)
 
 // low-level OpenMP runtime compatibility
 inline void omp_set_num_threads(int)
@@ -113,7 +113,7 @@ inline int omp_get_thread_num()
 
 inline double omp_get_wtime()
 {
-    return seqan::sysTime();
+    return seqan2::sysTime();
 }
 
 #endif  // #ifdef _OPENMP
@@ -133,4 +133,4 @@ inline unsigned getThreadId()
 #endif
 }
 
-#endif  // SEQAN_PARALLEL_PARALLEL_MACROS_H_
+#endif  // SEQAN2_PARALLEL_PARALLEL_MACROS_H_

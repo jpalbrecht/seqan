@@ -30,8 +30,8 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_GRAPH_ALGORITHMS_H
-#define SEQAN_HEADER_GRAPH_ALGORITHMS_H
+#ifndef SEQAN2_HEADER_GRAPH_ALGORITHMS_H
+#define SEQAN2_HEADER_GRAPH_ALGORITHMS_H
 
 // External / STL
 #include <set>
@@ -40,33 +40,33 @@
 #include <utility>
 
 // Seqan
-#include <seqan/graph_types.h>
-#include <seqan/random.h>
-#include <seqan/misc/union_find.h>
+#include <seqan2/graph_types.h>
+#include <seqan2/random.h>
+#include <seqan2/misc/union_find.h>
 
 // Graph algorithms
-#include <seqan/graph_algorithms/graph_algorithm_heap_tree.h>
-#include <seqan/graph_algorithms/graph_algorithm_hmm.h>
-#include <seqan/graph_algorithms/graph_algorithm_lis_his.h>
+#include <seqan2/graph_algorithms/graph_algorithm_heap_tree.h>
+#include <seqan2/graph_algorithms/graph_algorithm_hmm.h>
+#include <seqan2/graph_algorithms/graph_algorithm_lis_his.h>
 
 // Individual graph algorithms.
-#include <seqan/graph_algorithms/all_pairs_shortest_path.h>
-#include <seqan/graph_algorithms/bellman_ford.h>
-#include <seqan/graph_algorithms/bipartite_matching.h>
-#include <seqan/graph_algorithms/breadth_first_search.h>
-#include <seqan/graph_algorithms/connected_components.h>
-#include <seqan/graph_algorithms/depth_first_search.h>
-#include <seqan/graph_algorithms/dijkstra.h>
-#include <seqan/graph_algorithms/floyd_warshall.h>
-#include <seqan/graph_algorithms/ford_fulkerson.h>
-#include <seqan/graph_algorithms/kruskal.h>
-#include <seqan/graph_algorithms/path_growing.h>
-#include <seqan/graph_algorithms/prim.h>
-#include <seqan/graph_algorithms/single_source_shortest_path.h>
-#include <seqan/graph_algorithms/strongly_connected_compnents.h>
-#include <seqan/graph_algorithms/topological_sort.h>
-#include <seqan/graph_algorithms/transitive_closure.h>
-#include <seqan/graph_algorithms/weakly_connected_components.h>
-#include <seqan/graph_algorithms/weighted_bipartite_matching.h>
+#include <seqan2/graph_algorithms/all_pairs_shortest_path.h>
+#include <seqan2/graph_algorithms/bellman_ford.h>
+#include <seqan2/graph_algorithms/bipartite_matching.h>
+#include <seqan2/graph_algorithms/breadth_first_search.h>
+#include <seqan2/graph_algorithms/connected_components.h>
+#include <seqan2/graph_algorithms/depth_first_search.h>
+#include <seqan2/graph_algorithms/dijkstra.h>
+#include <seqan2/graph_algorithms/floyd_warshall.h>
+#include <seqan2/graph_algorithms/ford_fulkerson.h>
+#include <seqan2/graph_algorithms/kruskal.h>
+#include <seqan2/graph_algorithms/path_growing.h>
+#include <seqan2/graph_algorithms/prim.h>
+#include <seqan2/graph_algorithms/single_source_shortest_path.h>
+#include <seqan2/graph_algorithms/strongly_connected_compnents.h>
+#include <seqan2/graph_algorithms/topological_sort.h>
+#include <seqan2/graph_algorithms/transitive_closure.h>
+#include <seqan2/graph_algorithms/weakly_connected_components.h>
+#include <seqan2/graph_algorithms/weighted_bipartite_matching.h>
 
-#endif  // #ifndef SEQAN_HEADER_GRAPH_ALGORITHMS_H
+#endif  // #ifndef SEQAN2_HEADER_GRAPH_ALGORITHMS_H

@@ -35,10 +35,10 @@
 // independently from the algorithms.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_ALIGNMENT_ALGORITHM_TAGS_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_ALIGNMENT_ALGORITHM_TAGS_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_ALIGNMENT_ALGORITHM_TAGS_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_ALIGNMENT_ALGORITHM_TAGS_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -61,7 +61,7 @@ namespace seqan {
 
 /*!
  * @tag AlignmentAlgorithmTags#Gotoh
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Tag for selecting Gotoh DP algorithm.
  *
  * @signature struct Gotoh_;
@@ -73,7 +73,7 @@ typedef Tag<Gotoh_> Gotoh;
 
 /*!
  * @tag AlignmentAlgorithmTags#NeedlemanWunsch
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Tag for selecting NeedlemanWunsch DP algorithm.
  *
  * @signature struct Hirschberg_;
@@ -85,7 +85,7 @@ typedef Tag<NeedlemanWunsch_> NeedlemanWunsch;
 
 /*!
  * @tag AlignmentAlgorithmTags#Hirschberg
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Tag for selecting Hirschberg's DP algorithm.
  *
  * @signature struct Hirschberg_;
@@ -97,7 +97,7 @@ typedef Tag<Hirschberg_> Hirschberg;
 
 /*!
  * @tag AlignmentAlgorithmTags#MyersBitVector
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Tag for selecting Myers' bit-vector algorithm.
  *
  * @signature struct MyersBitVector_;
@@ -109,7 +109,7 @@ typedef Tag<MyersBitVector_> MyersBitVector;
 
 /*!
  * @tag AlignmentAlgorithmTags#MyersHirschberg
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Tag for selecting a combination of Myers' bit-vector algorithm with Hirschberg's algorithm.
  *
  * @signature struct MyersHirschberg_;
@@ -130,7 +130,7 @@ typedef Tag<MyersHirschberg_> MyersHirschberg;
 
 /*!
  * @tag PairwiseLocalAlignmentAlgorithms#SmithWaterman
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Tag for selecting the Smith-Waterman algorithm.
  *
  * @signature struct SmithWaterman_;
@@ -142,7 +142,7 @@ typedef Tag<SmithWaterman_> SmithWaterman;
 
 /*!
  * @tag PairwiseLocalAlignmentAlgorithms#WatermanEggert
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Tag for selecting the Waterman-Eggert algorithm.
  *
  * @signature struct WatermanEggert_;
@@ -160,6 +160,6 @@ typedef Tag<WatermanEggert_> WatermanEggert;
 // Functions
 // ============================================================================
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_ALIGNMENT_ALGORITHM_TAGS_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_ALIGNMENT_ALGORITHM_TAGS_H_

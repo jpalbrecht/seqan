@@ -34,10 +34,10 @@
 // Implementation of the Connected-Components algorithm.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_GRAPH_ALGORITHMS_CONNECTED_COMPONENTS_H_
-#define INCLUDE_SEQAN_GRAPH_ALGORITHMS_CONNECTED_COMPONENTS_H_
+#ifndef INCLUDE_SEQAN2_GRAPH_ALGORITHMS_CONNECTED_COMPONENTS_H_
+#define INCLUDE_SEQAN2_GRAPH_ALGORITHMS_CONNECTED_COMPONENTS_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -62,7 +62,7 @@ namespace seqan {
 /*!
  * @fn connectedComponents
  *
- * @headerfile <seqan/graph_algorithms.h>
+ * @headerfile <seqan2/graph_algorithms.h>
  *
  * @brief Decomposes an undirected graph into its connected components.
  *
@@ -145,6 +145,6 @@ connectedComponents(TComponents & components,
     return c;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_GRAPH_ALGORITHMS_CONNECTED_COMPONENTS_H_
+#endif  // #ifndef INCLUDE_SEQAN2_GRAPH_ALGORITHMS_CONNECTED_COMPONENTS_H_

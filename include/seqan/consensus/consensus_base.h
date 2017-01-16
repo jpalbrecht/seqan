@@ -32,10 +32,10 @@
 // Author: Tobias Rausch <rausch@embl.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_CONSENSUS_BASE_H
-#define SEQAN_HEADER_CONSENSUS_BASE_H
+#ifndef SEQAN2_HEADER_CONSENSUS_BASE_H
+#define SEQAN2_HEADER_CONSENSUS_BASE_H
 
-namespace seqan
+namespace seqan2
 {
 
 
@@ -59,11 +59,11 @@ typedef Tag<OverlapLibrary_> const OverlapLibrary;
  * @brief Tags for consensus calling.
  *
  * @tag ConsensusCallingTags#MajorityVote
- * @headerfile <seqan/consensus.h>
+ * @headerfile <seqan2/consensus.h>
  * @brief Consensus based on the most common character.
  *
  * @tag ConsensusCallingTags#Bayesian
- * @headerfile <seqan/consensus.h>
+ * @headerfile <seqan2/consensus.h>
  * @brief Consensus based on a bayesian probability.
  */
 
@@ -112,7 +112,7 @@ public:
     int window;
 
     // Output
-    // 0: seqan style
+    // 0: seqan2 style
     // 1: afg output format
     // 2: frg output format
     // 3: cgb output format
@@ -421,7 +421,7 @@ assignGappedConsensus(FragmentStore<TSpec, TConfig>& fragStore,
 
 /*
  * @fn consensusAlignment
- * @headerfile <seqan/consensus.h>
+ * @headerfile <seqan2/consensus.h>
  * @brief Compute consensus alignment.
  *
  * @signature void consensusAlignment(alignmentGraph, beginEndPos[, options])
@@ -433,13 +433,13 @@ assignGappedConsensus(FragmentStore<TSpec, TConfig>& fragStore,
  * @section Example
  *
  * @code{.cpp}
- * #include <seqan/sequence.h>
- * #include <seqan/graph_align.h>
- * #include <seqan/consensus.h>
+ * #include <seqan2/sequence.h>
+ * #include <seqan2/graph_align.h>
+ * #include <seqan2/consensus.h>
  *
  * int main()
  * {
- *     using namespace seqan;
+ *     using namespace seqan2;
  *
  *     typedef StringSet<Dna5String> TStringSet;
  *     typedef Graph<Alignment<TStringSet, void, WithoutEdgeId> > TAlignGraph;
@@ -1866,6 +1866,6 @@ _writeCeleraCgb(TFile& file,
     write(target, "}\n");
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

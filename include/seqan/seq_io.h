@@ -34,42 +34,42 @@
 // Facade header for module seq_io.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_SEQ_IO_H_
-#define INCLUDE_SEQAN_SEQ_IO_H_
+#ifndef INCLUDE_SEQAN2_SEQ_IO_H_
+#define INCLUDE_SEQAN2_SEQ_IO_H_
 
 // ===========================================================================
 // Prerequisites.
 // ===========================================================================
 
-#include <seqan/basic.h>
-#include <seqan/stream.h>
-#include <seqan/misc/name_store_cache.h>
+#include <seqan2/basic.h>
+#include <seqan2/stream.h>
+#include <seqan2/misc/name_store_cache.h>
 
 // ===========================================================================
 // Sequence File Formats
 // ===========================================================================
 
-#include <seqan/seq_io/fasta_fastq.h>
-#include <seqan/seq_io/read_embl.h>
-#include <seqan/seq_io/read_genbank.h>
-#include <seqan/seq_io/bam_sam.h>
+#include <seqan2/seq_io/fasta_fastq.h>
+#include <seqan2/seq_io/read_embl.h>
+#include <seqan2/seq_io/read_genbank.h>
+#include <seqan2/seq_io/bam_sam.h>
 
 // ===========================================================================
 // Sequence File
 // ===========================================================================
 
-#include <seqan/seq_io/sequence_file.h>
+#include <seqan2/seq_io/sequence_file.h>
 
 // ===========================================================================
 // Genomic Region
 // ===========================================================================
 
-#include <seqan/seq_io/genomic_region.h>
+#include <seqan2/seq_io/genomic_region.h>
 
 // ===========================================================================
 // FAI Index
 // ===========================================================================
 
-#include <seqan/seq_io/fai_index.h>
+#include <seqan2/seq_io/fai_index.h>
 
-#endif  // INCLUDE_SEQAN_SEQ_IO_H_
+#endif  // INCLUDE_SEQAN2_SEQ_IO_H_

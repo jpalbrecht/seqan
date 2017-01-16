@@ -32,16 +32,16 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_STORE_BASE_H
-#define SEQAN_HEADER_STORE_BASE_H
+#ifndef SEQAN2_HEADER_STORE_BASE_H
+#define SEQAN2_HEADER_STORE_BASE_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
 // Base structs
 //////////////////////////////////////////////////////////////////////////////
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

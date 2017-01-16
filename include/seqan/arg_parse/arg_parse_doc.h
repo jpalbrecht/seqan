@@ -32,13 +32,13 @@
 // Author: Stephan Aiche <stephan.aiche@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ARG_PARSE_ARG_PARSE_DOC_H_
-#define SEQAN_INCLUDE_SEQAN_ARG_PARSE_ARG_PARSE_DOC_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ARG_PARSE_ARG_PARSE_DOC_H_
+#define SEQAN2_INCLUDE_SEQAN2_ARG_PARSE_ARG_PARSE_DOC_H_
 
-#include <seqan/arg_parse/tool_doc.h>
-#include <seqan/arg_parse/argument_parser.h>
+#include <seqan2/arg_parse/tool_doc.h>
+#include <seqan2/arg_parse/argument_parser.h>
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Functions
@@ -634,10 +634,10 @@ inline void printShortHelp(ArgumentParser const & me)
 inline void printVersion(ArgumentParser const & me, std::ostream & stream)
 {
     stream << getAppName(me) << " version: " << getVersion(me) << std::endl;
-    stream << "SeqAn version: " << SEQAN_VERSION_MAJOR << '.' <<  SEQAN_VERSION_MINOR << '.'
-           << SEQAN_VERSION_PATCH;
-    if (SEQAN_VERSION_PRE_RELEASE != 0)
-        stream << "-pre" << SEQAN_VERSION_PRE_RELEASE;
+    stream << "SeqAn version: " << SEQAN2_VERSION_MAJOR << '.' <<  SEQAN2_VERSION_MINOR << '.'
+           << SEQAN2_VERSION_PATCH;
+    if (SEQAN2_VERSION_PRE_RELEASE != 0)
+        stream << "-pre" << SEQAN2_VERSION_PRE_RELEASE;
     stream << "\n";
 }
 
@@ -1051,6 +1051,6 @@ inline void printHelp(ArgumentParser const & me)
     printHelp(me, std::cerr, "txt", false);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ARG_PARSE_ARG_PARSE_DOC_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ARG_PARSE_ARG_PARSE_DOC_H_

@@ -36,10 +36,10 @@
 // cells needed for the recursion formula.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_MATRIX_NAVIGATOR_SCORE_SPARSE_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_DP_MATRIX_NAVIGATOR_SCORE_SPARSE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_MATRIX_NAVIGATOR_SCORE_SPARSE_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_MATRIX_NAVIGATOR_SCORE_SPARSE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -364,6 +364,6 @@ _goNextCell(DPMatrixNavigator_<DPMatrix_<TValue, SparseDPMatrix>, DPScoreMatrix,
     dpNavigator._prevCellHorizontal = value(++dpNavigator._activeColIterator);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_MATRIX_NAVIGATOR_SCORE_SPARSE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_MATRIX_NAVIGATOR_SCORE_SPARSE_H_

@@ -35,12 +35,12 @@
 // Mathematical Metafunctions.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_METAPROGRAMMING_MATH_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_METAPROGRAMMING_MATH_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_METAPROGRAMMING_MATH_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_METAPROGRAMMING_MATH_H_
 
-#include <seqan/platform.h>
+#include <seqan2/platform.h>
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -182,6 +182,6 @@ struct Max
 // Functions
 // ============================================================================
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_METAPROGRAMMING_MATH_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_METAPROGRAMMING_MATH_H_

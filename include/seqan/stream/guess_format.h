@@ -33,10 +33,10 @@
 // ==========================================================================
 // TODO(esiragusa): tests
 
-#ifndef SEQAN_STREAM_GUESS_FORMAT_
-#define SEQAN_STREAM_GUESS_FORMAT_
+#ifndef SEQAN2_STREAM_GUESS_FORMAT_
+#define SEQAN2_STREAM_GUESS_FORMAT_
 
-namespace seqan {
+namespace seqan2 {
 
 // --------------------------------------------------------------------------
 // Class FileExtensions
@@ -138,7 +138,7 @@ getBasename(TFilename const & fname, TagSelector<TTagList> const &format)
 
 /*!
  * @fn guessFormatFromFilename
- * @headerfile <seqan/file.h>
+ * @headerfile <seqan2/file.h>
  * @brief Guesses a file format from a sequence file name.
  *
  * @signature bool guessFormatFromFilename(fileName, formatTag);
@@ -219,6 +219,6 @@ inline void _getFileExtensions(TStringSet &stringSet, TagSelector<TTagList> cons
     _getFileExtensions(stringSet, TTagList(), primaryExtensionOnly);
 }
 
-} // namespace seqan
+} // namespace seqan2
 
-#endif  // #ifndef SEQAN_STREAM_GUESS_FORMAT_
+#endif  // #ifndef SEQAN2_STREAM_GUESS_FORMAT_

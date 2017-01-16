@@ -37,10 +37,10 @@
 // TODO(holtgrew): Perform some benchmarks and use a better malloc, e.g. tcmalloc and see whether our allocator infrastructure is worth keeping around.
 // TODO(holtgrew): Rename to allocator_base.h?
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_ALLOCATOR_INTERFACE_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_ALLOCATOR_INTERFACE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ALLOCATOR_INTERFACE_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_ALLOCATOR_INTERFACE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -59,15 +59,15 @@ template <typename TValue, typename TSpec> struct Holder;
  * @brief The purpose of an allocated memory block.
  *
  * @tag AllocatorUsageTags#TagAllocateUnspecified
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Not specified.
  *
  * @tag AllocatorUsageTags#TagAllocateTemp
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Temporary memory.
  *
  * @tag AllocatorUsageTags#TagAllocateStorage
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Memory for storing container content.
  */
 
@@ -87,7 +87,7 @@ typedef Tag<AllocateAlignedMalloc_> TagAllocateAlignedMalloc;
 
 /*!
  * @class Allocator
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Manager for allocated memory.
  *
  * @signature template <typename TSpec>
@@ -134,7 +134,7 @@ struct Spec<Allocator<TSpec> >
 
 /*!
  * @fn Allocator#allocate
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Allocates memory from heap.
  *
  * @signature void allocate(allocator, data, count[, usageTag]);
@@ -203,9 +203,9 @@ allocate(T const &,
   data = (TValue *) operator new(count * sizeof(TValue));
 #endif
 
-#ifdef SEQAN_PROFILE
+#ifdef SEQAN2_PROFILE
     if (data)
-        SEQAN_PROADD(SEQAN_PROMEMORY, count * sizeof(TValue));
+        SEQAN2_PROADD(SEQAN2_PROMEMORY, count * sizeof(TValue));
 #endif
 }
 
@@ -230,9 +230,9 @@ allocate(T &,
   data = (TValue *) operator new(count * sizeof(TValue));
 #endif
 
-#ifdef SEQAN_PROFILE
+#ifdef SEQAN2_PROFILE
     if (data)
-        SEQAN_PROADD(SEQAN_PROMEMORY, count * sizeof(TValue));
+        SEQAN2_PROADD(SEQAN2_PROMEMORY, count * sizeof(TValue));
 #endif
 }
 
@@ -285,7 +285,7 @@ allocate(T &,
 
 /*!
  * @fn Allocator#deallocate
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Deallocates memory.
  *
  * @signature void deallocate(object, data, count[, usageTag])
@@ -332,16 +332,16 @@ inline void
 deallocate(
     T const & /*me*/,
     TValue * data,
-#ifdef SEQAN_PROFILE
+#ifdef SEQAN2_PROFILE
     TSize count,
 #else
     TSize,
 #endif
     Tag<TUsage> const)
 {
-#ifdef SEQAN_PROFILE
-    if (data && count)  // .. to use count if SEQAN_PROFILE is not defined
-        SEQAN_PROSUB(SEQAN_PROMEMORY, count * sizeof(TValue));
+#ifdef SEQAN2_PROFILE
+    if (data && count)  // .. to use count if SEQAN2_PROFILE is not defined
+        SEQAN2_PROSUB(SEQAN2_PROMEMORY, count * sizeof(TValue));
 #endif
 //  operator delete ((void *) data);
 #ifdef STDLIB_VS
@@ -357,16 +357,16 @@ inline void
 deallocate(
     T & /*me*/,
     TValue * data,
-#ifdef SEQAN_PROFILE
+#ifdef SEQAN2_PROFILE
     TSize count,
 #else
     TSize,
 #endif
     Tag<TUsage> const)
 {
-#ifdef SEQAN_PROFILE
-    if (data && count)  // .. to use count if SEQAN_PROFILE is not defined
-        SEQAN_PROSUB(SEQAN_PROMEMORY, count * sizeof(TValue));
+#ifdef SEQAN2_PROFILE
+    if (data && count)  // .. to use count if SEQAN2_PROFILE is not defined
+        SEQAN2_PROSUB(SEQAN2_PROMEMORY, count * sizeof(TValue));
 #endif
 //  operator delete ((void *) data);
 #ifdef STDLIB_VS
@@ -385,16 +385,16 @@ inline void
 deallocate(
            T const & /*me*/,
            TValue * data,
-#ifdef SEQAN_PROFILE
+#ifdef SEQAN2_PROFILE
            TSize count,
 #else
            TSize,
 #endif
            TagAllocateAlignedMalloc const)
 {
-#ifdef SEQAN_PROFILE
-    if (data && count)  // .. to use count if SEQAN_PROFILE is not defined
-        SEQAN_PROSUB(SEQAN_PROMEMORY, count * sizeof(TValue));
+#ifdef SEQAN2_PROFILE
+    if (data && count)  // .. to use count if SEQAN2_PROFILE is not defined
+        SEQAN2_PROSUB(SEQAN2_PROMEMORY, count * sizeof(TValue));
 #endif
 #ifdef PLATFORM_WINDOWS_VS
     _aligned_free((void *) data);
@@ -408,16 +408,16 @@ inline void
 deallocate(
            T & /*me*/,
            TValue * data,
-#ifdef SEQAN_PROFILE
+#ifdef SEQAN2_PROFILE
            TSize count,
 #else
            TSize,
 #endif
            TagAllocateAlignedMalloc const)
 {
-#ifdef SEQAN_PROFILE
-    if (data && count)  // .. to use count if SEQAN_PROFILE is not defined
-        SEQAN_PROSUB(SEQAN_PROMEMORY, count * sizeof(TValue));
+#ifdef SEQAN2_PROFILE
+    if (data && count)  // .. to use count if SEQAN2_PROFILE is not defined
+        SEQAN2_PROSUB(SEQAN2_PROMEMORY, count * sizeof(TValue));
 #endif
     //  operator delete ((void *) data);
 #ifdef PLATFORM_WINDOWS_VS
@@ -427,6 +427,6 @@ deallocate(
 #endif
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_ALLOCATOR_INTERFACE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ALLOCATOR_INTERFACE_H_

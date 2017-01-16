@@ -37,10 +37,10 @@
 // the concatenation of all strings.
 // ==========================================================================
 
-#ifndef SEQAN_SEQUENCE_ITER_CONCAT_VIRTUAL_H_
-#define SEQAN_SEQUENCE_ITER_CONCAT_VIRTUAL_H_
+#ifndef SEQAN2_SEQUENCE_ITER_CONCAT_VIRTUAL_H_
+#define SEQAN2_SEQUENCE_ITER_CONCAT_VIRTUAL_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -60,7 +60,7 @@ struct ConcatVirtual;
 /*!
  * @class ConcatVirtualIterator
  * @extends Iter
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Iterator that sequentially iterates through the elements of a @link StringSet @endlink as if they were
  *        directly concatenated, also see @link ConcatDirectStringSet @endlink.
  *
@@ -160,9 +160,9 @@ public:
     {
         if (objNo >= length(*host))
         {
-            SEQAN_ASSERT(_begin == obj_iterator());
-            SEQAN_ASSERT(_cur == obj_iterator());
-            SEQAN_ASSERT(_end == obj_iterator());
+            SEQAN2_ASSERT(_begin == obj_iterator());
+            SEQAN2_ASSERT(_cur == obj_iterator());
+            SEQAN2_ASSERT(_end == obj_iterator());
             return;
         }
 
@@ -439,7 +439,7 @@ operator==(
     Iter<TSSetL, ConcatVirtual<TSpecL> > const & L,
     Iter<TSSetR, ConcatVirtual<TSpecR> > const & R)
 {
-    SEQAN_ASSERT_EQ(L.host, R.host);
+    SEQAN2_ASSERT_EQ(L.host, R.host);
     return L.objNo == R.objNo && L._cur == R._cur;
 }
 
@@ -449,7 +449,7 @@ operator!=(
     Iter<TSSetL, ConcatVirtual<TSpecL> > const & L,
     Iter<TSSetR, ConcatVirtual<TSpecR> > const & R)
 {
-    SEQAN_ASSERT(L.host == R.host);
+    SEQAN2_ASSERT(L.host == R.host);
     return L.objNo != R.objNo || L._cur != R._cur;
 }
 
@@ -463,7 +463,7 @@ operator<(
     Iter<TSSetL, ConcatVirtual<TSpecL> > const & L,
     Iter<TSSetR, ConcatVirtual<TSpecR> > const & R)
 {
-    SEQAN_ASSERT(L.host == R.host);
+    SEQAN2_ASSERT(L.host == R.host);
     return L.objNo < R.objNo || (L.objNo == R.objNo && L._cur < R._cur);
 }
 
@@ -473,7 +473,7 @@ operator > (
     Iter<TSSetL, ConcatVirtual<TSpecL> > const & L,
     Iter<TSSetR, ConcatVirtual<TSpecR> > const & R)
 {
-    SEQAN_ASSERT(L.host == R.host);
+    SEQAN2_ASSERT(L.host == R.host);
     return L.objNo > R.objNo || (L.objNo == R.objNo && L._cur > R._cur);
 }
 
@@ -558,6 +558,6 @@ atEndOfSequence(TIterator & me)
     return atEndOfSequence(reinterpret_cast<TIterator const &>(me));
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_SEQUENCE_ITER_CONCAT_VIRTUAL_H_
+#endif  // #ifndef SEQAN2_SEQUENCE_ITER_CONCAT_VIRTUAL_H_

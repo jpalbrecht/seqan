@@ -38,17 +38,17 @@
 
 //////////////////////////////////////////////////////////////////////////////
 
-#ifndef SEQAN_STATISTICS_STATISTICS_MARKOV_MODEL_H_
-#define SEQAN_STATISTICS_STATISTICS_MARKOV_MODEL_H_
+#ifndef SEQAN2_STATISTICS_STATISTICS_MARKOV_MODEL_H_
+#define SEQAN2_STATISTICS_STATISTICS_MARKOV_MODEL_H_
 
-#include <seqan/align.h>
-#include <seqan/index.h>
+#include <seqan2/align.h>
+#include <seqan2/index.h>
 
-namespace seqan {
+namespace seqan2 {
 
 /*!
  * @class MarkovModel
- * @headerfile <seqan/statistics.h>
+ * @headerfile <seqan2/statistics.h>
  * @brief Gives a suitable representation of a Marcov Chain.
  *
  * @signature template <typename TAlphabet[, typename TFloat[, typename TSpec]]>
@@ -876,4 +876,4 @@ void ensureAuxMatrices(MarkovModel<TAlphabet, TFloat, TSpec> & mm )
 
 }
 
-#endif  // #ifndef SEQAN_STATISTICS_STATISTICS_MARKOV_MODEL_H_
+#endif  // #ifndef SEQAN2_STATISTICS_STATISTICS_MARKOV_MODEL_H_

@@ -41,12 +41,12 @@
 // * cancel writing and reading if page is locked while writing
 
 
-#ifndef SEQAN_FILE_FILE_STREAM_H_
-#define SEQAN_FILE_FILE_STREAM_H_
+#ifndef SEQAN2_FILE_FILE_STREAM_H_
+#define SEQAN2_FILE_FILE_STREAM_H_
 
-//#define SEQAN_DEBUG_FILESTREAM
+//#define SEQAN2_DEBUG_FILESTREAM
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -178,10 +178,10 @@ clear(FilePage<TValue, TSpec> & me)
 // Class FilePager
 // ----------------------------------------------------------------------------
 
-template <unsigned SEQAN_PAGESIZE = 4 * 1024>
+template <unsigned SEQAN2_PAGESIZE = 4 * 1024>
 struct FixedPagingScheme
 {
-    enum { pageSize = SEQAN_PAGESIZE };
+    enum { pageSize = SEQAN2_PAGESIZE };
 
     static void * EMPTY;
     static void * ON_DISK;
@@ -189,11 +189,11 @@ struct FixedPagingScheme
     String<void *> frameStart;
 };
 
-template <unsigned SEQAN_PAGESIZE>
-void * FixedPagingScheme<SEQAN_PAGESIZE>::EMPTY = NULL;
+template <unsigned SEQAN2_PAGESIZE>
+void * FixedPagingScheme<SEQAN2_PAGESIZE>::EMPTY = NULL;
 
-template <unsigned SEQAN_PAGESIZE>
-void * FixedPagingScheme<SEQAN_PAGESIZE>::ON_DISK = (void *)-1;
+template <unsigned SEQAN2_PAGESIZE>
+void * FixedPagingScheme<SEQAN2_PAGESIZE>::ON_DISK = (void *)-1;
 
 
 template <typename TFilePageTable>
@@ -276,11 +276,11 @@ clear(FilePageTable<TValue, TDirection, TSpec> & pager)
 // Function _getPageOffsetAndLength()
 // ----------------------------------------------------------------------------
 
-template <unsigned SEQAN_PAGESIZE, typename TPos>
+template <unsigned SEQAN2_PAGESIZE, typename TPos>
 inline Pair<int64_t, unsigned>
-_getPageOffsetAndLength(FixedPagingScheme<SEQAN_PAGESIZE> const & scheme, TPos pos)
+_getPageOffsetAndLength(FixedPagingScheme<SEQAN2_PAGESIZE> const & scheme, TPos pos)
 {
-    SEQAN_ASSERT_EQ(scheme.pageSize & (scheme.pageSize - 1), 0);  // pageSize must be a power of 2
+    SEQAN2_ASSERT_EQ(scheme.pageSize & (scheme.pageSize - 1), 0);  // pageSize must be a power of 2
     return Pair<int64_t, unsigned>((int64_t)pos & ~(int64_t)(scheme.pageSize - 1), scheme.pageSize);
 }
 
@@ -288,12 +288,12 @@ _getPageOffsetAndLength(FixedPagingScheme<SEQAN_PAGESIZE> const & scheme, TPos p
 // Function _getFrameStart()
 // ----------------------------------------------------------------------------
 
-template <unsigned SEQAN_PAGESIZE, typename TFilePos, typename TSize>
+template <unsigned SEQAN2_PAGESIZE, typename TFilePos, typename TSize>
 inline void *
-_getFrameStart(FixedPagingScheme<SEQAN_PAGESIZE> &table, TFilePos filePos, TSize)
+_getFrameStart(FixedPagingScheme<SEQAN2_PAGESIZE> &table, TFilePos filePos, TSize)
 {
     unsigned pageNo = filePos / table.pageSize;
-    if (SEQAN_LIKELY(pageNo < length(table.frameStart)))
+    if (SEQAN2_LIKELY(pageNo < length(table.frameStart)))
         return table.frameStart[pageNo];
     else
         return table.EMPTY;
@@ -303,9 +303,9 @@ _getFrameStart(FixedPagingScheme<SEQAN_PAGESIZE> &table, TFilePos filePos, TSize
 // Function _setFrameStart()
 // ----------------------------------------------------------------------------
 
-template <unsigned SEQAN_PAGESIZE, typename TFilePos, typename TSize>
+template <unsigned SEQAN2_PAGESIZE, typename TFilePos, typename TSize>
 inline void
-_setFrameStart(FixedPagingScheme<SEQAN_PAGESIZE> &table, TFilePos filePos, TSize, void * frameStart)
+_setFrameStart(FixedPagingScheme<SEQAN2_PAGESIZE> &table, TFilePos filePos, TSize, void * frameStart)
 {
     unsigned pageNo = filePos / table.pageSize;
     if (length(table.frameStart) <= pageNo)
@@ -545,7 +545,7 @@ _processFilePage(FilePageTable<TValue, TDirection, TSpec> & pager, TPageFrame & 
             break;
 
         default:
-            SEQAN_FAIL("Unknown page state: %i", page.state);
+            SEQAN2_FAIL("Unknown page state: %i", page.state);
         }
     }
     return true;
@@ -595,7 +595,7 @@ template <typename TValue, typename TDirection, typename TSpec>
 inline FilePage<TValue, TSpec> *
 _swapOutFilePage(FilePageTable<TValue, TDirection, TSpec> & pager)
 {
-    SEQAN_ASSERT_NOT(empty(pager.ready) && empty(pager.inProcess));
+    SEQAN2_ASSERT_NOT(empty(pager.ready) && empty(pager.inProcess));
 
     typedef FilePage<TValue, TSpec> TPage;
 
@@ -722,7 +722,7 @@ _lockFilePage(FilePageTable<TValue, TDirection, TSpec> & pager, TFilePos filePos
     typedef FilePage<TValue, TSpec> TPage;
     TPage * p;
 
-    SEQAN_OMP_PRAGMA(critical(lockPageTable))
+    SEQAN2_OMP_PRAGMA(critical(lockPageTable))
     {
         p = static_cast<TPage *>(_getFrameStart(pager.table, filePos, size));
         if (p == pager.table.EMPTY || p == pager.table.ON_DISK)
@@ -887,7 +887,7 @@ struct FileStreamBuffer :
             {
                 // for BGZF files we know the block size on disk only after writing the page
                 int count = atomicDec(writePage->lockCount);
-                SEQAN_ASSERT_EQ(count, 0);
+                SEQAN2_ASSERT_EQ(count, 0);
                 ignoreUnusedVariableWarning(count);
                 writePage->targetState = UNUSED;
                 erase(pager.ready, *writePage);
@@ -907,10 +907,10 @@ struct FileStreamBuffer :
     virtual TIntValue
     overflow(TIntValue val)
     {
-        if (SEQAN_UNLIKELY(!pager.file))
+        if (SEQAN2_UNLIKELY(!pager.file))
             return TTraits::eof();
 
-        if (SEQAN_UNLIKELY(this->pptr() >= this->epptr() && !_nextWritePage()))
+        if (SEQAN2_UNLIKELY(this->pptr() >= this->epptr() && !_nextWritePage()))
         {
             this->setp(NULL, NULL);
             return TTraits::eof();
@@ -927,10 +927,10 @@ struct FileStreamBuffer :
     virtual TIntValue
     underflow()
     {
-        if (SEQAN_UNLIKELY(!pager.file))
+        if (SEQAN2_UNLIKELY(!pager.file))
             return TTraits::eof();
 
-        if (SEQAN_UNLIKELY(this->gptr() >= this->egptr() && !_nextReadPage()))
+        if (SEQAN2_UNLIKELY(this->gptr() >= this->egptr() && !_nextReadPage()))
         {
             this->setg(NULL, NULL, NULL);
             return TTraits::eof();
@@ -959,18 +959,18 @@ struct FileStreamBuffer :
 
     TPosition _tell(std::ios::openmode which)
     {
-        if (SEQAN_LIKELY(pager.file))
+        if (SEQAN2_LIKELY(pager.file))
         {
             if (which == std::ios::in)
             {
-                if (SEQAN_LIKELY(readPage != NULL))
+                if (SEQAN2_LIKELY(readPage != NULL))
                     return (TSize)readPagePos + (gptr() - eback());
                 else
                     return 0;
             }
             else
             {
-                if (SEQAN_LIKELY(writePage != NULL))
+                if (SEQAN2_LIKELY(writePage != NULL))
                     return (TSize)writePagePos + (pptr() - pbase());
                 else
                     return 0;
@@ -998,7 +998,7 @@ struct FileStreamBuffer :
             readPage = NULL;
         }
 
-        if (SEQAN_UNLIKELY(pos < (TPosition)0))
+        if (SEQAN2_UNLIKELY(pos < (TPosition)0))
             return -1;
 
 
@@ -1028,7 +1028,7 @@ struct FileStreamBuffer :
             writePage = NULL;
         }
 
-        if (SEQAN_UNLIKELY(pos < (TPosition)0))
+        if (SEQAN2_UNLIKELY(pos < (TPosition)0))
             return -1;
 
 
@@ -1049,9 +1049,9 @@ struct FileStreamBuffer :
         TPosition pos,
         std::ios::openmode which)
     {
-        SEQAN_ASSERT_NEQ((int)(which & IosOpenMode<TDirection>::VALUE), 0);
+        SEQAN2_ASSERT_NEQ((int)(which & IosOpenMode<TDirection>::VALUE), 0);
 
-        if (SEQAN_UNLIKELY(!pager.file))
+        if (SEQAN2_UNLIKELY(!pager.file))
             return -1;
 
         if (which == std::ios::in)
@@ -1066,9 +1066,9 @@ struct FileStreamBuffer :
         std::ios::seekdir dir,
         std::ios::openmode which)
     {
-        SEQAN_ASSERT_NEQ((int)(which & IosOpenMode<TDirection>::VALUE), 0);
+        SEQAN2_ASSERT_NEQ((int)(which & IosOpenMode<TDirection>::VALUE), 0);
 
-        if (SEQAN_UNLIKELY(!pager.file))
+        if (SEQAN2_UNLIKELY(!pager.file))
             return -1;
 
         TPosition pos;
@@ -1156,7 +1156,7 @@ public:
 
     ~FileStream()
     {
-        seqan::close(*this);
+        seqan2::close(*this);
     }
 
     bool is_open()
@@ -1166,7 +1166,7 @@ public:
 
     void close()
     {
-        seqan::close(*this);
+        seqan2::close(*this);
     }
 };
 
@@ -1227,13 +1227,13 @@ struct Size<FileStream<TValue, TDirection, TSpec> >:
 // ----------------------------------------------------------------------------
 
 template <typename TValue, typename TSpec>
-SEQAN_CONCEPT_IMPL((FileStream<TValue, Input, TSpec>), (InputStreamConcept));
+SEQAN2_CONCEPT_IMPL((FileStream<TValue, Input, TSpec>), (InputStreamConcept));
 
 template <typename TValue, typename TSpec>
-SEQAN_CONCEPT_IMPL((FileStream<TValue, Output, TSpec>), (OutputStreamConcept));
+SEQAN2_CONCEPT_IMPL((FileStream<TValue, Output, TSpec>), (OutputStreamConcept));
 
 template <typename TValue, typename TSpec>
-SEQAN_CONCEPT_IMPL((FileStream<TValue, Bidirectional, TSpec>), (BidirectionalStreamConcept));
+SEQAN2_CONCEPT_IMPL((FileStream<TValue, Bidirectional, TSpec>), (BidirectionalStreamConcept));
 
 
 // ----------------------------------------------------------------------------
@@ -1304,6 +1304,6 @@ close(FileStream<TValue, TDirection, TSpec> & stream)
     return true;
 }
 
-} // namespace seqan
+} // namespace seqan2
 
-#endif  // #ifndef SEQAN_FILE_FILE_STREAM_H_
+#endif  // #ifndef SEQAN2_FILE_FILE_STREAM_H_

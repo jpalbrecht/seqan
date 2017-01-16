@@ -35,10 +35,10 @@
 // seeds_scoring_scheme.h
 // ==========================================================================
 
-#ifndef SEQAN_SEEDS_SEEDS_SEED_SET_BASE_H_
-#define SEQAN_SEEDS_SEEDS_SEED_SET_BASE_H_
+#ifndef SEQAN2_SEEDS_SEEDS_SEED_SET_BASE_H_
+#define SEQAN2_SEEDS_SEEDS_SEED_SET_BASE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ===========================================================================
 // Forwards
@@ -59,7 +59,7 @@ typedef Tag<Unordered_> Unordered;
 
 /*!
  * @class SeedSet
- * @headerfile <seqan/seeds.h>
+ * @headerfile <seqan2/seeds.h>
  * @implements ContainerConcept
  * @brief Handles a set of seeds with local chaining on adding seeds.
  * @note At the moment only <tt>Unordered SeedSets</tt> are supported.
@@ -95,7 +95,7 @@ class SeedSet;
 /*!
  * @fn SeedSet#addSeed
  *
- * @headerfile <seqan/seeds.h>
+ * @headerfile <seqan2/seeds.h>
  *
  * @brief Adds a seed to an existing @link SeedSet @endlink using different
  *        algorithms for local chaining.
@@ -157,7 +157,7 @@ class SeedSet;
 
 /*!
  * @fn SeedSet#minScore
- * @headerfile <seqan/seeds.h>
+ * @headerfile <seqan2/seeds.h>
  * @brief Returns the threshold to distinguish between high-scoring and low-scoring seeds.
  *
  * @signature TSeedScore minScore(seedSet);
@@ -184,7 +184,7 @@ minScore(SeedSet<TSeed, TSeedSetSpec> const & seedSet)
 
 /*!
  * @fn SeedSet#setMinScore
- * @headerfile <seqan/seeds.h>
+ * @headerfile <seqan2/seeds.h>
  * @brief Sets the threshold at which seeds are considered high-scoring.
  *
  * @signature void setMinScore(seedSet, scoreValue);
@@ -243,7 +243,7 @@ inline bool _qualityReached(SeedSet<TSeed, TSeedSetSpec> const & seedSet,
 
 /*!
  * @fn SeedSet#clear
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Clear the SeedSet.
  *
  * @signature void clear(seedSet);
@@ -296,6 +296,6 @@ __write(TStream & stream,
     stream << "\\end{tikzpicture}" << std::endl;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_SEEDS_SEEDS_SEED_SET_BASE_H_
+#endif  // SEQAN2_SEEDS_SEEDS_SEED_SET_BASE_H_

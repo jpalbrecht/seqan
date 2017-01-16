@@ -38,10 +38,10 @@
 //
 // If the queue is often empty or full, the suspendable queue should be used.
 
-#ifndef SEQAN_PARALLEL_PARALLEL_QUEUE_H_
-#define SEQAN_PARALLEL_PARALLEL_QUEUE_H_
+#ifndef SEQAN2_PARALLEL_PARALLEL_QUEUE_H_
+#define SEQAN2_PARALLEL_PARALLEL_QUEUE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Classes
@@ -52,7 +52,7 @@ namespace seqan {
 // ----------------------------------------------------------------------------
 /*!
  * @class ConcurrentQueue Concurrent Queue
- * @headerfile <seqan/parallel.h>
+ * @headerfile <seqan2/parallel.h>
  * @brief Thread-safe queue for multiple producers and multiple consumers.
  *
  * @signature template <typename TValue, typename TSpec>
@@ -92,16 +92,16 @@ public:
                      >::Type                                    TLockTag;
 
     TString                 data;
-    mutable ReadWriteLock   lock;           char pad1[SEQAN_CACHE_LINE_SIZE - sizeof(ReadWriteLock)];
+    mutable ReadWriteLock   lock;           char pad1[SEQAN2_CACHE_LINE_SIZE - sizeof(ReadWriteLock)];
     size_t                  readerCount;
     size_t                  writerCount;
 
-    TAtomicSize headPos;                    char pad4[SEQAN_CACHE_LINE_SIZE - sizeof(TAtomicSize)];
-    TAtomicSize headReadPos;                char pad5[SEQAN_CACHE_LINE_SIZE - sizeof(TAtomicSize)];
-    TAtomicSize tailPos;                    char pad6[SEQAN_CACHE_LINE_SIZE - sizeof(TAtomicSize)];
-    TAtomicSize tailWritePos;               char pad7[SEQAN_CACHE_LINE_SIZE - sizeof(TAtomicSize)];
-    TAtomicSize roundSize;                  char pad8[SEQAN_CACHE_LINE_SIZE - sizeof(TAtomicSize)];
-    Atomic<bool>::Type virgin;              char pad9[SEQAN_CACHE_LINE_SIZE - sizeof(Atomic < bool > ::Type)];
+    TAtomicSize headPos;                    char pad4[SEQAN2_CACHE_LINE_SIZE - sizeof(TAtomicSize)];
+    TAtomicSize headReadPos;                char pad5[SEQAN2_CACHE_LINE_SIZE - sizeof(TAtomicSize)];
+    TAtomicSize tailPos;                    char pad6[SEQAN2_CACHE_LINE_SIZE - sizeof(TAtomicSize)];
+    TAtomicSize tailWritePos;               char pad7[SEQAN2_CACHE_LINE_SIZE - sizeof(TAtomicSize)];
+    TAtomicSize roundSize;                  char pad8[SEQAN2_CACHE_LINE_SIZE - sizeof(TAtomicSize)];
+    Atomic<bool>::Type virgin;              char pad9[SEQAN2_CACHE_LINE_SIZE - sizeof(Atomic < bool > ::Type)];
 
     ConcurrentQueue() :
         readerCount(0),
@@ -145,10 +145,10 @@ public:
 
     ~ConcurrentQueue()
     {
-        SEQAN_ASSERT_EQ(tailPos, tailWritePos);
-        SEQAN_ASSERT_EQ(headPos, headReadPos);
-        SEQAN_ASSERT(empty(lock));
-        SEQAN_ASSERT_EQ(writerCount, 0u);
+        SEQAN2_ASSERT_EQ(tailPos, tailWritePos);
+        SEQAN2_ASSERT_EQ(headPos, headReadPos);
+        SEQAN2_ASSERT(empty(lock));
+        SEQAN2_ASSERT_EQ(writerCount, 0u);
 
         TSize mask = roundSize - 1;
         headPos &= mask;
@@ -403,7 +403,7 @@ capacity(ConcurrentQueue<TValue, TSpec> const & me)
 
 /*!
  * @fn ConcurrentQueue#tryPopFront
- * @headerfile <seqan/parallel.h>
+ * @headerfile <seqan2/parallel.h>
  * @brief Try to dequeue a value from a queue.
  *
  * @signature bool tryPopFront(result, queue[, parallelTag]);
@@ -456,7 +456,7 @@ tryPopFront(TValue2 & result, ConcurrentQueue<TValue, TSpec> & me, Tag<TParallel
         headReadPos = me.headReadPos;
         TSize tailPos = me.tailPos;
 
-        SEQAN_ASSERT_LEQ(headReadPos, tailPos);
+        SEQAN2_ASSERT_LEQ(headReadPos, tailPos);
 
         // return if queue is empty
         if (headReadPos == tailPos)
@@ -545,7 +545,7 @@ waitForFirstValue(ConcurrentQueue<TValue, TSpec> & me)
 
 /*!
  * @fn ConcurrentQueue#popFront
- * @headerfile <seqan/parallel.h>
+ * @headerfile <seqan2/parallel.h>
  * @brief Dequeue a value from a queue.
  *
  * @signature bool popFront(result, queue[, parallelTag]);
@@ -589,7 +589,7 @@ popFront(TValue & result, ConcurrentQueue<TValue, TSpec> & me)
 
 /*!
  * @fn ConcurrentQueue#popFront2
- * @headerfile <seqan/parallel.h>
+ * @headerfile <seqan2/parallel.h>
  * @brief Dequeue a value from a queue.
  *
  * @signature TValue popFront(queue[, parallelTag]);
@@ -630,7 +630,7 @@ inline bool
 _queueOverflow(ConcurrentQueue<TValue, TSpec> & me, TValue2 &&, Insist)
 {
     ignoreUnusedVariableWarning(me);
-    SEQAN_ASSERT_GT(capacity(me.data), 1u);
+    SEQAN2_ASSERT_GT(capacity(me.data), 1u);
     return false;
 }
 
@@ -639,7 +639,7 @@ inline bool
 _queueOverflow(ConcurrentQueue<TValue, TSpec> & me, TValue2 &&, Limit)
 {
     ignoreUnusedVariableWarning(me);
-    SEQAN_ASSERT_GT(capacity(me.data), 1u);
+    SEQAN2_ASSERT_GT(capacity(me.data), 1u);
     return false;
 }
 
@@ -657,7 +657,7 @@ _queueOverflow(ConcurrentQueue<TValue, TSpec> & me,
 
     bool queueIsResizable = !IsSameType<TLockTag, Limit>::VALUE;
     ignoreUnusedVariableWarning(queueIsResizable);
-    SEQAN_ASSERT(queueIsResizable);
+    SEQAN2_ASSERT(queueIsResizable);
 
     // try to extend capacity
 
@@ -667,8 +667,8 @@ _queueOverflow(ConcurrentQueue<TValue, TSpec> & me,
     TSize headPos = me.headPos;
     TSize tailPos = me.tailPos;
 
-    SEQAN_ASSERT_EQ(tailPos, me.tailWritePos);
-    SEQAN_ASSERT_EQ(headPos, me.headReadPos);
+    SEQAN2_ASSERT_EQ(tailPos, me.tailWritePos);
+    SEQAN2_ASSERT_EQ(headPos, me.headReadPos);
 
     bool valueWasAppended = false;
 
@@ -683,7 +683,7 @@ _queueOverflow(ConcurrentQueue<TValue, TSpec> & me,
             valueWasAppended = true;
         }
 
-        SEQAN_ASSERT_EQ(tailPos, headPos + roundSize);
+        SEQAN2_ASSERT_EQ(tailPos, headPos + roundSize);
 
         // get positions of head/tail in current data sequence
         TSize headIdx = headPos & (roundSize - 1);
@@ -713,7 +713,7 @@ _queueOverflow(ConcurrentQueue<TValue, TSpec> & me,
 
 /*!
  * @fn ConcurrentQueue#appendValue
- * @headerfile <seqan/parallel.h>
+ * @headerfile <seqan2/parallel.h>
  * @brief Enqueue a value to a queue.
  *
  * @signature void appendValue(queue, val[, expandTag[, parallelTag]);
@@ -760,7 +760,7 @@ appendValue(ConcurrentQueue<TValue, TSpec> & me,
                 TSize newTailWritePos = _cyclicInc(tailWritePos, cap, roundSize);
                 TSize headPos = me.headPos;
 
-                SEQAN_ASSERT_LEQ(newTailWritePos, headPos + roundSize + 1);
+                SEQAN2_ASSERT_LEQ(newTailWritePos, headPos + roundSize + 1);
 
                 // break if we have a wrap around, i.e. queue is full
                 if (newTailWritePos >= headPos + roundSize)
@@ -798,6 +798,6 @@ appendValue(ConcurrentQueue<TValue, TSpec> & me,
     appendValue(me, std::forward<TValue2>(val), expandTag, typename DefaultParallelSpec<ConcurrentQueue<TValue, TSpec> >::Type());
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_PARALLEL_PARALLEL_QUEUE_H_
+#endif  // #ifndef SEQAN2_PARALLEL_PARALLEL_QUEUE_H_

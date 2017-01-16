@@ -34,10 +34,10 @@
 
 #include <iostream>
 
-#ifndef SEQAN_HEADER_STORE_IO_SAM_H
-#define SEQAN_HEADER_STORE_IO_SAM_H
+#ifndef SEQAN2_HEADER_STORE_IO_SAM_H
+#define SEQAN2_HEADER_STORE_IO_SAM_H
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -437,7 +437,7 @@ _readAlignments(
         {
             std::stringstream sstr;
             sstr << "Error in SAM/BAM record #" << recNo << ": " << e.what();
-            SEQAN_THROW(IOError(sstr.str()));
+            SEQAN2_THROW(IOError(sstr.str()));
         }
     }
 
@@ -602,7 +602,7 @@ _readOneAlignment(
         bool newRead = _storeAppendRead(fragStore, contextSAM.readId, record.qName, readSeq, record.flag,
                                         contextSAM);
         (void)newRead;
-        SEQAN_ASSERT_NOT(newRead && empty(readSeq));
+        SEQAN2_ASSERT_NOT(newRead && empty(readSeq));
     }
 
     // Stop here if read is unaligned.
@@ -1118,6 +1118,6 @@ writeRecords(FormattedFile<Bam, Output, TSpec> & bamFile,
     writeRecords(bamFile, store, functor);
 }
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

@@ -34,10 +34,10 @@
 // Simple matrices;  Used in many alignment algorithms.
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_MATRIX_BASE_H
-#define SEQAN_HEADER_MATRIX_BASE_H
+#ifndef SEQAN2_HEADER_MATRIX_BASE_H
+#define SEQAN2_HEADER_MATRIX_BASE_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -82,7 +82,7 @@ struct Host<Matrix<TValue, DIMENSION> const>
 
 /*!
  * @class Matrix
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief A simple n-dimensional matrix type.
  *
  * @signature template <typename TValue[, unsigned DIMENSION]>
@@ -392,7 +392,7 @@ setDimension(Matrix<TValue, DIMENSION> & me,
              unsigned int dim_)
 {
 
-    SEQAN_ASSERT_GT(dim_, 0u);
+    SEQAN2_ASSERT_GT(dim_, 0u);
 //std::cout<<"\npress enter1\n";
 //std::cin.get();
     resize(_dataLengths(me), dim_, 0);
@@ -432,8 +432,8 @@ setLength(Matrix<TValue, DIMENSION> & me,
           unsigned int dim_,
           TLength length_)
 {
-    SEQAN_ASSERT_GT(length_, static_cast<TLength>(0));
-    SEQAN_ASSERT_LT(dim_, dimension(me));
+    SEQAN2_ASSERT_GT(length_, static_cast<TLength>(0));
+    SEQAN2_ASSERT_LT(dim_, dimension(me));
 
     typedef typename SizeArr_<Matrix<TValue, DIMENSION> >::TSize_ TSize_;
 
@@ -462,7 +462,7 @@ resize(Matrix<TValue, DIMENSION> & me)
 
     unsigned int dimension_ = dimension(me);
 
-    SEQAN_ASSERT_GT(dimension_, 0u);
+    SEQAN2_ASSERT_GT(dimension_, 0u);
 
     TSize factor_ = _dataFactors(me)[0] * length(me, 0);
     for (unsigned int i = 1; (factor_ > 0) && (i < dimension_); ++i)
@@ -488,7 +488,7 @@ resize(Matrix<TValue, DIMENSION> & me, TFillValue myValue)    //resize the matri
 
     unsigned int dimension_ = dimension(me);
 
-    SEQAN_ASSERT_GT(dimension_, 0u);
+    SEQAN2_ASSERT_GT(dimension_, 0u);
 
     TSize factor_ = _dataFactors(me)[0] * length(me, 0);
     for (unsigned int i = 1; (factor_ > 0) && (i < dimension_); ++i)
@@ -548,7 +548,7 @@ coordinate(Matrix<TValue, DIMENSION> const & me,
            TPosition position_,
            unsigned int dimension_)
 {
-    SEQAN_ASSERT_LT(dimension_, dimension(me));
+    SEQAN2_ASSERT_LT(dimension_, dimension(me));
 
     if (dimension_ < dimension(me) - 1)
     {
@@ -802,7 +802,7 @@ Matrix<TValue,DIMENSION>
 operator + (Matrix<TValue,DIMENSION> const & matrix1,Matrix<TValue,DIMENSION> const & matrix2)
 {
     //the two matrices must have same dimension
-    SEQAN_ASSERT(_dataLengths(matrix1) == _dataLengths(matrix2));
+    SEQAN2_ASSERT(_dataLengths(matrix1) == _dataLengths(matrix2));
 
     Matrix<TValue,DIMENSION> result;
     //copy the first matrix
@@ -824,7 +824,7 @@ Matrix<TValue,DIMENSION>
 operator - (Matrix<TValue,DIMENSION> const & matrix1,Matrix<TValue,DIMENSION> const & matrix2)
 {
     //the two matrices must have same dimension
-    SEQAN_ASSERT(_dataLengths(matrix1) == _dataLengths(matrix2));
+    SEQAN2_ASSERT(_dataLengths(matrix1) == _dataLengths(matrix2));
 
     Matrix<TValue,DIMENSION> result;
     //resize the matrix
@@ -845,7 +845,7 @@ template <typename TValue>
 Matrix<TValue, 2>
 operator * (Matrix<TValue, 2> const & matrix1, Matrix<TValue, 2> const & matrix2)
 {
-    SEQAN_ASSERT_EQ(length(matrix1,1), length(matrix2,0));
+    SEQAN2_ASSERT_EQ(length(matrix1,1), length(matrix2,0));
 
     unsigned int nrow1=length(matrix1,0);
     unsigned int ncol2=length(matrix2,1);
@@ -987,7 +987,7 @@ inline Matrix<TValue, 2>
 matricialProduct(Matrix<TValue, 2> &matrix1,
         Matrix<TValue, 2> &matrix2)
 {
-    //SEQAN_ASSERT_LT(dimension_, dimension(me));
+    //SEQAN2_ASSERT_LT(dimension_, dimension(me));
     if(length(matrix1,1) != length(matrix2,0))
     {
         fprintf(stderr,"Error: Number of columns of matrix1 is unequal to number of rows of matrix2");
@@ -1098,6 +1098,6 @@ std::ostream& operator<<(std::ostream &out, const Matrix<TValue,2> &matrix)
 //     }
 // }
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

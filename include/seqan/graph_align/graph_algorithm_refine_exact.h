@@ -33,10 +33,10 @@
 // Author: Anne-Katrin Emde <anne-katrin.emde@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_GRAPH_ALGORITHM_REFINE_EXACT_H_
-#define SEQAN_INCLUDE_SEQAN_GRAPH_ALGORITHM_REFINE_EXACT_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_GRAPH_ALGORITHM_REFINE_EXACT_H_
+#define SEQAN2_INCLUDE_SEQAN2_GRAPH_ALGORITHM_REFINE_EXACT_H_
 
-namespace seqan {
+namespace seqan2 {
 
 struct TagExactRefinement_;
 typedef Tag<TagExactRefinement_> const ExactRefinement;
@@ -309,7 +309,7 @@ _makeRefinedGraphEdges(TAlignmentString & alis,
             //find node that contains the projected position (pos_j)
             TVertexDescriptor vd = findVertex(ali_g, seq_j_id, pos_j);
 
-            SEQAN_ASSERT(fragmentBegin(ali_g,vd)==pos_j);
+            SEQAN2_ASSERT(fragmentBegin(ali_g,vd)==pos_j);
             typename Value<TScore>::Type score = _getRefinedMatchScore(score_type,seqs,*ali_it,act_pos,pos_j,fragmentLength(ali_g,act_knot),fragmentLength(ali_g,vd));//,fragmentLength(ali_g,vd));
     //        typename Value<TScore>::Type score = fragmentLength(ali_g,vd);
             score *= _getRefinedAnnoScore(ali_g,pm,vd,act_knot,score_type);
@@ -550,6 +550,6 @@ matchRefinement(TFragmentString & matches,
     matchRefinement(matches,strSet,fake_score,ali_graph,1,anno,ExactRefinement());
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_GRAPH_ALGORITHM_REFINE_EXACT_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_GRAPH_ALGORITHM_REFINE_EXACT_H_

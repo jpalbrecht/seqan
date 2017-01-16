@@ -35,10 +35,10 @@
 // ==========================================================================
 // TODO(weese:) add Bcf I/O and integrate it
 
-#ifndef SEQAN_VCF_IO_VCF_FILE_H_
-#define SEQAN_VCF_IO_VCF_FILE_H_
+#ifndef SEQAN2_VCF_IO_VCF_FILE_H_
+#define SEQAN2_VCF_IO_VCF_FILE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -62,7 +62,7 @@ typedef Tag<Bcf_> Bcf;
  * @class VcfFileIn
  * @signature typedef FormattedFile<Vcf, Input> VcfFileIn;
  * @extends FormattedFileIn
- * @headerfile <seqan/vcf_io.h>
+ * @headerfile <seqan2/vcf_io.h>
  * @brief Class for reading VCF files.
  *
  * @see VcfHeader
@@ -79,7 +79,7 @@ typedef FormattedFile<Vcf, Input>   VcfFileIn;
  * @class VcfFileOut
  * @signature typedef FormattedFile<Vcf, Output> VcfFileOut;
  * @extends FormattedFileOut
- * @headerfile <seqan/vcf_io.h>
+ * @headerfile <seqan2/vcf_io.h>
  * @brief Class for writing VCF files.
  *
  * @see VcfHeader
@@ -166,7 +166,7 @@ struct FileFormat<FormattedFile<Vcf, TDirection, TSpec> >
 {
 // TODO(weese:) Enable this, as soon as someone implements BCF
 
-//#if SEQAN_HAS_ZLIB
+//#if SEQAN2_HAS_ZLIB
 //    typedef TagSelector<
 //                TagList<Bcf,
 //                TagList<Vcf
@@ -231,6 +231,6 @@ writeRecord(FormattedFile<Vcf, Output, TSpec> & file, VcfRecord & record)
     writeRecord(file.iter, record, context(file), file.format);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif // SEQAN_VCF_IO_VCF_FILE_H_
+#endif // SEQAN2_VCF_IO_VCF_FILE_H_

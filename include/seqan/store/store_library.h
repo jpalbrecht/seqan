@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_STORE_LIBRARY_H
-#define SEQAN_HEADER_STORE_LIBRARY_H
+#ifndef SEQAN2_HEADER_STORE_LIBRARY_H
+#define SEQAN2_HEADER_STORE_LIBRARY_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -44,7 +44,7 @@ namespace seqan
 
 /*!
  * @class LibraryStoreElement
- * @headerfile <seqan/store.h>
+ * @headerfile <seqan2/store.h>
  * @brief Represents a fragment library.
  *
  * @signature template <[typename TMean[, typename TStd[, typename TSpec]]]>
@@ -92,6 +92,6 @@ struct LibraryStoreElement
 //////////////////////////////////////////////////////////////////////////////
 
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

@@ -32,13 +32,13 @@
 // Author: Konrad Ludwig Moritz Rudolph <konrad.rudolph@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_INDEX_PIZZACHILI_H
-#define SEQAN_HEADER_INDEX_PIZZACHILI_H
+#ifndef SEQAN2_HEADER_SEQAN2_INDEX_PIZZACHILI_H
+#define SEQAN2_HEADER_SEQAN2_INDEX_PIZZACHILI_H
 
-#include <seqan/index/pizzachili_api.h>
-#include <seqan/index/index_pizzachili_string.h>
+#include <seqan2/index/pizzachili_api.h>
+#include <seqan2/index/index_pizzachili_string.h>
 
-namespace seqan {
+namespace seqan2 {
 
 /*!
  * @defgroup PizzaChiliIndexFibres Pizza &amp; Chili Index Fibres
@@ -77,7 +77,7 @@ typedef FibrePizzaChiliCompressed PizzaChiliCompressed;
  *
  * @extends Index
  *
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief An adapter for the Pizza &amp; Chili index API.
  *
@@ -176,7 +176,7 @@ namespace impl {
                 TCodeProvider::free_index(me.index_handle);
 
             if (e != 0)
-                SEQAN_ABORT(TCodeProvider::error_index(e));
+                SEQAN2_ABORT(TCodeProvider::error_index(e));
 
             me.index_handle = 0;
         }
@@ -288,8 +288,8 @@ namespace impl {
 
         if (e != 0) {
             // TODO(holtgrew): Do we need a logging interface?
-            //SEQAN_REPORT(TCodeProvider::error_index(e));
-            //SEQAN_REPORT(options);
+            //SEQAN2_REPORT(TCodeProvider::error_index(e));
+            //SEQAN2_REPORT(options);
             me.index_handle = 0;
             return false;
         }
@@ -308,8 +308,8 @@ indexCreate(Index<TText, PizzaChili<TSpec> >& me, PizzaChiliCompressed const) {
             typename Index<TText, PizzaChili<TSpec> >::TValue
         >::Type alph_t;
 
-    SEQAN_ASSERT_EQ(sizeof(alph_t), 1);
-    SEQAN_ASSERT((IsSameType<typename IsSimple<alph_t>::Type, True>::VALUE));
+    SEQAN2_ASSERT_EQ(sizeof(alph_t), 1);
+    SEQAN2_ASSERT((IsSameType<typename IsSimple<alph_t>::Type, True>::VALUE));
 
     impl::clearIndex(me);
 
@@ -333,9 +333,9 @@ setIndexText(Index<TText, PizzaChili<TSpec> >& me, TOtherText& text) {
     clear(me);
 
     /*
-    SEQAN_ASSERT(IsContiguous<TOtherText>::VALUE)
-    SEQAN_ASSERT_EQ(BitsPerValue<alph_t>::VALUE, 8)
-    SEQAN_ASSERT((IsSameType<typename IsSimple<alph_t>::Type, True>::VALUE));
+    SEQAN2_ASSERT(IsContiguous<TOtherText>::VALUE)
+    SEQAN2_ASSERT_EQ(BitsPerValue<alph_t>::VALUE, 8)
+    SEQAN2_ASSERT((IsSameType<typename IsSimple<alph_t>::Type, True>::VALUE));
 
     String<alph_t, CStyle> cstr = text;
     impl::uchar_t* textstart =
@@ -360,7 +360,7 @@ inline bool open(
     impl::error_t e =
         TCodeProvider::load_index(const_cast<char*>(filename), &me.index_handle);
     if (e != 0) {
-        SEQAN_REPORT(TCodeProvider::error_index(e));
+        SEQAN2_REPORT(TCodeProvider::error_index(e));
     }
     else
         value(me.text) = String<typename Value<TText>::Type, PizzaChili<TSpec> >(me.index_handle);
@@ -379,11 +379,11 @@ inline bool save(
     impl::error_t e =
         TCodeProvider::save_index(me.index_handle, const_cast<char*>(filename));
     if (e != 0) {
-        SEQAN_REPORT(TCodeProvider::error_index(e));
+        SEQAN2_REPORT(TCodeProvider::error_index(e));
     }
     return e == 0;
 }
 
-} // namespace seqan
+} // namespace seqan2
 
-#endif // SEQAN_HEADER_INDEX_PIZZACHILI_H
+#endif // SEQAN2_HEADER_SEQAN2_INDEX_PIZZACHILI_H

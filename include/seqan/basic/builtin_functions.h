@@ -37,10 +37,10 @@
 // are overridden for some classes.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_BUILTIN_FUNCTIONS_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_BUILTIN_FUNCTIONS_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BUILTIN_FUNCTIONS_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_BUILTIN_FUNCTIONS_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -58,6 +58,6 @@ namespace seqan {
 // Functions
 // ============================================================================
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_BUILTIN_FUNCTIONS_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BUILTIN_FUNCTIONS_H_

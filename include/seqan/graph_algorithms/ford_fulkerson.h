@@ -34,10 +34,10 @@
 // Implementation of the Ford-Fulkerson algorithm.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_GRAPH_ALGORITHMS_FORD_FULKERSON_H_
-#define INCLUDE_SEQAN_GRAPH_ALGORITHMS_FORD_FULKERSON_H_
+#ifndef INCLUDE_SEQAN2_GRAPH_ALGORITHMS_FORD_FULKERSON_H_
+#define INCLUDE_SEQAN2_GRAPH_ALGORITHMS_FORD_FULKERSON_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -137,7 +137,7 @@ _getMinimumAug(Graph<TSpec> const & rG,
 /*!
  * @fn fordFulkersonAlgorithm
  *
- * @headerfile <seqan/graph_algorithms.h>
+ * @headerfile <seqan2/graph_algorithms.h>
  *
  * @brief Computes a maximum flow in a directed graph.
  *
@@ -215,6 +215,6 @@ fordFulkersonAlgorithm(TFlowMap & flow,
     return valF;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_GRAPH_ALGORITHMS_FORD_FULKERSON_H_
+#endif  // #ifndef INCLUDE_SEQAN2_GRAPH_ALGORITHMS_FORD_FULKERSON_H_

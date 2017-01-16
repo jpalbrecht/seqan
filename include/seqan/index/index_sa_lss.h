@@ -53,10 +53,10 @@
    the code must be clearly marked. No warranty is given regarding the quality
    of this software.*/
 
-#ifndef SEQAN_HEADER_INDEX_SA_LSS_H
-#define SEQAN_HEADER_INDEX_SA_LSS_H
+#ifndef SEQAN2_HEADER_SEQAN2_INDEX_SA_LSS_H
+#define SEQAN2_HEADER_SEQAN2_INDEX_SA_LSS_H
 
-namespace seqan
+namespace seqan2
 {
 
 template <typename TValue>
@@ -68,11 +68,11 @@ struct ContextLss_
     h;                           /* length of already-sorted prefixes.*/
 
     // MODIFIED: renamed defines according to SeqAn's naming conventions
-    #define SEQAN_LSSKEY(p)          (V[*(p)+(h)])
-    #define SEQAN_LSSSWAP(p, q)      (tmp=*(p), *(p)=*(q), *(q)=tmp)
-    #define SEQAN_LSSMED3(a, b, c)   (SEQAN_LSSKEY(a)<SEQAN_LSSKEY(b) ?                        \
-            (SEQAN_LSSKEY(b)<SEQAN_LSSKEY(c) ? (b) : SEQAN_LSSKEY(a)<SEQAN_LSSKEY(c) ? (c) : (a))       \
-            : (SEQAN_LSSKEY(b)>SEQAN_LSSKEY(c) ? (b) : SEQAN_LSSKEY(a)>SEQAN_LSSKEY(c) ? (c) : (a)))
+    #define SEQAN2_LSSKEY(p)          (V[*(p)+(h)])
+    #define SEQAN2_LSSSWAP(p, q)      (tmp=*(p), *(p)=*(q), *(q)=tmp)
+    #define SEQAN2_LSSMED3(a, b, c)   (SEQAN2_LSSKEY(a)<SEQAN2_LSSKEY(b) ?                        \
+            (SEQAN2_LSSKEY(b)<SEQAN2_LSSKEY(c) ? (b) : SEQAN2_LSSKEY(a)<SEQAN2_LSSKEY(c) ? (c) : (a))       \
+            : (SEQAN2_LSSKEY(b)>SEQAN2_LSSKEY(c) ? (b) : SEQAN2_LSSKEY(a)>SEQAN2_LSSKEY(c) ? (c) : (a)))
 
     /* Subroutine for select_sort_split and sort_split. Sets group numbers for a
        group whose lowest position in I is pl and highest position is pm.*/
@@ -101,13 +101,13 @@ struct ContextLss_
        pa=p;                        /* pa is start of group being picked out.*/
        pn=p+n-1;                    /* pn is last position of subarray.*/
        while (pa<pn) {
-          for (pi=pb=pa+1, f=SEQAN_LSSKEY(pa); pi<=pn; ++pi)
-             if ((v=SEQAN_LSSKEY(pi))<f) {
+          for (pi=pb=pa+1, f=SEQAN2_LSSKEY(pa); pi<=pn; ++pi)
+             if ((v=SEQAN2_LSSKEY(pi))<f) {
                 f=v;                /* f is smallest key found.*/
-                SEQAN_LSSSWAP(pi, pa);       /* place smallest element at beginning.*/
+                SEQAN2_LSSSWAP(pi, pa);       /* place smallest element at beginning.*/
                 pb=pa+1;            /* pb is position for elements equal to f.*/
              } else if (v==f) {     /* if equal to smallest key.*/
-                SEQAN_LSSSWAP(pi, pb);       /* place next to other smallest elements.*/
+                SEQAN2_LSSSWAP(pi, pb);       /* place next to other smallest elements.*/
                 ++pb;
              }
           update_group(pa, pb-1);   /* update group values for new group.*/
@@ -131,13 +131,13 @@ struct ContextLss_
           pn=p+n-1;
           if (n>40) {               /* big arrays, pseudomedian of 9.*/
              s=n>>3;
-             pl=SEQAN_LSSMED3(pl, pl+s, pl+s+s);
-             pm=SEQAN_LSSMED3(pm-s, pm, pm+s);
-             pn=SEQAN_LSSMED3(pn-s-s, pn-s, pn);
+             pl=SEQAN2_LSSMED3(pl, pl+s, pl+s+s);
+             pm=SEQAN2_LSSMED3(pm-s, pm, pm+s);
+             pn=SEQAN2_LSSMED3(pn-s-s, pn-s, pn);
           }
-          pm=SEQAN_LSSMED3(pl, pm, pn);      /* midsize arrays, median of 3.*/
+          pm=SEQAN2_LSSMED3(pl, pm, pn);      /* midsize arrays, median of 3.*/
        }
-       return SEQAN_LSSKEY(pm);
+       return SEQAN2_LSSKEY(pm);
     }
 
     /* Sorting routine called for each unsorted group. Sorts the array of integers
@@ -160,23 +160,23 @@ struct ContextLss_
        pa=pb=p;
        pc=pd=p+n-1;
        while (1) {                  /* split-end partition.*/
-          while (pb<=pc && (f=SEQAN_LSSKEY(pb))<=v) {
+          while (pb<=pc && (f=SEQAN2_LSSKEY(pb))<=v) {
              if (f==v) {
-                SEQAN_LSSSWAP(pa, pb);
+                SEQAN2_LSSSWAP(pa, pb);
                 ++pa;
              }
              ++pb;
           }
-          while (pc>=pb && (f=SEQAN_LSSKEY(pc))>=v) {
+          while (pc>=pb && (f=SEQAN2_LSSKEY(pc))>=v) {
              if (f==v) {
-                SEQAN_LSSSWAP(pc, pd);
+                SEQAN2_LSSSWAP(pc, pd);
                 --pd;
              }
              --pc;
           }
           if (pb>pc)
              break;
-          SEQAN_LSSSWAP(pb, pc);
+          SEQAN2_LSSSWAP(pb, pc);
           ++pb;
           --pc;
        }
@@ -184,11 +184,11 @@ struct ContextLss_
        if ((s=pa-p)>(t=pb-pa))
           s=t;
        for (pl=p, pm=pb-s; s; --s, ++pl, ++pm)
-          SEQAN_LSSSWAP(pl, pm);
+          SEQAN2_LSSSWAP(pl, pm);
        if ((s=pd-pc)>(t=pn-pd-1))
           s=t;
        for (pl=pb, pm=pn-s; s; --s, ++pl, ++pm)
-          SEQAN_LSSSWAP(pl, pm);
+          SEQAN2_LSSSWAP(pl, pm);
 
        s=pb-pa;
        t=pd-pc;

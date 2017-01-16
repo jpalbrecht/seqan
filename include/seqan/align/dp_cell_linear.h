@@ -36,10 +36,10 @@
 // entry.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_CELL_LINEAR_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_DP_CELL_LINEAR_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_CELL_LINEAR_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_CELL_LINEAR_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -120,6 +120,6 @@ swap(DPCell_<TScoreValue, LinearGaps> & lhs,
     std::swap(lhs._score, rhs._score);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_CELL_LINEAR_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_CELL_LINEAR_H_

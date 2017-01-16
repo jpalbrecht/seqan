@@ -34,13 +34,13 @@
 // Adaptions for std::ios streams.
 // ==========================================================================
 
-#ifndef SEQAN_STREAM_ADAPT_IOS_H_
-#define SEQAN_STREAM_ADAPT_IOS_H_
+#ifndef SEQAN2_STREAM_ADAPT_IOS_H_
+#define SEQAN2_STREAM_ADAPT_IOS_H_
 
-#define SEQAN_ASSERT_BADBIT(s) SEQAN_ASSERT_MSG(s.exceptions() | std::ios_base::badbit, \
+#define SEQAN2_ASSERT_BADBIT(s) SEQAN2_ASSERT_MSG(s.exceptions() | std::ios_base::badbit, \
         "The badbit exception is not set in the stream. Call either std::exceptions() or streamInit() on the stream.")
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -217,25 +217,25 @@ struct DefaultOpenMode<std::basic_ofstream<TValue, TTraits>, TDummy>
 // ============================================================================
 
 template <typename TValue, typename TTraits>
-SEQAN_CONCEPT_IMPL((std::basic_istream<TValue, TTraits>), (InputStreamConcept));
+SEQAN2_CONCEPT_IMPL((std::basic_istream<TValue, TTraits>), (InputStreamConcept));
 template <typename TValue, typename TTraits>
-SEQAN_CONCEPT_IMPL((std::basic_ifstream<TValue, TTraits>), (InputStreamConcept));
+SEQAN2_CONCEPT_IMPL((std::basic_ifstream<TValue, TTraits>), (InputStreamConcept));
 template <typename TValue, typename TTraits>
-SEQAN_CONCEPT_IMPL((std::basic_istringstream<TValue, TTraits>), (InputStreamConcept));
+SEQAN2_CONCEPT_IMPL((std::basic_istringstream<TValue, TTraits>), (InputStreamConcept));
 
 template <typename TValue, typename TTraits>
-SEQAN_CONCEPT_IMPL((std::basic_ostream<TValue, TTraits>), (OutputStreamConcept));
+SEQAN2_CONCEPT_IMPL((std::basic_ostream<TValue, TTraits>), (OutputStreamConcept));
 template <typename TValue, typename TTraits>
-SEQAN_CONCEPT_IMPL((std::basic_ofstream<TValue, TTraits>), (OutputStreamConcept));
+SEQAN2_CONCEPT_IMPL((std::basic_ofstream<TValue, TTraits>), (OutputStreamConcept));
 template <typename TValue, typename TTraits>
-SEQAN_CONCEPT_IMPL((std::basic_ostringstream<TValue, TTraits>), (OutputStreamConcept));
+SEQAN2_CONCEPT_IMPL((std::basic_ostringstream<TValue, TTraits>), (OutputStreamConcept));
 
 template <typename TValue, typename TTraits>
-SEQAN_CONCEPT_IMPL((std::basic_iostream<TValue, TTraits>), (BidirectionalStreamConcept));
+SEQAN2_CONCEPT_IMPL((std::basic_iostream<TValue, TTraits>), (BidirectionalStreamConcept));
 template <typename TValue, typename TTraits>
-SEQAN_CONCEPT_IMPL((std::basic_fstream<TValue, TTraits>), (BidirectionalStreamConcept));
+SEQAN2_CONCEPT_IMPL((std::basic_fstream<TValue, TTraits>), (BidirectionalStreamConcept));
 template <typename TValue, typename TTraits>
-SEQAN_CONCEPT_IMPL((std::basic_stringstream<TValue, TTraits>), (BidirectionalStreamConcept));
+SEQAN2_CONCEPT_IMPL((std::basic_stringstream<TValue, TTraits>), (BidirectionalStreamConcept));
 
 // ============================================================================
 // Functions
@@ -397,6 +397,6 @@ inline bool close(std::basic_ofstream<TValue, TTraits> & stream)
     return !stream.is_open();
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_STREAM_ADAPT_IOS_H_
+#endif  // #ifndef SEQAN2_STREAM_ADAPT_IOS_H_

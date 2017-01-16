@@ -32,13 +32,13 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_PIPE_CASTER_H
-#define SEQAN_HEADER_PIPE_CASTER_H
+#ifndef SEQAN2_HEADER_PIPE_CASTER_H
+#define SEQAN2_HEADER_PIPE_CASTER_H
 
-namespace seqan
+namespace seqan2
 {
 
-//namespace SEQAN_NAMESPACE_PIPELINING
+//namespace SEQAN2_NAMESPACE_PIPELINING
 //{
 
     struct CasterReinterpret;
@@ -55,7 +55,7 @@ namespace seqan
 /*!
  * @class Caster
  * @extends Pipe
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Casts the input type in a specific output type.
  *
  * @signature template <typename TInput, typename TValue[, typename TSpec]>

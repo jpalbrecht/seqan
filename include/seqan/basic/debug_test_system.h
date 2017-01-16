@@ -38,20 +38,20 @@
 
 // TODO(holtgrew): This could use some cleanup.
 
-// SEQAN_NO_GENERATED_FORWARDS
+// SEQAN2_NO_GENERATED_FORWARDS
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_DEBUG_TEST_SYSTEM_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_DEBUG_TEST_SYSTEM_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_DEBUG_TEST_SYSTEM_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_DEBUG_TEST_SYSTEM_H_
 
 
 // SeqAn's has three global debug/testing levels: testing, debug and
-// release.  Depending on the level, the SEQAN_ASSERT_* macros will be enabled.
+// release.  Depending on the level, the SEQAN2_ASSERT_* macros will be enabled.
 //
 // The levels are enabled by the values of the macros
-// SEQAN_ENABLE_TESTING and SEQAN_ENABLE_DEBUG.  By setting a macro to
+// SEQAN2_ENABLE_TESTING and SEQAN2_ENABLE_DEBUG.  By setting a macro to
 // 0, one disables the level and by setting the macro to 1, one
 // enables a level.  Enabling testing also enables debug, overriding a
-// value of 0 for SEQAN_ENABLE_DEBUG.
+// value of 0 for SEQAN2_ENABLE_DEBUG.
 //
 // If the level is release (both the macros for debug and testing are
 // 0), the assertions will be disabled.  If the level is debug then
@@ -59,88 +59,88 @@
 //
 // The default is to disable debugging and testing.
 //
-// You can print the current level using the function seqan::printDebugLevel().
+// You can print the current level using the function seqan2::printDebugLevel().
 
 /*!
- * @macro TestSystemMacros#SEQAN_ENABLE_TESTING
- * @headerfile <seqan/basic.h>
+ * @macro TestSystemMacros#SEQAN2_ENABLE_TESTING
+ * @headerfile <seqan2/basic.h>
  * @brief Indicates whether testing is enabled.
  *
- * @signature SEQAN_ENABLE_TESTING
+ * @signature SEQAN2_ENABLE_TESTING
  *
  * When set to 1, testing is enabled.  If it is undefined or set to 0, testing is disabled.  This means the macros for
- * the tests (SEQAN_BEGIN_TESTSUITE, SEQAN_DEFINE_TEST, SEQAN_CALL_TEST, and SEQAN_END_TESTSUITE) will be enabled.  This
+ * the tests (SEQAN2_BEGIN_TESTSUITE, SEQAN2_DEFINE_TEST, SEQAN2_CALL_TEST, and SEQAN2_END_TESTSUITE) will be enabled.  This
  * makes failing assertions raise exceptions instead of calling <tt>abort()</tt> (which terminates the program).
  *
  * By default, this is set to 0.
  *
  * If you want to change this value in your C++ program code you have to define this value before including any SeqAn header!
  *
- * If set to 1 then @link TestSystemMacros#SEQAN_ENABLE_DEBUG @endlink is forced to 1 as well.
+ * If set to 1 then @link TestSystemMacros#SEQAN2_ENABLE_DEBUG @endlink is forced to 1 as well.
  *
- * @see TestSystemMacros#SEQAN_ENABLE_DEBUG
+ * @see TestSystemMacros#SEQAN2_ENABLE_DEBUG
  */
 
-// Set default for SEQAN_ENABLE_TESTING.
-#ifndef SEQAN_ENABLE_TESTING
-#define SEQAN_ENABLE_TESTING 0
-#endif  // #ifndef SEQAN_ENABLE_TESTING
+// Set default for SEQAN2_ENABLE_TESTING.
+#ifndef SEQAN2_ENABLE_TESTING
+#define SEQAN2_ENABLE_TESTING 0
+#endif  // #ifndef SEQAN2_ENABLE_TESTING
 
 // Force-enable debugging if testing is enabled.
-#if SEQAN_ENABLE_TESTING
-#undef SEQAN_ENABLE_DEBUG
-#define SEQAN_ENABLE_DEBUG 1
-#endif  // #if SEQAN_ENABLE_TESTING
+#if SEQAN2_ENABLE_TESTING
+#undef SEQAN2_ENABLE_DEBUG
+#define SEQAN2_ENABLE_DEBUG 1
+#endif  // #if SEQAN2_ENABLE_TESTING
 
 /*!
- * @macro TestSystemMacros#SEQAN_ENABLE_DEBUG
- * @headerfile <seqan/basic.h>
+ * @macro TestSystemMacros#SEQAN2_ENABLE_DEBUG
+ * @headerfile <seqan2/basic.h>
  * @brief Indicates whether debugging is enabled.
  *
- * @signature SEQAN_ENABLE_DEBUG
+ * @signature SEQAN2_ENABLE_DEBUG
  *
  * When enabled (set to 1) then debugging is enabled.  This means the assertion macros are expanded to actual test code.
  * If debugging (and testing) is disabled then the SeqAn assertion macros expand to no instructions.
  *
- * Note that <tt>NDEBUG</tt> is set undefined if <tt>SEQAN_ENABLE_DEBUG</tt> = 1
- * and <tt>NDEBUG</tt> is set to 1 if <tt>SEQAN_ENABLE_DEBUG</tt> = 0.
+ * Note that <tt>NDEBUG</tt> is set undefined if <tt>SEQAN2_ENABLE_DEBUG</tt> = 1
+ * and <tt>NDEBUG</tt> is set to 1 if <tt>SEQAN2_ENABLE_DEBUG</tt> = 0.
  *
  * If you want to change this value then you have to define this value before including any SeqAn header.
  *
- * Force-enabled if SEQAN_ENABLE_TESTING is set to 1.
+ * Force-enabled if SEQAN2_ENABLE_TESTING is set to 1.
  *
- * @see TestSystemMacros#SEQAN_ENABLE_TESTING
+ * @see TestSystemMacros#SEQAN2_ENABLE_TESTING
  */
 
-// Set default for SEQAN_ENABLE_DEBUG.
-#ifndef SEQAN_ENABLE_DEBUG
-#define SEQAN_ENABLE_DEBUG 0
-#endif  // #ifndef SEQAN_ENABLE_DEBUG
+// Set default for SEQAN2_ENABLE_DEBUG.
+#ifndef SEQAN2_ENABLE_DEBUG
+#define SEQAN2_ENABLE_DEBUG 0
+#endif  // #ifndef SEQAN2_ENABLE_DEBUG
 
-#if !SEQAN_ENABLE_DEBUG
+#if !SEQAN2_ENABLE_DEBUG
 #define NDEBUG 1
 #else
 #undef NDEBUG
-#endif // #if !SEQAN_ENABLE_DEBUG
+#endif // #if !SEQAN2_ENABLE_DEBUG
 
 /*!
- * @macro TestSystemMacros#SEQAN_TYPEDEF_FOR_DEBUG
- * @headerfile <seqan/basic.h>
+ * @macro TestSystemMacros#SEQAN2_TYPEDEF_FOR_DEBUG
+ * @headerfile <seqan2/basic.h>
  * @brief When using typedefs that are only used in debug mode then they have to be marked with macro.
  *
- * @signature SEQAN_TYPEDE_FOR_DEBUG
+ * @signature SEQAN2_TYPEDE_FOR_DEBUG
  *
  * @section Examples
  *
  * @code{.cpp}
- * typedef int TInt SEQAN_TYPEDEF_FOR_DEBUG;
+ * typedef int TInt SEQAN2_TYPEDEF_FOR_DEBUG;
  * @endcode
  */
 
-#if !SEQAN_ENABLE_DEBUG
-#define SEQAN_TYPEDEF_FOR_DEBUG SEQAN_UNUSED
+#if !SEQAN2_ENABLE_DEBUG
+#define SEQAN2_TYPEDEF_FOR_DEBUG SEQAN2_UNUSED
 #else
-#define SEQAN_TYPEDEF_FOR_DEBUG
+#define SEQAN2_TYPEDEF_FOR_DEBUG
 #endif
 
 #include <iostream>  // stdout, stderr
@@ -161,9 +161,9 @@
 #include <unistd.h>     // unlink()
 #include <sys/stat.h>   // mkdir()
 #include <dirent.h>     // DIR
-#if SEQAN_HAS_EXECINFO
+#if SEQAN2_HAS_EXECINFO
 #include <execinfo.h>   // backtrace(), backtrace_symbols()
-#endif  // #if SEQAN_HAS_EXECINFO
+#endif  // #if SEQAN2_HAS_EXECINFO
 #include <cxxabi.h>     // __cxa_demangle()
 #include <signal.h>
 #endif  // #ifdef STDLIB_VS
@@ -178,7 +178,7 @@
 // Holds the name of a given C++ type T.
 // NOTE(esiragusa): this class could become a subclass of CStyle String...
 
-namespace seqan {
+namespace seqan2 {
 
 template <typename T>
 struct Demangler
@@ -245,17 +245,17 @@ inline const char * toCString(Demangler<T> const & me)
  * @brief The assertion and check macros provided by SeqAn.
  *
  * Assertions are checks performed at runtime when debugging is enabled.  Debugging is enabled by defining the
- * preprocessor symbol <tt>SEQAN_ENABLE_DEBUG</tt> as <tt>1</tt>.
+ * preprocessor symbol <tt>SEQAN2_ENABLE_DEBUG</tt> as <tt>1</tt>.
  *
- * The SEQAN_CHECK and SEQAN_FAIL macro always lead to an exit of the program with a non-0 return value.
+ * The SEQAN2_CHECK and SEQAN2_FAIL macro always lead to an exit of the program with a non-0 return value.
  */
 
 /*!
- * @macro AssertMacros#SEQAN_FAIL
- * @headerfile <seqan/basic.h>
+ * @macro AssertMacros#SEQAN2_FAIL
+ * @headerfile <seqan2/basic.h>
  * @brief Force abortion of program, regardless of debugging settings.
  *
- * @signature SEQAN_FAIL(msg[, args]);
+ * @signature SEQAN2_FAIL(msg[, args]);
  *
  * @param[in] msg  A format string.
  * @param[in] args An optional list of arguments that are used for filling msg.
@@ -267,7 +267,7 @@ inline const char * toCString(Demangler<T> const & me)
  *
  * @section Examples
  *
- * In the following example, the <tt>SEQAN_FAIL</tt> is there if a possible value is added to <tt>MyEnum</tt> but the
+ * In the following example, the <tt>SEQAN2_FAIL</tt> is there if a possible value is added to <tt>MyEnum</tt> but the
  * function <tt>foo</tt> is not updated accordingly.
  *
  * @code{.cpp}
@@ -289,25 +289,25 @@ inline const char * toCString(Demangler<T> const & me)
  *         return true;
  *     }
  *
- *     SEQAN_FAIL("Logic error. Should never reach here. x == %d.", x);
+ *     SEQAN2_FAIL("Logic error. Should never reach here. x == %d.", x);
  *     return false;
  * }
  * @endcode
  */
 
-#define SEQAN_FAIL(...)                                                 \
+#define SEQAN2_FAIL(...)                                                 \
     do {                                                                \
-        ::seqan::ClassTest::forceFail(__FILE__, __LINE__,               \
+        ::seqan2::ClassTest::forceFail(__FILE__, __LINE__,               \
                                       __VA_ARGS__);                     \
-        ::seqan::ClassTest::fail();                                     \
+        ::seqan2::ClassTest::fail();                                     \
     } while (false)
 
 /*!
- * @macro AssertMacros#SEQAN_CHECK
- * @headerfile <seqan/basic.h>
+ * @macro AssertMacros#SEQAN2_CHECK
+ * @headerfile <seqan2/basic.h>
  * @brief Force abortion of program if a condition is not met, regardless of debugging settings.
  *
- * @signature SEQAN_CHECK(condition, msg[, args]);
+ * @signature SEQAN2_CHECK(condition, msg[, args]);
  *
  * @param[in] condition An expression that is checked.
  * @param[in] msg       A format string.
@@ -320,7 +320,7 @@ inline const char * toCString(Demangler<T> const & me)
  *
  * @section Examples
  *
- * In the following example, the <tt>SEQAN_CHECK</tt> stops program execution if a value is added to <tt>MyEnum</tt> but
+ * In the following example, the <tt>SEQAN2_CHECK</tt> stops program execution if a value is added to <tt>MyEnum</tt> but
  * the function <tt>foo</tt> is not updated accordingly.
  *
  * @code{.cpp}
@@ -332,7 +332,7 @@ inline const char * toCString(Demangler<T> const & me)
  *
  * bool foo(MyEnum x)
  * {
- *     SEQAN_CHECK((x == VALUE_ONE || x == VALUE_TWO), "Invalid value for x == %d.", x);
+ *     SEQAN2_CHECK((x == VALUE_ONE || x == VALUE_TWO), "Invalid value for x == %d.", x);
  *
  *     switch (x)
  *     {
@@ -344,36 +344,36 @@ inline const char * toCString(Demangler<T> const & me)
  *         return true;
  *     }
  *
- *     return false;  // Should never reach here, checked above with SEQAN_CHECK.
+ *     return false;  // Should never reach here, checked above with SEQAN2_CHECK.
  * }
  * @endcode
  */
 
-#define SEQAN_CHECK(_arg1, ...)                                         \
+#define SEQAN2_CHECK(_arg1, ...)                                         \
     do {                                                                \
-        if (!::seqan::ClassTest::testTrue(__FILE__, __LINE__,           \
+        if (!::seqan2::ClassTest::testTrue(__FILE__, __LINE__,           \
                                           (_arg1), # _arg1,              \
                                           __VA_ARGS__)) {               \
-            ::seqan::ClassTest::fail();                                 \
+            ::seqan2::ClassTest::fail();                                 \
         }                                                               \
     } while (false)
 
-namespace seqan {
+namespace seqan2 {
 
-// SEQAN_CXX_FLAGS_ contains the compiler flags, SEQAN_CXX_FLAGS is a string
+// SEQAN2_CXX_FLAGS_ contains the compiler flags, SEQAN2_CXX_FLAGS is a string
 // literal with this value.
-#if !defined(SEQAN_CXX_FLAGS_)
-#define SEQAN_CXX_FLAGS_ SEQAN_CXX_FLAGS_NOT_SET
-#endif //  !defined(SEQAN_CXX_FLAGS__)
-#define SEQAN_MKSTRING_(str) # str
-#define SEQAN_MKSTRING(str) SEQAN_MKSTRING_(str)
-#define SEQAN_CXX_FLAGS SEQAN_MKSTRING(SEQAN_CXX_FLAGS_)
-//#undef SEQAN_MKSTRING
-//#undef SEQAN_MKSTRING_
+#if !defined(SEQAN2_CXX_FLAGS_)
+#define SEQAN2_CXX_FLAGS_ SEQAN2_CXX_FLAGS_NOT_SET
+#endif //  !defined(SEQAN2_CXX_FLAGS__)
+#define SEQAN2_MKSTRING_(str) # str
+#define SEQAN2_MKSTRING(str) SEQAN2_MKSTRING_(str)
+#define SEQAN2_CXX_FLAGS SEQAN2_MKSTRING(SEQAN2_CXX_FLAGS_)
+//#undef SEQAN2_MKSTRING
+//#undef SEQAN2_MKSTRING_
 
 /*!
  * @fn printDebugLevel
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Print the current SeqAn debug level and the compiler flags to the given stream.
  *
  * @signature void printDebugLevel(stream);
@@ -384,13 +384,13 @@ namespace seqan {
 template <typename TStream>
 void printDebugLevel(TStream & stream)
 {
-    stream << "SEQAN_ENABLE_DEBUG == " << SEQAN_ENABLE_DEBUG << std::endl;
-    stream << "SEQAN_ENABLE_TESTING == " << SEQAN_ENABLE_TESTING << std::endl;
-    stream << "SEQAN_CXX_FLAGS == \"" << SEQAN_CXX_FLAGS << "\"" << std::endl;
-    stream << "SEQAN_ASYNC_IO == " << SEQAN_ASYNC_IO << std::endl;
+    stream << "SEQAN2_ENABLE_DEBUG == " << SEQAN2_ENABLE_DEBUG << std::endl;
+    stream << "SEQAN2_ENABLE_TESTING == " << SEQAN2_ENABLE_TESTING << std::endl;
+    stream << "SEQAN2_CXX_FLAGS == \"" << SEQAN2_CXX_FLAGS << "\"" << std::endl;
+    stream << "SEQAN2_ASYNC_IO == " << SEQAN2_ASYNC_IO << std::endl;
 }
 
-#if !SEQAN_HAS_EXECINFO
+#if !SEQAN2_HAS_EXECINFO
 
 template <typename TSize>
 void printStackTrace(TSize /*maxFrames*/)
@@ -441,7 +441,7 @@ void printStackTrace(TSize maxFrames)
             }
         }
         // MAC OS X FORMAT:
-        //          1   sam2svg                             0x0000000100003a39 _ZN5seqanL28signalHandlerPrintStackTraceEi + 21
+        //          1   sam2svg                             0x0000000100003a39 _ZN5seqan2L28signalHandlerPrintStackTraceEi + 21
         //          2   libSystem.B.dylib                   0x00007fff87a6d67a _sigtramp + 26
         //          3   libSystem.B.dylib                   0x00007fff87a76df7 tiny_free_do_recirc_to_depot + 980
         //          4   sam2svg                             0x00000001000021b9 _Z2f2v + 9
@@ -498,7 +498,7 @@ inline int _deploySignalHandlers()
     return 0;
 }
 
-#if SEQAN_ENABLE_DEBUG
+#if SEQAN2_ENABLE_DEBUG
 
 // automatically deploy signal handlers that output the stack trace on a trap (in debug mode)
 
@@ -522,8 +522,8 @@ volatile int signalHandlersDummy_ = SignalHandlersDummy_<void>::i;
 #endif  // ifdef __clang__
 }
 
-#endif  // #if SEQAN_ENABLE_DEBUG
-#endif  // !SEQAN_HAS_EXECINFO
+#endif  // #if SEQAN2_ENABLE_DEBUG
+#endif  // !SEQAN2_HAS_EXECINFO
 
 
 // Namespace for the testing infrastructure.
@@ -714,7 +714,7 @@ const char * tempFileName()
 
 // Initialize the testing infrastructure.
 //
-// Used through SEQAN_BEGIN_TESTSUITE(test_name)
+// Used through SEQAN2_BEGIN_TESTSUITE(test_name)
 inline
 void beginTestSuite(const char * testSuiteName, const char * argv0)
 {
@@ -821,7 +821,7 @@ int _deleteTempFile(std::string tempFilename)
 
 // Run test suite finalization.
 //
-// Used through SEQAN_END_TESTSUITE
+// Used through SEQAN2_END_TESTSUITE
 //
 // Prints a bottom banner with the error count and returns the
 // program's return code.
@@ -883,7 +883,7 @@ void skipCurrentTest()
     StaticData::skippedCount() += 1;
 }
 
-// Called by the macro SEQAN_ASSERT_FAIL.
+// Called by the macro SEQAN2_ASSERT_FAIL.
 inline void forceFail(const char * file, int line,
                       const char * comment, ...)
 {
@@ -922,7 +922,7 @@ inline void forceFail(const char * file, int line)
     forceFail(file, line, 0);
 }
 
-// Called by the macro SEQAN_ASSERT_EQ.
+// Called by the macro SEQAN2_ASSERT_EQ.
 //
 // Tests that the given two value are equal.  Returns true iff the
 // two values are equal.
@@ -994,7 +994,7 @@ bool testEqual(const char * file, int line,
     return testEqual(file, line, value1, expression1, value2, expression2, 0);
 }
 
-// Called by the macro SEQAN_ASSERT_IN_DELTA.
+// Called by the macro SEQAN2_ASSERT_IN_DELTA.
 //
 // Tests that the given two value are equal.  Returns true iff the
 // two values are equal.
@@ -1071,7 +1071,7 @@ bool testInDelta(const char * file, int line,
     return testInDelta(file, line, value1, expression1, value2, expression2, value3, expression3, 0);
 }
 
-// Called by the macro SEQAN_ASSERT_NEQ.
+// Called by the macro SEQAN2_ASSERT_NEQ.
 //
 // Tests that the given two value are not equal.  Returns true iff
 // the two values are equal.
@@ -1143,7 +1143,7 @@ bool testNotEqual(const char * file, int line,
     return testNotEqual(file, line, value1, expression1, value2, expression2, 0);
 }
 
-// Called by the macro SEQAN_ASSERT_GEQ.
+// Called by the macro SEQAN2_ASSERT_GEQ.
 //
 // Tests that the first value is greater than or equal to the
 // second one.  Returns true iff the test yields true.
@@ -1215,7 +1215,7 @@ bool testGeq(const char * file, int line,
     return testGeq(file, line, value1, expression1, value2, expression2, 0);
 }
 
-// Called by the macro SEQAN_ASSERT_GT.
+// Called by the macro SEQAN2_ASSERT_GT.
 //
 // Tests that the first value is greater than the second one.
 // Returns true iff the test yields true.
@@ -1287,7 +1287,7 @@ bool testGt(const char * file, int line,
     return testGt(file, line, value1, expression1, value2, expression2, 0);
 }
 
-// Called by the macro SEQAN_ASSERT_LEQ.
+// Called by the macro SEQAN2_ASSERT_LEQ.
 //
 // Tests that the first value is less than or equal to the second
 // one.  Returns true iff the test yields true.
@@ -1359,7 +1359,7 @@ bool testLeq(const char * file, int line,
     return testLeq(file, line, value1, expression1, value2, expression2, 0);
 }
 
-// Called by the macro SEQAN_ASSERT_LT.
+// Called by the macro SEQAN2_ASSERT_LT.
 //
 // Tests that the first value is greater than the second one.
 // Returns true iff the test yields true.
@@ -1431,7 +1431,7 @@ bool testLt(const char * file, int line,
     return testLt(file, line, value1, expression1, value2, expression2, 0);
 }
 
-// Called by the macro SEQAN_ASSERT.
+// Called by the macro SEQAN2_ASSERT.
 //
 // Test that the given argument evaluates to true.
 template <typename T>
@@ -1497,7 +1497,7 @@ bool testTrue(const char * file, int line,
     return testTrue(file, line, value_, expression_, 0);
 }
 
-// Called by the macro SEQAN_ASSERT.
+// Called by the macro SEQAN2_ASSERT.
 //
 // Test that the given argument evaluates to false.
 template <typename T>
@@ -1563,7 +1563,7 @@ bool testFalse(const char * file, int line,
     return testFalse(file, line, value_, expression_, 0);
 }
 
-#if SEQAN_ENABLE_TESTING
+#if SEQAN2_ENABLE_TESTING
 // If in testing mode then raise an AssertionFailedException.
 inline void fail()
 {
@@ -1580,33 +1580,33 @@ inline void fail()
     abort();
 }
 
-#endif  // #if SEQAN_ENABLE_TESTING
+#endif  // #if SEQAN2_ENABLE_TESTING
 
 }  // namespace ClassTest
 
 /*!
- * @macro TestSystemMacros#SEQAN_DEFINE_TEST
- * @headerfile <seqan/basic.h>
+ * @macro TestSystemMacros#SEQAN2_DEFINE_TEST
+ * @headerfile <seqan2/basic.h>
  * @brief Expand to test definition.
  *
- * @signature SEQAN_DEFINE_TEST(test_name)
+ * @signature SEQAN2_DEFINE_TEST(test_name)
  *
- * This macro expands to the definition of a $void$ function with <tt>SEQAN_TEST_ + test_name</tt> as its name.
+ * This macro expands to the definition of a $void$ function with <tt>SEQAN2_TEST_ + test_name</tt> as its name.
  *
  * @section Example
  *
  * @code{.cpp}
- * SEQAN_DEFINE_TEST(test_name)
+ * SEQAN2_DEFINE_TEST(test_name)
  * {
- *     SEQAN_ASSERT_LT(0, 3);
+ *     SEQAN2_ASSERT_LT(0, 3);
  * }
  * @endcode
  */
 
 // This macro expands to function header for one test.
-#define SEQAN_DEFINE_TEST(test_name)                    \
+#define SEQAN2_DEFINE_TEST(test_name)                    \
     template <bool speed_up_dummy_to_prevent_compilation_of_unused_tests_> \
-    void SEQAN_TEST_ ## test_name()
+    void SEQAN2_TEST_ ## test_name()
 
 /*!
  * @defgroup TestSystemMacros Test System Macros
@@ -1614,11 +1614,11 @@ inline void fail()
  */
 
 /*!
- * @macro TestSystemMacros#SEQAN_BEGIN_TESTSUITE
- * @headerfile <seqan/basic.h>
+ * @macro TestSystemMacros#SEQAN2_BEGIN_TESTSUITE
+ * @headerfile <seqan2/basic.h>
  * @brief Expand to a test suite beginning.
  *
- * @signature SEQAN_BEGIN_TESTSUITE(name)
+ * @signature SEQAN2_BEGIN_TESTSUITE(name)
  *
  * @param[in] name The name of the test suite.
  *
@@ -1627,127 +1627,127 @@ inline void fail()
  * @section Examples
  *
  * @code{.cpp}
- * #include <seqan/basic.h>
+ * #include <seqan2/basic.h>
  *
- * SEQAN_BEGIN_TESTSUITE(test_foo)
+ * SEQAN2_BEGIN_TESTSUITE(test_foo)
  * {
- *    SEQAN_CALL_TEST(test_foo_my_test);
+ *    SEQAN2_CALL_TEST(test_foo_my_test);
  * }
- * SEQAN_END_TESTSUITE
+ * SEQAN2_END_TESTSUITE
  * @endcode
  */
 
-#if SEQAN_ENABLE_TESTING
+#if SEQAN2_ENABLE_TESTING
 // This macro expands to startup code for a test file.
-#define SEQAN_BEGIN_TESTSUITE(suite_name)                       \
+#define SEQAN2_BEGIN_TESTSUITE(suite_name)                       \
     int main(int argc, char ** argv) {                           \
         (void) argc;                                                \
-        ::seqan::ClassTest::beginTestSuite(# suite_name, argv[0]);
+        ::seqan2::ClassTest::beginTestSuite(# suite_name, argv[0]);
 
 /*!
- * @macro TestSystemMacros#SEQAN_END_TESTSUITE
- * @headerfile <seqan/basic.h>
+ * @macro TestSystemMacros#SEQAN2_END_TESTSUITE
+ * @headerfile <seqan2/basic.h>
  * @brief Expand to test suite ending.
  *
- * @signature SEQAN_END_TESTSUITE
+ * @signature SEQAN2_END_TESTSUITE
  *
  * This macro expands to finalization code for a test suite.
  *
  * @section Examples
  *
  * @code{.cpp}
- * #include <seqan/basic.h>
+ * #include <seqan2/basic.h>
  *
- * SEQAN_BEGIN_TESTSUITE(test_foo)
+ * SEQAN2_BEGIN_TESTSUITE(test_foo)
  * {
- *     SEQAN_CALL_TEST(test_foo_my_test);
+ *     SEQAN2_CALL_TEST(test_foo_my_test);
  * }
- * SEQAN_END_TESTSUITE
+ * SEQAN2_END_TESTSUITE
  * @endcode
  */
 
 // This macro expands to shutdown code for a test file.
-#define SEQAN_END_TESTSUITE                     \
-    return ::seqan::ClassTest::endTestSuite();  \
+#define SEQAN2_END_TESTSUITE                     \
+    return ::seqan2::ClassTest::endTestSuite();  \
     }
 
 /*!
- * @macro TestSystemMacros#SEQAN_CALL_TEST
- * @headerfile <seqan/basic.h>
+ * @macro TestSystemMacros#SEQAN2_CALL_TEST
+ * @headerfile <seqan2/basic.h>
  * @brief Expand to calling a test.
  *
- * @signature SEQAN_CALL_TEST(test_name);
+ * @signature SEQAN2_CALL_TEST(test_name);
  *
- * This expects the test to be defined with SEQAN_DEFINE_TEST.  This macro will expand to code that calls the code
+ * This expects the test to be defined with SEQAN2_DEFINE_TEST.  This macro will expand to code that calls the code
  * inside a try/catch block. Use this macro within a test suite, only.
  *
  * @section Examples
  *
  * @code{.cpp}
  * // Within a test suite.
- * SEQAN_CALL_TEST(test_name);
+ * SEQAN2_CALL_TEST(test_name);
  * @endcode
  */
 
 // This macro expands to code to call a given test.
-#define SEQAN_CALL_TEST(test_name)                                      \
+#define SEQAN2_CALL_TEST(test_name)                                      \
     do {                                                                \
-        seqan::ClassTest::beginTest(# test_name);                       \
+        seqan2::ClassTest::beginTest(# test_name);                       \
         try {                                                           \
-            SEQAN_TEST_ ## test_name<true>();                           \
-        } catch (seqan::ClassTest::AssertionFailedException e) {        \
+            SEQAN2_TEST_ ## test_name<true>();                           \
+        } catch (seqan2::ClassTest::AssertionFailedException e) {        \
             /* Swallow exception, go on with next test. */              \
             (void) e;  /* Get rid of unused variable warning. */        \
         } catch (std::exception const & e) {                            \
             std::cerr << "Unexpected exception of type "                \
-                      << toCString(seqan::Demangler<std::exception>(e)) \
+                      << toCString(seqan2::Demangler<std::exception>(e)) \
                       << "; message: " << e.what() << "\n";             \
-            seqan::ClassTest::StaticData::thisTestOk() = false;         \
-            seqan::ClassTest::StaticData::errorCount() += 1;            \
+            seqan2::ClassTest::StaticData::thisTestOk() = false;         \
+            seqan2::ClassTest::StaticData::errorCount() += 1;            \
         } catch (...) {                                                 \
             std::cerr << "Unexpected exception of unknown type\n";      \
-            seqan::ClassTest::StaticData::thisTestOk() = false;         \
-            seqan::ClassTest::StaticData::errorCount() += 1;            \
+            seqan2::ClassTest::StaticData::thisTestOk() = false;         \
+            seqan2::ClassTest::StaticData::errorCount() += 1;            \
         }                                                               \
-        seqan::ClassTest::endTest();                                    \
+        seqan2::ClassTest::endTest();                                    \
     } while (false)
 
 /*!
- * @macro TestSystemMacros#SEQAN_SKIP_TEST
- * @headerfile <seqan/basic.h>
+ * @macro TestSystemMacros#SEQAN2_SKIP_TEST
+ * @headerfile <seqan2/basic.h>
  * @brief Force the test to return without failing and mark it as skipped.
  *
- * @signature SEQAN_SKIP_TEST;
+ * @signature SEQAN2_SKIP_TEST;
  *
  * @section Examples
  *
  * @code{.cpp}
- * SEQAN_DEFINE_TEST(test_skipped)
+ * SEQAN2_DEFINE_TEST(test_skipped)
  * {
- *     SEQAN_SKIP_TEST;
+ *     SEQAN2_SKIP_TEST;
  * }
  * @endcode
  */
 
 // This macro returns from the current function and logs a "skipped"
 // event for the current test.
-#define SEQAN_SKIP_TEST                         \
+#define SEQAN2_SKIP_TEST                         \
     do {                                        \
-        ::seqan::ClassTest::skipCurrentTest();  \
+        ::seqan2::ClassTest::skipCurrentTest();  \
         return;                                 \
     } while (false)
-#endif  // #if SEQAN_ENABLE_TESTING
+#endif  // #if SEQAN2_ENABLE_TESTING
 
 
-#if SEQAN_ENABLE_DEBUG
+#if SEQAN2_ENABLE_DEBUG
 
 /*!
- * @macro AssertMacros#SEQAN_ASSERT
- * @headerfile <seqan/basic.h>
+ * @macro AssertMacros#SEQAN2_ASSERT
+ * @headerfile <seqan2/basic.h>
  * @brief Test that the given expression can be coerced to <tt>true</tt>.
  *
- * @signature SEQAN_ASSERT(expression);
- * @signature SEQAN_ASSERT_MSG(expression, message[, parameters]);
+ * @signature SEQAN2_ASSERT(expression);
+ * @signature SEQAN2_ASSERT_MSG(expression, message[, parameters]);
  *
  * @param[in] expression An expression to check for being true.
  * @param[in] message    A format string.
@@ -1757,26 +1757,26 @@ inline void fail()
  *
  * The main advantage of this macro is that it prints the values of its argument on failures.  Note that the
  * <tt>operator&lt;&lt;</tt> to the type of <tt>std::cerr</tt> has to be defined for the type of both expression
- * parameters. Otherwise, simply use the equivalent SEQAN_ASSERT @call.
+ * parameters. Otherwise, simply use the equivalent SEQAN2_ASSERT @call.
  *
- * See SEQAN_CHECK and SEQAN_FAIL for (conditionally) aborting your program regardless of debug settings.
+ * See SEQAN2_CHECK and SEQAN2_FAIL for (conditionally) aborting your program regardless of debug settings.
  *
  * @section Examples
  *
  * @code{.cpp}
- * SEQAN_ASSERT(0);  // will fail
- * SEQAN_ASSERT(1);  // will run through
- * SEQAN_ASSERT_MSG(0, "message %d", 2);  // Will fail with message.
+ * SEQAN2_ASSERT(0);  // will fail
+ * SEQAN2_ASSERT(1);  // will run through
+ * SEQAN2_ASSERT_MSG(0, "message %d", 2);  // Will fail with message.
  * @endcode
  */
 
 /*!
- * @macro AssertMacros#SEQAN_ASSERT_NOT
- * @headerfile <seqan/basic.h>
+ * @macro AssertMacros#SEQAN2_ASSERT_NOT
+ * @headerfile <seqan2/basic.h>
  * @brief Test that the given expression can be coerced to <tt>false</tt>.
  *
- * @signature SEQAN_ASSERT_NOT(expression)
- * @signature SEQAN_ASSERT_NOT_MSG(expression, message[, parameters])
+ * @signature SEQAN2_ASSERT_NOT(expression)
+ * @signature SEQAN2_ASSERT_NOT_MSG(expression, message[, parameters])
  *
  * @param[in] expression An expression to check for being false.
  * @param[in] message    A format string.
@@ -1786,26 +1786,26 @@ inline void fail()
  *
  * The main advantage of this macro is that it prints the values of its argument on failures.  Note that the
  * <tt>operator&lt;&lt;</tt> to the type of <tt>std::cerr</tt> has to be defined for the type of both expression
- * parameters.  Otherwise, simply use the equivalent SEQAN_ASSERT call.
+ * parameters.  Otherwise, simply use the equivalent SEQAN2_ASSERT call.
  *
- * See SEQAN_CHECK and SEQAN_FAIL for (conditionally) aborting your program regardless of debug settings.
+ * See SEQAN2_CHECK and SEQAN2_FAIL for (conditionally) aborting your program regardless of debug settings.
  *
  * @section Examples
  *
  * @code{.cpp}
- * SEQAN_ASSERT_NOT(0);  // will run through
- * SEQAN_ASSERT_NOT(1);  // will fail
- * SEQAN_ASSERT_NOT_MSG(0, "msg %s", "test");  // will fail with message
+ * SEQAN2_ASSERT_NOT(0);  // will run through
+ * SEQAN2_ASSERT_NOT(1);  // will fail
+ * SEQAN2_ASSERT_NOT_MSG(0, "msg %s", "test");  // will fail with message
  * @endcode
  */
 
 /*!
- * @macro AssertMacros#SEQAN_ASSERT_EQ
- * @headerfile <seqan/basic.h>
+ * @macro AssertMacros#SEQAN2_ASSERT_EQ
+ * @headerfile <seqan2/basic.h>
  * @brief Test that two given expressions are equal, as defined by the matching call to the <tt>operator=(,)</tt>.
 
- * @signature SEQAN_ASSERT_EQ(expression1, expression2);
- * @signature SEQAN_ASSERT_EQ_MSG(expression1, expression2, comment[, parameters]);
+ * @signature SEQAN2_ASSERT_EQ(expression1, expression2);
+ * @signature SEQAN2_ASSERT_EQ_MSG(expression1, expression2, comment[, parameters]);
  *
  * @param[in] expression1 The first expression.
  * @param[in] expression2 The second expression.
@@ -1816,27 +1816,27 @@ inline void fail()
  *
  * The main advantage of this macro is that it prints the values of its argument on failures.  Note that the
  * <tt>operator&lt;&lt;</tt> to the type of <tt>std::cerr</tt> has to be defined for the type of both expression
- * parameters.  Otherwise, simply use the equivalent SEQAN_ASSERT call.
+ * parameters.  Otherwise, simply use the equivalent SEQAN2_ASSERT call.
  *
- * See SEQAN_CHECK and SEQAN_FAIL for (conditionally) aborting your program regardless of debug settings.
+ * See SEQAN2_CHECK and SEQAN2_FAIL for (conditionally) aborting your program regardless of debug settings.
  *
  * @section Examples
  *
  * @code{.cpp}
- * SEQAN_ASSERT_EQ(0, false);  // will run through
- * SEQAN_ASSERT_EQ(1, false);  // will fail
- * SEQAN_ASSERT_EQ(1, "foo");  // will not compile
- * SEQAN_ASSERT_EQ_MSG(1, false, "msg");  // will fail with message
+ * SEQAN2_ASSERT_EQ(0, false);  // will run through
+ * SEQAN2_ASSERT_EQ(1, false);  // will fail
+ * SEQAN2_ASSERT_EQ(1, "foo");  // will not compile
+ * SEQAN2_ASSERT_EQ_MSG(1, false, "msg");  // will fail with message
  * @endcode
  */
 
 /*!
- * @macro AssertMacros#SEQAN_ASSERT_NEQ
- * @headerfile <seqan/basic.h>
+ * @macro AssertMacros#SEQAN2_ASSERT_NEQ
+ * @headerfile <seqan2/basic.h>
  * @brief Test that two given expressions are not equal, as defined by the matching call to the <tt>operator!=(,)</tt>.
  *
- * @signature SEQAN_ASSERT_NEQ(expression1, expression2);
- * @signature SEQAN_ASSERT_NEQ_MSG(expression1, expression2, comment[, parameters]);
+ * @signature SEQAN2_ASSERT_NEQ(expression1, expression2);
+ * @signature SEQAN2_ASSERT_NEQ_MSG(expression1, expression2, comment[, parameters]);
  *
  * @param[in] expression1 The first expression.
  * @param[in] expression2 The second expression.
@@ -1847,28 +1847,28 @@ inline void fail()
  *
  * The main advantage of this macro is that it prints the values of its argument on failures.  Note that the
  * <tt>operator&lt;&lt;</tt> to the type of <tt>std::cerr</tt> has to be defined for the type of both expression
- * parameters.  Otherwise, simply use the equivalent SEQAN_ASSERT call.
+ * parameters.  Otherwise, simply use the equivalent SEQAN2_ASSERT call.
  *
- * See SEQAN_CHECK and SEQAN_FAIL for (conditionally) aborting your program regardless of debug settings.
+ * See SEQAN2_CHECK and SEQAN2_FAIL for (conditionally) aborting your program regardless of debug settings.
  *
  * @section Examples
  *
  * @code{.cpp}
- * SEQAN_ASSERT_NEQ(0, false);  // will fail
- * SEQAN_ASSERT_NEQ(1, false);  // will run through
- * SEQAN_ASSERT_NEQ(1, "foo");  // will not compile
- * SEQAN_ASSERT_NEQ_MSG(1, false, "msg");  // will fail with message
+ * SEQAN2_ASSERT_NEQ(0, false);  // will fail
+ * SEQAN2_ASSERT_NEQ(1, false);  // will run through
+ * SEQAN2_ASSERT_NEQ(1, "foo");  // will not compile
+ * SEQAN2_ASSERT_NEQ_MSG(1, false, "msg");  // will fail with message
  * @endcode
  */
 
 /*!
- * @macro AssertMacros#SEQAN_ASSERT_LT
- * @headerfile <seqan/basic.h>
+ * @macro AssertMacros#SEQAN2_ASSERT_LT
+ * @headerfile <seqan2/basic.h>
  * @brief Test that the two given expressions are in the less-than relation as defined by the matching call to
  *        operator<(,).
  *
- * @signature SEQAN_ASSERT_LT(expression1, expression2);
- * @signature SEQAN_ASSERT_LT(expression1, expression2, comment[, parameters]);
+ * @signature SEQAN2_ASSERT_LT(expression1, expression2);
+ * @signature SEQAN2_ASSERT_LT(expression1, expression2, comment[, parameters]);
  *
  * @param[in] expression1 The first expression.
  * @param[in] expression2 The second expression.
@@ -1879,27 +1879,27 @@ inline void fail()
  *
  * The main advantage of this macro is that it prints the values of its argument on failures.  Note that the
  * <tt>operator&lt;&lt;</tt> to the type of <tt>std::cerr</tt> has to be defined for the type of both expression
- * parameters.  Otherwise, simply use the equivalent SEQAN_ASSERT call.
+ * parameters.  Otherwise, simply use the equivalent SEQAN2_ASSERT call.
  *
- * See SEQAN_CHECK and SEQAN_FAIL for (conditionally) aborting your program regardless of debug settings.
+ * See SEQAN2_CHECK and SEQAN2_FAIL for (conditionally) aborting your program regardless of debug settings.
  *
  * @section Examples
  *
  * @code{.cpp}
- * SEQAN_ASSERT_LT(0, 1);  // will run through
- * SEQAN_ASSERT_LT(1, 1);  // will not run through
- * SEQAN_ASSERT_LT_MSG(1, 1, "msg");  // will fail with message
+ * SEQAN2_ASSERT_LT(0, 1);  // will run through
+ * SEQAN2_ASSERT_LT(1, 1);  // will not run through
+ * SEQAN2_ASSERT_LT_MSG(1, 1, "msg");  // will fail with message
  * @endcode
  */
 
 /*!
- * @macro AssertMacros#SEQAN_ASSERT_LEQ
+ * @macro AssertMacros#SEQAN2_ASSERT_LEQ
  *
  * @brief Test that the two given expressions are in the less-than-or-equal
  *        relation as defined by the matching call to operator<=(,).
  *
- * @signature SEQAN_ASSERT_LEQ(expression1, expression2)
- * @signature SEQAN_ASSERT_LEQ_MSG(expression1, expression2, comment[,
+ * @signature SEQAN2_ASSERT_LEQ(expression1, expression2)
+ * @signature SEQAN2_ASSERT_LEQ_MSG(expression1, expression2, comment[,
  *            parameters])
  *
  * @param[in] expression1 The first expression.
@@ -1912,29 +1912,29 @@ inline void fail()
  * The main advantage of this macro is that it prints the values of its argument
  * on failures. Note that the <tt>operator&lt;&lt;</tt> to the type of
  * <tt>std::cerr</tt> has to be defined for the type of both expression
- * parameters. Otherwise, simply use the equivalent  SEQAN_ASSERT
+ * parameters. Otherwise, simply use the equivalent  SEQAN2_ASSERT
  * call.
  *
- * See  SEQAN_CHECK  and  SEQAN_FAIL  for
+ * See  SEQAN2_CHECK  and  SEQAN2_FAIL  for
  * (conditionally) aborting your program regardless of debug settings.
  *
  * @section Examples
  *
  * @code{.cpp}
- * SEQAN_ASSERT_LEQ(1, 1);  // will run through
- * SEQAN_ASSERT_LEQ(1, 2);  // will not run through
- * SEQAN_ASSERT_LEQ_MSG(1, 2, "msg");  // will fail with message
+ * SEQAN2_ASSERT_LEQ(1, 1);  // will run through
+ * SEQAN2_ASSERT_LEQ(1, 2);  // will not run through
+ * SEQAN2_ASSERT_LEQ_MSG(1, 2, "msg");  // will fail with message
  * @endcode
  */
 
 /*!
- * @macro AssertMacros#SEQAN_ASSERT_GT
+ * @macro AssertMacros#SEQAN2_ASSERT_GT
  *
  * @brief Test that the two given expressions are in the greather-than relation
  *        as defined by the matching call to operator>(,).
  *
- * @signature SEQAN_ASSERT_GT(expression1, expression2);
- * @signature SEQAN_ASSERT_GT_MSG(expression1, expression2, comment[, parameters]);
+ * @signature SEQAN2_ASSERT_GT(expression1, expression2);
+ * @signature SEQAN2_ASSERT_GT_MSG(expression1, expression2, comment[, parameters]);
  *
  * @param[in] expression1 The first expression.
  * @param[in] expression2 The second expression.
@@ -1946,29 +1946,29 @@ inline void fail()
  * The main advantage of this macro is that it prints the values of its argument
  * on failures. Note that the <tt>operator&lt;&lt;</tt> to the type of
  * <tt>std::cerr</tt> has to be defined for the type of both expression
- * parameters. Otherwise, simply use the equivalent  SEQAN_ASSERT
+ * parameters. Otherwise, simply use the equivalent  SEQAN2_ASSERT
  * call.
  *
- * See  SEQAN_CHECK  and  SEQAN_FAIL  for
+ * See  SEQAN2_CHECK  and  SEQAN2_FAIL  for
  * (conditionally) aborting your program regardless of debug settings.
  *
  * @section Examples
  *
  * @code{.cpp}
- * SEQAN_ASSERT_GT(2, 1);  // will run through
- * SEQAN_ASSERT_GT(1, 1);  // will not run through
- * SEQAN_ASSERT_GT_MSG(1, 1, "msg");  // will fail with message
+ * SEQAN2_ASSERT_GT(2, 1);  // will run through
+ * SEQAN2_ASSERT_GT(1, 1);  // will not run through
+ * SEQAN2_ASSERT_GT_MSG(1, 1, "msg");  // will fail with message
  * @endcode
  */
 
 /*!
- * @macro AssertMacros#SEQAN_ASSERT_GEQ
+ * @macro AssertMacros#SEQAN2_ASSERT_GEQ
  *
  * @brief Test that the two given expressions are in the greater-than-or-equal
  *        relation as defined by the matching call to operator>=(,).
  *
- * @signature SEQAN_ASSERT_GEQ(expression1, expression2);
- * @signature SEQAN_ASSERT_GEQ_MSG(expression1, expression2, comment[, parameters]);
+ * @signature SEQAN2_ASSERT_GEQ(expression1, expression2);
+ * @signature SEQAN2_ASSERT_GEQ_MSG(expression1, expression2, comment[, parameters]);
  *
  * @param[in] expression1 The first expression.
  * @param[in] expression2 The second expression.
@@ -1979,26 +1979,26 @@ inline void fail()
  *
  * The main advantage of this macro is that it prints the values of its argument on failures.  Note that the
  * <tt>operator&lt;&lt;</tt> to the type of <tt>std::cerr</tt> has to be defined for the type of both expression
- * parameters.  Otherwise, simply use the equivalent SEQAN_ASSERT call.
+ * parameters.  Otherwise, simply use the equivalent SEQAN2_ASSERT call.
  *
- * See SEQAN_CHECK and SEQAN_FAIL for (conditionally) aborting your program regardless of debug settings.
+ * See SEQAN2_CHECK and SEQAN2_FAIL for (conditionally) aborting your program regardless of debug settings.
  *
  * @section Examples
  *
  * @code{.cpp}
- * SEQAN_ASSERT_GEQ(1, 1);  // will run through
- * SEQAN_ASSERT_GEQ(0, 1);  // will not run through
- * SEQAN_ASSERT_GEQ_MSG(0, 1, "msg");  // will fail with message
+ * SEQAN2_ASSERT_GEQ(1, 1);  // will run through
+ * SEQAN2_ASSERT_GEQ(0, 1);  // will not run through
+ * SEQAN2_ASSERT_GEQ_MSG(0, 1, "msg");  // will fail with message
  * @endcode
  */
 
 /*!
- * @macro AssertMacros#SEQAN_ASSERT_IN_DELTA
+ * @macro AssertMacros#SEQAN2_ASSERT_IN_DELTA
  *
  * @brief Test that a value <tt>y</tt> lies within an <tt>delta</tt> environment of a value <tt>x</tt>.
  *
- * @signature SEQAN_ASSERT_IN_DELTA(x, y, delta);
- * @signature SEQAN_ASSERT_IN_DELTA_MSG(x, y, delta, comment[, parameters]);
+ * @signature SEQAN2_ASSERT_IN_DELTA(x, y, delta);
+ * @signature SEQAN2_ASSERT_IN_DELTA_MSG(x, y, delta, comment[, parameters]);
  *
  * @param[in] x           The value to center the environment in.
  * @param[in] y           The value to check whether it falls within the environment.
@@ -2010,294 +2010,294 @@ inline void fail()
  *
  * The main advantage of this macro is that it prints the values of its argument on failures.  Note that the
  * <tt>operator&lt;&lt;</tt> to the type of <tt>std::cerr</tt> has to be defined for the type of both expression
- * parameters.  Otherwise, simply use the equivalent SEQAN_ASSERT call.
+ * parameters.  Otherwise, simply use the equivalent SEQAN2_ASSERT call.
  *
- * See SEQAN_CHECK and SEQAN_FAIL for (conditionally) aborting your program regardless of debug settings.
+ * See SEQAN2_CHECK and SEQAN2_FAIL for (conditionally) aborting your program regardless of debug settings.
  *
  * @section Examples
  *
  * @code{.cpp}
- * SEQAN_ASSERT_IN_DELTA(0, 0, 0.1);  // will run through
- * SEQAN_ASSERT_IN_DELTA(1, -2, 1);  // will fail
- * SEQAN_ASSERT_IN_DELTA(1, "foo");  // will not compile
- * SEQAN_ASSERT_IN_DELTA_MSG(1, 0, 0.1, "msg");  // will fail with message
+ * SEQAN2_ASSERT_IN_DELTA(0, 0, 0.1);  // will run through
+ * SEQAN2_ASSERT_IN_DELTA(1, -2, 1);  // will fail
+ * SEQAN2_ASSERT_IN_DELTA(1, "foo");  // will not compile
+ * SEQAN2_ASSERT_IN_DELTA_MSG(1, 0, 0.1, "msg");  // will fail with message
  * @endcode
  */
 
 // Force a test failure.
 //
-// Usage:  SEQAN_ASSERT_FAIL("Failed at position %d", pos);
-#define SEQAN_ASSERT_FAIL(...)                                          \
+// Usage:  SEQAN2_ASSERT_FAIL("Failed at position %d", pos);
+#define SEQAN2_ASSERT_FAIL(...)                                          \
     do {                                                                \
-        ::seqan::ClassTest::forceFail(__FILE__, __LINE__,               \
+        ::seqan2::ClassTest::forceFail(__FILE__, __LINE__,               \
                                       __VA_ARGS__);                     \
-        ::seqan::ClassTest::fail();                                     \
+        ::seqan2::ClassTest::fail();                                     \
     } while (false)
 
 
 // Equality assertion without a comment.
 //
-// Usage:  SEQAN_ASSERT_EQ(4, 4);
-#define SEQAN_ASSERT_EQ(_arg1, _arg2)                                   \
+// Usage:  SEQAN2_ASSERT_EQ(4, 4);
+#define SEQAN2_ASSERT_EQ(_arg1, _arg2)                                   \
     do {                                                                \
-        if (!::seqan::ClassTest::testEqual(__FILE__, __LINE__,          \
+        if (!::seqan2::ClassTest::testEqual(__FILE__, __LINE__,          \
                                            (_arg1), # _arg1,             \
                                            (_arg2), # _arg2)) {          \
-            ::seqan::ClassTest::fail();                                 \
+            ::seqan2::ClassTest::fail();                                 \
         }                                                               \
     } while (false)
 
 
 // Equality assertion with a comment.
 //
-// Usage:  SEQAN_ASSERT_EQ(4, 4);
-#define SEQAN_ASSERT_EQ_MSG(_arg1, _arg2, ...)                          \
+// Usage:  SEQAN2_ASSERT_EQ(4, 4);
+#define SEQAN2_ASSERT_EQ_MSG(_arg1, _arg2, ...)                          \
     do {                                                                \
-        if (!::seqan::ClassTest::testEqual(__FILE__, __LINE__,          \
+        if (!::seqan2::ClassTest::testEqual(__FILE__, __LINE__,          \
                                            (_arg1), # _arg1,             \
                                            (_arg2), # _arg2,             \
                                            __VA_ARGS__)) {              \
-            ::seqan::ClassTest::fail();                                 \
+            ::seqan2::ClassTest::fail();                                 \
         }                                                               \
     } while (false)
 
 
 // In-delta-environment assertion without a comment.
 //
-// Usage:  SEQAN_ASSERT_IN_DELTA(4.1, 4, 0.1);
-#define SEQAN_ASSERT_IN_DELTA(_arg1, _arg2, _arg3)                      \
+// Usage:  SEQAN2_ASSERT_IN_DELTA(4.1, 4, 0.1);
+#define SEQAN2_ASSERT_IN_DELTA(_arg1, _arg2, _arg3)                      \
     do {                                                                \
-        if (!::seqan::ClassTest::testInDelta(__FILE__, __LINE__,        \
+        if (!::seqan2::ClassTest::testInDelta(__FILE__, __LINE__,        \
                                              (_arg1), # _arg1,           \
                                              (_arg2), # _arg2,           \
                                              (_arg3), # _arg3)) {        \
-            ::seqan::ClassTest::fail();                                 \
+            ::seqan2::ClassTest::fail();                                 \
         }                                                               \
     } while (false)
 
 
 // In-delta-environment assertion witha comment.
 //
-// Usage:  SEQAN_ASSERT_IN_DELTA_MSG(4.1, 4, 0.1, "3.9 <= 4.1 <= 4.1");
-#define SEQAN_ASSERT_IN_DELTA_MSG(_arg1, _arg2, _arg3, ...)             \
+// Usage:  SEQAN2_ASSERT_IN_DELTA_MSG(4.1, 4, 0.1, "3.9 <= 4.1 <= 4.1");
+#define SEQAN2_ASSERT_IN_DELTA_MSG(_arg1, _arg2, _arg3, ...)             \
     do {                                                                \
-        if (!::seqan::ClassTest::testInDelta(__FILE__, __LINE__,        \
+        if (!::seqan2::ClassTest::testInDelta(__FILE__, __LINE__,        \
                                              (_arg1), # _arg1,           \
                                              (_arg2), # _arg2,           \
                                              (_arg3), # _arg3,           \
                                              __VA_ARGS__)) {            \
-            ::seqan::ClassTest::fail();                                 \
+            ::seqan2::ClassTest::fail();                                 \
         }                                                               \
     } while (false)
 
 
 // Inequality assertion without a comment.
 //
-// Usage:  SEQAN_ASSERT_NEQ(4, 5);
-#define SEQAN_ASSERT_NEQ(_arg1, _arg2)                                  \
+// Usage:  SEQAN2_ASSERT_NEQ(4, 5);
+#define SEQAN2_ASSERT_NEQ(_arg1, _arg2)                                  \
     do {                                                                \
-        if (!::seqan::ClassTest::testNotEqual(__FILE__, __LINE__,       \
+        if (!::seqan2::ClassTest::testNotEqual(__FILE__, __LINE__,       \
                                               (_arg1), # _arg1,          \
                                               (_arg2), # _arg2)) {       \
-            ::seqan::ClassTest::fail();                                 \
+            ::seqan2::ClassTest::fail();                                 \
         }                                                               \
     } while (false)
 
 
 // Inequality assertion with a comment.
 //
-// Usage:  SEQAN_ASSERT_NEQ(4, 5);
-#define SEQAN_ASSERT_NEQ_MSG(_arg1, _arg2, ...)                         \
+// Usage:  SEQAN2_ASSERT_NEQ(4, 5);
+#define SEQAN2_ASSERT_NEQ_MSG(_arg1, _arg2, ...)                         \
     do {                                                                \
-        if (!::seqan::ClassTest::testNotEqual(__FILE__, __LINE__,       \
+        if (!::seqan2::ClassTest::testNotEqual(__FILE__, __LINE__,       \
                                               (_arg1), # _arg1,          \
                                               (_arg2), # _arg2,          \
                                               __VA_ARGS__)) {           \
-            ::seqan::ClassTest::fail();                                 \
+            ::seqan2::ClassTest::fail();                                 \
         }                                                               \
     } while (false)
 
 
 // Less-than-or-equal assertion without a comment.
-#define SEQAN_ASSERT_LEQ(_arg1, _arg2)                                  \
+#define SEQAN2_ASSERT_LEQ(_arg1, _arg2)                                  \
     do {                                                                \
-        if (!::seqan::ClassTest::testLeq(__FILE__, __LINE__,            \
+        if (!::seqan2::ClassTest::testLeq(__FILE__, __LINE__,            \
                                          (_arg1), # _arg1,               \
                                          (_arg2), # _arg2)) {            \
-            ::seqan::ClassTest::fail();                                 \
+            ::seqan2::ClassTest::fail();                                 \
         }                                                               \
     } while (false)
 
 
 // Less-than-or-equal assertion with a comment.
-#define SEQAN_ASSERT_LEQ_MSG(_arg1, _arg2, ...)                         \
+#define SEQAN2_ASSERT_LEQ_MSG(_arg1, _arg2, ...)                         \
     do {                                                                \
-        if (!::seqan::ClassTest::testLeq(__FILE__, __LINE__,            \
+        if (!::seqan2::ClassTest::testLeq(__FILE__, __LINE__,            \
                                          (_arg1), # _arg1,               \
                                          (_arg2), # _arg2,               \
                                          __VA_ARGS__)) {                \
-            ::seqan::ClassTest::fail();                                 \
+            ::seqan2::ClassTest::fail();                                 \
         }                                                               \
     } while (false)
 
 
 // Less-than assertion without a comment.
-#define SEQAN_ASSERT_LT(_arg1, _arg2)                                   \
+#define SEQAN2_ASSERT_LT(_arg1, _arg2)                                   \
     do {                                                                \
-        if (!::seqan::ClassTest::testLt(__FILE__, __LINE__,             \
+        if (!::seqan2::ClassTest::testLt(__FILE__, __LINE__,             \
                                         (_arg1), # _arg1,                \
                                         (_arg2), # _arg2)) {             \
-            ::seqan::ClassTest::fail();                                 \
+            ::seqan2::ClassTest::fail();                                 \
         }                                                               \
     } while (false)
 
 
 // Less-than assertion with a comment.
-#define SEQAN_ASSERT_LT_MSG(_arg1, _arg2, ...)                          \
+#define SEQAN2_ASSERT_LT_MSG(_arg1, _arg2, ...)                          \
     do {                                                                \
-        if (!::seqan::ClassTest::testLt(__FILE__, __LINE__,             \
+        if (!::seqan2::ClassTest::testLt(__FILE__, __LINE__,             \
                                         (_arg1), # _arg1,                \
                                         (_arg2), # _arg2,                \
                                         __VA_ARGS__)) {                 \
-            ::seqan::ClassTest::fail();                                 \
+            ::seqan2::ClassTest::fail();                                 \
         }                                                               \
     } while (false)
 
 
 // Greater-than-or-equal assertion without a comment.
-#define SEQAN_ASSERT_GEQ(_arg1, _arg2)                                  \
+#define SEQAN2_ASSERT_GEQ(_arg1, _arg2)                                  \
     do {                                                                \
-        if (!::seqan::ClassTest::testGeq(__FILE__, __LINE__,            \
+        if (!::seqan2::ClassTest::testGeq(__FILE__, __LINE__,            \
                                          (_arg1), # _arg1,               \
                                          (_arg2), # _arg2)) {            \
-            ::seqan::ClassTest::fail();                                 \
+            ::seqan2::ClassTest::fail();                                 \
         }                                                               \
     } while (false)
 
 
 // Greater-than-or-equal assertion with a comment.
-#define SEQAN_ASSERT_GEQ_MSG(_arg1, _arg2, ...)                         \
+#define SEQAN2_ASSERT_GEQ_MSG(_arg1, _arg2, ...)                         \
     do {                                                                \
-        if (!::seqan::ClassTest::testGeq(__FILE__, __LINE__,            \
+        if (!::seqan2::ClassTest::testGeq(__FILE__, __LINE__,            \
                                          (_arg1), # _arg1,               \
                                          (_arg2), # _arg2,               \
                                          __VA_ARGS__)) {                \
-            ::seqan::ClassTest::fail();                                 \
+            ::seqan2::ClassTest::fail();                                 \
         }                                                               \
     } while (false)
 
 
 // Greater-than assertion without a comment.
-#define SEQAN_ASSERT_GT(_arg1, _arg2)                                   \
+#define SEQAN2_ASSERT_GT(_arg1, _arg2)                                   \
     do {                                                                \
-        if (!::seqan::ClassTest::testGt(__FILE__, __LINE__,             \
+        if (!::seqan2::ClassTest::testGt(__FILE__, __LINE__,             \
                                         (_arg1), # _arg1,                \
                                         (_arg2), # _arg2)) {             \
-            ::seqan::ClassTest::fail();                                 \
+            ::seqan2::ClassTest::fail();                                 \
         }                                                               \
     } while (false)
 
 
 // Greater-than assertion with a comment.
-#define SEQAN_ASSERT_GT_MSG(_arg1, _arg2, ...)                          \
+#define SEQAN2_ASSERT_GT_MSG(_arg1, _arg2, ...)                          \
     do {                                                                \
-        if (!::seqan::ClassTest::testGt(__FILE__, __LINE__,             \
+        if (!::seqan2::ClassTest::testGt(__FILE__, __LINE__,             \
                                         (_arg1), # _arg1,                \
                                         (_arg2), # _arg2,                \
                                         __VA_ARGS__)) {                 \
-            ::seqan::ClassTest::fail();                                 \
+            ::seqan2::ClassTest::fail();                                 \
         }                                                               \
     } while (false)
 
 
-// TODO(holtgrew): Rename to SEQAN_ASSERT once that name is free.;
+// TODO(holtgrew): Rename to SEQAN2_ASSERT once that name is free.;
 // Trueness assertion with a comment.
 //
-// Usage:  SEQAN_ASSERT(false);
-#define SEQAN_ASSERT(_arg1)                                        \
+// Usage:  SEQAN2_ASSERT(false);
+#define SEQAN2_ASSERT(_arg1)                                        \
     do {                                                                \
-        if (!::seqan::ClassTest::testTrue(__FILE__, __LINE__,           \
+        if (!::seqan2::ClassTest::testTrue(__FILE__, __LINE__,           \
                                           (_arg1), # _arg1)) {           \
-            ::seqan::ClassTest::fail();                                 \
+            ::seqan2::ClassTest::fail();                                 \
         }                                                               \
     } while (false)
 
 
-// TODO(holtgrew): Rename to SEQAN_ASSERT once that name is free.;
+// TODO(holtgrew): Rename to SEQAN2_ASSERT once that name is free.;
 // Trueness assertion with a comment.
-#define SEQAN_ASSERT_MSG(_arg1, ...)                               \
+#define SEQAN2_ASSERT_MSG(_arg1, ...)                               \
     do {                                                                \
-        if (!::seqan::ClassTest::testTrue(__FILE__, __LINE__,           \
+        if (!::seqan2::ClassTest::testTrue(__FILE__, __LINE__,           \
                                           (_arg1), # _arg1,              \
                                           __VA_ARGS__)) {             \
-            ::seqan::ClassTest::fail();                                 \
+            ::seqan2::ClassTest::fail();                                 \
         }                                                               \
     } while (false)
 
 
 // Falseness assertion without a comment.
 //
-// Usage:  SEQAN_ASSERT_NOT(false);
-#define SEQAN_ASSERT_NOT(_arg1)                                       \
+// Usage:  SEQAN2_ASSERT_NOT(false);
+#define SEQAN2_ASSERT_NOT(_arg1)                                       \
     do {                                                              \
-        if (!::seqan::ClassTest::testFalse(__FILE__, __LINE__,        \
+        if (!::seqan2::ClassTest::testFalse(__FILE__, __LINE__,        \
                                            (_arg1), # _arg1)) {        \
-            ::seqan::ClassTest::fail();                               \
+            ::seqan2::ClassTest::fail();                               \
         }                                                             \
     } while (false)
 
 
 // Falseness assertion with a comment.
-#define SEQAN_ASSERT_NOT_MSG(_arg1, ...)                              \
+#define SEQAN2_ASSERT_NOT_MSG(_arg1, ...)                              \
     do {                                                              \
-        if (!::seqan::ClassTest::testFalse(__FILE__, __LINE__,        \
+        if (!::seqan2::ClassTest::testFalse(__FILE__, __LINE__,        \
                                            (_arg1), # _arg1,           \
                                            __VA_ARGS__)) {          \
-            ::seqan::ClassTest::fail();                               \
+            ::seqan2::ClassTest::fail();                               \
         }                                                             \
     } while (false)
 
 #else
 
-#define SEQAN_ASSERT_EQ(_arg1, _arg2) do {} while (false)
-#define SEQAN_ASSERT_EQ_MSG(_arg1, _arg2, ...) do {} while (false)
-#define SEQAN_ASSERT_NEQ(_arg1, _arg2) do {} while (false)
-#define SEQAN_ASSERT_NEQ_MSG(_arg1, _arg2, ...) do {} while (false)
-#define SEQAN_ASSERT_LEQ(_arg1, _arg2) do {} while (false)
-#define SEQAN_ASSERT_LEQ_MSG(_arg1, _arg2, ...) do {} while (false)
-#define SEQAN_ASSERT_LT(_arg1, _arg2) do {} while (false)
-#define SEQAN_ASSERT_LT_MSG(_arg1, _arg2, ...) do {} while (false)
-#define SEQAN_ASSERT_GEQ(_arg1, _arg2) do {} while (false)
-#define SEQAN_ASSERT_GEQ_MSG(_arg1, _arg2, ...) do {} while (false)
-#define SEQAN_ASSERT_GT(_arg1, _arg2) do {} while (false)
-#define SEQAN_ASSERT_GT_MSG(_arg1, _arg2, ...) do {} while (false)
-#define SEQAN_ASSERT(_arg1) do {} while (false)
-#define SEQAN_ASSERT_MSG(_arg1, ...) do {} while (false)
-#define SEQAN_ASSERT_NOT(_arg1) do {} while (false)
-#define SEQAN_ASSERT_NOT_MSG(_arg1, ...) do {} while (false)
-#define SEQAN_ASSERT_FAIL(...) do {} while (false)
+#define SEQAN2_ASSERT_EQ(_arg1, _arg2) do {} while (false)
+#define SEQAN2_ASSERT_EQ_MSG(_arg1, _arg2, ...) do {} while (false)
+#define SEQAN2_ASSERT_NEQ(_arg1, _arg2) do {} while (false)
+#define SEQAN2_ASSERT_NEQ_MSG(_arg1, _arg2, ...) do {} while (false)
+#define SEQAN2_ASSERT_LEQ(_arg1, _arg2) do {} while (false)
+#define SEQAN2_ASSERT_LEQ_MSG(_arg1, _arg2, ...) do {} while (false)
+#define SEQAN2_ASSERT_LT(_arg1, _arg2) do {} while (false)
+#define SEQAN2_ASSERT_LT_MSG(_arg1, _arg2, ...) do {} while (false)
+#define SEQAN2_ASSERT_GEQ(_arg1, _arg2) do {} while (false)
+#define SEQAN2_ASSERT_GEQ_MSG(_arg1, _arg2, ...) do {} while (false)
+#define SEQAN2_ASSERT_GT(_arg1, _arg2) do {} while (false)
+#define SEQAN2_ASSERT_GT_MSG(_arg1, _arg2, ...) do {} while (false)
+#define SEQAN2_ASSERT(_arg1) do {} while (false)
+#define SEQAN2_ASSERT_MSG(_arg1, ...) do {} while (false)
+#define SEQAN2_ASSERT_NOT(_arg1) do {} while (false)
+#define SEQAN2_ASSERT_NOT_MSG(_arg1, ...) do {} while (false)
+#define SEQAN2_ASSERT_FAIL(...) do {} while (false)
 
-#endif  // #if defined(SEQAN_ENABLE_DEBUG)
+#endif  // #if defined(SEQAN2_ENABLE_DEBUG)
 
 // Returns a string (of type char*) with the path to the called binary.
 //
 // Use this to locate files relative to the test binary.
-#define SEQAN_PROGRAM_PATH                      \
-    ::seqan::ClassTest::StaticData::basePath()
+#define SEQAN2_PROGRAM_PATH                      \
+    ::seqan2::ClassTest::StaticData::basePath()
 
 /*!
- * @macro SEQAN_PATH_TO_ROOT
- * @headerfile <seqan/basic.h>
+ * @macro SEQAN2_PATH_TO_ROOT
+ * @headerfile <seqan2/basic.h>
  * @brief Return path to the checkout root directory.
  *
- * @signature TCharPtr SEQAN_PATH_TO_ROOT()
+ * @signature TCharPtr SEQAN2_PATH_TO_ROOT()
  *
  * @return TCharPtr <tt>char const *</tt>, string with the path to the parent directory of the tests directory.
  *
  * @section Examples
  *
  * @code{.cpp}
- * CharString buffer = SEQAN_PATH_TO_ROOT();
+ * CharString buffer = SEQAN2_PATH_TO_ROOT();
  * append(buffer, "/tests/files/example.txt");
  *
  * FILE *f = fopen(toCString(buffer), "w");
@@ -2308,25 +2308,25 @@ inline void fail()
  * @deprecated Unsafe.
  * @see getAbsolutePath
 
- * @see SEQAN_TEMP_FILENAME
+ * @see SEQAN2_TEMP_FILENAME
  */
 
 // TODO(holtgrew): Subject to change wiht restructuring.
 // Returns a const char * string with the path to the projects directory.
-#define SEQAN_PATH_TO_ROOT()                      \
-    ::seqan::ClassTest::StaticData::pathToRoot()
+#define SEQAN2_PATH_TO_ROOT()                      \
+    ::seqan2::ClassTest::StaticData::pathToRoot()
 
 
 // Returns the POSIX int file handle to an open file.
 // TODO(holtgrewe): Uncomment if openTempFile has been implemented.
-// #define SEQAN_OPEN_TEMP_FILE() (::seqan::ClassTest::openTempFile())
+// #define SEQAN2_OPEN_TEMP_FILE() (::seqan2::ClassTest::openTempFile())
 
 /*!
- * @macro SEQAN_TEMP_FILENAME
- * @headerfile <seqan/basic.h>
+ * @macro SEQAN2_TEMP_FILENAME
+ * @headerfile <seqan2/basic.h>
  * @brief Generates the name to a temporary file.
  *
- * @signature TCharType SEQAN_TEMP_FILENAME();
+ * @signature TCharType SEQAN2_TEMP_FILENAME();
  *
  * @return TCharType <tt>char const *</tt>, string with the path to a temporary file.
  *
@@ -2338,34 +2338,34 @@ inline void fail()
  * @section Examples
  *
  * @code{.cpp}
- * const char *p = SEQAN_TEMP_FILENAME();
+ * const char *p = SEQAN2_TEMP_FILENAME();
  * buffer char tempFilename[1000];
  * strcpy(tempFilename, p);
  * FILE *f = fopen(tempFilename, "w");
  * fprintf(f, "Test Data");
  * fclose(f);
  * @endcode
- * @see SEQAN_PATH_TO_ROOT
+ * @see SEQAN2_PATH_TO_ROOT
  */
 
 // Returns a temporary filename.
-#define SEQAN_TEMP_FILENAME() (::seqan::ClassTest::tempFileName())
+#define SEQAN2_TEMP_FILENAME() (::seqan2::ClassTest::tempFileName())
 
 
-#if !SEQAN_ENABLE_TESTING
+#if !SEQAN2_ENABLE_TESTING
 
-#define SEQAN_BEGIN_TESTSUITE(suite_name)                               \
+#define SEQAN2_BEGIN_TESTSUITE(suite_name)                               \
     int main(int argc, char ** argv) {                                   \
         (void) argc;                                                        \
         (void) argv;                                                        \
-        fprintf(stderr, "Warning: SEQAN_ENABLE_TESTING is wrong and you used the macro SEQAN_BEGIN_TESTSUITE!\n");
-#define SEQAN_END_TESTSUITE \
+        fprintf(stderr, "Warning: SEQAN2_ENABLE_TESTING is wrong and you used the macro SEQAN2_BEGIN_TESTSUITE!\n");
+#define SEQAN2_END_TESTSUITE \
     return 0;                                   \
     }
-#define SEQAN_CALL_TEST(test_name) do { SEQAN_TEST_ ## test_name(); } while (false)
-#define SEQAN_SKIP_TEST do {} while (false)
+#define SEQAN2_CALL_TEST(test_name) do { SEQAN2_TEST_ ## test_name(); } while (false)
+#define SEQAN2_SKIP_TEST do {} while (false)
 
-#endif  // #if !SEQAN_ENABLE_TESTING
+#endif  // #if !SEQAN2_ENABLE_TESTING
 
 
 // ----------------------------------------------------------------------------
@@ -2374,7 +2374,7 @@ inline void fail()
 
 /*!
  * @fn getAbsolutePath
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Returns absolute path for a filename within the source repository.
  *
  * @signature std::string getAbsolutePath(const char * filename)
@@ -2384,9 +2384,9 @@ inline void fail()
 
 inline std::string getAbsolutePath(const char * path)
 {
-    return std::string(SEQAN_PATH_TO_ROOT()) + "/" + path;
+    return std::string(SEQAN2_PATH_TO_ROOT()) + "/" + path;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_INCLUDE_SEQAN_BASIC_DEBUG_TEST_SYSTEM_H_
+#endif  // SEQAN2_INCLUDE_SEQAN2_BASIC_DEBUG_TEST_SYSTEM_H_

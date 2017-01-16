@@ -32,10 +32,10 @@
 // Author: Rene Rahn <rene.rahn@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_MATRIX_SPARSE_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_DP_MATRIX_SPARSE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_MATRIX_SPARSE_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_MATRIX_SPARSE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -137,7 +137,7 @@ coordinate(DPMatrix_<TValue, SparseDPMatrix> const & /*dpMatrix*/,
            TPosition hostPos,
            typename DPMatrixDimension_::TValue dimension)
 {
-    SEQAN_ASSERT(_checkCorrectDimension(dimension));
+    SEQAN2_ASSERT(_checkCorrectDimension(dimension));
 
     if (dimension == DPMatrixDimension_::VERTICAL)
         return hostPos;
@@ -145,6 +145,6 @@ coordinate(DPMatrix_<TValue, SparseDPMatrix> const & /*dpMatrix*/,
     return 0u;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_MATRIX_SPARSE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_MATRIX_SPARSE_H_

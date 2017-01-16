@@ -33,10 +33,10 @@
 // Author: Enrico Siragusa <enrico.siragusa@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_BASIC_FUNCTORS_H_
-#define SEQAN_BASIC_FUNCTORS_H_
+#ifndef SEQAN2_BASIC_FUNCTORS_H_
+#define SEQAN2_BASIC_FUNCTORS_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Functors
@@ -209,6 +209,6 @@ inline uint64_t & value(CountFunctor<TFunctor> &func)
     return func.count;
 }
 
-}   // namespace seqan
+}   // namespace seqan2
 
-#endif // SEQAN_BASIC_FUNCTORS_H_
+#endif // SEQAN2_BASIC_FUNCTORS_H_

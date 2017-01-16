@@ -35,10 +35,10 @@
 // ==========================================================================
 
 
-#ifndef INCLUDE_SEQAN_TRANSLATION_TRANSLATION_H_
-#define INCLUDE_SEQAN_TRANSLATION_TRANSLATION_H_
+#ifndef INCLUDE_SEQAN2_TRANSLATION_TRANSLATION_H_
+#define INCLUDE_SEQAN2_TRANSLATION_TRANSLATION_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -54,7 +54,7 @@ namespace seqan {
 
 /*!
  * @enum TranslationFrames
- * @headerfile <seqan/translation.h>
+ * @headerfile <seqan2/translation.h>
  * @brief Class Enum with frames for @link translate @endlink()
  *
  * @signature enum class TranslationFrames : uint8_t { ... };
@@ -181,7 +181,7 @@ _translateString(TOutString & target,
                  TInString const & source,
                  GeneticCode<CODE_SPEC> const & /**/)
 {
-    SEQAN_ASSERT_EQ(length(source)/3, length(target));
+    SEQAN2_ASSERT_EQ(length(source)/3, length(target));
     typedef typename Position<TInString>::Type TPos;
 
     for (TPos i = 0; i+2 < length(source); i+=3)
@@ -199,7 +199,7 @@ _translateString(Segment<TOutString, TSpec> && target,
                  TInString const & source,
                  GeneticCode<CODE_SPEC> const & /**/)
 {
-    SEQAN_ASSERT_EQ(length(source)/3, length(target));
+    SEQAN2_ASSERT_EQ(length(source)/3, length(target));
     typedef typename Position<TInString>::Type TPos;
 
     for (TPos i = 0; i+2 < length(source); i+=3)
@@ -310,7 +310,7 @@ _translateImplLoopOMPWrapper(TTarget & target,
                              Frames_<frames> const & /**/,
                              Parallel const & /**/)
 {
-    SEQAN_OMP_PRAGMA(parallel for schedule(dynamic))
+    SEQAN2_OMP_PRAGMA(parallel for schedule(dynamic))
     for (int64_t i = 0; i < static_cast<int64_t>(length(target)); ++i)
         _translateImplLoop(target, i, source, GeneticCode<CODE_SPEC>(),
                            Frames_<frames>());
@@ -439,7 +439,7 @@ _translateInputWrap(String<AminoAcid, TSpec1> & /**/,
                     Frames_<n> const & /**/,
                     TParallelism const & /**/)
 {
-    SEQAN_FAIL("Implementation error, multiple frames selected, but only a "
+    SEQAN2_FAIL("Implementation error, multiple frames selected, but only a "
                "singe target string.");
 }
 
@@ -463,7 +463,7 @@ _translateInputWrap(String<AminoAcid, TSpec1> & target,
 
 /*!
  * @fn translate
- * @headerfile <seqan/translation.h>
+ * @headerfile <seqan2/translation.h>
  * @brief translate sequences of Dna or Rna into amino acid alphabet, optionally with frames
  * @signature int translate(target, source[, frames][, geneticCode][, TParallelism])
  * @signature int translate(target, source[, frames][, geneticCodeSpec][, TParallelism])
@@ -604,7 +604,7 @@ _translate(TTarget & /**/,
            TParallelism const & /**/,
            True const & /**/)
 {
-    SEQAN_FAIL("Invalid genetic code translation table selected.\n");
+    SEQAN2_FAIL("Invalid genetic code translation table selected.\n");
 }
 
 // forward declare because of double-recursion
@@ -679,4 +679,4 @@ translate(TTarget & target,
 
 }
 
-#endif // INCLUDE_SEQAN_TRANSLATION_TRANSLATION_H_
+#endif // INCLUDE_SEQAN2_TRANSLATION_TRANSLATION_H_

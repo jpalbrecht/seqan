@@ -39,10 +39,10 @@
 // These functions can be called with alignmentFreeComparison().
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGNMENT_FREE_AF_N2_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGNMENT_FREE_AF_N2_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGNMENT_FREE_AF_N2_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGNMENT_FREE_AF_N2_H_
 
-namespace seqan {
+namespace seqan2 {
 
 /*
  * This function returns a string with indices indicating which k-mer is the
@@ -636,6 +636,6 @@ void _standardiseCounts(TString & standardisedCounts,
     }
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_INCLUDE_SEQAN_ALIGNMENT_FREE_AF_N2_H_
+#endif  // SEQAN2_INCLUDE_SEQAN2_ALIGNMENT_FREE_AF_N2_H_

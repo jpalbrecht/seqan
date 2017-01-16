@@ -36,10 +36,10 @@
 // the default specialization of Dependent<>.
 // ==========================================================================
 
-#ifndef SEQAN_SEQUENCE_STRING_SET_DEPENDENT_TIGHT_H_
-#define SEQAN_SEQUENCE_STRING_SET_DEPENDENT_TIGHT_H_
+#ifndef SEQAN2_SEQUENCE_STRING_SET_DEPENDENT_TIGHT_H_
+#define SEQAN2_SEQUENCE_STRING_SET_DEPENDENT_TIGHT_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -54,7 +54,7 @@ namespace seqan {
 /*!
  * @class DependentStringSet Dependent StringSet
  * @extends StringSet
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief StringSet implementation that only stores pointers to strings in other string sets.
  *
  * @signature template <typename TString, typename TSpec>
@@ -98,7 +98,7 @@ namespace seqan {
 /*!
  * @class TightDependentStringSet Tight Dependent StringSet
  * @extends DependentStringSet
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Very space efficient Dependent StringSet implementation.
  *
  * @signature template <typename TString>
@@ -263,7 +263,7 @@ inline typename Reference<StringSet<TString, Dependent<Tight> > >::Type
 getValueById(StringSet<TString, Dependent<Tight> > & me,
             TId const id)
 {
-    SEQAN_ASSERT_GT_MSG(me.id_pos_map.count(id), 0u, "String id must be known!");
+    SEQAN2_ASSERT_GT_MSG(me.id_pos_map.count(id), 0u, "String id must be known!");
     return (value(me, me.id_pos_map.find(id)->second));
 }
 
@@ -277,7 +277,7 @@ assignValueById(StringSet<TString, Dependent<Tight> >& me,
                 TString2& obj)
 {
     appendValue(me, obj);
-    SEQAN_ASSERT_EQ(length(me.limits), length(me) + 1);
+    SEQAN2_ASSERT_EQ(length(me.limits), length(me) + 1);
     return positionToId(me, length(me.strings) - 1);
 }
 
@@ -319,7 +319,7 @@ removeValueById(StringSet<TString, Dependent<Tight> >& me, TId const id)
     typedef typename Size<TStringSet>::Type TSize;
     typedef typename TStringSet::TIdPosMap::iterator TIter;
 
-    SEQAN_ASSERT_EQ(length(me.limits), length(me) + 1);
+    SEQAN2_ASSERT_EQ(length(me.limits), length(me) + 1);
     TIter pos = me.id_pos_map.find(id);
     if (pos != me.id_pos_map.end()) {
         TSize remPos = pos->second;
@@ -332,7 +332,7 @@ removeValueById(StringSet<TString, Dependent<Tight> >& me, TId const id)
             if (itChange->second > remPos) --(itChange->second);
         }
     }
-    SEQAN_ASSERT_EQ(length(me.limits), length(me) + 1);
+    SEQAN2_ASSERT_EQ(length(me.limits), length(me) + 1);
 }
 
 // --------------------------------------------------------------------------
@@ -373,6 +373,6 @@ idToPosition(StringSet<TString, Dependent<Tight> > const & me,
     */
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_SEQUENCE_STRING_SET_DEPENDENT_TIGHT_H_
+#endif  // #ifndef SEQAN2_SEQUENCE_STRING_SET_DEPENDENT_TIGHT_H_

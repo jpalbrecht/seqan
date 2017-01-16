@@ -35,14 +35,14 @@
 // ==========================================================================
 
 
-#ifndef INCLUDE_SEQAN_TRANSLATION_H_
-#define INCLUDE_SEQAN_TRANSLATION_H_
+#ifndef INCLUDE_SEQAN2_TRANSLATION_H_
+#define INCLUDE_SEQAN2_TRANSLATION_H_
 
-#include <seqan/basic.h>
-#include <seqan/sequence.h>
-#include <seqan/parallel.h>
+#include <seqan2/basic.h>
+#include <seqan2/sequence.h>
+#include <seqan2/parallel.h>
 
-#include <seqan/translation/translation_tables.h>
-#include <seqan/translation/translation.h>
+#include <seqan2/translation/translation_tables.h>
+#include <seqan2/translation/translation.h>
 
 #endif

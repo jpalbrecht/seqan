@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_PIPE_SOURCE_H
-#define SEQAN_HEADER_PIPE_SOURCE_H
+#ifndef SEQAN2_HEADER_PIPE_SOURCE_H
+#define SEQAN2_HEADER_PIPE_SOURCE_H
 
-namespace seqan
+namespace seqan2
 {
 
 /*
@@ -48,7 +48,7 @@ namespace seqan
 /*!
  * @class Source
  * @extends Pipe
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Pipelining adaptor for arbitrary containers or iterators.
  *
  * @signature template <typename TInput>

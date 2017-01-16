@@ -35,39 +35,39 @@
 // Facade header for module rna_io.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_RNA_IO_H_
-#define INCLUDE_SEQAN_RNA_IO_H_
+#ifndef INCLUDE_SEQAN2_RNA_IO_H_
+#define INCLUDE_SEQAN2_RNA_IO_H_
 
 // ===========================================================================
 // Prerequisites.
 // ===========================================================================
 
-#include <seqan/basic.h>
-#include <seqan/file.h>
-#include <seqan/sequence.h>
-#include <seqan/journaled_set.h>
-#include <seqan/graph_types.h>
+#include <seqan2/basic.h>
+#include <seqan2/file.h>
+#include <seqan2/sequence.h>
+#include <seqan2/journaled_set.h>
+#include <seqan2/graph_types.h>
 // forEach loop
-#include <seqan/parallel/parallel_algorithms.h>
+#include <seqan2/parallel/parallel_algorithms.h>
 
 // ===========================================================================
 // RNA structure containers and file formats
 // ===========================================================================
 
 // containers
-#include <seqan/rna_io/rna_record.h>
-#include <seqan/rna_io/rna_header.h>
-#include <seqan/rna_io/rna_io_context.h>
+#include <seqan2/rna_io/rna_record.h>
+#include <seqan2/rna_io/rna_header.h>
+#include <seqan2/rna_io/rna_io_context.h>
 
 // file format specific
-#include <seqan/rna_io/connect_read_write.h>
-#include <seqan/rna_io/dot_bracket_read_write.h>
-#include <seqan/rna_io/bpseq_read_write.h>
-#include <seqan/rna_io/stockholm_read_write.h>
-#include <seqan/rna_io/ebpseq_read_write.h>
-#include <seqan/rna_io/vienna_read_write.h>
+#include <seqan2/rna_io/connect_read_write.h>
+#include <seqan2/rna_io/dot_bracket_read_write.h>
+#include <seqan2/rna_io/bpseq_read_write.h>
+#include <seqan2/rna_io/stockholm_read_write.h>
+#include <seqan2/rna_io/ebpseq_read_write.h>
+#include <seqan2/rna_io/vienna_read_write.h>
 
 // general file I/O
-#include <seqan/rna_io/rna_struct_file.h>
+#include <seqan2/rna_io/rna_struct_file.h>
 
-#endif  // INCLUDE_SEQAN_RNA_IO_H_
+#endif  // INCLUDE_SEQAN2_RNA_IO_H_

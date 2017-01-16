@@ -32,10 +32,10 @@
 // Author: Tobias Rausch <rausch@embl.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_ALIGN_CONFIG_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_ALIGN_CONFIG_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_ALIGN_CONFIG_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_ALIGN_CONFIG_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -51,7 +51,7 @@ namespace seqan {
 
 /*!
  * @class AlignConfig
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Indication of whether begin/end gaps are free for DP alignment algorithms.
  *
  * @signature template <bool TOP, bool LEFT, bool RIGHT, bool BOTTOM, typename TSpec>
@@ -390,6 +390,6 @@ _configValueBottom(AlignConfig<TTop, TLeft, TRight, false, TSpec> const)
     return false;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_ALIGN_CONFIG_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_ALIGN_CONFIG_H_

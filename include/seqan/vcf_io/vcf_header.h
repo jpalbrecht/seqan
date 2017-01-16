@@ -32,10 +32,10 @@
 // Author: Manuel Holtgrewe <manuel.holtgrewe@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_VCF_VCF_HEADER_H_
-#define SEQAN_INCLUDE_SEQAN_VCF_VCF_HEADER_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_VCF_VCF_HEADER_H_
+#define SEQAN2_INCLUDE_SEQAN2_VCF_VCF_HEADER_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags, Classes, Enums
@@ -48,7 +48,7 @@ namespace seqan {
 /*!
  * @class VcfHeader
  * @implements FormattedFileHeaderConcept
- * @headerfile <seqan/vcf_io.h>
+ * @headerfile <seqan2/vcf_io.h>
  * @brief Store VCF Header information.
  *
  * @signature typedef String<VcfHeaderRecord> VcfHeader;
@@ -57,6 +57,6 @@ namespace seqan {
 // Records for the meta information lines.
 typedef String<VcfHeaderRecord> VcfHeader;
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_VCF_VCF_HEADER_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_VCF_VCF_HEADER_H_

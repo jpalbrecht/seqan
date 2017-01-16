@@ -34,10 +34,10 @@
 // Implementation of Kruskal's algorithm.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_GRAPH_ALGORITHMS_KRUSKAL_H_
-#define INCLUDE_SEQAN_GRAPH_ALGORITHMS_KRUSKAL_H_
+#ifndef INCLUDE_SEQAN2_GRAPH_ALGORITHMS_KRUSKAL_H_
+#define INCLUDE_SEQAN2_GRAPH_ALGORITHMS_KRUSKAL_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -71,7 +71,7 @@ struct LessPairI1_ : public std::unary_function<Pair<TWeight, TPair>, bool>
 
 /*!
  * @fn kruskalsAlgorithm
- * @headerfile <seqan/graph_algorithms.h>
+ * @headerfile <seqan2/graph_algorithms.h>
  * @brief Computes a minimum spanning tree on a graph.
  *
  * @signature void kruskalsAlgorithm(edges, g, source, weight);
@@ -132,6 +132,6 @@ void kruskalsAlgorithm(TEdges & edges,
     }
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_GRAPH_ALGORITHMS_KRUSKAL_H_
+#endif  // #ifndef INCLUDE_SEQAN2_GRAPH_ALGORITHMS_KRUSKAL_H_

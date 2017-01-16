@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_STORE_IO_GFF_H
-#define SEQAN_HEADER_STORE_IO_GFF_H
+#ifndef SEQAN2_HEADER_STORE_IO_GFF_H
+#define SEQAN2_HEADER_STORE_IO_GFF_H
 
-namespace seqan {
+namespace seqan2 {
 
 //////////////////////////////////////////////////////////////////////////////
 // Read Gff
@@ -243,7 +243,7 @@ _storeOneAnnotation(
     typedef typename Value<TAnnotationStore>::Type      TAnnotation;
     typedef typename TAnnotation::TId                   TId;
 
-    SEQAN_ASSERT_EQ(length(fragStore.annotationStore), length(fragStore.annotationNameStore));
+    SEQAN2_ASSERT_EQ(length(fragStore.annotationStore), length(fragStore.annotationNameStore));
 
     // for lines in Gtf format get/add the parent gene first
     TId geneId = TAnnotation::INVALID_ID;
@@ -535,7 +535,7 @@ _fillAnnotationRecord(
     TId /*id*/,
     TagSelector<> const & /*format*/)
 {
-    SEQAN_FAIL("AnnotationStore: File format not specified.");
+    SEQAN2_FAIL("AnnotationStore: File format not specified.");
     return false;
 }
 
@@ -591,6 +591,6 @@ writeRecords(FormattedFile<Gff, Output, TSpec> & gffFile,
     _writeGffGtf(gffFile, store, format(gffFile));
 }
 
-} // namespace seqan
+} // namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

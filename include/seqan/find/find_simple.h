@@ -32,10 +32,10 @@
 // Author: Andreas Gogol-Doering <andreas.doering@mdc-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_FIND_SIMPLE_H
-#define SEQAN_HEADER_FIND_SIMPLE_H
+#ifndef SEQAN2_HEADER_FIND_SIMPLE_H
+#define SEQAN2_HEADER_FIND_SIMPLE_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -45,7 +45,7 @@ namespace seqan
 /*!
  * @class SimplePattern
  * @extends Pattern
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief A brute force online searching algorithm.
  *
  * @signature template <typename TNeedle>
@@ -69,7 +69,7 @@ public:
     Pattern() {}
 
     template <typename TNeedle2>
-    Pattern(TNeedle2 && ndl, SEQAN_CTOR_DISABLE_IF(IsSameType<typename std::remove_reference<TNeedle2>::type const &, Pattern const &>))
+    Pattern(TNeedle2 && ndl, SEQAN2_CTOR_DISABLE_IF(IsSameType<typename std::remove_reference<TNeedle2>::type const &, Pattern const &>))
     {
         setHost(*this, ndl);
         ignoreUnusedVariableWarning(dummy);
@@ -130,6 +130,6 @@ inline bool find(TFinder & finder,
 
 //____________________________________________________________________________
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

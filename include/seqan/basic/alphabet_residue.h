@@ -45,10 +45,10 @@
 
 // TODO(holtgrew): Add RnaQ and Rna5Q? Can we create a tag/type for Dna and Rna that is then differentiated with one additional tag?
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_BASIC_ALPHABET_RESIDUE_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_BASIC_ALPHABET_RESIDUE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_ALPHABET_RESIDUE_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_ALPHABET_RESIDUE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -74,7 +74,7 @@ template <typename T> struct BaseAlphabet;
 /*!
  * @class Dna
  * @extends SimpleType
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Alphabet for DNA.
  *
  * @signature typedef SimpleType<unsigned char, Dna_> Dna;
@@ -114,7 +114,7 @@ struct BitsPerValue< Dna >
 /*!
  * @class Dna5
  * @extends SimpleType
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Alphabet for DNA including 'N' character.
  *
  * @signature typedef SimpleType<unsigned char, Dna5_> Dna5;
@@ -161,7 +161,7 @@ unknownValueImpl(Dna5 *)
 /*!
  * @class DnaQ
  * @extends SimpleType
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @implements AlphabetWithQualitiesConcept
  * @brief Alphabet for DNA plus PHRED quality.
  *
@@ -178,8 +178,8 @@ unknownValueImpl(Dna5 *)
  * @see Dna
  */
 
-#ifndef SEQAN_DEFAULT_QUALITY
-#define SEQAN_DEFAULT_QUALITY 40
+#ifndef SEQAN2_DEFAULT_QUALITY
+#define SEQAN2_DEFAULT_QUALITY 40
 #endif
 
 struct DnaQ_ {};
@@ -264,7 +264,7 @@ void assignQualityValue(char & q, DnaQ c)
 /*!
  * @class Dna5Q
  * @extends SimpleType
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @implements AlphabetWithQualitiesConcept
  * @brief Alphabet for DNA plus PHRED quality including 'N' character.
  *
@@ -387,7 +387,7 @@ void assignQualityValue(char & q, Dna5Q c)
 /*!
  * @class Rna
  * @extends SimpleType
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Alphabet for RNA.
  *
  * @signature typedef SimpleType<unsigned char, Rna_> Rna;
@@ -429,7 +429,7 @@ struct BitsPerValue<Rna>
 /*!
  * @class Rna5
  * @extends SimpleType
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Alphabet for RNA including 'N' character.
  *
  * @signature typedef SimpleType<unsigned char, Rna5_> Rna5;
@@ -477,7 +477,7 @@ unknownValueImpl(Rna5 *)
 /*!
  * @class Iupac
  * @extends SimpleType
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Iupac code for DNA.
  *
  * @signature typedef SimpleType<unsigned char, Iupac_> Iupac;
@@ -521,7 +521,7 @@ unknownValueImpl(Iupac *)
 /*!
  * @class AminoAcid
  * @extends SimpleType
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief IUPAC code for amino acids.
  * @signature typedef SingleType<unsigned char, AminoAcid_> AminoAcid;
  *
@@ -575,7 +575,7 @@ unknownValueImpl(AminoAcid *)
 /*!
  * @class Finite
  * @extends SimpleType
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @brief A finite alphabet of a fixed size.
  *
@@ -907,7 +907,7 @@ struct CompareTypeImpl<DnaQ, Dna>
 
 inline void assign(DnaQ & target, Dna const & source)
 {
-    target.value = source.value | (SEQAN_DEFAULT_QUALITY << 2);
+    target.value = source.value | (SEQAN2_DEFAULT_QUALITY << 2);
 }
 
 template <>
@@ -1247,8 +1247,8 @@ inline void assign(Dna5Q & target, Dna5 const & source)
     // target.value = (source.value == 4)? Dna5QValueN_ : source.value | (40 << 2);
 
     static const unsigned table[] = {
-        (SEQAN_DEFAULT_QUALITY << 2) + 0, (SEQAN_DEFAULT_QUALITY << 2) + 1,
-        (SEQAN_DEFAULT_QUALITY << 2) + 2, (SEQAN_DEFAULT_QUALITY << 2) + 3, Dna5QValueN_
+        (SEQAN2_DEFAULT_QUALITY << 2) + 0, (SEQAN2_DEFAULT_QUALITY << 2) + 1,
+        (SEQAN2_DEFAULT_QUALITY << 2) + 2, (SEQAN2_DEFAULT_QUALITY << 2) + 3, Dna5QValueN_
     };
     target.value = table[source.value];
 }
@@ -1488,6 +1488,6 @@ assign(unsigned char & c_target,
     c_target = Dna5(source);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_BASIC_ALPHABET_RESIDUE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_ALPHABET_RESIDUE_H_

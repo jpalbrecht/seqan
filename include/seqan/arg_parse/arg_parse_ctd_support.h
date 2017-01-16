@@ -33,18 +33,18 @@
 // Author: Stephan Aiche <stephan.aiche@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ARG_PARSE_ARG_PARSE_CTD_SUPPORT_H_
-#define SEQAN_INCLUDE_SEQAN_ARG_PARSE_ARG_PARSE_CTD_SUPPORT_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ARG_PARSE_ARG_PARSE_CTD_SUPPORT_H_
+#define SEQAN2_INCLUDE_SEQAN2_ARG_PARSE_ARG_PARSE_CTD_SUPPORT_H_
 
-#include <seqan/sequence.h>
+#include <seqan2/sequence.h>
 
-#include <seqan/arg_parse/xml_support.h>
-#include <seqan/arg_parse/argument_parser.h>
-#include <seqan/arg_parse/arg_parse_doc.h>
+#include <seqan2/arg_parse/xml_support.h>
+#include <seqan2/arg_parse/argument_parser.h>
+#include <seqan2/arg_parse/arg_parse_doc.h>
 
 #include <fstream>
 
-namespace seqan {
+namespace seqan2 {
 
 // ----------------------------------------------------------------------------
 // Function _toText()
@@ -65,7 +65,7 @@ TSequence _toText(TSequence const & input)
         {
             // Handle escape sequence, we interpret only "\-", "\fI", and "\fB".
             goNext(it);
-            SEQAN_ASSERT_NOT(it == endIt);
+            SEQAN2_ASSERT_NOT(it == endIt);
             if (*it == '-')
             {
                 appendValue(result, *it);
@@ -73,7 +73,7 @@ TSequence _toText(TSequence const & input)
             else if (*it == 'f')
             {
                 goNext(it);
-                SEQAN_ASSERT_NOT(it == endIt);
+                SEQAN2_ASSERT_NOT(it == endIt);
                 if (*it == 'I')
                 {
                     appendValue(openTags, "i");
@@ -84,7 +84,7 @@ TSequence _toText(TSequence const & input)
                 }
                 else if (*it == 'P')
                 {
-                    SEQAN_ASSERT_NOT(empty(openTags));
+                    SEQAN2_ASSERT_NOT(empty(openTags));
                     eraseBack(openTags);
                 }
                 else
@@ -214,7 +214,7 @@ _getSupportedFormats(std::vector<std::string> & supported_formats, ArgParseArgum
              valid != opt.validValues.end();
              ++valid)
         {
-            SEQAN_ASSERT_NOT(empty(*valid));
+            SEQAN2_ASSERT_NOT(empty(*valid));
 
             filetype = "*";
 
@@ -288,7 +288,7 @@ inline std::string _getManual(ArgumentParser const & me)
 
 /*!
  * @fn ArgumentParser#writeCTD
- * @headerfile <seqan/arg_parse.h>\
+ * @headerfile <seqan2/arg_parse.h>\
  * @brief Export the app's interface description to a .ctd file.
  *
  * @signature bool writeCTD(parser[, stream]);
@@ -327,7 +327,7 @@ writeCTD(ArgumentParser const & me, std::ostream & ctdfile)
     }
 
     ctdfile << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-    ctdfile << "<tool name=\"" << class_name << "\" version=\"" << xmlEscape(getVersion(me)) << "\" docurl=\"http://www.seqan.de\" category=\"" << xmlEscape(getCategory(me)) << "\" >\n";
+    ctdfile << "<tool name=\"" << class_name << "\" version=\"" << xmlEscape(getVersion(me)) << "\" docurl=\"http://www.seqan2.de\" category=\"" << xmlEscape(getCategory(me)) << "\" >\n";
     ctdfile << _indent(currentIndent) << "<executableName>" << toolname << "</executableName>\n";
     ctdfile << _indent(currentIndent) << "<description>" << xmlEscape(getShortDescription(me)) << "</description>\n";
     ctdfile << _indent(currentIndent) << "<manual>" << xmlEscape(_getManual(me)) << "</manual>\n"; // TODO(aiche): as soon as we have a more sophisticated documentation embedded into the CmdParser, we should at this here
@@ -539,6 +539,6 @@ writeCTD(ArgumentParser const & me)
     return true;
 }
 
-} // namespace seqan
+} // namespace seqan2
 
-#endif // SEQAN_INCLUDE_SEQAN_ARG_PARSE_ARG_PARSE_CTD_SUPPORT_H_
+#endif // SEQAN2_INCLUDE_SEQAN2_ARG_PARSE_ARG_PARSE_CTD_SUPPORT_H_

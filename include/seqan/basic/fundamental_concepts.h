@@ -34,12 +34,12 @@
 // Basic concept definitions, e.g. DefaultConstructible, Comparable, ...
 // ==========================================================================
 
-// SEQAN_NO_GENERATED_FORWARDS
+// SEQAN2_NO_GENERATED_FORWARDS
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_FUNDAMENTAL_CONCEPTS_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_FUNDAMENTAL_CONCEPTS_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_FUNDAMENTAL_CONCEPTS_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_FUNDAMENTAL_CONCEPTS_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -49,17 +49,17 @@ namespace seqan {
 
 /*!
  * @concept NumberConcept
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Concept for numbers.
  */
 
-SEQAN_CONCEPT(FundamentalConcept, (T));
-SEQAN_CONCEPT(IntegralConcept, (T));
-SEQAN_CONCEPT(NumberConcept, (T));
-SEQAN_CONCEPT(CharConcept, (T));
-SEQAN_CONCEPT(IntegerConcept, (T));
-SEQAN_CONCEPT(SignedIntegerConcept, (T));
-SEQAN_CONCEPT(UnsignedIntegerConcept, (T));
+SEQAN2_CONCEPT(FundamentalConcept, (T));
+SEQAN2_CONCEPT(IntegralConcept, (T));
+SEQAN2_CONCEPT(NumberConcept, (T));
+SEQAN2_CONCEPT(CharConcept, (T));
+SEQAN2_CONCEPT(IntegerConcept, (T));
+SEQAN2_CONCEPT(SignedIntegerConcept, (T));
+SEQAN2_CONCEPT(UnsignedIntegerConcept, (T));
 
 // ---------------------------------------------------------------------------
 // ==> boost/concept_check.hpp <==
@@ -81,7 +81,7 @@ SEQAN_CONCEPT(UnsignedIntegerConcept, (T));
  * @concept DefaultConstructibleConcept
  * @brief A type with a default constructor.
  *
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @signature DefaultConstructible<T>
  *
@@ -99,9 +99,9 @@ SEQAN_CONCEPT(UnsignedIntegerConcept, (T));
  * @see DestructibleConcept
  */
 
-SEQAN_CONCEPT(DefaultConstructible,(T))
+SEQAN2_CONCEPT(DefaultConstructible,(T))
 {
-    SEQAN_CONCEPT_USAGE(DefaultConstructible)
+    SEQAN2_CONCEPT_USAGE(DefaultConstructible)
     {
         T a;                // require default constructor
         ignoreUnusedVariableWarning(a);
@@ -112,7 +112,7 @@ SEQAN_CONCEPT(DefaultConstructible,(T))
  * @concept DestructibleConcept
  * @brief A type with a destructor.
  *
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @signature Destructible<T>
  *
@@ -128,9 +128,9 @@ SEQAN_CONCEPT(DefaultConstructible,(T))
  * @see DefaultConstructibleConcept
  */
 
-SEQAN_CONCEPT(Destructible, (T))
+SEQAN2_CONCEPT(Destructible, (T))
 {
-    SEQAN_CONCEPT_USAGE(Destructible)
+    SEQAN2_CONCEPT_USAGE(Destructible)
     {
         // It is hard to test this.
     }
@@ -140,7 +140,7 @@ SEQAN_CONCEPT(Destructible, (T))
  * @concept AssignableConcept
  * @brief A type with an assignment operator.
  *
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @signature Assignable<T>
  *
@@ -166,9 +166,9 @@ SEQAN_CONCEPT(Destructible, (T))
 
 // TODO(holtgrew): Test availability of assign() function?
 
-SEQAN_CONCEPT(Assignable,(T))
+SEQAN2_CONCEPT(Assignable,(T))
 {
-    SEQAN_CONCEPT_USAGE(Assignable)
+    SEQAN2_CONCEPT_USAGE(Assignable)
     {
 #if !defined(_ITERATOR_)    // back_insert_iterator broken for VC++ STL
         a = b;              // require assignment operator
@@ -198,7 +198,7 @@ struct Is<Assignable<T> > :
  * @concept ConvertibleConcept
  * @brief A type that can be converted into another.
  *
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @signature Convertible<T, S>
  *
@@ -222,9 +222,9 @@ struct Is<Assignable<T> > :
  * @signature T & T::operator=(S const & other);
  */
 
-SEQAN_CONCEPT(Convertible,(T)(S))
+SEQAN2_CONCEPT(Convertible,(T)(S))
 {
-    SEQAN_CONCEPT_USAGE(Convertible)
+    SEQAN2_CONCEPT_USAGE(Convertible)
     {
 #if !defined(_ITERATOR_)    // back_insert_iterator broken for VC++ STL
         t = s;              // require assignment operator
@@ -266,7 +266,7 @@ struct Is<Convertible<T, S const> > :
  * @concept CopyConstructibleConcept
  * @brief A type with a copy-constructor.
  *
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @signature CopyConstructible<T>
  *
@@ -279,9 +279,9 @@ struct Is<Convertible<T, S const> > :
  * @see DefaultConstructibleConcept
  */
 
-SEQAN_CONCEPT(CopyConstructible,(T))
+SEQAN2_CONCEPT(CopyConstructible,(T))
 {
-    SEQAN_CONCEPT_USAGE(CopyConstructible)
+    SEQAN2_CONCEPT_USAGE(CopyConstructible)
     {
         T a(b);            // require copy constructor
         T* ptr = &a;       // require address of operator
@@ -316,7 +316,7 @@ private:
 
 /*!
  * @fn ConceptChecking#requireBooleanExpr
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Tests for a boolean expression.
  *
  * @signature void requireBooleanExpr(x);
@@ -325,7 +325,7 @@ private:
  *
  * This function can be used to test for functions returning bools, e.g. less operators.
  *
- * @see ConceptChecking#SEQAN_CONCEPT_USAGE
+ * @see ConceptChecking#SEQAN2_CONCEPT_USAGE
  */
 
 template <class T>
@@ -340,7 +340,7 @@ void requireBooleanExpr(const T& t)
  * @concept EqualityComparableConcept
  * @brief A type that can be equality compared.
  *
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @signature EqualityComparable<T>
  *
@@ -397,9 +397,9 @@ void requireBooleanExpr(const T& t)
  * @see EqualityComparableConcept::operator==
  */
 
-SEQAN_CONCEPT(EqualityComparable,(T))
+SEQAN2_CONCEPT(EqualityComparable,(T))
 {
-    SEQAN_CONCEPT_USAGE(EqualityComparable)
+    SEQAN2_CONCEPT_USAGE(EqualityComparable)
     {
         requireBooleanExpr(a == b);
         requireBooleanExpr(a != b);
@@ -412,7 +412,7 @@ private:
  * @concept LessThanComparableConcept
  * @brief A type that can be less-than compared.
  *
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @signature LessThanComparable<T>
  *
@@ -443,9 +443,9 @@ private:
  * @signature bool T::operator<(T const & other) const;
  */
 
-SEQAN_CONCEPT(LessThanComparable,(T))
+SEQAN2_CONCEPT(LessThanComparable,(T))
 {
-    SEQAN_CONCEPT_USAGE(LessThanComparable)
+    SEQAN2_CONCEPT_USAGE(LessThanComparable)
     {
         requireBooleanExpr(a < b);
     }
@@ -459,7 +459,7 @@ private:
  * @extends LessThanComparableConcept
  * @brief A type that can be compared.
  *
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @signature Comparable<T>
  *
@@ -515,9 +515,9 @@ private:
  */
 
 // This is equiaent to SGI STL's LessThanComparable.
-SEQAN_CONCEPT(Comparable,(T))
+SEQAN2_CONCEPT(Comparable,(T))
 {
-    SEQAN_CONCEPT_USAGE(Comparable)
+    SEQAN2_CONCEPT_USAGE(Comparable)
     {
         requireBooleanExpr(a < b);
         requireBooleanExpr(a > b);
@@ -647,7 +647,7 @@ struct Is< FundamentalConcept<T const> > : Is< FundamentalConcept<typename Remov
 /*!
  * @mfn IsInteger
  * @brief Tests for a type to be of integral value.
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @signature IsInteger<T>::Type
  *
@@ -663,7 +663,7 @@ struct Is< FundamentalConcept<T const> > : Is< FundamentalConcept<typename Remov
 /*!
  * @mfn IsIntegral
  * @brief Tests for a type to be of integral vaule.
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @signature IsIntegral<T>::Type
  *
@@ -708,7 +708,7 @@ struct IsIntegral : IsInteger<T> {};
  * @extends DestructibleConcept
  * @brief An integral type.
  *
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @signature IntegerConcept<T>
  *
@@ -721,9 +721,9 @@ struct IsIntegral : IsInteger<T> {};
  * @section Examples
  *
  * @code{.cpp}
- * SEQAN_CONCEPT_ASSERT((IntegerConcept<int>));
- * SEQAN_CONCEPT_ASSERT((IntegerConcept<char>));
- * //SEQAN_CONCEPT_ASSERT((IntegerConcept<double>));                       // fails to compile
+ * SEQAN2_CONCEPT_ASSERT((IntegerConcept<int>));
+ * SEQAN2_CONCEPT_ASSERT((IntegerConcept<char>));
+ * //SEQAN2_CONCEPT_ASSERT((IntegerConcept<double>));                       // fails to compile
  *
  * std::cout << Is<IntegerConcept<char> >::VALUE << std::endl;             // 1
  * std::cout << Is<IntegerConcept<int> >::VALUE << std::endl;              // 1
@@ -777,13 +777,13 @@ struct IsIntegral : IsInteger<T> {};
  * @endcode
  */
 
-SEQAN_CONCEPT(IntegerConcept, (TValue)) :
+SEQAN2_CONCEPT(IntegerConcept, (TValue)) :
     Comparable<TValue>
 {
     TValue a, b;
     int c;
 
-    SEQAN_CONCEPT_USAGE(IntegerConcept)
+    SEQAN2_CONCEPT_USAGE(IntegerConcept)
     {
         a = 0u;
         b = 1u;
@@ -823,7 +823,7 @@ SEQAN_CONCEPT(IntegerConcept, (TValue)) :
         b >>= a;
         b >>= 1;
 
-        SEQAN_STATIC_ASSERT_MSG(static_cast<TValue>(0u) < static_cast<TValue>(1u), "Integer has wrong order.");
+        SEQAN2_STATIC_ASSERT_MSG(static_cast<TValue>(0u) < static_cast<TValue>(1u), "Integer has wrong order.");
     }
 };
 
@@ -832,7 +832,7 @@ SEQAN_CONCEPT(IntegerConcept, (TValue)) :
  * @extends IntegerConcept
  * @brief An integral type with a sign.
  *
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @signature SignedIntegerConcept<T>
  *
@@ -845,8 +845,8 @@ SEQAN_CONCEPT(IntegerConcept, (TValue)) :
  * @section Examples
  *
  * @code{.cpp}
- * SEQAN_CONCEPT_ASSERT((SignedIntegerConcept<int>));
- * //SEQAN_CONCEPT_ASSERT((SignedIntegerConcept<unsigned short>));             // fails to compile
+ * SEQAN2_CONCEPT_ASSERT((SignedIntegerConcept<int>));
+ * //SEQAN2_CONCEPT_ASSERT((SignedIntegerConcept<unsigned short>));             // fails to compile
  *
  * std::cout << Is<SignedIntegerConcept<char> >::VALUE << std::endl;           // 0
  * std::cout << Is<SignedIntegerConcept<int> >::VALUE << std::endl;            // 0
@@ -874,13 +874,13 @@ SEQAN_CONCEPT(IntegerConcept, (TValue)) :
  */
 
 // an integer that must have a sign
-SEQAN_CONCEPT(SignedIntegerConcept, (TValue)) :
+SEQAN2_CONCEPT(SignedIntegerConcept, (TValue)) :
     IntegerConcept<TValue>
 {
     TValue a;
     int b;
 
-    SEQAN_CONCEPT_USAGE(SignedIntegerConcept)
+    SEQAN2_CONCEPT_USAGE(SignedIntegerConcept)
     {
         a = -1;
         b = a;
@@ -891,7 +891,7 @@ SEQAN_CONCEPT(SignedIntegerConcept, (TValue)) :
 
         a = a / 2;
 
-        SEQAN_STATIC_ASSERT_MSG(static_cast<TValue>(-1) < static_cast<TValue>(0), "Signed integer is either not signed or has wrong order.");
+        SEQAN2_STATIC_ASSERT_MSG(static_cast<TValue>(-1) < static_cast<TValue>(0), "Signed integer is either not signed or has wrong order.");
     }
 };
 
@@ -900,7 +900,7 @@ SEQAN_CONCEPT(SignedIntegerConcept, (TValue)) :
  * @extends IntegerConcept
  * @brief An integral type without a sign.
  *
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @signature UnsignedIntegerConcept<T>
  *
@@ -913,8 +913,8 @@ SEQAN_CONCEPT(SignedIntegerConcept, (TValue)) :
  * @section Examples
  *
  * @code{.cpp}
- * //SEQAN_CONCEPT_ASSERT((UnsignedIntegerConcept<int>));                          // fails to compile
- * SEQAN_CONCEPT_ASSERT((UnsignedIntegerConcept<unsigned short>));
+ * //SEQAN2_CONCEPT_ASSERT((UnsignedIntegerConcept<int>));                          // fails to compile
+ * SEQAN2_CONCEPT_ASSERT((UnsignedIntegerConcept<unsigned short>));
  *
  * std::cout << Is<UnsignedIntegerConcept<char> >::VALUE << std::endl;             // 0
  * std::cout << Is<UnsignedIntegerConcept<int> >::VALUE << std::endl;              // 0
@@ -937,27 +937,27 @@ SEQAN_CONCEPT(SignedIntegerConcept, (TValue)) :
 
 
 // an integer that mustn't have a sign
-SEQAN_CONCEPT(UnsignedIntegerConcept, (TValue)) :
+SEQAN2_CONCEPT(UnsignedIntegerConcept, (TValue)) :
     IntegerConcept<TValue>
 {
     TValue a;
     unsigned b;
 
-    SEQAN_CONCEPT_USAGE(UnsignedIntegerConcept)
+    SEQAN2_CONCEPT_USAGE(UnsignedIntegerConcept)
     {
         a = 1u;
         b = a;
 
-        SEQAN_STATIC_ASSERT_MSG(static_cast<TValue>(0) < static_cast<TValue>(-1), "Unsigned integer is either signed or has wrong order.");
+        SEQAN2_STATIC_ASSERT_MSG(static_cast<TValue>(0) < static_cast<TValue>(-1), "Unsigned integer is either signed or has wrong order.");
     }
 };
 
 
 // This would be variant 2 (disabled for now):
 /*
-SEQAN_CONCEPT(IntegerConcept, (TValue))
+SEQAN2_CONCEPT(IntegerConcept, (TValue))
 {
-    SEQAN_CONCEPT_USAGE(IntegerConcept)
+    SEQAN2_CONCEPT_USAGE(IntegerConcept)
     {
         x.error_type_must_be_an_integer_type();     // for the sake of readability we break the coding style rule here.
     }
@@ -978,9 +978,9 @@ template <> struct IntegerConcept<unsigned long> {};
 //template <> struct IntegerConcept<int64_t> {};
 //template <> struct IntegerConcept<uint64_t> {};
 
-SEQAN_CONCEPT(SignedIntegerConcept, (TValue))
+SEQAN2_CONCEPT(SignedIntegerConcept, (TValue))
 {
-    SEQAN_CONCEPT_USAGE(SignedIntegerConcept)
+    SEQAN2_CONCEPT_USAGE(SignedIntegerConcept)
     {
         x.error_type_must_be_a_signed_integer_type();
     }
@@ -995,9 +995,9 @@ template <> struct SignedIntegerConcept<int> {};
 template <> struct SignedIntegerConcept<long> {};
 //template <> struct SignedIntegerConcept<int64_t> {};
 
-SEQAN_CONCEPT(UnsignedIntegerConcept, (TValue))
+SEQAN2_CONCEPT(UnsignedIntegerConcept, (TValue))
 {
-    SEQAN_CONCEPT_USAGE(UnignedIntegerConcept)
+    SEQAN2_CONCEPT_USAGE(UnignedIntegerConcept)
     {
         x.error_type_must_be_an_unsigned_integer_type();
     }
@@ -1013,6 +1013,6 @@ template <> struct UnignedIntegerConcept<unsigned long> {};
 //template <> struct UnignedIntegerConcept<uint64_t> {};
 */
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_FUNDAMENTAL_CONCEPTS_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_FUNDAMENTAL_CONCEPTS_H_

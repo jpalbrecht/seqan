@@ -34,8 +34,8 @@
 // Adaption of the FILE object from C.
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_FILE_CSTYLE_H
-#define SEQAN_HEADER_FILE_CSTYLE_H
+#ifndef SEQAN2_HEADER_FILE_CSTYLE_H
+#define SEQAN2_HEADER_FILE_CSTYLE_H
 
 /* IOREV
  * _tested_
@@ -50,7 +50,7 @@
 
 //////////////////////////////////////////////////////////////////////////////
 
-namespace seqan
+namespace seqan2
 {
 
 /*    template <>
@@ -59,7 +59,7 @@ namespace seqan
         typedef unsigned char Type;
     };
 */
-/*  already defined in "seqan/cstream.h" ...
+/*  already defined in "seqan2/cstream.h" ...
 
     template <>
     struct Position< FILE* >
@@ -120,7 +120,7 @@ namespace seqan
     open(FILE* &me, const char *fileName, int openMode)
     {
 //IOREV _duplicate_ of cstream.h's  "open"
-        SEQAN_PROADD(SEQAN_PROOPENFILES, 1);
+        SEQAN2_PROADD(SEQAN2_PROOPENFILES, 1);
         return (me = fopen(fileName, _getCStyleOpenMode(openMode))) != NULL;
     }
 
@@ -135,7 +135,7 @@ namespace seqan
     openTemp(FILE* &me)
     {
 //IOREV
-        SEQAN_PROSUB(SEQAN_PROOPENFILES, 1);
+        SEQAN2_PROSUB(SEQAN2_PROOPENFILES, 1);
         return (me = tmpfile()) != NULL;
     }
 
@@ -143,7 +143,7 @@ namespace seqan
     close(FILE* me)
     {
 //IOREV _duplicate_ of cstream.h's  "close"
-        SEQAN_PROSUB(SEQAN_PROOPENFILES, 1);
+        SEQAN2_PROSUB(SEQAN2_PROOPENFILES, 1);
         return fclose(me) == 0;
     }
 
@@ -182,10 +182,10 @@ namespace seqan
     read(FILE* me, TValue *memPtr, TSize const count)
     {
 //IOREV _duplicate_ of cstream.h's  "read"
-        SEQAN_PROADD(SEQAN_PROIO, (sizeof(TValue) * count + SEQAN_PROPAGESIZE - 1) / SEQAN_PROPAGESIZE);
-        SEQAN_PROTIMESTART(tw);
+        SEQAN2_PROADD(SEQAN2_PROIO, (sizeof(TValue) * count + SEQAN2_PROPAGESIZE - 1) / SEQAN2_PROPAGESIZE);
+        SEQAN2_PROTIMESTART(tw);
         bool result = fread(memPtr, sizeof(TValue), count, me) == (size_t)count;
-        SEQAN_PROADD(SEQAN_PROCWAIT, SEQAN_PROTIMEDIFF(tw));
+        SEQAN2_PROADD(SEQAN2_PROCWAIT, SEQAN2_PROTIMEDIFF(tw));
         return result;
     }
 
@@ -194,10 +194,10 @@ namespace seqan
     write(FILE* me, TValue const *memPtr, TSize const count)
     {
 //IOREV
-        SEQAN_PROADD(SEQAN_PROIO, (sizeof(TValue) * count + SEQAN_PROPAGESIZE - 1) / SEQAN_PROPAGESIZE);
-        SEQAN_PROTIMESTART(tw);
+        SEQAN2_PROADD(SEQAN2_PROIO, (sizeof(TValue) * count + SEQAN2_PROPAGESIZE - 1) / SEQAN2_PROPAGESIZE);
+        SEQAN2_PROTIMESTART(tw);
         bool result = fwrite(memPtr, sizeof(TValue), count, me) == (size_t)count;
-        SEQAN_PROADD(SEQAN_PROCWAIT, SEQAN_PROTIMEDIFF(tw));
+        SEQAN2_PROADD(SEQAN2_PROCWAIT, SEQAN2_PROTIMEDIFF(tw));
         return result;
     }
 
@@ -208,10 +208,10 @@ namespace seqan
 //IOREV
         typedef typename Position<FILE*>::Type pos_t;
         seek(me, (pos_t)fileOfs * (pos_t)sizeof(TValue));
-        SEQAN_PROADD(SEQAN_PROIO, (sizeof(TValue) * count + SEQAN_PROPAGESIZE - 1) / SEQAN_PROPAGESIZE);
-        SEQAN_PROTIMESTART(tw);
+        SEQAN2_PROADD(SEQAN2_PROIO, (sizeof(TValue) * count + SEQAN2_PROPAGESIZE - 1) / SEQAN2_PROPAGESIZE);
+        SEQAN2_PROTIMESTART(tw);
         bool result = fread(memPtr, sizeof(TValue), count, me) == (size_t)count;
-        SEQAN_PROADD(SEQAN_PROCWAIT, SEQAN_PROTIMEDIFF(tw));
+        SEQAN2_PROADD(SEQAN2_PROCWAIT, SEQAN2_PROTIMEDIFF(tw));
         return result;
     }
 
@@ -222,10 +222,10 @@ namespace seqan
 //IOREV
         typedef typename Position<FILE*>::Type pos_t;
         seek(me, (pos_t)fileOfs * (pos_t)sizeof(TValue));
-        SEQAN_PROADD(SEQAN_PROIO, (sizeof(TValue) * count + SEQAN_PROPAGESIZE - 1) / SEQAN_PROPAGESIZE);
-        SEQAN_PROTIMESTART(tw);
+        SEQAN2_PROADD(SEQAN2_PROIO, (sizeof(TValue) * count + SEQAN2_PROPAGESIZE - 1) / SEQAN2_PROPAGESIZE);
+        SEQAN2_PROTIMESTART(tw);
         bool result = fwrite(memPtr, sizeof(TValue), count, me) == (size_t)count;
-        SEQAN_PROADD(SEQAN_PROCWAIT, SEQAN_PROTIMEDIFF(tw));
+        SEQAN2_PROADD(SEQAN2_PROCWAIT, SEQAN2_PROTIMEDIFF(tw));
         return result;
     }
 

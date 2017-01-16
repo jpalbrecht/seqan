@@ -31,8 +31,8 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_PLATFORM_H
-#define SEQAN_PLATFORM_H
+#ifndef SEQAN2_PLATFORM_H
+#define SEQAN2_PLATFORM_H
 
 #include <cinttypes>
 
@@ -45,7 +45,7 @@
 
 /*!
  * @macro STDLIB_VS
- * @headerfile <seqan/platform.h>
+ * @headerfile <seqan2/platform.h>
  * @brief The standard library implemented by Visual C++, if defined
  * @signature #define STDLIB_VS
  */
@@ -55,7 +55,7 @@
 
 /*!
  * @macro STDLIB_GNU
- * @headerfile <seqan/platform.h>
+ * @headerfile <seqan2/platform.h>
  * @brief The standard library implemented by GNU/GCC, if defined
  * @signature #define STDLIB_GNU
  */
@@ -65,7 +65,7 @@
 
 /*!
  * @macro STDLIB_LLVM
- * @headerfile <seqan/platform.h>
+ * @headerfile <seqan2/platform.h>
  * @brief The standard library implemented by clang/llvm, if defined
  * @signature #define STDLIB_LLVM
  */
@@ -79,7 +79,7 @@
 
 /*!
  * @macro COMPILER_LINTEL
- * @headerfile <seqan/platform.h>
+ * @headerfile <seqan2/platform.h>
  * @brief The compiler is the intel compiler (icc), if defined
  * @signature #define COMPILER_LINTEL
  */
@@ -92,7 +92,7 @@
 
 /*!
  * @macro COMPILER_WINTEL
- * @headerfile <seqan/platform.h>
+ * @headerfile <seqan2/platform.h>
  * @brief The compiler is the intel compiler for windows, if defined
  * @signature #define COMPILER_WINTEL
  */
@@ -105,7 +105,7 @@
 
 /*!
  * @macro COMPILER_CLANG
- * @headerfile <seqan/platform.h>
+ * @headerfile <seqan2/platform.h>
  * @brief The compiler is the llvm compiler (clang), if defined
  * @signature #define COMPILER_CLANG
  */
@@ -120,7 +120,7 @@
 
 /*!
  * @macro COMPILER_MSVC
- * @headerfile <seqan/platform.h>
+ * @headerfile <seqan2/platform.h>
  * @brief The compiler is the microsoft visual studio compiler (msvc), if defined
  * @signature #define COMPILER_MSVC
  */
@@ -133,7 +133,7 @@
 
 /*!
  * @macro COMPILER_GCC
- * @headerfile <seqan/platform.h>
+ * @headerfile <seqan2/platform.h>
  * @brief The compiler is the gnu compiler (gcc), if defined
  * @signature #define COMPILER_GCC
  */
@@ -161,7 +161,7 @@
 // ==========================================================================
 /*!
  * @macro PLATFORM_GCC
- * @headerfile <seqan/platform.h>
+ * @headerfile <seqan2/platform.h>
  * @brief Defined if the compiler is GCC (or compatible).
  * @deprecated Use STDLIB_VS, STDLIB_GNU or STDLIB_LLVM to know which
  *     standard lib is currently used. Or use COMPILER_MSVC, COMPILER_GCC,
@@ -203,7 +203,7 @@
 // Boost Warnings Guidelines:
 //   https://svn.boost.org/trac/boost/wiki/Guidelines/WarningsGuidelines
 // Intel compiler for windows also triggers this error:
-//   seqan/pipe/pipe_base.h(263): warning #2586: 'bundle5' : decorated name
+//   seqan2/pipe/pipe_base.h(263): warning #2586: 'bundle5' : decorated name
 //   length exceeded, name was truncated
 #if defined(COMPILER_MSVC) || defined(COMPILER_WINTEL)
 #pragma warning( disable : 4503 )
@@ -220,56 +220,56 @@
  * For protability, SeqAn defines the integers in this group.
  *
  * @typedef StandardIntegers#__int64
- * @headerfile <seqan/platform.h>
+ * @headerfile <seqan2/platform.h>
  * @brief Signed 64-bit integer type.
  * @deprecated Use int64_t instead.
  *
  * @signature typedef (...) __int64;
  *
  * @typedef StandardIntegers#__uint64
- * @headerfile <seqan/platform.h>
+ * @headerfile <seqan2/platform.h>
  * @brief Unsigned 64-bit integer type.
  * @deprecated Use uint64_t instead.
  *
  * @signature typdef (...) __uint64;
  *
  * @typedef StandardIntegers#__int32
- * @headerfile <seqan/platform.h>
+ * @headerfile <seqan2/platform.h>
  * @brief Signed 32-bit integer type.
  * @deprecated Use int32_t instead.
  *
  * @signature typedef (...) __int32;
  *
  * @typedef StandardIntegers#__uint32
- * @headerfile <seqan/platform.h>
+ * @headerfile <seqan2/platform.h>
  * @brief Unsigned 32-bit integer type.
  * @deprecated Use uint32_t instead.
  *
  * @signature typdef (...) __uint32;
  *
  * @typedef StandardIntegers#__int16
- * @headerfile <seqan/platform.h>
+ * @headerfile <seqan2/platform.h>
  * @brief Signed 16-bit integer type.
  * @deprecated Use int16_t instead.
  *
  * @signature typedef (...) __int16;
  *
  * @typedef StandardIntegers#__uint16
- * @headerfile <seqan/platform.h>
+ * @headerfile <seqan2/platform.h>
  * @brief Unsigned 16-bit integer type.
  * @deprecated Use uint16_t instead.
  *
  * @signature typdef (...) __uint16;
  *
  * @typedef StandardIntegers#__int8
- * @headerfile <seqan/platform.h>
+ * @headerfile <seqan2/platform.h>
  * @brief Signed 8-bit integer type.
  * @deprecated Use int8_t instead.
  *
  * @signature typedef (...) __int8;
  *
  * @typedef StandardIntegers#__uint8
- * @headerfile <seqan/platform.h>
+ * @headerfile <seqan2/platform.h>
  * @brief Unsigned 8-bit integer type.
  * @deprecated Use uint8_t instead.
  *
@@ -307,149 +307,149 @@ typedef int8_t __int8;     // nolint
 #endif // !defined(COMPILER_MSVC)
 
 /*!
- * @macro SEQAN_IS_64_BIT
- * @headerfile <seqan/platform.h>
+ * @macro SEQAN2_IS_64_BIT
+ * @headerfile <seqan2/platform.h>
  * @brief 1 if the architecture is 64 bit, 0 otherwise.
  *
- * @signature #define SEQAN_IS_64_BIT
+ * @signature #define SEQAN2_IS_64_BIT
  *
- * @macro SEQAN_IS_32_BIT
- * @headerfile <seqan/platform.h>
+ * @macro SEQAN2_IS_32_BIT
+ * @headerfile <seqan2/platform.h>
  * @brief 1 if the architecture is 32 bit, 0 otherwise.
  *
- * @signature #define SEQAN_IS_32_BIT
+ * @signature #define SEQAN2_IS_32_BIT
  */
 
-// The symbols SEQAN_IS_64_BIT and SEQAN_IS_32_BIT can be used to check
+// The symbols SEQAN2_IS_64_BIT and SEQAN2_IS_32_BIT can be used to check
 // whether we are on a 32 bit or on a 64 bit machine.
 #if defined(__amd64__) || defined(__x86_64__) || defined(__aarch64__) || defined(__ia64__) || defined(__ppc64__) || defined(_WIN64)
-#define SEQAN_IS_64_BIT 1
-#define SEQAN_IS_32_BIT 0
+#define SEQAN2_IS_64_BIT 1
+#define SEQAN2_IS_32_BIT 0
 #else
-#define SEQAN_IS_64_BIT 0
-#define SEQAN_IS_32_BIT 1
+#define SEQAN2_IS_64_BIT 0
+#define SEQAN2_IS_32_BIT 1
 #endif
 
 /**
- * SEQAN_AUTO_PTR_NAME .... alias for the auto_ptr class template deprecated in C++11.
+ * SEQAN2_AUTO_PTR_NAME .... alias for the auto_ptr class template deprecated in C++11.
  *                          @deprecated use the RHS
  *
- * SEQAN_FORWARD_ARG and
- * SEQAN_FORWARD_CARG ..... macros to insert between argument type and name ...
+ * SEQAN2_FORWARD_ARG and
+ * SEQAN2_FORWARD_CARG ..... macros to insert between argument type and name ...
  *                          @deprecated use the RHS
  *
- * SEQAN_FORWARD_RETURN ... or return type and function name to declare forwarding of variables
+ * SEQAN2_FORWARD_RETURN ... or return type and function name to declare forwarding of variables
  *                          @deprecated use the RHS
  *
- * SEQAN_FORWARD .......... pass a variable as (of type T) as it was given to a function
+ * SEQAN2_FORWARD .......... pass a variable as (of type T) as it was given to a function
  *                          @deprecated use the RHS
  *
- * SEQAN_MOVE ............. pass a variable to a function and never use it again
+ * SEQAN2_MOVE ............. pass a variable to a function and never use it again
  *                          @deprecated use the RHS
  */
 
-#define SEQAN_AUTO_PTR_NAME     unique_ptr
-#define SEQAN_FORWARD_ARG       &&
-#define SEQAN_FORWARD_CARG      &&
-#define SEQAN_FORWARD_RETURN    &&
-#define SEQAN_FORWARD(T, x)     std::forward<T>(x)
-#define SEQAN_MOVE(x)           std::move(x)
+#define SEQAN2_AUTO_PTR_NAME     unique_ptr
+#define SEQAN2_FORWARD_ARG       &&
+#define SEQAN2_FORWARD_CARG      &&
+#define SEQAN2_FORWARD_RETURN    &&
+#define SEQAN2_FORWARD(T, x)     std::forward<T>(x)
+#define SEQAN2_MOVE(x)           std::move(x)
 
 // backwards compatibility
-#define SEQAN_CXX11_STL 1
-#define SEQAN_CXX11_STANDARD 1
-#define SEQAN_CXX11_COMPLETE 1
+#define SEQAN2_CXX11_STL 1
+#define SEQAN2_CXX11_STANDARD 1
+#define SEQAN2_CXX11_COMPLETE 1
 
 /**
  * The following macros need to be removed when cuda support will be dropped.
  */
-#define SEQAN_FUNC inline
-#define SEQAN_HOST_DEVICE
-#define SEQAN_HOST
-#define SEQAN_DEVICE
-#define SEQAN_GLOBAL
+#define SEQAN2_FUNC inline
+#define SEQAN2_HOST_DEVICE
+#define SEQAN2_HOST
+#define SEQAN2_DEVICE
+#define SEQAN2_GLOBAL
 
 // ==========================================================================
 // C++ restrict keyword
 // ==========================================================================
 #if defined(COMPILER_GCC) || defined(COMPILER_CLANG)
-#define SEQAN_RESTRICT  __restrict__
+#define SEQAN2_RESTRICT  __restrict__
 #else
-#define SEQAN_RESTRICT
+#define SEQAN2_RESTRICT
 #endif
 
 // ==========================================================================
 // C++ branch hints
 // ==========================================================================
 #if defined(COMPILER_GCC) || defined(COMPILER_CLANG) && !defined(STDLIB_VS) || defined(COMPILER_LINTEL)
-#define SEQAN_LIKELY(expr) __builtin_expect(!!(expr), 1)
-#define SEQAN_UNLIKELY(expr) __builtin_expect(!!(expr), 0)
+#define SEQAN2_LIKELY(expr) __builtin_expect(!!(expr), 1)
+#define SEQAN2_UNLIKELY(expr) __builtin_expect(!!(expr), 0)
 #else
-#define SEQAN_LIKELY(x)    (x)
-#define SEQAN_UNLIKELY(x)    (x)
+#define SEQAN2_LIKELY(x)    (x)
+#define SEQAN2_UNLIKELY(x)    (x)
 #endif
 
 // A macro to eliminate warnings on GCC and Clang
 #if defined(COMPILER_GCC) || defined(COMPILER_CLANG) || defined(COMPILER_LINTEL)
-#define SEQAN_UNUSED __attribute__((unused))
+#define SEQAN2_UNUSED __attribute__((unused))
 #else
-#define SEQAN_UNUSED
+#define SEQAN2_UNUSED
 #endif
 // backwards compatibility
-#define SEQAN_UNUSED_TYPEDEF SEQAN_UNUSED
+#define SEQAN2_UNUSED_TYPEDEF SEQAN2_UNUSED
 
 // eliminate fallthrough warnings
-#define SEQAN_FALLTHROUGH
+#define SEQAN2_FALLTHROUGH
 #if defined(__has_cpp_attribute)
     #if __has_cpp_attribute(fallthrough)
-        #undef SEQAN_FALLTHROUGH
+        #undef SEQAN2_FALLTHROUGH
         #if __cplusplus < 201500 && defined(COMPILER_GCC)
-            #define SEQAN_FALLTHROUGH [[gnu::fallthrough]];
+            #define SEQAN2_FALLTHROUGH [[gnu::fallthrough]];
         #elif __cplusplus < 201500 && defined(COMPILER_CLANG)
-            #define SEQAN_FALLTHROUGH [[clang::fallthrough]];
+            #define SEQAN2_FALLTHROUGH [[clang::fallthrough]];
         #else
-            #define SEQAN_FALLTHROUGH [[fallthrough]];
+            #define SEQAN2_FALLTHROUGH [[fallthrough]];
         #endif
     #endif
 #endif
 
 // HAS_EXECINFO
-// note that this is always set by seqan-config.cmake
+// note that this is always set by seqan2-config.cmake
 // this is a fallback for non cmake environments
-#ifndef SEQAN_HAS_EXECINFO
+#ifndef SEQAN2_HAS_EXECINFO
     #ifdef STDLIB_VS
-    #define SEQAN_HAS_EXECINFO 0
+    #define SEQAN2_HAS_EXECINFO 0
     #elif defined(__has_include)
         #if __has_include(<execinfo.h>)
-        #define SEQAN_HAS_EXECINFO 1
+        #define SEQAN2_HAS_EXECINFO 1
         #else
-        #define SEQAN_HAS_EXECINFO 0
+        #define SEQAN2_HAS_EXECINFO 0
         #endif
     #else // assume that it is there
-    #define SEQAN_HAS_EXECINFO 1
+    #define SEQAN2_HAS_EXECINFO 1
     #endif
 #endif
 
 // ASYNCHRONOUS I/O
-#ifndef SEQAN_ASYNC_IO
+#ifndef SEQAN2_ASYNC_IO
     // FreeBSD only has proper support on 64Bit
     #if defined(__FreeBSD__)
-    #define SEQAN_ASYNC_IO SEQAN_IS_64_BIT
+    #define SEQAN2_ASYNC_IO SEQAN2_IS_64_BIT
     // Clang (and future gcc) can detect it
     #elif defined(__has_include) && defined(__unix__)
         #if __has_include(<aio.h>)
-        #define SEQAN_ASYNC_IO 1
+        #define SEQAN2_ASYNC_IO 1
         #else
-        #define SEQAN_ASYNC_IO 0
+        #define SEQAN2_ASYNC_IO 0
         #endif
     // OpenBSD doesn't have it
     #elif defined(__OpenBSD__)
-    #define SEQAN_ASYNC_IO 0
+    #define SEQAN2_ASYNC_IO 0
     // we assume the rest have it (Linux, OSX, Win)
     #else
-    #define SEQAN_ASYNC_IO 1
+    #define SEQAN2_ASYNC_IO 1
     #endif
-#endif //ndef SEQAN_ASYNC_IO
+#endif //ndef SEQAN2_ASYNC_IO
 
 // There is a bug in clang35 on FreeBSD that crashes the compiler.
 // Since this is only triggered on some codepaths we define a macro
@@ -457,7 +457,7 @@ typedef int8_t __int8;     // nolint
 #if defined(__FreeBSD__) && defined(COMPILER_CLANG)
 #define COMPILER_VERSION (__clang_major__ * 10000 + __clang_minor__ * 100 + __clang_patchlevel__)
 #if (COMPILER_VERSION >= 30500) && (COMPILER_VERSION < 30600)
-    #define SEQAN_CLANG35_FREEBSD_BUG 1
+    #define SEQAN2_CLANG35_FREEBSD_BUG 1
 #endif
 #undef COMPILER_VERSION
 #endif

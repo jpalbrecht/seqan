@@ -35,10 +35,10 @@
 // order of acquirement.
 // ==========================================================================
 
-#ifndef SEQAN_PARALLEL_PARALLEL_SERIALIZER_H_
-#define SEQAN_PARALLEL_PARALLEL_SERIALIZER_H_
+#ifndef SEQAN2_PARALLEL_PARALLEL_SERIALIZER_H_
+#define SEQAN2_PARALLEL_PARALLEL_SERIALIZER_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Classes
@@ -170,7 +170,7 @@ releaseValue(Serializer<TValue, TWorker> & me, TValue *ptr)
     typedef SerializerItem<TValue> TItem;
 
     TItem *item = reinterpret_cast<TItem *>(ptr);
-    SEQAN_ASSERT_NOT(item->ready);
+    SEQAN2_ASSERT_NOT(item->ready);
 
     // changing me.first or the ready flag must be done synchronized (me.mutex)
     // the thread who changed me.first->ready to be true has to write it.
@@ -185,7 +185,7 @@ releaseValue(Serializer<TValue, TWorker> & me, TValue *ptr)
 
     // ok, if we are here it seems that we are responsible for writing the buffer
 
-    SEQAN_ASSERT(me.first != NULL);
+    SEQAN2_ASSERT(me.first != NULL);
 
     bool success;
     do
@@ -214,6 +214,6 @@ releaseValue(Serializer<TValue, TWorker> & me, TValue *ptr)
     return false;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_PARALLEL_PARALLEL_SERIALIZER_H_
+#endif  // #ifndef SEQAN2_PARALLEL_PARALLEL_SERIALIZER_H_

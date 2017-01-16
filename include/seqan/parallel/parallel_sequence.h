@@ -34,10 +34,10 @@
 // Thread-safe / lock-free sequence operations.
 // ==========================================================================
 
-#ifndef SEQAN_PARALLEL_PARALLEL_SEQUENCE_H_
-#define SEQAN_PARALLEL_PARALLEL_SEQUENCE_H_
+#ifndef SEQAN2_PARALLEL_PARALLEL_SEQUENCE_H_
+#define SEQAN2_PARALLEL_PARALLEL_SEQUENCE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Classes
@@ -185,6 +185,6 @@ appendValue(ConcurrentAppender<TString, TSpec> & me,
     }
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_PARALLEL_PARALLEL_SEQUENCE_H_
+#endif  // #ifndef SEQAN2_PARALLEL_PARALLEL_SEQUENCE_H_

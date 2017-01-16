@@ -35,10 +35,10 @@
 // Implementation of constant-sized Array String class.
 // ==========================================================================
 
-#ifndef SEQAN_SEQUENCE_STRING_ARRAY_H_
-#define SEQAN_SEQUENCE_STRING_ARRAY_H_
+#ifndef SEQAN2_SEQUENCE_STRING_ARRAY_H_
+#define SEQAN2_SEQUENCE_STRING_ARRAY_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -51,7 +51,7 @@ namespace seqan {
 /*!
  * @class ArrayString Array String
  * @extends String
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Fast, static-size string.
  *
  * @signature template <typename TValue, size_t CAPACITY>
@@ -280,10 +280,10 @@ inline void
 _setLength(String<TValue, Array<CAPACITY> > & me,
            TSize new_length)
 {
-    SEQAN_ASSERT_LEQ_MSG(static_cast<size_t>(new_length), CAPACITY, "New length would exceed Array String's capacity!");
+    SEQAN2_ASSERT_LEQ_MSG(static_cast<size_t>(new_length), CAPACITY, "New length would exceed Array String's capacity!");
     me.data_length = new_length;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_SEQUENCE_STRING_ARRAY_H_
+#endif  // #ifndef SEQAN2_SEQUENCE_STRING_ARRAY_H_

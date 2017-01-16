@@ -34,8 +34,8 @@
 // Umbrella header for the random module.
 // ==========================================================================
 
-#ifndef SEQAN_RANDOM_H_
-#define SEQAN_RANDOM_H_
+#ifndef SEQAN2_RANDOM_H_
+#define SEQAN2_RANDOM_H_
 
 //____________________________________________________________________________
 // Prerequisites
@@ -43,21 +43,21 @@
 #include <sstream>
 #include <random>
 
-#include <seqan/basic.h>
-#include <seqan/stream.h>
+#include <seqan2/basic.h>
+#include <seqan2/stream.h>
 
 //____________________________________________________________________________
 // Module Headers
 
 // Basic Definitions
-#include <seqan/random/random_base.h>
+#include <seqan2/random/random_base.h>
 
 // Rng With Special Distributions not contained in the STL.
-#include <seqan/random/random_beta.h>
+#include <seqan2/random/random_beta.h>
 
 // Functions with randomness.
-#include <seqan/random/random_util.h>
+#include <seqan2/random/random_util.h>
 
 //____________________________________________________________________________
 
-#endif  // SEQAN_RANDOM_H_
+#endif  // SEQAN2_RANDOM_H_

@@ -32,14 +32,14 @@
 // Author: Konrad Ludwig Moritz Rudolph <konrad.rudolph@fu-berlin.de>
 // ==========================================================================
 
-//SEQAN_xNO_GENERATED_FORWARDS: no forwards are generated for this file
+//SEQAN2_xNO_GENERATED_FORWARDS: no forwards are generated for this file
 
-#ifndef SEQAN_HEADER_PIZZACHILI_API_H
-#define SEQAN_HEADER_PIZZACHILI_API_H
+#ifndef SEQAN2_HEADER_PIZZACHILI_API_H
+#define SEQAN2_HEADER_PIZZACHILI_API_H
 
-#include <seqan/basic.h>
+#include <seqan2/basic.h>
 
-namespace seqan {
+namespace seqan2 {
 
 namespace impl {
     typedef unsigned char uchar_t;
@@ -149,7 +149,7 @@ typedef Tag<PizzaChiliSsa_> const PizzaChiliSsa;
 struct PizzaChiliTest_;
 typedef Tag<PizzaChiliTest_> const PizzaChiliTest;
 
-#define SEQAN_MAKE_PIZZACHILI_PROVIDER(name) \
+#define SEQAN2_MAKE_PIZZACHILI_PROVIDER(name) \
     class PizzaChiliApi##name { \
     public: \
         static char* error_index(impl::error_t e); \
@@ -204,19 +204,19 @@ typedef Tag<PizzaChiliTest_> const PizzaChiliTest;
         typedef PizzaChiliApi##name Type; \
     };
 
-SEQAN_MAKE_PIZZACHILI_PROVIDER(AF)
-SEQAN_MAKE_PIZZACHILI_PROVIDER(Ccsa)
-SEQAN_MAKE_PIZZACHILI_PROVIDER(FM)
-SEQAN_MAKE_PIZZACHILI_PROVIDER(LZ)
-SEQAN_MAKE_PIZZACHILI_PROVIDER(Rsa)
-SEQAN_MAKE_PIZZACHILI_PROVIDER(Rlfm)
-SEQAN_MAKE_PIZZACHILI_PROVIDER(SA)
-SEQAN_MAKE_PIZZACHILI_PROVIDER(Sada)
-SEQAN_MAKE_PIZZACHILI_PROVIDER(Ssa)
-SEQAN_MAKE_PIZZACHILI_PROVIDER(Test)
+SEQAN2_MAKE_PIZZACHILI_PROVIDER(AF)
+SEQAN2_MAKE_PIZZACHILI_PROVIDER(Ccsa)
+SEQAN2_MAKE_PIZZACHILI_PROVIDER(FM)
+SEQAN2_MAKE_PIZZACHILI_PROVIDER(LZ)
+SEQAN2_MAKE_PIZZACHILI_PROVIDER(Rsa)
+SEQAN2_MAKE_PIZZACHILI_PROVIDER(Rlfm)
+SEQAN2_MAKE_PIZZACHILI_PROVIDER(SA)
+SEQAN2_MAKE_PIZZACHILI_PROVIDER(Sada)
+SEQAN2_MAKE_PIZZACHILI_PROVIDER(Ssa)
+SEQAN2_MAKE_PIZZACHILI_PROVIDER(Test)
 
-#undef SEQAN_MAKE_PIZZACHILI_PROVIDER
+#undef SEQAN2_MAKE_PIZZACHILI_PROVIDER
 
-} // namespace seqan
+} // namespace seqan2
 
-#endif // SEQAN_HEADER_PIZZACHILI_API_H
+#endif // SEQAN2_HEADER_PIZZACHILI_API_H

@@ -34,12 +34,12 @@
 // Code for score matrices with data from files or built-in data.
 // ==========================================================================
 
-#ifndef SEQAN_SSCORE_MATRIX_H_
-#define SEQAN_SSCORE_MATRIX_H_
+#ifndef SEQAN2_SSCORE_MATRIX_H_
+#define SEQAN2_SSCORE_MATRIX_H_
 
 // TODO(holtgrew): If the complex type conversions are necessary, a static_cast<> is more C++ and explicit.
 
-namespace seqan {
+namespace seqan2 {
 
 template <typename TValue, typename TSequenceValue, typename TSpec>
 struct ScoringMatrixData_;
@@ -50,7 +50,7 @@ struct ScoreMatrix;
 
 /*!
  * @class MatrixScore
- * @headerfile <seqan/score.h>
+ * @headerfile <seqan2/score.h>
  * @extends Score
  * @brief A general scoring matrix.
  *
@@ -212,6 +212,6 @@ setDefaultScoreMatrix(Score<TValue, ScoreMatrix<TSequenceValue, TSpec> > & sc, D
     arrayFill(sc.data_tab, sc.data_tab + TScore::TAB_SIZE, TValue());
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_SSCORE_MATRIX_H_
+#endif  // SEQAN2_SSCORE_MATRIX_H_

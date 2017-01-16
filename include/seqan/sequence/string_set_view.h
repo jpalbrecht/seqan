@@ -32,10 +32,10 @@
 // Author: Enrico Siragusa <enrico.siragusa@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_STRING_SET_VIEW_H
-#define SEQAN_STRING_SET_VIEW_H
+#ifndef SEQAN2_STRING_SET_VIEW_H
+#define SEQAN2_STRING_SET_VIEW_H
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Metafunctions
@@ -91,6 +91,6 @@ inline void
 _initStringSetLimits(StringSet<ContainerView<TString, TViewSpec>, TSpec> & /* me */) {}
 
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_STRING_SET_VIEW_H
+#endif  // #ifndef SEQAN2_STRING_SET_VIEW_H

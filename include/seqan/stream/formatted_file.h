@@ -36,10 +36,10 @@
 // as well as reading/writing from/to stdin/stdout.
 // ==========================================================================
 
-#ifndef SEQAN_STREAM_SMART_FILE_H_
-#define SEQAN_STREAM_SMART_FILE_H_
+#ifndef SEQAN2_STREAM_SMART_FILE_H_
+#define SEQAN2_STREAM_SMART_FILE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -82,7 +82,7 @@ struct StorageSwitch;
  * @extends DefaultConstructibleConcept
  * @extends CopyConstructibleConcept
  * @extends AssignableConcept
- * @headerfile <seqan/stream.h>
+ * @headerfile <seqan2/stream.h>
  * @brief Concept for header of formatted files.
  * @signature concept FormattedFileHeaderConcept;
  */
@@ -96,7 +96,7 @@ struct StorageSwitch;
  * @extends DefaultConstructibleConcept
  * @extends CopyConstructibleConcept
  * @extends AssignableConcept
- * @headerfile <seqan/stream.h>
+ * @headerfile <seqan2/stream.h>
  * @brief Concept for record of formatted files.
  * @signature concept FormattedFileRecordConcept;
  */
@@ -111,7 +111,7 @@ struct StorageSwitch;
 
 /*!
  * @class FormattedFile
- * @headerfile <seqan/stream.h>
+ * @headerfile <seqan2/stream.h>
  * @brief Base class for formatted file I/O.
  *
  * @signature template <typename TFileFormat, typename TDirection[, typename TSpec]>
@@ -137,7 +137,7 @@ struct StorageSwitch;
 
 /*!
  * @class FormattedFileIn
- * @headerfile <seqan/stream.h>
+ * @headerfile <seqan2/stream.h>
  * @brief Base class for reading formatted files.
  * @signature typedef FormattedFile<TFileFormat, Input, TSpec> FormattedFileIn;
  * @extends FormattedFile
@@ -174,7 +174,7 @@ struct StorageSwitch;
 
 /*!
  * @class FormattedFileOut
- * @headerfile <seqan/stream.h>
+ * @headerfile <seqan2/stream.h>
  * @brief Base class for writing formatted files.
  * @signature typedef FormattedFile<TFileFormat, Output, TSpec> FormattedFileOut;
  * @extends FormattedFile
@@ -261,7 +261,7 @@ struct FormattedFile
     template <typename TValue>
     explicit
     FormattedFile(std::basic_istream<TValue> &istream,
-              SEQAN_CTOR_ENABLE_IF(And<IsSameType<TDirection, Input>, IsSameType<TValue, char> >)) :
+              SEQAN2_CTOR_ENABLE_IF(And<IsSameType<TDirection, Input>, IsSameType<TValue, char> >)) :
         context(data_context)
     {
         _open(*this, istream, _mapFileFormatToCompressionFormat(format), True());
@@ -271,13 +271,13 @@ struct FormattedFile
     template <typename TValue, typename TFormat>
     FormattedFile(std::basic_ostream<TValue> &ostream,
               TFormat const &format,
-              SEQAN_CTOR_ENABLE_IF(And<IsSameType<TDirection, Output>, IsSameType<TValue, char> >)) :
+              SEQAN2_CTOR_ENABLE_IF(And<IsSameType<TDirection, Output>, IsSameType<TValue, char> >)) :
         context(data_context)
     {
         bool success = open(*this, ostream, format);
         ignoreUnusedVariableWarning(dummy);
         ignoreUnusedVariableWarning(success);
-        SEQAN_ASSERT(success);
+        SEQAN2_ASSERT(success);
     }
 
     // now everything given another context
@@ -301,7 +301,7 @@ struct FormattedFile
     explicit
     FormattedFile(TDependentContext &otherCtx,
               std::basic_istream<TValue> &istream,
-              SEQAN_CTOR_ENABLE_IF(And<IsSameType<TDirection, Input>, IsSameType<TValue, char> >)) :
+              SEQAN2_CTOR_ENABLE_IF(And<IsSameType<TDirection, Input>, IsSameType<TValue, char> >)) :
         context(otherCtx)
     {
         _open(*this, istream, _mapFileFormatToCompressionFormat(format), True());
@@ -312,13 +312,13 @@ struct FormattedFile
     FormattedFile(TDependentContext &otherCtx,
               std::basic_ostream<TValue> &ostream,
               TFormat const &format,
-              SEQAN_CTOR_ENABLE_IF(And<IsSameType<TDirection, Output>, IsSameType<TValue, char> >)) :
+              SEQAN2_CTOR_ENABLE_IF(And<IsSameType<TDirection, Output>, IsSameType<TValue, char> >)) :
         context(otherCtx)
     {
         bool success = open(*this, ostream, format);
         ignoreUnusedVariableWarning(dummy);
         ignoreUnusedVariableWarning(success);
-        SEQAN_ASSERT(success);
+        SEQAN2_ASSERT(success);
     }
 
     ~FormattedFile()
@@ -459,7 +459,7 @@ struct DefaultOpenMode<FormattedFile<TFileFormat, TDirection, TSpec>, TDummy> :
 // ----------------------------------------------------------------------------
 // Helper functions that reduce number of "uncaught exception" false positives in static analysis tools.
 
-template <typename TException> void _throwIf(TException const & e, True const & /*tag*/) { SEQAN_THROW(e); }
+template <typename TException> void _throwIf(TException const & e, True const & /*tag*/) { SEQAN2_THROW(e); }
 template <typename TException> void _throwIf(TException const & /*e*/, False const & /*tag*/) { /*nop*/ }
 
 // ----------------------------------------------------------------------------
@@ -598,7 +598,7 @@ inline void
 _checkThatStreamOutputFormatIsSet(FormattedFile<TFileFormat, Output, TSpec> const &, TagSelector<TFileFormatList> const &format)
 {
     if (value(format) < 0)
-        SEQAN_FAIL("FormattedFile: File format not specified, use setFormat().");
+        SEQAN2_FAIL("FormattedFile: File format not specified, use setFormat().");
 }
 
 // ----------------------------------------------------------------------------
@@ -642,7 +642,7 @@ inline bool _open(FormattedFile<TFileFormat, TDirection, TSpec> & file,
 }
 
 template <typename TFileFormat, typename TDirection, typename TSpec, typename TStream>
-inline SEQAN_FUNC_ENABLE_IF(Is<StreamConcept<TStream> >, bool)
+inline SEQAN2_FUNC_ENABLE_IF(Is<StreamConcept<TStream> >, bool)
 open(FormattedFile<TFileFormat, TDirection, TSpec> & file,
      TStream &stream)
 {
@@ -774,7 +774,7 @@ inline bool close(FormattedFile<TFileFormat, TDirection, TSpec> & file)
  */
 
 template <typename TFileFormat, typename TDirection, typename TSpec>
-inline SEQAN_FUNC_ENABLE_IF(Is<InputStreamConcept<typename FormattedFile<TFileFormat, TDirection, TSpec>::TStream> >, bool)
+inline SEQAN2_FUNC_ENABLE_IF(Is<InputStreamConcept<typename FormattedFile<TFileFormat, TDirection, TSpec>::TStream> >, bool)
 atEnd(FormattedFile<TFileFormat, TDirection, TSpec> const & file)
 {
     return atEnd(file.iter);
@@ -952,6 +952,6 @@ getFileExtensions(FormattedFile<TFileFormat, TDirection, TSpec> const & file)
     return file.getFileExtensions();
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif // SEQAN_STREAM_SMART_FILE_H_
+#endif // SEQAN2_STREAM_SMART_FILE_H_

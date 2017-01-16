@@ -34,10 +34,10 @@
 // Simple Holder specialization.
 // ==========================================================================
 
-#ifndef SEQAN_BASIC_HOLDER_SIMPLE_H_
-#define SEQAN_BASIC_HOLDER_SIMPLE_H_
+#ifndef SEQAN2_BASIC_HOLDER_SIMPLE_H_
+#define SEQAN2_BASIC_HOLDER_SIMPLE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -50,7 +50,7 @@ namespace seqan {
 /*!
  * @class SimpleHolder
  * @extends Holder
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Simple copying wrapper without any additional state.
  *
  * @signature template <typename TValue>
@@ -292,6 +292,6 @@ assign(Holder<TValue, Simple> & target_,
     assignValue(target_, source_);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_BASIC_HOLDER_SIMPLE_H_
+#endif  // #ifndef SEQAN2_BASIC_HOLDER_SIMPLE_H_

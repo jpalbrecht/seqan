@@ -30,19 +30,19 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_ARG_PARSE_ARGUMENT_PARSER_H_
-#define SEQAN_INCLUDE_ARG_PARSE_ARGUMENT_PARSER_H_
+#ifndef SEQAN2_INCLUDE_ARG_PARSE_ARGUMENT_PARSER_H_
+#define SEQAN2_INCLUDE_ARG_PARSE_ARGUMENT_PARSER_H_
 
-#include <seqan/map.h>
-#include <seqan/sequence.h>
-#include <seqan/stream.h>
+#include <seqan2/map.h>
+#include <seqan2/sequence.h>
+#include <seqan2/stream.h>
 
-#include <seqan/arg_parse/arg_parse_type_support.h>
-#include <seqan/arg_parse/arg_parse_argument.h>
-#include <seqan/arg_parse/arg_parse_option.h>
-#include <seqan/arg_parse/arg_parse_version_check.h>
+#include <seqan2/arg_parse/arg_parse_type_support.h>
+#include <seqan2/arg_parse/arg_parse_argument.h>
+#include <seqan2/arg_parse/arg_parse_option.h>
+#include <seqan2/arg_parse/arg_parse_version_check.h>
 
-#include <seqan/arg_parse/tool_doc.h>
+#include <seqan2/arg_parse/tool_doc.h>
 
 #include <iostream>
 #include <string>
@@ -50,7 +50,7 @@
 #include <map>
 #include <future>
 
-namespace seqan {
+namespace seqan2 {
 
 // ==========================================================================
 // Forwards
@@ -78,7 +78,7 @@ inline ArgParseArgument & getArgument(ArgumentParser & me, unsigned position);
 
 /*!
  * @class ArgumentParser
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Parse the command line.
  *
  * @signature class ArgumentParser;
@@ -99,7 +99,7 @@ inline ArgParseArgument & getArgument(ArgumentParser & me, unsigned position);
  *
  * @code{.console}
  * $ demo_arg_parse_argument_parser in.fa out.txt --id 0
- * Built target seqan_core
+ * Built target seqan2_core
  * Built target demo_arg_parse
  * Verbose:     off
  * Identity:    0
@@ -227,17 +227,17 @@ public:
         hideOption(*this, "export-help", true);
         setValidValues(*this, "export-help", "html man txt");
 
-#ifndef SEQAN_DISABLE_VERSION_CHECK
+#ifndef SEQAN2_DISABLE_VERSION_CHECK
         addOption(*this, ArgParseOption("",
                                         "version-check",
                                         "Turn this option off to disable version update notifications of the application. ",
                                         ArgParseArgument::BOOL));
-#ifdef SEQAN_VERSION_CHECK_OPT_IN
+#ifdef SEQAN2_VERSION_CHECK_OPT_IN
         setDefaultValue(*this, "version-check", false);
 #else  // Make version update opt out.
         setDefaultValue(*this, "version-check", true);
-#endif  // SEQAN_VERSION_CHECK_OPT_IN
-#endif  // !SEQAN_DISABLE_VERSION_CHECK
+#endif  // SEQAN2_VERSION_CHECK_OPT_IN
+#endif  // !SEQAN2_DISABLE_VERSION_CHECK
     }
 
     // ----------------------------------------------------------------------------
@@ -278,7 +278,7 @@ public:
 
 /*!
  * @fn ArgumentParser#hasOption
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Query whether a certain option is registered in the parser.
  *
  * @signature bool hasOption(parser, name);
@@ -300,7 +300,7 @@ inline bool hasOption(ArgumentParser const & me, std::string const & name)
 
 /*!
  * @fn ArgumentParser#addOption
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Adds an @link ArgParseOption @endlink to an ArgumentParser.
  *
  * @signature void addOption(parser, option);
@@ -328,8 +328,8 @@ inline void _copyValidValuesToFileExt(ArgumentParser & me, std::string const & n
 inline void addOption(ArgumentParser & me, ArgParseOption const & opt)
 {
     // check if an option with the same identifiers was already registered
-    SEQAN_CHECK(!hasOption(me, opt.shortName), "There already is an option with the name %s!", toCString(opt.shortName));
-    SEQAN_CHECK(!hasOption(me, opt.longName), "There already is an option with the name %s!", toCString(opt.longName));
+    SEQAN2_CHECK(!hasOption(me, opt.shortName), "There already is an option with the name %s!", toCString(opt.shortName));
+    SEQAN2_CHECK(!hasOption(me, opt.longName), "There already is an option with the name %s!", toCString(opt.longName));
 
     // finally append the option
     appendValue(me.optionMap, opt);
@@ -365,7 +365,7 @@ inline void addOption(ArgumentParser & me, ArgParseOption const & opt)
 
 /*!
  * @fn ArgumentParser#addArgument
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Adds an @link ArgParseArgument @endlink to an ArgumentParser.
  *
  * @signature void addArgument(parser, arg);
@@ -397,14 +397,14 @@ inline void addArgument(ArgumentParser & me, ArgParseArgument const & arg)
     //  .. lists can only be last argument
     if (!me.argumentList.empty())
     {
-        SEQAN_CHECK(!isListArgument(me.argumentList[me.argumentList.size() - 1]),
+        SEQAN2_CHECK(!isListArgument(me.argumentList[me.argumentList.size() - 1]),
                     "You cannot add an additional argument after a list argument.");
     }
 
     // check current argument
     //  .. arguments should not have default values
-    SEQAN_CHECK(arg.defaultValue.empty(), "Arguments cannot have default values.");
-    SEQAN_CHECK(arg._numberOfValues == 1, "n-Tuple of arguments are not supported.");
+    SEQAN2_CHECK(arg.defaultValue.empty(), "Arguments cannot have default values.");
+    SEQAN2_CHECK(arg._numberOfValues == 1, "n-Tuple of arguments are not supported.");
 
     me.argumentList.push_back(arg);
 
@@ -456,7 +456,7 @@ inline ArgumentParser::TOptionMapSize _getOptionIndex(ArgumentParser const & me,
 
 /*!
  * @fn ArgumentParser#getOption
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Returns a reference to the specified option.
  *
  * @signature TOption getOption(parser, name);
@@ -469,13 +469,13 @@ inline ArgumentParser::TOptionMapSize _getOptionIndex(ArgumentParser const & me,
 
 inline ArgParseOption & getOption(ArgumentParser & me, std::string const & name)
 {
-    SEQAN_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
+    SEQAN2_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
     return me.optionMap[_getOptionIndex(me, name)];
 }
 
 inline ArgParseOption const & getOption(ArgumentParser const & me, std::string const & name)
 {
-    SEQAN_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
+    SEQAN2_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
     return me.optionMap[_getOptionIndex(me, name)];
 }
 
@@ -485,7 +485,7 @@ inline ArgParseOption const & getOption(ArgumentParser const & me, std::string c
 
 /*!
  * @fn ArgumentParser#setRequired
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Sets whether or not the option with the givne name is mandatory.
  *
  * @signature void setRequired(parser, name[, required]).
@@ -497,7 +497,7 @@ inline ArgParseOption const & getOption(ArgumentParser const & me, std::string c
 
 inline void setRequired(ArgumentParser & me, std::string const & name, bool required = true)
 {
-    SEQAN_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
+    SEQAN2_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
     setRequired(getOption(me, name), required);
 }
 
@@ -507,7 +507,7 @@ inline void setRequired(ArgumentParser & me, std::string const & name, bool requ
 
 /*!
  * @fn ArgumentParser#hideOption
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Hides the ArgParseOption with the given name.
  *
  * @signature void hideOption(parser, name[, hide]).
@@ -519,7 +519,7 @@ inline void setRequired(ArgumentParser & me, std::string const & name, bool requ
 
 inline void hideOption(ArgumentParser & me, std::string const & name, bool hide)
 {
-    SEQAN_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
+    SEQAN2_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
     hideOption(getOption(me, name), hide);
 }
 
@@ -529,7 +529,7 @@ inline void hideOption(ArgumentParser & me, std::string const & name, bool hide)
 
 /*!
  * @fn ArgumentParser#setAdvanced
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Sets whether or not the option with the givne name is advanced.
  *
  * @signature void setAdvanced(parser, name[, required]).
@@ -541,7 +541,7 @@ inline void hideOption(ArgumentParser & me, std::string const & name, bool hide)
 
 inline void setAdvanced(ArgumentParser & me, std::string const & name, bool advanced = true)
 {
-    SEQAN_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
+    SEQAN2_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
     setAdvanced(getOption(me, name), advanced);
     // make sure the full-help options is visible so advanced options can be shown
     if (advanced)
@@ -554,7 +554,7 @@ inline void setAdvanced(ArgumentParser & me, std::string const & name, bool adva
 
 /*!
  * @fn ArgumentParser#getArgument
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Returns a reference to the given positional argument.
  *
  * @signature TArgument getArgument(parser, pos);
@@ -567,14 +567,14 @@ inline void setAdvanced(ArgumentParser & me, std::string const & name, bool adva
 
 inline ArgParseArgument & getArgument(ArgumentParser & me, unsigned position)
 {
-    SEQAN_CHECK(position < me.argumentList.size(),
+    SEQAN2_CHECK(position < me.argumentList.size(),
                 "ArgumentParser: Only %d arguments available", me.argumentList.size());
     return me.argumentList[position];
 }
 
 inline ArgParseArgument const & getArgument(ArgumentParser const & me, unsigned position)
 {
-    SEQAN_CHECK(position < me.argumentList.size(),
+    SEQAN2_CHECK(position < me.argumentList.size(),
                 "ArgumentParser: Only %d arguments available", me.argumentList.size());
     return me.argumentList[position];
 }
@@ -585,7 +585,7 @@ inline ArgParseArgument const & getArgument(ArgumentParser const & me, unsigned 
 
 /*!
  * @fn ArgumentParser#isSet
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Query whether an option was set on the command line.
  *
  * @signature bool isSet(parser, name);
@@ -598,7 +598,7 @@ inline ArgParseArgument const & getArgument(ArgumentParser const & me, unsigned 
 
 inline bool isSet(ArgumentParser const & me, std::string const & name)
 {
-    SEQAN_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
+    SEQAN2_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
     return isSet(getOption(me, name));
 }
 
@@ -608,7 +608,7 @@ inline bool isSet(ArgumentParser const & me, std::string const & name)
 
 /*!
  * @fn ArgumentParser#hasDefault
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Query whether an option has a default value.
  *
  * @signature bool hasDefault(parser, name);
@@ -621,7 +621,7 @@ inline bool isSet(ArgumentParser const & me, std::string const & name)
 
 inline bool hasDefault(ArgumentParser const & me, std::string const & name)
 {
-    SEQAN_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
+    SEQAN2_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
     return hasDefault(getOption(me, name));
 }
 
@@ -657,7 +657,7 @@ inline bool _allArgumentsSet(ArgumentParser const & me)
 
 /*!
  * @fn ArgumentParser#getOptionValue
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Retrieve the value of an option.
  *
  * @signature bool getOptionValue(dest, parser, name[, pos]);
@@ -679,7 +679,7 @@ inline bool getOptionValue(TValue & val,
                            std::string const & name,
                            unsigned argNo)
 {
-    SEQAN_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
+    SEQAN2_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
 
     if (isSet(me, name) || hasDefault(me, name))
     {
@@ -714,7 +714,7 @@ inline bool getOptionValue(TValue & val,
 
 /*!
  * @fn ArgumentParser#getOptionFileExtension
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Retrieve the file extension of a file option.
  *
  * @signature std::string getOptionFileExtension(parser, name[, pos]);
@@ -744,7 +744,7 @@ inline std::string getOptionFileExtension(ArgumentParser const & me,
                                           std::string const & name,
                                           unsigned argNo = 0)
 {
-    SEQAN_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
+    SEQAN2_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
 
     return getFileExtension(getOption(me, name), argNo);
 }
@@ -755,7 +755,7 @@ inline std::string getOptionFileExtension(ArgumentParser const & me,
 
 /*!
  * @fn ArgumentParser#getOptionValueCount
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Query number of values stored for the specified option.
  *
  * @signature unsigned getOptionValueCount(parser, name);
@@ -768,7 +768,7 @@ inline std::string getOptionFileExtension(ArgumentParser const & me,
 
 inline unsigned getOptionValueCount(ArgumentParser const & me, std::string const & name)
 {
-    SEQAN_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
+    SEQAN2_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
     return getArgumentValues(getOption(me, name)).size();
 }
 
@@ -778,7 +778,7 @@ inline unsigned getOptionValueCount(ArgumentParser const & me, std::string const
 
 /*!
  * @fn ArgumentParser#getArgumentValueCount
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Query number of values stored for the specified argument.
  *
  * @signature unsigned getArgumentValueCount(parser, pos);
@@ -791,7 +791,7 @@ inline unsigned getOptionValueCount(ArgumentParser const & me, std::string const
 
 inline unsigned getArgumentValueCount(ArgumentParser const & me, unsigned argumentPosition)
 {
-    SEQAN_CHECK(me.argumentList.size() > argumentPosition,
+    SEQAN2_CHECK(me.argumentList.size() > argumentPosition,
                 "Argument Parser has only %d arguments.",
                 me.argumentList.size());
     return getArgumentValues(getArgument(me, argumentPosition)).size();
@@ -803,7 +803,7 @@ inline unsigned getArgumentValueCount(ArgumentParser const & me, unsigned argume
 
 /*!
  * @fn ArgumentParser#getArgumentValue
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Retrieves the value of an argument given by its position.
  *
  * @signature bool getArgumentValue(dest, parser, pos[, no]);
@@ -824,7 +824,7 @@ inline bool getArgumentValue(TValue & value,
                              unsigned argumentPosition,
                              unsigned argNo)
 {
-    SEQAN_CHECK(me.argumentList.size() > argumentPosition,
+    SEQAN2_CHECK(me.argumentList.size() > argumentPosition,
                 "Argument Parser has only %d arguments.",
                 me.argumentList.size());
     return _convertArgumentValue(value, getArgument(me, argumentPosition), getArgumentValue(getArgument(me, argumentPosition), argNo));
@@ -844,7 +844,7 @@ inline bool getArgumentValue(TValue & value,
 
 /*!
  * @fn ArgumentParser#getArgumentFileExtension
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Retrieve the file extension of a file argument.
  *
  * @signature std::string argumentFileExtension(parser, pos[, argNo]);
@@ -874,7 +874,7 @@ inline std::string getArgumentFileExtension(ArgumentParser const & me,
                                             unsigned argumentPosition,
                                             unsigned argNo = 0)
 {
-    SEQAN_CHECK(me.argumentList.size() > argumentPosition,
+    SEQAN2_CHECK(me.argumentList.size() > argumentPosition,
                 "Argument Parser has only %d arguments.",
                 me.argumentList.size());
 
@@ -888,7 +888,7 @@ inline std::string getArgumentFileExtension(ArgumentParser const & me,
 
 /*!
  * @fn ArgumentParser#getOptionValues
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Returns all values of an option given on the command line.
  *
  * @signature TVector getOptionValues(parser, name);
@@ -902,7 +902,7 @@ inline std::string getArgumentFileExtension(ArgumentParser const & me,
 inline std::vector<std::string> const & getOptionValues(ArgumentParser const & me,
                                                         std::string const & name)
 {
-    SEQAN_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
+    SEQAN2_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
     return getArgumentValues(getOption(me, name));
 }
 
@@ -912,7 +912,7 @@ inline std::vector<std::string> const & getOptionValues(ArgumentParser const & m
 
 /*!
  * @fn ArgumentParser#getArgumentValues
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Returns all values of an argument given on the command line.
  *
  * @signature TVector getArgumentValues(parser, pos);
@@ -926,7 +926,7 @@ inline std::vector<std::string> const & getOptionValues(ArgumentParser const & m
 inline std::vector<std::string> const & getArgumentValues(ArgumentParser const & me,
                                                           unsigned argumentPosition)
 {
-    SEQAN_CHECK(me.argumentList.size() > argumentPosition,
+    SEQAN2_CHECK(me.argumentList.size() > argumentPosition,
                 "Argument Parser has only %d arguments.",
                 me.argumentList.size());
     return getArgumentValues(getArgument(me, argumentPosition));
@@ -938,7 +938,7 @@ inline std::vector<std::string> const & getArgumentValues(ArgumentParser const &
 
 /*!
  * @fn ArgumentParser#setDefaultValue
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Set the default value of an option of an ArgumentParser.
  *
  * @signature void setDefaultValue(parser, name, v);
@@ -953,7 +953,7 @@ inline void setDefaultValue(ArgumentParser & me,
                             std::string const & name,
                             const TValue & value)
 {
-    SEQAN_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
+    SEQAN2_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
     setDefaultValue(getOption(me, name), value);
 }
 
@@ -963,7 +963,7 @@ inline void setDefaultValue(ArgumentParser & me,
 
 /*!
  * @fn ArgumentParser#addDefaultValue
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Add/append a value to the default values for an option in an ArgumentParser.
  *
  * @signature void addDefaultValue(parser, name, v);
@@ -978,7 +978,7 @@ inline void addDefaultValue(ArgumentParser & me,
                             std::string const & name,
                             const TValue & value)
 {
-    SEQAN_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
+    SEQAN2_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
     addDefaultValue(getOption(me, name), value);
 }
 
@@ -988,7 +988,7 @@ inline void addDefaultValue(ArgumentParser & me,
 
 /*!
  * @fn ArgumentParser#setMinValue
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Set smallest allowed value for an option or argument of an ArgumentParser.
  *
  * @signature void setMinValue(parser, name, v);
@@ -1008,7 +1008,7 @@ inline void setMinValue(ArgumentParser & me,
                         std::string const & name,
                         std::string const & _minValue)
 {
-    SEQAN_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
+    SEQAN2_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
     setMinValue(getOption(me, name), _minValue);
 }
 
@@ -1016,7 +1016,7 @@ inline void setMinValue(ArgumentParser & me,
                         unsigned argumentPosition,
                         std::string const & _minValue)
 {
-    SEQAN_CHECK(me.argumentList.size() > argumentPosition,
+    SEQAN2_CHECK(me.argumentList.size() > argumentPosition,
                 "Argument Parser has only %d arguments.",
                 me.argumentList.size());
     setMinValue(getArgument(me, argumentPosition), _minValue);
@@ -1028,7 +1028,7 @@ inline void setMinValue(ArgumentParser & me,
 
 /*!
  * @fn ArgumentParser#setMaxValue
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Set largest allowed value for an option or argument of an ArgumentParser.
  *
  * @signature void setMaxValue(parser, name, v);
@@ -1048,7 +1048,7 @@ inline void setMaxValue(ArgumentParser & me,
                         std::string const & name,
                         std::string const & _maxValue)
 {
-    SEQAN_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
+    SEQAN2_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
     setMaxValue(getOption(me, name), _maxValue);
 }
 
@@ -1056,7 +1056,7 @@ inline void setMaxValue(ArgumentParser & me,
                         unsigned argumentPosition,
                         std::string const & _minValue)
 {
-    SEQAN_CHECK(me.argumentList.size() > argumentPosition,
+    SEQAN2_CHECK(me.argumentList.size() > argumentPosition,
                 "Argument Parser has only %d arguments.",
                 me.argumentList.size());
     setMaxValue(getArgument(me, argumentPosition), _minValue);
@@ -1068,7 +1068,7 @@ inline void setMaxValue(ArgumentParser & me,
 
 /*!
  * @fn ArgumentParser#setValidValues
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Set valid values for an argumetn or option of an ArgumentParser.
  *
  * @signature void setValidValues(parser, name, values);
@@ -1085,7 +1085,7 @@ inline void setValidValues(ArgumentParser & me,
                            std::string const & name,
                            std::vector<std::string> const & values)
 {
-    SEQAN_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
+    SEQAN2_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
     setValidValues(getOption(me, name), values);
     _copyValidValuesToFileExt(me, name);
 }
@@ -1094,7 +1094,7 @@ inline void setValidValues(ArgumentParser & me,
                            std::string const & name,
                            std::string const & values)
 {
-    SEQAN_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
+    SEQAN2_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
     setValidValues(getOption(me, name), values);
     _copyValidValuesToFileExt(me, name);
 }
@@ -1103,7 +1103,7 @@ inline void setValidValues(ArgumentParser & me,
                            unsigned argumentPosition,
                            std::vector<std::string> const & values)
 {
-    SEQAN_CHECK(me.argumentList.size() > argumentPosition,
+    SEQAN2_CHECK(me.argumentList.size() > argumentPosition,
                 "Argument Parser has only %d arguments.",
                 me.argumentList.size());
     setValidValues(getArgument(me, argumentPosition), values);
@@ -1114,7 +1114,7 @@ inline void setValidValues(ArgumentParser & me,
                            unsigned argumentPosition,
                            std::string const & values)
 {
-    SEQAN_CHECK(me.argumentList.size() > argumentPosition,
+    SEQAN2_CHECK(me.argumentList.size() > argumentPosition,
                 "Argument Parser has only %d arguments.",
                 me.argumentList.size());
     setValidValues(getArgument(me, argumentPosition), values);
@@ -1127,7 +1127,7 @@ inline void setValidValues(ArgumentParser & me,
 
 /*!
  * @fn ArgumentParser#setHelpText
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Set the help text of an option or argument.
  *
  * @signature void setHelpText(parser, name, text);
@@ -1143,7 +1143,7 @@ inline void setHelpText(ArgumentParser & me,
                         std::string const & name,
                         std::string const & text)
 {
-    SEQAN_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
+    SEQAN2_CHECK(hasOption(me, name), "Unknown option: %s", toCString(name));
     setHelpText(getOption(me, name), text);
 }
 
@@ -1151,7 +1151,7 @@ inline void setHelpText(ArgumentParser & me,
                         unsigned argumentPosition,
                         std::string const & text)
 {
-    SEQAN_CHECK(me.argumentList.size() > argumentPosition,
+    SEQAN2_CHECK(me.argumentList.size() > argumentPosition,
                 "Argument Parser has only %d arguments.",
                 me.argumentList.size());
     setHelpText(getArgument(me, argumentPosition), text);
@@ -1163,7 +1163,7 @@ inline void setHelpText(ArgumentParser & me,
 
 /*!
  * @fn ArgumentParser#getFileExtensions
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Returns file format extension given a format tag.
  *
  * @signature TVector getFormatExtension(tag);
@@ -1187,6 +1187,6 @@ getFileExtensions(T const formatTag)
 }
 
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif // SEQAN_INCLUDE_ARG_PARSE_ARGUMENT_PARSER_H_
+#endif // SEQAN2_INCLUDE_ARG_PARSE_ARGUMENT_PARSER_H_

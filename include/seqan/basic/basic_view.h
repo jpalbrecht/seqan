@@ -32,10 +32,10 @@
 // Author: Enrico Siragusa <enrico.siragusa@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_BASIC_VIEW_H
-#define SEQAN_BASIC_VIEW_H
+#ifndef SEQAN2_BASIC_VIEW_H
+#define SEQAN2_BASIC_VIEW_H
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Metafunctions
@@ -47,7 +47,7 @@ namespace seqan {
 
 /*!
  * @mfn View
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Converts a given type into its view type.
  *
  * @signature View<TObject>::Type;
@@ -83,7 +83,7 @@ struct View<TObject const>
 
 /*!
  * @mfn RemoveView
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Converts a given view type into its original type.
  *
  * @signature RemoveView<TObject>::Type;
@@ -114,7 +114,7 @@ struct RemoveView<TObject const>
 
 /*!
  * @mfn IsView
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Tests if a given type is a view type.
  *
  * @signature IsView<TObject>::Type;
@@ -152,7 +152,7 @@ struct IfView
 
 /*!
  * @fn TView view
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Returns the view of a given object.
  *
  * @signature TView view(object);
@@ -185,6 +185,6 @@ view(TObject * object)
     return typename View<TObject>::Type(value(object));
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_BASIC_VIEW_H
+#endif  // #ifndef SEQAN2_BASIC_VIEW_H

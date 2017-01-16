@@ -32,17 +32,17 @@
 // Author: Stephan Aiche <stephan.aiche@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ARG_PARSE_ARG_PARSE_ARGUMENT_H_
-#define SEQAN_INCLUDE_SEQAN_ARG_PARSE_ARG_PARSE_ARGUMENT_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ARG_PARSE_ARG_PARSE_ARGUMENT_H_
+#define SEQAN2_INCLUDE_SEQAN2_ARG_PARSE_ARG_PARSE_ARGUMENT_H_
 
-#include <seqan/arg_parse/arg_parse_exceptions.h>
-#include <seqan/arg_parse/arg_parse_type_support.h>
+#include <seqan2/arg_parse/arg_parse_exceptions.h>
+#include <seqan2/arg_parse/arg_parse_type_support.h>
 
 #include <string>
 #include <vector>
 #include <sstream>
 
-namespace seqan {
+namespace seqan2 {
 
 // ==========================================================================
 // Forwards
@@ -62,7 +62,7 @@ inline std::string getFileExtension(ArgParseArgument const & me, unsigned pos);
 /*!
  * @class ArgParseArgument
  * @implements AssignableConcept
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Information for a specific command line argument.
  *
  * @signature class ArgParseArgument
@@ -70,7 +70,7 @@ inline std::string getFileExtension(ArgParseArgument const & me, unsigned pos);
 
 /*!
  * @enum ArgParseArgument::ArgumentType
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Define the type of an @link ArgParseArgument @endlink.
  *
  * @signature enum ArgParseArgument::ArgumentType;
@@ -281,7 +281,7 @@ inline std::string _typeToString(ArgParseArgument const & me)
 
 /*!
  * @fn ArgParseArgument#isListArgument
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  *
  * @brief Returns whether the argument can be given more than one time.
  *
@@ -303,7 +303,7 @@ inline bool isListArgument(ArgParseArgument const & me)
 
 /*!
  * @fn ArgParseArgument#isBooleanArgument
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Returns whether the argument is a bool.
  *
  * @signature bool isBooleanArgument(arg);
@@ -324,7 +324,7 @@ inline bool isBooleanArgument(ArgParseArgument const & me)
 
 /*!
  * @fn ArgParseArgument#isStringArgument
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  *
  * @brief Returns whether the argument is a string.
  *
@@ -352,7 +352,7 @@ inline bool isStringArgument(ArgParseArgument const & me)
 
 /*!
  * @fn ArgParseArgument#isIntegerArgument
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Returns whether the argument is an integer.
  *
  * @signature bool isIntegerArgument(arg);
@@ -373,7 +373,7 @@ inline bool isIntegerArgument(ArgParseArgument const & me)
 
 /*!
  * @fn ArgParseArgument#isInt64Argument
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Returns whether the argument is a 64 bit integer.
  *
  * @signature bool isInt64Argument(arg);
@@ -394,7 +394,7 @@ inline bool isInt64Argument(ArgParseArgument const & me)
 
 /*!
  * @fn ArgParseArgument#isDoubleArgument
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Returns whether the argument is a double integer.
  *
  * @signature bool isDoubleArgument(arg);
@@ -415,7 +415,7 @@ inline bool isDoubleArgument(ArgParseArgument const & me)
 
 /*!
  * @fn ArgParseArgument#isInputFileArgument
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Returns whether the argument is a input file.
  *
  * @signature bool isInputFileArgument(arg);
@@ -437,7 +437,7 @@ inline bool isInputFileArgument(ArgParseArgument const & me)
 
 /*!
  * @fn ArgParseArgument#isOutputFileArgument
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Returns whether the argument is a output file.
  *
  * @signature bool isOutputFileArgument(arg);
@@ -459,7 +459,7 @@ inline bool isOutputFileArgument(ArgParseArgument const & me)
 
 /*!
  * @fn ArgParseArgument#isOutputPrefixArgument
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Returns whether the argument is an output prefix.
  *
  * @signature bool isOutputPrefixArgument(arg);
@@ -480,7 +480,7 @@ inline bool isOutputPrefixArgument(ArgParseArgument const & me)
 
 /*!
  * @fn ArgParseArgument#isInputPrefixArgument
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Returns whether the argument is an input prefix argument.
  *
  * @signature bool isInputPrefixArgument(arg);
@@ -501,7 +501,7 @@ inline bool isInputPrefixArgument(ArgParseArgument const & me)
 
 /*!
  * @fn ArgParseArgument#getArgumentType
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Return the <tt>ArgParseArgument::ArgumentType</tt>.
  *
  * @signature std::string getArgumentType(arg);
@@ -522,7 +522,7 @@ inline ArgParseArgument::ArgumentType getArgumentType(ArgParseArgument const & m
 
 /*!
  * @fn ArgParseArgument#getArgumentTypeAsString
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Return argument type As a string.
  *
  * @signature std::string getArgumentTypeAsString(arg);
@@ -543,7 +543,7 @@ inline std::string getArgumentTypeAsString(ArgParseArgument const & me)
 
 /*!
  * @fn ArgParseArgument#getArgumentLabel
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Return argument label.
  *
  * @signature std::string getArgumentLabel(arg);
@@ -563,12 +563,12 @@ inline std::string getArgumentLabel(ArgParseArgument const & me)
 // ----------------------------------------------------------------------------
 
 // this methods ensures that the given arguments define a valid interval
-// otherwise it will trigger a SEQAN_CHECK failure
+// otherwise it will trigger a SEQAN2_CHECK failure
 template <typename TIntervalBorder>
 inline void _intervalAssert(const std::string minValueAsString, const std::string maxValueAsString)
 {
     if (minValueAsString != "" && maxValueAsString != "")
-        SEQAN_CHECK(_cast<TIntervalBorder>(minValueAsString) <= _cast<TIntervalBorder>(maxValueAsString),
+        SEQAN2_CHECK(_cast<TIntervalBorder>(minValueAsString) <= _cast<TIntervalBorder>(maxValueAsString),
                     "The interval [%s:%s] is invalid. Please specify a valid interval.",
                     minValueAsString.c_str(),
                     maxValueAsString.c_str());
@@ -580,7 +580,7 @@ inline void _intervalAssert(const std::string minValueAsString, const std::strin
 
 /*!
  * @fn ArgParseArgument#setMinValue
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Set smallest allowed value for the argument.
  *
  * @signature void setMinValue(arg, minValue);
@@ -593,24 +593,24 @@ inline void setMinValue(ArgParseArgument & me, const std::string minValue)
 {
     if (isDoubleArgument(me))
     {
-        SEQAN_CHECK(_isCastable<double>(minValue), "The maximal value for a double argument must be double.");
+        SEQAN2_CHECK(_isCastable<double>(minValue), "The maximal value for a double argument must be double.");
         _intervalAssert<double>(minValue, me.maxValue);
         me.minValue = minValue;
     }
     else if (isIntegerArgument(me))
     {
-        SEQAN_CHECK(_isCastable<int>(minValue), "The maximal value for an integer argument must be an integer");
+        SEQAN2_CHECK(_isCastable<int>(minValue), "The maximal value for an integer argument must be an integer");
         _intervalAssert<int>(minValue, me.maxValue);
         me.minValue = minValue;
     }
     else if (isInt64Argument(me))
     {
-        SEQAN_CHECK(_isCastable<int64_t>(minValue), "The maximal value for a 64 integer argument must be a 64 bit integer");
+        SEQAN2_CHECK(_isCastable<int64_t>(minValue), "The maximal value for a 64 integer argument must be a 64 bit integer");
         _intervalAssert<int64_t>(minValue, me.maxValue);
         me.minValue = minValue;
     }
     else
-        SEQAN_FAIL("min/max values are not applicable to non numeric arguments");
+        SEQAN2_FAIL("min/max values are not applicable to non numeric arguments");
 }
 
 // ----------------------------------------------------------------------------
@@ -619,7 +619,7 @@ inline void setMinValue(ArgParseArgument & me, const std::string minValue)
 
 /*!
  * @fn ArgParseArgument#setMaxValue
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Set smallest allowed value for the argument.
  *
  * @signature void setMaxValue(arg, maxValue);
@@ -632,24 +632,24 @@ inline void setMaxValue(ArgParseArgument & me, const std::string maxValue)
 {
     if (isDoubleArgument(me))
     {
-        SEQAN_CHECK(_isCastable<double>(maxValue), "The maximal value for a double argument must be double.");
+        SEQAN2_CHECK(_isCastable<double>(maxValue), "The maximal value for a double argument must be double.");
         _intervalAssert<double>(me.minValue, maxValue);
         me.maxValue = maxValue;
     }
     else if (isIntegerArgument(me))
     {
-        SEQAN_CHECK(_isCastable<int>(maxValue), "The maximal value for an integer argument must be an integer");
+        SEQAN2_CHECK(_isCastable<int>(maxValue), "The maximal value for an integer argument must be an integer");
         _intervalAssert<int>(me.minValue, maxValue);
         me.maxValue = maxValue;
     }
     else if (isInt64Argument(me))
     {
-        SEQAN_CHECK(_isCastable<int>(maxValue), "The maximal value for a 64 bit integer argument must be an 64 bit integer");
+        SEQAN2_CHECK(_isCastable<int>(maxValue), "The maximal value for a 64 bit integer argument must be an 64 bit integer");
         _intervalAssert<int>(me.minValue, maxValue);
         me.maxValue = maxValue;
     }
     else
-        SEQAN_FAIL("min/max values are not applicable to non numeric arguments");
+        SEQAN2_FAIL("min/max values are not applicable to non numeric arguments");
 }
 
 // ----------------------------------------------------------------------------
@@ -658,7 +658,7 @@ inline void setMaxValue(ArgParseArgument & me, const std::string maxValue)
 
 /*!
  * @fn ArgParseArgument#setValidValues
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Set list of valid values.
  *
  * @signature void setValidValues(arg, values);
@@ -676,7 +676,7 @@ inline void setMaxValue(ArgParseArgument & me, const std::string maxValue)
  * An example of setting allowed values for a string option.
  *
  * @code{.cpp}
- * seqan::ArgParseArgument stringArg(seqan::ArgParseArgument::STRING);
+ * seqan2::ArgParseArgument stringArg(seqan2::ArgParseArgument::STRING);
  * setValidValues(stringArg, "one two three");  // one of {"one", "two", "three"}
  *
  * std::vector<std::string> values;
@@ -689,7 +689,7 @@ inline void setMaxValue(ArgParseArgument & me, const std::string maxValue)
  * the example would be the same for output files.
  *
  * @code{.cpp}
- * seqan::ArgParseArgument fileArg(seqan::ArgParseArgument::INPUT_FILE);
+ * seqan2::ArgParseArgument fileArg(seqan2::ArgParseArgument::INPUT_FILE);
  * setValidValues(fileArg, "fq fastq");  // file must end in ".fq" or ".fastq"
  *
  * std::vector<std::string> values;
@@ -702,7 +702,7 @@ inline void setMaxValue(ArgParseArgument & me, const std::string maxValue)
 inline void setValidValues(ArgParseArgument & me, std::vector<std::string> const & values)
 {
     if (isDoubleArgument(me) || isIntegerArgument(me) || isBooleanArgument(me))
-        SEQAN_FAIL("ArgParseArgument does not support setting valid values for numeric or boolean arguments.");
+        SEQAN2_FAIL("ArgParseArgument does not support setting valid values for numeric or boolean arguments.");
 
     me.validValues = values;
 }
@@ -710,7 +710,7 @@ inline void setValidValues(ArgParseArgument & me, std::vector<std::string> const
 inline void setValidValues(ArgParseArgument & me, std::string const & valuesString)
 {
     if (isDoubleArgument(me) || isIntegerArgument(me) || isBooleanArgument(me))
-        SEQAN_FAIL("ArgParseArgument does not support setting valid values for numeric or boolean arguments.");
+        SEQAN2_FAIL("ArgParseArgument does not support setting valid values for numeric or boolean arguments.");
 
     // convert array to String<std::string>
     std::vector<std::string> values;
@@ -740,7 +740,7 @@ inline void setValidValues(ArgParseArgument & me, std::string const & valuesStri
 
 /*!
  * @fn ArgParseArgument#setHelpText
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Set the help text for an ArgParseArgument.
  *
  * @signature void setHelpText(arg, text);
@@ -784,7 +784,7 @@ inline void _checkNumericArgument(ArgParseArgument const & me, std::string const
     {
         std::stringstream what;
         what << "the given value '" << value << "' cannot be casted to " << _typeToString(me);
-        SEQAN_THROW(ParseError(what.str()));
+        SEQAN2_THROW(ParseError(what.str()));
     }
 
     if (!_isInInterval<TNumerical>(value, me.minValue, me.maxValue))
@@ -794,7 +794,7 @@ inline void _checkNumericArgument(ArgParseArgument const & me, std::string const
              << (me.minValue != "" ? me.minValue : "-inf") << ":"
              << (me.maxValue != "" ? me.maxValue : "+inf") << "]";
 
-        SEQAN_THROW(ParseError(what.str()));
+        SEQAN2_THROW(ParseError(what.str()));
     }
 }
 
@@ -873,7 +873,7 @@ inline void _checkStringRestrictions(ArgParseArgument const & me, std::string co
             what << "]";
             if (i < me._fileExtensions.size())
                 what << "; the file extension was overridden to be '" << getFileExtension(me, i) << "'";
-            SEQAN_THROW(ParseError(what.str()));
+            SEQAN2_THROW(ParseError(what.str()));
         }
     }
 }
@@ -884,7 +884,7 @@ inline void _checkStringRestrictions(ArgParseArgument const & me, std::string co
 
 inline void _checkBooleanValidValues(ArgParseArgument const & me, std::string const & value)
 {
-    SEQAN_ASSERT(isBooleanArgument(me));
+    SEQAN2_ASSERT(isBooleanArgument(me));
 
     std::string value_up{value};
     std::transform(value.begin(), value.end(), value_up.begin(), ::toupper); // allow for lowercase letters
@@ -903,7 +903,7 @@ inline void _checkBooleanValidValues(ArgParseArgument const & me, std::string co
             what << *validValue;
         }
         what << "]";
-        SEQAN_THROW(ParseError(what.str()));
+        SEQAN2_THROW(ParseError(what.str()));
     }
 }
 
@@ -968,7 +968,7 @@ inline void _assignArgumentValue(ArgParseArgument & me, std::string const & valu
 
 /*!
  * @fn ArgParseArgument#getArgumentValue
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Return the value of the argument.
  *
  * @signature std::string getArgumentValue(arg[, argNo]);
@@ -982,7 +982,7 @@ inline void _assignArgumentValue(ArgParseArgument & me, std::string const & valu
 
 inline std::string const & getArgumentValue(ArgParseArgument const & me, unsigned argNo)
 {
-    SEQAN_CHECK(argNo < me.value.size() || argNo < me.defaultValue.size(),
+    SEQAN2_CHECK(argNo < me.value.size() || argNo < me.defaultValue.size(),
                 "ArgParseArgument: No value set for index %d", argNo);
 
     if (argNo < me.value.size())
@@ -1002,7 +1002,7 @@ inline std::string const & getArgumentValue(ArgParseArgument const & me)
 
 /*!
  * @fn ArgParseArgument#getArgumentValues
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Return all values of the argument.
  *
  * @signature std::vector<std::string> getArgumentValue(arg);
@@ -1026,7 +1026,7 @@ inline std::vector<std::string> const & getArgumentValues(ArgParseArgument const
 
 /*!
  * @fn ArgParseArgument#hasArgumentValue
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Return whether a value is available.
  *
  * @signature bool hasValue(arg[, pos]);
@@ -1053,7 +1053,7 @@ inline bool hasValue(ArgParseArgument const & arg)
 
 /*!
  * @fn ArgParseArgument#isSet
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Returns true if a value was assigned to the argument.
  *
  * @signature bool isSet(arg):
@@ -1074,7 +1074,7 @@ inline bool isSet(ArgParseArgument const & me)
 
 /*!
  * @fn ArgParseArgument#hasDefault
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Returns whether the argument has a default value.
  *
  * @signature bool hasDefault(arg);
@@ -1095,7 +1095,7 @@ inline bool hasDefault(ArgParseArgument const & me)
 
 /*!
  * @fn ArgParseArgument#numberOfAllowedValues
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Returns the number of allowed values for this ArgParseArgument.
  *
  * @signature unsigned numberOfAllowedValues(arg);
@@ -1116,7 +1116,7 @@ inline unsigned numberOfAllowedValues(ArgParseArgument const & me)
 
 /*!
  * @fn ArgParseArgument#getFileExtension
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Returns the file extension for the given file argument.
  *
  * Only valid when argument is an INPUT_FILE or OUTPUT_FILE.
@@ -1138,7 +1138,7 @@ inline unsigned numberOfAllowedValues(ArgParseArgument const & me)
 inline std::string getFileExtension(ArgParseArgument const & me, unsigned pos = 0)
 {
     if (!isInputFileArgument(me) && !isOutputFileArgument(me))
-        SEQAN_FAIL("Cannot get file extension from non-file argument/option.");
+        SEQAN2_FAIL("Cannot get file extension from non-file argument/option.");
 
     // Short-circuit to override file extension if set.
     if (pos < me._fileExtensions.size())
@@ -1175,6 +1175,6 @@ inline std::string getFileExtension(ArgParseArgument const & me, unsigned pos = 
     return value.substr(dotPos + 1);
 }
 
-} // namespace seqan
+} // namespace seqan2
 
-#endif // SEQAN_INCLUDE_SEQAN_ARG_PARSE_ARG_PARSE_ARGUMENT_H_
+#endif // SEQAN2_INCLUDE_SEQAN2_ARG_PARSE_ARG_PARSE_ARGUMENT_H_

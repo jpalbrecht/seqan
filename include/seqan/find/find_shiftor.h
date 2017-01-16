@@ -32,10 +32,10 @@
 // Author: Andreas Gogol-Doering <andreas.doering@mdc-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_FIND_SHIFTOR_H
-#define SEQAN_HEADER_FIND_SHIFTOR_H
+#ifndef SEQAN2_HEADER_FIND_SHIFTOR_H
+#define SEQAN2_HEADER_FIND_SHIFTOR_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -45,7 +45,7 @@ namespace seqan
 /*!
  * @class ShiftOrPattern
  * @extends Pattern
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Exact string matching using bit parallelism.
  *
  * The Shift-Or algorithm is applicable to search small patterns in texts using a small alphabet.
@@ -84,7 +84,7 @@ public:
 
     // Custom c'tor setting a needle.
     template <typename TNeedle2>
-    Pattern(TNeedle2 && ndl, SEQAN_CTOR_DISABLE_IF(IsSameType<typename std::remove_reference<TNeedle2>::type const &, Pattern const &>))
+    Pattern(TNeedle2 && ndl, SEQAN2_CTOR_DISABLE_IF(IsSameType<typename std::remove_reference<TNeedle2>::type const &, Pattern const &>))
     {
         setHost(*this, std::forward<TNeedle2>(ndl));
         ignoreUnusedVariableWarning(dummy);
@@ -273,6 +273,6 @@ find(TFinder & finder, Pattern<TNeedle, ShiftOr> & me)
     }
 }
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_FIND_SHIFTOR_H
+#endif //#ifndef SEQAN2_HEADER_FIND_SHIFTOR_H

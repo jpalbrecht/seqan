@@ -32,15 +32,15 @@
 // Author: Tobias Rausch <rausch@embl.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_SEQAN_CONSENSUS_SH
-#define SEQAN_HEADER_SEQAN_CONSENSUS_SH
+#ifndef SEQAN2_HEADER_SEQAN2_CONSENSUS_SH
+#define SEQAN2_HEADER_SEQAN2_CONSENSUS_SH
 
 
-namespace seqan
+namespace seqan2
 {
 
 
-static const int SEQAN_CONSENSUS_UNITY = 1 << 20;
+static const int SEQAN2_CONSENSUS_UNITY = 1 << 20;
 
 //////////////////////////////////////////////////////////////////////////////
 // Consensus score tags
@@ -98,7 +98,7 @@ public:
 
 /*!
  * @class ConsensusScoreSequenceEntry
- * @headerfile <seqan/consensus.h>
+ * @headerfile <seqan2/consensus.h>
  * @brief Wrapper for a pointer to a sequence and a position in this sequence.
  *
  * @signature template <typename TSequence>
@@ -270,7 +270,7 @@ assignProfile(Score<TValue, ConsensusScore>& me,
         for(TSize i = 0; i<alphSize; ++i)
             if ((*it).count[i] > maxCount) maxCount = (*it).count[i];
         for(TSize i = 0; i<alphSize; ++i, ++itConsSet)
-            *itConsSet = ((*it).count[i] == maxCount)? 0 : (-SEQAN_CONSENSUS_UNITY);
+            *itConsSet = ((*it).count[i] == maxCount)? 0 : (-SEQAN2_CONSENSUS_UNITY);
     }
 }
 
@@ -282,7 +282,7 @@ scoreGapExtendHorizontal(
     ConsensusScoreSequenceEntry<TSeq1> const & entry1,
     ConsensusScoreSequenceEntry<TSeq2> const & entry2)
 {
-    return ((int)position(entry2) < 0) ? -SEQAN_CONSENSUS_UNITY : me.consensus_set[position(entry1) * (ValueSize<typename Value<TSeq1>::Type>::VALUE) + (ValueSize<typename Value<TSeq1>::Type>::VALUE - 1)];
+    return ((int)position(entry2) < 0) ? -SEQAN2_CONSENSUS_UNITY : me.consensus_set[position(entry1) * (ValueSize<typename Value<TSeq1>::Type>::VALUE) + (ValueSize<typename Value<TSeq1>::Type>::VALUE - 1)];
 }
 
 template <typename TValue, typename TSeq1, typename TSeq2>
@@ -292,7 +292,7 @@ scoreGapOpenHorizontal(
     ConsensusScoreSequenceEntry<TSeq1> const & entry1,
     ConsensusScoreSequenceEntry<TSeq2> const & entry2)
 {
-    return ((int)position(entry2) < 0) ? -2 * SEQAN_CONSENSUS_UNITY : 2 * me.consensus_set[position(entry1) * (ValueSize<typename Value<TSeq1>::Type>::VALUE) + (ValueSize<typename Value<TSeq1>::Type>::VALUE - 1)];
+    return ((int)position(entry2) < 0) ? -2 * SEQAN2_CONSENSUS_UNITY : 2 * me.consensus_set[position(entry1) * (ValueSize<typename Value<TSeq1>::Type>::VALUE) + (ValueSize<typename Value<TSeq1>::Type>::VALUE - 1)];
 }
 
 template <typename TValue, typename TSeq1, typename TSeq2>
@@ -302,7 +302,7 @@ scoreGapExtendVertical(
     ConsensusScoreSequenceEntry<TSeq1> const & /*entry1*/,
     ConsensusScoreSequenceEntry<TSeq2> const & /*entry2*/)
 {
-    return -SEQAN_CONSENSUS_UNITY;
+    return -SEQAN2_CONSENSUS_UNITY;
 }
 
 template <typename TValue, typename TSeq1, typename TSeq2>
@@ -312,7 +312,7 @@ scoreGapOpenVertical(
     ConsensusScoreSequenceEntry<TSeq1> const & /*entry1*/,
     ConsensusScoreSequenceEntry<TSeq2> const & /*entry2*/)
 {
-    return -2 * SEQAN_CONSENSUS_UNITY;
+    return -2 * SEQAN2_CONSENSUS_UNITY;
 }
 
 
@@ -391,7 +391,7 @@ scoreGapExtendHorizontal(
     ConsensusScoreSequenceEntry<TSeq1> const & entry1,
     ConsensusScoreSequenceEntry<TSeq2> const & entry2)
 {
-    return (( (int)position(entry2) < 0) || (!me.sum[position(entry1)])) ? -SEQAN_CONSENSUS_UNITY : ((TValue) (( (int)value(entry1).count[ValueSize<typename Value<TSeq1>::Type>::VALUE - 1] - me.sum[position(entry1)]) * SEQAN_CONSENSUS_UNITY) / me.sum[position(entry1)]);
+    return (( (int)position(entry2) < 0) || (!me.sum[position(entry1)])) ? -SEQAN2_CONSENSUS_UNITY : ((TValue) (( (int)value(entry1).count[ValueSize<typename Value<TSeq1>::Type>::VALUE - 1] - me.sum[position(entry1)]) * SEQAN2_CONSENSUS_UNITY) / me.sum[position(entry1)]);
 }
 
 template <typename TValue, typename TSeq1, typename TSeq2>
@@ -401,7 +401,7 @@ scoreGapOpenHorizontal(
     ConsensusScoreSequenceEntry<TSeq1> const & entry1,
     ConsensusScoreSequenceEntry<TSeq2> const & entry2)
 {
-    return (( (int)position(entry2) < 0) || (!me.sum[position(entry1)])) ? -SEQAN_CONSENSUS_UNITY : ((TValue) (( (int) value(entry1).count[ValueSize<typename Value<TSeq1>::Type>::VALUE - 1] - me.sum[position(entry1)]) * SEQAN_CONSENSUS_UNITY) / me.sum[position(entry1)]);
+    return (( (int)position(entry2) < 0) || (!me.sum[position(entry1)])) ? -SEQAN2_CONSENSUS_UNITY : ((TValue) (( (int) value(entry1).count[ValueSize<typename Value<TSeq1>::Type>::VALUE - 1] - me.sum[position(entry1)]) * SEQAN2_CONSENSUS_UNITY) / me.sum[position(entry1)]);
 }
 
 template <typename TValue, typename TSeq1, typename TSeq2>
@@ -411,7 +411,7 @@ scoreGapExtendVertical(
     ConsensusScoreSequenceEntry<TSeq1> const & /*entry1*/,
     ConsensusScoreSequenceEntry<TSeq2> const & /*entry2*/)
 {
-    return -SEQAN_CONSENSUS_UNITY;
+    return -SEQAN2_CONSENSUS_UNITY;
 }
 
 template <typename TValue, typename TSeq1, typename TSeq2>
@@ -421,7 +421,7 @@ scoreGapOpenVertical(
     ConsensusScoreSequenceEntry<TSeq1> const & /*entry1*/,
     ConsensusScoreSequenceEntry<TSeq2> const & /*entry2*/)
 {
-    return -SEQAN_CONSENSUS_UNITY;
+    return -SEQAN2_CONSENSUS_UNITY;
 }
 
 template <typename TValue, typename TSeq1, typename TSeq2>
@@ -430,7 +430,7 @@ score(Score<TValue, FractionalScore> const & me,
       ConsensusScoreSequenceEntry<TSeq1> const & entry1,
       ConsensusScoreSequenceEntry<TSeq2> const & entry2)
 {
-    return (!me.sum[position(entry1)]) ? -SEQAN_CONSENSUS_UNITY : ((TValue) (((int)value(entry1).count[value(entry2).count[0]] - me.sum[position(entry1)]) * SEQAN_CONSENSUS_UNITY) / me.sum[position(entry1)]);
+    return (!me.sum[position(entry1)]) ? -SEQAN2_CONSENSUS_UNITY : ((TValue) (((int)value(entry1).count[value(entry2).count[0]] - me.sum[position(entry1)]) * SEQAN2_CONSENSUS_UNITY) / me.sum[position(entry1)]);
 }
 
 

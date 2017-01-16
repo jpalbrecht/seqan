@@ -30,10 +30,10 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_SHAPE_MINIMIZER_H
-#define SEQAN_HEADER_SHAPE_MINIMIZER_H
+#ifndef SEQAN2_HEADER_SHAPE_MINIMIZER_H
+#define SEQAN2_HEADER_SHAPE_MINIMIZER_H
 
-namespace seqan
+namespace seqan2
 {
 
 struct ReverseComplementTag_;
@@ -110,8 +110,8 @@ _minHash(Shape<TValue, MinimizerShape<TSPAN, TWEIGHT, TSpec> > &me, TString cons
     typedef typename Iterator<TString const, Standard>::Type                TIter;
     typedef typename Value<Shape<TValue, UngappedShape<TWEIGHT> > >::Type   THValue;
   
-    SEQAN_ASSERT_GT((unsigned)me.span, 0u);
-    SEQAN_ASSERT_GT((unsigned)me.span, (unsigned)me.weight); 
+    SEQAN2_ASSERT_GT((unsigned)me.span, 0u);
+    SEQAN2_ASSERT_GT((unsigned)me.span, (unsigned)me.weight); 
 
     Shape<TValue, UngappedShape<TWEIGHT> > tmpShape;
 
@@ -174,6 +174,6 @@ hashNext(Shape<TValue, MinimizerShape<TSPAN, TWEIGHT, TSpec> > &me, TIter const 
 }
 
 
-}	// namespace seqan
+}	// namespace seqan2
 
 #endif

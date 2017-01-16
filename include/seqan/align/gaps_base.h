@@ -34,10 +34,10 @@
 
 // TODO(holtgrew): Switch to Host interface.
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_GAPS_BASE_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_GAPS_BASE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_GAPS_BASE_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_GAPS_BASE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -53,7 +53,7 @@ struct GapsIterator;
 
 /*!
  * @tag GapsSpecTag#ArrayGaps
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Tag for the Array Gaps specialization.
  *
  * @signature struct ArrayGaps_;
@@ -74,7 +74,7 @@ typedef Tag<ArrayGaps_> ArrayGaps;
 
 /*!
  * @tag GapDirectionTags#LeftOfViewPos
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Projects to the left side of the current view position.
  *
  * @signature struct LeftOfViewPos_;
@@ -86,7 +86,7 @@ typedef Tag<LeftOfViewPos_> LeftOfViewPos;
 
 /*!
  * @tag GapDirectionTags#RightOfViewPos
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Projects to the right side of the current view position.
  *
  * @signature struct RightOfViewPos_;
@@ -103,7 +103,7 @@ typedef Tag<RightOfViewPos_> RightOfViewPos;
 /*!
  * @class Gaps
  * @implements ContainerConcept
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Store the gapped version of a sequence.
  *
  * @signature template <typename TSequence, typename TSpec>
@@ -664,7 +664,7 @@ countGapOpens(TGaps const & gaps)
         it += std::max(countGaps(it), (TCount)1);
     }
 
-    SEQAN_ASSERT(it == itEnd);
+    SEQAN2_ASSERT(it == itEnd);
 
     return count;
 }
@@ -702,7 +702,7 @@ countGapExtensions(TGaps const & gaps)
         it += std::max(countGaps(it), (TCount)1);
     }
 
-    SEQAN_ASSERT(it == itEnd);
+    SEQAN2_ASSERT(it == itEnd);
 
     return count;
 }
@@ -1124,7 +1124,7 @@ void copyGaps(Gaps<TDestSource, TDestSpec> & dest, Gaps<TSourceSource, TSourceSp
             num = countCharacters(rhsIt);
         }
 
-        SEQAN_ASSERT_NOT((lhsIt == end(dest, Standard())) && num > 0);
+        SEQAN2_ASSERT_NOT((lhsIt == end(dest, Standard())) && num > 0);
     }
 }
 
@@ -1229,6 +1229,6 @@ inline bool operator!=(Gaps<TSequence, TSpec> const & lhs,
 }
 
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_GAPS_BASE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_GAPS_BASE_H_

@@ -34,30 +34,30 @@
 // Facade header for module alignment_free.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGNMENT_FREE_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGNMENT_FREE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGNMENT_FREE_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGNMENT_FREE_H_
 
 // ===========================================================================
 // Prerequisites.
 // ===========================================================================
 
-#include <seqan/basic.h>
-#include <seqan/file.h>
-#include <seqan/sequence.h>
-#include <seqan/statistics.h>
-#include <seqan/misc/edit_environment.h>
+#include <seqan2/basic.h>
+#include <seqan2/file.h>
+#include <seqan2/sequence.h>
+#include <seqan2/statistics.h>
+#include <seqan2/misc/edit_environment.h>
 
 // ===========================================================================
 // Module's headers.
 // ===========================================================================
 
-#include <seqan/alignment_free/alignment_free_base.h>
-#include <seqan/alignment_free/kmer_functions.h>
-#include <seqan/alignment_free/af_d2.h>
-#include <seqan/alignment_free/af_d2z.h>
-#include <seqan/alignment_free/af_d2star.h>
-#include <seqan/alignment_free/af_n2.h>
+#include <seqan2/alignment_free/alignment_free_base.h>
+#include <seqan2/alignment_free/kmer_functions.h>
+#include <seqan2/alignment_free/af_d2.h>
+#include <seqan2/alignment_free/af_d2z.h>
+#include <seqan2/alignment_free/af_d2star.h>
+#include <seqan2/alignment_free/af_n2.h>
 
-#include <seqan/alignment_free/alignment_free_comparison.h>
+#include <seqan2/alignment_free/alignment_free_comparison.h>
 
-#endif  // SEQAN_INCLUDE_SEQAN_ALIGNMENT_FREE_H_
+#endif  // SEQAN2_INCLUDE_SEQAN2_ALIGNMENT_FREE_H_

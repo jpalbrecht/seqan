@@ -34,10 +34,10 @@
 // Jst traversal buffer used to construct sequence contents.
 // ==========================================================================
 
-#ifndef EXTRAS_INCLUDE_SEQAN_JOURNALED_STRING_TREE_JOURNALED_SEQUENCE_BUFFER_H_
-#define EXTRAS_INCLUDE_SEQAN_JOURNALED_STRING_TREE_JOURNALED_SEQUENCE_BUFFER_H_
+#ifndef EXTRAS_INCLUDE_SEQAN2_JOURNALED_STRING_TREE_JOURNALED_SEQUENCE_BUFFER_H_
+#define EXTRAS_INCLUDE_SEQAN2_JOURNALED_STRING_TREE_JOURNALED_SEQUENCE_BUFFER_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -176,9 +176,9 @@ journalDelta(TTarget & target,
     typedef typename Position<TJournalEntries>::Type TEntryPos;
 
     TEntriesIterator entryIt = end(_journalEntries(target), Standard()) -1;
-    SEQAN_ASSERT_EQ(entryIt->segmentSource, SOURCE_ORIGINAL);
-    SEQAN_ASSERT_GEQ(refPos, entryIt->physicalOriginPosition);
-    SEQAN_ASSERT_GT(entryIt->physicalOriginPosition + entryIt->length, refPos);
+    SEQAN2_ASSERT_EQ(entryIt->segmentSource, SOURCE_ORIGINAL);
+    SEQAN2_ASSERT_GEQ(refPos, entryIt->physicalOriginPosition);
+    SEQAN2_ASSERT_GT(entryIt->physicalOriginPosition + entryIt->length, refPos);
 
     TEntryPos virtPos = entryIt->virtualPosition + (refPos - entryIt->physicalOriginPosition);
     appendValue(target._insertionBuffer, snp);
@@ -204,9 +204,9 @@ journalDelta(TTarget & target,
     typedef typename Position<TJournalEntries>::Type TEntryPos;
 
     TEntryIterator entryIt = end(target._journalEntries, Standard()) - 1;
-    SEQAN_ASSERT_EQ(entryIt->segmentSource, SOURCE_ORIGINAL);
-    SEQAN_ASSERT_GEQ(refPos, entryIt->physicalOriginPosition);
-    SEQAN_ASSERT_GT(entryIt->physicalOriginPosition + entryIt->length, refPos);
+    SEQAN2_ASSERT_EQ(entryIt->segmentSource, SOURCE_ORIGINAL);
+    SEQAN2_ASSERT_GEQ(refPos, entryIt->physicalOriginPosition);
+    SEQAN2_ASSERT_GT(entryIt->physicalOriginPosition + entryIt->length, refPos);
 
     target._length -= delLength;
     TEntryPos virtPos = entryIt->virtualPosition + (refPos - entryIt->physicalOriginPosition);
@@ -231,9 +231,9 @@ journalDelta(TTarget & target,
     typedef typename Position<TJournalEntries>::Type TEntryPos;
 
     TEntryIterator entryIt = end(target._journalEntries, Standard()) - 1;
-    SEQAN_ASSERT_EQ(entryIt->segmentSource, SOURCE_ORIGINAL);
-    SEQAN_ASSERT_GEQ(refPos, entryIt->physicalOriginPosition);
-    SEQAN_ASSERT_GEQ(entryIt->physicalOriginPosition + entryIt->length, refPos);  // Special case for the insertion where it is valid to insert behind the sequence.
+    SEQAN2_ASSERT_EQ(entryIt->segmentSource, SOURCE_ORIGINAL);
+    SEQAN2_ASSERT_GEQ(refPos, entryIt->physicalOriginPosition);
+    SEQAN2_ASSERT_GEQ(entryIt->physicalOriginPosition + entryIt->length, refPos);  // Special case for the insertion where it is valid to insert behind the sequence.
 
     target._length += length(insSeq);
     TEntryPos virtPos = entryIt->virtualPosition + (refPos - entryIt->physicalOriginPosition);
@@ -258,9 +258,9 @@ journalDelta(TTarget & target,
     typedef typename Position<TJournalEntries>::Type TEntryPos;
 
     TEntryIterator entryIt = end(target._journalEntries, Standard()) - 1;
-    SEQAN_ASSERT_EQ(entryIt->segmentSource, SOURCE_ORIGINAL);
-    SEQAN_ASSERT_GEQ(refPos, entryIt->physicalOriginPosition);
-    SEQAN_ASSERT_GT(entryIt->physicalOriginPosition + entryIt->length, refPos);
+    SEQAN2_ASSERT_EQ(entryIt->segmentSource, SOURCE_ORIGINAL);
+    SEQAN2_ASSERT_GEQ(refPos, entryIt->physicalOriginPosition);
+    SEQAN2_ASSERT_GT(entryIt->physicalOriginPosition + entryIt->length, refPos);
 
     target._length -= sv.i1;
     TEntryPos virtPos = entryIt->virtualPosition + (refPos - entryIt->physicalOriginPosition);
@@ -302,7 +302,7 @@ create(JstBuffer_<TJst, TSpec> & buffer)
     typedef typename Member<JstBuffer_<TJst, TSpec>, JstBufferDeltaMapMember>::Type TDeltaMap;
     typedef typename Iterator<TDeltaMap, Standard>::Type                            TDeltaMapIter;
 
-    SEQAN_ASSERT(!empty(buffer._startPositions));
+    SEQAN2_ASSERT(!empty(buffer._startPositions));
 
     clear(buffer._journaledSet);  // Guarentee empty set.
 
@@ -318,7 +318,7 @@ create(JstBuffer_<TJst, TSpec> & buffer)
 
     Splitter<TJSetIter> jSetSplitter(begin(buffer._journaledSet, Standard()), end(buffer._journaledSet, Standard()),
                                      Parallel());
-    SEQAN_OMP_PRAGMA(parallel for)
+    SEQAN2_OMP_PRAGMA(parallel for)
     for (auto jobId = 0; jobId < static_cast<int>(length(jSetSplitter)); ++jobId)
     {
         impl::JournaledStringCreateFunctor<TDeltaMapIter, TJSetIter> f;
@@ -326,7 +326,7 @@ create(JstBuffer_<TJst, TSpec> & buffer)
         for (; f.mapIt != buffer._deltaRangeEnd; ++f.mapIt)
         {
             f.setIt = jSetSplitter[jobId];
-            if (SEQAN_UNLIKELY((*f.mapIt).deltaTypeEnd == DeltaEndType::IS_RIGHT))
+            if (SEQAN2_UNLIKELY((*f.mapIt).deltaTypeEnd == DeltaEndType::IS_RIGHT))
                 continue;
 
             auto covIt = begin(getDeltaCoverage(*f.mapIt), Standard()) +
@@ -351,7 +351,7 @@ synchronize(JstBuffer_<TJst, TSpec> & buffer)
 {
     typedef typename Size<JstBuffer_<TJst, TSpec> >::Type                           TSize;
 
-    SEQAN_ASSERT(buffer._sourceBegin < buffer._sourceEnd);
+    SEQAN2_ASSERT(buffer._sourceBegin < buffer._sourceEnd);
 
     // TODO(rrahn): Implement block wise computation.
     // Discover overlapping deletions at begin and end.
@@ -394,7 +394,7 @@ synchronize(JstBuffer_<TJst, TSpec> & buffer)
         {
             if (*covIt)
             {
-                if (SEQAN_UNLIKELY(static_cast<TSize>(std::abs(net)) > buffer._startPositions[covIt - covBegin] &&
+                if (SEQAN2_UNLIKELY(static_cast<TSize>(std::abs(net)) > buffer._startPositions[covIt - covBegin] &&
                                    (net < 0)))
                     buffer._startPositions[covIt - covBegin] = 0;  // In case the entire prefix of this sequence is deleted.
                 else
@@ -556,6 +556,6 @@ init(JstBuffer_<TJst, TSpec> & me,
     create(me);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // EXTRAS_INCLUDE_SEQAN_JOURNALED_STRING_TREE_JOURNALED_SEQUENCE_BUFFER_H_
+#endif  // EXTRAS_INCLUDE_SEQAN2_JOURNALED_STRING_TREE_JOURNALED_SEQUENCE_BUFFER_H_

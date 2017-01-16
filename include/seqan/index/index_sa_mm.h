@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_INDEX_SA_MM_H
-#define SEQAN_HEADER_INDEX_SA_MM_H
+#ifndef SEQAN2_HEADER_SEQAN2_INDEX_SA_MM_H
+#define SEQAN2_HEADER_SEQAN2_INDEX_SA_MM_H
 
-namespace seqan
+namespace seqan2
 {
 
     struct ManberMyers {};
@@ -75,7 +75,7 @@ namespace seqan
             TIter it = begin(ISA, Standard());
             for(TSize i = 0; i < n; ++i, ++it)
                 *it = i;
-            SEQAN_PROMARK("Suffix-Array invertiert");
+            SEQAN2_PROMARK("Suffix-Array invertiert");
 
             radixPass(SA, ISA, s, count, length(count));
             arrayFill(begin(Bh, Standard()), end(Bh, Standard()), false);
@@ -104,11 +104,11 @@ namespace seqan
 
             for(TSize h = 1; cd > 0; h <<= 1, --cd) {
 
-                #ifdef SEQAN_DEBUG_INDEX
+                #ifdef SEQAN2_DEBUG_INDEX
                     std::cerr << "[" << cd << "] ";
                 #endif
-                SEQAN_PROADD(SEQAN_PRODEPTH, 1);
-                SEQAN_PROMARK("Beginne Durchlauf");
+                SEQAN2_PROADD(SEQAN2_PRODEPTH, 1);
+                SEQAN2_PROMARK("Beginne Durchlauf");
                 arrayFill(begin(count, Standard()), end(count, Standard()), 0);
                 arrayFill(begin(B2h, Standard()), end(B2h, Standard()), false);
 
@@ -118,15 +118,15 @@ namespace seqan
                     ISA[SA[i]] = l;
                 }
 
-                SEQAN_ASSERT_GEQ(n, h);
+                SEQAN2_ASSERT_GEQ(n, h);
                 Ti = n - h;
                 TIter p = begin(ISA, Standard()) + Ti;
 
-                SEQAN_ASSERT_LT(*p, n);
+                SEQAN2_ASSERT_LT(*p, n);
                 j = count[*p]++;
                 *p += j;
 
-                SEQAN_ASSERT_LT(*p, n);
+                SEQAN2_ASSERT_LT(*p, n);
                 B2h[*p] = true;
 
                 l = 0;
@@ -136,11 +136,11 @@ namespace seqan
                         Ti -= h;
                         p = begin(ISA) + Ti;
 
-                        SEQAN_ASSERT_LT(*p, n);
+                        SEQAN2_ASSERT_LT(*p, n);
                         j = count[*p]++;
                         *p += j;
 
-                        SEQAN_ASSERT_LT(*p, n);
+                        SEQAN2_ASSERT_LT(*p, n);
                         B2h[*p] = true;
                     }
 
@@ -162,8 +162,8 @@ namespace seqan
                 }
             }
         }
-        SEQAN_PROSET(SEQAN_PRODEPTH, 0);
-        #ifdef SEQAN_DEBUG_INDEX
+        SEQAN2_PROSET(SEQAN2_PRODEPTH, 0);
+        #ifdef SEQAN2_DEBUG_INDEX
             std::cerr << std::endl;
         #endif
     }
@@ -197,4 +197,4 @@ namespace seqan
     }
 }
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

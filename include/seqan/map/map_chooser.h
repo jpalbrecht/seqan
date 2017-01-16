@@ -30,12 +30,12 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_MAP_CHOOSER_H
-#define SEQAN_HEADER_MAP_CHOOSER_H
+#ifndef SEQAN2_HEADER_MAP_CHOOSER_H
+#define SEQAN2_HEADER_MAP_CHOOSER_H
 
 //////////////////////////////////////////////////////////////////////////////
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////

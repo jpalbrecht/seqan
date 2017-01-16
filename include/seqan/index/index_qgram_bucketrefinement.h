@@ -32,12 +32,12 @@
 // Author: Enrico Siragusa <enrico.siragusa@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INDEX_QGRAM_BUCKETREFINEMENT_H_
-#define SEQAN_INDEX_QGRAM_BUCKETREFINEMENT_H_
+#ifndef SEQAN2_SEQAN2_INDEX_QGRAM_BUCKETREFINEMENT_H_
+#define SEQAN2_SEQAN2_INDEX_QGRAM_BUCKETREFINEMENT_H_
 
-//#define SEQAN_DEBUG
+//#define SEQAN2_DEBUG
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags, Classes, Enums
@@ -410,8 +410,8 @@ inline bool _implantSa(Iter<Index<TText, IndexQGram<TShapeSpec, BucketRefinement
     if (repLength(it._topIterator) < weight(indexShape(container(it._topIterator))))
         return false;
 
-    SEQAN_ASSERT_EQ(repLength(it._bottomIterator), 0u);
-    SEQAN_ASSERT(isRoot(it._bottomIterator));
+    SEQAN2_ASSERT_EQ(repLength(it._bottomIterator), 0u);
+    SEQAN2_ASSERT(isRoot(it._bottomIterator));
 
     _historyPush(it._bottomIterator);
 
@@ -521,11 +521,11 @@ goUp(Iter<Index<TText, IndexQGram<TShapeSpec, BucketRefinement> >, VSTree<TopDow
 {
     if (repLength(it._bottomIterator) > repLength(it._topIterator))
     {
-        SEQAN_ASSERT_NOT(isRoot(it._bottomIterator));
+        SEQAN2_ASSERT_NOT(isRoot(it._bottomIterator));
 
         goUp(it._bottomIterator);
 
-        SEQAN_ASSERT_NOT(isRoot(it._bottomIterator));
+        SEQAN2_ASSERT_NOT(isRoot(it._bottomIterator));
 
         if (repLength(it._bottomIterator) <= repLength(it._topIterator))
             goRoot(it._bottomIterator);
@@ -629,6 +629,6 @@ inline bool save(Index<TText, IndexQGram<TShapeSpec, BucketRefinement> > & index
     return save(static_cast<TBaseIndex &>(index), fileName);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INDEX_QGRAM_BUCKETREFINEMENT_H_
+#endif  // #ifndef SEQAN2_SEQAN2_INDEX_QGRAM_BUCKETREFINEMENT_H_

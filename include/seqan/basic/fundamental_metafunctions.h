@@ -37,12 +37,12 @@
 // defined for many types.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_FUNDAMENTAL_METAFUNCTIONS_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_FUNDAMENTAL_METAFUNCTIONS_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_FUNDAMENTAL_METAFUNCTIONS_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_FUNDAMENTAL_METAFUNCTIONS_H_
 
-#include <seqan/basic/basic_metaprogramming.h>
+#include <seqan2/basic/basic_metaprogramming.h>
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -62,7 +62,7 @@ namespace seqan {
 
 /*!
  * @mfn Value
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Type of the items in the container or behind an iterator.
  *
  * @signature Value<T[, I]>::Type;
@@ -83,7 +83,7 @@ struct Value;
 
 /*!
  * @mfn GetValue
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Type for reading values.
  *
  * @signature GetValue<T>::Type;
@@ -107,7 +107,7 @@ struct GetValue;
 
 /*!
  * @mfn Reference
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Reference type.
  *
  * @signature Reference<T>::Type;
@@ -126,7 +126,7 @@ struct Reference;
 
 /*!
  * @mfn Size
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Type of an object that is suitable to hold size information.
  *
  * @signature Size<T>::Type;
@@ -145,7 +145,7 @@ struct Size;
 
 /*!
  * @mfn Difference
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Difference type.
  *
  * @signature Difference<T>::Type;
@@ -164,7 +164,7 @@ struct Difference;
 
 /*!
  * @mfn Position
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Position type.
  *
  * @signature Position<T>::Type;
@@ -184,7 +184,7 @@ struct Position;
 
 /*!
  * @mfn Spec
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief The spec of a class.
  *
  * @signature Spec<T>::Type;
@@ -220,7 +220,7 @@ struct Spec<T const> : Spec<T>
 
 /*!
  * @mfn DeepestSpec
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief The deepest spec of a class with nested template arguments.
  *
  * @signature DeepestSpec<T>::Type;
@@ -309,6 +309,6 @@ struct MinLength
 // Functions
 // ============================================================================
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_FUNDAMENTAL_METAFUNCTIONS_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_FUNDAMENTAL_METAFUNCTIONS_H_

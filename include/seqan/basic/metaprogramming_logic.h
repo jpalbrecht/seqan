@@ -42,10 +42,10 @@
 // TODO(holtgrew): Group all these metafunctions?
 // TODO(holtgrew): Make a comment on the C prefix and the auto-evaluation to TParam::Type in the group?
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_METAPROGRAMMING_LOGIC_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_METAPROGRAMMING_LOGIC_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_METAPROGRAMMING_LOGIC_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_METAPROGRAMMING_LOGIC_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -83,7 +83,7 @@ namespace seqan {
 
 /*!
  * @tag LogicalValuesTags#True
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Representation for True.
  *
  * @signature struct True;
@@ -93,7 +93,7 @@ namespace seqan {
 
 /*!
  * @tag LogicalValuesTags#False
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Representation for False.
  *
  * @signature struct False;
@@ -166,7 +166,7 @@ struct False
 
 /*!
  * @mfn LogicMetaprogramming#Eval
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Conversion from <tt>bool</tt> to tags <tt>True</tt> and <tt>False</tt>.
  *
  * @signature Eval<VALUE>::Type
@@ -198,7 +198,7 @@ struct Eval<true> : True {};
 
 /*!
  * @mfn LogicMetaprogramming#Not
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Metaprograming boolean "not" operator.
  *
  * @signature Not<TBool>::Type;
@@ -234,7 +234,7 @@ struct Not<True> : False {};
 
 /*!
  * @mfn LogicMetaprogramming#NotC
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Metaprograming boolean "not" operator for values.
  *
  * @signature NotC<BOOL>::Type;
@@ -270,7 +270,7 @@ struct NotC<true> : False {};
 
 /*!
  * @mfn LogicMetaprogramming#Or
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Metaprograming "or" operator.
  *
  * @signature Or<TLhs, TRhs>::Type;
@@ -311,7 +311,7 @@ struct Or<True, True> : True {};
 
 /*!
  * @mfn LogicMetaprogramming#OrC
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Metaprograming boolean "or" operator.
  *
  * @signature OrC<LHS, RHS>::Type;
@@ -352,7 +352,7 @@ struct OrC<true, true> : True {};
 
 /*!
  * @mfn LogicMetaprogramming#And
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Metaprograming "and" operatand.
  *
  * @signature And<TLhs, TRhs>::Type;
@@ -393,7 +393,7 @@ struct And<True, True> : True {};
 
 /*!
  * @mfn LogicMetaprogramming#AndC
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Metaprograming boolean "and" operator.
  *
  * @signature AndC<LHS, RHS>::Type;
@@ -434,7 +434,7 @@ struct AndC<true, true> : True {};
 
 /*!
  * @mfn LogicMetaprogramming#If
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Metaprogramming implication.
  *
  * @signature If<TCondition, TResultTrue, TResultFalse>::Type
@@ -493,7 +493,7 @@ ifSwitch(False, TArgT const &, TArgF && argFalse)
 
 /*!
  * @mfn LogicMetaprogramming#IfC
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Metaprogramming boolean, implication.
  *
  * @signature If<CONDITION, TResultTrue, TResultFalse>::Type
@@ -531,6 +531,6 @@ struct IfC<false, T1, T2>
 // Functions
 // ============================================================================
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_METAPROGRAMMING_LOGIC_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_METAPROGRAMMING_LOGIC_H_

@@ -32,16 +32,16 @@
 // Author: Manuel Holtgrewe <manuel.holtgrewe@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_ARG_PARSE_TOOL_DOC_H_
-#define SEQAN_INCLUDE_ARG_PARSE_TOOL_DOC_H_
+#ifndef SEQAN2_INCLUDE_ARG_PARSE_TOOL_DOC_H_
+#define SEQAN2_INCLUDE_ARG_PARSE_TOOL_DOC_H_
 
 #include <iterator>
 
-#include <seqan/misc/terminal.h>
-#include <seqan/arg_parse/xml_support.h>
-#include <seqan/version.h>
+#include <seqan2/misc/terminal.h>
+#include <seqan2/arg_parse/xml_support.h>
+#include <seqan2/version.h>
 
-namespace seqan {
+namespace seqan2 {
 
 // ==========================================================================
 // Forwards
@@ -257,7 +257,7 @@ public:
             {
                 // Handle escape sequence, we interpret only "\-", "\fI", and "\fB".
                 goNext(it);
-                SEQAN_ASSERT_NOT(it == endIt);
+                SEQAN2_ASSERT_NOT(it == endIt);
                 if (*it == '-')
                 {
                     appendValue(result, *it);
@@ -265,7 +265,7 @@ public:
                 else if (*it == 'f')
                 {
                     goNext(it);
-                    SEQAN_ASSERT_NOT(it == endIt);
+                    SEQAN2_ASSERT_NOT(it == endIt);
                     if (*it == 'I')
                     {
                         appendValue(openTags, "em");
@@ -278,7 +278,7 @@ public:
                     }
                     else if (*it == 'P')
                     {
-                        SEQAN_ASSERT_NOT(empty(openTags));
+                        SEQAN2_ASSERT_NOT(empty(openTags));
                         append(result, "</");
                         append(result, back(openTags));
                         append(result, ">");
@@ -391,7 +391,7 @@ public:
             {
                 // Handle escape sequence, we interpret only "\-", "\fI", and "\fB".
                 goNext(it);
-                SEQAN_ASSERT_NOT(atEnd(it));
+                SEQAN2_ASSERT_NOT(atEnd(it));
                 if (*it == '-')
                 {
                     appendValue(result, *it);
@@ -399,7 +399,7 @@ public:
                 else if (*it == 'f')
                 {
                     goNext(it);
-                    SEQAN_ASSERT_NOT(atEnd(it));
+                    SEQAN2_ASSERT_NOT(atEnd(it));
                     if (*it == 'I')
                     {
                         if (isTerminal())
@@ -512,7 +512,7 @@ public:
                   std::back_inserter<std::vector<std::string> >(tokens));
 
         // Print the text.
-        SEQAN_ASSERT_LEQ(pos, tab);
+        SEQAN2_ASSERT_LEQ(pos, tab);
         std::fill_n(out, tab - pos, ' ');  // go to tab
 
         pos = tab;
@@ -561,7 +561,7 @@ public:
 /*!
  * @class ToolDoc
  * @implements AssignableConcept
- * @headerfile <seqan/arg_parse.>
+ * @headerfile <seqan2/arg_parse.>
  * @brief Container for string documentation on a command line tool.
  *
  * @signature class ToolDoc;
@@ -716,7 +716,7 @@ public:
 
 /*!
  * @fn ToolDoc#append
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Append two @link ToolDoc @endlink objects.
  *
  * @signature void append(a, b);
@@ -757,7 +757,7 @@ inline void append(ToolDoc & a, ToolDoc const & b)
 
 /*!
  * @fn ToolDoc#setName
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Set the tool name.
  *
  * @signature void setName(toolDoc, name);
@@ -777,7 +777,7 @@ inline void setName(ToolDoc & doc, CharString const & name)
 
 /*!
  * @fn ToolDoc#getName
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Get the tool name.
  *
  * @signature CharString getName(toolDoc);
@@ -798,7 +798,7 @@ inline CharString const & getName(ToolDoc const & doc)
 
 /*!
  * @fn ToolDoc#setCategory
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Set the tool name.
  *
  * @signature void setName(toolDoc, name);
@@ -818,7 +818,7 @@ inline void setCategory(ToolDoc & doc, CharString const & category)
 
 /*!
  * @fn ToolDoc#getCategory
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Get the tool category.
  *
  * @signature CharString getCategory(toolDoc);
@@ -839,7 +839,7 @@ inline CharString const & getCategory(ToolDoc const & doc)
 
 /*!
  * @fn ToolDoc#setShortDescription
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Set the tool short description.
  *
  * @signature void setShortDescription(toolDoc, text);
@@ -859,7 +859,7 @@ inline void setShortDescription(ToolDoc & doc, CharString const & shortDescripti
 
 /*!
  * @fn ToolDoc#getShortDescription
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Get the tool short description.
  *
  * @signature CharString getShortDescription(toolDoc);
@@ -880,7 +880,7 @@ inline CharString const & getShortDescription(ToolDoc const & doc)
 
 /*!
  * @fn ToolDoc#setUrl
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Set the url string to the app repository or website.
  *
  * @signature void setUrl(toolDoc, str);
@@ -900,7 +900,7 @@ inline void setUrl(ToolDoc & doc, CharString url)
 
 /*!
  * @fn ToolDoc#getUrl
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Get the url string to the app repository or website.
  *
  * @signature CharString getUrl(toolDoc);
@@ -921,7 +921,7 @@ inline CharString const & getUrl(ToolDoc const & doc)
 
 /*!
  * @fn ToolDoc#setDate
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Set the date string.
  *
  * @signature void setName(toolDoc, str);
@@ -941,7 +941,7 @@ inline void setDate(ToolDoc & doc, CharString const & date)
 
 /*!
  * @fn ToolDoc#getDate
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Get the date.
  *
  * @signature CharString getDate(toolDoc);
@@ -962,7 +962,7 @@ inline CharString const & getDate(ToolDoc const & doc)
 
 /*!
  * @fn ToolDoc#setVersion
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Set the tool version string.
  *
  * @signature void setVersion(toolDoc, str);
@@ -982,7 +982,7 @@ inline void setVersion(ToolDoc & doc, CharString const & version)
 
 /*!
  * @fn ToolDoc#getVersion
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Get the tool version string.
  *
  * @signature CharString getVersion(toolDoc);
@@ -1003,7 +1003,7 @@ inline CharString const & getVersion(ToolDoc const & doc)
 
 /*!
  * @fn ToolDoc#setShortCopyright
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Set the tool short copyright string.
  *
  * @signature void setShortCopyright(toolDoc, str);
@@ -1023,7 +1023,7 @@ inline void setShortCopyright(ToolDoc & doc, CharString const & shortCopyright)
 
 /*!
  * @fn ToolDoc#getShortCopyright
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Get the tool short copyright string.
  *
  * @signature CharString getShortCopyright(toolDoc);
@@ -1044,7 +1044,7 @@ inline CharString const & getShortCopyright(ToolDoc const & doc)
 
 /*!
  * @fn ToolDoc#setLongCopyright
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Set the tool long copyright string.
  *
  * @signature void setLongCopyright(toolDoc, str);
@@ -1064,7 +1064,7 @@ inline void setLongCopyright(ToolDoc & doc, CharString const & longCopyright)
 
 /*!
  * @fn ToolDoc#getLongCopyright
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Get the tool long copyright string.
  *
  * @signature CharString getLongCopyright(toolDoc);
@@ -1085,7 +1085,7 @@ inline CharString const & getLongCopyright(ToolDoc const & doc)
 
 /*!
  * @fn ToolDoc#setCitation
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Set the tool citation string.
  *
  * @signature void setCitation(toolDoc, str);
@@ -1105,7 +1105,7 @@ inline void setCitation(ToolDoc & doc, CharString const & citation)
 
 /*!
  * @fn ToolDoc#getCitation
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Get the tool citation string.
  *
  * @signature CharString getCitation(toolDoc);
@@ -1127,7 +1127,7 @@ inline CharString const & getCitation(ToolDoc const & doc)
 
 /*!
  * @fn ToolDoc#setManTitle
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Set the man title.
  *
  * @signature void setTitle(toolDoc, title);
@@ -1147,7 +1147,7 @@ inline void setManTitle(ToolDoc & doc, CharString const & title)
 
 /*!
  * @fn ToolDoc#getManTitle
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Get the tool man page title of.
  *
  * @signature CharString getManTitle(toolDoc);
@@ -1168,7 +1168,7 @@ inline CharString const & getManTitle(ToolDoc & doc)
 
 /*!
  * @fn ToolDoc#addSection
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Add a section with the given title.
  *
  * @signature void addSection(toolDoc, title);
@@ -1188,7 +1188,7 @@ inline void addSection(ToolDoc & doc, CharString const & title)
 
 /*!
  * @fn ToolDoc#addSubSection
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Add a subsection with the given title.
  *
  * @signature void addSubSection(toolDoc, title);
@@ -1208,7 +1208,7 @@ inline void addSubSection(ToolDoc & doc, CharString const & title)
 
 /*!
  * @fn ToolDoc#addText
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Add a text line/paragraph to ToolDoc.
  *
  * @signature void addText(toolDoc, text[, isParagraph]);
@@ -1234,7 +1234,7 @@ inline void addText(ToolDoc & doc, CharString const & text)
 
 /*!
  * @fn ToolDoc#addListItem
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Add a list item to a ToolDoc.
  *
  * @signature void addListItem(toolDoc, key, value);
@@ -1255,7 +1255,7 @@ inline void addListItem(ToolDoc & doc, CharString const & key, CharString const 
 
 /*!
  * @fn ToolDoc#print
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Print ToolDoc object in a given format.
  *
  * @signature void print(stream, toolDoc, format);
@@ -1276,7 +1276,7 @@ inline void print(std::ostream & stream, ToolDoc const & doc, CharString const &
 
 /*!
  * @fn ToolDoc#clearEntries
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Clear entries from ToolDoc.
  *
  * @signature void clearEntries(toolDoc);
@@ -1317,7 +1317,7 @@ void HtmlToolDocPrinter_::print(std::ostream & stream, ToolDoc const & doc)
     bool isP = false;
     for (TIter it = begin(doc._entries, Rooted()); !atEnd(it); goNext(it))
     {
-        SEQAN_ASSERT_NOT_MSG(isDl && isP, "Current <dl> and <p> are mutually exclusive.");
+        SEQAN2_ASSERT_NOT_MSG(isDl && isP, "Current <dl> and <p> are mutually exclusive.");
         ToolDocEntry_ * entry = *it;
 
         switch (entry->getType())
@@ -1378,10 +1378,10 @@ void HtmlToolDocPrinter_::print(std::ostream & stream, ToolDoc const & doc)
     stream << "<h2>Version</h2>\n"
            << "<strong>Last update:</strong> " << _toHtml(doc._date) << "<br>\n<strong>"
            << doc._name << " version:</strong> " << doc._version << "<br>\n"
-           << "<strong>SeqAn version:</strong> " << SEQAN_VERSION_MAJOR << '.' <<  SEQAN_VERSION_MINOR << '.'
-           << SEQAN_VERSION_PATCH;
-    if (SEQAN_VERSION_PRE_RELEASE != 0)
-        stream << "-pre" << SEQAN_VERSION_PRE_RELEASE;
+           << "<strong>SeqAn version:</strong> " << SEQAN2_VERSION_MAJOR << '.' <<  SEQAN2_VERSION_MINOR << '.'
+           << SEQAN2_VERSION_PATCH;
+    if (SEQAN2_VERSION_PRE_RELEASE != 0)
+        stream << "-pre" << SEQAN2_VERSION_PRE_RELEASE;
     if (!empty(doc._url))
     {
         stream << "<h2>Url</h2>\n"
@@ -1483,10 +1483,10 @@ void TextToolDocPrinter_::print(std::ostream & stream, ToolDoc const & doc)
     std::fill_n(out, _layout.leftPadding, ' ');
     stream << _toText("\\fB") << doc._name << " version: " << _toText("\\fP") << doc._version << "\n";
     std::fill_n(out, _layout.leftPadding, ' ');
-    stream << _toText("\\fB") << "SeqAn version: " << _toText("\\fP") << SEQAN_VERSION_MAJOR << '.'
-           <<  SEQAN_VERSION_MINOR << '.' << SEQAN_VERSION_PATCH;
-    if (SEQAN_VERSION_PRE_RELEASE != 0)
-        stream << "-pre" << SEQAN_VERSION_PRE_RELEASE;
+    stream << _toText("\\fB") << "SeqAn version: " << _toText("\\fP") << SEQAN2_VERSION_MAJOR << '.'
+           <<  SEQAN2_VERSION_MINOR << '.' << SEQAN2_VERSION_PATCH;
+    if (SEQAN2_VERSION_PRE_RELEASE != 0)
+        stream << "-pre" << SEQAN2_VERSION_PRE_RELEASE;
     if (!empty(doc._url))
     {
         stream <<  "\n" << _toText("\\fB") << "URL" << _toText("\\fP") << "\n";
@@ -1608,6 +1608,6 @@ void ManToolDocPrinter_::print(std::ostream & stream, ToolDoc const & doc)
     }
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_MISC_TOOL_DOC_H_
+#endif  // #ifndef SEQAN2_INCLUDE_MISC_TOOL_DOC_H_

@@ -32,8 +32,8 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_INDEX_SHAWARMA_H
-#define SEQAN_HEADER_INDEX_SHAWARMA_H
+#ifndef SEQAN2_HEADER_SEQAN2_INDEX_SHAWARMA_H
+#define SEQAN2_HEADER_SEQAN2_INDEX_SHAWARMA_H
 
 // adapt external C libraries
 extern "C" {
@@ -43,7 +43,7 @@ extern "C" {
 
 }
 
-namespace seqan {
+namespace seqan2 {
 
 /*    namespace shawarma {
 
@@ -77,16 +77,16 @@ namespace seqan {
         TText const &s,
         Shawarma<DeepShallow> const)
     {
-        typedef typename Value<TText>::Type    TValue   SEQAN_TYPEDEF_FOR_DEBUG;
-        typedef typename Value<TSA>::Type    TSAValue SEQAN_TYPEDEF_FOR_DEBUG;
+        typedef typename Value<TText>::Type    TValue   SEQAN2_TYPEDEF_FOR_DEBUG;
+        typedef typename Value<TSA>::Type    TSAValue SEQAN2_TYPEDEF_FOR_DEBUG;
 
-        SEQAN_ASSERT_EQ(sizeof(TValue), sizeof(unsigned char));
-        SEQAN_ASSERT_EQ(sizeof(TSAValue), sizeof(int));
-//        SEQAN_ASSERT(IsContiguous<TSA>::VALUE);
+        SEQAN2_ASSERT_EQ(sizeof(TValue), sizeof(unsigned char));
+        SEQAN2_ASSERT_EQ(sizeof(TSAValue), sizeof(int));
+//        SEQAN2_ASSERT(IsContiguous<TSA>::VALUE);
 
         int overshoot = init_ds_ssort(500, 2000);
 
-        SEQAN_ASSERT_GT(overshoot, 0);
+        SEQAN2_ASSERT_GT(overshoot, 0);
         reserve(s, length(s) + overshoot);
         ds_ssort(
             (unsigned char*)toCString(s),        // text
@@ -95,6 +95,6 @@ namespace seqan {
     }
 
 
-} // namespace seqan
+} // namespace seqan2
 
-#endif // SEQAN_HEADER_INDEX_PIZZACHILI_H
+#endif // SEQAN2_HEADER_SEQAN2_INDEX_PIZZACHILI_H

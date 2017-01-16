@@ -36,10 +36,10 @@
 // TODO(holtgrew): Split into modified_string_mod_view.h and modified_iterator_mod_view.h.
 // TODO(holtgrew): Move out convert()
 
-#ifndef SEQAN_MODIFIER_MODIFIER_VIEW_H_
-#define SEQAN_MODIFIER_MODIFIER_VIEW_H_
+#ifndef SEQAN2_MODIFIER_MODIFIER_VIEW_H_
+#define SEQAN2_MODIFIER_MODIFIER_VIEW_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // ==========================================================================
@@ -57,7 +57,7 @@ namespace seqan
 /*!
  * @class ModViewModifiedIterator
  * @extends ModifiedIterator
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  *
  * @brief Transforms the character of a host using a custom functor.
  *
@@ -71,7 +71,7 @@ namespace seqan
 /*!
  * @class ModViewModifiedString
  * @extends ModifiedString
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  *
  * @brief Transforms the character of a host using a custom functor.
  *
@@ -163,7 +163,7 @@ public:
     template <typename THost_>
     explicit
     ModifiedString(THost_ & host,
-                   SEQAN_CTOR_ENABLE_IF(IsConstructible<THost, THost_>)) :
+                   SEQAN2_CTOR_ENABLE_IF(IsConstructible<THost, THost_>)) :
             _host(_toPointer(host)), tmp_value()
     {
         ignoreUnusedVariableWarning(dummy);
@@ -181,7 +181,7 @@ public:
     explicit
     ModifiedString(THost_ & host,
                    TFunctor const & functor,
-                   SEQAN_CTOR_ENABLE_IF(IsConstructible<THost, THost_>)) :
+                   SEQAN2_CTOR_ENABLE_IF(IsConstructible<THost, THost_>)) :
             _host(_toPointer(host)), tmp_value()
     {
         ignoreUnusedVariableWarning(dummy);
@@ -192,7 +192,7 @@ public:
     template <typename THost_>
     explicit
     ModifiedString(THost_ && host,
-                   SEQAN_CTOR_ENABLE_IF(IsAnInnerHost<
+                   SEQAN2_CTOR_ENABLE_IF(IsAnInnerHost<
                                             typename RemoveReference<THost>::Type,
                                             typename RemoveReference<THost_>::Type >)) :
             _host(std::forward<THost_>(host)), tmp_value()
@@ -205,7 +205,7 @@ public:
     explicit
     ModifiedString(THost_ && host,
                    TFunctor const & functor,
-                   SEQAN_CTOR_ENABLE_IF(IsAnInnerHost<
+                   SEQAN2_CTOR_ENABLE_IF(IsAnInnerHost<
                                             typename RemoveReference<THost>::Type,
                                             typename RemoveReference<THost_>::Type >)) :
             _host(std::forward<THost_>(host)), tmp_value()
@@ -404,7 +404,7 @@ template < typename TSequence, typename TFunctor >
 inline void
 convert(TSequence & sequence, TFunctor const &F)
 {
-#if defined (_OPENMP) && defined (SEQAN_PARALLEL)
+#if defined (_OPENMP) && defined (SEQAN2_PARALLEL)
     // OpenMP does not support for loop with iterators. Therefore use index variables.
     typedef typename Position<TSequence>::Type    TPos;
     typedef typename MakeSigned_<TPos>::Type    TSignedPos;
@@ -427,7 +427,7 @@ template < typename TSequence, typename TFunctor >
 inline void
 convert(TSequence const & sequence, TFunctor const &F)
 {
-#if defined (_OPENMP) && defined (SEQAN_PARALLEL)
+#if defined (_OPENMP) && defined (SEQAN2_PARALLEL)
     // OpenMP does not support for loop with iterators. Therefore use index variables.
     typedef typename Position<TSequence>::Type    TPos;
     typedef typename MakeSigned_<TPos>::Type    TSignedPos;
@@ -446,6 +446,6 @@ convert(TSequence const & sequence, TFunctor const &F)
 #endif
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_MODIFIER_MODIFIER_VIEW_H_
+#endif  // SEQAN2_MODIFIER_MODIFIER_VIEW_H_

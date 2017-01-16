@@ -32,13 +32,13 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_STREAM_BUFFERED_STREAM_
-#define SEQAN_STREAM_BUFFERED_STREAM_
+#ifndef SEQAN2_STREAM_BUFFERED_STREAM_
+#define SEQAN2_STREAM_BUFFERED_STREAM_
 
 #include <cstdio>
 #include <cstring>
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -58,7 +58,7 @@ class BufferedStreamBuf;
 /*!
  * @class BufferedStream
  * @implements StreamConcept
- * @headerfile <seqan/stream.h>
+ * @headerfile <seqan2/stream.h>
  * @brief Adds a buffer to another @link StreamConcept stream @endlink.
  *
  * @signature template <typename TUnbufferedStream, TDirection>
@@ -241,6 +241,6 @@ protected:
     }
 };
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_STREAM_BUFFERED_STREAM_
+#endif  // #ifndef SEQAN2_STREAM_BUFFERED_STREAM_

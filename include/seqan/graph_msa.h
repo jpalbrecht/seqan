@@ -30,25 +30,25 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_GRAPH_MSA_H
-#define SEQAN_HEADER_GRAPH_MSA_H
+#ifndef SEQAN2_HEADER_GRAPH_MSA_H
+#define SEQAN2_HEADER_GRAPH_MSA_H
 
 // Seqan
-#include <seqan/score.h>
-#include <seqan/graph_types.h>
-#include <seqan/graph_algorithms.h>
-#include <seqan/graph_align.h>
-#include <seqan/align.h>
+#include <seqan2/score.h>
+#include <seqan2/graph_types.h>
+#include <seqan2/graph_algorithms.h>
+#include <seqan2/graph_align.h>
+#include <seqan2/align.h>
 
 //MSA
-#include <seqan/graph_msa/graph_align_tcoffee_base.h>
-#include <seqan/graph_msa/graph_align_tcoffee_library.h>
-#include <seqan/graph_msa/graph_align_tcoffee_kmer.h>
-#include <seqan/graph_msa/graph_align_tcoffee_distance.h>
-#include <seqan/graph_msa/graph_align_tcoffee_guidetree.h>
-#include <seqan/graph_msa/graph_align_tcoffee_io.h>
-#include <seqan/graph_msa/graph_align_tcoffee_progressive.h>
-#include <seqan/graph_msa/graph_align_tcoffee_refinement.h>
-#include <seqan/graph_msa/graph_align_tcoffee_msa.h>
+#include <seqan2/graph_msa/graph_align_tcoffee_base.h>
+#include <seqan2/graph_msa/graph_align_tcoffee_library.h>
+#include <seqan2/graph_msa/graph_align_tcoffee_kmer.h>
+#include <seqan2/graph_msa/graph_align_tcoffee_distance.h>
+#include <seqan2/graph_msa/graph_align_tcoffee_guidetree.h>
+#include <seqan2/graph_msa/graph_align_tcoffee_io.h>
+#include <seqan2/graph_msa/graph_align_tcoffee_progressive.h>
+#include <seqan2/graph_msa/graph_align_tcoffee_refinement.h>
+#include <seqan2/graph_msa/graph_align_tcoffee_msa.h>
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

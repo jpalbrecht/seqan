@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_GAP_ANCHOR_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_GAP_ANCHOR_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_GAP_ANCHOR_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_GAP_ANCHOR_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -63,7 +63,7 @@ typedef Tag<SortGapPos_> const SortGapPos;
 /*!
  * @class GapAnchor
  * @implements ComparableConcept
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Stores the position of an alignment character in sequence-space and gap-space in @link AnchorGaps @endlink.
  *
  * @signature template <typename TPosition>
@@ -375,6 +375,6 @@ upperBoundGapAnchor(TGapAnchors & gaps,
         _LessGapAnchor<typename Value<TGapAnchors>::Type, SortGapPos const>() );
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_GAP_ANCHOR_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_GAP_ANCHOR_H_

@@ -35,10 +35,10 @@
 // Code to convert between SAM and BAM format tags (textual <-> binary).
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_BAM_IO_BAM_SAM_CONVERSION_H_
-#define INCLUDE_SEQAN_BAM_IO_BAM_SAM_CONVERSION_H_
+#ifndef INCLUDE_SEQAN2_BAM_IO_BAM_SAM_CONVERSION_H_
+#define INCLUDE_SEQAN2_BAM_IO_BAM_SAM_CONVERSION_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -91,8 +91,8 @@ void _appendTagsSamToBamOneTag(TTarget & target, TForwardIter & iter, CharString
 
     clear(buffer);
     write(buffer, iter, 3);
-    SEQAN_ASSERT_EQ(buffer[0], ':');
-    SEQAN_ASSERT_EQ(buffer[2], ':');
+    SEQAN2_ASSERT_EQ(buffer[0], ':');
+    SEQAN2_ASSERT_EQ(buffer[2], ':');
 
     char typeC = buffer[1];
     appendValue(target, typeC);
@@ -134,7 +134,7 @@ void _appendTagsSamToBamOneTag(TTarget & target, TForwardIter & iter, CharString
             size_t startPos = 1;
             for (unsigned i = 0; i < nEntries; ++i)
             {
-                SEQAN_ASSERT_LT(startPos, len);
+                SEQAN2_ASSERT_LT(startPos, len);
 
                 // search end of current entry
                 size_t endPos = startPos;
@@ -149,7 +149,7 @@ void _appendTagsSamToBamOneTag(TTarget & target, TForwardIter & iter, CharString
                                                                      toCString(buffer) + startPos,
                                                                      typeC);
                 if (!tagApply(func, BamTagTypes()))
-                    SEQAN_ASSERT_FAIL("Invalid tag type: %c!", typeC);
+                    SEQAN2_ASSERT_FAIL("Invalid tag type: %c!", typeC);
 
                 startPos = endPos + 1;
             }
@@ -164,14 +164,14 @@ void _appendTagsSamToBamOneTag(TTarget & target, TForwardIter & iter, CharString
 
             AppendTagsSamToBamOneTagHelper_<TTarget, CharString&> func(target, buffer, typeC);
             if (!tagApply(func, BamTagTypes()))
-                SEQAN_ASSERT_FAIL("Invalid tag type: %c!", typeC);
+                SEQAN2_ASSERT_FAIL("Invalid tag type: %c!", typeC);
         }
     }
 }
 
 /*!
  * @fn assignTagsSamToBam
- * @headerfile <seqan/bam_io.h>
+ * @headerfile <seqan2/bam_io.h>
  * @brief Assign tags in SAM format to tags in BAM format.
  *
  * @signature void assignTagsBamToSam(bamTags, samTags);
@@ -253,9 +253,9 @@ template <typename TTarget, typename TSourceIter>
 void _appendTagsBamToSamOneTag(TTarget & target, TSourceIter & it)
 {
     // Copy tag name.
-    SEQAN_ASSERT_NOT(atEnd(it));
+    SEQAN2_ASSERT_NOT(atEnd(it));
     writeValue(target, *it++);
-    SEQAN_ASSERT_NOT(atEnd(it));
+    SEQAN2_ASSERT_NOT(atEnd(it));
     writeValue(target, *it++);
 
     // Add ':'.
@@ -279,12 +279,12 @@ void _appendTagsBamToSamOneTag(TTarget & target, TSourceIter & it)
         case 'Z':
         case 'H':
             // BAM string
-            SEQAN_ASSERT_NOT(atEnd(it));
+            SEQAN2_ASSERT_NOT(atEnd(it));
             while (*it != '\0')
             {
                 writeValue(target, *it);
                 ++it;
-                SEQAN_ASSERT_NOT(atEnd(it));
+                SEQAN2_ASSERT_NOT(atEnd(it));
             }
             ++it;
             break;
@@ -303,14 +303,14 @@ void _appendTagsBamToSamOneTag(TTarget & target, TSourceIter & it)
             } tmp;
             for (unsigned i = 0; i < 4; ++i)
             {
-                SEQAN_ASSERT_NOT(atEnd(it));
+                SEQAN2_ASSERT_NOT(atEnd(it));
                 tmp.raw[i] = *it++;
             }
             for (unsigned i = 0; i < tmp.len; ++i)
             {
                 writeValue(target, ',');
                 if (!tagApply(func, BamTagTypes()))
-                    SEQAN_ASSERT_FAIL("Invalid tag type: %c!", typeC);
+                    SEQAN2_ASSERT_FAIL("Invalid tag type: %c!", typeC);
             }
             break;
         }
@@ -320,14 +320,14 @@ void _appendTagsBamToSamOneTag(TTarget & target, TSourceIter & it)
             // BAM simple value
             AssignTagsBamToSamOneTagHelper_<TTarget, TSourceIter> func(target, it, typeC);
             if (!tagApply(func, BamTagTypes()))
-                SEQAN_ASSERT_FAIL("Invalid tag type: %c!", typeC);
+                SEQAN2_ASSERT_FAIL("Invalid tag type: %c!", typeC);
         }
     }
 }
 
 /*!
  * @fn assignTagsBamToSam
- * @headerfile <seqan/bam_io.h>
+ * @headerfile <seqan2/bam_io.h>
  * @brief Assign tags in BAM format to tags in SAM format.
  *
  * @signature void assignTagsBamToSam(samTags, bamTags);
@@ -364,6 +364,6 @@ void assignTagsBamToSam(TTarget & target, TSource const & source)
     appendTagsBamToSam(target, source);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_BAM_IO_BAM_SAM_CONVERSION_H_
+#endif  // #ifndef INCLUDE_SEQAN2_BAM_IO_BAM_SAM_CONVERSION_H_

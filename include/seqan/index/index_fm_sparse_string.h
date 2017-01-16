@@ -34,12 +34,12 @@
 // Author: Enrico Siragusa <enrico.siragusa@fu-berlin.de>
 // ==========================================================================
 
-//SEQAN_NO_DDDOC:do not generate documentation for this file
+//SEQAN2_NO_DDDOC:do not generate documentation for this file
 
-#ifndef INDEX_FM_SPARSE_STRING_H_
-#define INDEX_FM_SPARSE_STRING_H_
+#ifndef SEQAN2_INDEX_FM_SPARSE_STRING_H_
+#define SEQAN2_INDEX_FM_SPARSE_STRING_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ==========================================================================
 // Forwards
@@ -197,7 +197,7 @@ struct Iterator<SparseString<TFibreValues, TSpec> const, Rooted>:
 
 /*!
  * @class SparseString
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief A string storing only a fraction of the values of the original string.
  *
  * @signature template <typename TValueString, typename TSpec>
@@ -239,7 +239,7 @@ inline void _assignValueInValueString(SparseString<TFibreValues, TSpec> & string
 
 /*!
  * @fn SparseString#clear
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Resets the @link SparseString @endlink.
  *
  * @signature void clear(sparseString);
@@ -260,7 +260,7 @@ inline void clear(SparseString<TFibreValues, TSpec> & string)
 // ----------------------------------------------------------------------------
 /*!
  * @fn SparseString#empty
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns whether or not the @link SparseString @endlink is empty.
  *
  * @signature bool empty(sparseString);
@@ -302,7 +302,7 @@ assignValue(SparseString<TFibreValues, TSpec> & string, TPos pos, TValue value)
 // ----------------------------------------------------------------------------
 /*!
  * @fn SparseString#getValue
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns the value of a SparseString.
  *
  * @signature TValue getValue(sparseString, pos);
@@ -339,7 +339,7 @@ getValue(SparseString<TFibreValues, TSpec> const & string, TPos pos)
 // ----------------------------------------------------------------------------
 /*!
  * @fn SparseString#value
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns the value of a @link SparseString @endlink.
  *
  * @signature TReference value(sparseString, pos);
@@ -370,7 +370,7 @@ value(SparseString<TFibreValues, TSpec> const & string, TPos pos)
 // ----------------------------------------------------------------------------
 /*!
  * @fn SparseString#getFibre
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns a specific fibre of a @link SparseString @endlink.
  *
  * @signature TFibre getFibre(sparseString, fibreTag);
@@ -416,7 +416,7 @@ getFibre(SparseString<TFibreValues, TSpec> & sparseString, FibreIndicators)
 
 /*!
  * @fn SparseString#length
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns the number of elements in the @link SparseString @endlink.
  *
  * @signature TSize length(sparseString);
@@ -461,7 +461,7 @@ length(SparseString<TFibreValues, TSpec> const & string)
 
 /*!
  * @fn SparseString#resize
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Resets the number of elements in the compressed suffix array.
  *
  * @signature TSize resize(sparseString, newLength);
@@ -492,7 +492,7 @@ resize(SparseString<TFibreValues, TSpec> & string, TSize size, Tag<TExpand> tag)
 // ----------------------------------------------------------------------------
 /*!
  * @fn SparseString#open
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief This functions open a sparse string from disk.
  *
  * @signature bool open(string, fileName[, openMode]);
@@ -546,7 +546,7 @@ inline bool open(SparseString<TFibreValues, TSpec> & sparseString, const char * 
 /*!
  * @fn SparseString#save
  *
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief This functions saves a sparse string to disk.
  *
@@ -593,4 +593,4 @@ inline bool save(SparseString<TFibreValues, TSpec> const & sparseString, const c
 // TODO(singer): setValue function
 
 }
-#endif // INDEX_FM_SPARSE_STRING_H_
+#endif // SEQAN2_INDEX_FM_SPARSE_STRING_H_

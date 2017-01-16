@@ -34,8 +34,8 @@
 // Module for two-dimensional seeding and chaining.
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_SEEDS_H
-#define SEQAN_HEADER_SEEDS_H
+#ifndef SEQAN2_HEADER_SEEDS_H
+#define SEQAN2_HEADER_SEEDS_H
 
 // ===========================================================================
 // Preliminaries
@@ -46,45 +46,45 @@
 #include <list>
 #include <new>
 
-#include <seqan/sequence.h>
-#include <seqan/index.h>
-#include <seqan/score.h>
-#include <seqan/align.h>
-#include <seqan/map.h>
-#include <seqan/modifier.h>
+#include <seqan2/sequence.h>
+#include <seqan2/index.h>
+#include <seqan2/score.h>
+#include <seqan2/align.h>
+#include <seqan2/map.h>
+#include <seqan2/modifier.h>
 
 // ===========================================================================
 // Seeds Module
 // ===========================================================================
 
 // Basic definitions
-// #include <seqan/seeds2/seeds_base.h>
+// #include <seqan2/seeds2/seeds_base.h>
 
 // Class Seed and specializations
-#include <seqan/seeds/seeds_seed_base.h>
-#include <seqan/seeds/seeds_seed_simple.h>
-#include <seqan/seeds/seeds_seed_diagonal.h>
-#include <seqan/seeds/seeds_seed_chained.h>
+#include <seqan2/seeds/seeds_seed_base.h>
+#include <seqan2/seeds/seeds_seed_simple.h>
+#include <seqan2/seeds/seeds_seed_diagonal.h>
+#include <seqan2/seeds/seeds_seed_chained.h>
 
 // Seed extension algorithms.
-#include <seqan/seeds/seeds_extension.h>
+#include <seqan2/seeds/seeds_extension.h>
 
 // Algorithms for chaining and merging seeds.
-#include <seqan/seeds/seeds_combination.h>
+#include <seqan2/seeds/seeds_combination.h>
 
 // Class SeedSet, specializations, iterators.
-#include <seqan/seeds/basic_iter_indirect.h>
-#include <seqan/seeds/seeds_seed_set_base.h>
-#include <seqan/seeds/seeds_seed_set_unordered.h>
+#include <seqan2/seeds/basic_iter_indirect.h>
+#include <seqan2/seeds/seeds_seed_set_base.h>
+#include <seqan2/seeds/seeds_seed_set_unordered.h>
 
 // Banded chain alignment.
-#include <seqan/seeds/banded_chain_alignment_profile.h>
-#include <seqan/seeds/banded_chain_alignment_scout.h>
-#include <seqan/seeds/banded_chain_alignment_traceback.h>
-#include <seqan/seeds/banded_chain_alignment_impl.h>
-#include <seqan/seeds/banded_chain_alignment.h>
+#include <seqan2/seeds/banded_chain_alignment_profile.h>
+#include <seqan2/seeds/banded_chain_alignment_scout.h>
+#include <seqan2/seeds/banded_chain_alignment_traceback.h>
+#include <seqan2/seeds/banded_chain_alignment_impl.h>
+#include <seqan2/seeds/banded_chain_alignment.h>
 
 // Global chaining algorithms
-#include <seqan/seeds/seeds_global_chaining.h>
+#include <seqan2/seeds/seeds_global_chaining.h>
 
-#endif  // #ifndef SEQAN_HEADER_SEEDS_H
+#endif  // #ifndef SEQAN2_HEADER_SEEDS_H

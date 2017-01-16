@@ -35,62 +35,62 @@
 // Facade header for module bam_io.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_BAM_IO_H_
-#define INCLUDE_SEQAN_BAM_IO_H_
+#ifndef INCLUDE_SEQAN2_BAM_IO_H_
+#define INCLUDE_SEQAN2_BAM_IO_H_
 
 // ===========================================================================
 // Prerequisites.
 // ===========================================================================
 
-#include <seqan/basic.h>
-#include <seqan/file.h>
-#include <seqan/sequence.h>
-#include <seqan/stream.h>
-#include <seqan/align.h>
-#include <seqan/misc/name_store_cache.h>
+#include <seqan2/basic.h>
+#include <seqan2/file.h>
+#include <seqan2/sequence.h>
+#include <seqan2/stream.h>
+#include <seqan2/align.h>
+#include <seqan2/misc/name_store_cache.h>
 
 // ===========================================================================
 // Data Structures & Conversion.
 // ===========================================================================
 
-#include <seqan/bam_io/bam_io_context.h>
-#include <seqan/bam_io/cigar.h>
-#include <seqan/bam_io/bam_alignment_record.h>
-#include <seqan/bam_io/bam_header_record.h>
-#include <seqan/bam_io/bam_sam_conversion.h>
-#include <seqan/bam_io/bam_tags_dict.h>
+#include <seqan2/bam_io/bam_io_context.h>
+#include <seqan2/bam_io/cigar.h>
+#include <seqan2/bam_io/bam_alignment_record.h>
+#include <seqan2/bam_io/bam_header_record.h>
+#include <seqan2/bam_io/bam_sam_conversion.h>
+#include <seqan2/bam_io/bam_tags_dict.h>
 
 // ===========================================================================
 // Actual I/O Code.
 // ===========================================================================
 
-#include <seqan/bam_io/read_sam.h>
-#include <seqan/bam_io/write_sam.h>
-#include <seqan/bam_io/read_bam.h>
-#include <seqan/bam_io/write_bam.h>
+#include <seqan2/bam_io/read_sam.h>
+#include <seqan2/bam_io/write_sam.h>
+#include <seqan2/bam_io/read_bam.h>
+#include <seqan2/bam_io/write_bam.h>
 
 // ===========================================================================
 // Easy BAM / SAM I/O.
 // ===========================================================================
 
-#include <seqan/bam_io/bam_file.h>
+#include <seqan2/bam_io/bam_file.h>
 
 // ===========================================================================
 // Utility Routines.
 // ===========================================================================
 
-#include <seqan/bam_io/bam_alignment_record_util.h>
+#include <seqan2/bam_io/bam_alignment_record_util.h>
 
 // Not included by default, requires C++11
-//#include <seqan/bam_io/bam_scanner_cache.h>
+//#include <seqan2/bam_io/bam_scanner_cache.h>
 
 // ===========================================================================
 // BAM Index Related.
 // ===========================================================================
 
 // BAM indices are only available when ZLIB is available.
-#if SEQAN_HAS_ZLIB
-#include <seqan/bam_io/bam_index_bai.h>
-#endif  // #if SEQAN_HAS_ZLIB
+#if SEQAN2_HAS_ZLIB
+#include <seqan2/bam_io/bam_index_bai.h>
+#endif  // #if SEQAN2_HAS_ZLIB
 
-#endif  // INCLUDE_SEQAN_BAM_IO_H_
+#endif  // INCLUDE_SEQAN2_BAM_IO_H_

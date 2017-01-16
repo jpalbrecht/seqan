@@ -34,10 +34,10 @@
 // Module for handling NCBI Blast I/O and E-Value computation
 // ==========================================================================
 
-#ifndef SEQAN_EXTRAS_BLAST_BLAST_BASE_H_
-#define SEQAN_EXTRAS_BLAST_BLAST_BASE_H_
+#ifndef SEQAN2_EXTRAS_BLAST_BLAST_BASE_H_
+#define SEQAN2_EXTRAS_BLAST_BLAST_BASE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -56,7 +56,7 @@ namespace seqan {
  * @brief Enum with BLAST program spec
  * @signature enum class BlastProgram : uint8_t { ... };
  *
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  * @see BlastProgramSelector
  *
  * @val BlastProgram BlastProgram::BLASTN
@@ -98,7 +98,7 @@ enum class BlastProgram : uint8_t
  * thereof.
  *
  * @signature template <BlastProgram p> struct BlastProgramSelector { ... };
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  *
  * This is a proxy datatype that enables compile-time optimizations through constexpressions iff the value
  * is known at compile time. You will rarely need to instantiate objects of this type yourself, but they
@@ -118,7 +118,7 @@ enum class BlastProgram : uint8_t
  * // same as:
  * // BlastProgram myProgram = BlastProgram::BLASTN;
  *
- * SEQAN_ASSERT(myProgram == BlastProgram::BLASTN); // assertion is checked at run-time
+ * SEQAN2_ASSERT(myProgram == BlastProgram::BLASTN); // assertion is checked at run-time
  * myProgram = BlastProgram::BLASTP; // works without problems
  * @endcode
  *
@@ -140,7 +140,7 @@ struct BlastProgramSelector
     BlastProgramSelector operator=(BlastProgram const p)
     {
         if (p != _p)
-            SEQAN_FAIL("ERROR: Tried to set blastProgram on context, but was already defined at compile time (and set to a "
+            SEQAN2_FAIL("ERROR: Tried to set blastProgram on context, but was already defined at compile time (and set to a "
                        "different value)!");
         return *this;
     }
@@ -178,7 +178,7 @@ struct BlastProgramSelector<BlastProgram::DYNAMIC>
  *
  * @return false for @link BlastProgram::BLASTP @endlink and @link BlastProgram::TBLASTN @endlink
  * @return true otherwise
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  */
 
 constexpr bool
@@ -198,7 +198,7 @@ qHasRevComp(BlastProgram const p)
  *
  * @return true for @link BlastProgram::BLASTX @endlink and @link BlastProgram::TBLASTX @endlink
  * @return false otherwise
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  */
 
 constexpr bool
@@ -219,7 +219,7 @@ qIsTranslated(BlastProgram const p)
  * @return 6 for @link BlastProgram::BLASTX @endlink and @link BlastProgram::TBLASTX @endlink
  * @return 2 for @link BlastProgram::BLASTN @endlink
  * @return 1 for @link BlastProgram::BLASTP @endlink and @link BlastProgram::TBLASTN @endlink
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  */
 
 constexpr uint8_t
@@ -239,7 +239,7 @@ qNumFrames(BlastProgram p)
  *
  * @return true for @link BlastProgram::TBLASTX @endlink and @link BlastProgram::TBLASTN @endlink
  * @return false otherwise
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  */
 
 constexpr bool
@@ -259,7 +259,7 @@ sHasRevComp(BlastProgram const p)
  *
  * @return true for @link BlastProgram::TBLASTX @endlink and @link BlastProgram::TBLASTN @endlink
  * @return false otherwise
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  */
 
 constexpr bool
@@ -279,7 +279,7 @@ sIsTranslated(BlastProgram const p)
  *
  * @return 6 for @link BlastProgram::TBLASTX @endlink and @link BlastProgram::TBLASTN @endlink
  * @return 1 otherwise
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  */
 
 constexpr uint8_t
@@ -421,6 +421,6 @@ _untranslateSPositions(TPos & effectiveStart,
         _untranslatePositions(effectiveStart, effectiveEnd, frameShift, length, False(), False());
 }
 
-} // namespace seqan
+} // namespace seqan2
 
 #endif // header guard

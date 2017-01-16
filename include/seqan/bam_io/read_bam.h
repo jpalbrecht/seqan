@@ -34,10 +34,10 @@
 // Code for reading Bam.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_BAM_IO_READ_BAM_H_
-#define INCLUDE_SEQAN_BAM_IO_READ_BAM_H_
+#ifndef INCLUDE_SEQAN2_BAM_IO_READ_BAM_H_
+#define INCLUDE_SEQAN2_BAM_IO_READ_BAM_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags, Classes, Enums
@@ -101,7 +101,7 @@ readHeader(BamHeader & header,
     String<char, Array<4> > magic;
     read(magic, iter, 4);
     if (magic != "BAM\1")
-        SEQAN_THROW(ParseError("Not in BAM format."));
+        SEQAN2_THROW(ParseError("Not in BAM format."));
 
     // Read header text, including null padding.
     int32_t lText;
@@ -166,7 +166,7 @@ _readBamRecordWithoutSize(TBuffer & rawRecord, TForwardIter & iter)
 
     // fail, if we read "BAM\1" (did you miss to call readRecord(header, bamFile) first?)
     if (recordLen == 0x014D4142)
-        SEQAN_THROW(ParseError("Unexpected BAM header encountered."));
+        SEQAN2_THROW(ParseError("Unexpected BAM header encountered."));
 
     clear(rawRecord);
     write(rawRecord, iter, (size_t)recordLen);
@@ -182,7 +182,7 @@ _readBamRecord(TBuffer & rawRecord, TForwardIter & iter, Bam)
 
     // fail, if we read "BAM\1" (did you miss to call readRecord(header, bamFile) first?)
     if (recordLen == 0x014D4142)
-        SEQAN_THROW(ParseError("Unexpected BAM header encountered."));
+        SEQAN2_THROW(ParseError("Unexpected BAM header encountered."));
 
     clear(rawRecord);
     appendRawPod(rawRecord, recordLen);
@@ -197,9 +197,9 @@ readRecord(BamAlignmentRecord & record,
            Bam const & /* tag */)
 {
     typedef typename Iterator<CharString, Standard>::Type                             TCharIter;
-    typedef typename Iterator<String<CigarElement<> >, Standard>::Type SEQAN_RESTRICT TCigarIter;
-    typedef typename Iterator<IupacString, Standard>::Type SEQAN_RESTRICT             TSeqIter;
-    typedef typename Iterator<CharString, Standard>::Type SEQAN_RESTRICT              TQualIter;
+    typedef typename Iterator<String<CigarElement<> >, Standard>::Type SEQAN2_RESTRICT TCigarIter;
+    typedef typename Iterator<IupacString, Standard>::Type SEQAN2_RESTRICT             TSeqIter;
+    typedef typename Iterator<CharString, Standard>::Type SEQAN2_RESTRICT              TQualIter;
 
     // Read size and data of the remaining block in one chunk (fastest).
     int32_t remainingBytes = _readBamRecordWithoutSize(context.buffer, iter);
@@ -211,19 +211,19 @@ readRecord(BamAlignmentRecord & record,
 
     remainingBytes -= sizeof(BamAlignmentRecordCore) + record._l_qname +
                       record._n_cigar * 4 + (record._l_qseq + 1) / 2 + record._l_qseq;
-    SEQAN_ASSERT_GEQ(remainingBytes, 0);
+    SEQAN2_ASSERT_GEQ(remainingBytes, 0);
 
     // Translate file local rID into a global rID that is compatible with the context contigNames.
     if (record.rID >= 0 && !empty(context.translateFile2GlobalRefId))
         record.rID = context.translateFile2GlobalRefId[record.rID];
     if (record.rID >= 0)
-        SEQAN_ASSERT_LT(static_cast<uint64_t>(record.rID), length(contigNames(context)));
+        SEQAN2_ASSERT_LT(static_cast<uint64_t>(record.rID), length(contigNames(context)));
 
     // ... the same for rNextId
     if (record.rNextId >= 0 && !empty(context.translateFile2GlobalRefId))
         record.rNextId = context.translateFile2GlobalRefId[record.rNextId];
     if (record.rNextId >= 0)
-        SEQAN_ASSERT_LT(static_cast<uint64_t>(record.rNextId), length(contigNames(context)));
+        SEQAN2_ASSERT_LT(static_cast<uint64_t>(record.rNextId), length(contigNames(context)));
 
     // query name.
     resize(record.qName, record._l_qname - 1, Exact());
@@ -238,7 +238,7 @@ readRecord(BamAlignmentRecord & record,
     {
         unsigned opAndCnt;
         readRawPod(opAndCnt, it);
-        SEQAN_ASSERT_LEQ(opAndCnt & 15, 8u);
+        SEQAN2_ASSERT_LEQ(opAndCnt & 15, 8u);
         cig->operation = CIGAR_MAPPING[opAndCnt & 15];
         cig->count = opAndCnt >> 4;
     }
@@ -274,6 +274,6 @@ readRecord(BamAlignmentRecord & record,
     arrayCopyForward(it, it + remainingBytes, begin(record.tags, Standard()));
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_BAM_IO_READ_BAM_H_
+#endif  // #ifndef INCLUDE_SEQAN2_BAM_IO_READ_BAM_H_

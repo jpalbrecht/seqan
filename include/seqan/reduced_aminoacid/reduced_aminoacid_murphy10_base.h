@@ -34,10 +34,10 @@
 // Murphy10 reduction of AminoAcid alphabet
 // ==========================================================================
 
-#ifndef SEQAN_REDUCED_AMINOACID_MURPHY10_BASE_H_
-#define SEQAN_REDUCED_AMINOACID_MURPHY10_BASE_H_
+#ifndef SEQAN2_REDUCED_AMINOACID_MURPHY10_BASE_H_
+#define SEQAN2_REDUCED_AMINOACID_MURPHY10_BASE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -54,7 +54,7 @@ namespace seqan {
 /*!
  * @tag Murphy10
  * @brief Specialization for @link ReducedAminoAcid @endlink#
- * @headerfile seqan/reduced_aminoacid.h
+ * @headerfile seqan2/reduced_aminoacid.h
  *
  * @signature typedef Murphy10 Tag<Murphy10_>;
  *
@@ -119,4 +119,4 @@ struct BitsPerValue<SimpleType<unsigned char, ReducedAminoAcid_<Murphy10> > >
 // ============================================================================
 
 }
-#endif // def SEQAN_REDUCED_AMINOACID_MURPHY10_BASE_H_
+#endif // def SEQAN2_REDUCED_AMINOACID_MURPHY10_BASE_H_

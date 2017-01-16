@@ -32,21 +32,21 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_SYSTEM_MANUAL_FORWARDS_H
-#define SEQAN_HEADER_SYSTEM_MANUAL_FORWARDS_H
+#ifndef SEQAN2_HEADER_SYSTEM_MANUAL_FORWARDS_H
+#define SEQAN2_HEADER_SYSTEM_MANUAL_FORWARDS_H
 
-//SEQAN_NO_GENERATED_FORWARDS: no forwards are generated for this file
+//SEQAN2_NO_GENERATED_FORWARDS: no forwards are generated for this file
 
 //////////////////////////////////////////////////////////////////////////////
 // CLASSES
 //////////////////////////////////////////////////////////////////////////////
 
-namespace seqan {
+namespace seqan2 {
 
 //____________________________________________________________________________
 // Event
 
-struct Event;           // "include/seqan/system/system_event.h"(18)
+struct Event;           // "include/seqan2/system/system_event.h"(18)
 
 //////////////////////////////////////////////////////////////////////////////
 // FUNCTIONS
@@ -55,26 +55,26 @@ struct Event;           // "include/seqan/system/system_event.h"(18)
 //____________________________________________________________________________
 // close
 
-inline bool close(Event &e);           // "include/seqan/system/system_event.h"(109)
+inline bool close(Event &e);           // "include/seqan2/system/system_event.h"(109)
 
 //____________________________________________________________________________
 // open
 
-inline bool open(Event &e, bool initial);           // "include/seqan/system/system_event.h"(101)
-inline bool open(Event &e);           // "include/seqan/system/system_event.h"(105)
+inline bool open(Event &e, bool initial);           // "include/seqan2/system/system_event.h"(101)
+inline bool open(Event &e);           // "include/seqan2/system/system_event.h"(105)
 
 //____________________________________________________________________________
 // signal
 
-inline bool signal(Event &e);           // "include/seqan/system/system_event.h"(131)
+inline bool signal(Event &e);           // "include/seqan2/system/system_event.h"(131)
 
 //____________________________________________________________________________
 // waitFor
 
-inline bool waitFor(Event &e);           // "include/seqan/system/system_event.h"(113)
-template <typename TTime > inline bool waitFor(Event &e, TTime timeoutMilliSec, bool &inProgress);           // "include/seqan/system/system_event.h"(118)
+inline bool waitFor(Event &e);           // "include/seqan2/system/system_event.h"(113)
+template <typename TTime > inline bool waitFor(Event &e, TTime timeoutMilliSec, bool &inProgress);           // "include/seqan2/system/system_event.h"(118)
 
-} //namespace seqan
+} //namespace seqan2
 
 
 #endif

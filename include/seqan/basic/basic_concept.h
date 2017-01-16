@@ -39,16 +39,16 @@
 // Boost concepts and ConceptC++ concepts).
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_BASIC_CONCEPT_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_BASIC_CONCEPT_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_CONCEPT_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_CONCEPT_H_
 
 // --------------------------------------------------------------------------
 // Prerequisites
 // --------------------------------------------------------------------------
 
-#include <seqan/platform.h>
-#include <seqan/basic/basic_fundamental.h>
-#include <seqan/basic/basic_metaprogramming.h>
+#include <seqan2/platform.h>
+#include <seqan2/basic/basic_fundamental.h>
+#include <seqan2/basic/basic_metaprogramming.h>
 
 // --------------------------------------------------------------------------
 // Sub Module Headers
@@ -56,12 +56,12 @@
 
 // Minimal subset of the boost preprocessor library, required for concept
 // checknig library port.
-#include <seqan/basic/boost_preprocessor_subset.h>
+#include <seqan2/basic/boost_preprocessor_subset.h>
 
 // SeqAn Concept Checking Library (ported from Boost).
-#include <seqan/basic/concept_checking.h>
+#include <seqan2/basic/concept_checking.h>
 
 // Fundamental concepts such as Assignable.
-#include <seqan/basic/fundamental_concepts.h>
+#include <seqan2/basic/fundamental_concepts.h>
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_BASIC_CONCEPT_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_CONCEPT_H_

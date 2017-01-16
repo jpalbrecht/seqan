@@ -45,7 +45,7 @@
 #define NCBI_INT2_MAX    32767
 #endif
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -59,7 +59,7 @@ namespace seqan
 //NOTE(h-2): removed to clean up interface
 /*
  * @class KarlinAltschulValues
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  * @brief An object that holds Statistical parameters
  * @signature struct KarlinAltschulValues<TScore, TSpec> { ... };
  *
@@ -141,7 +141,7 @@ double const KarlinAltschulValues<Blosum45, TSpec>::VALUE
 
 
 /// BLOSUM50
-// not implemented in seqan
+// not implemented in seqan2
 
 /// BLOSUM62
 template <typename TSpec>
@@ -205,16 +205,16 @@ double const KarlinAltschulValues<Blosum80, TSpec>::VALUE
 };
 
 /// BLOSUM90
-// not implemented in seqan
+// not implemented in seqan2
 
 /// PAM30
-// not implemented in seqan
+// not implemented in seqan2
 
 /// PAM40
 // not implemented in blast
 
 /// PAM70
-// not implemented in seqan
+// not implemented in seqan2
 
 /// PAM120
 // not implemented in blast
@@ -370,7 +370,7 @@ double const KarlinAltschulValues<Score<int, Simple>, TSpec>::VALUE
  * @class BlastScoringScheme
  * @brief Wrapper around a SeqAn scoring scheme
  * @signature struct BlastScoringScheme<TScoringScheme> { ... };
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  *
  * This class wraps around a SeqAn scoring scheme and add functions for the retrievel of pre-computed
  * Karlin-Altschul-Values (required for e-value statistics) and it modifies the gap-scoring slightly.
@@ -379,7 +379,7 @@ double const KarlinAltschulValues<Score<int, Simple>, TSpec>::VALUE
  * after you modify it (or check the return values of the set* functions).
  *
  * To retrieve a score-object compatible with regular SeqAn-functions, call
- * @link BlastScoringScheme#seqanScheme @endlink.
+ * @link BlastScoringScheme#seqan2Scheme @endlink.
  *
  * @section Gap cost computation
  *
@@ -441,10 +441,10 @@ struct BlastScoringScheme
 // ============================================================================
 
 /*!
- * @fn BlastScoringScheme#seqanScheme
- * @headerfile <seqan/blast.h>
+ * @fn BlastScoringScheme#seqan2Scheme
+ * @headerfile <seqan2/blast.h>
  * @brief Retrieve a @link Score @endlink object for use with e.g. @link localAlignment @endlink.
- * @signature TScoringScheme const & seqanScheme(blastScoringScheme);
+ * @signature TScoringScheme const & seqan2Scheme(blastScoringScheme);
  * @return TScoringScheme_const_& the internal scoring object for use with other SeqAn functions.
  *
  * @section Remarks
@@ -455,7 +455,7 @@ struct BlastScoringScheme
 
 template <typename TScore>
 inline TScore const &
-seqanScheme(BlastScoringScheme<TScore> const & bscheme)
+seqan2Scheme(BlastScoringScheme<TScore> const & bscheme)
 {
     return bscheme._internalScheme;
 }
@@ -466,7 +466,7 @@ seqanScheme(BlastScoringScheme<TScore> const & bscheme)
 
 /*!
  * @fn BlastScoringScheme#scoreMatch
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  * @brief The Match score (only for SimpleScore specialization).
  * @signature int scoreMatch(blastScoringScheme);
  */
@@ -479,7 +479,7 @@ scoreMatch(BlastScoringScheme<Score<int, Simple>> & scheme)
 
 /*!
  * @fn BlastScoringScheme#scoreMismatch
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  * @brief The Mismatch score (only for SimpleScore specialization).
  * @signature int scoreMismatch(blastScoringScheme);
  */
@@ -492,7 +492,7 @@ scoreMismatch(BlastScoringScheme<Score<int, Simple>> & scheme)
 
 /*!
  * @fn BlastScoringScheme#scoreGapOpen
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  * @brief The Gap Open score in SeqAn convention.
  * @signature TValue scoreGapOpen(blastScoringScheme);
  */
@@ -506,7 +506,7 @@ scoreGapOpen(BlastScoringScheme<TScore> const & scheme)
 
 /*!
  * @fn BlastScoringScheme#scoreGapOpenBlast
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  * @brief The Gap Open score in Blast convention.
  * @signature TValue scoreGapOpenBlast(blastScoringScheme);
  */
@@ -520,7 +520,7 @@ scoreGapOpenBlast(BlastScoringScheme<TScore> const & scheme)
 
 /*!
  * @fn BlastScoringScheme#scoreGapExtend
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  * @brief The Gap Extend score.
  * @signature TValue scoreGapExtend(blastScoringScheme);
  */
@@ -538,7 +538,7 @@ scoreGapExtend(BlastScoringScheme<TScore> const & scheme)
 
 /*!
  * @fn BlastScoringScheme#isValid
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  * @brief check whether valid KarlinAltschulValues are selected
  * @signature bool isValid(blastScoringScheme);
  */
@@ -589,7 +589,7 @@ _selectSet(BlastScoringScheme<Score<TValue, ScoreMatrix<AminoAcid, ScoreSpecSele
     using TScoreOrig = Score<TValue, ScoreMatrix<AminoAcid, ScoreSpecSelectable>>;
     bool ret = false;
     impl::score::matrixTagDispatch(impl::score::MatrixTags(),
-                                   getScoreMatrixId(seqanScheme(scheme)),
+                                   getScoreMatrixId(seqan2Scheme(scheme)),
                                    [&] (auto const & tag)
     {
         using TScoreMod = Score<TValue, ScoreMatrix<AminoAcid, std::decay_t<decltype(tag)>>>;
@@ -661,7 +661,7 @@ setScoreMismatch(BlastScoringScheme<Score<int, Simple>> & scheme, int const val)
 
 /*!
  * @fn BlastScoringScheme#setScoreGapOpenBlast
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  * @brief Set gap open score in BLAST convention.
  * @signature bool setScoreGapOpenBlast(blastScoringScheme, value);
  * @param[in,out] blastScoringScheme The @link BlastScoringScheme @endlink to modify.
@@ -720,7 +720,7 @@ setScoreGapExtend(BlastScoringScheme<TScore> & scheme, typename Value<TScore>::T
 
 /*!
  * @fn BlastScoringScheme#getLambda
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  * @brief Get the &lambda; value of the Karlin-Altschul parameters.
  * @signature double getLambda(blastScoringScheme);
  */
@@ -728,7 +728,7 @@ setScoreGapExtend(BlastScoringScheme<TScore> & scheme, typename Value<TScore>::T
 inline double
 getLambda(BlastScoringScheme<Score<int, ScoreMatrix<AminoAcid, ScoreSpecSelectable>>> const & scoringScheme)
 {
-    SEQAN_ASSERT(isValid(scoringScheme));
+    SEQAN2_ASSERT(isValid(scoringScheme));
     return *(scoringScheme._m + scoringScheme.parameterIndex * scoringScheme._nParams + 3);
 }
 
@@ -737,7 +737,7 @@ inline double
 getLambda(BlastScoringScheme<Score<int, ScoreMatrix<AminoAcid, TMatrixSpec>>> const & scoringScheme)
 {
     typedef KarlinAltschulValues<Score<int, ScoreMatrix<AminoAcid, TMatrixSpec>>> TKAValues;
-    SEQAN_ASSERT(isValid(scoringScheme));
+    SEQAN2_ASSERT(isValid(scoringScheme));
     return TKAValues::VALUE[scoringScheme.parameterIndex][3];
 }
 
@@ -745,7 +745,7 @@ inline double
 getLambda(BlastScoringScheme<Score<int, Simple>> const & scoringScheme)
 {
     typedef KarlinAltschulValues<Score<int, Simple>> TKAValues;
-    SEQAN_ASSERT(isValid(scoringScheme));
+    SEQAN2_ASSERT(isValid(scoringScheme));
     return TKAValues::VALUE[scoringScheme.parameterIndex][4];
 }
 
@@ -755,7 +755,7 @@ getLambda(BlastScoringScheme<Score<int, Simple>> const & scoringScheme)
 
 /*!
  * @fn BlastScoringScheme#getKappa
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  * @brief Get the &Kappa; value of the Karlin-Altschul parameters.
  * @signature double getKappa(blastScoringScheme);
  */
@@ -763,7 +763,7 @@ getLambda(BlastScoringScheme<Score<int, Simple>> const & scoringScheme)
 inline double
 getKappa(BlastScoringScheme<Score<int, ScoreMatrix<AminoAcid, ScoreSpecSelectable>>> const & scoringScheme)
 {
-    SEQAN_ASSERT(isValid(scoringScheme));
+    SEQAN2_ASSERT(isValid(scoringScheme));
     return *(scoringScheme._m + scoringScheme.parameterIndex * scoringScheme._nParams + 4);
 }
 
@@ -773,7 +773,7 @@ getKappa(BlastScoringScheme<Score<int, ScoreMatrix<AminoAcid, TMatrixSpec>>> con
 {
     typedef KarlinAltschulValues<Score<int,
         ScoreMatrix< AminoAcid, TMatrixSpec>>> TKAValues;
-    SEQAN_ASSERT(isValid(scoringScheme));
+    SEQAN2_ASSERT(isValid(scoringScheme));
     return TKAValues::VALUE[scoringScheme.parameterIndex][4];
 }
 
@@ -781,7 +781,7 @@ inline double
 getKappa(BlastScoringScheme<Score<int, Simple>> const & scoringScheme)
 {
     typedef KarlinAltschulValues<Score<int, Simple>> TKAValues;
-    SEQAN_ASSERT(isValid(scoringScheme));
+    SEQAN2_ASSERT(isValid(scoringScheme));
     return TKAValues::VALUE[scoringScheme.parameterIndex][5];
 }
 
@@ -791,7 +791,7 @@ getKappa(BlastScoringScheme<Score<int, Simple>> const & scoringScheme)
 
 /*!
  * @fn BlastScoringScheme#getH
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  * @brief Get the H value of the Karlin-Altschul parameters.
  * @signature double getH(blastScoringScheme);
  */
@@ -799,7 +799,7 @@ getKappa(BlastScoringScheme<Score<int, Simple>> const & scoringScheme)
 inline double
 getH(BlastScoringScheme<Score<int, ScoreMatrix<AminoAcid, ScoreSpecSelectable>>> const & scoringScheme)
 {
-    SEQAN_ASSERT(isValid(scoringScheme));
+    SEQAN2_ASSERT(isValid(scoringScheme));
     return *(scoringScheme._m + scoringScheme.parameterIndex * scoringScheme._nParams + 5);
 }
 
@@ -809,7 +809,7 @@ getH(BlastScoringScheme<Score<int, ScoreMatrix<AminoAcid, TMatrixSpec>>> const &
 {
     typedef KarlinAltschulValues<Score<int,
         ScoreMatrix< AminoAcid, TMatrixSpec>>> TKAValues;
-    SEQAN_ASSERT(isValid(scoringScheme));
+    SEQAN2_ASSERT(isValid(scoringScheme));
     return TKAValues::VALUE[scoringScheme.parameterIndex][5];
 }
 
@@ -817,7 +817,7 @@ inline double
 getH(BlastScoringScheme<Score<int, Simple>> const & scoringScheme)
 {
     typedef KarlinAltschulValues<Score<int, Simple>> TKAValues;
-    SEQAN_ASSERT(isValid(scoringScheme));
+    SEQAN2_ASSERT(isValid(scoringScheme));
     return TKAValues::VALUE[scoringScheme.parameterIndex][6];
 }
 
@@ -827,7 +827,7 @@ getH(BlastScoringScheme<Score<int, Simple>> const & scoringScheme)
 
 /*!
  * @fn BlastScoringScheme#getAlpha
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  * @brief Get the &alpha; value of the Karlin-Altschul parameters.
  * @signature double getAlpha(blastScoringScheme);
  */
@@ -835,7 +835,7 @@ getH(BlastScoringScheme<Score<int, Simple>> const & scoringScheme)
 inline double
 getAlpha(BlastScoringScheme<Score<int, ScoreMatrix<AminoAcid, ScoreSpecSelectable>>> const & scoringScheme)
 {
-    SEQAN_ASSERT(isValid(scoringScheme));
+    SEQAN2_ASSERT(isValid(scoringScheme));
     return *(scoringScheme._m + scoringScheme.parameterIndex * scoringScheme._nParams + 6);
 }
 
@@ -845,7 +845,7 @@ inline double
 getAlpha(BlastScoringScheme<Score<int, ScoreMatrix<AminoAcid, TMatrixSpec>>> const & scoringScheme)
 {
     typedef KarlinAltschulValues<Score<int, ScoreMatrix<AminoAcid, TMatrixSpec>>> TKAValues;
-    SEQAN_ASSERT(isValid(scoringScheme));
+    SEQAN2_ASSERT(isValid(scoringScheme));
     return TKAValues::VALUE[scoringScheme.parameterIndex][6];
 }
 
@@ -853,7 +853,7 @@ inline double
 getAlpha(BlastScoringScheme<Score<int, Simple>> const & scoringScheme)
 {
     typedef KarlinAltschulValues<Score<int, Simple>> TKAValues;
-    SEQAN_ASSERT(isValid(scoringScheme));
+    SEQAN2_ASSERT(isValid(scoringScheme));
     return TKAValues::VALUE[scoringScheme.parameterIndex][7];
 }
 
@@ -863,7 +863,7 @@ getAlpha(BlastScoringScheme<Score<int, Simple>> const & scoringScheme)
 
 /*!
  * @fn BlastScoringScheme#getBeta
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  * @brief Get the &beta; value of the Karlin-Altschul parameters.
  * @signature double getBeta(blastScoringScheme);
  */
@@ -871,7 +871,7 @@ getAlpha(BlastScoringScheme<Score<int, Simple>> const & scoringScheme)
 inline double
 getBeta(BlastScoringScheme<Score<int, ScoreMatrix<AminoAcid, ScoreSpecSelectable>>> const & scoringScheme)
 {
-    SEQAN_ASSERT(isValid(scoringScheme));
+    SEQAN2_ASSERT(isValid(scoringScheme));
     return *(scoringScheme._m + scoringScheme.parameterIndex * scoringScheme._nParams + 7);
 }
 
@@ -880,7 +880,7 @@ inline double
 getBeta(BlastScoringScheme<Score<int, ScoreMatrix<AminoAcid, TMatrixSpec>>> const & scoringScheme)
 {
     typedef KarlinAltschulValues<Score<int, ScoreMatrix<AminoAcid, TMatrixSpec>>> TKAValues;
-    SEQAN_ASSERT(isValid(scoringScheme));
+    SEQAN2_ASSERT(isValid(scoringScheme));
     return TKAValues::VALUE[scoringScheme.parameterIndex][7];
 }
 
@@ -888,7 +888,7 @@ inline double
 getBeta(BlastScoringScheme<Score<int, Simple>> const & scoringScheme)
 {
     typedef KarlinAltschulValues<Score<int, Simple>> TKAValues;
-    SEQAN_ASSERT(isValid(scoringScheme));
+    SEQAN2_ASSERT(isValid(scoringScheme));
     return TKAValues::VALUE[scoringScheme.parameterIndex][8];
 }
 
@@ -982,7 +982,7 @@ _lengthAdjustment(TSize     const & dbLength,
 
 /*!
  * @fn BlastMatch#computeAlignmentStats
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  * @brief Compute the @link BlastMatch::alignStats @endlink member of a @link BlastMatch @endlink.
  * @signature void computeAlignmentStats(blastMatch, context);
  *
@@ -1003,7 +1003,7 @@ inline void
 computeAlignmentStats(TBlastMatch & match,
                       BlastIOContext<TScore, p, h> const & context)
 {
-    computeAlignmentStats(match.alignStats, match.alignRow0, match.alignRow1, seqanScheme(context.scoringScheme));
+    computeAlignmentStats(match.alignStats, match.alignRow0, match.alignRow1, seqan2Scheme(context.scoringScheme));
 }
 
 // ----------------------------------------------------------------------------
@@ -1019,7 +1019,7 @@ computeAlignmentStats(TBlastMatch & match,
  * @param[in]   blastScoringScheme The @link BlastScoringScheme @endlink.
  *
  * @return double The bit-score computed.
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  */
 
 template <typename TScore>
@@ -1038,7 +1038,7 @@ computeBitScore(double const rawScore, BlastScoringScheme<TScore> const & scheme
  * @param[in]       context     A @link BlastIOContext @endlink with parameters and buffers.
  *
  * @return double blastMatch.@link BlastMatch::bitScore @endlink after computation
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  *
  * @section Remarks
  *
@@ -1073,7 +1073,7 @@ computeBitScore(TBlastMatch & match,
  * @param[in]   blastScoringScheme The @link BlastScoringScheme @endlink.
  *
  * @return double The e-value computed.
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  */
 
 template <typename TScore>
@@ -1123,7 +1123,7 @@ computeEValue(uint64_t rawScore,
  * @param[in,out]   context     A @link BlastIOContext @endlink with parameters and buffers.
  *
  * @return double blastMatch.@link BlastMatch::eValue @endlink after computation
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  *
  * @section Remarks
  *

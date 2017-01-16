@@ -34,10 +34,10 @@
 // Pool for reusable items, e.g. buffer strings
 // ==========================================================================
 
-#ifndef SEQAN_PARALLEL_PARALLEL_RESOURCE_POOL_H_
-#define SEQAN_PARALLEL_PARALLEL_RESOURCE_POOL_H_
+#ifndef SEQAN2_PARALLEL_PARALLEL_RESOURCE_POOL_H_
+#define SEQAN2_PARALLEL_PARALLEL_RESOURCE_POOL_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Classes
@@ -109,6 +109,6 @@ releaseValue(ResourcePool<TValue> & me, TValue *ptr)
     appendValue(me.recycled, ptr);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_PARALLEL_PARALLEL_RESOURCE_POOL_H_
+#endif  // #ifndef SEQAN2_PARALLEL_PARALLEL_RESOURCE_POOL_H_

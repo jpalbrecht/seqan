@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_INDEX_WOTD_H
-#define SEQAN_HEADER_INDEX_WOTD_H
+#ifndef SEQAN2_HEADER_SEQAN2_INDEX_WOTD_H
+#define SEQAN2_HEADER_SEQAN2_INDEX_WOTD_H
 
-namespace seqan
+namespace seqan2
 {
 
 
@@ -72,7 +72,7 @@ namespace seqan
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexWotd#indexSA
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>getFibre(.., WotdSA)</tt>.
  *
  * @signature TSa indexSA(index);
@@ -84,7 +84,7 @@ namespace seqan
 
 /*!
  * @fn IndexWotd#indexDir
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>getFibre(.., WotdDir())</tt>.
  * @signature TFibre indexDir(index);
  *
@@ -95,7 +95,7 @@ namespace seqan
 
 /*!
  * @fn IndexWotd#saAt
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @note Advanced functionality, not commonly used.
  * @brief Shortcut for <tt>value(indexSA(..), ..)</tt>.
  *
@@ -111,7 +111,7 @@ namespace seqan
 
 /*!
  * @fn IndexWotd#dirAt
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>value(indexDir(index), position)</tt>.
  *
  * @signature TFibre dirAt(position, index);
@@ -135,7 +135,7 @@ namespace seqan
  * @class IndexWotd
  * @extends Index
  * @implements StringTreeConcept
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief An index based on a lazy suffix tree (see Giegerich et al., "Efficient implementation of lazy suffix
  *        trees").
  *
@@ -274,10 +274,10 @@ namespace seqan
 */
 
 template <typename TText, typename TSpec>
-SEQAN_CONCEPT_IMPL((Index<TText, IndexWotd<TSpec> >), (StringTreeConcept));
+SEQAN2_CONCEPT_IMPL((Index<TText, IndexWotd<TSpec> >), (StringTreeConcept));
 
 template <typename TText, typename TSpec>
-SEQAN_CONCEPT_IMPL((Index<TText, IndexWotd<TSpec> > const), (StringTreeConcept));
+SEQAN2_CONCEPT_IMPL((Index<TText, IndexWotd<TSpec> > const), (StringTreeConcept));
 
 //////////////////////////////////////////////////////////////////////////////
 // default fibre creators
@@ -1146,7 +1146,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexWotd<TSpec> > const), (StringTreeConcept))
 //TODO(singer): The function createWotdIndex in never defined!
 /*!
  * @fn IndexWotd#createWotdIndex
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Builds a the WOTD index.
  *
  * @signature void createWotdIndex(sa, dir, text);
@@ -2123,4 +2123,4 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexWotd<TSpec> > const), (StringTreeConcept))
     }
 }
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

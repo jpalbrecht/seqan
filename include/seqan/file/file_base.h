@@ -34,8 +34,8 @@
 // Defines basic file access functions.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_FILE_BASE_H_
-#define SEQAN_INCLUDE_SEQAN_FILE_BASE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_FILE_BASE_H_
+#define SEQAN2_INCLUDE_SEQAN2_FILE_BASE_H_
 
 /* IOREV
  * _doc_
@@ -46,10 +46,10 @@
  * (these files are built around c++ fstream IO)
  * well documented (in comparison to other files)
  *
- * SEQAN_DIRECTIO Macro mentioned here but not documented or tested
+ * SEQAN2_DIRECTIO Macro mentioned here but not documented or tested
  */
 
-namespace seqan {
+namespace seqan2 {
 
 // Manual Forward.
 template < typename TSpec, typename TPos >
@@ -281,7 +281,7 @@ inline typename Position< File<TSpec> >::Type seek(File<TSpec> &me, TPos const f
 //IOREV
         typedef typename Position< File<TSpec> >::Type TFilePos;
         TFilePos newOfs = me.seek(fileOfs, origin);
-        #if SEQAN_ENABLE_DEBUG || SEQAN_ENABLE_TESTING
+        #if SEQAN2_ENABLE_DEBUG || SEQAN2_ENABLE_TESTING
             if (origin == SEEK_BEGIN && newOfs != (TFilePos)fileOfs) {
                 std::cerr << "seek returned " << std::hex << newOfs << " instead of " << fileOfs << std::dec << std::endl;
             }
@@ -640,6 +640,6 @@ inline typename Position< File<TSpec> >::Type seek(File<TSpec> &me, TPos const f
         else
             return (_size / (T1)_aligning) * (T1)_aligning;
     }
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_FILE_BASE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_FILE_BASE_H_

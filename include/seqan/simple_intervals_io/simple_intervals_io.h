@@ -34,10 +34,10 @@
 // Reading and writing of .intervals file record plus tags.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_SIMPLE_INTERVALS_IO_SIMPLE_INTERVALS_IO_H_
-#define INCLUDE_SEQAN_SIMPLE_INTERVALS_IO_SIMPLE_INTERVALS_IO_H_
+#ifndef INCLUDE_SEQAN2_SIMPLE_INTERVALS_IO_SIMPLE_INTERVALS_IO_H_
+#define INCLUDE_SEQAN2_SIMPLE_INTERVALS_IO_SIMPLE_INTERVALS_IO_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -55,7 +55,7 @@ namespace seqan {
  * @class SimpleIntervalsIOContext
  * @implements DefaultConstructibleConcept
  * @implements AssignableConcept
- * @headerfile <seqan/simple_intervals_io.h>
+ * @headerfile <seqan2/simple_intervals_io.h>
  * @brief I/O context for .intervals file.
  *
  * @signature class SimpleIntervalsIOContext;
@@ -72,7 +72,7 @@ struct SimpleIntervalsIOContext
 
 /*!
  * @tag FileFormats#SimpleIntervals
- * @headerfile <seqan/simple_intervals_io.h>
+ * @headerfile <seqan2/simple_intervals_io.h>
  * @brief Tag for the simple .intervals file format.
  * The file contains format in the format <tt>CHR:POS</tt> or <tt>CHR:BEGIN-END</tt> in 1-based coordinates.
  */
@@ -95,7 +95,7 @@ typedef Tag<SimpleIntervals_> SimpleIntervals;
 // NOTE(esiragusa): dox disabled.
 /*
  * @fn SimpleIntervalsFileIO#readRecord
- * @headerfile <seqan/simple_intervals_io.h>
+ * @headerfile <seqan2/simple_intervals_io.h>
  * @brief Read an intervals record.
  *
  * @signature void readRecord(region, buffer, iter, tag);
@@ -132,7 +132,7 @@ void readRecord(GenomicRegion & record,
 // NOTE(esiragusa): dox disabled.
 /*
  * @fn SimpleIntervalsFileIO#writeRecord
- * @headerfile <seqan/simple_intervals_io.h>
+ * @headerfile <seqan2/simple_intervals_io.h>
  * @brief Write out a @link GenomicRegion @endlink to an intervals file.
  *
  * @signature void writeRecord(target, context, region, tag);
@@ -156,6 +156,6 @@ void writeRecord(TTarget & target,
     write(target, "\n");
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_SIMPLE_INTERVALS_IO_SIMPLE_INTERVALS_IO_H_
+#endif  // #ifndef INCLUDE_SEQAN2_SIMPLE_INTERVALS_IO_SIMPLE_INTERVALS_IO_H_

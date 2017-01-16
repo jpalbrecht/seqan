@@ -33,10 +33,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_SHAPE_THRESHOLD_H
-#define SEQAN_HEADER_SHAPE_THRESHOLD_H
+#ifndef SEQAN2_HEADER_SHAPE_THRESHOLD_H
+#define SEQAN2_HEADER_SHAPE_THRESHOLD_H
 
-namespace seqan
+namespace seqan2
 {
 
 struct ThreshQGramLemma_;
@@ -172,10 +172,10 @@ int qgramThreshold(TShape const & shape, TPatternSize patternLength, TErrors err
 //____________________________________________________________________________
 
     enum ErrorType {
-        SEQAN_MATCH    = 0,
-        SEQAN_MISMATCH = 1,
-        SEQAN_INSERT   = 2,
-        SEQAN_DELETE   = 3
+        SEQAN2_MATCH    = 0,
+        SEQAN2_MISMATCH = 1,
+        SEQAN2_INSERT   = 2,
+        SEQAN2_DELETE   = 3
     };
 
     template <typename TDistance>
@@ -389,17 +389,17 @@ _cutErrorPattern(TPattern &_pattern)
     do {
         --it;
         ++cuttedErrors;
-    } while ((int)getValue(it) == SEQAN_INSERT);
+    } while ((int)getValue(it) == SEQAN2_INSERT);
 
     // cut non INSERT
-    if ((int)getValue(it) != SEQAN_MATCH)
+    if ((int)getValue(it) != SEQAN2_MATCH)
         ++cuttedErrors;
 
     //  and all adjacent INSERTs
     do {
         --it;
         ++cuttedErrors;
-    } while ((int)getValue(it) == SEQAN_INSERT);
+    } while ((int)getValue(it) == SEQAN2_INSERT);
 
     resize(_pattern, 1 + (it - begin(pattern, Standard())));
     return cuttedErrors;
@@ -410,7 +410,7 @@ typename Value<TLogErrorDistr>::Type
 _getProb(TLogErrorDistr const &logError, int errorType, int readPos)
 {
     int maxN = length(logError) / 4;
-    SEQAN_ASSERT(readPos >= 0 && readPos < maxN);
+    SEQAN2_ASSERT(readPos >= 0 && readPos < maxN);
     return logError[maxN * (int)errorType + readPos];
 }
 
@@ -425,7 +425,7 @@ _getLastPatternProb(TState &state, TLogErrorDistr const &logError, TPattern cons
     for (int i = 0, j = 0; j < (int)length(pattern); ++j)
     {
         prob = _probMul(prob, _getProb(logError, getValue(pattern, j), maxN - span + i));
-        if ((int)getValue(pattern, j) != SEQAN_INSERT)
+        if ((int)getValue(pattern, j) != SEQAN2_INSERT)
             ++i;
     }
     state.prob = prob;
@@ -450,9 +450,9 @@ _setInsertTransitions(TState<TDistance, TFloat> & state,
                       TErr const maxErrors)
 {
     if (errors <= maxErrors)
-        state.transition[SEQAN_INSERT] = _getErrorPatternIndex(patternStore, pattern);
+        state.transition[SEQAN2_INSERT] = _getErrorPatternIndex(patternStore, pattern);
     else
-        state.transition[SEQAN_INSERT] = -1;
+        state.transition[SEQAN2_INSERT] = -1;
 }
 
 template <template <typename, typename> class TState,
@@ -483,9 +483,9 @@ _setDeleteTransitions(TState<TDistance, TFloat> & state,
                       TErr const maxErrors)
 {
     if (errors <= maxErrors)
-        state.transition[SEQAN_DELETE] = _getErrorPatternIndex(patternStore, pattern);
+        state.transition[SEQAN2_DELETE] = _getErrorPatternIndex(patternStore, pattern);
     else
-        state.transition[SEQAN_DELETE] = -1;
+        state.transition[SEQAN2_DELETE] = -1;
 }
 
 template <template <typename, typename> class TState,
@@ -526,10 +526,10 @@ void initPatterns(
     typedef typename Iterator<TPattern, Standard>::Type            TIter;
     typedef typename Value<TStateString>::Type                    TState;
 
-    ErrorType lastErrorType = (IsSameType<TDistance, HammingDistance>::VALUE)? SEQAN_MISMATCH: SEQAN_DELETE;
+    ErrorType lastErrorType = (IsSameType<TDistance, HammingDistance>::VALUE)? SEQAN2_MISMATCH: SEQAN2_DELETE;
 
-    SEQAN_ASSERT_EQ(SEQAN_MATCH, 0);
-    SEQAN_ASSERT((IsSameType<TLogErrorDistr,Nothing>::VALUE || (length(logError) % 4) == 0u));
+    SEQAN2_ASSERT_EQ(SEQAN2_MATCH, 0);
+    SEQAN2_ASSERT((IsSameType<TLogErrorDistr,Nothing>::VALUE || (length(logError) % 4) == 0u));
 
 #ifndef DEBUG_RECOG_DP
     String<TPattern> patternStore;
@@ -537,7 +537,7 @@ void initPatterns(
 
     // a modifier is a pair of position and error type
     String<Pair<int, ErrorType> > mods;
-    resize(mods, maxErrors, Pair<int, ErrorType> (0, SEQAN_MATCH));
+    resize(mods, maxErrors, Pair<int, ErrorType> (0, SEQAN2_MATCH));
 
     TPattern pattern;
     int span = length(bitShape);
@@ -546,14 +546,14 @@ void initPatterns(
     // Enumerate all edit-modification patterns with up to k errors
     if (maxErrors == 0)
     {
-        resize(pattern, span, (ErrorAlphabet)SEQAN_MATCH);
+        resize(pattern, span, (ErrorAlphabet)SEQAN2_MATCH);
         appendValue(patternStore, pattern, Generous());
     }
     else
     do
     {
         clear(pattern);
-        resize(pattern, span, (ErrorAlphabet)SEQAN_MATCH);
+        resize(pattern, span, (ErrorAlphabet)SEQAN2_MATCH);
 
         // place errors in the pattern
         bool skip = false;
@@ -562,9 +562,9 @@ void initPatterns(
 //            std::cout << mods[i].i1 << " " << (ErrorAlphabet)mods[i].i2 << "\t";
             switch (mods[i].i2)
             {
-            case SEQAN_MISMATCH:
-            case SEQAN_DELETE:
-                if (pattern[mods[i].i1] != (ErrorAlphabet)SEQAN_MATCH)
+            case SEQAN2_MISMATCH:
+            case SEQAN2_DELETE:
+                if (pattern[mods[i].i1] != (ErrorAlphabet)SEQAN2_MATCH)
                 {
                     skip = true;
                     break;
@@ -572,11 +572,11 @@ void initPatterns(
                 pattern[mods[i].i1] = (ErrorAlphabet)mods[i].i2;
                 break;
 
-            case SEQAN_INSERT:
-                insertValue(pattern, mods[i].i1, (ErrorAlphabet)SEQAN_INSERT);
+            case SEQAN2_INSERT:
+                insertValue(pattern, mods[i].i1, (ErrorAlphabet)SEQAN2_INSERT);
                 break;
 
-            case SEQAN_MATCH:
+            case SEQAN2_MATCH:
                 break;
             }
         }
@@ -593,20 +593,20 @@ void initPatterns(
                 right = getValue(it);
 
 #ifdef NON_REDUNDANT
-                if (left == SEQAN_MISMATCH && right == SEQAN_DELETE)
+                if (left == SEQAN2_MISMATCH && right == SEQAN2_DELETE)
                     skip = true;    // MISMATCH before DELETE is DELETE before MISMATCH (already enumerated)
 
-                if (left == SEQAN_MISMATCH && right == SEQAN_INSERT)
+                if (left == SEQAN2_MISMATCH && right == SEQAN2_INSERT)
                     skip = true;    // MISMATCH before INSERT is INSERT before MISMATCH (already enumerated)
 
-                if (left == SEQAN_INSERT && right == SEQAN_DELETE)
+                if (left == SEQAN2_INSERT && right == SEQAN2_DELETE)
                     skip = true;    // INSERT before DELETE is one MISMATCH (already enumerated)
 
-                if (left == SEQAN_DELETE && right == SEQAN_INSERT)
+                if (left == SEQAN2_DELETE && right == SEQAN2_INSERT)
                     skip = true;    // DELETE before INSERT is one MISMATCH (already enumerated)
 #endif
             }
-            if (left == SEQAN_INSERT)
+            if (left == SEQAN2_INSERT)
                 skip = true;        // no trailing INSERT allowed
         }
 
@@ -620,8 +620,8 @@ void initPatterns(
         int i = 0;
         for (; i < maxErrors; ++i)
         {
-            if (mods[i].i2 == SEQAN_MATCH) continue;
-            int endPos = (mods[i].i2 == SEQAN_INSERT)? span + 1: span;
+            if (mods[i].i2 == SEQAN2_MATCH) continue;
+            int endPos = (mods[i].i2 == SEQAN2_INSERT)? span + 1: span;
             if (++mods[i].i1 < endPos)
             {
                 for(--i; i >= 0; --i)
@@ -641,7 +641,7 @@ void initPatterns(
             if (mods[i].i2 == lastErrorType) continue;
             mods[i].i2 = (ErrorType)(mods[i].i2 + 1);
             for(--i; i >= 0; --i)
-                mods[i].i2 = SEQAN_MISMATCH;
+                mods[i].i2 = SEQAN2_MISMATCH;
             break;
         }
 
@@ -676,12 +676,12 @@ void initPatterns(
         // count errors of current pattern
         int errors = 0;
         for (int i = 0; i < (int)length(pattern); ++i)
-            if ((int)getValue(pattern, i) != SEQAN_MATCH)
+            if ((int)getValue(pattern, i) != SEQAN2_MATCH)
                 ++errors;
 
         state.len = length(pattern);
         state.errors = errors;
-        state.intermediate = (int)getValue(pattern, 0) == SEQAN_INSERT;
+        state.intermediate = (int)getValue(pattern, 0) == SEQAN2_INSERT;
         _getLastPatternProb(state, logError, pattern, span);
 //        std::cout << pattern << "\t";
 
@@ -693,15 +693,15 @@ void initPatterns(
         for (int j = 0; j < (int)length(pattern); ++j)
         {
             switch ((int)getValue(pattern, j)) {
-                case SEQAN_MATCH:
+                case SEQAN2_MATCH:
                     ++del;
                     break;
 
-                case SEQAN_DELETE:
+                case SEQAN2_DELETE:
                     ++del;
-                    SEQAN_FALLTHROUGH
+                    SEQAN2_FALLTHROUGH
 
-                case SEQAN_INSERT:
+                case SEQAN2_INSERT:
                     ++err;
                     break;
 
@@ -714,15 +714,15 @@ void initPatterns(
         for (int j = (int)length(pattern) - 1; j >= 0; --j)
         {
             switch ((int)getValue(pattern, j)) {
-                case SEQAN_MATCH:
+                case SEQAN2_MATCH:
                     ++del;
                     break;
 
-                case SEQAN_DELETE:
+                case SEQAN2_DELETE:
                     ++del;
-                    SEQAN_FALLTHROUGH
+                    SEQAN2_FALLTHROUGH
 
-                case SEQAN_INSERT:
+                case SEQAN2_INSERT:
                     ++err;
                     break;
 
@@ -732,7 +732,7 @@ void initPatterns(
                 state.skipLast = true;
         }
 #else
-        state.skipFirst = (int)getValue(pattern, 0) == SEQAN_INSERT;
+        state.skipFirst = (int)getValue(pattern, 0) == SEQAN2_INSERT;
 #endif
         // apply pattern to read q-gram
         // and check if shape is recognized in the genome
@@ -742,9 +742,9 @@ void initPatterns(
         {
             switch ((int)getValue(pattern, j))
             {
-                case SEQAN_MATCH:
+                case SEQAN2_MATCH:
                     if (readPos == 0) {
-                        // SEQAN_ASSERT_EQ(bitShape[0], '1')
+                        // SEQAN2_ASSERT_EQ(bitShape[0], '1')
                         delta = genomePos;
                         state.qgramHit = true;
                     } else
@@ -753,20 +753,20 @@ void initPatterns(
 //                    std::cout << readPos;
                     ++readPos; ++genomePos;
                     break;
-                case SEQAN_MISMATCH:
+                case SEQAN2_MISMATCH:
                     // was it a relevant read position?
                     if (bitShape[readPos] == '1')
                         state.qgramHit = false;
 //                    std::cout << 'x';
                     ++readPos; ++genomePos;
                     break;
-                case SEQAN_DELETE:
+                case SEQAN2_DELETE:
                     // was it a relevant read position?
                     if (bitShape[readPos] == '1')
                         state.qgramHit = false;
                     ++readPos;
                     break;
-                case SEQAN_INSERT:
+                case SEQAN2_INSERT:
                     ++genomePos;
 //                    std::cout << 'x';
             }
@@ -775,33 +775,33 @@ void initPatterns(
 
         // prepend INSERT
         ++errors;
-        insertValue(pattern, 0, SEQAN_INSERT);
+        insertValue(pattern, 0, SEQAN2_INSERT);
         _setInsertTransitions(state, patternStore, pattern, errors, maxErrors);
 
         // prepend MISMATCH and cut INSERTS
         errors -= _cutErrorPattern(pattern);
-        if ((int)SEQAN_MISMATCH < (int)state.TRANSITIONS)
+        if ((int)SEQAN2_MISMATCH < (int)state.TRANSITIONS)
         {
-            pattern[0] = SEQAN_MISMATCH;
+            pattern[0] = SEQAN2_MISMATCH;
             if (errors <= maxErrors)
-                state.transition[SEQAN_MISMATCH] = _getErrorPatternIndex(patternStore, pattern);
+                state.transition[SEQAN2_MISMATCH] = _getErrorPatternIndex(patternStore, pattern);
             else
-                state.transition[SEQAN_MISMATCH] = -1;
+                state.transition[SEQAN2_MISMATCH] = -1;
         }
 
         // prepend DELETE
-        pattern[0] = SEQAN_DELETE;
+        pattern[0] = SEQAN2_DELETE;
         _setDeleteTransitions(state, patternStore, pattern, errors, maxErrors);
 
         // prepend MATCH
-        if ((int)SEQAN_MATCH < (int)state.TRANSITIONS)
+        if ((int)SEQAN2_MATCH < (int)state.TRANSITIONS)
         {
             --errors;
-            pattern[0] = SEQAN_MATCH;
+            pattern[0] = SEQAN2_MATCH;
             if (errors <= maxErrors)
-                state.transition[SEQAN_MATCH] = _getErrorPatternIndex(patternStore, pattern);
+                state.transition[SEQAN2_MATCH] = _getErrorPatternIndex(patternStore, pattern);
             else
-                state.transition[SEQAN_MATCH] = -1;
+                state.transition[SEQAN2_MATCH] = -1;
         }
 /*
         std::cout << "\t" << state.errors;
@@ -882,16 +882,16 @@ void computeExactQGramThreshold(
                 TState const &state = states[s];
 
                 // MATCH
-                TThresh t = (*colPrev)[e + state.transition[SEQAN_MATCH]];
+                TThresh t = (*colPrev)[e + state.transition[SEQAN2_MATCH]];
 
                 // MISMATCH, INSERT, DELETE
                 if (e > 0)
-                    for (int m = SEQAN_MISMATCH; m < TState::TRANSITIONS; ++m)
+                    for (int m = SEQAN2_MISMATCH; m < TState::TRANSITIONS; ++m)
                     {
                         int prevState = state.transition[m];
                         if (prevState >= 0)
                         {
-                            if (m == SEQAN_INSERT)
+                            if (m == SEQAN2_INSERT)
                                 t = _min(t, (*col)[(e - statesCount) + prevState]);
                             else
                                 t = _min(t, (*colPrev)[(e - statesCount) + prevState]);
@@ -970,7 +970,7 @@ void computeQGramFilteringSensitivity(
     typedef String<TFloat>                            TMatrixCol;
     //typedef String<int>                                TIntCol;
 
-    SEQAN_ASSERT_EQ((length(logError) % 4), 0u);
+    SEQAN2_ASSERT_EQ((length(logError) % 4), 0u);
 
     int maxN = length(logError) / 4;
     int statesCount = length(states);
@@ -1054,17 +1054,17 @@ void computeQGramFilteringSensitivity(
 
                     // MATCH
                     TFloat recovered = _probMul(
-                        _getProb(logError, SEQAN_MATCH, n-span),
-                        (*colPrev)[(e+state.transition[SEQAN_MATCH])*maxT+_t]);
+                        _getProb(logError, SEQAN2_MATCH, n-span),
+                        (*colPrev)[(e+state.transition[SEQAN2_MATCH])*maxT+_t]);
 
                     // MISMATCH, INSERT, DELETE
-                    for (int m = SEQAN_MISMATCH; m < (int)state.TRANSITIONS; ++m)
+                    for (int m = SEQAN2_MISMATCH; m < (int)state.TRANSITIONS; ++m)
                         if (e > 0)
                         {
                             int prevState = state.transition[m];
                             if (prevState >= 0)
                             {
-                                if (m == SEQAN_INSERT)
+                                if (m == SEQAN2_INSERT)
                                     _probAdd(recovered, _probMul(_getProb(logError,m,n-span), (*col)[((e-statesCount)+prevState)*maxT+t]));
                                 else
                                     _probAdd(recovered, _probMul(_getProb(logError,m,n-span), (*colPrev)[((e-statesCount)+prevState)*maxT+_t]));
@@ -1174,6 +1174,6 @@ void qgramFilteringSensitivity(
     computeQGramFilteringSensitivity(sensMat, states, length(bitString), maxThresh + 1, errors + 1, logErrorDistribution, true);
 }
 
-}    // namespace seqan
+}    // namespace seqan2
 
 #endif

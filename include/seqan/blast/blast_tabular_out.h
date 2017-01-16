@@ -34,10 +34,10 @@
 // This file contains routines to generate BLAST tab-seperated output
 // ==========================================================================
 
-#ifndef SEQAN_BLAST_BLAST_TABULAR_WRITE_H_
-#define SEQAN_BLAST_BLAST_TABULAR_WRITE_H_
+#ifndef SEQAN2_BLAST_BLAST_TABULAR_WRITE_H_
+#define SEQAN2_BLAST_BLAST_TABULAR_WRITE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -56,7 +56,7 @@ namespace seqan {
  * @signature template <typename TBlastIOContext>
  * using BlastTabularFileOut = FormattedFile<BlastTabular, Output, TBlastIOContext>;
  * @extends FormattedFileOut
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  * @brief FormattedFileOut abstraction for @link BlastTabular @endlink
  *
  * This is a @link FormattedFile @endlink specialization for writing @link BlastTabular @endlink formats. For details
@@ -85,7 +85,7 @@ namespace seqan {
  * </ul>
  *
  * For a detailed example have a look at the
- * <a href="http://seqan.readthedocs.io/en/develop/Tutorial/InputOutput/BlastIO.html">Blast IO tutorial</a>.
+ * <a href="http://seqan2.readthedocs.io/en/develop/Tutorial/InputOutput/BlastIO.html">Blast IO tutorial</a>.
  *
  * Strictly speaking the <tt>writeHeader()</tt> call is not required for BlastTabular, but for consistency with
  * other (blast) formats and the read interface it is recommended.
@@ -133,9 +133,9 @@ _writeFieldLabels(TFwdIterator & stream,
     }
     else
     {
-        for (auto it = seqan::begin(context.fields),
+        for (auto it = seqan2::begin(context.fields),
                   itB = it,
-                  itEnd = seqan::end(context.fields);
+                  itEnd = seqan2::end(context.fields);
             it != itEnd;
             ++it)
         {
@@ -194,7 +194,7 @@ _writeCommentLines(TFwdIterator & stream,
 
     _writeCommentLinesWithoutColumnLabels(stream, context, r, BlastTabular());
 
-    if (SEQAN_LIKELY(!context.legacyFormat))
+    if (SEQAN2_LIKELY(!context.legacyFormat))
     {
         // only write fields line if matches will follow
         if (length(r.matches) > 0)
@@ -213,7 +213,7 @@ _writeCommentLines(TFwdIterator & stream,
         write(stream, BlastMatchField<>::legacyColumnLabels);
         write(stream, '\n');
 
-        #if SEQAN_ENABLE_DEBUG
+        #if SEQAN2_ENABLE_DEBUG
         if ((length(context.fields) != 1) || (context.fields[0] != BlastMatchField<>::Enum::STD))
             std::cerr << "Warning: custom fields set, but will be ignored, because legacyFormat is also set.\n";
         #endif
@@ -225,14 +225,14 @@ _writeCommentLines(TFwdIterator & stream,
 // ----------------------------------------------------------------------------
 
 template <typename TSequence>
-inline SEQAN_FUNC_ENABLE_IF(Is<StringConcept<TSequence>>, bool)
+inline SEQAN2_FUNC_ENABLE_IF(Is<StringConcept<TSequence>>, bool)
 _isEmpty(TSequence const & s)
 {
     return length(s);
 }
 
 template <typename TSequence>
-inline SEQAN_FUNC_DISABLE_IF(Is<StringConcept<TSequence>>, bool)
+inline SEQAN2_FUNC_DISABLE_IF(Is<StringConcept<TSequence>>, bool)
 _isEmpty(TSequence const &)
 {
     return true;
@@ -485,7 +485,7 @@ _writeField(TFwdIterator & s,
                 // replace whitespace with _
                 std::string buf;
                 resize(buf, length(record.lcaId));
-                std::transform(seqan::begin(record.lcaId, Standard()), seqan::end(record.lcaId, Standard()), std::begin(buf), [] (auto const c)
+                std::transform(seqan2::begin(record.lcaId, Standard()), seqan2::end(record.lcaId, Standard()), std::begin(buf), [] (auto const c)
                 {
                     return ((c == ' ') || (c == '\t')) ? '_' : c;
                 });
@@ -525,7 +525,7 @@ _writeMatch(TFwdIterator & stream,
            BlastRecord<TSpecs...> const & record,
            BlastTabular const & /*tag*/)
 {
-    if (SEQAN_LIKELY(!context.legacyFormat))
+    if (SEQAN2_LIKELY(!context.legacyFormat))
     {
         for (decltype(std::begin(context.fields)) it = std::begin(context.fields), itB = it, itEnd = std::end(context.fields); it != itEnd; ++it)
         {
@@ -560,7 +560,7 @@ _writeMatch(TFwdIterator & stream,
             _writeField(stream, context, match, record, *it, BlastTabular());
         }
 
-        #if SEQAN_ENABLE_DEBUG
+        #if SEQAN2_ENABLE_DEBUG
         if ((length(context.fields) != 1) || (context.fields[0] != BlastMatchField<>::Enum::STD))
             std::cerr << "Warning: custom fields set, but will be ignored, because legacyFormat is also set.\n";
         #endif
@@ -575,7 +575,7 @@ _writeMatch(TFwdIterator & stream,
 
 /*!
  * @fn BlastTabularFileOut#writeRecord
- * @headerfile seqan/blast.h
+ * @headerfile seqan2/blast.h
  * @brief Write a @link BlastRecord @endlink including it's @link BlastMatch @endlinkes and possible comment lines to a file.
  * @signature void writeRecord(blastTabularOut, blastRecord);
  *
@@ -649,7 +649,7 @@ writeRecord(TFwdIterator & stream,
     for (auto it = r.matches.begin(); it != r.matches.end(); ++it)
     {
         //SOME SANITY CHECKS
-        SEQAN_ASSERT(startsWith(r.qId, it->qId));
+        SEQAN2_ASSERT(startsWith(r.qId, it->qId));
 
         _writeMatch(stream, context, *it, r, BlastTabular());
     }
@@ -670,7 +670,7 @@ writeRecord(BlastTabularFileOut<TContext> & formattedFile,
 
 /*!
  * @fn BlastTabularFileOut#writeHeader
- * @headerfile seqan/blast.h
+ * @headerfile seqan2/blast.h
  * @brief Write the header (top-most section) of a BlastTabular file (this is a NOOP).
  * @signature void writeHeader(blastTabularOut);
  *
@@ -706,7 +706,7 @@ writeHeader(BlastTabularFileOut<TContext> & formattedFile)
 
 /*!
  * @fn BlastTabularFileOut#writeFooter
- * @headerfile seqan/blast.h
+ * @headerfile seqan2/blast.h
  * @brief Write the footer of a BlastTabular file.
  * @signature void writeFooter(blastTabularOut);
  *
@@ -742,5 +742,5 @@ writeFooter(BlastTabularFileOut<TContext> & formattedFile)
     writeFooter(formattedFile.iter, context(formattedFile), BlastTabular());
 }
 
-} // namespace seqan
+} // namespace seqan2
 #endif // header guard

@@ -34,15 +34,15 @@
 
 // TODO(aiche): check if parts of the functionality could be merged with lexicalCast in stream module
 
-#ifndef SEQAN_INCLUDE_ARG_PARSE_ARG_PARSE_TYPE_SUPPRT_H_
-#define SEQAN_INCLUDE_ARG_PARSE_ARG_PARSE_TYPE_SUPPRT_H_
+#ifndef SEQAN2_INCLUDE_ARG_PARSE_ARG_PARSE_TYPE_SUPPRT_H_
+#define SEQAN2_INCLUDE_ARG_PARSE_ARG_PARSE_TYPE_SUPPRT_H_
 
 #include <sstream>
 #include <string>
 
-#include <seqan/sequence.h>
+#include <seqan2/sequence.h>
 
-namespace seqan {
+namespace seqan2 {
 
 
 // ==========================================================================
@@ -103,7 +103,7 @@ inline TTarget _cast(TString const s)
     TTarget dst((TTarget()));
     std::istringstream stream(toCString(s));
     bool result = (!(stream >> dst).fail()) && (stream.rdbuf()->in_avail() == 0);
-    SEQAN_CHECK(result, "could not cast %s", toCString(s));
+    SEQAN2_CHECK(result, "could not cast %s", toCString(s));
     return dst;
 }
 
@@ -231,6 +231,6 @@ inline bool _convertArgumentValue(TObject & dst, ArgParseArgument const & opt, s
     return true;
 }
 
-} // namespace seqan
+} // namespace seqan2
 
-#endif // SEQAN_INCLUDE_ARG_PARSE_ARG_PARSE_TYPE_SUPPRT_H_
+#endif // SEQAN2_INCLUDE_ARG_PARSE_ARG_PARSE_TYPE_SUPPRT_H_

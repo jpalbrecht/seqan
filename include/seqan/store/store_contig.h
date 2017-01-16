@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_STORE_CONTIG_H
-#define SEQAN_HEADER_STORE_CONTIG_H
+#ifndef SEQAN2_HEADER_STORE_CONTIG_H
+#define SEQAN2_HEADER_STORE_CONTIG_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -44,7 +44,7 @@ namespace seqan
 
 /*!
  * @class ContigStoreElement
- * @headerfile <seqan/store.h>
+ * @headerfile <seqan2/store.h>
  * @brief Represents a single contig.
  *
  * @signature template <typename TContigSeq, typename TGapAnchor[, typename TSpec]>
@@ -161,7 +161,7 @@ ContigStoreElement<TContigSeq_, TGapAnchor_, TSpec_>::INVALID_ID = MaxValue<type
 
 /*!
  * @class ContigFile
- * @headerfile <seqan/store.h>
+ * @headerfile <seqan2/store.h>
  * @brief Represents a file containing contigs.
  *
  * @signature template <[typename TSpec]>
@@ -211,8 +211,8 @@ ContigFile<TSpec_>::INVALID_ID = MaxValue<typename Id<ContigFile<TSpec_> >::Type
 
 //////////////////////////////////////////////////////////////////////////////
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...
 
 //  LocalWords:  ContigFile

@@ -34,10 +34,10 @@
 // Class for reading/writing RNA structure files.
 // ==========================================================================
 
-#ifndef SEQAN_RNA_IO_RNA_STRUCT_FILE_H_
-#define SEQAN_RNA_IO_RNA_STRUCT_FILE_H_
+#ifndef SEQAN2_RNA_IO_RNA_STRUCT_FILE_H_
+#define SEQAN2_RNA_IO_RNA_STRUCT_FILE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ==========================================================================
 // Tags, Classes, Enums
@@ -49,7 +49,7 @@ namespace seqan {
 
 /*!
  * @tag FileFormats#RnaStruct
- * @headerfile <seqan/rna_io.h>
+ * @headerfile <seqan2/rna_io.h>
  * @brief General RNA structure file type. The concrete type is defined by the file name suffix.
  * @signature typedef Tag<RnaStruct_> RnaStruct;
  * @see FileFormats#Connect
@@ -78,7 +78,7 @@ typedef TagList<Connect,
 
 /*!
  * @class RnaStructContents
- * @headerfile <seqan/rna_io.h>
+ * @headerfile <seqan2/rna_io.h>
  * @brief Contains all the contents of an RNA structure file.
  *
  * @signature struct RnaStructContents;
@@ -113,7 +113,7 @@ struct RnaStructContents
  * @class RnaStructFileIn
  * @signature typedef FormattedFile<RnaStruct, Input> RnaStructFileIn;
  * @extends FormattedFileIn
- * @headerfile <seqan/rna_io.h>
+ * @headerfile <seqan2/rna_io.h>
  * @brief Class for reading DBN, DBV, CT, STH, BPSEQ, and EBPSEQ files containing RNA structures.
  */
 typedef FormattedFile<RnaStruct, Input> RnaStructFileIn;
@@ -122,7 +122,7 @@ typedef FormattedFile<RnaStruct, Input> RnaStructFileIn;
  * @class RnaStructFileOut
  * @signature typedef FormattedFile<RnaStruct, Output> RnaStructFileOut;
  * @extends FormattedFileOut
- * @headerfile <seqan/rna_io.h>
+ * @headerfile <seqan2/rna_io.h>
  * @brief Class for writing DBN, DBV, CT, STH, BPSEQ, and EBPSEQ files containing RNA structures.
  */
 typedef FormattedFile<RnaStruct, Output> RnaStructFileOut;
@@ -179,7 +179,7 @@ template <typename TFwdIterator>
 inline void
 readRecord(RnaRecord &, RnaIOContext &, TFwdIterator &, TagSelector<> const &)
 {
-    SEQAN_FAIL("RnaStructFileIn: File format not specified.");
+    SEQAN2_FAIL("RnaStructFileIn: File format not specified.");
 }
 
 template <typename TFwdIterator, typename TTagList>
@@ -219,7 +219,7 @@ template <typename TFwdIterator>
 inline void
 writeRecord(TFwdIterator &, RnaRecord const &, RnaIOContext &, TagSelector<> const &)
 {
-    SEQAN_FAIL("RnaStructFileOut: File format not specified.");
+    SEQAN2_FAIL("RnaStructFileOut: File format not specified.");
 }
 
 template <typename TFwdIterator, typename TTagList>
@@ -308,7 +308,7 @@ inline void readRecords(RnaStructContents & contents, FormattedFile<RnaStruct, I
     while (!atEnd(file.iter) && ++numRecords <= maxRecords)
     {
         if (numRecords >= UINT32_MAX)
-            SEQAN_THROW(ParseError("ERROR: Capacity exceeded. File contains too many sequences: Set the maxRecords "
+            SEQAN2_THROW(ParseError("ERROR: Capacity exceeded. File contains too many sequences: Set the maxRecords "
                                            "parameter to at most " + std::to_string(UINT32_MAX - 1u) + "."));
 
         readRecord(record, file);
@@ -342,6 +342,6 @@ inline void writeRecords(FormattedFile<RnaStruct, Output, TSpec> & file, RnaStru
         writeRecord(file, record);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif // SEQAN_RNA_IO_RNA_STRUCT_FILE_H_
+#endif // SEQAN2_RNA_IO_RNA_STRUCT_FILE_H_

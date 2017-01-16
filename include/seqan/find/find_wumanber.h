@@ -32,10 +32,10 @@
 // Author: Andreas Gogol-Doering <andreas.doering@mdc-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_FIND_WUMANBER_H
-#define SEQAN_HEADER_FIND_WUMANBER_H
+#ifndef SEQAN2_HEADER_FIND_WUMANBER_H
+#define SEQAN2_HEADER_FIND_WUMANBER_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -45,7 +45,7 @@ namespace seqan
 /*!
  * @class WuManberPattern
  * @extends Pattern
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Online algorithm for multi-pattern search.
  *
  * @signature template <typename TNeedle>
@@ -92,7 +92,7 @@ public:
 
     template <typename TNeedle2>
     Pattern(TNeedle2 && ndl,
-            SEQAN_CTOR_DISABLE_IF(IsSameType<typename std::remove_reference<TNeedle2>::type const &, Pattern const &>))
+            SEQAN2_CTOR_DISABLE_IF(IsSameType<typename std::remove_reference<TNeedle2>::type const &, Pattern const &>))
     {
         setHost(*this, std::forward<TNeedle2>(ndl));
         ignoreUnusedVariableWarning(dummy);
@@ -436,6 +436,6 @@ inline bool find(TFinder & finder,
 
 //////////////////////////////////////////////////////////////////////////////
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

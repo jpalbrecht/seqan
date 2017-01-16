@@ -34,14 +34,14 @@
 // Definition of the class Finder and supporting tags and metafunctions.
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_FIND_BASE_H
-#define SEQAN_HEADER_FIND_BASE_H
+#ifndef SEQAN2_HEADER_FIND_BASE_H
+#define SEQAN2_HEADER_FIND_BASE_H
 
 // TODO(holtgrew): Should Finder implement the RootedIteratorConcept?
 
 //////////////////////////////////////////////////////////////////////////////
 
-namespace seqan {
+namespace seqan2 {
 
 //////////////////////////////////////////////////////////////////////////////
 // Tags
@@ -59,7 +59,7 @@ namespace seqan {
 
 /*!
  * @tag ApproximateFinderSearchTypeTags#FindInfix
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  *
  * @brief Find needle as a substring of the haystack (infix search).
  *
@@ -72,7 +72,7 @@ struct FindInfix;
 
 /*!
  * @tag ApproximateFinderSearchTypeTags#FindPrefix
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  *
  * @brief Find needle as a substring of the haystack (prefix search).
  *
@@ -87,7 +87,7 @@ struct FindPrefix;
 
 /*!
  * @mfn DefaultFinder
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Default @link Finder @endlink specialization type.
  *
  * @signature DefaultFinder<THaystack>::Type;
@@ -106,7 +106,7 @@ struct DefaultFinder
 
 /*!
  * @mfn DefaultPattern
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Default @link Pattern @endlink specialization type.
  *
  * @signature DefaultPattern<TNeedle>::Type;
@@ -124,7 +124,7 @@ struct DefaultPattern
 
 /*!
  * @mfn Finder#Haystack
- * @headerfile <seqan/file.h>
+ * @headerfile <seqan2/file.h>
  * @brief Returns the haystack type of a @link Finder @endlink type.
  *
  * @signature Haystack<TFinder>::Type;
@@ -143,7 +143,7 @@ struct Haystack
 
 /*!
  * @mfn Pattern#Needle
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Returns the needle type of a @link Pattern @endlink type.
  *
  * @signature Needle<TPattern>::Type;
@@ -176,7 +176,7 @@ struct Needle<Segment<THost, TSpec> const>
 
 /*!
  * @fn Finder#find
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Search for a @link Pattern @endlink in a @link Finder @endlink object.
  *
  * @signature bool find(finder, pattern[, k]);
@@ -216,7 +216,7 @@ struct Needle<Segment<THost, TSpec> const>
 /*!
  * @class Finder
  *
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  *
  * @brief Holds the haystack and a current search context.
  *
@@ -653,7 +653,7 @@ empty(Finder<THaystack, TSpec> const & me)
 
 /*!
  * @fn Finder#clear
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Clear the Finder.
  *
  * @signature void clear(finder);
@@ -999,6 +999,6 @@ struct DefaultGetIteratorSpec< Finder<THaystack, TSpec> const>:
 
 //////////////////////////////////////////////////////////////////////////////
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

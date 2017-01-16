@@ -37,12 +37,12 @@
 // TODO(holtgrew): For windows, we only need to create the profile of the window, this should save time for string resizing on replace().
 // TODO(holtgrew): Need to resort after display, changes order and might break realignment!
 
-#include <seqan/align_profile/score_profile_seq.h>
+#include <seqan2/align_profile/score_profile_seq.h>
 
-#ifndef INCLUDE_SEQAN_REALIGN_REALIGN_BASE_H_
-#define INCLUDE_SEQAN_REALIGN_REALIGN_BASE_H_
+#ifndef INCLUDE_SEQAN2_REALIGN_REALIGN_BASE_H_
+#define INCLUDE_SEQAN2_REALIGN_REALIGN_BASE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -303,10 +303,10 @@ public:
         result.aliEndPos = result.aliBeginPos + (el.endPos - el.beginPos);
 
         // Sanity check on the result.
-        SEQAN_ASSERT_LEQ(result.aliEndPos, result.profEndPos - result.profBeginPos);
-        SEQAN_ASSERT_EQ((unsigned)(el.endPos - el.beginPos), result.aliEndPos - result.aliBeginPos);
-        SEQAN_ASSERT_GEQ(result.profEndPos - result.profBeginPos, (unsigned)(el.endPos - el.beginPos));
-        SEQAN_ASSERT_LEQ(result.profEndPos - result.profBeginPos,
+        SEQAN2_ASSERT_LEQ(result.aliEndPos, result.profEndPos - result.profBeginPos);
+        SEQAN2_ASSERT_EQ((unsigned)(el.endPos - el.beginPos), result.aliEndPos - result.aliBeginPos);
+        SEQAN2_ASSERT_GEQ(result.profEndPos - result.profBeginPos, (unsigned)(el.endPos - el.beginPos));
+        SEQAN2_ASSERT_LEQ(result.profEndPos - result.profBeginPos,
                          (unsigned)(el.endPos - el.beginPos + 2 * options.environment));
 
         return result;
@@ -427,21 +427,21 @@ public:
         (void)dbgCounter;
         for (; itR != itREnd; ++itR, ++itP, ++pos)
         {
-            SEQAN_ASSERT_MSG(itP != end(profileStr, Standard()),
+            SEQAN2_ASSERT_MSG(itP != end(profileStr, Standard()),
                              "Profile part includes read alignment (debug counter = %u).", dbgCounter);
 
             unsigned idx = isGap(itR) ? valueSize<TAlphabet>() : ordValue(*itR);
-#if SEQAN_ENABLE_DEBUG
+#if SEQAN2_ENABLE_DEBUG
             int posP = itP - begin(profileStr, Standard());
             int posR = itR - begin(readGaps, Standard());
-#endif  // #if SEQAN_ENABLE_DEBUG
+#endif  // #if SEQAN2_ENABLE_DEBUG
             // std::cerr << "idx == " << idx << "\tpos == " << pos << "\tidx == " << idx << "\tposP == " << posP
             //           << "\tposR == " << posR << "\t" << "posA == " << posA << "\t"
             //           << "itP->count[0] == " << itP->count[0] << "\t" << "itP->count[1] == " << itP->count[1] << "\t"
             //           << "itP->count[2] == " << itP->count[2] << "\t" << "itP->count[3] == " << itP->count[3] << "\t"
             //           << "itP->count[4] == " << itP->count[4] << "\t" << "itP->count[5] == " << itP->count[5] << "\t"
             //           << "*itR == " << (isGap(itR) ? '-' : convert<char>(TAlphabet(*itR))) << "\n";
-            SEQAN_ASSERT_GT_MSG(itP->count[idx], 0u,
+            SEQAN2_ASSERT_GT_MSG(itP->count[idx], 0u,
                                 "Must have count for alignment char (pos = %u, idx = %u, posP = %d, posR = %d).",
                                 pos, idx, posP, posR);
             itP->count[idx] -= 1;
@@ -458,7 +458,7 @@ public:
                 {
                     swap(store.alignedReadStore, contigAlignedReads);
                     std::cerr << "ALIGNMENT is (current == " << store.readSeqStore[el.readId] << ")\n";
-                    seqan::AlignedReadLayout layout;
+                    seqan2::AlignedReadLayout layout;
                     layoutAlignment(layout, store);
                     std::stringstream ss;
                     printAlignment(std::cerr, layout, store, front(store.alignedReadStore).contigId,
@@ -493,8 +493,8 @@ public:
         // Add remaining profile characters.
         append(profileStr2, suffix(profileStr, pos));
 
-        SEQAN_ASSERT_LEQ(removeLeft, (int)info.aliBeginPos);
-        SEQAN_ASSERT_LEQ(removeRight, (int)(length(profileStr) - info.aliEndPos));
+        SEQAN2_ASSERT_LEQ(removeLeft, (int)info.aliBeginPos);
+        SEQAN2_ASSERT_LEQ(removeRight, (int)(length(profileStr) - info.aliEndPos));
         info.aliBeginPos -= removeLeft;
         info.aliEndPos -= removeRight;
 
@@ -598,7 +598,7 @@ public:
             if ((unsigned)abs((int)(it2->endPos - it2->beginPos)) != length(readGaps))
             {
                 std::cerr << "READ GAPS\t>>>" << readGaps << "<<<\n";
-                SEQAN_FAIL("Inconsistent begin/endPos");
+                SEQAN2_FAIL("Inconsistent begin/endPos");
             }
         }
     }
@@ -951,7 +951,7 @@ void AnsonMyersRealigner_<TFragmentStore>::_endContig(unsigned contigID)
 
 /*
  * @fn _fixBandSize
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Fix a band for alignment given sequences (for their lengths) and an @link AlignConfig @endlink.
  *
  * @signature void _fixBandSize(lowerDiag, upperDiag, seqH, seqV, alignConfig);
@@ -1025,7 +1025,7 @@ void AnsonMyersRealignmentRound_<TFragmentStore>::run(unsigned windowBegin, unsi
     double roundStartTime = sysTime();  // round start time
     if (options.debug)
         std::cerr << "STARTING ROUND WITH windowBegin == " << windowBegin << ", windowEnd == " << windowEnd << "\n";
-    SEQAN_ASSERT_LEQ(windowBegin, windowEnd);
+    SEQAN2_ASSERT_LEQ(windowBegin, windowEnd);
     if (windowBegin == windowEnd && windowBegin != 0u)
     {
         if (options.debug)
@@ -1050,8 +1050,8 @@ void AnsonMyersRealignmentRound_<TFragmentStore>::run(unsigned windowBegin, unsi
         double beginExtractProfile = sysTime();
         // Get positions in the alignment to extrad and positions in the alignment in this part.
         ExtractProfileInfo_ info = _getExtractPositions(*it);
-        SEQAN_ASSERT_EQ(info.profBeginPos + info.aliBeginPos, (unsigned)it->beginPos);
-        SEQAN_ASSERT_EQ(info.profBeginPos + info.aliEndPos, (unsigned)it->endPos);
+        SEQAN2_ASSERT_EQ(info.profBeginPos + info.aliBeginPos, (unsigned)it->beginPos);
+        SEQAN2_ASSERT_EQ(info.profBeginPos + info.aliEndPos, (unsigned)it->endPos);
         if (options.debug)
             std::cerr << "WINDOW                       [" << windowBegin << ", " << windowEnd << ")\n"
                       << "UNADJUSTED\n"
@@ -1079,7 +1079,7 @@ void AnsonMyersRealignmentRound_<TFragmentStore>::run(unsigned windowBegin, unsi
                       << "read ali end pos    " << windowInfo.readAliEndPos << "\n";
         if (windowInfo.readBeginPos == windowInfo.readEndPos)
             continue;  // Skip if we only cut out gap characters.
-        SEQAN_ASSERT_EQ(windowInfo.readAliEndPos - windowInfo.readAliBeginPos,
+        SEQAN2_ASSERT_EQ(windowInfo.readAliEndPos - windowInfo.readAliBeginPos,
                         info.aliEndPos - info.aliBeginPos);
         // Extract part of the profile with buffer bases left and right.
         profilePart = infix(contigProfile, info.profBeginPos, info.profEndPos);
@@ -1121,7 +1121,7 @@ void AnsonMyersRealignmentRound_<TFragmentStore>::run(unsigned windowBegin, unsi
 
             swap(store.alignedReadStore, contigAlignedReads);
             std::cerr << "ALIGNMENT is\n";
-            seqan::AlignedReadLayout layout;
+            seqan2::AlignedReadLayout layout;
             layoutAlignment(layout, store);
             std::stringstream ss;
             printAlignment(std::cerr, layout, store, front(store.alignedReadStore).contigId,
@@ -1138,7 +1138,7 @@ void AnsonMyersRealignmentRound_<TFragmentStore>::run(unsigned windowBegin, unsi
         _subtractReadAlignment(windowBegin, windowEnd, profilePart, info, *it, it - begin(contigAlignedReads,
                                                                                           Standard()),
                                windowInfo);
-        SEQAN_ASSERT_LEQ(windowBegin, windowEnd);
+        SEQAN2_ASSERT_LEQ(windowBegin, windowEnd);
         times.realignExtractProfile += sysTime() - beginExtractProfile;
 
         if (options.debug)
@@ -1148,7 +1148,7 @@ void AnsonMyersRealignmentRound_<TFragmentStore>::run(unsigned windowBegin, unsi
 
             swap(store.alignedReadStore, contigAlignedReads);
             std::cerr << "AFTER SUBTRACTION of " << store.readSeqStore[it->readId] << " id= " << it->readId << "\n";
-            seqan::AlignedReadLayout layout;
+            seqan2::AlignedReadLayout layout;
             layoutAlignment(layout, store);
             std::stringstream ss;
             printAlignment(std::cerr, layout, store, front(store.alignedReadStore).contigId,
@@ -1295,7 +1295,7 @@ void AnsonMyersRealignmentRound_<TFragmentStore>::run(unsigned windowBegin, unsi
         {
             swap(store.alignedReadStore, contigAlignedReads);
             std::cerr << "BEFORE INTEGRATION of " << store.readSeqStore[it->readId] << "\n";
-            seqan::AlignedReadLayout layout;
+            seqan2::AlignedReadLayout layout;
             layoutAlignment(layout, store);
             std::stringstream ss;
             printAlignment(std::cerr, layout, store, front(store.alignedReadStore).contigId,
@@ -1310,7 +1310,7 @@ void AnsonMyersRealignmentRound_<TFragmentStore>::run(unsigned windowBegin, unsi
                 std::cerr << "it2->beginPos == " << it2->beginPos << ", it2->endPos == " << it2->endPos << "\n";
                 std::cerr << "    " << source(readGaps) << "\n";
                 if (windowBegin == windowEnd)
-                    SEQAN_ASSERT_EQ((int)(it2->endPos - it2->beginPos), (int)length(readGaps));
+                    SEQAN2_ASSERT_EQ((int)(it2->endPos - it2->beginPos), (int)length(readGaps));
             }
         }
 
@@ -1319,7 +1319,7 @@ void AnsonMyersRealignmentRound_<TFragmentStore>::run(unsigned windowBegin, unsi
         if (options.debug)
             std::cerr << "WINDOW BEFORE UPDATE ALIGNMENTS [" << windowBegin << ", " << windowEnd << ")\n";
         _updateAlignments(windowBegin, windowEnd, profilePart, profileGaps, readGaps, info, windowInfo, it);
-        SEQAN_ASSERT_LEQ(windowBegin, windowEnd);
+        SEQAN2_ASSERT_LEQ(windowBegin, windowEnd);
         if (options.debug)
             std::cerr << "WINDOW AFTER UPDATE ALIGNMENTS [" << windowBegin << ", " << windowEnd << ")\n";
         times.realignIntegration = sysTime() - beginIntegration;
@@ -1339,7 +1339,7 @@ void AnsonMyersRealignmentRound_<TFragmentStore>::run(unsigned windowBegin, unsi
 
             swap(store.alignedReadStore, contigAlignedReads);
             std::cerr << "AFTER REALIGNMENT STEP of " << store.readSeqStore[it->readId] << "\n";
-            seqan::AlignedReadLayout layout;
+            seqan2::AlignedReadLayout layout;
             layoutAlignment(layout, store);
             std::stringstream ss;
             printAlignment(std::cerr, layout, store, front(store.alignedReadStore).contigId,
@@ -1354,10 +1354,10 @@ void AnsonMyersRealignmentRound_<TFragmentStore>::run(unsigned windowBegin, unsi
                 std::cerr << "it2->beginPos == " << it2->beginPos << ", it2->endPos == " << it2->endPos << "\n";
                 std::cerr << "    " << source(readGaps) << "\n";
                 if (windowBegin == windowEnd)
-                    SEQAN_ASSERT_EQ((int)(it2->endPos - it2->beginPos), (int)length(readGaps));
+                    SEQAN2_ASSERT_EQ((int)(it2->endPos - it2->beginPos), (int)length(readGaps));
             }
         }
-        SEQAN_ASSERT_LEQ(windowBegin, windowEnd);
+        SEQAN2_ASSERT_LEQ(windowBegin, windowEnd);
     }
 
     // Register round's times.
@@ -1547,10 +1547,10 @@ void AnsonMyersRealignmentRound_<TFragmentStore>::_updateAlignments(
     //
     // We record the positions of all-gaps columns and remove them later.  We also insert all-gaps columns into *it and
     // remove it together with the rest of the alignment.
-    seqan::String<unsigned> gapPositions;
+    seqan2::String<unsigned> gapPositions;
     for (; itP != itPEnd;)
     {
-        SEQAN_ASSERT_NOT_MSG(isGap(itP) && isGap(itR), "No all-gaps columns in pairwise alignment.");
+        SEQAN2_ASSERT_NOT_MSG(isGap(itP) && isGap(itR), "No all-gaps columns in pairwise alignment.");
 
         // Without a countTrailingGaps() function, this is the best way to check whether we are in the trailing gap.
         inTrailingGapR = (inTrailingGapR || countGaps(itR) >= remainingCols);
@@ -1657,8 +1657,8 @@ void AnsonMyersRealignmentRound_<TFragmentStore>::_updateAlignments(
     }
 
     // Must be both at the end of the read and the profile alignment.
-    SEQAN_ASSERT(itR == itREnd);
-    SEQAN_ASSERT(itP == itPEnd);
+    SEQAN2_ASSERT(itR == itREnd);
+    SEQAN2_ASSERT(itP == itPEnd);
     if (options.debug)
         std::cerr << "windowEnd == " << windowEnd << "\n";
 
@@ -1684,9 +1684,9 @@ void AnsonMyersRealignmentRound_<TFragmentStore>::_updateAlignments(
                   << "it->beginPos == " << it->beginPos << ", it->endPos == " << it->endPos << "\n";
     int newContigProfileLength = length(contigProfile) + length(newProfilePart) - length(profilePart);
     (void)newContigProfileLength;  // only used for assertion
-    SEQAN_ASSERT_LEQ(it->beginPos, newContigProfileLength);
-    SEQAN_ASSERT_LEQ(it->endPos, newContigProfileLength);
-    // SEQAN_ASSERT_EQ(it->endPos - it->beginPos, length(row(align, 0))); // TODO(holtgrew): Remove!
+    SEQAN2_ASSERT_LEQ(it->beginPos, newContigProfileLength);
+    SEQAN2_ASSERT_LEQ(it->endPos, newContigProfileLength);
+    // SEQAN2_ASSERT_EQ(it->endPos - it->beginPos, length(row(align, 0))); // TODO(holtgrew): Remove!
 
     // Write out the new profile.
     swap(newProfilePart, profilePart);
@@ -1703,20 +1703,20 @@ void AnsonMyersRealignmentRound_<TFragmentStore>::_updateAlignments(
             std::cerr << "removeGaps(contigAlignedReads, " << (gapPositions[i] - i)
                       << ") (info.profBeginPos == " << info.profBeginPos << ")\n";
         removeGap(contigAlignedReads, gapPositions[i] - i);
-        SEQAN_ASSERT(empty(profilePart[gapPositions[i] - i - info.profBeginPos]));
+        SEQAN2_ASSERT(empty(profilePart[gapPositions[i] - i - info.profBeginPos]));
         erase(profilePart, gapPositions[i] - i - info.profBeginPos);
         if (windowBegin != windowEnd)
             windowEnd -= 1;  // gap removed from profile/MSA, decrease window size
     }
 
-#if SEQAN_ENABLE_TESTING
+#if SEQAN2_ENABLE_TESTING
     {
         TAnchorReadGaps anchorReadGaps2(store.readSeqStore[it->readId], it->gaps);
         if (options.debug)
             std::cerr << "anchorReadGaps == " << anchorReadGaps2 << "\n";
-        SEQAN_ASSERT_EQ(it->endPos - it->beginPos, (int)length(anchorReadGaps2));
+        SEQAN2_ASSERT_EQ(it->endPos - it->beginPos, (int)length(anchorReadGaps2));
     }
-#endif  // #if SEQAN_ENABLE_TESTING
+#endif  // #if SEQAN2_ENABLE_TESTING
 }
 
 // ----------------------------------------------------------------------------
@@ -1725,7 +1725,7 @@ void AnsonMyersRealignmentRound_<TFragmentStore>::_updateAlignments(
 
 /*!
  * @fn reAlignment
- * @headerfile <seqan/realign.h>
+ * @headerfile <seqan2/realign.h>
  * @brief Perform realignment on a @link FragmentStore @endlink object.
  *
  * @signature void reAlignment(store, contigID, realignmentMethod, bandwidth, includeReference[,
@@ -1818,6 +1818,6 @@ void reAlignment(FragmentStore<TSpec, TConfig> & store,
                 printTiming);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // INCLUDE_SEQAN_REALIGN_REALIGN_BASE_H_
+#endif  // INCLUDE_SEQAN2_REALIGN_REALIGN_BASE_H_

@@ -34,10 +34,10 @@
 // Basic definitions for the stream module
 // ==========================================================================
 
-#ifndef SEQAN_STREAM_STREAM_BASE_
-#define SEQAN_STREAM_STREAM_BASE_
+#ifndef SEQAN2_STREAM_STREAM_BASE_
+#define SEQAN2_STREAM_STREAM_BASE_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -58,7 +58,7 @@ namespace seqan {
 
 /*!
  * @tag FileCompressionTags#GZFile
- * @headerfile <seqan/stream.h>
+ * @headerfile <seqan2/stream.h>
  * @brief File compression using the popular <a href="http://www.gzip.org">gzip</a> format.
  * @signature typedef Tag<GZFile_> GZFile;
  */
@@ -68,7 +68,7 @@ typedef Tag<GZFile_> GZFile;
 
 /*!
  * @tag FileCompressionTags#BgzFile
- * @headerfile <seqan/stream.h>
+ * @headerfile <seqan2/stream.h>
  * @signature typedef Tag<BgzfFile_> BgzfFile;
  * @brief File compression using the BGZF (Block GZip Format).
  *
@@ -81,7 +81,7 @@ typedef Tag<BgzfFile_> BgzfFile;
 
 /*!
  * @tag FileCompressionTags#BZ2File
- * @headerfile <seqan/stream.h>
+ * @headerfile <seqan2/stream.h>
  *
  * @brief File compression using the popular <a href="http://bzip.org">bzip2</a> format.
  *
@@ -197,7 +197,7 @@ guessFormatFromStream(TStream &istream, Tag<TFormat_>)
 {
     typedef Tag<TFormat_> TFormat;
 
-    SEQAN_ASSERT(istream.good());
+    SEQAN2_ASSERT(istream.good());
 
     if ((char *)MagicHeader<TFormat>::VALUE == NULL)
         return true;
@@ -222,11 +222,11 @@ guessFormatFromStream(TStream &istream, Tag<TFormat_>)
     for (; i > 0; --i)
         istream.unget();
 
-    SEQAN_ASSERT(istream.good());
+    SEQAN2_ASSERT(istream.good());
 
     return match;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_STREAM_STREAM_BASE_
+#endif  // #ifndef SEQAN2_STREAM_STREAM_BASE_

@@ -30,13 +30,13 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_MAP_BASE_H
-#define SEQAN_HEADER_MAP_BASE_H
+#ifndef SEQAN2_HEADER_MAP_BASE_H
+#define SEQAN2_HEADER_MAP_BASE_H
 
 
 //////////////////////////////////////////////////////////////////////////////
 
-namespace seqan
+namespace seqan2
 {
 
 // ==========================================================================
@@ -59,7 +59,7 @@ struct Skiplist;
 
 /*!
  * @class Map
- * @headerfile <seqan/map.h>
+ * @headerfile <seqan2/map.h>
  * @brief Set/dictionary container.
  *
  * @signature template <typename TValue, typename TSpec>
@@ -75,7 +75,7 @@ class Map;
 
 /*!
  * @fn Map#length
- * @headerfile <seqan/map.h>
+ * @headerfile <seqan2/map.h>
  * @brief Return number of elements in map.
  *
  * @signature TSize length(map);

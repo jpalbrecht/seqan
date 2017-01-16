@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_INDEX_QGRAM_FIND_H
-#define SEQAN_HEADER_INDEX_QGRAM_FIND_H
+#ifndef SEQAN2_HEADER_SEQAN2_INDEX_QGRAM_FIND_H
+#define SEQAN2_HEADER_SEQAN2_INDEX_QGRAM_FIND_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -92,7 +92,7 @@ namespace seqan
         {
             // for bucket map based indices we require the pattern and the shape to have the same length
             // and can look up only a single bucket
-            SEQAN_ASSERT_EQ(length(pattern), length(shape));
+            SEQAN2_ASSERT_EQ(length(pattern), length(shape));
             typename Size<TDir>::Type bktNo = getBucket(index.bucketMap, hash(shape, pIt));
             finder.range.i1 = saIt + dir[bktNo];
             finder.range.i2 = saIt + dir[bktNo + 1];
@@ -102,7 +102,7 @@ namespace seqan
 
 //////////////////////////////////////////////////////////////////////////////
 
-} //namespace seqan
+} //namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_
+#endif //#ifndef SEQAN2_HEADER_
 

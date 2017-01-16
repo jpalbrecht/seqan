@@ -34,10 +34,10 @@
 // Implementation of the CStyle String specialization,
 // ==========================================================================
 
-#ifndef SEQAN_SEQUENCE_STRING_CSTYLE_H_
-#define SEQAN_SEQUENCE_STRING_CSTYLE_H_
+#ifndef SEQAN2_SEQUENCE_STRING_CSTYLE_H_
+#define SEQAN2_SEQUENCE_STRING_CSTYLE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -61,7 +61,7 @@ clear(String<TValue, CStyle> & me);
 /*!
  * @class CStyleString CStyle String
  * @extends String
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Allows adaption of strings to C-style strings.
  *
  * @signature template <typename TValue, typename TCStyle>
@@ -848,6 +848,6 @@ toCString(String<TValue, TSpec> const & me)
     return toCString(const_cast<String<TValue, TSpec> &>(me));
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_SEQUENCE_STRING_CSTYLE_H_
+#endif  // #ifndef SEQAN2_SEQUENCE_STRING_CSTYLE_H_

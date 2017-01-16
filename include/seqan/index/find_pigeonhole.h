@@ -39,10 +39,10 @@
 // ==========================================================================
 
 
-#ifndef INCLUDE_SEQAN_FIND_PIGEONHOLE_H_
-#define INCLUDE_SEQAN_FIND_PIGEONHOLE_H_
+#ifndef INCLUDE_SEQAN2_FIND_PIGEONHOLE_H_
+#define INCLUDE_SEQAN2_FIND_PIGEONHOLE_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // ==========================================================================
@@ -89,7 +89,7 @@ namespace seqan
 
 /*!
  * @class PigeonholeParameters
- * @headerfile <seqan/index/find_pigeonhole.h>
+ * @headerfile <seqan2/index/find_pigeonhole.h>
  * @brief Parameters for the pigeonhole filter algorithm.
  *
  * @signature struct PigeonholeParameters;
@@ -143,7 +143,7 @@ namespace seqan
 /*!
  * @class PigeonholeFinder
  * @extends Finder
- * @headerfile <seqan/index/find_pigeonhole.h>
+ * @headerfile <seqan2/index/find_pigeonhole.h>
  *
  * @brief Pigeonhole-based finder.  Must be used together with @link PigeonholePattern @endlink.
  *
@@ -171,7 +171,7 @@ namespace seqan
 /*!
  * @class PigeonholePattern
  * @extends Pattern
- * @headerfile <seqan/index/find_pigeonhole.h>
+ * @headerfile <seqan2/index/find_pigeonhole.h>
  *
  * @brief Pigeonhole-based pattern.  Must be used together with @link PigeonholeFinder @endlink.
  *
@@ -429,7 +429,7 @@ _pigeonholeUpdateShapeLength(Shape<TValue, GenericShape> &shape, TSize newLength
 
 /*!
  * @fn PigeonholePattern#maskPatternSequence
- * @headerfile <seqan/index/find_pigeonhole.h>
+ * @headerfile <seqan2/index/find_pigeonhole.h>
  * @brief Mask and unmask pattern sequence.
  *
  * @note Disabling sequences in the pigeonhole filter requires the <tt>ONE_PER_DIAGONAL</tt> heuristic.
@@ -445,7 +445,7 @@ template <typename TIndex, typename TSpec, typename TSeqNo>
 inline void
 maskPatternSequence(Pattern<TIndex, Pigeonhole<TSpec> > & pattern, TSeqNo seqNo, bool enable)
 {
-    SEQAN_ASSERT_NEQ_MSG((int)Pigeonhole<TSpec>::ONE_PER_DIAGONAL, 0,
+    SEQAN2_ASSERT_NEQ_MSG((int)Pigeonhole<TSpec>::ONE_PER_DIAGONAL, 0,
                          "Disabling sequences in the pigeonhole filter requires the ONE_PER_DIAGONAL heuristic.");
 
     if (enable)
@@ -795,7 +795,7 @@ pigeonholeInfix(TPigeonholeHit const &hit, TText &text)
 
     if (hitBegin < 0) hitBegin = 0;
     if (hitEnd > textEnd) hitEnd = textEnd;
-    SEQAN_ASSERT_LEQ(hitBegin, hitEnd);
+    SEQAN2_ASSERT_LEQ(hitBegin, hitEnd);
     return infix(text, hitBegin, hitEnd);
 }
 
@@ -1024,7 +1024,7 @@ find(
 
 /*!
  * @fn PigeonholeFinder#windowFindBegin
- * @headerfile <seqan/index/find_pigeonhole.h>
+ * @headerfile <seqan2/index/find_pigeonhole.h>
  *
  * @brief Initializes the pattern. Sets the finder on the begin position.  Gets the first non-repeat range and sets it
  * in the finder.  Used together with @link PigeonholeFinder#windowFindEnd @endlink.
@@ -1063,7 +1063,7 @@ windowFindBegin(
 
 /*!
  * @fn PigeonholeFinder#windowFindNext
- * @headerfile <seqan/index/find_pigeonhol.h>
+ * @headerfile <seqan2/index/find_pigeonhol.h>
  * @brief Searches over the next window with the finder.  The found hits can be retrieved with @link
  *        PigeonholeFinder#getWindowFindHits @endlink Used together with @link PigeonholeFinder#windowFindBegin @endlink
  *        and @link PigeonholeFinder#windowFindEnd @endlink.
@@ -1185,7 +1185,7 @@ windowFindNext(
 
 /*!
  * @fn PigeonholeFinder#windowFindEnd
- * @headerfile <seqan/index/find_pigeonhole.h>
+ * @headerfile <seqan2/index/find_pigeonhole.h>
  * @brief Flushes the pattern.  Used together with @link PigeonholeFinder#windowFindBegin @endlink and @link
  *        PigeonholeFinder#windowFindNext @endlink.
  *
@@ -1209,7 +1209,7 @@ windowFindEnd(
 
 /*!
  * @fn PigeonholeFinder#getWindowFindHits
- * @headerfile <seqan/index/find_pigeonhole.h>
+ * @headerfile <seqan2/index/find_pigeonhole.h>
  * @brief Returns the string of hits from the finder.
  *
  * @signature THitString getWindowFindHits(finder);
@@ -1232,7 +1232,7 @@ getWindowFindHits(Finder<THaystack, Pigeonhole<TSpec> > &finder)
 
 /*!
  * @fn PigeonholePattern#getMaxDeviationOfOrder
- * @headerfile <seqan/index/find_pigeonhole.h>
+ * @headerfile <seqan2/index/find_pigeonhole.h>
  * @brief Returns the maximal out-of-order distance of adjacent hits.
  *
  * @signature TSize getMaxDeviationOfOrder(pattern);
@@ -1250,7 +1250,7 @@ getMaxDeviationOfOrder(Pattern<TIndex, Pigeonhole<TSpec> > &pattern)
     return (pattern.maxSeqLen <= length(indexShape(host(pattern))))? 0: pattern.maxSeqLen - length(indexShape(host(pattern)));
 }
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef INCLUDE_SEQAN_FIND_PIGEONHOLE_H_
+#endif //#ifndef INCLUDE_SEQAN2_FIND_PIGEONHOLE_H_
 

@@ -34,23 +34,23 @@
 // This is the facade header for the score module.
 // ==========================================================================
 
-#ifndef SEQAN_SH_
-#define SEQAN_SH_
+#ifndef SEQAN2_SH_
+#define SEQAN2_SH_
 
-#include <seqan/basic.h>
+#include <seqan2/basic.h>
 
-#include <seqan/stream.h>
+#include <seqan2/stream.h>
 
-#include <seqan/score/score_base.h>
-#include <seqan/score/score_edit.h>
-#include <seqan/score/score_matrix.h>
-#include <seqan/score/score_matrix_io.h>
-#include <seqan/score/score_matrix_data.h>
-#include <seqan/score/score_matrix_dyn.h>
-#include <seqan/score/score_simple.h>
+#include <seqan2/score/score_base.h>
+#include <seqan2/score/score_edit.h>
+#include <seqan2/score/score_matrix.h>
+#include <seqan2/score/score_matrix_io.h>
+#include <seqan2/score/score_matrix_data.h>
+#include <seqan2/score/score_matrix_dyn.h>
+#include <seqan2/score/score_simple.h>
 
-#ifdef SEQAN_SIMD_ENABLED
-#include <seqan/score/score_simd_wrapper.h>
-#endif  // SEQAN_SIMD_ENABLED
+#ifdef SEQAN2_SIMD_ENABLED
+#include <seqan2/score/score_simd_wrapper.h>
+#endif  // SEQAN2_SIMD_ENABLED
 
-#endif  // SEQAN_SH_
+#endif  // SEQAN2_SH_

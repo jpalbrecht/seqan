@@ -10,8 +10,8 @@
 
 /* @(#) $Id: iostream_zutil.h,v 1.2 2003/06/28 15:03:05 pelikhan Exp $ */
 
-#ifndef INCLUDE_SEQAN_STREAM_IOSTREAM_ZUTIL_H_
-#define INCLUDE_SEQAN_STREAM_IOSTREAM_ZUTIL_H_
+#ifndef INCLUDE_SEQAN2_STREAM_IOSTREAM_ZUTIL_H_
+#define INCLUDE_SEQAN2_STREAM_IOSTREAM_ZUTIL_H_
 
 //#include "zlib.h"
 
@@ -226,4 +226,4 @@ void   zcfree  OF((voidpf opaque, voidpf ptr));
 #undef local
 #endif
 
-#endif /* INCLUDE_SEQAN_STREAM_IOSTREAM_ZUTIL_H_ */
+#endif /* INCLUDE_SEQAN2_STREAM_IOSTREAM_ZUTIL_H_ */

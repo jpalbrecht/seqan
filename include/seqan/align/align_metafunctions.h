@@ -34,10 +34,10 @@
 // Align-specific metafunctions.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_ALIGN_METAFUNCTIONS_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_ALIGN_METAFUNCTIONS_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_ALIGN_METAFUNCTIONS_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_ALIGN_METAFUNCTIONS_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -64,7 +64,7 @@ struct Cols;
 
 /*!
  * @mfn Align#Col
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief The column type for @link Align @endlink objects.
  *
  * @signature Col<TAlign>::Type
@@ -110,6 +110,6 @@ struct StringSetType;
 // Functions
 // ============================================================================
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_ALIGN_METAFUNCTIONS_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_ALIGN_METAFUNCTIONS_H_

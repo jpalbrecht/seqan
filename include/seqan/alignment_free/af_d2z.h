@@ -42,10 +42,10 @@
 
 // TODO(goeke): const could be added below for the input variables but the function value() in matrix_base (align) is not defined for const. Similarly, the function emittedProbabilty is not defined for const in  statistics_markov_model.h
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGNMENT_FREE_AF_D2Z_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGNMENT_FREE_AF_D2Z_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGNMENT_FREE_AF_D2Z_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGNMENT_FREE_AF_D2Z_H_
 
-namespace seqan {
+namespace seqan2 {
 
 /*
  * _alignmentFreeComparison is called by alignmentFreeComparison() (see alignment_free_comparison.h)
@@ -626,6 +626,6 @@ double _computeWordProbGivenPrefix(long const prefix, long const suffix, MarkovM
     return prob;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_INCLUDE_SEQAN_ALIGNMENT_FREE_AF_D2Z_H_
+#endif  // SEQAN2_INCLUDE_SEQAN2_ALIGNMENT_FREE_AF_D2Z_H_

@@ -34,10 +34,10 @@
 // Class for reading/writing files in BED format.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BED_IO_BED_FILE_H_
-#define SEQAN_INCLUDE_SEQAN_BED_IO_BED_FILE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BED_IO_BED_FILE_H_
+#define SEQAN2_INCLUDE_SEQAN2_BED_IO_BED_FILE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Typedefs
@@ -51,7 +51,7 @@ namespace seqan {
  * @class BedFileIn
  * @signature typedef FormattedFile<Bed, Input> BedFileIn;
  * @extends FormattedFileIn
- * @headerfile <seqan/bed_io.h>
+ * @headerfile <seqan2/bed_io.h>
  * @brief Class for reading BED files.
  *
  * @see BedRecord
@@ -67,7 +67,7 @@ typedef FormattedFile<Bed, Input>   BedFileIn;
  * @class BedFileOut
  * @signature typedef FormattedFile<Bed, Output> BedFileOut;
  * @extends FormattedFileOut
- * @headerfile <seqan/bed_io.h>
+ * @headerfile <seqan2/bed_io.h>
  * @brief Class for writing BED files.
  *
  * @see BedRecord
@@ -122,6 +122,6 @@ writeRecord(FormattedFile<Bed, Output, TSpec> & file, BedRecord<TRecordSpec> & r
     writeRecord(file.iter, record, file.format);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif // SEQAN_INCLUDE_SEQAN_BED_IO_BED_FILE_H_
+#endif // SEQAN2_INCLUDE_SEQAN2_BED_IO_BED_FILE_H_

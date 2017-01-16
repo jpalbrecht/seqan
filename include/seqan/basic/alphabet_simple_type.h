@@ -35,10 +35,10 @@
 // The SimpleType alphabet type is the base class for all residue types.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_ALPHABET_SIMPLE_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_ALPHABET_SIMPLE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ALPHABET_SIMPLE_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_ALPHABET_SIMPLE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -55,7 +55,7 @@ namespace seqan {
 /*!
  * @class SimpleType
  * @implements FiniteOrderedAlphabetConcept
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @brief Implementation for "simple" types.
  *
@@ -1087,6 +1087,6 @@ ordValue(SimpleType<TValue, TSpec> const & c)
     return convert<unsigned>(c);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_ALPHABET_SIMPLE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ALPHABET_SIMPLE_H_

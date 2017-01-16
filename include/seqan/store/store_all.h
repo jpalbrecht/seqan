@@ -32,12 +32,12 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_STORE_ALL_H
-#define SEQAN_HEADER_STORE_ALL_H
+#ifndef SEQAN2_HEADER_STORE_ALL_H
+#define SEQAN2_HEADER_STORE_ALL_H
 
 //#include <stdio.h>
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -76,7 +76,7 @@ struct FragmentStoreConfig
 
 /*!
  * @class FragmentStore
- * @headerfile <seqan/store.h>
+ * @headerfile <seqan2/store.h>
  * @brief Multi-container to store contigs, reads, multiple read alignments and genome annotations.
  *
  * @signature template <[typename TSpec[, typename TConfig]]>
@@ -365,7 +365,7 @@ struct FragmentStoreConfig
 
 /*!
  * @enum FragmentStore::PredefinedAnnotationTypes
- * @headerfile <seqan/store.h>
+ * @headerfile <seqan2/store.h>
  * @brief The @link FragmentStore @endlink predefines some commonly used @link AnnotationStoreElement::typeId @endlink
  *        values.
  *
@@ -534,25 +534,25 @@ public:
 
     void swap(FragmentStore & other)
     {
-        seqan::swap(alignQualityStore, other.alignQualityStore);
-        seqan::swap(alignedReadStore, other.alignedReadStore);
-        seqan::swap(alignedReadTagStore, other.alignedReadTagStore);
-        seqan::swap(annotationKeyStore, other.annotationKeyStore);
-        seqan::swap(annotationNameStore, other.annotationNameStore);
-        seqan::swap(annotationStore, other.annotationStore);
-        seqan::swap(annotationTypeStore, other.annotationTypeStore);
-        seqan::swap(contigFileStore, other.contigFileStore);
-        seqan::swap(contigNameStore, other.contigNameStore);
-        seqan::swap(contigStore, other.contigStore);
-        seqan::swap(intervalTreeStore_F, other.intervalTreeStore_F);
-        seqan::swap(intervalTreeStore_R, other.intervalTreeStore_R);
-        seqan::swap(libraryNameStore, other.libraryNameStore);
-        seqan::swap(libraryStore, other.libraryStore);
-        seqan::swap(matePairNameStore, other.matePairNameStore);
-        seqan::swap(matePairStore, other.matePairStore);
-        seqan::swap(readNameStore, other.readNameStore);
-        seqan::swap(readSeqStore, other.readSeqStore);
-        seqan::swap(readStore, other.readStore);
+        seqan2::swap(alignQualityStore, other.alignQualityStore);
+        seqan2::swap(alignedReadStore, other.alignedReadStore);
+        seqan2::swap(alignedReadTagStore, other.alignedReadTagStore);
+        seqan2::swap(annotationKeyStore, other.annotationKeyStore);
+        seqan2::swap(annotationNameStore, other.annotationNameStore);
+        seqan2::swap(annotationStore, other.annotationStore);
+        seqan2::swap(annotationTypeStore, other.annotationTypeStore);
+        seqan2::swap(contigFileStore, other.contigFileStore);
+        seqan2::swap(contigNameStore, other.contigNameStore);
+        seqan2::swap(contigStore, other.contigStore);
+        seqan2::swap(intervalTreeStore_F, other.intervalTreeStore_F);
+        seqan2::swap(intervalTreeStore_R, other.intervalTreeStore_R);
+        seqan2::swap(libraryNameStore, other.libraryNameStore);
+        seqan2::swap(libraryStore, other.libraryStore);
+        seqan2::swap(matePairNameStore, other.matePairNameStore);
+        seqan2::swap(matePairStore, other.matePairStore);
+        seqan2::swap(readNameStore, other.readNameStore);
+        seqan2::swap(readSeqStore, other.readSeqStore);
+        seqan2::swap(readStore, other.readStore);
 
         refresh(annotationKeyStoreCache);
         refresh(annotationNameStoreCache);
@@ -836,7 +836,7 @@ _storeAppendAnnotationName (
     TName & annotationName,
     TTypeId typeId)
 {
-    SEQAN_ASSERT_EQ(length(fragStore.annotationStore), length(fragStore.annotationNameStore));
+    SEQAN2_ASSERT_EQ(length(fragStore.annotationStore), length(fragStore.annotationNameStore));
     if (!empty(annotationName) && getIdByName(fragStore.annotationNameStore, annotationName, annotationId, fragStore.annotationNameStoreCache))
     {
         do
@@ -1046,7 +1046,7 @@ appendRead(
     TRead const &read,
     TId matePairId)
 {
-    SEQAN_ASSERT_EQ(length(me.readStore), length(me.readSeqStore));
+    SEQAN2_ASSERT_EQ(length(me.readStore), length(me.readSeqStore));
 
     typedef typename FragmentStore<TSpec, TConfig>::TReadStore TReadStore;
     typename Value<TReadStore>::Type r;
@@ -1065,7 +1065,7 @@ appendRead(
     CharString const &name,
     TId matePairId)
 {
-    SEQAN_ASSERT_EQ(length(me.readStore), length(me.readSeqStore));
+    SEQAN2_ASSERT_EQ(length(me.readStore), length(me.readSeqStore));
 
     typedef typename FragmentStore<TSpec, TConfig>::TReadStore TReadStore;
     typename Value<TReadStore>::Type r;
@@ -1243,7 +1243,7 @@ appendMatePair(
     CharString const &name1,
     CharString const &name2)
 {
-    SEQAN_ASSERT_EQ(length(me.readStore), length(me.readSeqStore));
+    SEQAN2_ASSERT_EQ(length(me.readStore), length(me.readSeqStore));
 
     typedef FragmentStore<TSpec, TConfig>            TFragmentStore;
     typedef typename TFragmentStore::TReadStore        TReadStore;
@@ -1501,7 +1501,7 @@ calculateMateIndices(TMateIndexString & mateIndices, FragmentStore<TSpec, TConfi
         if (id == TAlignedRead::INVALID_ID) continue;
         if (length(mateIndices) < 2*id + 2)
             resize(mateIndices, 2*id + 2, TAlignedRead::INVALID_ID, Generous());
-        SEQAN_ASSERT_NEQ(getMateNo(me, (*it).readId), -1);
+        SEQAN2_ASSERT_NEQ(getMateNo(me, (*it).readId), -1);
         mateIndices[2*id + 1 - getMateNo(me, (*it).readId)] = idx;
     }
 }
@@ -1510,7 +1510,7 @@ calculateMateIndices(TMateIndexString & mateIndices, FragmentStore<TSpec, TConfi
 
 /*!
  * @class AlignedReadLayout
- * @headerfile <seqan/store.h>
+ * @headerfile <seqan2/store.h>
  * @brief Stores a two dimensional visible layout of a multi-read alignment.
  *
  * @signature struct AlignedReadLayout;
@@ -1980,7 +1980,7 @@ void convertMatchesToGlobalAlignment(FragmentStore<TSpec, TConfig> &store, TScor
             }
             continue;
         }
-        SEQAN_ASSERT_EQ(toViewPosition(row(align, 1), 0), 0u);
+        SEQAN2_ASSERT_EQ(toViewPosition(row(align, 1), 0), 0u);
 
         // 2. Skip non-overlapping matches
         cBegin = positionSeqToGap(contigGaps, cBegin);
@@ -2296,8 +2296,8 @@ void _twoWayMergeAlignments(
         bool isGapContig = isGap(cIt);
         bool isGapLocalContig = isGap(pIt);
         blkLen = _min(blockLength(cIt), blockLength(pIt));
-        SEQAN_ASSERT_GT(blkLen, 0u);
-//          SEQAN_ASSERT_LT(blkLen, length(contigGapsGlobal));
+        SEQAN2_ASSERT_GT(blkLen, 0u);
+//          SEQAN2_ASSERT_LT(blkLen, length(contigGapsGlobal));
 
         if (isGapContig != isGapLocalContig)
         {
@@ -2393,8 +2393,8 @@ void convertPairWiseToGlobalAlignment(FragmentStore<TSpec, TConfig> &store, TCon
         TContigGapsPW       contigGapsPW(/*contigInfix, */gaps[it->id - offsetRecord]);
         TReadGaps           readGaps(store.readSeqStore[it->readId], it->gaps);
 
-        SEQAN_ASSERT(dependent(contigGapsGlobal.data_gaps));
-        SEQAN_ASSERT(dependent(readGaps.data_gaps));
+        SEQAN2_ASSERT(dependent(contigGapsGlobal.data_gaps));
+        SEQAN2_ASSERT(dependent(readGaps.data_gaps));
 
 
         // 1111111111111
@@ -2454,6 +2454,6 @@ void convertPairWiseToGlobalAlignment(FragmentStore<TSpec, TConfig> &store, TCon
     }
 }
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

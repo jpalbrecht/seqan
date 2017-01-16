@@ -36,10 +36,10 @@
 // cells needed for the recursion formula.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_MATRIX_NAVIGATOR_SCORE_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_DP_MATRIX_NAVIGATOR_SCORE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_MATRIX_NAVIGATOR_SCORE_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_MATRIX_NAVIGATOR_SCORE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -402,6 +402,6 @@ previousCellVertical(DPMatrixNavigator_<TDPMatrix, DPScoreMatrix, TNavigationSpe
     return dpNavigator._prevCellVertical;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_MATRIX_NAVIGATOR_SCORE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_MATRIX_NAVIGATOR_SCORE_H_

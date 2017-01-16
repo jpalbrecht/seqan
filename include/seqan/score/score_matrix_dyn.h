@@ -34,10 +34,10 @@
 // Code for dynamically selectable protein matrixes
 // ==========================================================================
 
-#ifndef SEQAN_SCORE_MATRIX_DYN_H_
-#define SEQAN_SCORE_MATRIX_DYN_H_
+#ifndef SEQAN2_SCORE_MATRIX_DYN_H_
+#define SEQAN2_SCORE_MATRIX_DYN_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -77,7 +77,7 @@ using MatrixTags = TagList<ScoreSpecBlosum30,
  * @brief Enum with aliases for the different Score specializations
  * @signature enum class AminoAcidScoreMatrixID : uint8_t { ... };
  *
- * @headerfile <seqan/score.h>
+ * @headerfile <seqan2/score.h>
  *
  * @val AminoAcidScoreMatrixID AminoAcidScoreMatrixID::BLOSUM30
  * @brief Blosum30, see also @link Blosum30 @endlink
@@ -126,7 +126,7 @@ enum class AminoAcidScoreMatrixID : std::underlying_type_t<decltype(Find<impl::s
 
 /*!
  * @typedef SelectableAminoAcidMatrix
- * @headerfile <seqan/score.h>
+ * @headerfile <seqan2/score.h>
  * @brief An AminoAcid score matrix that can be "specialized" at run-time
  *
  * @signature using SelectableAminoAcidMatrix =  Score<int, ScoreMatrix<AminoAcid, ScoreSpecSelectable> >;
@@ -166,7 +166,7 @@ matrixTagDispatch(TagList<TCurTag, void> const &,
     if (Find<impl::score::MatrixTags, TCurTag>::VALUE == static_cast<TUndType>(m))
         runnable(TCurTag());
     else
-        SEQAN_FAIL("ERROR: Recursing the ScoreMatrixTags failed, please report this as a BUG!");
+        SEQAN2_FAIL("ERROR: Recursing the ScoreMatrixTags failed, please report this as a BUG!");
 }
 
 template <typename TCurTag,
@@ -193,7 +193,7 @@ matrixTagDispatch(TagList<TCurTag, TRestList> const &,
 
 /*!
  * @fn SelectableAminoAcidMatrix#setScoreMatrixById
- * @headerfile <seqan/score.h>
+ * @headerfile <seqan2/score.h>
  * @brief Set the substitution score matrix
  *
  * @signature void setScoreMatrixById(SelectableAminoAcidMatrix & sc, AminoAcidScoreMatrixID const id)
@@ -220,7 +220,7 @@ setScoreMatrixById(Score<TValue, ScoreMatrix<AminoAcid, ScoreSpecSelectable> > &
 
 /*!
  * @fn SelectableAminoAcidMatrix#getScoreMatrixId
- * @headerfile <seqan/score.h>
+ * @headerfile <seqan2/score.h>
  * @brief Get the matrix ID from the dynamic matrix object.
  *
  * @signature AminoAcidScoreMatrixID getScoreMatrixId(SelectableAminoAcidMatrix const & sc)
@@ -237,4 +237,4 @@ getScoreMatrixId(Score<TValue, ScoreMatrix<AminoAcid, ScoreSpecSelectable> > con
 
 }
 
-#endif // SEQAN_SCORE_MATRIX_DYN_H_
+#endif // SEQAN2_SCORE_MATRIX_DYN_H_

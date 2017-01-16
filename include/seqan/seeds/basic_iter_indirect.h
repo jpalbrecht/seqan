@@ -35,10 +35,10 @@
 // on dereferentiation.
 // ==========================================================================
 
-#ifndef SEQAN_SEEDS_BASIC_ITER_INDIRECT_H_
-#define SEQAN_SEEDS_BASIC_ITER_INDIRECT_H_
+#ifndef SEQAN2_SEEDS_BASIC_ITER_INDIRECT_H_
+#define SEQAN2_SEEDS_BASIC_ITER_INDIRECT_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ===========================================================================
 // Enums, Tags, Classes, Specializations
@@ -175,6 +175,6 @@ value(Iter<TContainer, Indirect<TWrappedIter> > const & iter)
     return **iter._wrappedIter;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_SEEDS_BASIC_ITER_INDIRECT_H_
+#endif  // #ifndef SEQAN2_SEEDS_BASIC_ITER_INDIRECT_H_

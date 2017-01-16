@@ -32,14 +32,14 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_MODIFIER_MODIFIER_FUNCTORS_H_
-#define SEQAN_MODIFIER_MODIFIER_FUNCTORS_H_
+#ifndef SEQAN2_MODIFIER_MODIFIER_FUNCTORS_H_
+#define SEQAN2_MODIFIER_MODIFIER_FUNCTORS_H_
 
 #include <cctype>
 
 // TODO(holtgrew): Make the structs here into classes.
 
-namespace seqan
+namespace seqan2
 {
 
 // ==========================================================================
@@ -56,7 +56,7 @@ namespace seqan
 
 /*!
  * @class FunctorUpcase
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Functor that returns the upper case character for a given character.
  *
  * @signature template <typename TInType[, typename TResult]>
@@ -90,7 +90,7 @@ struct FunctorUpcase : public std::unary_function<InType, Result>
 
 /*!
  * @class FunctorLowcase
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Functor that returns the lower case character for a given character.
  *
  * @signature template <typename TInType[, typename TResult]>
@@ -124,7 +124,7 @@ struct FunctorLowcase : public std::unary_function<InType, Result>
 
 /*!
  * @class FunctorConvert
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Functor that converts between two types.
  *
  * @signature template <typename TInType, typename TOutType>
@@ -193,7 +193,7 @@ signed char const TranslateTableIupacToIupacComplement_<T>::VALUE[16] = {0, 8, 4
 
 /*!
  * @class FunctorComplement
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Functor that returns the complement nucleotide for a given nucleotide.
  *
  * @signature template <typename TValue>
@@ -293,6 +293,6 @@ struct FunctorComplement<Iupac> : public std::unary_function<Iupac,Iupac>
 };
 
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_MODIFIER_MODIFIER_FUNCTORS_H_
+#endif  // SEQAN2_MODIFIER_MODIFIER_FUNCTORS_H_

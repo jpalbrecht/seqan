@@ -34,10 +34,10 @@
 // The class Seed.
 // ==========================================================================
 
-#ifndef SEQAN_SEEDS_SEEDS_SEED_BASE_H_
-#define SEQAN_SEEDS_SEEDS_SEED_BASE_H_
+#ifndef SEQAN2_SEEDS_SEEDS_SEED_BASE_H_
+#define SEQAN2_SEEDS_SEEDS_SEED_BASE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ===========================================================================
 // Enums, Tags, Classes, Specializations
@@ -49,7 +49,7 @@ namespace seqan {
 
 /*!
  * @class DefaultSeedConfig
- * @headerfile <seqan/seeds.h>
+ * @headerfile <seqan2/seeds.h>
  * @brief Default configuration for seeds without score.
  *
  * @signature struct DefaultSeedConfig.
@@ -101,7 +101,7 @@ struct DefaultSeedConfig
 
 /*!
  * @class Seed
- * @headerfile <seqan/seeds.h>
+ * @headerfile <seqan2/seeds.h>
  * @brief Stores the start and end positions in the horizonal and vertical dimension.
  *
  * @signature template <typename TSpec[, typename TConfig]>
@@ -605,13 +605,13 @@ _updateSeedsScoreMerge(Seed<TSpec, TConfig> & seed, Seed<TSpec, TConfig> const &
     TSize newEnd1 = _max(endPositionV(seed), endPositionV(other));
     TSize newSize = _max(newEnd0 - newBegin0, newEnd1 - newBegin1);
     // New seed should be larger than either old one and overlap should be > 0.
-    SEQAN_ASSERT_GEQ(newSize, seedSize(seed));
-    SEQAN_ASSERT_GEQ(newSize, seedSize(other));
-    SEQAN_ASSERT_LEQ(newSize, seedSize(seed) + seedSize(other));
+    SEQAN2_ASSERT_GEQ(newSize, seedSize(seed));
+    SEQAN2_ASSERT_GEQ(newSize, seedSize(other));
+    SEQAN2_ASSERT_LEQ(newSize, seedSize(seed) + seedSize(other));
     TSize overlap = seedSize(seed) + seedSize(other) - newSize;
     // Overlap should be smaller than or equal to either seed size.
-    SEQAN_ASSERT_GEQ(seedSize(seed), overlap);
-    SEQAN_ASSERT_GEQ(seedSize(other), overlap);
+    SEQAN2_ASSERT_GEQ(seedSize(seed), overlap);
+    SEQAN2_ASSERT_GEQ(seedSize(other), overlap);
 
     // Compute fraction each seed contributes.
     TSize total = seedSize(seed) + seedSize(other) - overlap;
@@ -635,10 +635,10 @@ _updateSeedsScoreSimpleChain(Seed<TSpec, TConfig> & seed,
     // TODO(holtgrew): seed must be the one to the upper left.
 
     // Only linear gap costs are supported.
-    SEQAN_ASSERT_EQ(scoreGapOpen(scoringScheme), scoreGapExtend(scoringScheme));
+    SEQAN2_ASSERT_EQ(scoreGapOpen(scoringScheme), scoreGapExtend(scoringScheme));
     // Scores for gaps and mismatches must be penalties.
-    SEQAN_ASSERT_LT(scoreGap(scoringScheme), static_cast<TScoreValue>(0));
-    SEQAN_ASSERT_LT(scoreMismatch(scoringScheme), static_cast<TScoreValue>(0));
+    SEQAN2_ASSERT_LT(scoreGap(scoringScheme), static_cast<TScoreValue>(0));
+    SEQAN2_ASSERT_LT(scoreMismatch(scoringScheme), static_cast<TScoreValue>(0));
 
     // We use a simple heuristic for updating the seed's score the
     // systematically overestimates the gap costs: We close the gap
@@ -665,6 +665,6 @@ _updateSeedsScoreChaos(Seed<TSpec, TConfig> & seed, Seed<TSpec, TConfig> const &
     setScore(seed, score(seed) + score(other) + scoreDelta);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_SEEDS_SEEDS_SEED_BASE_H_
+#endif  // SEQAN2_SEEDS_SEEDS_SEED_BASE_H_

@@ -30,10 +30,10 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_GRAPH_ALIGN_TCOFFEE_DISTANCE_H
-#define SEQAN_HEADER_GRAPH_ALIGN_TCOFFEE_DISTANCE_H
+#ifndef SEQAN2_HEADER_GRAPH_ALIGN_TCOFFEE_DISTANCE_H
+#define SEQAN2_HEADER_GRAPH_ALIGN_TCOFFEE_DISTANCE_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -46,14 +46,14 @@ namespace seqan
  *
  *
  * @tag DistanceCalculationTags#LibraryDistance
- * @headerfile <seqan/graph_msa.h>
+ * @headerfile <seqan2/graph_msa.h>
  * @brief Using the library itself and heaviest common subsequence to determine a distance matrix.
  *
  * @signature typedef Tag<LibraryDistance_> const LibraryDistance;
  *
  *
  * @tag DistanceCalculationTags#KmerDistance
- * @headerfile <seqan/graph_msa.h>
+ * @headerfile <seqan2/graph_msa.h>
  * @brief Using a simple kmer count to determine a distance matrix.
  *
  * @signature typedef Tag<LibraryDistance_> const KmerDistance;
@@ -125,7 +125,7 @@ getDistanceMatrix(Graph<Alignment<TStringSet, TCargo, TSpec> >& g,
     // Normalize values
     for(TSize i=0; i<nseq; ++i)
         for(TSize j=i+1; j<nseq; ++j)
-            distanceMatrix[i*nseq+j] = SEQAN_DISTANCE_UNITY - ((distanceMatrix[i*nseq+j] * SEQAN_DISTANCE_UNITY) / maxScore );
+            distanceMatrix[i*nseq+j] = SEQAN2_DISTANCE_UNITY - ((distanceMatrix[i*nseq+j] * SEQAN2_DISTANCE_UNITY) / maxScore );
 }
 
 
@@ -153,7 +153,7 @@ getDistanceMatrix(Graph<Alignment<TStringSet, TCargo, TSpec> >& g,
     TMatrixIterator matIt = begin(distanceMatrix, Standard());
     TMatrixIterator endMatIt = end(distanceMatrix, Standard());
     for(;matIt != endMatIt;++matIt)
-        *matIt = SEQAN_DISTANCE_UNITY - (*matIt);
+        *matIt = SEQAN2_DISTANCE_UNITY - (*matIt);
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -184,7 +184,7 @@ getDistanceMatrix(Graph<Alignment<TStringSet, TCargo, TSpec> >& g,
 
 /*!
  * @fn AlignmentGraph#getDistanceMatrix
- * @headerfile <seqan/graph_msa.h>
+ * @headerfile <seqan2/graph_msa.h>
  * @brief Computes a pairwise distance matrix from an @link AlignmentGraph @endlink.
  *
  * @signature void getDistanceMtarix(graph, mat[, tag]);
@@ -208,6 +208,6 @@ getDistanceMatrix(Graph<Alignment<TStringSet, TCargo, TSpec> >& g,
 
 
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

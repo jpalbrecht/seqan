@@ -37,10 +37,10 @@
 // user-defined structure, such as Align or AlignmentGraph objects.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_TRACE_SEGMENT_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_DP_TRACE_SEGMENT_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_TRACE_SEGMENT_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_TRACE_SEGMENT_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -336,6 +336,6 @@ inline void _recordSegment(TTraceSegments & traceSegments,
     // everything else is not tracked.
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_TRACE_SEGMENT_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_TRACE_SEGMENT_H_

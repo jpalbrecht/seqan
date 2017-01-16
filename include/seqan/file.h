@@ -30,8 +30,8 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_FILE_H
-#define SEQAN_HEADER_FILE_H
+#ifndef SEQAN2_HEADER_FILE_H
+#define SEQAN2_HEADER_FILE_H
 
 // ===========================================================================
 // Prerequisites.
@@ -55,22 +55,22 @@
 // SeqAn prerequisites
 // ----------------------------------------------------------------------------
 
-#include <seqan/sequence.h>
-#include <seqan/modifier.h>
+#include <seqan2/sequence.h>
+#include <seqan2/modifier.h>
 
 // ===========================================================================
 // Forwards.
 // ===========================================================================
 
-#include <seqan/file/file_forwards.h>
+#include <seqan2/file/file_forwards.h>
 
 // ===========================================================================
 // File.
 // ===========================================================================
 
-#include <seqan/file/file_interface.h>
-#include <seqan/file/file_base.h>
-#include <seqan/system.h>    // async file (default file type of File<>)
+#include <seqan2/file/file_interface.h>
+#include <seqan2/file/file_base.h>
+#include <seqan2/system.h>    // async file (default file type of File<>)
 
 // ===========================================================================
 // External Strings.
@@ -80,15 +80,15 @@
 // Paging and mapping
 // ----------------------------------------------------------------------------
 
-#include <seqan/file/file_page.h>
-#include <seqan/file/file_mapping.h>
-//#include <seqan/file/file_pager.h>
+#include <seqan2/file/file_page.h>
+#include <seqan2/file/file_mapping.h>
+//#include <seqan2/file/file_pager.h>
 
 // ----------------------------------------------------------------------------
 // String specializations
 // ----------------------------------------------------------------------------
 
-#include <seqan/file/string_mmap.h>
-#include <seqan/file/string_external.h>
+#include <seqan2/file/string_mmap.h>
+#include <seqan2/file/string_external.h>
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

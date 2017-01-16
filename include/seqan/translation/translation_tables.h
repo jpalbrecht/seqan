@@ -34,10 +34,10 @@
 // Code for Dna(5) to AminoAcid Translation - Conversion Tables
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_TRANSLATION_TRANSLATION_TABLES_H_
-#define INCLUDE_SEQAN_TRANSLATION_TRANSLATION_TABLES_H_
+#ifndef INCLUDE_SEQAN2_TRANSLATION_TRANSLATION_TABLES_H_
+#define INCLUDE_SEQAN2_TRANSLATION_TRANSLATION_TABLES_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -50,7 +50,7 @@ namespace seqan {
 /*!
  * @enum GeneticCodeSpec GeneticCode Specs
  * @brief Specialization values for @link GeneticCode @endlink
- * @headerfile <seqan/translation.h>
+ * @headerfile <seqan2/translation.h>
  *
  * @signature enum class  GeneticCodeSpec : uint8_t { ...};
  *
@@ -152,7 +152,7 @@ enum GeneticCodeSpec
 /*!
  * @tag GeneticCode
  * @brief DNA/RNA to AminoAcid translation code, needs to be spec'ed by one of @link GeneticCodeSpec @endlink.
- * @headerfile <seqan/translation.h>
+ * @headerfile <seqan2/translation.h>
  * @signature GeneticCode<value>
  *
  * @see translate
@@ -881,4 +881,4 @@ char const TranslateTableDnaToAminoAcid_<
 
 }
 
-#endif // INCLUDE_SEQAN_TRANSLATION_TRANSLATION_TABLES_H_
+#endif // INCLUDE_SEQAN2_TRANSLATION_TRANSLATION_TABLES_H_

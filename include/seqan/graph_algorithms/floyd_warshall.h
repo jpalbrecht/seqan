@@ -34,10 +34,10 @@
 // Implementation of the Floyd-Warshall algorithm.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_GRAPH_ALGORITHMS_FLOYD_WARSHALL_H_
-#define INCLUDE_SEQAN_GRAPH_ALGORITHMS_FLOYD_WARSHALL_H_
+#ifndef INCLUDE_SEQAN2_GRAPH_ALGORITHMS_FLOYD_WARSHALL_H_
+#define INCLUDE_SEQAN2_GRAPH_ALGORITHMS_FLOYD_WARSHALL_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -61,7 +61,7 @@ namespace seqan {
 
 /*!
  * @fn floydWarshallAlgorithm
- * @headerfile <seqan/graph_algorithms.h>
+ * @headerfile <seqan2/graph_algorithms.h>
  * @brief Finds shortest paths between all pairs of vertices in a graph.
  *
  * @signature void floydWarshallAlgorithm(g, weight, distance, predecessor);
@@ -117,6 +117,6 @@ void floydWarshallAlgorithm(TMatrix & distMatrix,
     }
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_GRAPH_ALGORITHMS_FLOYD_WARSHALL_H_
+#endif  // #ifndef INCLUDE_SEQAN2_GRAPH_ALGORITHMS_FLOYD_WARSHALL_H_

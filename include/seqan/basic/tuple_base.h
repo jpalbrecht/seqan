@@ -37,10 +37,10 @@
 
 // TODO(holtgrew): What about move construction? Useful for pairs of strings and such. Tricky to implement since ints have no move constructor, for example.
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_TUPLE_BASE_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_TUPLE_BASE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_TUPLE_BASE_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_TUPLE_BASE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -64,7 +64,7 @@ struct StoredTupleValue_< SimpleType<TValue, TSpec> >
 
 /*!
  * @class Tuple
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief A constant-size tuple of the same type.
  *
  * @signature template <typename TValue, unsigned SIZE[, typename TSpec]>
@@ -104,8 +104,8 @@ struct Tuple
     typename StoredTupleValue_<TValue>::Type &
     operator[](TPos k)
     {
-        SEQAN_ASSERT_GEQ(static_cast<int64_t>(k), 0);
-        SEQAN_ASSERT_LT(static_cast<int64_t>(k), static_cast<int64_t>(SIZE));
+        SEQAN2_ASSERT_GEQ(static_cast<int64_t>(k), 0);
+        SEQAN2_ASSERT_LT(static_cast<int64_t>(k), static_cast<int64_t>(SIZE));
         return i[k];
     }
 
@@ -114,8 +114,8 @@ struct Tuple
     typename StoredTupleValue_<TValue>::Type const &
     operator[](TPos k) const
     {
-        SEQAN_ASSERT_GEQ(static_cast<int64_t>(k), 0);
-        SEQAN_ASSERT_LT(static_cast<int64_t>(k), static_cast<int64_t>(SIZE));
+        SEQAN2_ASSERT_GEQ(static_cast<int64_t>(k), 0);
+        SEQAN2_ASSERT_LT(static_cast<int64_t>(k), static_cast<int64_t>(SIZE));
         return i[k];
     }
 
@@ -150,8 +150,8 @@ struct Tuple<TValue, SIZE, Pack>
     inline typename StoredTupleValue_<TValue>::Type &
     operator[](TPos k)
     {
-        SEQAN_ASSERT_GEQ(static_cast<int64_t>(k), 0);
-        SEQAN_ASSERT_LT(static_cast<int64_t>(k), static_cast<int64_t>(SIZE));
+        SEQAN2_ASSERT_GEQ(static_cast<int64_t>(k), 0);
+        SEQAN2_ASSERT_LT(static_cast<int64_t>(k), static_cast<int64_t>(SIZE));
         return i[k];
     }
 
@@ -159,8 +159,8 @@ struct Tuple<TValue, SIZE, Pack>
     inline typename StoredTupleValue_<TValue>::Type const &
     operator[](TPos k) const
     {
-        SEQAN_ASSERT_GEQ(static_cast<int64_t>(k), 0);
-        SEQAN_ASSERT_LT(static_cast<int64_t>(k), static_cast<int64_t>(SIZE));
+        SEQAN2_ASSERT_GEQ(static_cast<int64_t>(k), 0);
+        SEQAN2_ASSERT_LT(static_cast<int64_t>(k), static_cast<int64_t>(SIZE));
         return i[k];
     }
 
@@ -339,7 +339,7 @@ template <typename TValue, unsigned SIZE, typename TSpec, typename TPos, typenam
 inline TValue2
 assignValue(Tuple<TValue, SIZE, TSpec> & me, TPos k, TValue2 const source)
 {
-    SEQAN_CHECK((unsigned(k) < SIZE), "Invalid position, k = %u, SIZE = %u.", unsigned(k), unsigned(SIZE));
+    SEQAN2_CHECK((unsigned(k) < SIZE), "Invalid position, k = %u, SIZE = %u.", unsigned(k), unsigned(SIZE));
     return me.i[k] = source;
 }
 
@@ -351,7 +351,7 @@ template <typename TValue, unsigned SIZE, typename TSpec, typename TPos>
 inline TValue
 getValue(Tuple<TValue, SIZE, TSpec> & me, TPos k)
 {
-    SEQAN_CHECK((unsigned(k) < SIZE), "Invalid position, k = %u, SIZE = %u.", unsigned(k), unsigned(SIZE));
+    SEQAN2_CHECK((unsigned(k) < SIZE), "Invalid position, k = %u, SIZE = %u.", unsigned(k), unsigned(SIZE));
     return me.i[k];
 }
 
@@ -359,7 +359,7 @@ template <typename TValue, unsigned SIZE, typename TSpec, typename TPos>
 inline TValue
 getValue(Tuple<TValue, SIZE, TSpec> const & me, TPos k)
 {
-    SEQAN_CHECK((unsigned(k) < SIZE), "Invalid position, k = %u, SIZE = %u.", unsigned(k), unsigned(SIZE));
+    SEQAN2_CHECK((unsigned(k) < SIZE), "Invalid position, k = %u, SIZE = %u.", unsigned(k), unsigned(SIZE));
     return me.i[k];
 }
 
@@ -371,7 +371,7 @@ template <typename TValue, unsigned SIZE, typename TSpec, typename TPos, typenam
 inline void
 setValue(Tuple<TValue, SIZE, TSpec> & me, TPos k, TValue2 const & source)
 {
-    SEQAN_CHECK((unsigned(k) < SIZE), "Invalid position, k = %u, SIZE = %u.", unsigned(k), unsigned(SIZE));
+    SEQAN2_CHECK((unsigned(k) < SIZE), "Invalid position, k = %u, SIZE = %u.", unsigned(k), unsigned(SIZE));
     set(me.i[k], source);
 }
 
@@ -383,7 +383,7 @@ template <typename TValue, unsigned SIZE, typename TSpec, typename TPos, typenam
 inline void
 moveValue(Tuple<TValue, SIZE, TSpec> & me, TPos k, TValue2 & source)
 {
-    SEQAN_CHECK((unsigned(k) < SIZE), "Invalid position, k = %u, SIZE = %u.", unsigned(k), unsigned(SIZE));
+    SEQAN2_CHECK((unsigned(k) < SIZE), "Invalid position, k = %u, SIZE = %u.", unsigned(k), unsigned(SIZE));
     move(me.i[k], source);
 }
 
@@ -620,6 +620,6 @@ operator+(Tuple<TValue1, SIZE, TSpecL> const & left,
     return tuple;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_TUPLE_BASE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_TUPLE_BASE_H_

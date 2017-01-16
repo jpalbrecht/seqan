@@ -32,8 +32,8 @@
 // Author: Svenja Mehringer <svenja.mehringer@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_ARG_PARSE_VERSION_CHECK_H_
-#define SEQAN_INCLUDE_ARG_PARSE_VERSION_CHECK_H_
+#ifndef SEQAN2_INCLUDE_ARG_PARSE_VERSION_CHECK_H_
+#define SEQAN2_INCLUDE_ARG_PARSE_VERSION_CHECK_H_
 
 #include <sys/stat.h>
 
@@ -43,7 +43,7 @@
 #include <future>
 #include <chrono>
 
-namespace seqan
+namespace seqan2
 {
 
 // ==========================================================================
@@ -64,33 +64,33 @@ constexpr const char * _getBitSys();
 template <typename TVoidSpec = void>
 struct VersionControlTags_
 {
-    static constexpr char const * const SEQAN_NAME         = "seqan";
+    static constexpr char const * const SEQAN2_NAME         = "seqan2";
     static constexpr char const * const UNREGISTERED_APP   = "UNREGISTERED_APP";
 
-    static constexpr char const * const MESSAGE_SEQAN_UPDATE =
+    static constexpr char const * const MESSAGE_SEQAN2_UPDATE =
         "[SEQAN INFO] :: There is a newer SeqAn version available!\n"
-        "[SEQAN INFO] :: Please visit www.seqan.de for an update or inform the developer of this app.\n"
+        "[SEQAN INFO] :: Please visit www.seqan2.de for an update or inform the developer of this app.\n"
         "[SEQAN INFO] :: If you don't want to recieve this message again set --version-check OFF\n\n";
     static constexpr char const * const MESSAGE_APP_UPDATE =
         "[APP INFO] :: There is a newer version of this application available.\n"
-        "[APP INFO] :: If this app is developed by SeqAn, visit www.seqan.de for updates.\n"
+        "[APP INFO] :: If this app is developed by SeqAn, visit www.seqan2.de for updates.\n"
         "[APP INFO] :: If you don't want to recieve this message again set --version_check OFF\n\n";
     static constexpr char const * const MESSAGE_UNREGISTERED_APP =
         "[SEQAN INFO] :: Thank you for using SeqAn!\n"
         "[SEQAN INFO] :: You might want to regsiter you app for support and version check features?\n"
-        "[SEQAN INFO] :: Just send us an email to seqan@team.fu-berlin.de with your app name and version number.\n"
+        "[SEQAN INFO] :: Just send us an email to seqan2@team.fu-berlin.de with your app name and version number.\n"
         "[SEQAN INFO] :: If you don't want to recieve this message anymore set --version_check OFF\n\n";
     static constexpr char const * const MESSAGE_REGISTERED_APP_UPDATE =
         "[APP INFO] :: We noticed the app version you use is newer than the one registered with us.\n"
-        "[APP INFO] :: Please send us an email with the new version so we can correct it (support@seqan.de)\n\n";
+        "[APP INFO] :: Please send us an email with the new version so we can correct it (support@seqan2.de)\n\n";
 };
 
 template <typename TVoidSpec>
-constexpr char const * const VersionControlTags_<TVoidSpec>::SEQAN_NAME;
+constexpr char const * const VersionControlTags_<TVoidSpec>::SEQAN2_NAME;
 template <typename TVoidSpec>
 constexpr char const * const VersionControlTags_<TVoidSpec>::UNREGISTERED_APP;
 template <typename TVoidSpec>
-constexpr char const * const VersionControlTags_<TVoidSpec>::MESSAGE_SEQAN_UPDATE;
+constexpr char const * const VersionControlTags_<TVoidSpec>::MESSAGE_SEQAN2_UPDATE;
 template <typename TVoidSpec>
 constexpr char const * const VersionControlTags_<TVoidSpec>::MESSAGE_APP_UPDATE;
 template <typename TVoidSpec>
@@ -127,7 +127,7 @@ struct VersionCheck
         {
             _version = versionMatch.str(1); // in case the git revision number is given take only version number
         }
-        _url = static_cast<std::string>("http://seqan-update.informatik.uni-tuebingen.de/check/SeqAn_") + _getOS() + _getBitSys() + _name + "_" + _version;
+        _url = static_cast<std::string>("http://seqan2-update.informatik.uni-tuebingen.de/check/SeqAn_") + _getOS() + _getBitSys() + _name + "_" + _version;
         _getProgram();
         _updateCommand();
     }
@@ -223,7 +223,7 @@ constexpr const char * _getOS()
 
 constexpr const char * _getBitSys()
 {
-#if SEQAN_IS_32_BIT
+#if SEQAN2_IS_32_BIT
     return "_32_";
 #else
      return "_64_";
@@ -253,7 +253,7 @@ inline bool _checkWritability(std::string const & path)
 
     CloseHandle(dummyFile);
     bool successful_deletion = DeleteFile(fileName.c_str());
-    SEQAN_ASSERT(successful_deletion);
+    SEQAN2_ASSERT(successful_deletion);
     if (!successful_deletion)
         return false;
 
@@ -289,9 +289,9 @@ inline std::string _getPath()
 {
     std::string path;
 #if defined(STDLIB_VS)
-    path = std::string(getenv("UserProfile")) + "/.config/seqan";
+    path = std::string(getenv("UserProfile")) + "/.config/seqan2";
 #else
-    path = std::string(getenv("HOME")) + "/.config/seqan";
+    path = std::string(getenv("HOME")) + "/.config/seqan2";
 #endif
 
     // check if user has permission to write to home path
@@ -361,23 +361,23 @@ inline void _readVersionStrings(std::vector<std::string> & versions, std::string
     std::ifstream myfile;
     myfile.open(version_file.c_str());
     std::string app_version;
-    std::string seqan_version;
+    std::string seqan2_version;
     if (myfile.is_open())
     {
         std::getline(myfile, app_version); // get first line which should only contain the version number of the app
 
-#if !defined(NDEBUG) || defined(SEQAN_TEST_VERSION_CHECK_)
+#if !defined(NDEBUG) || defined(SEQAN2_TEST_VERSION_CHECK_)
         if (app_version == VersionControlTags_<>::UNREGISTERED_APP)
             versions[0] = app_version;
-#endif // !defined(NDEBUG) || defined(SEQAN_TEST_VERSION_CHECK_)
+#endif // !defined(NDEBUG) || defined(SEQAN2_TEST_VERSION_CHECK_)
 
         if (std::regex_match(app_version, std::regex("^[[:digit:]]+\\.[[:digit:]]+\\.[[:digit:]]+$")))
             versions[0] = app_version;
 
-        std::getline(myfile, seqan_version); // get second line which should only contain the version number of seqan
+        std::getline(myfile, seqan2_version); // get second line which should only contain the version number of seqan2
 
-        if (std::regex_match(seqan_version, std::regex("^[[:digit:]]+\\.[[:digit:]]+\\.[[:digit:]]+$")))
-            versions[1] = seqan_version;
+        if (std::regex_match(seqan2_version, std::regex("^[[:digit:]]+\\.[[:digit:]]+\\.[[:digit:]]+$")))
+            versions[1] = seqan2_version;
 
         myfile.close();
     }
@@ -399,7 +399,7 @@ inline void _callServer(VersionCheck const me, std::promise<bool> prom)
     }
 
     // system call
-    // http response is stored in a file '.config/seqan/{app_name}_version'
+    // http response is stored in a file '.config/seqan2/{app_name}_version'
     if (system(me._command.c_str()))
         prom.set_value(false);
     else
@@ -432,22 +432,22 @@ inline void _checkForNewerVersion(VersionCheck & me, std::promise<bool> prom)
     std::vector<std::string> str_server_versions{"", ""};
     _readVersionStrings(str_server_versions, version_filename);
 
-#if !defined(NDEBUG) || defined(SEQAN_TEST_VERSION_CHECK_) // only check seqan version in debug or testing mode
-    if (!str_server_versions[1].empty()) // seqan version
+#if !defined(NDEBUG) || defined(SEQAN2_TEST_VERSION_CHECK_) // only check seqan2 version in debug or testing mode
+    if (!str_server_versions[1].empty()) // seqan2 version
     {
-        std::string seqan_version = std::to_string(SEQAN_VERSION_MAJOR) + "." +
-                                    std::to_string(SEQAN_VERSION_MINOR) + "." +
-                                    std::to_string(SEQAN_VERSION_PATCH);
-        Lexical<> version_comp(_getNumbersFromString(seqan_version), _getNumbersFromString(str_server_versions[1]));
+        std::string seqan2_version = std::to_string(SEQAN2_VERSION_MAJOR) + "." +
+                                    std::to_string(SEQAN2_VERSION_MINOR) + "." +
+                                    std::to_string(SEQAN2_VERSION_PATCH);
+        Lexical<> version_comp(_getNumbersFromString(seqan2_version), _getNumbersFromString(str_server_versions[1]));
 
         if (isLess(version_comp))
-            me.errorStream << VersionControlTags_<>::MESSAGE_SEQAN_UPDATE;
+            me.errorStream << VersionControlTags_<>::MESSAGE_SEQAN2_UPDATE;
     }
     if (str_server_versions[0] == VersionControlTags_<>::UNREGISTERED_APP)
         me.errorStream << VersionControlTags_<>::MESSAGE_UNREGISTERED_APP;
 #endif
 
-#if defined(NDEBUG) || defined(SEQAN_TEST_VERSION_CHECK_) // only check app version in release or testing mode
+#if defined(NDEBUG) || defined(SEQAN2_TEST_VERSION_CHECK_) // only check app version in release or testing mode
     if (!str_server_versions[0].empty() & !(str_server_versions[0] == VersionControlTags_<>::UNREGISTERED_APP)) // app version
     {
         Lexical<> version_comp(_getNumbersFromString(me._version), _getNumbersFromString(str_server_versions[0]));
@@ -458,7 +458,7 @@ inline void _checkForNewerVersion(VersionCheck & me, std::promise<bool> prom)
         else if (isGreater(version_comp))
             me.errorStream << VersionControlTags_<>::MESSAGE_REGISTERED_APP_UPDATE;
     }
-#endif // defined(NDEBUG) || defined(SEQAN_TEST_VERSION_CHECK_)
+#endif // defined(NDEBUG) || defined(SEQAN2_TEST_VERSION_CHECK_)
 
     if (me._program.empty())
     {
@@ -470,5 +470,5 @@ inline void _checkForNewerVersion(VersionCheck & me, std::promise<bool> prom)
     std::thread(_callServer, me, std::move(prom)).detach();
 }
 
-} // namespace seqan
-#endif //SEQAN_INCLUDE_ARG_PARSE_VERSION_CHECK_H_
+} // namespace seqan2
+#endif //SEQAN2_INCLUDE_ARG_PARSE_VERSION_CHECK_H_

@@ -33,22 +33,22 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_INDEX_ESA_STREE_H
-#define SEQAN_HEADER_INDEX_ESA_STREE_H
+#ifndef SEQAN2_HEADER_SEQAN2_INDEX_ESA_STREE_H
+#define SEQAN2_HEADER_SEQAN2_INDEX_ESA_STREE_H
 
-namespace seqan
+namespace seqan2
 {
 
 template <typename TText, typename TSpec>
-SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> >), (StringTreeConcept));
+SEQAN2_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> >), (StringTreeConcept));
 
 template <typename TText, typename TSpec>
-SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
+SEQAN2_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 
 /*!
  * @class VSTreeIterator VSTree Iterator
  * @extends Iter
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief Abstract iterator for string trees, where string trees are trees constructed from a string.
  *
@@ -130,7 +130,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 
 /*!
  * @mfn VSTreeIterator#EdgeLabel
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Type of a string representing the characters of edges.
  *
  * @signature EdgeLabel<TSpec>::Type;
@@ -150,7 +150,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 /*!
  * @class TopDownIterator Top Down Iterator
  * @extends VSTreeIterator
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief Iterator for virtual trees/tries that can go down and right beginning from the root.
  *
@@ -252,7 +252,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
  * @class TopDownHistoryIterator Top Down History Iterator
  * @implements ForwardIteratorConcept
  * @extends TopDownIterator
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief String tree iterator that can go down, right, and up. Supports depth-
  *        first search.
@@ -370,9 +370,9 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
     };
 
 //    //TODO(weese): define concepts somewhere else
-//    SEQAN_CONCEPT(ParentLinksConcepts,(T))
+//    SEQAN2_CONCEPT(ParentLinksConcepts,(T))
 //    {
-//        SEQAN_CONCEPT_USAGE(ParentLinksConcepts)
+//        SEQAN2_CONCEPT_USAGE(ParentLinksConcepts)
 //        {
 //            goUp(a);
 //        }
@@ -381,13 +381,13 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 //    };
 //
 //    template <typename TIndex, class TSpec>
-//    SEQAN_CONCEPT_IMPL((ParentLinksConcepts), Iter<TIndex,VSTree<TopDown<ParentLinks<TSpec> > > >);
+//    SEQAN2_CONCEPT_IMPL((ParentLinksConcepts), Iter<TIndex,VSTree<TopDown<ParentLinks<TSpec> > > >);
 
 /*!
  * @class BottomUpIterator Bottom Up Iterator
  * @implements ForwardIteratorConcept
  * @extends VSTreeIterator
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Iterator for an efficient postorder depth-first search in a virtual string tree.
  *
  * @signature template <typename TIndex, typename TSpec>
@@ -484,7 +484,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 
 /*!
  * @mfn StringTreeConcept#Iterator
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns the type of an iterator to traverse the nodes of a string tree.
  *
  * @signature Iterator<TIndex, TSpec>::Type;
@@ -630,7 +630,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn VSTreeIterator#repLength
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns the length of the substring representing the path from root to <tt>iterator</tt> node.
  *
  * @signature TSize repLength(iterator);
@@ -685,7 +685,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 /*!
  * @fn TopDownHistoryIterator#nodeDepth
  *
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief Returns the zero-based node depth of the <tt>iterator</tt> node.
  *
@@ -708,7 +708,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn TopDownIterator#parentRepLength
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns the length of the substring representing the path from root to <tt>iterator</tt>'s parent node.
  *
  * @signature TSize parentRepLength(iterator);
@@ -730,7 +730,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn TopDownIterator#emptyParentEdge
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns <tt>true</tt> iff the edge label from the <tt>iterator</tt>
  *        node to its parent is empty.
  *
@@ -757,7 +757,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn TopDownHistoryIterator#lca
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns the last common ancestor of two tree nodes.
  *
  * @signature bool lca(a, b, result);
@@ -815,7 +815,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn TopDownHistoryIterator#lcp
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns the length of the longest-common-prefix of two suffix tree
  *        nodes.
  *
@@ -886,7 +886,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn VSTreeIterator#value
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns a vertex descriptor of the current node.
  *
  * @signature TDesc value(iterator);
@@ -942,7 +942,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 
 /*!
  * @fn StringTreeConcept#resizeVertexMap
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Initializes a vertex map.
  *
  * @signature void resizeVertexMap(pm, index);
@@ -994,7 +994,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn VSTreeIterator#getOccurrence
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns an occurrence of the @link VSTreeIterator#representative @endlink substring in the index text.
  *
  * @signature TSAValue getOccurrence(iterator);
@@ -1017,7 +1017,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn VSTreeIterator#countOccurrences
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns the number of occurrences of @link VSTreeIterator#representative @endlink
  *        substring in the index text.
  *
@@ -1053,7 +1053,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn VSTreeIterator#range
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns the suffix array interval borders of occurrences of @link VSTreeIterator#representative @endlink substring in the
  *        index text.
  *
@@ -1091,7 +1091,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn VSTreeIterator#getOccurrences
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns all occurrences of the @link VSTreeIterator#representative @endlink substring in the index text.
  *
  * @signature TInfix getOccurrences(iterator);
@@ -1214,7 +1214,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn VSTreeIterator#getOccurrencesBwt
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns the characters left beside all occurrence of the @link
  *        VSTreeIterator#representative @endlink substring in the index text.
  *
@@ -1241,7 +1241,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn VSTreeIterator#representative
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns a substring representing the path from root to <tt>iterator</tt> node.
  *
  * @signature TInfix representative(iterator);
@@ -1270,7 +1270,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn VSTreeIterator#countChildren
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Count the number of children of a tree node.
  *
  * @signature TSize countChildren(iterator);
@@ -1283,7 +1283,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
  * @section Examples
  *
  * @code{.cpp}
- * // this code is in seqan/index/index_esa_stree.h
+ * // this code is in seqan2/index/index_esa_stree.h
  *
  *  typedef Index< String<char> > TMyIndex;
  *  TMyIndex myIndex(myString);
@@ -1432,7 +1432,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 //TODO(singer): Why only bottom-up???
 /*!
  * @fn VSTreeIterator#nodePredicate
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief If <tt>false</tt> this node will be skipped during the bottom-up traversal.
  *
  * @signature bool nodePredicate(iterator);
@@ -1454,7 +1454,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 
 /*!
  * @fn VSTreeIterator#nodeHullPredicate
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief If <tt>false</tt> this node and its subtree is concealed.
  *
  * @signature bool nodeHullPredicate(iterator);
@@ -1477,7 +1477,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 
 /*!
  * @fn VSTreeIterator#goRoot
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Move iterator to the root node.
  *
  * @signature void goRoot(iterator);
@@ -1499,7 +1499,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 //TODO(singer): The summary is not entirely true!!!
 /*!
  * @fn StringTreeConcept#begin
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns an iterator pointing to the root node of a string tree index.
  *
  * @signature TIterator begin(index, tag);
@@ -1548,7 +1548,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
     }
 /*!
  * @fn VSTreeIterator#goBegin
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Iterates to the first position of a container.
  *
  * @signature void goBegin(iterator);
@@ -1562,7 +1562,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 
 /*!
  * @fn BottomUpIterator#goBegin
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Iterates to the first position of a container.
  *
  * @signature void goBegin(iterator);
@@ -1684,7 +1684,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 //TODO(singer): The lcp stuff needs to be adapted
 /*!
  * @fn TopDownIterator#goDown
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Iterates down one edge or a path in a tree.
  *
  * @signature bool goDown(iterator);
@@ -1998,7 +1998,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 
 /*!
  * @fn TopDownHistoryIterator#goUp
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Iterates up one edge to the parent in a tree/trie.
  *
  * @signature bool goUp(iterator);
@@ -2072,7 +2072,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 
 /*!
  * @fn TopDownIterator#nodeUp
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns the vertex descriptor of the parent node.
  *
  * @signature TVertexDiscriptor nodeUp(iterator);
@@ -2109,7 +2109,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 
 /*!
  * @fn TopDownIterator#goRight
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Iterates to the next sibling in a tree.
  *
  * @signature bool goRight(iterator);
@@ -2160,7 +2160,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 
 /*!
  * @fn TopDownIterator#parentEdgeLength
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns the length of the edge from the <tt>iterator</tt> node to its parent.
  *
  * @signature TSize parentEdgeLength(iterator);
@@ -2179,7 +2179,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 
 /*!
  * @fn TopDownIterator#parentEdgeLabel
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns a substring representing the edge from an <tt>iterator</tt> node to its parent.
  *
  * @signature TEdgeLabel parentEdgeLabel(iterator);
@@ -2203,7 +2203,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 //TODO(singer): EsaRawText
 /*!
  * @fn TopDownIterator#parentEdgeFirstChar
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns the first character of the edge from an <tt>iterator</tt> node to its parent.
  *
  * @signature TValue parentEdgeFirstChar(iterator);
@@ -2343,7 +2343,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 //..concept:Concept.ContainerConcept
 /*!
  * @fn VSTreeIterator#atEnd
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Determines whether an virtual string tree iterator is at the end position.
  *
  * @signature bool atEnd(iterator);
@@ -2378,7 +2378,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 
 /*!
  * @fn BottomUp#atEnd
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Determines whether an virtual string tree iterator is at the end position.
  *
  * @signature bool atEnd(iterator);
@@ -2425,7 +2425,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 
 /*!
  * @fn VSTreeIterator#isRoot
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Test whether a tree iterator points to the root node.
  *
  * @signature bool isRoot(iterator);
@@ -2471,7 +2471,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 //TODO(singer): Note the case for trie or FM Index
 /*!
  * @fn VSTreeIterator#isRightTerminal
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Test whether iterator points to a suffix.
  *
  * @signature bool isRightTerminal(iterator);
@@ -2498,7 +2498,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 
 /*!
  * @fn VSTreeIterator#isLeftMaximal
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Test whether the occurrences of an iterator's @link VSTreeIterator#representative @endlink mutually differ in the character
  *        left of the hits.
  *
@@ -2551,7 +2551,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 
 /*!
  * @fn VSTreeIterator#isPartiallyLeftExtensible
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Test whether the characters left of the two occurrences of @link VSTreeIterator#representative @endlink are equal.
  *
  * @signature bool isPartiallyLeftExtensible(iterator);
@@ -2606,7 +2606,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 
 /*!
  * @fn VSTreeIterator#isUnique
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Test whether the @link VSTreeIterator#representative @endlink occurs only once in every sequence.
  *
  * @signature bool isUnique(iterator);
@@ -2654,7 +2654,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 
 /*!
  * @fn VSTreeIterator#getFrequency
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns the number of sequences, which contain the @link
  *        VSTreeIterator#representative @endlink as a substring.
  *
@@ -2725,7 +2725,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 
 /*!
  * @fn VSTreeIterator#childrenAreLeaves
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Test whether iterator points to a node with only leaf-children.
  *
  * @signature bool childrenAreLeaves(iterator);
@@ -2743,7 +2743,7 @@ SEQAN_CONCEPT_IMPL((Index<TText, IndexEsa<TSpec> > const), (StringTreeConcept));
 
 /*!
  * @fn VSTreeIterator#isLeaf
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Test whether a tree iterator points to a leaf.
  *
  * @signature bool isLeaf(iterator);

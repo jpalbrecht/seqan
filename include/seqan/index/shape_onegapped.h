@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_SHAPE_ONEGAPPED_H
-#define SEQAN_HEADER_SHAPE_ONEGAPPED_H
+#ifndef SEQAN2_HEADER_SHAPE_ONEGAPPED_H
+#define SEQAN2_HEADER_SHAPE_ONEGAPPED_H
 
-namespace seqan
+namespace seqan2
 {
 
 
@@ -46,7 +46,7 @@ namespace seqan
 /*!
  * @class OneGappedShape
  * @extends Shape
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief A variable shape with one optional gap.
  *
@@ -173,7 +173,7 @@ namespace seqan
         //typedef typename Value< Shape<TValue, OneGappedShape> >::Type    THValue;
         typedef typename Size< Shape<TValue, OneGappedShape> >::Type    TSize;
 
-        SEQAN_ASSERT_GT(me.blockLen1, 0u);
+        SEQAN2_ASSERT_GT(me.blockLen1, 0u);
 
         me.hValue = ordValue(me.leftChar = *it);
         for(TSize i = 1; i < me.blockLen1; ++i) {
@@ -195,7 +195,7 @@ namespace seqan
         //typedef typename Value< Shape<TValue, OneGappedShape> >::Type    THValue;
         typedef typename Size< Shape<TValue, OneGappedShape> >::Type    TSize;
 
-        SEQAN_ASSERT_GT(me.blockLen1, 0u);
+        SEQAN2_ASSERT_GT(me.blockLen1, 0u);
 
         me.leftChar = 0;
         me.hValue = ordValue(*it);
@@ -219,7 +219,7 @@ namespace seqan
         TSize blockLen1 = me.blockLen1;
         TSize blockLen2 = me.blockLen2;
 
-        SEQAN_ASSERT_GT(me.blockLen1, 0u);
+        SEQAN2_ASSERT_GT(me.blockLen1, 0u);
 
         if ((TSize)length(me) > charsLeft)
         {
@@ -260,7 +260,7 @@ namespace seqan
         TSize blockLen1 = me.blockLen1;
         TSize blockLen2 = me.blockLen2;
 
-        SEQAN_ASSERT_GT(me.blockLen1, 0u);
+        SEQAN2_ASSERT_GT(me.blockLen1, 0u);
 
         if ((TSize)length(me) > charsLeft)
         {
@@ -302,7 +302,7 @@ namespace seqan
         //typedef typename Value< Shape<TValue, OneGappedShape> >::Type    THValue;
         TIter it(_it);
 
-        SEQAN_ASSERT_GT(me.blockLen1, 0u);
+        SEQAN2_ASSERT_GT(me.blockLen1, 0u);
 
         // remove leftmost character
         me.hValue -= ordValue(me.leftChar) * me.factor1;
@@ -391,6 +391,6 @@ namespace seqan
         me.factor2 = _intPow((THValue)ValueSize<TValue>::VALUE, me.blockLen2);
     }
 
-}    // namespace seqan
+}    // namespace seqan2
 
 #endif

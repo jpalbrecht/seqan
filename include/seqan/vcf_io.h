@@ -34,31 +34,31 @@
 // Facade header for module vcf_io.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_VCF_IO_H_
-#define SEQAN_INCLUDE_SEQAN_VCF_IO_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_VCF_IO_H_
+#define SEQAN2_INCLUDE_SEQAN2_VCF_IO_H_
 
 // ===========================================================================
 // Prerequisites.
 // ===========================================================================
 
-#include <seqan/basic.h>
-#include <seqan/file.h>
-#include <seqan/sequence.h>
-#include <seqan/misc/name_store_cache.h>
-#include <seqan/stream.h>
+#include <seqan2/basic.h>
+#include <seqan2/file.h>
+#include <seqan2/sequence.h>
+#include <seqan2/misc/name_store_cache.h>
+#include <seqan2/stream.h>
 
 // ===========================================================================
 // First Header Group.
 // ===========================================================================
 
-#include <seqan/vcf_io/vcf_header_record.h>
-#include <seqan/vcf_io/vcf_header.h>
-#include <seqan/vcf_io/vcf_record.h>
+#include <seqan2/vcf_io/vcf_header_record.h>
+#include <seqan2/vcf_io/vcf_header.h>
+#include <seqan2/vcf_io/vcf_record.h>
 
-#include <seqan/vcf_io/vcf_io_context.h>
-#include <seqan/vcf_io/read_vcf.h>
-#include <seqan/vcf_io/write_vcf.h>
+#include <seqan2/vcf_io/vcf_io_context.h>
+#include <seqan2/vcf_io/read_vcf.h>
+#include <seqan2/vcf_io/write_vcf.h>
 
-#include <seqan/vcf_io/vcf_file.h>
+#include <seqan2/vcf_io/vcf_file.h>
 
-#endif  // SEQAN_INCLUDE_SEQAN_VCF_IO_H_
+#endif  // SEQAN2_INCLUDE_SEQAN2_VCF_IO_H_

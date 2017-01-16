@@ -32,15 +32,15 @@
 // Author: Stephan Aiche <stephan.aiche@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ARG_PARSE_ARG_PARSE_PARSE_H_
-#define SEQAN_INCLUDE_SEQAN_ARG_PARSE_ARG_PARSE_PARSE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ARG_PARSE_ARG_PARSE_PARSE_H_
+#define SEQAN2_INCLUDE_SEQAN2_ARG_PARSE_ARG_PARSE_PARSE_H_
 
-#include <seqan/arg_parse/arg_parse_option.h>
-#include <seqan/arg_parse/argument_parser.h>
-#include <seqan/arg_parse/arg_parse_ctd_support.h>
-#include <seqan/arg_parse/arg_parse_version_check.h>
+#include <seqan2/arg_parse/arg_parse_option.h>
+#include <seqan2/arg_parse/argument_parser.h>
+#include <seqan2/arg_parse/arg_parse_ctd_support.h>
+#include <seqan2/arg_parse/arg_parse_version_check.h>
 
-namespace seqan {
+namespace seqan2 {
 
 // ----------------------------------------------------------------------------
 // Function parse()
@@ -48,7 +48,7 @@ namespace seqan {
 
 /*!
  * @fn ArgumentParser#parse
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Parse command line parameters.
  *
  * @signature TResult parse(parser, argc, argv[, outStream[, errStream]]);
@@ -135,7 +135,7 @@ private:
     {
         // Check whether we have the largest number of allowed arguments already.
         if (parser.argumentList.size() <= currentArgument)
-            SEQAN_THROW(ParseError("Too many arguments!"));
+            SEQAN2_THROW(ParseError("Too many arguments!"));
 
         ArgParseArgument & argument = getArgument(parser, currentArgument);
         _assignArgumentValue(argument, argStr);
@@ -152,7 +152,7 @@ private:
     void handleOption(int & argi, std::string arg)
     {
         if (arg == "-")
-            SEQAN_THROW(InvalidOption("-"));
+            SEQAN2_THROW(InvalidOption("-"));
 
         if (arg[1] == '-')
             handleLongOption(argi, arg);
@@ -178,7 +178,7 @@ private:
 
         // Guard against invalid option names.
         if (!hasOption(parser, longOpt))
-            SEQAN_THROW(InvalidOption(longOpt));
+            SEQAN2_THROW(InvalidOption(longOpt));
 
         // Parse out the values for the option from the command line arguments.
         ArgParseOption & opt = getOption(parser, longOpt);
@@ -187,7 +187,7 @@ private:
             // We can only assign one value in this case.  If the option expected more than one value then this is an
             // error.
             if (numberOfAllowedValues(opt) != 1)
-                SEQAN_THROW(MissingArgument(longOpt));
+                SEQAN2_THROW(MissingArgument(longOpt));
             // If everything is fine then we can assign the value to the option.
             _assignArgumentValue(opt, val);
         }
@@ -202,7 +202,7 @@ private:
 
             // Guard against missing values.
             if (argi + (int)numberOfAllowedValues(opt) >= argc)
-                SEQAN_THROW(MissingArgument(longOpt));
+                SEQAN2_THROW(MissingArgument(longOpt));
             // We have sufficient values, get them from argv and assign them to the option.
             for (int t = 0; t < (int)numberOfAllowedValues(opt); ++t)
                 _assignArgumentValue(opt, argv[++argi]);
@@ -241,12 +241,12 @@ private:
                     {
                         std::stringstream what;
                         what << "invalid combination of arguments -- " << arg << std::endl;
-                        SEQAN_THROW(ParseError(what.str()));
+                        SEQAN2_THROW(ParseError(what.str()));
                     }
 
                     // Handle the case of too few options.
                     if (argi + (int)numberOfAllowedValues(opt) >= argc)
-                        SEQAN_THROW(MissingArgument(opt.shortName));
+                        SEQAN2_THROW(MissingArgument(opt.shortName));
 
                     // Assign the required option value.s
                     for (int t = 0; t < (int)numberOfAllowedValues(opt); ++t)
@@ -256,7 +256,7 @@ private:
 
             // No option was found.
             if (s == e)
-                SEQAN_THROW(InvalidOption(arg.substr(s)));
+                SEQAN2_THROW(InvalidOption(arg.substr(s)));
         }
     }
 };
@@ -269,7 +269,7 @@ ArgumentParser::ParseResult parse(ArgumentParser & me,
                                   std::ostream & outputStream,
                                   std::ostream & errorStream)
 {
-    SEQAN_TRY
+    SEQAN2_TRY
     {
         // Perform the parsing without any valid value checking on the argument values.
         ArgumentParserHelper_<TChar> parserHelper(me, argc, argv);
@@ -302,13 +302,13 @@ ArgumentParser::ParseResult parse(ArgumentParser & me,
         for (unsigned i = 0; i < me.argumentList.size(); ++i)
             _checkValue(me.argumentList[i]);
     }
-    SEQAN_CATCH(ParseError & ex)
+    SEQAN2_CATCH(ParseError & ex)
     {
         errorStream << getAppName(me) << ": " << ex.what() << std::endl;
         return ArgumentParser::PARSE_ERROR;
     }
 
-#ifndef SEQAN_DISABLE_VERSION_CHECK
+#ifndef SEQAN2_DISABLE_VERSION_CHECK
     // do version check if not turned off by the user
     bool check_version = false;
     getOptionValue(check_version, me, "version-check");
@@ -322,7 +322,7 @@ ArgumentParser::ParseResult parse(ArgumentParser & me,
         me.appVersionCheckFuture = appVersionProm.get_future();
         app_version(std::move(appVersionProm));
     }
-#endif  // !SEQAN_DISABLE_VERSION_CHECK
+#endif  // !SEQAN2_DISABLE_VERSION_CHECK
 
     // Handle the special options.
     if (hasOption(me, "version") && isSet(me, "version"))
@@ -390,6 +390,6 @@ ArgumentParser::ParseResult parse(ArgumentParser & me,
     return parse(me, argc, argv, std::cout, std::cerr);
 }
 
-} // namespace seqan
+} // namespace seqan2
 
-#endif // SEQAN_INCLUDE_SEQAN_ARG_PARSE_ARG_PARSE_PARSE_H_
+#endif // SEQAN2_INCLUDE_SEQAN2_ARG_PARSE_ARG_PARSE_PARSE_H_

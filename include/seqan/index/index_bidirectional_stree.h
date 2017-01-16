@@ -32,12 +32,12 @@
 // Author: Christopher Pockrandt <christopher.pockrandt@fu-berlin.de>
 // ==========================================================================
 
-//SEQAN_NO_DDDOC:do not generate documentation for this file
+//SEQAN2_NO_DDDOC:do not generate documentation for this file
 
-#ifndef INDEX_BIDIRECTIONAL_STREE_H_
-#define INDEX_BIDIRECTIONAL_STREE_H_
+#ifndef SEQAN2_INDEX_BIDIRECTIONAL_STREE_H_
+#define SEQAN2_INDEX_BIDIRECTIONAL_STREE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 struct BidirectionalDirection {};
 
@@ -186,7 +186,7 @@ inline bool
 goDown(Iter<Index<TText, TIndexSpec>, VSTree<TopDown<TSpec> > > &,
        Rev const &)
 {
-    SEQAN_ASSERT_MSG(false, "ERROR: Cannot goDown(it, Rev) on uni-directional index");
+    SEQAN2_ASSERT_MSG(false, "ERROR: Cannot goDown(it, Rev) on uni-directional index");
     return false;
 }
 
@@ -484,4 +484,4 @@ representative(Iter<Index<TText, BidirectionalIndex<TIndexSpec> >, VSTree<TopDow
 
 }
 
-#endif /* INDEX_BIDIRECTIONAL_STREE_H_ */
+#endif /* SEQAN2_INDEX_BIDIRECTIONAL_STREE_H_ */

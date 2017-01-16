@@ -34,10 +34,10 @@
 // Implementation of Dijkstra's algorithm.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_GRAPH_ALGORITHMS_DIJKSTRA_H_
-#define INCLUDE_SEQAN_GRAPH_ALGORITHMS_DIJKSTRA_H_
+#ifndef INCLUDE_SEQAN2_GRAPH_ALGORITHMS_DIJKSTRA_H_
+#define INCLUDE_SEQAN2_GRAPH_ALGORITHMS_DIJKSTRA_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -61,7 +61,7 @@ namespace seqan {
 
   /*!
  * @fn dijkstra
- * @headerfile <seqan/graph_algorithms.h>
+ * @headerfile <seqan2/graph_algorithms.h>
  * @brief Computes shortest paths from a single source in a graph.
  * @signature void dijkstra(predecessor, distance, g, source, weight);
  *
@@ -139,6 +139,6 @@ void dijkstra(TPredecessorMap & predecessor,
     }
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_GRAPH_ALGORITHMS_DIJKSTRA_H_
+#endif  // #ifndef INCLUDE_SEQAN2_GRAPH_ALGORITHMS_DIJKSTRA_H_

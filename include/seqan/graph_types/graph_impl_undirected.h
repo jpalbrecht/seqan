@@ -30,10 +30,10 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_GRAPH_IMPL_UNDIRECTED_H
-#define SEQAN_HEADER_GRAPH_IMPL_UNDIRECTED_H
+#ifndef SEQAN2_HEADER_GRAPH_IMPL_UNDIRECTED_H
+#define SEQAN2_HEADER_GRAPH_IMPL_UNDIRECTED_H
 
-namespace seqan
+namespace seqan2
 {
 //////////////////////////////////////////////////////////////////////////////
 // Graph - Undirected
@@ -44,7 +44,7 @@ namespace seqan
 /*!
  * @class UndirectedGraph
  * @extends Graph
- * @headerfile <seqan/graph_types.h>
+ * @headerfile <seqan2/graph_types.h>
  * @brief An undirected graph that stores the edges in an adjacency list.
  *
  * <img src="undirectedGraph.png" title="An undirected graph with multiple components." />
@@ -269,7 +269,7 @@ clearEdges(Graph<Undirected<TCargo, TSpec> >& g)
         }
         *it = (TEdgeStump*) 0;
     }
-    SEQAN_ASSERT(numEdges(g) == length(edges));
+    SEQAN2_ASSERT(numEdges(g) == length(edges));
 
     // Release all edges
     typedef typename Iterator<String<TEdgeDescriptor>, Standard>::Type TStringIter;
@@ -309,7 +309,7 @@ inline typename Size<Graph<Undirected<TCargo, TSpec> > >::Type
 outDegree(Graph<Undirected<TCargo, TSpec> > const& g,
           TVertexDescriptor const vertex)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, vertex));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, vertex));
 
     typedef Graph<Undirected<TCargo, TSpec> > TGraph;
     typedef typename EdgeType<TGraph>::Type TEdgeStump;
@@ -367,7 +367,7 @@ inline void
 removeVertex(Graph<Undirected<TCargo, TSpec> >& g,
              TVertexDescriptor const v)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, v));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, v));
 
     removeOutEdges(g,v); // Remove all outgoing edges
     releaseId(g.data_id_managerV, v); // Release id
@@ -381,9 +381,9 @@ addEdge(Graph<Undirected<TCargo, TSpec> >& g,
         TVertexDescriptor source,
         TVertexDescriptor target)
 {
-    SEQAN_ASSERT_NEQ(source, target);
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, source));
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, target));
+    SEQAN2_ASSERT_NEQ(source, target);
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, source));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, target));
 
     typedef Graph<Undirected<TCargo, TSpec> > TGraph;
     typedef typename EdgeType<TGraph>::Type TEdgeStump;
@@ -417,7 +417,7 @@ addEdge(Graph<Undirected<TCargo, TSpec> >& g,
         TVertexDescriptor const target,
         TCargo2 const cargo)
 {
-    SEQAN_ASSERT_NEQ(source, target);
+    SEQAN2_ASSERT_NEQ(source, target);
 
     typedef Graph<Undirected<TCargo, TSpec> > TGraph;
     typedef typename EdgeDescriptor<TGraph>::Type TEdgeDescriptor;
@@ -434,8 +434,8 @@ removeEdge(Graph<Undirected<TCargo, TSpec> >& g,
            TVertexDescriptor const source,
            TVertexDescriptor const target)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, source));
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, target));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, source));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, target));
 
     typedef Graph<Undirected<TCargo, TSpec> > TGraph;
     typedef typename EdgeType<TGraph>::Type TEdgeStump;
@@ -522,8 +522,8 @@ removeEdge(Graph<Undirected<TCargo, TSpec> >& g,
            TEdgeDescriptor const edge)
 {
 
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, sourceVertex(g,edge)));
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, targetVertex(g,edge)));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, sourceVertex(g,edge)));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, targetVertex(g,edge)));
     typedef Graph<Undirected<TCargo, TSpec> > TGraph;
     typedef typename EdgeType<TGraph>::Type TEdgeStump;
     typedef typename VertexDescriptor<TGraph>::Type TVertexDescriptor;
@@ -745,8 +745,8 @@ findEdge(Graph<Undirected<TCargo, TSpec> > const& g,
          TVertexDescriptor const v,
          TVertexDescriptor const w)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, v));
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, w));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, v));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, w));
 
     typedef Graph<Undirected<TCargo, TSpec> > TGraph;
     typedef typename EdgeType<TGraph>::Type TEdgeStump;
@@ -830,6 +830,6 @@ write(TFile & target,
 }
 
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

@@ -34,10 +34,10 @@
 // Code for reading SAM.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_BAM_IO_READ_SAM_H_
-#define INCLUDE_SEQAN_BAM_IO_READ_SAM_H_
+#ifndef INCLUDE_SEQAN2_BAM_IO_READ_SAM_H_
+#define INCLUDE_SEQAN2_BAM_IO_READ_SAM_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags, Classes, Enums
@@ -156,7 +156,7 @@ readRecord(BamHeaderRecord & record,
     else if (c1 == 'C' && c2 == 'O')
         record.type = BAM_HEADER_COMMENT;
     else
-        SEQAN_THROW(ParseError("Unknown SAM header type!"));
+        SEQAN2_THROW(ParseError("Unknown SAM header type!"));
 
     CharString &buffer = context.buffer;
 
@@ -259,7 +259,7 @@ readRecord(BamAlignmentRecord & record,
 {
     // fail, if we read "@" (did you miss to call readRecord(header, bamFile) first?)
     if (nextIs(iter, SamHeader()))
-        SEQAN_THROW(ParseError("Unexpected SAM header encountered."));
+        SEQAN2_THROW(ParseError("Unexpected SAM header encountered."));
 
     OrFunctor<IsTab, AssertFunctor<NotFunctor<IsNewline>, ParseError, Sam> > nextEntry;
 
@@ -288,7 +288,7 @@ readRecord(BamAlignmentRecord & record,
 
     // POS
     clear(buffer);
-    SEQAN_ASSERT_EQ((int32_t)0 - 1, (int32_t)BamAlignmentRecord::INVALID_POS);
+    SEQAN2_ASSERT_EQ((int32_t)0 - 1, (int32_t)BamAlignmentRecord::INVALID_POS);
     readUntil(buffer, iter, nextEntry);
     record.beginPos = (int32_t)lexicalCast<uint32_t>(buffer) - 1;
     skipOne(iter, IsTab());
@@ -394,6 +394,6 @@ readRecord(BamAlignmentRecord & record,
     appendTagsSamToBam(record.tags, buffer);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_BAM_IO_READ_SAM_H_
+#endif  // #ifndef INCLUDE_SEQAN2_BAM_IO_READ_SAM_H_

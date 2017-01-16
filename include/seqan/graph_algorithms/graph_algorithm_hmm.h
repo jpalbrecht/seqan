@@ -30,10 +30,10 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_GRAPH_ALGORITHM_HMM_H
-#define SEQAN_HEADER_GRAPH_ALGORITHM_HMM_H
+#ifndef SEQAN2_HEADER_GRAPH_ALGORITHM_HMM_H
+#define SEQAN2_HEADER_GRAPH_ALGORITHM_HMM_H
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -63,7 +63,7 @@ namespace seqan
 
 /*!
  * @fn HmmAlgorithms#viterbiAlgorithm
- * @headerfile <seqan/graph_algorithms.h>
+ * @headerfile <seqan2/graph_algorithms.h>
  * @brief Implements the Viterbi algorithm for Hidden Markov Models.
  *
  * @signature TCargo viterbiAlgorithm(path, hmm, seq);
@@ -342,7 +342,7 @@ _forwardAlgorithm(Graph<Hmm<TAlphabet, TProbability, TSpec> > const& hmm,
 
 /*!
  * @fn HmmAlgorithms#forwardAlgorithm
- * @headerfile <seqan/graph_algorithms.h>
+ * @headerfile <seqan2/graph_algorithms.h>
  * @brief Given a Hidden Markov Model <tt>hmm</tt>, the forward algorithm computes the probability of the sequence
  *        <tt>seq</tt>.
  *
@@ -509,7 +509,7 @@ _backwardAlgorithm(Graph<Hmm<TAlphabet, TProbability, TSpec> > const& hmm,
 
 /*!
  * @fn HmmAlgorithms#backwardAlgorithm
- * @headerfile <seqan/graph_algorithms.h>
+ * @headerfile <seqan2/graph_algorithms.h>
  * @brief Given a Hidden Markov Model <tt>hmm</tt>, the backward algorithm computes the probability of the sequence
  *        <tt>seq</tt>.
  *
@@ -542,7 +542,7 @@ backwardAlgorithm(Graph<Hmm<TAlphabet, TProbability, TSpec> > const & hmm,
 
 /*!
  * @fn HmmAlgorithms#generateSequence
- * @headerfile <seqan/graph_algorithms.h>
+ * @headerfile <seqan2/graph_algorithms.h>
  * @brief Generates random state and alphabet sequence of a given HMM.
  *
  * @signature void generateSequence(hmm, seq, states, numSeq, maxLen);
@@ -1166,6 +1166,6 @@ msaToProfileHmm(String<TAlignmentChar> const& matr,
 */
 
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

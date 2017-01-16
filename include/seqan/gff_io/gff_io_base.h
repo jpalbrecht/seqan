@@ -32,10 +32,10 @@
 // Author: Jochen Singer <jochen.singer@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_GFF_IO_GFF_IO_BASE_H_
-#define INCLUDE_SEQAN_GFF_IO_GFF_IO_BASE_H_
+#ifndef INCLUDE_SEQAN2_GFF_IO_GFF_IO_BASE_H_
+#define INCLUDE_SEQAN2_GFF_IO_GFF_IO_BASE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags, Classes, Enums
@@ -118,7 +118,7 @@ char const * FileExtensions<Gtf, T>::VALUE[1] =
 /*!
  * @class GffRecord
  * @implements FormattedFileRecordConcept
- * @headerfile <seqan/gff_io.h>
+ * @headerfile <seqan2/gff_io.h>
  * @brief Represent a record from a GFF or GTF file.
  *
  * @signature class GffRecord;
@@ -252,7 +252,7 @@ _parseReadGffKeyValue(TValueString & outValue, TKeyString & key, TForwardIter & 
     //TODO(singer): AssertList functor would be need
     char c = value(iter);
     if (IsWhitespace()(c) || c == '=')
-        SEQAN_THROW(ParseError("The key field of an attribute is empty!"));
+        SEQAN2_THROW(ParseError("The key field of an attribute is empty!"));
 
     for (; !atEnd(iter); goNext(iter))
     {
@@ -387,7 +387,7 @@ void readRecord(GffRecord & record, CharString & buffer, TFwdIterator & iter)
 
     //check if end < begin
     if (record.endPos < record.beginPos)
-        SEQAN_THROW(ParseError("Begin position of GFF/GTF record is larger than end position!"));
+        SEQAN2_THROW(ParseError("Begin position of GFF/GTF record is larger than end position!"));
 
     // read column 6: score
     clear(buffer);
@@ -468,7 +468,7 @@ _writePossiblyInQuotes(TTarget& target, TString & source, TMustBeQuotedFunctor c
     {
         // we have a problem if the string contains a '"' or a line break
         if (value(it) =='\n' || value(it) == '"')
-            SEQAN_THROW(ParseError("Attribute contains illegal character!"));
+            SEQAN2_THROW(ParseError("Attribute contains illegal character!"));
 
         if (func(*it))
         {
@@ -615,14 +615,14 @@ writeRecord(TTarget & target, GffRecord const & record, Tag<TFormat> const & tag
     if (record.beginPos != (unsigned)-1)
         appendNumber(target, record.beginPos + 1);
     else
-        SEQAN_THROW(ParseError("No start position!"));
+        SEQAN2_THROW(ParseError("No start position!"));
     writeValue(target, '\t');
 
     // write column 5: end position
     if (record.endPos != (unsigned)-1 && record.beginPos <= record.endPos)
         appendNumber(target, record.endPos);
     else
-        SEQAN_THROW(ParseError("No end position!"));
+        SEQAN2_THROW(ParseError("No end position!"));
     writeValue(target, '\t');
 
     // write column 6: score
@@ -649,7 +649,7 @@ writeRecord(TTarget & target, GffRecord const & record, Tag<TFormat> const & tag
     return;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // INCLUDE_SEQAN_GFF_IO_GFF_IO_BASE_H_
+#endif  // INCLUDE_SEQAN2_GFF_IO_GFF_IO_BASE_H_
 

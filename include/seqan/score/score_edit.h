@@ -34,15 +34,15 @@
 // Edit distance score class and supporting code.
 // ==========================================================================
 
-#ifndef SEQAN_SSCORE_EDIT_H_
-#define SEQAN_SSCORE_EDIT_H_
+#ifndef SEQAN2_SSCORE_EDIT_H_
+#define SEQAN2_SSCORE_EDIT_H_
 
-namespace seqan {
+namespace seqan2 {
 
 /*!
  * @class EditDistanceScore
  * @extends Score
- * @headerfile <seqan/score.h>
+ * @headerfile <seqan2/score.h>
  * @brief Edit distance scoring scheme.
  *
  * <tt>EditDistance</tt> is a synonym for <tt>LevenshteinDistance</tt>.
@@ -65,7 +65,7 @@ public:
 
 /*!
  * @typedef EditDistanceScoreTypedef EditDistance
- * @headerfile <seqan/score.h>
+ * @headerfile <seqan2/score.h>
  * @brief Edit distance scoring scheme shortcut.
  *
  * @signature typedef Score<int, EditDistance> EditDistanceScore;
@@ -128,6 +128,6 @@ scoreGapOpen(Score<TValue, EditDistance> const &) {
     return -1;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_SSCORE_EDIT_H_
+#endif  // SEQAN2_SSCORE_EDIT_H_

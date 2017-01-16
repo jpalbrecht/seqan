@@ -30,19 +30,19 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_STORE_H
-#define SEQAN_HEADER_STORE_H
+#ifndef SEQAN2_HEADER_STORE_H
+#define SEQAN2_HEADER_STORE_H
 
-#include <seqan/basic.h>
-#include <seqan/sequence.h>
-#include <seqan/align.h>
-#include <seqan/stream.h>
-#include <seqan/parallel.h>
-#include <seqan/seq_io.h>
-#include <seqan/bam_io.h>
-#include <seqan/gff_io.h>
-#include <seqan/ucsc_io.h>
-#include <seqan/misc/name_store_cache.h>
+#include <seqan2/basic.h>
+#include <seqan2/sequence.h>
+#include <seqan2/align.h>
+#include <seqan2/stream.h>
+#include <seqan2/parallel.h>
+#include <seqan2/seq_io.h>
+#include <seqan2/bam_io.h>
+#include <seqan2/gff_io.h>
+#include <seqan2/ucsc_io.h>
+#include <seqan2/misc/name_store_cache.h>
 
 #include <sstream>
 #include <algorithm>
@@ -52,21 +52,21 @@
 // FRAGMENT STORE SUB-CONTAINERS
 //////////////////////////////////////////////////////////////////////////////
 
-#include <seqan/store/store_base.h>
-#include <seqan/store/store_read.h>
-#include <seqan/store/store_matepair.h>
-#include <seqan/store/store_library.h>
-#include <seqan/store/store_contig.h>
-#include <seqan/store/store_align.h>
-#include <seqan/store/store_annotation.h>
-#include <seqan/store/store_all.h>
+#include <seqan2/store/store_base.h>
+#include <seqan2/store/store_read.h>
+#include <seqan2/store/store_matepair.h>
+#include <seqan2/store/store_library.h>
+#include <seqan2/store/store_contig.h>
+#include <seqan2/store/store_align.h>
+#include <seqan2/store/store_annotation.h>
+#include <seqan2/store/store_all.h>
 
-#include <seqan/store/store_align_intervals.h>
-#include <seqan/store/store_intervaltree.h>
+#include <seqan2/store/store_align_intervals.h>
+#include <seqan2/store/store_intervaltree.h>
 
-#include <seqan/store/store_io.h>
-#include <seqan/store/store_io_sam.h>
-#include <seqan/store/store_io_gff.h>
-#include <seqan/store/store_io_ucsc.h>
+#include <seqan2/store/store_io.h>
+#include <seqan2/store/store_io_sam.h>
+#include <seqan2/store/store_io_gff.h>
+#include <seqan2/store/store_io_ucsc.h>
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

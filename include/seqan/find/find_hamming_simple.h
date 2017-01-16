@@ -35,17 +35,17 @@
 // Author: Manuel Holtgrewe <manuel.holtgrewe@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_FIND_FIND_SIMPLE_H_
-#define SEQAN_FIND_FIND_SIMPLE_H_
+#ifndef SEQAN2_FIND_FIND_SIMPLE_H_
+#define SEQAN2_FIND_FIND_SIMPLE_H_
 
 #include <algorithm>
 
-namespace seqan {
+namespace seqan2 {
 
 /*!
  * @class HammingSimplePattern
  * @extends Pattern
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief A brute force online searching algorithm for approximate string matching with hamming distance.
  *
  * @signature template <typename TNeedle>
@@ -81,7 +81,7 @@ public:
     template <typename TNeedle2>
     Pattern(TNeedle2 && ndl,
             int k = -1,
-            SEQAN_CTOR_DISABLE_IF(IsSameType<typename std::remove_reference<TNeedle2>::type const &, Pattern const &>))
+            SEQAN2_CTOR_DISABLE_IF(IsSameType<typename std::remove_reference<TNeedle2>::type const &, Pattern const &>))
                 :   maxDistance(-k),
                     distance(0),
                     matchNFlags(0)
@@ -134,7 +134,7 @@ inline int getScore(const Pattern<TNeedle, HammingSimple> &me) {
 
 template <typename TNeedle>
 inline void setScoreLimit(Pattern<TNeedle, HammingSimple> & me, int _limit) {
-    SEQAN_ASSERT_LEQ(_limit, 0);
+    SEQAN2_ASSERT_LEQ(_limit, 0);
     me.maxDistance = -_limit;
 }
 
@@ -254,6 +254,6 @@ inline bool find(TFinder &finder,
 {
     return find(finder, me, -me.maxDistance);
 }
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_FIND_FIND_SIMPLE_H_
+#endif  // SEQAN2_FIND_FIND_SIMPLE_H_

@@ -33,12 +33,12 @@
 // Author: Jochen Singer <jochen.singer@fu-berlin.de>
 // ==========================================================================
 
-//SEQAN_NO_DDDOC:do not generate documentation for this file
+//SEQAN2_NO_DDDOC:do not generate documentation for this file
 
-#ifndef INDEX_FM_RIGHT_ARRAY_BINARY_TREE_H
-#define INDEX_FM_RIGHT_ARRAY_BINARY_TREE_H
+#ifndef SEQAN2_INDEX_FM_RIGHT_ARRAY_BINARY_TREE_H
+#define SEQAN2_INDEX_FM_RIGHT_ARRAY_BINARY_TREE_H
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -115,7 +115,7 @@ struct Value<RightArrayBinaryTree<TChar, TSpec> const> :
 // ----------------------------------------------------------------------------
 /*!
  * @class RightArrayBinaryTree
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief A special format to encode the structure of a wavelet tree.  The structure is very space efficient because
  *        only one position is stored which encodes where the left and right subtree of a given node exist.
  *
@@ -156,7 +156,7 @@ public:
 // ----------------------------------------------------------------------------
 /*!
  * @fn RightArrayBinaryTree#clear
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Resets a right-array-binary tree.
  *
  * @signature void clear(rightArrayBinaryTree);
@@ -175,7 +175,7 @@ inline void clear(RightArrayBinaryTree<TChar, TSpec> & treeStructure)
 // ----------------------------------------------------------------------------
 /*!
  * @fn RightArrayBinaryTree#createRightArrayBinaryTree
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Computes the right-array-binary tree of a text.
  *
  * @signature void createRightArrayBinaryTree(rightArrayBinaryTree, text);
@@ -197,7 +197,7 @@ inline void _createRightArrayBinaryTreeImpl(Iter<RightArrayBinaryTree<TChar, TSp
             sums[back(borderString).i1] == sums[back(borderString).i2 + 1])
         {
             setCharacter(it, back(borderString).i1 + 1);
-            SEQAN_ASSERT_MSG(isLeaf(it), "You just deleted a subtree.");
+            SEQAN2_ASSERT_MSG(isLeaf(it), "You just deleted a subtree.");
         }
         else
             _setChildVertices(it, borderString, sums);
@@ -242,7 +242,7 @@ createRightArrayBinaryTree(RightArrayBinaryTree<TChar, TSpec> & waveletTreeStruc
 
 /*!
  * @fn RightArrayBinaryTree#empty
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Checks whether or not a right-array-binary tree contains any elements.
  *
  * @signature bool empty(rightArrayBinaryTree);
@@ -263,7 +263,7 @@ inline bool empty(RightArrayBinaryTree<TChar, TSpec> const & treeStructure)
 // ----------------------------------------------------------------------------
 /*!
  * @fn RightArrayBinaryTree#getFibre
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns a specific fibre of a right-array-binary tree.
  *
  * @signature TFibre getFibre(rightArrayBinaryTree, fibreTag);
@@ -339,7 +339,7 @@ _resize(RightArrayBinaryTree<TChar, TSpec> & treeStructure, TSize size,
 /*!
  * @fn RightArrayBinaryTree#open
  *
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief This functions loads a @link RightArrayBinaryTree @endlink from disk.
  *
@@ -388,7 +388,7 @@ inline bool open(RightArrayBinaryTree<TChar, TSpec> & treeStructure, const char 
 /*!
  * @fn RightArrayBinaryTree#save
  *
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief This functions saves a @link RightArrayBinaryTree @endlink to disk.
  *
@@ -433,4 +433,4 @@ inline bool save(RightArrayBinaryTree<TChar, TSpec> const & treeStructure, const
 
 }
 
-#endif // INDEX_FM_RIGHT_ARRAY_BINARY_TREE_H
+#endif // SEQAN2_INDEX_FM_RIGHT_ARRAY_BINARY_TREE_H

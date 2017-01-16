@@ -33,10 +33,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_SEQUENCE_STRING_SET_BASE_H_
-#define SEQAN_SEQUENCE_STRING_SET_BASE_H_
+#ifndef SEQAN2_SEQUENCE_STRING_SET_BASE_H_
+#define SEQAN2_SEQUENCE_STRING_SET_BASE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -54,7 +54,7 @@ struct Owner {};
  * @implements StringConcept
  * @implements TextConcept
  * @implements SegmentableConcept
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief A container class for a set of strings.
  *
  * @signature template <typename TString, typename TSpec>
@@ -365,10 +365,10 @@ struct DefaultOverflowImplicit<StringSet< TString, TSpec> const>
 // ----------------------------------------------------------------------------
 
 template <typename TString, typename TSpec>
-SEQAN_CONCEPT_IMPL((StringSet<TString, TSpec>), (StringConcept));           // resizable container
+SEQAN2_CONCEPT_IMPL((StringSet<TString, TSpec>), (StringConcept));           // resizable container
 
 template <typename TString, typename TSpec>
-SEQAN_CONCEPT_IMPL((StringSet<TString, TSpec> const), (ContainerConcept));  // read-only container
+SEQAN2_CONCEPT_IMPL((StringSet<TString, TSpec> const), (ContainerConcept));  // read-only container
 
 // ============================================================================
 // Functions
@@ -600,7 +600,7 @@ inline void posLocalize(TResult & result, Pair<T1, T2, TPack> const & pos, Strin
 // --------------------------------------------------------------------------
 
 template < typename TString, typename TSpec, typename TPosition >
-inline SEQAN_FUNC_DISABLE_IF(Is<IntegerConcept<TPosition> >,
+inline SEQAN2_FUNC_DISABLE_IF(Is<IntegerConcept<TPosition> >,
                              typename PrefixOnValue<StringSet< TString, TSpec > >::Type)
 prefix(StringSet< TString, TSpec > & me, TPosition const & pos)
 {
@@ -615,7 +615,7 @@ prefix(StringSet< TString, TSpec > & me, TPosition const & pos)
 }
 
 template < typename TString, typename TSpec, typename TPosition >
-inline SEQAN_FUNC_DISABLE_IF(Is<IntegerConcept<TPosition> >,
+inline SEQAN2_FUNC_DISABLE_IF(Is<IntegerConcept<TPosition> >,
                              typename PrefixOnValue<StringSet< TString, TSpec > const>::Type)
 prefix(StringSet< TString, TSpec > const & me, TPosition const & pos)
 {
@@ -634,7 +634,7 @@ prefix(StringSet< TString, TSpec > const & me, TPosition const & pos)
 // --------------------------------------------------------------------------
 
 template < typename TString, typename TSpec, typename TPosition >
-inline SEQAN_FUNC_DISABLE_IF(Is<IntegerConcept<TPosition> >,
+inline SEQAN2_FUNC_DISABLE_IF(Is<IntegerConcept<TPosition> >,
                              typename SuffixOnValue<StringSet< TString, TSpec > >::Type)
 suffix(StringSet< TString, TSpec > & me, TPosition const & pos)
 {
@@ -649,7 +649,7 @@ suffix(StringSet< TString, TSpec > & me, TPosition const & pos)
 }
 
 template < typename TString, typename TSpec, typename TPosition >
-inline SEQAN_FUNC_DISABLE_IF(Is<IntegerConcept<TPosition> >,
+inline SEQAN2_FUNC_DISABLE_IF(Is<IntegerConcept<TPosition> >,
                              typename SuffixOnValue<StringSet< TString, TSpec > const>::Type)
 suffix(StringSet< TString, TSpec > const & me, TPosition const & pos)
 {
@@ -668,7 +668,7 @@ suffix(StringSet< TString, TSpec > const & me, TPosition const & pos)
 // --------------------------------------------------------------------------
 
 template < typename TString, typename TSpec, typename TPosition, typename TSize >
-inline SEQAN_FUNC_DISABLE_IF(Is<IntegerConcept<TPosition> >,
+inline SEQAN2_FUNC_DISABLE_IF(Is<IntegerConcept<TPosition> >,
                              typename InfixOnValue<StringSet< TString, TSpec > >::Type)
 infixWithLength(StringSet< TString, TSpec > & me, TPosition const & pos, TSize const length)
 {
@@ -683,7 +683,7 @@ infixWithLength(StringSet< TString, TSpec > & me, TPosition const & pos, TSize c
 }
 
 template < typename TString, typename TSpec, typename TPosition, typename TSize >
-inline SEQAN_FUNC_DISABLE_IF(Is<IntegerConcept<TPosition> >,
+inline SEQAN2_FUNC_DISABLE_IF(Is<IntegerConcept<TPosition> >,
                              typename InfixOnValue<StringSet< TString, TSpec > const>::Type)
 infixWithLength(StringSet< TString, TSpec > const & me, TPosition const & pos, TSize const length)
 {
@@ -702,7 +702,7 @@ infixWithLength(StringSet< TString, TSpec > const & me, TPosition const & pos, T
 // --------------------------------------------------------------------------
 
 template < typename TString, typename TSpec, typename TPosBeg, typename TPosEnd>
-inline SEQAN_FUNC_DISABLE_IF(Is<IntegerConcept<TPosBeg> >,
+inline SEQAN2_FUNC_DISABLE_IF(Is<IntegerConcept<TPosBeg> >,
                              typename InfixOnValue<StringSet< TString, TSpec > >::Type)
 infix(StringSet<TString, TSpec > & me, TPosBeg const & posBegin, TPosEnd const & posEnd)
 {
@@ -718,7 +718,7 @@ infix(StringSet<TString, TSpec > & me, TPosBeg const & posBegin, TPosEnd const &
 }
 
 template < typename TString, typename TSpec, typename TPosBeg, typename TPosEnd>
-inline SEQAN_FUNC_DISABLE_IF(Is<IntegerConcept<TPosBeg> >,
+inline SEQAN2_FUNC_DISABLE_IF(Is<IntegerConcept<TPosBeg> >,
                              typename InfixOnValue<StringSet< TString, TSpec > const>::Type)
 infix(StringSet<TString, TSpec > const & me, TPosBeg const & posBegin, TPosEnd const & posEnd)
 {
@@ -774,7 +774,7 @@ inline bool posAtEnd(TPos pos, TSequence const & seq) {
 
 /*!
  * @fn PositionCalculation#posPrev
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Returns a position where the local offset is decreased by one.
  *
  * @signature TPos posPrev(pos);
@@ -804,7 +804,7 @@ inline Pair<T1, T2, TPack> posPrev(Pair<T1, T2, TPack> const & pos) {
 
 /*!
  * @fn PositionCalculation#posInc
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Increments the local offset of a position type.
  *
  * @signature void posInc(pos);
@@ -843,7 +843,7 @@ inline void posInc(Pair<T1, T2, TPack> & pos, TDelta delta) {
 
 /*!
  * @fn PositionCalculation#posNext
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Returns a position where the local offset is increased by one.
  *
  * @signature TPos posNext(pos);
@@ -874,7 +874,7 @@ posNext(Pair<T1, T2, TPack> const & pos) {
 
 /*!
  * @fn PositionCalculation#posAdd
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Returns a position where the local offset is increased by a value <tt>delta</tt>.
  *
  * @signature TPos posAdd(pos, delta);
@@ -907,7 +907,7 @@ posAdd(Pair<T1, T2, TPack> const & pos, TDelta delta) {
 
 /*!
  * @fn PositionCalculation#posAddAndCheck
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Increases the local offset of a position by a value <tt>delta</tt> and check for overflow.
  *
  * @signature bool posAddAndCheck(pos, delta, text);
@@ -955,7 +955,7 @@ posAddAndCheck(Pair<T1, T2, TPack> & pos, TDelta delta, StringSet<TSequence, TSp
 
 /*!
  * @fn PositionCalculation#posSub
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Returns a position where the local offset is decreased by a value <tt>delta</tt>.
  *
  * @signature TPos posSub(pos, delta);
@@ -1118,13 +1118,13 @@ void _refreshStringSetLimits(StringSet< TString, TSpec > & me)
     typename Size<TStringSet>::Type len = length(me);
     typename Size<TStringSet>::Type i = 0;
 
-//      SEQAN_ASSERT_EQ(length(me.limits), len + 1);
+//      SEQAN2_ASSERT_EQ(length(me.limits), len + 1);
     resize(me.limits, len + 1, Generous());
     for(; i < len; ++i)
     {
         me.limits[i] = sum;
         sum += length(me[i]);
-        SEQAN_ASSERT_LEQ(me.limits[i], sum);
+        SEQAN2_ASSERT_LEQ(me.limits[i], sum);
     }
     me.limits[i] = sum;
     me.limitsValid = true;
@@ -1261,7 +1261,7 @@ lengthSum(StringSet<TString, TSpec> const & me)
 
 /*!
  * @fn StringSet#clear
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Clear the StringSet.
  *
  * @signature void clear(stringSet);
@@ -1520,7 +1520,7 @@ assignValueById(StringSet<TString, TSpec>& me,
                 TString2& obj)
 {
     appendValue(me, obj);
-    SEQAN_ASSERT_EQ(length(me.limits), length(me) + 1);
+    SEQAN2_ASSERT_EQ(length(me.limits), length(me) + 1);
     return length(me.strings) - 1;
 }
 
@@ -1796,13 +1796,13 @@ operator!=(StringSet<TLeftString, TLeftSpec> const & left,
 // ----------------------------------------------------------------------------
 
 template <typename TTarget, typename TSequences, typename TDelim>
-inline SEQAN_FUNC_ENABLE_IF(And<Is<ContainerConcept<TSequences> >,
+inline SEQAN2_FUNC_ENABLE_IF(And<Is<ContainerConcept<TSequences> >,
                                 Is<ContainerConcept<typename Value<TSequences>::Type > > >, void)
 write(TTarget & target, TSequences const & seqs, TDelim const & delimiter)
 {
     typedef typename Iterator<TSequences const>::Type TSourceIt;
 
-    if (SEQAN_UNLIKELY(empty(seqs)))
+    if (SEQAN2_UNLIKELY(empty(seqs)))
         return;
     for (TSourceIt it = begin(seqs, Standard()), itBack = (end(seqs, Standard()) - 1); it != itBack; ++it)
     {
@@ -1813,7 +1813,7 @@ write(TTarget & target, TSequences const & seqs, TDelim const & delimiter)
 }
 
 template <typename TTarget, typename TSequences>
-inline SEQAN_FUNC_ENABLE_IF(And<Is<ContainerConcept<TSequences> >,
+inline SEQAN2_FUNC_ENABLE_IF(And<Is<ContainerConcept<TSequences> >,
                                 Is<ContainerConcept<typename Value<TSequences>::Type > > >, void)
 write(TTarget & target, TSequences const & seqs)
 {
@@ -1825,7 +1825,7 @@ write(TTarget & target, TSequences const & seqs)
 // ----------------------------------------------------------------------------
 
 template <typename TSequences1, typename TSequences2, typename TExpand >
-inline SEQAN_FUNC_ENABLE_IF(And<And<Is<ContainerConcept<TSequences1> >,
+inline SEQAN2_FUNC_ENABLE_IF(And<And<Is<ContainerConcept<TSequences1> >,
                                     Is<ContainerConcept<typename Value<TSequences1>::Type > > >,
                                 And<Is<ContainerConcept<TSequences2> >,
                                     Is<ContainerConcept<typename Value<TSequences2>::Type > > > >, void)
@@ -1839,6 +1839,6 @@ append(TSequences1 & me, TSequences2 const & obj, Tag<TExpand>)
         assignValue(me, oldLength++, *it);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_SEQUENCE_STRING_SET_BASE_H_
+#endif  // #ifndef SEQAN2_SEQUENCE_STRING_SET_BASE_H_

@@ -34,27 +34,27 @@
 // Facade header for module parse_lm.
 // ==========================================================================
 
-#ifndef SANDBOX_HOLTGREW_INCLUDE_SEQAN_PARSE_LM_H_
-#define SANDBOX_HOLTGREW_INCLUDE_SEQAN_PARSE_LM_H_
+#ifndef SANDBOX_HOLTGREW_INCLUDE_SEQAN2_PARSE_LM_H_
+#define SANDBOX_HOLTGREW_INCLUDE_SEQAN2_PARSE_LM_H_
 
 // ===========================================================================
 // Prerequisites.
 // ===========================================================================
 
-#include <seqan/basic.h>
-#include <seqan/file.h>
-#include <seqan/sequence.h>
-#include <seqan/store.h>
-#include <seqan/stream.h>
+#include <seqan2/basic.h>
+#include <seqan2/file.h>
+#include <seqan2/sequence.h>
+#include <seqan2/store.h>
+#include <seqan2/stream.h>
 
 // ===========================================================================
 // First Header Group.
 // ===========================================================================
 
-#include <seqan/parse_lm/local_match_store.h>
+#include <seqan2/parse_lm/local_match_store.h>
 
-#include <seqan/parse_lm/parse_blastn_tabular.h>
-#include <seqan/parse_lm/parse_lastz_general.h>
-#include <seqan/parse_lm/parse_stellar_gff.h>
+#include <seqan2/parse_lm/parse_blastn_tabular.h>
+#include <seqan2/parse_lm/parse_lastz_general.h>
+#include <seqan2/parse_lm/parse_stellar_gff.h>
 
-#endif  // SANDBOX_HOLTGREW_INCLUDE_SEQAN_PARSE_LM_H_
+#endif  // SANDBOX_HOLTGREW_INCLUDE_SEQAN2_PARSE_LM_H_

@@ -33,12 +33,12 @@
 // Author: Jochen Singer <jochen.singer@fu-berlin.de>
 // ==========================================================================
 
-//SEQAN_NO_DDDOC:do not generate documentation for this file
+//SEQAN2_NO_DDDOC:do not generate documentation for this file
 
-#ifndef INDEX_FM_COMPRESSED_SA_ITERATOR_H_
-#define INDEX_FM_COMPRESSED_SA_ITERATOR_H_
+#ifndef SEQAN2_INDEX_FM_COMPRESSED_SA_ITERATOR_H_
+#define SEQAN2_INDEX_FM_COMPRESSED_SA_ITERATOR_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Metafunctions
@@ -77,7 +77,7 @@ struct Iterator<CompressedSA<TText, TSpec, TConfig> const, Rooted>:
 // ----------------------------------------------------------------------------
 /*!
  * @fn CompressedSA#begin
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns an iterator pointing to the first position of a compresses suffix array.
  *
  * @signature TIterator begin(compressedSA, tag);
@@ -122,7 +122,7 @@ begin(CompressedSA<TText, TSpec, TConfig> const & compressedSA, Rooted const & /
 // ----------------------------------------------------------------------------
 /*!
  * @fn CompressedSA#end
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns an iterator pointing to the position behind the last element of a compresses suffix array.
  *
  * @signature TIterator end(compressedSA, tag);
@@ -164,4 +164,4 @@ end(CompressedSA<TText, TSpec, TConfig> const & compressedSA, Standard/* dummy *
 }
 
 }
-#endif // INDEX_FM_COMPRESSED_SA_ITERATOR_H_
+#endif // SEQAN2_INDEX_FM_COMPRESSED_SA_ITERATOR_H_

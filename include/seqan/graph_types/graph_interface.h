@@ -30,12 +30,12 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_GRAPH_INTERFACE_H
-#define SEQAN_HEADER_GRAPH_INTERFACE_H
+#ifndef SEQAN2_HEADER_GRAPH_INTERFACE_H
+#define SEQAN2_HEADER_GRAPH_INTERFACE_H
 
 // TODO(holtgrew): The documentation needs some improvements, possibly together with a refactoring of the module.
 
-namespace seqan
+namespace seqan2
 {
 
 // Default directed graph
@@ -66,7 +66,7 @@ struct Hmm;
 /*!
  * @class Graph
  * @implements ContainerConcept
- * @headerfile <seqan/graph_types.h>
+ * @headerfile <seqan2/graph_types.h>
  * @brief Graph class.
  *
  * @signature template <[typename TSpec]>
@@ -736,8 +736,8 @@ addEdges(Graph<TSpec>& dest,
         if (source>target) _createVertices(dest,source);
         else _createVertices(dest,target);
         // Add edge
-        SEQAN_ASSERT(idInUse(dest.data_id_managerV, source));
-        SEQAN_ASSERT(idInUse(dest.data_id_managerV, target));
+        SEQAN2_ASSERT(idInUse(dest.data_id_managerV, source));
+        SEQAN2_ASSERT(idInUse(dest.data_id_managerV, target));
         addEdge(dest, source, target);
     }
 }
@@ -755,6 +755,6 @@ operator << (TStream & target,
     return target;
 }
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

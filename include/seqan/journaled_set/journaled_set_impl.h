@@ -32,10 +32,10 @@
 // Author: Rene Rahn <rene.rahn@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_JOURNALED_SET_JOURNALED_SET_IMPL_H_
-#define INCLUDE_SEQAN_JOURNALED_SET_JOURNALED_SET_IMPL_H_
+#ifndef INCLUDE_SEQAN2_JOURNALED_SET_JOURNALED_SET_IMPL_H_
+#define INCLUDE_SEQAN2_JOURNALED_SET_JOURNALED_SET_IMPL_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -207,8 +207,8 @@ inline void assignValue(
     TPos pos,
     TString2 const & newElement)
 {
-    SEQAN_ASSERT_GEQ(pos, static_cast<TPos>(0));
-    SEQAN_ASSERT_LT(pos, static_cast<TPos>(length(journalSet)));
+    SEQAN2_ASSERT_GEQ(pos, static_cast<TPos>(0));
+    SEQAN2_ASSERT_LT(pos, static_cast<TPos>(length(journalSet)));
 
     assign(journalSet[pos], newElement);
 }
@@ -275,6 +275,6 @@ _dataHost(StringSet<TString, Owner<JournaledSet> > & set)
  *                          reference sequence.
  */
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_JOURNALED_SET_JOURNALED_SET_IMPL_H_
+#endif  // #ifndef INCLUDE_SEQAN2_JOURNALED_SET_JOURNALED_SET_IMPL_H_

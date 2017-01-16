@@ -34,12 +34,12 @@
 // Input and Output of an alignment graph, Tree Reading im Newick Format
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_GRAPH_ALIGN_TCOFFEE_IO_H
-#define SEQAN_HEADER_GRAPH_ALIGN_TCOFFEE_IO_H
+#ifndef SEQAN2_HEADER_GRAPH_ALIGN_TCOFFEE_IO_H
+#define SEQAN2_HEADER_GRAPH_ALIGN_TCOFFEE_IO_H
 
-#include <seqan/stream.h>
+#include <seqan2/stream.h>
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -927,8 +927,8 @@ read(TFile & file,
         TVertexDescriptor v1 = addVertex(guideTree);
         TVertexDescriptor v2 = addVertex(guideTree);
         TVertexDescriptor internalVertex = addVertex(guideTree);
-        addEdge(guideTree, internalVertex, v1, (TCargo) 1 * SEQAN_DISTANCE_UNITY);
-        addEdge(guideTree, internalVertex, v2, (TCargo) 1 * SEQAN_DISTANCE_UNITY);
+        addEdge(guideTree, internalVertex, v1, (TCargo) 1 * SEQAN2_DISTANCE_UNITY);
+        addEdge(guideTree, internalVertex, v2, (TCargo) 1 * SEQAN2_DISTANCE_UNITY);
         assignRoot(guideTree, internalVertex);
         return;
     }
@@ -980,7 +980,7 @@ read(TFile & file,
             clear(buffer);
             readUntil(buffer, reader, IsNewickNodeStop_());
             double tmpDouble = lexicalCast<double>(buffer);
-            cargo(findEdge(guideTree, lastVertex, lastChild)) = (TCargo) (tmpDouble * SEQAN_DISTANCE_UNITY);
+            cargo(findEdge(guideTree, lastVertex, lastChild)) = (TCargo) (tmpDouble * SEQAN2_DISTANCE_UNITY);
         } else if (value(reader) == ';') {
             goNext(reader);
             skipUntil(reader, NotFunctor<IsWhitespace>());
@@ -1135,6 +1135,6 @@ writeRecords(TTarget & target,
     write(target, guideTree, names, false, NewickFormat());
 }
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

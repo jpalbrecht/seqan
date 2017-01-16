@@ -34,10 +34,10 @@
 // Basic defintions and forwards used globally for this module.
 // ==========================================================================
 
-#ifndef EXTRAS_INCLUDE_SEQAN_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_BASE_H_
-#define EXTRAS_INCLUDE_SEQAN_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_BASE_H_
+#ifndef EXTRAS_INCLUDE_SEQAN2_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_BASE_H_
+#define EXTRAS_INCLUDE_SEQAN2_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_BASE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -91,7 +91,7 @@ typedef Tag<JstDeltaMapMember_> JstDeltaMapMember;
 
 /*!
  * @class DefaultJstConfig
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief The default Journaled-String-Tree configuration object.
  *
  * @signature template <typename TSequence>
@@ -140,6 +140,6 @@ struct ContextIterator;
 // Functions
 // ============================================================================
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // EXTRAS_INCLUDE_SEQAN_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_BASE_H_
+#endif  // EXTRAS_INCLUDE_SEQAN2_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_BASE_H_

@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-//SEQAN_NO_GENERATED_FORWARDS: no forwards are generated for this file
+//SEQAN2_NO_GENERATED_FORWARDS: no forwards are generated for this file
 
-#ifndef SEQAN_HEADER_FILE_SIMPLE_H
-#define SEQAN_HEADER_FILE_SIMPLE_H
+#ifndef SEQAN2_HEADER_FILE_SIMPLE_H
+#define SEQAN2_HEADER_FILE_SIMPLE_H
 
 #include <fcntl.h>          // O_CREAT ..
 #include <sys/stat.h>       //
@@ -60,7 +60,7 @@
  *
  * not clear in which places this is used exactly
  *
- * SEQAN_DIRECTIO used on UNIX, not sure exactly what it does
+ * SEQAN2_DIRECTIO used on UNIX, not sure exactly what it does
  * use of other macros unclear aswell
  *
  */
@@ -69,7 +69,7 @@
 
 //////////////////////////////////////////////////////////////////////////////
 
-namespace seqan
+namespace seqan2
 {
 
 
@@ -142,17 +142,17 @@ public:
                 std::cerr << "Open failed on file " << fileName << ". (" << ::strerror(errno) << ")" << std::endl;
             return false;
         }
-        SEQAN_PROADD(SEQAN_PROOPENFILES, 1);
+        SEQAN2_PROADD(SEQAN2_PROOPENFILES, 1);
         return true;
     }
 
     bool openTemp(int openMode = DefaultOpenTempMode<File>::VALUE)
     {
-#ifdef SEQAN_DEFAULT_TMPDIR
-        char * fileName = _tempnam(SEQAN_DEFAULT_TMPDIR, "SQN");
-#else  // #ifdef SEQAN_DEFAULT_TMPDIR
+#ifdef SEQAN2_DEFAULT_TMPDIR
+        char * fileName = _tempnam(SEQAN2_DEFAULT_TMPDIR, "SQN");
+#else  // #ifdef SEQAN2_DEFAULT_TMPDIR
         char * fileName = _tempnam(NULL, "SQN");
-#endif  // #ifdef SEQAN_DEFAULT_TMPDIR
+#endif  // #ifdef SEQAN2_DEFAULT_TMPDIR
         if (!fileName)
         {
             if (!(openMode & OPEN_QUIET))
@@ -170,25 +170,25 @@ public:
             return false;
 
         handle = -1;
-        SEQAN_PROSUB(SEQAN_PROOPENFILES, 1);
+        SEQAN2_PROSUB(SEQAN2_PROOPENFILES, 1);
         return true;
     }
 
     inline int read(void * buffer, SizeType_ count) const
     {
-        SEQAN_PROADD(SEQAN_PROIO, (count + SEQAN_PROPAGESIZE - 1) / SEQAN_PROPAGESIZE);
-        SEQAN_PROTIMESTART(tw);
+        SEQAN2_PROADD(SEQAN2_PROIO, (count + SEQAN2_PROPAGESIZE - 1) / SEQAN2_PROPAGESIZE);
+        SEQAN2_PROTIMESTART(tw);
         int result = ::_read(handle, buffer, count);
-        SEQAN_PROADD(SEQAN_PROCWAIT, SEQAN_PROTIMEDIFF(tw));
+        SEQAN2_PROADD(SEQAN2_PROCWAIT, SEQAN2_PROTIMEDIFF(tw));
         return result;
     }
 
     inline int write(void const * buffer, SizeType_ count) const
     {
-        SEQAN_PROADD(SEQAN_PROIO, (count + SEQAN_PROPAGESIZE - 1) / SEQAN_PROPAGESIZE);
-        SEQAN_PROTIMESTART(tw);
+        SEQAN2_PROADD(SEQAN2_PROIO, (count + SEQAN2_PROPAGESIZE - 1) / SEQAN2_PROPAGESIZE);
+        SEQAN2_PROTIMESTART(tw);
         int result = ::_write(handle, buffer, count);
-        SEQAN_PROADD(SEQAN_PROCWAIT, SEQAN_PROTIMEDIFF(tw));
+        SEQAN2_PROADD(SEQAN2_PROCWAIT, SEQAN2_PROTIMEDIFF(tw));
         return result;
     }
 
@@ -276,7 +276,7 @@ public:
 
         if (openMode & OPEN_CREATE)     result |= O_CREAT;
 //            if (openMode & OPEN_TEMPORARY)  result |= O_TEMPORARY;
-        #ifdef SEQAN_DIRECTIO
+        #ifdef SEQAN2_DIRECTIO
         if (openMode & OPEN_ASYNC)        result |= O_DIRECT;
         #endif
         return result;
@@ -287,7 +287,7 @@ public:
         handle = ::open(fileName, _getOFlag(openMode), S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH);
         if (handle == -1 && errno == EINVAL)          // fall back to cached access
         {
-                #ifdef SEQAN_DEBUG_OR_TEST_
+                #ifdef SEQAN2_DEBUG_OR_TEST_
             if (!(openMode & OPEN_QUIET))
                 std::cerr << "Warning: Direct access openening failed: " << fileName << "." << std::endl;
                 #endif
@@ -305,10 +305,10 @@ public:
             // To remove this warning, you have to options:
             // 1. include the following line before including anything in your application
             //    #define _FILE_OFFSET_BITS 64
-            // 2. include <seqan/platform.h> or <seqan/sequence.h> before any other include
+            // 2. include <seqan2/platform.h> or <seqan2/sequence.h> before any other include
             std::cerr << "WARNING: FilePtr is not 64bit wide" << std::endl;
 
-        SEQAN_PROADD(SEQAN_PROOPENFILES, 1);
+        SEQAN2_PROADD(SEQAN2_PROOPENFILES, 1);
         return true;
     }
 
@@ -328,15 +328,15 @@ public:
                 tmpDir = res;
         }
         // If this does not work, try to use the constant
-        // SEQAN_DEFAULT_TMPDIR, fall back to "/tmp", if this does not
+        // SEQAN2_DEFAULT_TMPDIR, fall back to "/tmp", if this does not
         // work.
-#ifdef SEQAN_DEFAULT_TMPDIR
+#ifdef SEQAN2_DEFAULT_TMPDIR
         if (empty(tmpDir))
-            tmpDir = SEQAN_DEFAULT_TMPDIR;
-#else  // #ifdef SEQAN_DEFAULT_TMPDIR
+            tmpDir = SEQAN2_DEFAULT_TMPDIR;
+#else  // #ifdef SEQAN2_DEFAULT_TMPDIR
         if (empty(tmpDir))
             tmpDir = "/tmp";
-#endif  // #ifdef SEQAN_DEFAULT_TMPDIR
+#endif  // #ifdef SEQAN2_DEFAULT_TMPDIR
 
         // At this point, we have a temporary directory.  Now, we add the
         // file name template to get the full path template.
@@ -357,7 +357,7 @@ public:
             return false;
         }
         umask(oldMode);      // Reset umask mode.
-            #ifdef SEQAN_DEBUG
+            #ifdef SEQAN2_DEBUG
         if (::unlink(toCString(tmpDir)) == -1 && !(openMode & OPEN_QUIET))
             std::cerr << "Couldn't unlink temporary file " << tmpDir << ". (" << ::strerror(errno) << ")" << std::endl;
             #else
@@ -371,32 +371,32 @@ public:
         if (::close(this->handle) == -1) return false;
 
         handle = -1;
-        SEQAN_PROSUB(SEQAN_PROOPENFILES, 1);
+        SEQAN2_PROSUB(SEQAN2_PROOPENFILES, 1);
         return true;
     }
 
     inline ssize_t read(void * buffer, SizeType_ count) const
     {
-        SEQAN_PROADD(SEQAN_PROIO, (count + SEQAN_PROPAGESIZE - 1) / SEQAN_PROPAGESIZE);
-        SEQAN_PROTIMESTART(tw);
+        SEQAN2_PROADD(SEQAN2_PROIO, (count + SEQAN2_PROPAGESIZE - 1) / SEQAN2_PROPAGESIZE);
+        SEQAN2_PROTIMESTART(tw);
         ssize_t result = ::read(handle, buffer, count);
-        SEQAN_PROADD(SEQAN_PROCWAIT, SEQAN_PROTIMEDIFF(tw));
+        SEQAN2_PROADD(SEQAN2_PROCWAIT, SEQAN2_PROTIMEDIFF(tw));
         return result;
     }
 
     inline ssize_t write(void const * buffer, SizeType_ count) const
     {
-        SEQAN_PROADD(SEQAN_PROIO, (count + SEQAN_PROPAGESIZE - 1) / SEQAN_PROPAGESIZE);
-        SEQAN_PROTIMESTART(tw);
+        SEQAN2_PROADD(SEQAN2_PROIO, (count + SEQAN2_PROPAGESIZE - 1) / SEQAN2_PROPAGESIZE);
+        SEQAN2_PROTIMESTART(tw);
         ssize_t result = ::write(handle, buffer, count);
-        SEQAN_PROADD(SEQAN_PROCWAIT, SEQAN_PROTIMEDIFF(tw));
+        SEQAN2_PROADD(SEQAN2_PROCWAIT, SEQAN2_PROTIMEDIFF(tw));
         return result;
     }
 
     inline FilePtr seek(FilePtr pos, int origin = SEEK_SET) const
     {
         FilePtr result = ::lseek(handle, pos, origin);
-//            #ifdef SEQAN_DEBUG
+//            #ifdef SEQAN2_DEBUG
         if (result < 0)
             std::cerr << "lseek returned " << result << ". (" << ::strerror(errno) << ")" << std::endl;
 //            #endif
@@ -441,7 +441,7 @@ inline void resize(File<Sync<TSpec> > & me, TSize new_length)
 {
 //IOREV _doc_
     if (!me.resize(new_length))
-        SEQAN_FAIL(
+        SEQAN2_FAIL(
             "resize(%d, %d) failed: \"%s\"",
             me.handle, new_length, strerror(errno));
 }

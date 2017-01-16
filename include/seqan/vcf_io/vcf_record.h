@@ -34,10 +34,10 @@
 
 // TODO(holtgrew): Get out more than just strings...
 
-#ifndef SEQAN_INCLUDE_SEQAN_VCF_IO_VCF_RECORD_H_
-#define SEQAN_INCLUDE_SEQAN_VCF_IO_VCF_RECORD_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_VCF_IO_VCF_RECORD_H_
+#define SEQAN2_INCLUDE_SEQAN2_VCF_IO_VCF_RECORD_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags, Classes, Enums
@@ -50,7 +50,7 @@ namespace seqan {
 /*!
  * @class VcfRecord
  * @implements FormattedFileRecordConcept
- * @headerfile <seqan/vcf_io.h>
+ * @headerfile <seqan2/vcf_io.h>
  * @brief Information for one VCF record.
  *
  * @signature class VcfRecord;
@@ -197,6 +197,6 @@ inline void clear(VcfRecord & record)
     clear(record.genotypeInfos);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_VCF_IO_VCF_RECORD_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_VCF_IO_VCF_RECORD_H_

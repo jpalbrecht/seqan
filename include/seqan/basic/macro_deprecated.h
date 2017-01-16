@@ -34,16 +34,16 @@
 // Macro for deprecating code.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_BASIC_MACRO_DEPRECATED_H_
-#define INCLUDE_SEQAN_BASIC_MACRO_DEPRECATED_H_
+#ifndef INCLUDE_SEQAN2_BASIC_MACRO_DEPRECATED_H_
+#define INCLUDE_SEQAN2_BASIC_MACRO_DEPRECATED_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Macros
 // ============================================================================
 
-// Macros SEQAN_DEPRECATED_PRE SEQAN_DEPRECATED_POST
+// Macros SEQAN2_DEPRECATED_PRE SEQAN2_DEPRECATED_POST
 //
 // For internal use only.
 //
@@ -54,25 +54,25 @@ namespace seqan {
 // Example:
 //
 // void
-// SEQAN_DEPRECATED_PRE("Use bar instead.")
+// SEQAN2_DEPRECATED_PRE("Use bar instead.")
 // f()
-// SEQAN_DEPRECATED_POST("Use bar instead.");
+// SEQAN2_DEPRECATED_POST("Use bar instead.");
 
 #if defined(__clang__)
-#define SEQAN_DEPRECATED_PRE(msg)
-#define SEQAN_DEPRECATED_POST(msg) __attribute__((deprecated(msg)))
+#define SEQAN2_DEPRECATED_PRE(msg)
+#define SEQAN2_DEPRECATED_POST(msg) __attribute__((deprecated(msg)))
 #elif defined(__GNUC__)
-#define SEQAN_DEPRECATED_PRE(msg)
-#define SEQAN_DEPRECATED_POST(msg) __attribute__((__deprecated__))
+#define SEQAN2_DEPRECATED_PRE(msg)
+#define SEQAN2_DEPRECATED_POST(msg) __attribute__((__deprecated__))
 #elif defined(_MSC_VER)
-#define SEQAN_DEPRECATED_PRE(msg) __declspec(deprecated(msg))
-#define SEQAN_DEPRECATED_POST(msg)
+#define SEQAN2_DEPRECATED_PRE(msg) __declspec(deprecated(msg))
+#define SEQAN2_DEPRECATED_POST(msg)
 #else
 #pragma message("WARNING: You need to implement DEPRECATED_PRE and DEPRECATED_POST for this compiler")
-#define SEQAN_DEPRECATED_PRE(func)
-#define SEQAN_DEPRECATED_POST(func)
+#define SEQAN2_DEPRECATED_PRE(func)
+#define SEQAN2_DEPRECATED_POST(func)
 #endif
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_BASIC_MACRO_DEPRECATED_H_
+#endif  // #ifndef INCLUDE_SEQAN2_BASIC_MACRO_DEPRECATED_H_

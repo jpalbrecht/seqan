@@ -34,10 +34,10 @@
 // Module for handling NCBI Blast I/O and E-Value computation
 // ==========================================================================
 
-#ifndef SEQAN_EXTRAS_BLAST_BLAST_RECORD_H_
-#define SEQAN_EXTRAS_BLAST_BLAST_RECORD_H_
+#ifndef SEQAN2_EXTRAS_BLAST_BLAST_RECORD_H_
+#define SEQAN2_EXTRAS_BLAST_BLAST_RECORD_H_
 
-namespace seqan
+namespace seqan2
 {
 
 /*!
@@ -47,7 +47,7 @@ namespace seqan
  * @implements DefaultConstructibleConcept
  * @implements EqualityComparableConcept
  * @implements LessThanComparableConcept
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  * @signature struct BlastMatch<TAlign, TPos, TQId, TSId> { ... };
  * @brief An data structure to hold a blast match, also known as high-scoring segment pair (HSP)
  *
@@ -339,7 +339,7 @@ _memberIsSet(CharString const & in)
 }
 
 template <typename TNumber>
-inline SEQAN_FUNC_ENABLE_IF(Is<NumberConcept<TNumber> >, bool)
+inline SEQAN2_FUNC_ENABLE_IF(Is<NumberConcept<TNumber> >, bool)
 _memberIsSet(TNumber const & in)
 {
     return (in != std::numeric_limits<TNumber>::max());
@@ -359,7 +359,7 @@ clear(BlastMatch<TAlignRow0, TAlignRow1, TPos, TQId, TSId> & match)
 /*!
  * @class BlastRecord
  * @implements FormattedFileRecordConcept
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  * @signature struct BlastRecord<TMatch, ...> { ... };
  * @brief A record of blast-matches (belonging to one query).
  *
@@ -461,4 +461,4 @@ clear(BlastRecord<TSpecs...> & blastRecord)
 
 }
 
-#endif // SEQAN_EXTRAS_BLAST_BLAST_RECORD_H_
+#endif // SEQAN2_EXTRAS_BLAST_BLAST_RECORD_H_

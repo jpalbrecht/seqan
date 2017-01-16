@@ -33,10 +33,10 @@
 // Author: Anne-Katrin Emde <anne-katrin.emde@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_GRAPH_ALIGN_GRAPH_IMPL_ALIGN_H_
-#define SEQAN_INCLUDE_SEQAN_GRAPH_ALIGN_GRAPH_IMPL_ALIGN_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_GRAPH_ALIGN_GRAPH_IMPL_ALIGN_H_
+#define SEQAN2_INCLUDE_SEQAN2_GRAPH_ALIGN_GRAPH_IMPL_ALIGN_H_
 
-namespace seqan {
+namespace seqan2 {
 
 //////////////////////////////////////////////////////////////////////////////
 // Alignment Graph
@@ -58,19 +58,19 @@ namespace seqan {
  * @brief File formats to write an @link AlignmentGraph @endlink.
  *
  * @tag AlignmentGraphFormatTags#MsfFormat
- * @headerfile <seqan/graph_align.h>
+ * @headerfile <seqan2/graph_align.h>
  * @brief MSF Format to write an @link AlignmentGraph @endlink.
  *
  * @signature typedef Tag<MsfFormat_> const MsfFormat;
  *
  * @tag AlignmentGraphFormatTags#FastaFormat
- * @headerfile <seqan/graph_align.h>
+ * @headerfile <seqan2/graph_align.h>
  * @brief Fasta Format to write an @link AlignmentGraph @endlink.
  *
  * @signature typedef Tag<FastaFormat_> const FastaFormat;
  *
  * @tag AlignmentGraphFormatTags#CgVizFormat
- * @headerfile <seqan/graph_align.h>
+ * @headerfile <seqan2/graph_align.h>
  * @brief CgViz Format to write an @link AlignmentGraph @endlink.
  *
  * @signature typedef Tag<CgVizFormat_> const CgVizFormat;
@@ -179,7 +179,7 @@ public:
 /*!
  * @class AlignmentGraph
  * @extends Graph
- * @headerfile <seqan/graph_align.h>
+ * @headerfile <seqan2/graph_align.h>
  * @brief Alignment graph type.
  *
  * <img src="alignmentGraph.png" tite="An alignment graph with 3 sequences." />
@@ -490,11 +490,11 @@ addVertex(Graph<Alignment<TStringSet, TCargo, TSpec> >& g,
     // Store the new fragment
     typename TPosToVertexMap::iterator interval = g.data_pvMap.lower_bound(TKey((TIdType)id, (TSize)begin + (TSize)len));
     // Segment does not belong to Sequence anymore
-    SEQAN_ASSERT(interval != g.data_pvMap.end());
+    SEQAN2_ASSERT(interval != g.data_pvMap.end());
     // Segment end must be assigned to nil so far
-    SEQAN_ASSERT(interval->second == nilVertex);
+    SEQAN2_ASSERT(interval->second == nilVertex);
     // Segment must belong to the whole old interval
-    SEQAN_ASSERT(*interval == *g.data_pvMap.upper_bound(TKey((TIdType)id, (TSize)begin)));
+    SEQAN2_ASSERT(*interval == *g.data_pvMap.upper_bound(TKey((TIdType)id, (TSize)begin)));
 
     // Insert new vertex
     TVertexDescriptor vd = addVertex(g.data_align);
@@ -1300,7 +1300,7 @@ getProjectedPosition(Graph<Alignment<TStringSet, TCargo, TSpec> >& g,
                      TSeqId2& id2,
                      TPosition2& pos2)
 {
-    SEQAN_ASSERT(length(stringSet(g)) == 2);
+    SEQAN2_ASSERT(length(stringSet(g)) == 2);
 
     typedef Graph<Alignment<TStringSet, TCargo, TSpec> > TGraph;
     typedef typename VertexDescriptor<TGraph>::Type TVertexDescriptor;
@@ -1347,7 +1347,7 @@ getProjectedPosition(Graph<Alignment<TStringSet, TCargo, TSpec> >& g,
                      TSeqId2& id2,
                      TPosition2& pos2)
 {
-    SEQAN_ASSERT(length(stringSet(g)) == 2);
+    SEQAN2_ASSERT(length(stringSet(g)) == 2);
 
     typedef Graph<Alignment<TStringSet, TCargo, TSpec> > TGraph;
     typedef typename VertexDescriptor<TGraph>::Type TVertexDescriptor;
@@ -1628,7 +1628,7 @@ convertAlignment(Graph<Alignment<TStringSet, TCargo, TSpec> > const& g,
     TIdType currentSeq = it->first.first;
     for(; it != g.data_pvMap.end(); ++it) {
         if (it->first.first != currentSeq) {
-            SEQAN_ASSERT(col <= len);
+            SEQAN2_ASSERT(col <= len);
             //std::cout << std::endl;
             ++row;col=0;
             compIndex = 0;
@@ -1651,7 +1651,7 @@ convertAlignment(Graph<Alignment<TStringSet, TCargo, TSpec> > const& g,
             mat[row*len + col] = gapValue<char>();
         ++compIndex;
     }
-    SEQAN_ASSERT(row + 1 == nseq);
+    SEQAN2_ASSERT(row + 1 == nseq);
     //std::cout << std::endl;
 
     return true;
@@ -2104,6 +2104,6 @@ _alignTracePrint(String<TFragment>& matches,
         appendValue(matches, TFragment(id1, pos1, id2, pos2, seqLen), Generous());
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_GRAPH_ALIGN_GRAPH_IMPL_ALIGN_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_GRAPH_ALIGN_GRAPH_IMPL_ALIGN_H_

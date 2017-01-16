@@ -34,17 +34,17 @@
 // Facade header for module arg_parse.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ARG_PARSE_H_
-#define SEQAN_INCLUDE_SEQAN_ARG_PARSE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ARG_PARSE_H_
+#define SEQAN2_INCLUDE_SEQAN2_ARG_PARSE_H_
 
 // ===========================================================================
 // Prerequisites.
 // ===========================================================================
 
-#include <seqan/basic.h>
-//#include <seqan/file.h>
-#include <seqan/stream.h>
-#include <seqan/sequence.h>
+#include <seqan2/basic.h>
+//#include <seqan2/file.h>
+#include <seqan2/stream.h>
+#include <seqan2/sequence.h>
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -60,20 +60,20 @@
 // The ArgParse Headers.
 // ===========================================================================
 
-#include <seqan/arg_parse/arg_parse_type_support.h>
-#include <seqan/arg_parse/xml_support.h>
-#include <seqan/arg_parse/tool_doc.h>
-#include <seqan/arg_parse/arg_parse_exceptions.h>
+#include <seqan2/arg_parse/arg_parse_type_support.h>
+#include <seqan2/arg_parse/xml_support.h>
+#include <seqan2/arg_parse/tool_doc.h>
+#include <seqan2/arg_parse/arg_parse_exceptions.h>
 
-#include <seqan/arg_parse/arg_parse_argument.h>
-#include <seqan/arg_parse/arg_parse_option.h>
+#include <seqan2/arg_parse/arg_parse_argument.h>
+#include <seqan2/arg_parse/arg_parse_option.h>
 
-#include <seqan/arg_parse/argument_parser.h>
+#include <seqan2/arg_parse/argument_parser.h>
 
-#include <seqan/arg_parse/arg_parse_doc.h>
-#include <seqan/arg_parse/arg_parse_ctd_support.h>
-#include <seqan/arg_parse/arg_parse_parse.h>
+#include <seqan2/arg_parse/arg_parse_doc.h>
+#include <seqan2/arg_parse/arg_parse_ctd_support.h>
+#include <seqan2/arg_parse/arg_parse_parse.h>
 
-#include <seqan/arg_parse/arg_parse_version_check.h>
+#include <seqan2/arg_parse/arg_parse_version_check.h>
 
-#endif  // SEQAN_INCLUDE_SEQAN_ARG_PARSE_H_
+#endif  // SEQAN2_INCLUDE_SEQAN2_ARG_PARSE_H_

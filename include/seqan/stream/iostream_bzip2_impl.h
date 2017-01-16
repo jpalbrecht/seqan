@@ -15,8 +15,8 @@
 //
 // Author: Jonathan de Halleux, dehalleux@pelikhan.com, 2003
 
-#ifndef INCLUDE_SEQAN_STREAM_IOSTREAM_BZIP2_IMPL_H_
-#define INCLUDE_SEQAN_STREAM_IOSTREAM_BZIP2_IMPL_H_
+#ifndef INCLUDE_SEQAN2_STREAM_IOSTREAM_BZIP2_IMPL_H_
+#define INCLUDE_SEQAN2_STREAM_IOSTREAM_BZIP2_IMPL_H_
 
 #include "iostream_bzip2.h"
 
@@ -426,4 +426,4 @@ namespace bzip2_stream{
 
 } // zlib_sream
 
-#endif // INCLUDE_SEQAN_STREAM_IOSTREAM_BZIP2_IMPL_H_
+#endif // INCLUDE_SEQAN2_STREAM_IOSTREAM_BZIP2_IMPL_H_

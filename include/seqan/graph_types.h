@@ -30,53 +30,53 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_GRAPH_TYPES_H
-#define SEQAN_HEADER_GRAPH_TYPES_H
+#ifndef SEQAN2_HEADER_GRAPH_TYPES_H
+#define SEQAN2_HEADER_GRAPH_TYPES_H
 
 // External / STL
 #include <deque>
 
 
 // Seqan
-#include <seqan/basic.h>
-#include <seqan/sequence.h>
-#include <seqan/stream.h>
+#include <seqan2/basic.h>
+#include <seqan2/sequence.h>
+#include <seqan2/stream.h>
 
 // Basic graph stuff
-#include <seqan/graph_types/graph_base.h>
-#include <seqan/graph_types/graph_idmanager.h>    // Id manager
-#include <seqan/graph_types/graph_edgestump.h>    // EdgeStumps
-#include <seqan/graph_types/graph_interface.h>    // Graph metafunctions
+#include <seqan2/graph_types/graph_base.h>
+#include <seqan2/graph_types/graph_idmanager.h>    // Id manager
+#include <seqan2/graph_types/graph_edgestump.h>    // EdgeStumps
+#include <seqan2/graph_types/graph_interface.h>    // Graph metafunctions
 
 // Graph types
-#include <seqan/graph_types/graph_impl_directed.h>        // Directed Graph
-#include <seqan/graph_types/graph_impl_undirected.h>    // Undirected graph
-#include <seqan/graph_types/graph_impl_automaton.h>        // Automaton
-#include <seqan/graph_types/graph_impl_wordgraph.h>        // Specialized automaton: Word graph
-#include <seqan/graph_types/graph_impl_tree.h>            // Tree
-#include <seqan/graph_types/graph_impl_hmm.h>            // HMM
+#include <seqan2/graph_types/graph_impl_directed.h>        // Directed Graph
+#include <seqan2/graph_types/graph_impl_undirected.h>    // Undirected graph
+#include <seqan2/graph_types/graph_impl_automaton.h>        // Automaton
+#include <seqan2/graph_types/graph_impl_wordgraph.h>        // Specialized automaton: Word graph
+#include <seqan2/graph_types/graph_impl_tree.h>            // Tree
+#include <seqan2/graph_types/graph_impl_hmm.h>            // HMM
 
 // Graph iterators
-#include <seqan/graph_types/graph_iterator.h>
-#include <seqan/graph_types/graph_iterator_vertex.h>
-#include <seqan/graph_types/graph_iterator_outedge.h>
-#include <seqan/graph_types/graph_iterator_adjacency.h>
-#include <seqan/graph_types/graph_iterator_edge.h>
+#include <seqan2/graph_types/graph_iterator.h>
+#include <seqan2/graph_types/graph_iterator_vertex.h>
+#include <seqan2/graph_types/graph_iterator_outedge.h>
+#include <seqan2/graph_types/graph_iterator_adjacency.h>
+#include <seqan2/graph_types/graph_iterator_edge.h>
 
 // Graph property maps
-#include <seqan/graph_types/property_map_generic.h>
-#include <seqan/graph_types/property_map_internal.h>
-#include <seqan/graph_types/property_map_internal_pointer.h>
+#include <seqan2/graph_types/property_map_generic.h>
+#include <seqan2/graph_types/property_map_internal.h>
+#include <seqan2/graph_types/property_map_internal_pointer.h>
 
 // Specializations
-#include <seqan/graph_types/graph_impl_oracle.h>    // Oracle
-#include <seqan/graph_types/graph_impl_trie.h>        // Trie
+#include <seqan2/graph_types/graph_impl_oracle.h>    // Oracle
+#include <seqan2/graph_types/graph_impl_trie.h>        // Trie
 
 // Specialized iterators
-#include <seqan/graph_types/graph_iterator_bfs.h>
-#include <seqan/graph_types/graph_iterator_dfs.h>
+#include <seqan2/graph_types/graph_iterator_bfs.h>
+#include <seqan2/graph_types/graph_iterator_dfs.h>
 
 // Graph drawing and some file parsing
-#include <seqan/graph_types/graph_drawing.h>
+#include <seqan2/graph_types/graph_drawing.h>
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

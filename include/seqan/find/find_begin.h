@@ -32,13 +32,13 @@
 // Author: Andreas Gogol-Doering <andreas.doering@mdc-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_FIND_BEGIN_H
-#define SEQAN_HEADER_FIND_BEGIN_H
+#ifndef SEQAN2_HEADER_FIND_BEGIN_H
+#define SEQAN2_HEADER_FIND_BEGIN_H
 
 
 //////////////////////////////////////////////////////////////////////////////
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -57,7 +57,7 @@ struct Myers;
 
 /*!
  * @mfn DefaultFindBeginPatternSpec
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Type of the default <tt>findBegin</tt> pattern specialization, given a score.
  *
  * @signature DefaultBeginPatternSpec<TScore>::Type;
@@ -168,7 +168,7 @@ struct FindBeginImpl_
         else
         {//resume finding
             _finderSetNonEmpty(begin_finder);
-            SEQAN_ASSERT_GT(length(finder), 0u);
+            SEQAN2_ASSERT_GT(length(finder), 0u);
             begin_finder_position = endPosition(finder) - length(finder);
         }
         setPosition(host(hostIterator(begin_finder)), begin_finder_position);
@@ -244,7 +244,7 @@ struct FindBeginImpl_<Myers<FindPrefix, THasState, void> >
         else
         {//resume finding
             _finderSetNonEmpty(begin_finder);
-            SEQAN_ASSERT_GT(length(finder), 0u);
+            SEQAN2_ASSERT_GT(length(finder), 0u);
             begin_finder_position = endPosition(finder) - length(finder);
         }
         setPosition(host(hostIterator(begin_finder)), begin_finder_position);
@@ -336,7 +336,7 @@ _findBeginInit(TPattern & pattern, TNeedle & needle_)
 
 /*!
  * @fn Finder#findBegin
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Search the begin of an approximate match.
  *
  * @signature bool findBegin(finder, pattern[, limit]);
@@ -374,7 +374,7 @@ findBegin(TFinder & finder,
 
 /*!
  * @fn Pattern#getBeginScore
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Score of the last match found by @link Finder#findBegin @endlink during approximate searching.
  *
  * @signature TScoreValue getBeginScore(pattern);
@@ -395,6 +395,6 @@ getBeginScore(TPattern & pattern)
 
 //////////////////////////////////////////////////////////////////////////////
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

@@ -34,18 +34,18 @@
 // This sub module contains simple, generic support code for parallelism in
 // SeqAn.
 //
-// It mainly defines the macro SEQAN_ENABLE_PARALLELISM.
+// It mainly defines the macro SEQAN2_ENABLE_PARALLELISM.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_BASIC_PARALLELISM_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_BASIC_PARALLELISM_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_PARALLELISM_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_PARALLELISM_H_
 
 /*!
- * @macro SEQAN_ENABLE_PARALLELISM
- * @headerfile <seqan/basic.h>
+ * @macro SEQAN2_ENABLE_PARALLELISM
+ * @headerfile <seqan2/basic.h>
  * @brief Indicates whether parallelism is enabled with value 0/1.
  *
- * @signature SEQAN_ENABLE_PARALLELISM
+ * @signature SEQAN2_ENABLE_PARALLELISM
  *
  * By default, set to 1 if <tt>_OPENMP</tt> is defined and set to 0 otherwise.
  *
@@ -54,9 +54,9 @@
  * If you want to change tihs value then you have to define this value before include any SeqAn header.
  *
  * @code{.cpp}
- * #define SEQAN_ENABLE_PARALLELISM 0  // ALWAYS switch off parallelism!
+ * #define SEQAN2_ENABLE_PARALLELISM 0  // ALWAYS switch off parallelism!
  *
- * #include <seqan/basic.h>
+ * #include <seqan2/basic.h>
  *
  * int main(int argc, char ** argv)
  * {
@@ -65,12 +65,12 @@
  * @endcode
  */
 
-#if !defined(SEQAN_ENABLE_PARALLELISM)
+#if !defined(SEQAN2_ENABLE_PARALLELISM)
 #if defined(_OPENMP)
-#define SEQAN_ENABLE_PARALLELISM 1
+#define SEQAN2_ENABLE_PARALLELISM 1
 #else  // defined(_OPENMP)
-#define SEQAN_ENABLE_PARALLELISM 0
+#define SEQAN2_ENABLE_PARALLELISM 0
 #endif  // defined(_OPENMP)
-#endif  // !defined(SEQAN_ENABLE_PARALLELISM)
+#endif  // !defined(SEQAN2_ENABLE_PARALLELISM)
 
-#endif  // SEQAN_INCLUDE_SEQAN_BASIC_BASIC_PARALLELISM_H_
+#endif  // SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_PARALLELISM_H_

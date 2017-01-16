@@ -37,10 +37,10 @@
 // metafunction and iterator-related functions such as begin(), end().
 // ==========================================================================
 
-#ifndef SEQAN_SEQUENCE_STRING_SET_CONCATENATOR_H_
-#define SEQAN_SEQUENCE_STRING_SET_CONCATENATOR_H_
+#ifndef SEQAN2_SEQUENCE_STRING_SET_CONCATENATOR_H_
+#define SEQAN2_SEQUENCE_STRING_SET_CONCATENATOR_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -58,7 +58,7 @@ struct StringSetLimits;
 
 /*!
  * @class ConcatenatorManyToOne
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief A sequence class that virtually concatenates all sequences in a @link StringSet @endlink.
  *
  * @signature template <typename TStringSet>
@@ -283,6 +283,6 @@ end(ConcatenatorManyToOne<TStringSet> concat, Tag<TSpec> const &)
     return TIter(*concat.set, length(*concat.set), 0);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_SEQUENCE_STRING_SET_CONCATENATOR_H_
+#endif  // #ifndef SEQAN2_SEQUENCE_STRING_SET_CONCATENATOR_H_

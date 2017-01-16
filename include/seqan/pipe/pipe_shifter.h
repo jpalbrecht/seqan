@@ -32,13 +32,13 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_PIPE_SHIFTER_H
-#define SEQAN_HEADER_PIPE_SHIFTER_H
+#ifndef SEQAN2_HEADER_PIPE_SHIFTER_H
+#define SEQAN2_HEADER_PIPE_SHIFTER_H
 
-namespace seqan
+namespace seqan2
 {
 
-//namespace SEQAN_NAMESPACE_PIPELINING
+//namespace SEQAN2_NAMESPACE_PIPELINING
 //{
 
 //    template < int delta, bool omitBlank = false, bool _echoing = (delta < 0) >
@@ -51,7 +51,7 @@ namespace seqan
  *
  * @extends Pipe
  *
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  *
  * @brief Shifts the input stream by <tt>delta</tt> elements.
  *

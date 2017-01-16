@@ -17,10 +17,10 @@
 // Author: Jonathan de Halleux, dehalleux@pelikhan.com, 2003   (original zlib stream)
 // Author: David Weese, dave.weese@gmail.com, 2014             (extension to parallel block-wise compression in bgzf format)
 
-#ifndef INCLUDE_SEQAN_STREAM_IOSTREAM_BGZF_H_
-#define INCLUDE_SEQAN_STREAM_IOSTREAM_BGZF_H_
+#ifndef INCLUDE_SEQAN2_STREAM_IOSTREAM_BGZF_H_
+#define INCLUDE_SEQAN2_STREAM_IOSTREAM_BGZF_H_
 
-namespace seqan {
+namespace seqan2 {
 
 const unsigned BGZF_MAX_BLOCK_SIZE = 64 * 1024;
 const unsigned BGZF_BLOCK_HEADER_LENGTH = 18;
@@ -166,7 +166,7 @@ public:
         {
             bool success = appendValue(idleQueue, i);
             ignoreUnusedVariableWarning(success);
-            SEQAN_ASSERT(success);
+            SEQAN2_ASSERT(success);
         }
 
         for (size_t i = 0; i < numThreads; ++i)
@@ -175,7 +175,7 @@ public:
         }
 
         currentJobAvail = popFront(currentJobId, idleQueue);
-        SEQAN_ASSERT(currentJobAvail);
+        SEQAN2_ASSERT(currentJobAvail);
 
         CompressionJob &job = jobs[currentJobId];
         job.outputBuffer = aquireValue(serializer);
@@ -393,7 +393,7 @@ public:
                 {
                     std::unique_lock<std::mutex> lock(job.cs);
                     job.readyEvent.wait(lock, [&job]{return job.ready;});
-                    SEQAN_ASSERT_EQ(job.ready, true);
+                    SEQAN2_ASSERT_EQ(job.ready, true);
                 }
 
                 {
@@ -515,7 +515,7 @@ public:
         {
             bool success = appendValue(todoQueue, i);
             ignoreUnusedVariableWarning(success);
-            SEQAN_ASSERT(success);
+            SEQAN2_ASSERT(success);
         }
 
         for (unsigned i = 0; i < numThreads; ++i)
@@ -555,7 +555,7 @@ public:
             if (!popFront(currentJobId, runningQueue))
             {
                 currentJobId = -1;
-                SEQAN_ASSERT(serializer.error != NULL);
+                SEQAN2_ASSERT(serializer.error != NULL);
                 if (serializer.error != NULL)
                     throw *serializer.error;
                 return EOF;
@@ -672,7 +672,7 @@ public:
 
                     if (currentJobId == -1)
                     {
-                        SEQAN_ASSERT(empty(runningQueue));
+                        SEQAN2_ASSERT(empty(runningQueue));
                         serializer.istream.clear(serializer.istream.rdstate() & ~std::ios_base::eofbit);
                         if (serializer.istream.rdbuf()->pubseekpos(destFileOfs, std::ios_base::in) == destFileOfs)
                             serializer.fileOfs = destFileOfs;
@@ -698,7 +698,7 @@ public:
                         job.readyEvent.wait(lock, [&job]{return job.ready;});
                     }
 
-                    SEQAN_ASSERT_EQ(job.fileOfs, (off_type)destFileOfs);
+                    SEQAN2_ASSERT_EQ(job.fileOfs, (off_type)destFileOfs);
 
                     // reset buffer pointers
                     this->setg(
@@ -905,6 +905,6 @@ typedef basic_bgzf_istream<char> bgzf_istream;
 // A typedef for basic_bgzf_istream<wchart>
 typedef basic_bgzf_istream<wchar_t> bgzf_wistream;
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif // INCLUDE_SEQAN_STREAM_IOSTREAM_BGZF_H_
+#endif // INCLUDE_SEQAN2_STREAM_IOSTREAM_BGZF_H_

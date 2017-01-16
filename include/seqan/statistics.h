@@ -30,20 +30,20 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_STATISTICS_H
-#define SEQAN_HEADER_STATISTICS_H
+#ifndef SEQAN2_HEADER_STATISTICS_H
+#define SEQAN2_HEADER_STATISTICS_H
 
 //____________________________________________________________________________
 // prerequisites
 
 #include <cmath>
-#include <seqan/align.h>
-#include <seqan/index.h>
+#include <seqan2/align.h>
+#include <seqan2/index.h>
 //____________________________________________________________________________
 
-#include <seqan/statistics/statistics_markov_model.h>
-#include <seqan/statistics/statistics_base.h>
+#include <seqan2/statistics/statistics_markov_model.h>
+#include <seqan2/statistics/statistics_base.h>
 
 //____________________________________________________________________________
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

@@ -34,12 +34,12 @@
 // FormattedFile for .intervals format
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_SIMPLE_INTERVALS_IO_SIMPLE_INTERVALS_FILE_H_
-#define INCLUDE_SEQAN_SIMPLE_INTERVALS_IO_SIMPLE_INTERVALS_FILE_H_
+#ifndef INCLUDE_SEQAN2_SIMPLE_INTERVALS_IO_SIMPLE_INTERVALS_FILE_H_
+#define INCLUDE_SEQAN2_SIMPLE_INTERVALS_IO_SIMPLE_INTERVALS_FILE_H_
 
-#include <seqan/simple_intervals_io/simple_intervals_io.h>
+#include <seqan2/simple_intervals_io/simple_intervals_io.h>
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -56,7 +56,7 @@ namespace seqan {
 /*!
  * @class SimpleIntervalsFileIn
  * @extends FormattedFileIn
- * @headerfile <seqan/ucsc_io.h>
+ * @headerfile <seqan2/ucsc_io.h>
  * @brief @link FormattedFile @endlink for reading .intervals files.
  *
  * @signature typedef FormattedFile<SimpleIntervals, Input> SimpleIntervalsFileIn;
@@ -70,7 +70,7 @@ typedef FormattedFile<SimpleIntervals, Input>   SimpleIntervalsFileIn;
 /*!
  * @class SimpleIntervalsFileInOut
  * @extends FormattedFileOut
- * @headerfile <seqan/ucsc_io.h>
+ * @headerfile <seqan2/ucsc_io.h>
  * @brief @link FormattedFile @endlink for reading .intervals files.
  *
  * @signature typedef FormattedFile<SimpleIntervals, Output> SimpleIntervalsFileOut;
@@ -171,6 +171,6 @@ void writeRecord(FormattedFile<SimpleIntervals, Output, TSpec> & file, GenomicRe
     writeRecord(file.iter, context(file), record, file.format);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_SIMPLE_INTERVALS_IO_SIMPLE_INTERVALS_FILE_H_
+#endif  // #ifndef INCLUDE_SEQAN2_SIMPLE_INTERVALS_IO_SIMPLE_INTERVALS_FILE_H_

@@ -34,10 +34,10 @@
 // Interface functions for unbanded local alignment.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_LOCAL_ALIGNMENT_UNBANDED_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_LOCAL_ALIGNMENT_UNBANDED_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_LOCAL_ALIGNMENT_UNBANDED_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_LOCAL_ALIGNMENT_UNBANDED_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -61,7 +61,7 @@ namespace seqan {
 
 /*!
  * @fn localAlignment
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Computes the best pairwise local alignment using the Smith-Waterman algorithm.
  *
  * @signature TScoreVal localAlignment(align,          scoringScheme, [lowerDiag, upperDiag]);
@@ -141,7 +141,7 @@ namespace seqan {
  * int result = localAlignment(gapsH, gapsV, scoringScheme, -2, 2);
  * @endcode
  *
- * https://seqan.readthedocs.io/en/develop/Tutorial/Algorithms/Alignment/PairwiseSequenceAlignment.html
+ * https://seqan2.readthedocs.io/en/develop/Tutorial/Algorithms/Alignment/PairwiseSequenceAlignment.html
  *
  * @section References
  *
@@ -163,7 +163,7 @@ TScoreValue localAlignment(Align<TSequence, TAlignSpec> & align,
                            Score<TScoreValue, TScoreSpec> const & scoringScheme,
                            TTag const & tag)
 {
-    SEQAN_ASSERT_EQ(length(rows(align)), 2u);
+    SEQAN2_ASSERT_EQ(length(rows(align)), 2u);
     typedef Align<TSequence, TAlignSpec> TAlign;
     typedef typename Size<TAlign>::Type TSize;
     typedef typename Position<TAlign>::Type TPosition;
@@ -184,7 +184,7 @@ TScoreValue localAlignment(Align<TSequence, TAlignSpec> & align,
  TScoreValue localAlignment(Align<TSequence, TAlignSpec> & align,
                             Score<TScoreValue, TScoreSpec> const & scoringScheme)
  {
-     SEQAN_ASSERT(length(rows(align)) == 2u);
+     SEQAN2_ASSERT(length(rows(align)) == 2u);
      if (_usesAffineGaps(scoringScheme, source(row(align, 0)), source(row(align, 1))))
          return localAlignment(align, scoringScheme, AffineGaps());
      else
@@ -261,7 +261,7 @@ template <typename TStringSet, typename TCargo, typename TGraphSpec,
 TScoreValue localAlignment(Graph<Alignment<TStringSet, TCargo, TGraphSpec> > & alignmentGraph,
                            Score<TScoreValue, TScoreSpec> const & scoringScheme)
 {
-    SEQAN_ASSERT(length(stringSet(alignmentGraph)) == 2u);
+    SEQAN2_ASSERT(length(stringSet(alignmentGraph)) == 2u);
 
     if (_usesAffineGaps(scoringScheme, stringSet(alignmentGraph)[0], stringSet(alignmentGraph)[1]))
         return localAlignment(alignmentGraph, scoringScheme, AffineGaps());
@@ -304,7 +304,7 @@ TScoreValue localAlignment(String<Fragment<TSize, TFragmentSpec>, TStringSpec> &
                            StringSet<TSequence, TStringSetSpec> const & strings,
                            Score<TScoreValue, TScoreSpec> const & scoringScheme)
 {
-    SEQAN_ASSERT(length(strings) == 2u);
+    SEQAN2_ASSERT(length(strings) == 2u);
 
     if (_usesAffineGaps(scoringScheme, strings[0], strings[1]))
         return localAlignment(fragmentString, strings, scoringScheme, AffineGaps());
@@ -376,6 +376,6 @@ String<TScoreValue> localAlignment(StringSet<Align<TSequence, TAlignSpec> > & al
         return localAlignment(align, scoringScheme, LinearGaps());
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_LOCAL_ALIGNMENT_UNBANDED_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_LOCAL_ALIGNMENT_UNBANDED_H_

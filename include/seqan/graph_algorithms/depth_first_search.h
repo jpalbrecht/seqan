@@ -35,10 +35,10 @@
 // Implementation of Depth-First-Search algorithm.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_GRAPH_ALGORITHMS_DEPTH_FIRST_SEARCH_H_
-#define INCLUDE_SEQAN_GRAPH_ALGORITHMS_DEPTH_FIRST_SEARCH_H_
+#ifndef INCLUDE_SEQAN2_GRAPH_ALGORITHMS_DEPTH_FIRST_SEARCH_H_
+#define INCLUDE_SEQAN2_GRAPH_ALGORITHMS_DEPTH_FIRST_SEARCH_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -61,7 +61,7 @@ namespace seqan {
 // ----------------------------------------------------------------------------
 /*!
  * @fn depthFirstSearch
- * @headerfile <seqan/graph_algorithms.h>
+ * @headerfile <seqan2/graph_algorithms.h>
  * @brief Implements a depth-first search on a graph.
  *
  * @signature void depthFirstSearch(predecessor, discovery, finish, g);
@@ -172,6 +172,6 @@ void depthFirstSearch(TPredecessorMap & predecessor,
     }
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_GRAPH_ALGORITHMS_DEPTH_FIRST_SEARCH_H_
+#endif  // #ifndef INCLUDE_SEQAN2_GRAPH_ALGORITHMS_DEPTH_FIRST_SEARCH_H_

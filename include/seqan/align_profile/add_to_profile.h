@@ -35,10 +35,10 @@
 // sequence alignment to the profile.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_PROFILE_ADD_TO_PROFILE_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_PROFILE_ADD_TO_PROFILE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_PROFILE_ADD_TO_PROFILE_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_PROFILE_ADD_TO_PROFILE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -62,7 +62,7 @@ namespace seqan {
 
 /*!
  * @fn addToProfile
- * @headerfile <seqan/align_profile.h>
+ * @headerfile <seqan2/align_profile.h>
  * @brief Sequence-to-profile alignment with sequence integration.
  *
  * <tt>seq</tt> will be aligned to <tt>profile</tt> using @link globalAlignment @endlink. To compute a banded alignment
@@ -94,7 +94,7 @@ void addToProfile(String<ProfileChar<TChar, TValue, TSpec> > & profile,
     // Define gaps and scoring scheme.
     Gaps<TProfileString> gapsH(profile);
     Gaps<TSequence> gapsV(seq);
-    seqan::Score<int, seqan::ProfileSeqScore> sScheme(profile);
+    seqan2::Score<int, seqan2::ProfileSeqScore> sScheme(profile);
 
     // Perform the global alignment.
     if (lDiag == minValue<int>() || uDiag == maxValue<int>())
@@ -128,12 +128,12 @@ void addToProfile(String<ProfileChar<TChar, TValue, TSpec> > & profile,
     //std::cout << gapsV << "\n";
 
     itH = begin(gapsH, Standard());
-    SEQAN_ASSERT_EQ(length(gapsH), length(gapsV));
+    SEQAN2_ASSERT_EQ(length(gapsH), length(gapsV));
     for (; itH != itHEnd; ++itH, ++itV)
     {
         if (isGap(itH))
         {
-            SEQAN_ASSERT_NOT_MSG(isGap(itV), "Must not generate gaps columns!");
+            SEQAN2_ASSERT_NOT_MSG(isGap(itV), "Must not generate gaps columns!");
             appendValue(buffer, TProfileChar());
             back(buffer).count[valueSize<TChar>()] += 1;
             back(buffer).count[ordValue(TChar(*itV))] += 1;
@@ -160,6 +160,6 @@ void addToProfile(String<ProfileChar<TChar, TValue, TSpec> > & profile,
     swap(buffer, profile);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_PROFILE_ADD_TO_PROFILE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_PROFILE_ADD_TO_PROFILE_H_

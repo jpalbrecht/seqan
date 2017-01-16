@@ -34,10 +34,10 @@
 // This file contains routines to generate BLAST tab-seperated output
 // ==========================================================================
 
-#ifndef SEQAN_BLAST_BLAST_TABULAR_H_
-#define SEQAN_BLAST_BLAST_TABULAR_H_
+#ifndef SEQAN2_BLAST_BLAST_TABULAR_H_
+#define SEQAN2_BLAST_BLAST_TABULAR_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -55,7 +55,7 @@ namespace seqan
 /*!
  * @class BlastTabular
  * @signature typedef Tag<BlastTabular_> BlastTabular;
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  * @brief Support for Blast Tabular file formats (with and without comment lines)
  *
  * There are three blast format related tags in SeqAn:
@@ -91,7 +91,7 @@ typedef Tag<BlastTabular_> BlastTabular;
 
 /*!
  * @enum BlastTabularSpec
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  * @signature enum class BlastTabularSpec : uint8_t { ... };
  * @brief Spec for @link BlastIOContext @endlink
  *
@@ -126,7 +126,7 @@ enum class BlastTabularSpec : uint8_t
  * thereof.
  *
  * @signature template <BlastTabularSpec h> struct BlastTabularSpecSelector { ... };
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  *
  * This is a proxy datatype that enables compile-time optimizations through constexpressions iff the value
  * is known at compile time. You will rarely need to instantiate objects of this type yourself, but they
@@ -140,7 +140,7 @@ enum class BlastTabularSpec : uint8_t
  * // same as
  * // BlastTabularSpec myProgram = BlastTabularSpec::COMMENTS;
  *
- * SEQAN_ASSERT(myProgram == BlastTabularSpec::COMMENTS); // assertion is checked at run-time
+ * SEQAN2_ASSERT(myProgram == BlastTabularSpec::COMMENTS); // assertion is checked at run-time
  * myProgram = BlastTabularSpec::NO_COMMENTS; // works without problems
  * @endcode
  *
@@ -163,7 +163,7 @@ struct BlastTabularSpecSelector
     BlastTabularSpecSelector operator=(BlastTabularSpec const h)
     {
         if (h != _h)
-            SEQAN_FAIL("ERROR: Tried to set tabularSpec on context, but was already defined at compile time (and set "
+            SEQAN2_FAIL("ERROR: Tried to set tabularSpec on context, but was already defined at compile time (and set "
                        "to a different value)!");
         return *this;
     }
@@ -218,7 +218,7 @@ constexpr char const * FileExtensions<BlastTabular, T>::VALUE[2];
 /*!
  * @class BlastMatchField BlastMatchField
  * @brief A "meta" datastructure that contains information about members of @link BlastMatch @endlinkes
- * @headerfile seqan/blast.h
+ * @headerfile seqan2/blast.h
  *
  * @signature template <typename TVoidSpec = void> struct BlastMatchField;
  * @tparam TVoidSpec An extra spec to prevent global inclusion of statics members (you can safely ignore this)
@@ -296,7 +296,7 @@ struct BlastMatchField
 {
     /*!
      * @enum BlastMatchField::Enum
-     * @headerfile seqan/blast.h
+     * @headerfile seqan2/blast.h
      * @signature enum class BlastMatchField<TVoidSpec>::Enum : uint8_t { ... };
      * @brief A strongly typed enum mapping all fields supported by NCBI Blast to an integer
      *

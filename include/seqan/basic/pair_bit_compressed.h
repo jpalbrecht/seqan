@@ -34,10 +34,10 @@
 // Bit-packed pair specialization.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_PAIR_BIT_PACKED_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_PAIR_BIT_PACKED_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_PAIR_BIT_PACKED_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_PAIR_BIT_PACKED_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -50,7 +50,7 @@ namespace seqan {
 /*!
  * @class BitPackedPair
  * @extends Pair
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Stores two arbitrary objects. Saves memory by packing bits with bit fields.
  *
  * @signature template <typename T1, typename T2, unsigned BITSIZE1, unsigned BITSIZE2>
@@ -169,6 +169,6 @@ inline void moveValueI2(Pair<T1, T2, BitPacked<BITSIZE1, BITSIZE2> > & pair, T &
     pair.i2 = _i;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_PAIR_BIT_PACKED_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_PAIR_BIT_PACKED_H_

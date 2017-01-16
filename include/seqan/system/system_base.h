@@ -32,33 +32,33 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_SYSTEM_BASE_H
-#define SEQAN_HEADER_SYSTEM_BASE_H
+#ifndef SEQAN2_HEADER_SYSTEM_BASE_H
+#define SEQAN2_HEADER_SYSTEM_BASE_H
 
-namespace seqan
+namespace seqan2
 {
 
-#if SEQAN_ENABLE_DEBUG  // Note the new-style for macros, is always defined and 0/1
+#if SEQAN2_ENABLE_DEBUG  // Note the new-style for macros, is always defined and 0/1
 
-#define SEQAN_DO_SYS(_cond) SEQAN_ASSERT(_cond)
-#define SEQAN_DO_SYS1(_cond) SEQAN_DO_SYS(_cond)
-#define SEQAN_DO_SYS2(_cond, _comment) SEQAN_ASSERT_MSG(_cond, _comment)
+#define SEQAN2_DO_SYS(_cond) SEQAN2_ASSERT(_cond)
+#define SEQAN2_DO_SYS1(_cond) SEQAN2_DO_SYS(_cond)
+#define SEQAN2_DO_SYS2(_cond, _comment) SEQAN2_ASSERT_MSG(_cond, _comment)
 
-#else  // #ifdef SEQAN_ENABLE_DEBUG
+#else  // #ifdef SEQAN2_ENABLE_DEBUG
 
 #if !defined(COMPILER_MSVC)
 // GCC warns below that the "value computed is not used".  However,
 // MSVC does not like casting void values to void. Thus, this
 // distinction.
-#define SEQAN_DO_SYS(_cond) do { (void) _cond; } while (false)
+#define SEQAN2_DO_SYS(_cond) do { (void) _cond; } while (false)
 #else   // #if !defined(COMPILER_MSVC)
-#define SEQAN_DO_SYS(_cond) do { _cond; } while (false)
+#define SEQAN2_DO_SYS(_cond) do { _cond; } while (false)
 #endif  // #if !defined(COMPILER_MSVC)
 
-#define SEQAN_DO_SYS1(_cond) SEQAN_DO_SYS(_cond)
-#define SEQAN_DO_SYS2(_cond, _comment) SEQAN_DO_SYS(_cond)
+#define SEQAN2_DO_SYS1(_cond) SEQAN2_DO_SYS(_cond)
+#define SEQAN2_DO_SYS2(_cond, _comment) SEQAN2_DO_SYS(_cond)
 
-#endif  // #ifdef SEQAN_ENABLE_DEBUG
+#endif  // #ifdef SEQAN2_ENABLE_DEBUG
 
 }
 

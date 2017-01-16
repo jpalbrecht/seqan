@@ -32,16 +32,16 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_POOL_BASE_H
-#define SEQAN_HEADER_POOL_BASE_H
+#ifndef SEQAN2_HEADER_POOL_BASE_H
+#define SEQAN2_HEADER_POOL_BASE_H
 
-namespace seqan
+namespace seqan2
 {
 
 /*!
  * @class PoolConfigSize
  * @extends PoolSpec
- * @headerfile <seqan/pipe.h.
+ * @headerfile <seqan2/pipe.h.
  * @brief Configuration of Pool.
  *
  * @signature template <typename TSize[, typename TFile]>
@@ -63,7 +63,7 @@ namespace seqan
 /*!
  * @class PoolConfig
  * @extends PoolSpec
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Configuration of Pool.
  *
  * @signature template <typename TFile>
@@ -86,7 +86,7 @@ namespace seqan
 /*!
  * @class PoolSpec
  * @extends Pool
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Stores/Retrieves all elements to/from disk.
  *
  * @signature template <typename TValue, typename TConfig>
@@ -106,7 +106,7 @@ namespace seqan
 
 /*!
  * @class Pool
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Pools are push- and pop-passive pipeline modules.
  *
  * @signature template <typename TValue[, typename TSpec]>
@@ -128,7 +128,7 @@ namespace seqan
     struct PoolParameters
     {
 // The enum for 64bit does not work: building an index runs out of memoty
-#if 1 //SEQAN_IS_32_BIT
+#if 1 //SEQAN2_IS_32_BIT
         // in 32bit mode at most 4GB are addressable
         enum { DefaultMemBufferSize     = 384 * 1024,      // low memory config [kB]
                DefaultPageSize          = 32 * 1024,            // [kB]
@@ -276,7 +276,7 @@ namespace seqan
 //            pageSize(alignSize(_min(_pool.size(), _requestedBufferSize), _pool.pageSize)),
             chain(_min(_readAheadBuffers, _pool.pages(pageSize = alignSize(_min(_pool.size(), _requestedBufferSize), _pool.pageSize))))
         {
-            #ifdef SEQAN_HEADER_PIPE_DEBUG
+            #ifdef SEQAN2_HEADER_PIPE_DEBUG
                 std::cerr << "___BufferHandler___" << std::endl;
                 std::cerr << "pagesize: " << pageSize << std::endl;
                 std::cerr << "readaheadbuffers: " << chain.maxFrames << std::endl;
@@ -306,7 +306,7 @@ namespace seqan
             // retrieve the very first and wait for I/O transfer to complete
             bool waitResult = waitFor(*chain.first);
             if (!waitResult)
-                SEQAN_FAIL("%s operation could not be completed: \"%s\"",
+                SEQAN2_FAIL("%s operation could not be completed: \"%s\"",
                            _pageFrameStatusString(chain.first->status),
                            strerror(errno));
 
@@ -325,7 +325,7 @@ namespace seqan
             // retrieve the next buffer in order and wait for I/O transfer to complete
             bool waitResult = waitFor(*chain.first);
             if (!waitResult)
-                SEQAN_FAIL("%s operation could not be completed: \"%s\"",
+                SEQAN2_FAIL("%s operation could not be completed: \"%s\"",
                            _pageFrameStatusString(chain.first->status),
                            strerror(errno));
 
@@ -341,7 +341,7 @@ namespace seqan
         {
             TPageFrame *p = chain.first;
             while (p) {
-                seqan::cancel(*p, pool.file);
+                seqan2::cancel(*p, pool.file);
                 freePage(*p, pool.file);
                 p = p->next;
             }
@@ -463,21 +463,21 @@ namespace seqan
                 // wait for I/O transfer to complete
                 bool waitResult = waitFor(*p);
                 if (!waitResult)
-                    SEQAN_FAIL("%s operation could not be completed: \"%s\"",
+                    SEQAN2_FAIL("%s operation could not be completed: \"%s\"",
                                _pageFrameStatusString(p->status),
                                strerror(errno));
 
                 freePage(*p, pool.file);
                 p = p->next;
             }
-            seqan::flush(pool.file);
+            seqan2::flush(pool.file);
         }
 
         inline void cancel()
         {
             TPageFrame *p = chain.first;
             while (p) {
-                seqan::cancel(*p, pool.file);
+                seqan2::cancel(*p, pool.file);
                 freePage(*p, pool.file);
                 p = p->next;
             }
@@ -764,7 +764,7 @@ namespace seqan
             _ownFile = false;
             _temporary = false;
             memBufferSize = 0;
-            _setSize(seqan::length(file) / sizeof(TValue));
+            _setSize(seqan2::length(file) / sizeof(TValue));
         }
 
         Pool(const char *fileName, const PoolParameters &_conf = PoolParameters()) :
@@ -775,7 +775,7 @@ namespace seqan
             memBufferSize = 0;
             _ownFile = open(file, fileName);
             if (_ownFile)
-                _setSize(seqan::length(file) / sizeof(TValue));
+                _setSize(seqan2::length(file) / sizeof(TValue));
             else
                 _setSize(0);
         }
@@ -800,7 +800,7 @@ namespace seqan
 
         // this is not a real resize
         void resize(size_type _newSize) {
-            typedef typename Size<File>::Type TFSize SEQAN_UNUSED_TYPEDEF;
+            typedef typename Size<File>::Type TFSize SEQAN2_UNUSED_TYPEDEF;
             if (_newSize == _size) return;
 
             _freeHandlers();    // if you forgot to call endRead/endWrite we have no trouble
@@ -811,7 +811,7 @@ namespace seqan
                         freePage(memBuffer, *this);
                     else {
                         close(file);
-                        SEQAN_PROSUB(SEQAN_PROIOVOLUME, (_proFloat)((TFSize)_size * (TFSize)sizeof(TValue)));
+                        SEQAN2_PROSUB(SEQAN2_PROIOVOLUME, (_proFloat)((TFSize)_size * (TFSize)sizeof(TValue)));
                     }
                 }
 
@@ -820,7 +820,7 @@ namespace seqan
                         allocPage(memBuffer, _newSize, *this);
                     else {
                         openTemp(file);
-                        SEQAN_PROADD(SEQAN_PROIOVOLUME, (_proFloat)((TFSize)_newSize * (TFSize)sizeof(TValue)));
+                        SEQAN2_PROADD(SEQAN2_PROIOVOLUME, (_proFloat)((TFSize)_newSize * (TFSize)sizeof(TValue)));
                     }
                 }
             }
@@ -1029,7 +1029,7 @@ namespace seqan
     //};
 
 
-    // seqan namespace traits
+    // seqan2 namespace traits
     template < typename TValue, typename TSpec >
     struct Value< Pool< TValue, TSpec > > {
         typedef TValue Type;
@@ -1074,7 +1074,7 @@ namespace seqan
 
 /*!
  * @fn Pool#length
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Length of the pool.
  *
  * @signature TSize length(pool);
@@ -1125,7 +1125,7 @@ namespace seqan
     }
 /*!
  * @fn Pool#pop
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Pops the first element of the remaining stream.
  *
  * @signature void pop(pool[, ref]);
@@ -1178,7 +1178,7 @@ namespace seqan
 
 
     // the pipe interface of pool classes
-    //namespace SEQAN_NAMESPACE_PIPELINING
+    //namespace SEQAN2_NAMESPACE_PIPELINING
     //{
         //template < typename TValue, typename TSpec >
         //struct Value< Pool< TValue, TSpec > >
@@ -1220,7 +1220,7 @@ namespace seqan
 
 /*!
  * @fn Pool#beginWrite
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Initiates a write process.
  *
  * @signature bool beginWrite(pool);
@@ -1279,7 +1279,7 @@ namespace seqan
 
 /*!
  * @fn Pool#beginRead
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Initiates a read process.
  *
  * @signature bool beginRead(pool);
@@ -1298,7 +1298,7 @@ namespace seqan
         }
 /*!
  * @fn Pool#endRead
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Terminates a read process.
  *
  * @signature bool endRead(pool);
@@ -1348,7 +1348,7 @@ namespace seqan
     }
 /*!
  * @fn Pool#assign
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Assigns one object to another object.
  *
  * @signature void assign(target, source);

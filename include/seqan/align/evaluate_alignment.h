@@ -34,10 +34,10 @@
 // Compute alignment score given a pairwise alignment.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_ALIGN_EVALUATE_ALIGNMENT_H_
-#define INCLUDE_SEQAN_ALIGN_EVALUATE_ALIGNMENT_H_
+#ifndef INCLUDE_SEQAN2_ALIGN_EVALUATE_ALIGNMENT_H_
+#define INCLUDE_SEQAN2_ALIGN_EVALUATE_ALIGNMENT_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -53,7 +53,7 @@ namespace seqan {
 
 /*!
  * @class AlignmentStats
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Statistics about a tabular alignment.
  *
  * @signature struct AlignmentStats;
@@ -184,7 +184,7 @@ void clear(AlignmentStats & stats)
 
 /*!
  * @fn computeAlignmentStats
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Compute alignment statistics.
  *
  * @signature TScoreVal computeAlignmentStats(stats, align, scoringScheme);
@@ -290,8 +290,8 @@ TScoreVal computeAlignmentStats(AlignmentStats & stats,
             stats.numNegativeScores += !isPositive;
         }
     }
-    SEQAN_ASSERT(it0 == itEnd0);
-    SEQAN_ASSERT(it1 == itEnd1);
+    SEQAN2_ASSERT(it0 == itEnd0);
+    SEQAN2_ASSERT(it1 == itEnd1);
 
     stats.numGaps = stats.numGapOpens + stats.numGapExtensions;
 
@@ -310,8 +310,8 @@ TScoreVal computeAlignmentStats(AlignmentStats & stats,
                                 Align<TSource, TAlignSpec> const & align,
                                 Score<TScoreVal, TScoreSpec> const & scoringScheme)
 {
-    SEQAN_ASSERT_EQ_MSG(length(rows(align)), 2u, "Only works with pairwise alignments.");
-    SEQAN_ASSERT_EQ_MSG(length(row(align, 0)), length(row(align, 1)), "Invalid alignment!");
+    SEQAN2_ASSERT_EQ_MSG(length(rows(align)), 2u, "Only works with pairwise alignments.");
+    SEQAN2_ASSERT_EQ_MSG(length(row(align, 0)), length(row(align, 1)), "Invalid alignment!");
 
     return computeAlignmentStats(stats, row(align, 0), row(align, 1), scoringScheme);
 }
@@ -326,6 +326,6 @@ TScoreVal computeAlignmentStats(Align<TGaps, TAlignSpec> const & align,
     return computeAlignmentStats(stats, align, scoringScheme);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_ALIGN_EVALUATE_ALIGNMENT_H_
+#endif  // #ifndef INCLUDE_SEQAN2_ALIGN_EVALUATE_ALIGNMENT_H_

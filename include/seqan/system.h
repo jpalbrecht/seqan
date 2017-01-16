@@ -30,10 +30,10 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_SYSTEM_H
-#define SEQAN_HEADER_SYSTEM_H
+#ifndef SEQAN2_HEADER_SYSTEM_H
+#define SEQAN2_HEADER_SYSTEM_H
 
-#include <seqan/file.h>
+#include <seqan2/file.h>
 
 //____________________________________________________________________________
 // prerequisites
@@ -53,7 +53,7 @@
 #include <climits>
 #include <errno.h>
 #include <semaphore.h>
-#if SEQAN_ASYNC_IO
+#if SEQAN2_ASYNC_IO
 #include <aio.h>
 #endif
 #include <sys/mman.h>
@@ -68,24 +68,24 @@
 
 #endif //#ifdef STDLIB_VS
 
-#include <seqan/system/system_forwards.h>
+#include <seqan2/system/system_forwards.h>
 #ifndef STDLIB_VS
-#include <seqan/system/file_forwards.h>
+#include <seqan2/system/file_forwards.h>
 #endif  // #ifndef STDLIB_VS
 
 //____________________________________________________________________________
 // multi-threading
 
-#include <seqan/system/system_base.h>
+#include <seqan2/system/system_base.h>
 
 //____________________________________________________________________________
 // synchronous and asynchronous files
 
-#include <seqan/system/file_sync.h>
-#if SEQAN_ASYNC_IO
-#include <seqan/system/system_event_win.h>
-#include <seqan/system/file_async.h>
+#include <seqan2/system/file_sync.h>
+#if SEQAN2_ASYNC_IO
+#include <seqan2/system/system_event_win.h>
+#include <seqan2/system/file_async.h>
 #endif
-#include <seqan/system/file_directory.h>
+#include <seqan2/system/file_directory.h>
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

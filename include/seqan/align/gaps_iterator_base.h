@@ -35,10 +35,10 @@
 
 // TODO(holtgrew): Switch to Host interface.
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_GAPS_ITERATOR_BASE_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_GAPS_ITERATOR_BASE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_GAPS_ITERATOR_BASE_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_GAPS_ITERATOR_BASE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -520,6 +520,6 @@ isClipped(Iter<TGaps, GapsIterator<TSpec> > const &)
     return false;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_INCLUDE_SEQAN_ALIGN_GAPS_ITERATOR_BASE_H_
+#endif  // SEQAN2_INCLUDE_SEQAN2_ALIGN_GAPS_ITERATOR_BASE_H_

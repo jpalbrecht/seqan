@@ -32,12 +32,12 @@
 // Author: Christopher Pockrandt <christopher.pockrandt@fu-berlin.de>
 // ==========================================================================
 
-//SEQAN_NO_DDDOC:do not generate documentation for this file
+//SEQAN2_NO_DDDOC:do not generate documentation for this file
 
-#ifndef INDEX_BIDIRECTIONAL_H_
-#define INDEX_BIDIRECTIONAL_H_
+#ifndef SEQAN2_INDEX_BIDIRECTIONAL_H_
+#define SEQAN2_INDEX_BIDIRECTIONAL_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ==========================================================================
 // Forwards
@@ -56,7 +56,7 @@ class BidirectionalIndex;
 
 /*!
  * @class RevTextFibre
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief A helper object that stores the type of the modifier of a given type.
  *
  * @signature template <TText>
@@ -75,7 +75,7 @@ struct RevTextFibre
 
 /*!
  * @class BidirectionalIndex
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief A bidirectional index class.
  *
  * @signature template <typename TText, typename TIndexSpec>
@@ -205,4 +205,4 @@ getFibre(Index<TText, BidirectionalIndex<TSpec> > const &index, FibreText) {
 }
 
 }
-#endif /* INDEX_BIDIRECTIONAL_H_ */
+#endif /* SEQAN2_INDEX_BIDIRECTIONAL_H_ */

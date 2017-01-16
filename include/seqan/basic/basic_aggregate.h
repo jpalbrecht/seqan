@@ -34,29 +34,29 @@
 // Facade header for basic/aggregate submodule.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_BASIC_AGGREGATE_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_BASIC_AGGREGATE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_AGGREGATE_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_AGGREGATE_H_
 
 // --------------------------------------------------------------------------
 // Prerequisites
 // --------------------------------------------------------------------------
 
-#include <seqan/platform.h>
-#include <seqan/basic/basic_metaprogramming.h>
-#include <seqan/basic/basic_fundamental.h>
-#include <seqan/basic/basic_alphabet.h>
+#include <seqan2/platform.h>
+#include <seqan2/basic/basic_metaprogramming.h>
+#include <seqan2/basic/basic_fundamental.h>
+#include <seqan2/basic/basic_alphabet.h>
 
 // --------------------------------------------------------------------------
 // Sub Module Headers
 // --------------------------------------------------------------------------
 
-#include <seqan/basic/aggregate_concept.h>
-#include <seqan/basic/pair_base.h>
-#include <seqan/basic/pair_packed.h>
-#include <seqan/basic/pair_bit_compressed.h>
-#include <seqan/basic/triple_base.h>
-#include <seqan/basic/triple_packed.h>
-#include <seqan/basic/tuple_base.h>
-#include <seqan/basic/tuple_bit_compressed.h>
+#include <seqan2/basic/aggregate_concept.h>
+#include <seqan2/basic/pair_base.h>
+#include <seqan2/basic/pair_packed.h>
+#include <seqan2/basic/pair_bit_compressed.h>
+#include <seqan2/basic/triple_base.h>
+#include <seqan2/basic/triple_packed.h>
+#include <seqan2/basic/tuple_base.h>
+#include <seqan2/basic/tuple_bit_compressed.h>
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_BASIC_AGGREGATE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_AGGREGATE_H_

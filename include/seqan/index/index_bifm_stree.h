@@ -32,12 +32,12 @@
 // Author: Christopher Pockrandt <christopher.pockrandt@fu-berlin.de>
 // ==========================================================================
 
-//SEQAN_NO_DDDOC:do not generate documentation for this file
+//SEQAN2_NO_DDDOC:do not generate documentation for this file
 
-#ifndef INDEX_BIFM_STREE_H_
-#define INDEX_BIFM_STREE_H_
+#ifndef SEQAN2_INDEX_BIFM_STREE_H_
+#define SEQAN2_INDEX_BIFM_STREE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Functions
@@ -105,4 +105,4 @@ _goDownString(Iter<Index<TText, BidirectionalIndex<FMIndex<TOccSpec, TIndexSpec>
 
 }
 
-#endif /* INDEX_BIFM_STREE_H_ */
+#endif /* SEQAN2_INDEX_BIFM_STREE_H_ */

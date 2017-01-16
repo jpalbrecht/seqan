@@ -30,12 +30,12 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_GRAPH_IMPL_DIRECTED_H
-#define SEQAN_HEADER_GRAPH_IMPL_DIRECTED_H
+#ifndef SEQAN2_HEADER_GRAPH_IMPL_DIRECTED_H
+#define SEQAN2_HEADER_GRAPH_IMPL_DIRECTED_H
 
 // TODO(holtgrew): The graph uses linked lists for storing edges. Thus, the graphs are not guaranteed to have good cache locality.
 
-namespace seqan
+namespace seqan2
 {
 //////////////////////////////////////////////////////////////////////////////
 // Graph - Directed
@@ -412,7 +412,7 @@ inline typename Size<Graph<Directed<TCargo, TSpec> > >::Type
 outDegree(Graph<Directed<TCargo, TSpec> > const & g,
           TVertexDescriptor const & vertex)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, vertex));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, vertex));
 
     typedef Graph<Directed<TCargo, TSpec> > TGraph;
     typedef typename EdgeType<TGraph>::Type TEdgeStump;
@@ -434,7 +434,7 @@ inline typename Size<Graph<Directed<TCargo, WithSourceId> > >::Type
 inDegree(Graph<Directed<TCargo, WithSourceId> > const & g,
          TVertexDescriptor const & vertex)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, vertex));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, vertex));
 
     typedef Graph<Directed<TCargo, WithSourceId> > TGraph;
     typedef typename EdgeType<TGraph>::Type TEdgeStump;
@@ -456,7 +456,7 @@ inline typename Size<Graph<Directed<TCargo, TSpec> > >::Type
 inDegree(Graph<Directed<TCargo, TSpec> > const & g,
          TVertexDescriptor const & vertex)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, vertex));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, vertex));
 
     typedef Graph<Directed<TCargo, TSpec> > TGraph;
     typedef typename EdgeType<TGraph>::Type TEdgeStump;
@@ -538,7 +538,7 @@ inline void
 removeVertex(Graph<Directed<TCargo, TSpec> > & g,
              TVertexDescriptor const & v)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, v));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, v));
 
     removeOutEdges(g, v); // Remove all outgoing edges
     removeInEdges(g, v); // Remove all incoming edges
@@ -553,8 +553,8 @@ addEdge(Graph<Directed<TCargo, WithSourceId> > & g,
         TVertexDescriptor const & source,
         TVertexDescriptor const & target)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, source));
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, target));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, source));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, target));
 
     typedef Graph<Directed<TCargo, WithSourceId> > TGraph;
     typedef typename EdgeType<TGraph>::Type TEdgeStump;
@@ -589,8 +589,8 @@ addEdge(Graph<Directed<TCargo, TSpec> > & g,
         TVertexDescriptor const & source,
         TVertexDescriptor const & target)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, source));
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, target));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, source));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, target));
 
     typedef Graph<Directed<TCargo, TSpec> > TGraph;
     typedef typename EdgeType<TGraph>::Type TEdgeStump;
@@ -635,8 +635,8 @@ removeEdge(Graph<Directed<TCargo, WithSourceId> > & g,
            TVertexDescriptor const & source,
            TVertexDescriptor const & target)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, source));
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, target));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, source));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, target));
 
     typedef Graph<Directed<TCargo, WithSourceId> > TGraph;
     typedef typename EdgeType<TGraph>::Type TEdgeStump;
@@ -682,8 +682,8 @@ removeEdge(Graph<Directed<TCargo, TSpec> > & g,
            TVertexDescriptor const & source,
            TVertexDescriptor const & target)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, source));
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, target));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, source));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, target));
 
     typedef Graph<Directed<TCargo, TSpec> > TGraph;
     typedef typename EdgeType<TGraph>::Type TEdgeStump;
@@ -723,8 +723,8 @@ inline void
 removeEdge(Graph<Directed<TCargo, TSpec> > & g,
            TEdgeDescriptor const & edge)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, sourceVertex(g,edge)));
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, targetVertex(g,edge)));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, sourceVertex(g,edge)));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, targetVertex(g,edge)));
 
     typedef Graph<Directed<TCargo, TSpec> > TGraph;
     typedef typename EdgeType<TGraph>::Type TEdgeStump;
@@ -764,7 +764,7 @@ inline void
 removeOutEdges(Graph<Directed<TCargo, TSpec> > & g,
                TVertexDescriptor const & v)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, v));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, v));
 
     typedef Graph<Directed<TCargo, TSpec> > TGraph;
     typedef typename EdgeType<TGraph>::Type TEdgeStump;
@@ -782,7 +782,7 @@ inline void
 removeInEdges(Graph<Directed<TCargo, TSpec> > & g,
               TVertexDescriptor const & v)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, v));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, v));
 
     typedef Graph<Directed<TCargo, TSpec> > TGraph;
     typedef typename EdgeType<TGraph>::Type TEdgeStump;
@@ -960,8 +960,8 @@ findEdge(Graph<Directed<TCargo, TSpec> > const & g,
          TVertexDescriptor const & v,
          TVertexDescriptor const & w)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, v));
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, w));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, v));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, w));
 
     typedef Graph<Directed<TCargo, TSpec> > TGraph;
     typedef typename EdgeType<TGraph>::Type TEdgeStump;
@@ -1029,6 +1029,6 @@ write(TFile & target,
     }
 }
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

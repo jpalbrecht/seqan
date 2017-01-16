@@ -32,13 +32,13 @@
 // Author: Stephan Aiche <aiche@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_FIND_PEX_H
-#define SEQAN_HEADER_FIND_PEX_H
+#ifndef SEQAN2_HEADER_FIND_PEX_H
+#define SEQAN2_HEADER_FIND_PEX_H
 
 // uncomment this for verbose debug output
-//#define SEQAN_DEBUG_PEX
+//#define SEQAN2_DEBUG_PEX
 
-namespace seqan
+namespace seqan2
 {
 
 struct Hierarchical;
@@ -63,7 +63,7 @@ struct FindBeginPatternSpec< Pattern<TNeedle, Pex<TVerification , TMultiFinder >
 
 /*!
  * @mfn Pattern#PexMultiFinder
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Determines the multiple exact string matching algorithm used by the Pex algorithm.
  *
  * @signature PexMultiFinder<Pattern<TNeedle,Pex<TVerification, TMultiFinder> > >::Type;
@@ -102,7 +102,7 @@ struct PexRange_{
 /*!
  * @class PexPattern
  * @extends Pattern
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Provides a fast approximate string matching filter that splits the needle into several pieces that are
  *        searched with a multiple exact string matching algorithm and later verified.
  *
@@ -122,7 +122,7 @@ struct PexRange_{
 /*!
  * @class HierarchicalPexPattern
  * @extends PexPattern
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief By using this specialization, the hierarchircal verification is enabled.
  *
  * @signature template <typename TNeedle, typename TMultiFinder>
@@ -135,7 +135,7 @@ struct PexRange_{
 /*!
  * @class NonHierarchicalPexPattern
  * @extends PexPattern
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief By using this specialization, the hierarchircal verification is disabled.
  *
  * @signature template <typename TNeedle, typename TMultiFinder>
@@ -189,7 +189,7 @@ class Pattern<TNeedle, Pex<TVerification, TMultiFinder > >:
 
     template <typename TNeedle2>
     Pattern(TNeedle2 && ndl,
-            SEQAN_CTOR_DISABLE_IF(IsSameType<typename std::remove_reference<TNeedle2>::type const &, Pattern const &>)) :
+            SEQAN2_CTOR_DISABLE_IF(IsSameType<typename std::remove_reference<TNeedle2>::type const &, Pattern const &>)) :
         limit(1),
         lastFPos(0),
         lastFNdl(0),
@@ -241,7 +241,7 @@ int _getRoot(Pattern<TNeedle, Pex<Hierarchical, TMultiFinder > > &)
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn PexPattern#getScore
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Score of the last found match in approximate searching.
  *
  * @signature TScoreValue getScore(pattern);
@@ -260,7 +260,7 @@ int getScore(Pattern<TNeedle, Pex<TVerification,TMultiFinder > > & me)
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn PexPattern#scoreLimit
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief The minimal score a match must reach in approximate searching.
  *
  * @signature TScoreValue scoreLimit(pattern);
@@ -280,7 +280,7 @@ scoreLimit(Pattern<TNeedle, Pex<TVerification,TMultiFinder > > const & me)
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn PexPattern#setSoreLimit
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Set the minimal score a match must reach in approximate serach.
  *
  * @signature void setScoreLimit(pattern, limit);
@@ -376,7 +376,7 @@ void _patternInit(Pattern<TNeedle, Pex<NonHierarchical, TMultiFinder > > &me, TF
   me.findNext = false;
   _findBeginInit(me, needle(me));
 
-#ifdef SEQAN_DEBUG_PEX
+#ifdef SEQAN2_DEBUG_PEX
   std::cout << " -------------------------------------------------  " << std::endl;
   std::cout << "                   PATTERN INIT                     " << std::endl;
   std::cout << "Needle:   " << value(me.data_host) << std::endl;
@@ -490,7 +490,7 @@ void _createTree(Pattern<TNeedle, Pex<Hierarchical, TMultiFinder > > &me, unsign
   // direction == 0 .. choose left child in the tree
   // direction == 1 .. choose right child in the tree
 
-#ifdef SEQAN_DEBUG_PEX
+#ifdef SEQAN2_DEBUG_PEX
   std::cout << "called _createTree:" << std::endl;
   std::cout << "  start: " << start << std::endl;
   std::cout << "  end  : " << end << std::endl;
@@ -523,7 +523,7 @@ void _createTree(Pattern<TNeedle, Pex<Hierarchical, TMultiFinder > > &me, unsign
 
   if(k == 0){
     appendValue(me.splitted_needles,infix(value(me.data_host),pr.start,pr.end + 1));
-#ifdef SEQAN_DEBUG_PEX
+#ifdef SEQAN2_DEBUG_PEX
     std::cout << "inserted : " << me.splitted_needles[length(me.splitted_needles) - 1] << " into splitted needles" << std::endl;
     std::cout << "assign to leaf_map " << length(me.splitted_needles) - 1 << " value " << cur_idx << std::endl;
     std::cout << " ----------------------------- " << std::endl;
@@ -605,7 +605,7 @@ void _patternInit(Pattern<TNeedle, Pex<Hierarchical, TMultiFinder > > &me, TFind
 
   _findBeginInit(me, needle(me));
 
-#ifdef SEQAN_DEBUG_PEX
+#ifdef SEQAN2_DEBUG_PEX
   std::cout << " -------------------------------------------------  " << std::endl;
   std::cout << "                   PATTERN INIT                     " << std::endl;
   std::cout << "Needle:   " << value(me.data_host) << std::endl;
@@ -731,7 +731,7 @@ inline bool find (TFinder & finder, Pattern<TNeedle, Pex<Hierarchical, TMultiFin
 }
 
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_..
+#endif //#ifndef SEQAN2_HEADER_..
 

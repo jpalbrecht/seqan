@@ -34,10 +34,10 @@
 // Class for reading/writing files in UCSC format.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_UCSC_IO_UCSC_FILE_H_
-#define SEQAN_INCLUDE_SEQAN_UCSC_IO_UCSC_FILE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_UCSC_IO_UCSC_FILE_H_
+#define SEQAN2_INCLUDE_SEQAN2_UCSC_IO_UCSC_FILE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Typedefs
@@ -54,7 +54,7 @@ typedef Tag<Ucsc_<> > Ucsc;
  * @class UcscFileIn
  * @signature typedef FormattedFile<Ucsc, Input> UcscFileIn;
  * @extends FormattedFileIn
- * @headerfile <seqan/ucsc_io.h>
+ * @headerfile <seqan2/ucsc_io.h>
  * @brief Class for reading UCSC <tt>knownGenes.txt</tt> and <tt>knownIsoforms.txt</tt> files.
  *
  * @see UcscRecord
@@ -70,7 +70,7 @@ typedef FormattedFile<Ucsc, Input>   UcscFileIn;
  * @class UcscFileOut
  * @signature typedef FormattedFile<Ucsc, Output> UcscFileOut;
  * @extends FormattedFileOut
- * @headerfile <seqan/ucsc_io.h>
+ * @headerfile <seqan2/ucsc_io.h>
  * @brief Class for writing UCSC <tt>knownGenes.txt</tt> and <tt>knownIsoforms.txt</tt> files.
  *
  * @see UcscRecord
@@ -118,7 +118,7 @@ readRecord(UcscRecord & /* record */,
            TForwardIter & /* iter */,
            TagSelector<> const & /* format */)
 {
-    SEQAN_FAIL("UcscFileIn: File format not specified.");
+    SEQAN2_FAIL("UcscFileIn: File format not specified.");
 }
 
 template <typename TForwardIter, typename TTagList>
@@ -153,7 +153,7 @@ writeRecord(TTarget & /* target */,
             UcscRecord const & /* record */,
             TagSelector<> const & /* format */)
 {
-    SEQAN_FAIL("UcscFileOut: File format not specified.");
+    SEQAN2_FAIL("UcscFileOut: File format not specified.");
 }
 
 template <typename TTarget, typename TTagList>
@@ -177,6 +177,6 @@ writeRecord(FormattedFile<Ucsc, Output, TSpec> & file, UcscRecord const & record
     writeRecord(file.iter, record, file.format);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif // SEQAN_INCLUDE_SEQAN_UCSC_IO_UCSC_FILE_H_
+#endif // SEQAN2_INCLUDE_SEQAN2_UCSC_IO_UCSC_FILE_H_

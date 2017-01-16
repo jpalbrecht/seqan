@@ -32,14 +32,14 @@
 // Author: Konrad Ludwig Moritz Rudolph <konrad.rudolph@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_INDEX_PIZZACHILI_STRING_H
-#define SEQAN_HEADER_INDEX_PIZZACHILI_STRING_H
+#ifndef SEQAN2_HEADER_SEQAN2_INDEX_PIZZACHILI_STRING_H
+#define SEQAN2_HEADER_SEQAN2_INDEX_PIZZACHILI_STRING_H
 
 #include <cstdlib> // for std::malloc, std::realloc, std::free
 
-#include <seqan/index/pizzachili_api.h>
+#include <seqan2/index/pizzachili_api.h>
 
-namespace seqan {
+namespace seqan2 {
 
 /*!
  * @class PizzaChiliString Pizza &amp; Chili String
@@ -48,7 +48,7 @@ namespace seqan {
  *
  * @extends String
  *
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief String used by the Pizza &amp; Chili indices.
  *
@@ -269,7 +269,7 @@ _pizzaChiliReallocate(
     if (new_capacity <= capacity(me))
         return 0;
 
-    SEQAN_ASSERT_NEQ(me.data_begin, 0);
+    SEQAN2_ASSERT_NEQ(me.data_begin, 0);
     //if (me.data_begin == 0)
     //    return _pizzaChiliAllocate(me, new_capacity);
 
@@ -384,9 +384,9 @@ length(String<TValue, PizzaChili<TSpec> > const& me) {
         impl::error_t e =
             TCodeProvider::get_length(me.index_handle, &len);
         if (e != 0) {
-            SEQAN_REPORT(TCodeProvider::error_index(e));
+            SEQAN2_REPORT(TCodeProvider::error_index(e));
             struct { } ex;
-            SEQAN_THROW(ex);
+            SEQAN2_THROW(ex);
         }
 
         return len;
@@ -432,9 +432,9 @@ namespace impl {
                 );
 
             if (e != 0) {
-                SEQAN_REPORT(TCodeProvider::error_index(e));
+                SEQAN2_REPORT(TCodeProvider::error_index(e));
                 struct { } ex;
-                SEQAN_THROW(ex);
+                SEQAN2_THROW(ex);
             }
 
             me.data_begin = reinterpret_cast<TValue*>(snippet);
@@ -530,9 +530,9 @@ namespace impl {
                     );
 
                 if (e != 0) {
-                    SEQAN_REPORT(TCodeProvider::error_index(e));
+                    SEQAN2_REPORT(TCodeProvider::error_index(e));
                     struct { } ex;
-                    SEQAN_THROW(ex);
+                    SEQAN2_THROW(ex);
                 }
 
                 ret.data_begin = reinterpret_cast<TValue*>(snippet);
@@ -745,6 +745,6 @@ suffix(
 
 //////////////////////////////////////////////////////////////////////////////
 
-} // namespace seqan
+} // namespace seqan2
 
-#endif // SEQAN_HEADER_INDEX_PIZZACHILI_STRING_H
+#endif // SEQAN2_HEADER_SEQAN2_INDEX_PIZZACHILI_STRING_H

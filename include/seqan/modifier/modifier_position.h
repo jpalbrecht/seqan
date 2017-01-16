@@ -33,10 +33,10 @@
 // ==========================================================================
 // A Position ModifiedString represents a permutation of the host string.
 
-#ifndef SEQAN_MODIFIER_MODIFIER_POSITION_H_
-#define SEQAN_MODIFIER_MODIFIER_POSITION_H_
+#ifndef SEQAN2_MODIFIER_MODIFIER_POSITION_H_
+#define SEQAN2_MODIFIER_MODIFIER_POSITION_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags, Classes, Enums
@@ -446,6 +446,6 @@ inline void sort(ModifiedString<THost, ModPos<TPositions> > const & me, Tag<TPar
     sort(cargo(me), PosLess_<THost, TPos>(host(me)), tag);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_MODIFIER_MODIFIER_POSITION_H_
+#endif  // SEQAN2_MODIFIER_MODIFIER_POSITION_H_

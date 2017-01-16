@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_INDEX_FIND_H
-#define SEQAN_HEADER_INDEX_FIND_H
+#ifndef SEQAN2_HEADER_SEQAN2_INDEX_FIND_H
+#define SEQAN2_HEADER_SEQAN2_INDEX_FIND_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -217,7 +217,7 @@ namespace seqan
     inline typename Position< Finder< Index<TText, TSpec>, TSpecFinder > >::Type
     beginPosition(Finder< Index<TText, TSpec>, TSpecFinder > & me)
     {
-        SEQAN_ASSERT_NOT(empty(me));
+        SEQAN2_ASSERT_NOT(empty(me));
         return *me.data_iterator;
     }
 
@@ -225,7 +225,7 @@ namespace seqan
     inline typename Position< Finder< Index<TText, TSpec>, TSpecFinder > >::Type
     beginPosition(Finder< Index<TText, TSpec>, TSpecFinder > const & me)
     {
-        SEQAN_ASSERT_NOT(empty(me));
+        SEQAN2_ASSERT_NOT(empty(me));
         return *me.data_iterator;
     }
 

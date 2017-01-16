@@ -35,10 +35,10 @@
 // rows of an alignment.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_ALIGN_COLS_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_ALIGN_COLS_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_ALIGN_COLS_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_ALIGN_COLS_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -56,7 +56,7 @@ namespace seqan {
  * @class AlignCols
  * @implements EqualityComparableConcept
  * @implements RandomAccessContainerConcept
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Pseudo columns container for row-based Align class.
  *
  * @signature template <typename TAlign>
@@ -193,7 +193,7 @@ template <typename TAlign>
 inline typename Host<AlignCols<TAlign> >::Type &
 host(AlignCols<TAlign> & me)
 {
-    SEQAN_ASSERT(me.data_align != 0);
+    SEQAN2_ASSERT(me.data_align != 0);
     return *me.data_align;
 }
 
@@ -201,7 +201,7 @@ template <typename TAlign>
 inline typename Host<AlignCols<TAlign> const>::Type &
 host(AlignCols<TAlign> const & me)
 {
-    SEQAN_ASSERT(me.data_align != 0);
+    SEQAN2_ASSERT(me.data_align != 0);
     return *me.data_align;
 }
 
@@ -211,7 +211,7 @@ host(AlignCols<TAlign> const & me)
 
 /*!
  * @fn AlignCols#iter
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Iterator to the item at the given position in the alignment columns.
  *
  * @signature TIterator iter(cols, pos[, tag]);
@@ -253,7 +253,7 @@ iter(AlignCols<TAlign> const & me,
 
 /*!
  * @fn AlignCols#value
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Returns AlignCols value at a position.
  *
  * @signature TColumn value(alignCols, pos);
@@ -424,6 +424,6 @@ operator==(AlignCols<TAlign> const & left,
     return left.data_align == right.data_align;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_ALIGN_COLS_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_ALIGN_COLS_H_

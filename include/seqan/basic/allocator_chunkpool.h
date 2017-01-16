@@ -35,12 +35,12 @@
 // size.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_ALLOCATOR_CHUNKPOOL_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_ALLOCATOR_CHUNKPOOL_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ALLOCATOR_CHUNKPOOL_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_ALLOCATOR_CHUNKPOOL_H_
 
-#include <seqan/basic/allocator_interface.h>
+#include <seqan2/basic/allocator_interface.h>
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -178,7 +178,7 @@ allocate(Allocator<ChunkPool<SIZE, MAX_COUNT, TParentAllocator> > & me,
          TSize count,
          Tag<TUsage> const tag_)
 {
-    SEQAN_ASSERT_GT(count, static_cast<TSize>(0));
+    SEQAN2_ASSERT_GT(count, static_cast<TSize>(0));
 
     typedef Allocator<ChunkPool<SIZE, MAX_COUNT, TParentAllocator> > TAllocator;
 
@@ -228,7 +228,7 @@ deallocate(Allocator<ChunkPool<SIZE, MAX_COUNT, TParentAllocator> > & me,
            TSize count,
            Tag<TUsage> const tag_)
 {
-    SEQAN_ASSERT_GT(count, 0);
+    SEQAN2_ASSERT_GT(count, 0);
 
     if ((sizeof(TValue) != SIZE) || (static_cast<size_t>(count) > MAX_COUNT))
     {//no blocking
@@ -240,6 +240,6 @@ deallocate(Allocator<ChunkPool<SIZE, MAX_COUNT, TParentAllocator> > & me,
     me.data_recycled_blocks[count - 1] = reinterpret_cast<char *>(data);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_INCLUDE_SEQAN_BASIC_ALLOCATOR_CHUNKPOOL_H_
+#endif  // SEQAN2_INCLUDE_SEQAN2_BASIC_ALLOCATOR_CHUNKPOOL_H_

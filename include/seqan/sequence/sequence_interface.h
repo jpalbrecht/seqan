@@ -37,10 +37,10 @@
 
 // TODO(holtgrew): These functions have (documentation wise) mostly gone into Container, Sequence Concepts and String class.  This is where they belong.
 
-#ifndef SEQAN_SEQUENCE_SEQUENCE_INTERFACE_H_
-#define SEQAN_SEQUENCE_SEQUENCE_INTERFACE_H_
+#ifndef SEQAN2_SEQUENCE_SEQUENCE_INTERFACE_H_
+#define SEQAN2_SEQUENCE_SEQUENCE_INTERFACE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -64,7 +64,7 @@ namespace seqan {
  * @see DefaultOverflowExplicit
  *
  * @tag OverflowStrategyTags#Limit
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Limit the contents to current capacity.
  *
  * @signature typedef Tag<TagLimit_> Limit;
@@ -72,7 +72,7 @@ namespace seqan {
  * All entries that exceed the capacity are lost.
  *
  * @tag OverflowStrategyTags#Generous
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Expand if needed, get precautionary extra space.
  *
  * @signature typedef Tag<TagGenerous_> Generous;
@@ -86,7 +86,7 @@ namespace seqan {
  * @link StringConcept#computeGenerousCapacity @endlink in order to change this behavior.
  *
  * @tag OverflowStrategyTags#Exact
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Expand as far as needed.
  *
  * @signature typedef Tag<TagExact_> Exact;
@@ -98,7 +98,7 @@ namespace seqan {
  * capacity down to the current length.
  *
  * @tag OverflowStrategyTags#Insist
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief No capacity check.
  *
  * @signature typedef Tag<TagInsist_> Insist;
@@ -129,7 +129,7 @@ typedef Tag<TagExact_> Exact;
 
 /*!
  * @mfn DefaultOverflowImplicit
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief The default overflow strategy for implicit resize.
  *
  * @signature DefaultOverflowImplicit<T>::Type;
@@ -155,7 +155,7 @@ struct DefaultOverflowImplicit
 
 /*!
  * @mfn DefaultOverflowExplicit
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief The default overflow strategy for explicit resize.
  *
  * @signature DefaultOverflowExplicit<T>::Type;
@@ -182,7 +182,7 @@ struct DefaultOverflowExplicit
 
 /*!
  * @mfn IsSequence
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Determines whether a type is a sequence.
  *
  * @signature IsSequence<T>::Type;
@@ -212,7 +212,7 @@ struct IsSequence<T const> : IsSequence<T> {};
 
 /*!
  * @mfn AllowsFastRandomAccess
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Determines whether a sequence efficiently supports random access.
  *
  * @signature AllowsFastRandomAccess<T>::Type;
@@ -247,7 +247,7 @@ struct AllowsFastRandomAccess<T const>
 
 /*!
  * @fn ContainerConcept#getObjectId
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief A value that identifies the underlying sequence.
  *
  * @signature TVoidPtr getObjectId(cont);
@@ -264,7 +264,7 @@ struct AllowsFastRandomAccess<T const>
  * @section Examples
  *
  * @code{.cpp}
- * String<char> str = "hallo seqan";
+ * String<char> str = "hallo seqan2";
  * bool b1 = (getObjectId(str) == getObjectId(infix(str, 3, 7));   //true
  * bool b2 = (getObjectId(str) == getObjectId(String<char>(str))); //false
  * bool b3 = (getObjectId(str) == getObjectId(toCString(str)));
@@ -280,7 +280,7 @@ struct AllowsFastRandomAccess<T const>
  */
 
 template <typename T>
-inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, void const *)
+inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, void const *)
 getObjectId(T const & me)
 {
     return &*end(me, Standard());
@@ -292,7 +292,7 @@ getObjectId(T const & me)
 
 /*!
  * @fn shareResources
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Determines whether two sequences share the same resource.
  *
  * @signature bool shareResources(s1, s2);
@@ -378,14 +378,14 @@ begin(T const & me)
 //       Standard);
 
 template <typename T, typename TSpec>
-inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, typename Iterator<T, Tag<TSpec> const>::Type)
+inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, typename Iterator<T, Tag<TSpec> const>::Type)
 begin(T & me,
       Tag<TSpec> const tag_)
 {
     return _beginDefault(me, tag_);
 }
 template <typename T, typename TSpec>
-inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, typename Iterator<T const, Tag<TSpec> const>::Type)
+inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, typename Iterator<T const, Tag<TSpec> const>::Type)
 begin(T const & me,
       Tag<TSpec> const tag_)
 {
@@ -545,7 +545,7 @@ endPosition(T const & me)
 //* ???Anti Default Sequences
 template <typename T,
           typename TPos>
-inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, typename Reference<T>::Type)
+inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, typename Reference<T>::Type)
 value(T & me,
       TPos /*pos*/)
 {
@@ -554,7 +554,7 @@ value(T & me,
 
 template <typename T,
           typename TPos>
-inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, typename Reference<T const>::Type)
+inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, typename Reference<T const>::Type)
 value(T const & me,
       TPos /*pos*/)
 {
@@ -568,7 +568,7 @@ value(T const & me,
 
 template <typename T,
           typename TPos>
-inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, typename GetValue<T>::Type)
+inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, typename GetValue<T>::Type)
 getValue(T & me,
          TPos pos)
 {
@@ -577,7 +577,7 @@ getValue(T & me,
 
 template <typename T,
           typename TPos>
-inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, typename GetValue<T const>::Type)
+inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, typename GetValue<T const>::Type)
 getValue(T const & me,
          TPos pos)
 {
@@ -603,7 +603,7 @@ front(T const & me)
 }
 
 template <typename T>
-inline SEQAN_FUNC_DISABLE_IF(IsSameType<T, T &>, typename Value<T>::Type)
+inline SEQAN2_FUNC_DISABLE_IF(IsSameType<T, T &>, typename Value<T>::Type)
 front(T && me)
 {
     return *begin(me, Standard());
@@ -628,7 +628,7 @@ back(T & me)
 }
 
 template <typename T>
-inline SEQAN_FUNC_DISABLE_IF(IsSameType<T, T &>, typename Value<T>::Type)
+inline SEQAN2_FUNC_DISABLE_IF(IsSameType<T, T &>, typename Value<T>::Type)
 back(T && me)
 {
     return *(end(me, Standard()) - 1);
@@ -636,14 +636,14 @@ back(T && me)
 
 //NOTE(h-2): why do we have this?
 template <typename T>
-inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, typename Reference<T const>::Type)
+inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, typename Reference<T const>::Type)
 backPrev(T const & me)
 {
     return value(me, length(me) - 2);
 }
 
 template <typename T>
-inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, typename Reference<T>::Type)
+inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, typename Reference<T>::Type)
 backPrev(T & me)
 {
     return value(me, length(me) - 2);
@@ -675,7 +675,7 @@ iter(T & me,
      TPos const pos,
      Tag<TTag> const &)
 {
-    SEQAN_ASSERT_LEQ_MSG(pos, static_cast<TPos>(length(me)), "Trying to get an iterator behind a container through iter().");
+    SEQAN2_ASSERT_LEQ_MSG(pos, static_cast<TPos>(length(me)), "Trying to get an iterator behind a container through iter().");
     return begin(me, Tag<TTag>()) + pos;
 }
 
@@ -685,7 +685,7 @@ iter(T const & me,
      TPos const pos,
      Tag<TTag> const &)
 {
-    SEQAN_ASSERT_LEQ_MSG(pos, static_cast<TPos>(length(me)), "Trying to get an iterator behind a container through iter().");
+    SEQAN2_ASSERT_LEQ_MSG(pos, static_cast<TPos>(length(me)), "Trying to get an iterator behind a container through iter().");
     return begin(me, Tag<TTag>()) + pos;
 }
 
@@ -708,7 +708,7 @@ assignValue(T & me,
 
 /*!
  * @fn ContainerConcept#moveValue
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Move a value into a container at a given position.
  *
  * @signature void moveValue(container, pos, value);
@@ -742,7 +742,7 @@ moveValue(T const & me,
 
 //* ???Anti Default Sequences
 template <typename T>
-inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, typename Size<T>::Type)
+inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, typename Size<T>::Type)
 length(T const & /*me*/)
 {
     return 1;
@@ -755,7 +755,7 @@ length(T const & /*me*/)
 
 /*!
  * @fn StringConcept#capacity
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Returns the capacity of a sequence.
  *
  * @signature TSize capacity(seq);
@@ -782,7 +782,7 @@ capacity(T const & me)
 // --------------------------------------------------------------------------
 
 template <typename T>
-inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, bool)
+inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, bool)
 empty(T const & me)
 {
     return (length(me) == 0);
@@ -816,7 +816,7 @@ _computeSizeForCapacity(T const & /*me*/,
 
 /*!
  * @fn StringConcept#computeGenerousCapacity
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Capacity for generous expansion.
  *
  * @signature TSize computeGenerousCapacity(seq, capacity);
@@ -869,7 +869,7 @@ _storageUpdated(T const & me)
 // --------------------------------------------------------------------------
 
 template<typename TTarget, typename TSource>
-inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<TTarget>::Type> >, void)
+inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<TTarget>::Type> >, void)
 assign(TTarget && target,
        TSource && source,
        typename Size<TTarget>::Type limit)
@@ -886,7 +886,7 @@ assign(TTarget && target,
 
 /*!
  * @fn ContainerConcept#append
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Concatenate a container to another.
  *
  * @signature void append(target, source);
@@ -918,7 +918,7 @@ append(TTarget && target,
 
 /*!
  * @fn ContainerConcept#appendValue
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Append a value to a container.
  *
  * @signature void appendValue(target, val[, tag]);
@@ -943,7 +943,7 @@ appendValue(T && me,
 
 /*!
  * @fn StringConcept#insert
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Inserts a sequence into another sequence.
  *
  * @signature void insert(seq, pos, src[, tag]);
@@ -955,7 +955,7 @@ appendValue(T && me,
  */
 
 template <typename T, typename TPosition, typename TSeq, typename TExpand>
-inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, void)
+inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, void)
 insert(T && me,
        TPosition const pos,
        TSeq const & insertSeq,
@@ -990,7 +990,7 @@ insert(T && me,
 
 /*!
  * @fn StringConcept#insertValue
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Inserts an element into a sequence.
  *
  * @signature void insertValue(seq, pos, val[, tag]);
@@ -1016,7 +1016,7 @@ insertValue(T && me,
 
 /*!
  * @fn StringConcept#replace
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Replaces a part of a sequence with another sequence.
  *
  * @signature void replace(target, posBegin, posEnd, source[, limit][, resizeTag]);
@@ -1168,7 +1168,7 @@ resize(T && me,
 
 /*!
  * @fn String#resizeSpace
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Makes free space in container
  *
  * @signature TSize resizeSpace(str, size, posBegin, posEnd [, limit][, resizeTag]);
@@ -1212,7 +1212,7 @@ resizeSpace(T & me,
 // --------------------------------------------------------------------------
 
 template<typename T, typename TBeginPosition, typename TEndPosition>
-inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, void)
+inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, void)
 erase(T & me,
       TBeginPosition pos,
       TEndPosition pos_end)
@@ -1221,7 +1221,7 @@ erase(T & me,
 }
 
 template<typename T, typename TPosition>
-inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, void)
+inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, void)
 erase(T & me,
       TPosition pos)
 {
@@ -1231,7 +1231,7 @@ erase(T & me,
 // For segments, we also have to define the version for const-containers.
 
 template<typename T, typename TBeginPosition, typename TEndPosition>
-inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, void)
+inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, void)
 erase(T const & me,
       TBeginPosition pos,
       TEndPosition pos_end)
@@ -1240,7 +1240,7 @@ erase(T const & me,
 }
 
 template<typename T, typename TPosition>
-inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, void)
+inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, void)
 erase(T const & me,
       TPosition pos)
 {
@@ -1252,10 +1252,10 @@ erase(T const & me,
 // --------------------------------------------------------------------------
 
 template <typename T>
-inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, void)
+inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, void)
 eraseBack(T & me)
 {
-    SEQAN_ASSERT_GT_MSG(length(me), 0u, "String must have more than 0 characters in eraseBack()!");
+    SEQAN2_ASSERT_GT_MSG(length(me), 0u, "String must have more than 0 characters in eraseBack()!");
     resize(me, length(me) - 1);
 }
 
@@ -1265,7 +1265,7 @@ eraseBack(T & me)
 
 /*!
  * @fn ContainerConcept#shrinkToFit
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Resizes container to minimum capacity.
  *
  * @signature void shrinkToFit(cont);
@@ -1288,6 +1288,6 @@ shrinkToFit(T & me)
     swap(me, tmp);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_SEQUENCE_SEQUENCE_INTERFACE_H_
+#endif  // #ifndef SEQAN2_SEQUENCE_SEQUENCE_INTERFACE_H_

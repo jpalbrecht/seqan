@@ -36,10 +36,10 @@
 
 // TODO(holtgrew): Split into iterator_interface.h and iterator_adapt_pointer.h.
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_ITERATOR_INTERFACE_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_ITERATOR_INTERFACE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ITERATOR_INTERFACE_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_ITERATOR_INTERFACE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -58,13 +58,13 @@ namespace seqan {
  * they are iterating whereas standard iterators do not carry this information.
  *
  * @tag ContainerIteratorTags#Standard
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Tag for selecting standard iterators.
  * @signature struct Standard_;
  *            typedef Tag<Standard_> Standard;
  *
  * @tag ContainerIteratorTags#Rooted
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Tag for selecting rooted iterators.
  * @signature struct Rooted_;
  *            typedef Tag<Rooted_> Rooted;
@@ -248,7 +248,7 @@ assignValue(T const & me,
 
 /*!
  * @fn OutputIteratorConcept#moveValue
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Move a value of a container to a given position.
  *
  * @signature void moveValue(container, pos, value);
@@ -507,6 +507,6 @@ atNil(TIterator * me)
     return me == 0;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_ITERATOR_INTERFACE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ITERATOR_INTERFACE_H_

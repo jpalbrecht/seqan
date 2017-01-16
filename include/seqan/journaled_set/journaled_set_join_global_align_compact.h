@@ -32,10 +32,10 @@
 // Author: Rene Rahn <rene.rahn@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_JOURNALED_SET_JOURNALED_SET_JOIN_GLOBAL_ALIGN_COMPACT_H_
-#define INCLUDE_SEQAN_JOURNALED_SET_JOURNALED_SET_JOIN_GLOBAL_ALIGN_COMPACT_H_
+#ifndef INCLUDE_SEQAN2_JOURNALED_SET_JOURNALED_SET_JOIN_GLOBAL_ALIGN_COMPACT_H_
+#define INCLUDE_SEQAN2_JOURNALED_SET_JOURNALED_SET_JOIN_GLOBAL_ALIGN_COMPACT_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -80,6 +80,6 @@ _joinInternal(String<TValue, Journaled<THostSpec, TJournalSpec, TBuffSpec> > & j
     set(journal, tmpJournal);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_JOURNALED_SET_JOURNALED_SET_JOIN_GLOBAL_ALIGN_COMPACT_H_
+#endif  // #ifndef INCLUDE_SEQAN2_JOURNALED_SET_JOURNALED_SET_JOIN_GLOBAL_ALIGN_COMPACT_H_

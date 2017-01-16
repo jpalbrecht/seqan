@@ -32,10 +32,10 @@
 // Author: Manuel Holtgrewe <manuel.holtgrewe@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_AGGREGATE_CONCEPT_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_AGGREGATE_CONCEPT_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_AGGREGATE_CONCEPT_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_AGGREGATE_CONCEPT_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -74,7 +74,7 @@ namespace seqan {
 
 /*!
  * @tag AggregateTags#Pack
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Tag to mark a packed specialization that disables address alignment for members.
  *
  * @signature typedef Tag<Pack_> Pack;
@@ -87,7 +87,7 @@ typedef Tag<Pack_> Pack;
 
 /*!
  * @tag AggregateTags#BitPacked
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Tag to mark a bit-packed specialization that avoids to waste bits.
  *
  * @signature template <[unsinged BITSIZE1[, unsigned BITSIZE2]]>
@@ -107,7 +107,7 @@ struct BitPacked;
 
 /*!
  * @mfn MakePacked
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Return the corresponding packed type for a type.
  *
  * @signature MakePacked<TAggregate>::Type;
@@ -127,6 +127,6 @@ struct MakePacked
 // Functions
 // ============================================================================
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_AGGREGATE_CONCEPT_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_AGGREGATE_CONCEPT_H_

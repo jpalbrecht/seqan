@@ -36,10 +36,10 @@
 
 // TODO(holtgrew): I think the interface is not completely specified here. Also, we could maybe have more generic implementations for operators?
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_ITERATOR_BASE_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_ITERATOR_BASE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ITERATOR_BASE_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_ITERATOR_BASE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -52,7 +52,7 @@ namespace seqan {
 /*!
  * @class Iter
  * @implements IteratorAssociatedTypesConcept
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Base class for iterators to traverse containers.
  *
  * @signature template <typename TContainer, typename TSpec>
@@ -370,6 +370,6 @@ position(Iter<TContainer, TSpec> const & me,
     return position(me);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_ITERATOR_BASE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ITERATOR_BASE_H_

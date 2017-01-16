@@ -32,10 +32,10 @@
 // Author: Enrico Siragusa <enrico.siragusa@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_BASIC_DEVICE_H
-#define SEQAN_BASIC_DEVICE_H
+#ifndef SEQAN2_BASIC_DEVICE_H
+#define SEQAN2_BASIC_DEVICE_H
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags
@@ -61,7 +61,7 @@ typedef Tag<ExecDevice_> ExecDevice;
 
 /*!
  * @mfn Device
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Converts a given type into one that lives on a device.
  *
  * @signature Device<TObject>::Type;
@@ -91,7 +91,7 @@ struct Device<TObject const>
 
 /*!
  * @mfn IsDevice
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Tests if a given type is a device type.
  *
  * @signature IsDevice<TObject>::Type;
@@ -147,6 +147,6 @@ struct CtaSize
     static const unsigned VALUE = 256;
 };
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_BASIC_DEVICE_H
+#endif  // #ifndef SEQAN2_BASIC_DEVICE_H

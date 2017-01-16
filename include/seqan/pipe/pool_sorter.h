@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_POOL_SORTER_H
-#define SEQAN_HEADER_POOL_SORTER_H
+#ifndef SEQAN2_HEADER_POOL_SORTER_H
+#define SEQAN2_HEADER_POOL_SORTER_H
 
-namespace seqan
+namespace seqan2
 {
 
     template < typename TValue, typename Compare >
@@ -72,7 +72,7 @@ namespace seqan
 /*!
  * @class SorterConfigSize
  * @extends SorterSpec
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  *
  * @brief Configuration of Sorter.
  *
@@ -102,7 +102,7 @@ namespace seqan
 /*!
  * @class SorterConfig
  * @extends SorterSpec
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Configuration of Sorter.
  *
  * @signature template <typename TCompare[, typename TFile]>
@@ -131,7 +131,7 @@ namespace seqan
 /*!
  * @class SorterSpec
  * @extends Pool
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Sorts all elements using a custom compare function.
  *
  * @signature template <typename TValue, typename TConfig>
@@ -235,14 +235,14 @@ namespace seqan
         inline void pop(TValue &Ref_)
         {
             TPageBucket &pb = top(pqueue);
-            SEQAN_ASSERT_LEQ(pb.cur, pb.end);
+            SEQAN2_ASSERT_LEQ(pb.cur, pb.end);
 
             Ref_ = *pb.cur;
             if (++pb.cur == pb.end)
             {
                 // bucket is empty, we have to fetch the next bucket
                 if (!readBucket(pb, pb.pageNo, pool.pageSize, pool.dataSize(pb.pageNo), pool.file)) {
-                    seqan::pop(pqueue);
+                    seqan2::pop(pqueue);
                     return;
                 }
             }
@@ -252,12 +252,12 @@ namespace seqan
         inline void pop()
         {
             TPageBucket &pb = top(pqueue);
-            SEQAN_ASSERT_LEQ(pb.cur, pb.end);
+            SEQAN2_ASSERT_LEQ(pb.cur, pb.end);
 
             if (++pb.cur == pb.end)
                 // bucket is empty, we have to fetch the next bucket
                 if (!readBucket(pb, pb.pageNo, pool.pageSize, pool.dataSize(pb.pageNo), pool.file)) {
-                    seqan::pop(pqueue);
+                    seqan2::pop(pqueue);
                     return;
                 }
             adjustTop(pqueue);

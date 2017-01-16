@@ -33,10 +33,10 @@
 // Author: Anne-Katrin Emde <anne-katrin.emde@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_GRAPH_ALIGN_GRAPH_IMPL_ALIGN_ADAPT_H_
-#define SEQAN_INCLUDE_SEQAN_GRAPH_ALIGN_GRAPH_IMPL_ALIGN_ADAPT_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_GRAPH_ALIGN_GRAPH_IMPL_ALIGN_ADAPT_H_
+#define SEQAN2_INCLUDE_SEQAN2_GRAPH_ALIGN_GRAPH_IMPL_ALIGN_ADAPT_H_
 
-namespace seqan {
+namespace seqan2 {
 
 //////////////////////////////////////////////////////////////////////////////
 // Adaptations so that the alignment graph works like any other graph
@@ -404,6 +404,6 @@ _writeEdgeType(TTarget & iter,
     write(iter, " -- ");
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_GRAPH_ALIGN_GRAPH_IMPL_ALIGN_ADAPT_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_GRAPH_ALIGN_GRAPH_IMPL_ALIGN_ADAPT_H_

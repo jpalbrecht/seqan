@@ -33,15 +33,15 @@
 // Author: Manuel Holtgrewe <manuel.holtgrewe@fu-berlin.de>
 // ==========================================================================
 
-// SEQAN_NO_GENERATED_FORWARDS
+// SEQAN2_NO_GENERATED_FORWARDS
 
 // TODO(holtgrew): Currently, operations are a function of the whole gap count, could be of clipped region only.
 // TODO(holtgrew): Problem with the gap value, getValue(), value().
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_GAPS_ARRAY_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_GAPS_ARRAY_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_GAPS_ARRAY_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_GAPS_ARRAY_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -76,7 +76,7 @@ typedef Tag<ArrayGaps_> ArrayGaps;
 
 /*!
  * @class ArrayGaps
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @extends Gaps
  * @brief Stores length of gap- and non-gap runs in an array.
  *
@@ -88,7 +88,7 @@ typedef Tag<ArrayGaps_> ArrayGaps;
 
 /*!
  * @fn ArrayGaps::Gaps
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Constructor.
  *
  * @signature Gaps::Gaps([other]);
@@ -343,7 +343,7 @@ template <typename TSequence>
 inline typename Size<Gaps<TSequence, ArrayGaps> >::Type
 length(Gaps<TSequence, ArrayGaps> const & gaps)
 {
-    SEQAN_ASSERT_GEQ(gaps._clippingEndPos, gaps._clippingBeginPos);
+    SEQAN2_ASSERT_GEQ(gaps._clippingEndPos, gaps._clippingBeginPos);
     return gaps._clippingEndPos - gaps._clippingBeginPos;
 }
 
@@ -587,7 +587,7 @@ insertGaps(Gaps<TSequence, ArrayGaps> & gaps, TPosition clippedViewPos, TCount c
     TSeqPos offset = 0;
     for (TSeqPos counter = unclippedViewPos; counter > 0;)
     {
-        SEQAN_ASSERT_LT(i, length(gaps._array));
+        SEQAN2_ASSERT_LT(i, length(gaps._array));
         if (counter > gaps._array[i])
         {
             counter -= gaps._array[i];
@@ -600,7 +600,7 @@ insertGaps(Gaps<TSequence, ArrayGaps> & gaps, TPosition clippedViewPos, TCount c
         }
     }
 
-    SEQAN_ASSERT_GEQ(gaps._array[i], offset);
+    SEQAN2_ASSERT_GEQ(gaps._array[i], offset);
 
     // Insert gaps, simple and fast if we are in a gaps bucket, a bit harder
     // otherwise.
@@ -657,13 +657,13 @@ removeGaps(Gaps<TSequence, ArrayGaps> & gaps, TPosition clippedViewPos, TCount c
     TGapsPosition pos = clippedViewPos + clippedBeginPosition(gaps);
 
     // Get index i of the according bucket and offset within bucket.
-    SEQAN_ASSERT_GEQ(length(gaps._array), 2u);
+    SEQAN2_ASSERT_GEQ(length(gaps._array), 2u);
     // Start at position 1 if there are no leading gaps.
     TArrayPos i = (gaps._array[0] == 0);
     TSeqPos offset = 0;
     for (TSeqPos counter = pos; counter > 0;)
     {
-        SEQAN_ASSERT_LT(i, length(gaps._array));
+        SEQAN2_ASSERT_LT(i, length(gaps._array));
         if (counter > gaps._array[i])
         {
             counter -= gaps._array[i];
@@ -757,13 +757,13 @@ isGap(Gaps<TSequence, ArrayGaps> const & gaps, TPosition clippedViewPos)
     TGapsPosition pos = clippedViewPos + clippedBeginPosition(gaps);
 
     // Get index i of the according bucket and offset within bucket.
-    SEQAN_ASSERT_GEQ(length(gaps._array), 2u);
+    SEQAN2_ASSERT_GEQ(length(gaps._array), 2u);
     // Start at position 1 if there are no leading gaps.
     TArrayPos i = (gaps._array[0] == 0);
     TSeqPos offset = 0;
     for (TSeqPos counter = pos; counter > TSeqPos(0);)
     {
-        SEQAN_ASSERT_LT(i, length(gaps._array));
+        SEQAN2_ASSERT_LT(i, length(gaps._array));
         if (counter > gaps._array[i])
         {
             counter -= gaps._array[i];
@@ -801,7 +801,7 @@ clearClipping(Gaps<TSequence, ArrayGaps> & gaps)
     for (TArrayPos i = 0; i < length(gaps._array); ++i)
         gaps._clippingEndPos += gaps._array[i];
 
-    SEQAN_ASSERT_LEQ(static_cast<int>(gaps._sourceEndPos), static_cast<int>(gaps._clippingEndPos));
+    SEQAN2_ASSERT_LEQ(static_cast<int>(gaps._sourceEndPos), static_cast<int>(gaps._clippingEndPos));
 }
 
 // ----------------------------------------------------------------------------
@@ -912,6 +912,6 @@ endPosition(Gaps<TSequence, ArrayGaps> & gaps)
     return gaps._sourceEndPos;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_GAPS_ARRAY_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_GAPS_ARRAY_H_

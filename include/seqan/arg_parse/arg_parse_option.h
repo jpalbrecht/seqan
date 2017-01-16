@@ -32,15 +32,15 @@
 // Author: Stephan Aiche <stephan.aiche@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ARG_PARSE_ARG_PARSE_OPTION_H_
-#define SEQAN_INCLUDE_SEQAN_ARG_PARSE_ARG_PARSE_OPTION_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ARG_PARSE_ARG_PARSE_OPTION_H_
+#define SEQAN2_INCLUDE_SEQAN2_ARG_PARSE_ARG_PARSE_OPTION_H_
 
 #include <string>
 #include <vector>
-#include <seqan/arg_parse/arg_parse_argument.h>
-#include <seqan/arg_parse/arg_parse_exceptions.h>
+#include <seqan2/arg_parse/arg_parse_argument.h>
+#include <seqan2/arg_parse/arg_parse_exceptions.h>
 
-namespace seqan {
+namespace seqan2 {
 
 // ----------------------------------------------------------------------------
 // Class ArgParseOption
@@ -49,7 +49,7 @@ namespace seqan {
 /*!
  * @class ArgParseOption
  * @extends ArgParseArgument
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Store information for a specific command line option.
  *
  * @signature class ArgParseOption : ArgParseArgument;
@@ -165,7 +165,7 @@ inline bool isStringArgument(ArgParseOption const & me)
 
 /*!
  * @fn ArgParseOption#isFlagOption
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Returns whether an option is a flag.
  *
  * @signature bool isFlagOption(option);
@@ -188,7 +188,7 @@ inline bool isFlagOption(ArgParseOption const & me)
 
 /*!
  * @fn ArgParseOption#isHidden
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Return whether an option is hidden on the help screen.
  *
  * @signature bool isHidden(option);
@@ -211,7 +211,7 @@ inline bool isHidden(ArgParseOption const & me)
 
 /*!
  * @fn ArgParseOption#hideOption
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Hides the ArgParseOption from the help screen (or shows it again).
  *
  * @signature void hideOption(option[, hide]);
@@ -231,7 +231,7 @@ inline void hideOption(ArgParseOption & me, bool hide = true)
 
 /*!
  * @fn ArgParseOption#isAdvanced
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Return whether an option is only shown in the full help screen.
  *
  * @signature bool isAdvanced(option);
@@ -254,7 +254,7 @@ inline bool isAdvanced(ArgParseOption const & me)
 
 /*!
  * @fn ArgParseOption#setAdvanced
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Shows the ArgParseOption only on the full help screen.
  *
  * @signature void setAdvanced(option[, advanced]);
@@ -274,7 +274,7 @@ inline void setAdvanced(ArgParseOption & me, bool advanced = true)
 
 /*!
  * @fn ArgParseOption#isRequired
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Returns whether the option is mandatory.
  *
  * @signature bool isRequired(option);
@@ -297,7 +297,7 @@ inline bool isRequired(ArgParseOption const & me)
 
 /*!
  * @fn ArgParseOption#setDefaultValue
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Set the default value for the given option.
  *
  * @signature void setDefaultValue(option, v);
@@ -311,7 +311,7 @@ inline bool isRequired(ArgParseOption const & me)
 template <typename TValue>
 inline void setDefaultValue(ArgParseOption & me, const TValue & value)
 {
-    SEQAN_TRY
+    SEQAN2_TRY
     {
         std::stringstream strm;
         strm << value;
@@ -325,9 +325,9 @@ inline void setDefaultValue(ArgParseOption & me, const TValue & value)
         // check if all constraints are satisfied
         _checkValue(me, strm.str());
     }
-    SEQAN_CATCH(ParseError & ex)
+    SEQAN2_CATCH(ParseError & ex)
     {
-        SEQAN_FAIL("Default value does not satisfy the restrictions:\n %s", ex.what());
+        SEQAN2_FAIL("Default value does not satisfy the restrictions:\n %s", ex.what());
     }
 }
 
@@ -337,7 +337,7 @@ inline void setDefaultValue(ArgParseOption & me, const TValue & value)
 
 /*!
  * @fn ArgParseOption#addDefaultValue
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Adds/appends a new value to the list of default values.
  *
  * @signature void setDefaultValue(option, v);
@@ -354,7 +354,7 @@ inline void setDefaultValue(ArgParseOption & me, const TValue & value)
 template <typename TValue>
 inline void addDefaultValue(ArgParseOption & me, const TValue & value)
 {
-    SEQAN_TRY
+    SEQAN2_TRY
     {
         std::stringstream strm;
         strm << value;
@@ -365,9 +365,9 @@ inline void addDefaultValue(ArgParseOption & me, const TValue & value)
         // check if all constraints are satisfied
         _checkValue(me, strm.str(), me.defaultValue.size() - 1);
     }
-    SEQAN_CATCH(ParseError & ex)
+    SEQAN2_CATCH(ParseError & ex)
     {
-        SEQAN_FAIL("Default value does not satisfy the restrictions:\n %s", ex.what());
+        SEQAN2_FAIL("Default value does not satisfy the restrictions:\n %s", ex.what());
     }
 }
 
@@ -377,7 +377,7 @@ inline void addDefaultValue(ArgParseOption & me, const TValue & value)
 
 /*!
  * @fn ArgParseOption#setRequired
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Sets whether or not the option is mandatory.
  *
  * @signature void setRequired(option, required);
@@ -399,7 +399,7 @@ inline void setRequired(ArgParseOption & me, bool required)
 
 /*!
  * @fn ArgParseOption#getArgumentLabel
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Returns the argument label.
  *
  * @signature std::string getArgumentLabel(option);
@@ -423,7 +423,7 @@ inline std::string const getArgumentLabel(ArgParseOption const & me)
 
 /*!
  * @fn ArgParseOption#getOptionName
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Returns the name of the ArgParseOption in a well-formatted way.
  *
  * @signature std::string getOptionName(option);
@@ -454,7 +454,7 @@ inline std::string getOptionName(ArgParseOption const & me)
 
 /*!
  * @fn ArgParseOption#write
- * @headerfile <seqan/arg_parse.h>
+ * @headerfile <seqan2/arg_parse.h>
  * @brief Writes the basic informationa bout the ArgParseOption to the provided stream.
  *
  * @signature void write(stream, option);
@@ -487,6 +487,6 @@ inline TStream & operator<<(TStream & target, ArgParseOption const & source)
     return target;
 }
 
-} // namespace seqan
+} // namespace seqan2
 
-#endif // SEQAN_INCLUDE_SEQAN_ARG_PARSE_ARG_PARSE_OPTION_H_
+#endif // SEQAN2_INCLUDE_SEQAN2_ARG_PARSE_ARG_PARSE_OPTION_H_

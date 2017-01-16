@@ -30,12 +30,12 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_PRIORITY_TYPE_BASE_H
-#define SEQAN_HEADER_PRIORITY_TYPE_BASE_H
+#ifndef SEQAN2_HEADER_PRIORITY_TYPE_BASE_H
+#define SEQAN2_HEADER_PRIORITY_TYPE_BASE_H
 
 #include <functional>
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -46,7 +46,7 @@ struct PriorityHeap;
 
 /*!
  * @class PriorityType
- * @headerfile <seqan/misc/priority_type_base.h>
+ * @headerfile <seqan2/misc/priority_type_base.h>
  * @brief STores items in such a way that the item with the highest priority is at the top.
  *
  * @signature template <[typename TValue[, typename TLess[, typename TSpec]]]>
@@ -76,6 +76,6 @@ struct Size< PriorityType<TValue, TLess, TSpec> >
 
 //////////////////////////////////////////////////////////////////////////////
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

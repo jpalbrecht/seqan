@@ -34,10 +34,10 @@
 // This file contains routines to read BLAST tab-seperated output
 // ==========================================================================
 
-#ifndef SEQAN_BLAST_BLAST_TABULAR_LOWLEVEL_H_
-#define SEQAN_BLAST_BLAST_TABULAR_LOWLEVEL_H_
+#ifndef SEQAN2_BLAST_BLAST_TABULAR_LOWLEVEL_H_
+#define SEQAN2_BLAST_BLAST_TABULAR_LOWLEVEL_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -55,7 +55,7 @@ namespace seqan
 /*!
  * @class BlastTabularLL
  * @signature typedef Tag<BlastTabularLL_> BlastTabularLL;
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  * @brief Low-Level support for Blast Tabular file formats
  *
  * There are three blast format related tags in SeqAn:
@@ -107,7 +107,7 @@ typedef Tag<BlastTabularLL_> BlastTabularLL;
  * @fn BlastTabularLL#onMatch
  * @brief Returns whether the iterator is on the beginning of a match line.
  * @signature bool onMatch(stream, blastTabularLL)
- * @headerfile seqan/blast.h
+ * @headerfile seqan2/blast.h
  *
  * @param[in] iter              An input iterator over a stream or any fwd-iterator over a string.
  * @param[in] blastTabularLL    The @link BlastTabularLL @endlink tag.
@@ -133,7 +133,7 @@ onMatch(TFwdIterator & iter,
  * @fn BlastTabularLL#skipUntilMatch
  * @brief Skip arbitrary number of comment lines until the beginning of a match is reached.
  * @signature void skipUntilMatch(stream, blastTabularLL);
- * @headerfile seqan/blast.h
+ * @headerfile seqan2/blast.h
  *
  * @param[in,out] stream         An input iterator over a stream or any fwd-iterator over a string.
  * @param[in]     blastTabularLL The @link BlastTabularLL @endlink tag.
@@ -168,7 +168,7 @@ skipUntilMatch(TFwdIterator & iter,
  * @fn BlastTabularLL#readMatch
  * @brief Low-level BlastTabular file reading.
  * @signature void readMatch(stream, blastTabularLL, args ...);
- * @headerfile seqan/blast.h
+ * @headerfile seqan2/blast.h
  *
  * @param[in,out] stream         An input iterator over a stream or any fwd-iterator over a string.
  * @param[in]     blastTabularLL The @link BlastTabularLL @endlink tag.
@@ -197,14 +197,14 @@ skipUntilMatch(TFwdIterator & iter,
 
 // arbitrary columns
 template <typename TTarget>
-inline SEQAN_FUNC_ENABLE_IF(IsSequence<TTarget>)
+inline SEQAN2_FUNC_ENABLE_IF(IsSequence<TTarget>)
 _assignOrCast(TTarget & target, std::string const & source)
 {
     assign(target, source);
 }
 
 template <typename TTarget>
-inline SEQAN_FUNC_ENABLE_IF(Is<NumberConcept<TTarget>>)
+inline SEQAN2_FUNC_ENABLE_IF(Is<NumberConcept<TTarget>>)
 _assignOrCast(TTarget & target, std::string const & source)
 {
     target = lexicalCast<TTarget>(source);
@@ -254,8 +254,8 @@ readMatch(TFwdIterator & iter,
            TArgs & ... args)
 {
     // comment lines should have been read or skipped
-    if (SEQAN_UNLIKELY(!onMatch(iter, BlastTabularLL())))
-        SEQAN_THROW(ParseError("ERROR: Not on beginning of Match (you should have skipped comments)."));
+    if (SEQAN2_UNLIKELY(!onMatch(iter, BlastTabularLL())))
+        SEQAN2_THROW(ParseError("ERROR: Not on beginning of Match (you should have skipped comments)."));
 
     _readMatchImplBlastTab(iter, args...);
 }
@@ -266,7 +266,7 @@ readMatch(TFwdIterator & iter,
 
 /*!
  * @fn BlastTabularLL#writeMatch
- * @headerfile seqan/blast.h
+ * @headerfile seqan2/blast.h
  * @brief Low-level file-writing for blast tabular formats
  * @signature void writeMatch(stream, blastTabularLL, columns...)
  *
@@ -322,4 +322,4 @@ writeMatch(TFwdIterator & stream,
 
 }
 
-#endif // SEQAN_BLAST_BLAST_TABULAR_LOWLEVEL_H_
+#endif // SEQAN2_BLAST_BLAST_TABULAR_LOWLEVEL_H_

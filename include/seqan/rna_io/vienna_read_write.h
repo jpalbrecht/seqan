@@ -34,15 +34,15 @@
 // This file contains routines to read/write Vienna format files
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_RNA_IO_VIENNA_READ_WRITE_H_
-#define SEQAN_INCLUDE_SEQAN_RNA_IO_VIENNA_READ_WRITE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_RNA_IO_VIENNA_READ_WRITE_H_
+#define SEQAN2_INCLUDE_SEQAN2_RNA_IO_VIENNA_READ_WRITE_H_
 
-#include <seqan/stream.h>
-#include <seqan/rna_io/dot_bracket_read_write.h>  // for bracket-graph transformation
+#include <seqan2/stream.h>
+#include <seqan2/rna_io/dot_bracket_read_write.h>  // for bracket-graph transformation
 #include <stack>
 #include <array>
 
-namespace seqan{
+namespace seqan2{
 
 // ==========================================================================
 // Tags, Classes, Enums
@@ -54,7 +54,7 @@ namespace seqan{
 
 /*!
  * @tag FileFormats#Vienna
- * @headerfile <seqan/rna_io.h>
+ * @headerfile <seqan2/rna_io.h>
  * @brief Vienna format for RNA structures without pseudoknots (*.dbv).
  * @signature typedef Tag<Vienna_> Vienna;
  * @see FileFormats#RnaStruct
@@ -133,7 +133,7 @@ readRecord(RnaRecord & record, TForwardIter & iter, Vienna const & /*tag*/)
     // read bracket string and build graph
     readUntil(buffer, iter, IsWhitespace());
     if (length(buffer) != record.seqLen)
-        SEQAN_THROW(ParseError("ERROR: Bracket string must be as long as sequence."));
+        SEQAN2_THROW(ParseError("ERROR: Bracket string must be as long as sequence."));
 
     RnaStructureGraph graph;
     typedef typename Size<std::string>::Type TStdStringSize;
@@ -156,12 +156,12 @@ readRecord(RnaRecord & record, TForwardIter & iter, Vienna const & /*tag*/)
             }
             else
             {
-                SEQAN_THROW(ParseError("Invalid bracket notation: unpaired closing bracket"));
+                SEQAN2_THROW(ParseError("Invalid bracket notation: unpaired closing bracket"));
             }
         }
     }
     if(!stack.empty())
-        SEQAN_THROW(ParseError("Invalid bracket notation: unpaired opening bracket"));
+        SEQAN2_THROW(ParseError("Invalid bracket notation: unpaired opening bracket"));
 
     append(record.fixedGraphs, graph);
     clear(buffer);
@@ -174,7 +174,7 @@ readRecord(RnaRecord & record, TForwardIter & iter, Vienna const & /*tag*/)
         readUntil(buffer, iter, EqualsChar<')'>());
         if (!lexicalCast(record.fixedGraphs[0].energy, buffer))
         {
-            SEQAN_THROW(BadLexicalCast(record.fixedGraphs[0].energy, buffer));
+            SEQAN2_THROW(BadLexicalCast(record.fixedGraphs[0].energy, buffer));
         }
         clear(buffer);
     }
@@ -198,9 +198,9 @@ inline void
 writeRecord(TTarget & target, RnaRecord const & record, Vienna const & /*tag*/)
 {
     if (empty(record.sequence) && length(rows(record.align)) != 1u)
-        SEQAN_THROW(ParseError("ERROR: Vienna formatted file cannot contain an alignment."));
+        SEQAN2_THROW(ParseError("ERROR: Vienna formatted file cannot contain an alignment."));
     if (length(record.fixedGraphs) != 1u)
-        SEQAN_THROW(ParseError("ERROR: Vienna formatted file cannot contain multiple structure graphs."));
+        SEQAN2_THROW(ParseError("ERROR: Vienna formatted file cannot contain multiple structure graphs."));
 
     Rna5String const sequence = empty(record.sequence) ? source(row(record.align, 0)) : record.sequence;
     RnaStructureGraph const & graph = record.fixedGraphs[0];
@@ -244,7 +244,7 @@ writeRecord(TTarget & target, RnaRecord const & record, Vienna const & /*tag*/)
             bracketStr[idx] = ')';
             if (stack.empty())
             {
-                SEQAN_FAIL("Cannot reach here.");
+                SEQAN2_FAIL("Cannot reach here.");
             }
             if (stack.top() == idx)
             {
@@ -252,7 +252,7 @@ writeRecord(TTarget & target, RnaRecord const & record, Vienna const & /*tag*/)
             }
             else
             {
-                SEQAN_THROW(ParseError("ERROR: Vienna format does not allow pseudoknots."));
+                SEQAN2_THROW(ParseError("ERROR: Vienna format does not allow pseudoknots."));
             }
         }
     }
@@ -275,6 +275,6 @@ writeRecord(TTarget & target, RnaRecord const & record, RnaIOContext & /*context
     writeRecord(target, record, Vienna());
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif // SEQAN_INCLUDE_SEQAN_RNA_IO_VIENNA_READ_WRITE_H_
+#endif // SEQAN2_INCLUDE_SEQAN2_RNA_IO_VIENNA_READ_WRITE_H_

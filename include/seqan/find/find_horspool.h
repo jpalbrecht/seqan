@@ -32,10 +32,10 @@
 // Author: Andreas Gogol-Doering <andreas.doering@mdc-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_FIND_HORSPOOL_H
-#define SEQAN_HEADER_FIND_HORSPOOL_H
+#ifndef SEQAN2_HEADER_FIND_HORSPOOL_H
+#define SEQAN2_HEADER_FIND_HORSPOOL_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -45,7 +45,7 @@ namespace seqan
 /*!
  * @class HorspoolPattern
  * @extends Pattern
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  *
  * @brief Exact string matching using Horspool's algorithm (1980).
  *
@@ -77,7 +77,7 @@ public:
     Pattern() {}
 
     template <typename TNeedle2>
-    Pattern(TNeedle2 && ndl, SEQAN_CTOR_DISABLE_IF(IsSameType<typename std::remove_reference<TNeedle2>::type const &, Pattern const &>))
+    Pattern(TNeedle2 && ndl, SEQAN2_CTOR_DISABLE_IF(IsSameType<typename std::remove_reference<TNeedle2>::type const &, Pattern const &>))
     {
         setHost(*this, std::forward<TNeedle2>(ndl));
         ignoreUnusedVariableWarning(dummy);
@@ -95,7 +95,7 @@ _reinitPattern(Pattern<TNeedle, Horspool> & me)
     typedef typename Size<TNeedle>::Type TSize;
 
     TNeedle& ndl = needle(me);
-    SEQAN_ASSERT_NOT(empty(ndl));
+    SEQAN2_ASSERT_NOT(empty(ndl));
 
     TSize value_size = ValueSize<TValue>::VALUE;
     //make room for map
@@ -441,7 +441,7 @@ find(TFinder & finder, Pattern<TNeedle2, Horspool> & me)
         _finderSetNonEmpty(finder);
     }
 
-    SEQAN_ASSERT_GT(length(needle(me)), 0u);
+    SEQAN2_ASSERT_GT(length(needle(me)), 0u);
 
     return _findHorspool(finder, me, find_first);
 }
@@ -449,6 +449,6 @@ find(TFinder & finder, Pattern<TNeedle2, Horspool> & me)
 
 //////////////////////////////////////////////////////////////////////////////
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

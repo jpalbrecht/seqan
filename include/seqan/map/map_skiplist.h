@@ -30,20 +30,20 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_MISC_SKIPLIST_H
-#define SEQAN_HEADER_MISC_SKIPLIST_H
+#ifndef SEQAN2_HEADER_MISC_SKIPLIST_H
+#define SEQAN2_HEADER_MISC_SKIPLIST_H
 
 
 #include <random>
 
 
-namespace seqan
+namespace seqan2
 {
 
 /*!
  * @class Skiplist
  * @extends Map
- * @headerfile <seqan/map.h>
+ * @headerfile <seqan2/map.h>
  *
  * @brief General purpose map container.
  *
@@ -532,7 +532,7 @@ _skiplistFind(Map<TValue, Skiplist<TSpec> > & me,
 
 /*!
  * @fn Map#find
- * @headerfile <seqan/map.h>
+ * @headerfile <seqan2/map.h>
  * @brief Find a value in a map.
  *
  * @signature TIterator find(map, key);

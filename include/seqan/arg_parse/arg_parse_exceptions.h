@@ -32,10 +32,10 @@
 // Author: Stephan Aiche <stephan.aiche@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ARG_PARSE_ARG_PARSE_EXCEPTIONS_H_
-#define SEQAN_INCLUDE_SEQAN_ARG_PARSE_ARG_PARSE_EXCEPTIONS_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ARG_PARSE_ARG_PARSE_EXCEPTIONS_H_
+#define SEQAN2_INCLUDE_SEQAN2_ARG_PARSE_ARG_PARSE_EXCEPTIONS_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags, Classes, Enums
@@ -45,7 +45,7 @@ namespace seqan {
 // Class ParseError
 // ----------------------------------------------------------------------------
 
-// Defined in include/seqan/stream/tokenization.h
+// Defined in include/seqan2/stream/tokenization.h
 struct ParseError;
 
 // ----------------------------------------------------------------------------
@@ -84,6 +84,6 @@ public:
     {}
 };
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ARG_PARSE_ARG_PARSE_EXCEPTIONS_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ARG_PARSE_ARG_PARSE_EXCEPTIONS_H_

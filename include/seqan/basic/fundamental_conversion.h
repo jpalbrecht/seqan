@@ -36,10 +36,10 @@
 
 // TODO(holtgrew): Move to alphabet submodule?
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_FUNDAMENTAL_CONVERSION_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_FUNDAMENTAL_CONVERSION_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_FUNDAMENTAL_CONVERSION_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_FUNDAMENTAL_CONVERSION_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -55,7 +55,7 @@ namespace seqan {
 
 /*!
  * @mfn Convert
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Return type of a conversion.
  *
  * @signature Convert<TTarget, TSource>::Type;
@@ -87,7 +87,7 @@ struct Convert
 
 /*!
  * @fn convertImpl
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Implements convert.
  *
  * @signature T convertImpl(convert, source);
@@ -124,7 +124,7 @@ convertImpl(Convert<TTarget, T> const,
 
 /*!
  * @fn convert
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Converts a value into another value.
  *
  * @signature T convert<Target>(source);
@@ -149,6 +149,6 @@ convert(TSource const & source)
     return convertImpl(Convert<TTarget, TSource>(), source);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_FUNDAMENTAL_CONVERSION_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_FUNDAMENTAL_CONVERSION_H_

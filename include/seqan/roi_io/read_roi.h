@@ -32,12 +32,12 @@
 // Author: Manuel Holtgrewe <manuel.holtgrewe@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_ROI_IO_READ_ROI_H_
-#define INCLUDE_SEQAN_ROI_IO_READ_ROI_H_
+#ifndef INCLUDE_SEQAN2_ROI_IO_READ_ROI_H_
+#define INCLUDE_SEQAN2_ROI_IO_READ_ROI_H_
 
-#include <seqan/stream.h>
+#include <seqan2/stream.h>
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -247,6 +247,6 @@ void readRecord(RoiRecord & record, RoiIOContext & context, TForwardIter & iter,
     }
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_ROI_IO_READ_ROI_H_
+#endif  // #ifndef INCLUDE_SEQAN2_ROI_IO_READ_ROI_H_

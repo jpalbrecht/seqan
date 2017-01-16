@@ -33,10 +33,10 @@
 // Author: Manuel Holtgrewe <manuel.holtgrewe@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_UCSC_RECORD_H_
-#define SEQAN_INCLUDE_SEQAN_UCSC_RECORD_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_UCSC_RECORD_H_
+#define SEQAN2_INCLUDE_SEQAN2_UCSC_RECORD_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags, Classes, Enums
@@ -49,7 +49,7 @@ namespace seqan {
 /*!
  * @class UcscRecord
  * @implements FormattedFileRecordConcept
- * @headerfile <seqan/ucsc_io.h>
+ * @headerfile <seqan2/ucsc_io.h>
  * @brief Represent the information for one UCSC gene annotation record.
  *
  * @signature class UcscRecord;
@@ -158,6 +158,6 @@ inline void clear(UcscRecord & record)
     record.annotationEndPos = -1;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BAM_IO_BAM_RECORD_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BAM_IO_BAM_RECORD_H_

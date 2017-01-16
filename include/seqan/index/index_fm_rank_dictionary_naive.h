@@ -32,10 +32,10 @@
 // Author: Enrico Siragusa <enrico.siragusa@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INDEX_FM_RANK_DICTIONARY_NAIVE_H_
-#define INDEX_FM_RANK_DICTIONARY_NAIVE_H_
+#ifndef SEQAN2_INDEX_FM_RANK_DICTIONARY_NAIVE_H_
+#define SEQAN2_INDEX_FM_RANK_DICTIONARY_NAIVE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags
@@ -166,7 +166,7 @@ getValue(RankDictionary<bool, Naive<TSpec, TConfig> > const & dict, TPos pos)
 template <typename TValue, typename TSpec, typename TConfig, typename TPos, typename TChar>
 inline void setValue(RankDictionary<TValue, Naive<TSpec, TConfig> > & dict, TPos pos, TChar c)
 {
-//    SEQAN_ASSERT_GT(pos, (TPos)back(dict.ranks));
+//    SEQAN2_ASSERT_GT(pos, (TPos)back(dict.ranks));
 
     if (c == false) return;
 
@@ -233,4 +233,4 @@ resize(RankDictionary<TValue, Naive<TSpec, TConfig> > & dict, TSize /* newLength
 
 }
 
-#endif  // INDEX_FM_RANK_DICTIONARY_NAIVE_H_
+#endif  // SEQAN2_INDEX_FM_RANK_DICTIONARY_NAIVE_H_

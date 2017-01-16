@@ -32,17 +32,17 @@
 // Author: Stephan Aiche <aiche@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_FIND_ABNDMALGO_H
-#define SEQAN_HEADER_FIND_ABNDMALGO_H
+#ifndef SEQAN2_HEADER_FIND_ABNDMALGO_H
+#define SEQAN2_HEADER_FIND_ABNDMALGO_H
 
 // uncomment this for verbose output of the ABNDM ALGO
-//#define SEQAN_DEBUG_ABNDM
+//#define SEQAN2_DEBUG_ABNDM
 
-namespace seqan
+namespace seqan2
 {
 
 
-#ifdef SEQAN_DEBUG_ABNDM
+#ifdef SEQAN2_DEBUG_ABNDM
 inline void _printMask(String <unsigned> const &  mask,String <char> name)
 {
     unsigned len = length(mask);
@@ -77,7 +77,7 @@ inline void _printMask(String <unsigned> const &  mask,unsigned start, unsigned 
 /*!
  * @class AbndmAlgoPattern
  * @extends Pattern
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Approximate Backward Nondeterministic Dawg Matching algorithm.
  *
  * Approximate string matching using bit parallelism.
@@ -133,7 +133,7 @@ public:
 
     template <typename TNeedle2>
     Pattern(TNeedle2 && ndl,
-            SEQAN_CTOR_DISABLE_IF(IsSameType<typename std::remove_reference<TNeedle2>::type const &, Pattern const &>)) :
+            SEQAN2_CTOR_DISABLE_IF(IsSameType<typename std::remove_reference<TNeedle2>::type const &, Pattern const &>)) :
         blockCount(0),
         last(0),
         needleLength(0),
@@ -202,7 +202,7 @@ void _reinitPattern(Pattern<TNeedle, AbndmAlgo> & me)
         me.b_table[me.blockCount*pos + j / BitsPerValue<TWord>::VALUE] |= (1<<(j%BitsPerValue<TWord>::VALUE));
     }
 
-#ifdef SEQAN_DEBUG_ABNDM
+#ifdef SEQAN2_DEBUG_ABNDM
     std::cout << "Needle:   " << needle(me) << std::endl;
     std::cout << "|Needle|: " << length(needle(me)) << std::endl;
     std::cout << "Alphabet size: " << ValueSize<TValue>::VALUE << std::endl;
@@ -239,7 +239,7 @@ inline void _patternInit (Pattern<TNeedle, AbndmAlgo> & me)
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn AbndmAlgoPattern#getScore
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Score of the last found match in approximate searching.
  *
  * @signature TScoreValue getScore(pattern);
@@ -283,7 +283,7 @@ inline bool _findAbndmSmallNeedle(TFinder & finder, Pattern<TNeedle, AbndmAlgo> 
 
         THostSegment s(infix(host(finder),me.cP, end));
         THSFinder f(s);
-#ifdef SEQAN_DEBUG_ABNDM
+#ifdef SEQAN2_DEBUG_ABNDM
         std::cout << "additional verification of current position" << std::endl;
         std::cout << "initialized on: " << s << std::endl;
         std::cout << "parameters are: " << me.cP << " " << (me.cP + me.needleLength + me.limit) << std::endl;
@@ -292,7 +292,7 @@ inline bool _findAbndmSmallNeedle(TFinder & finder, Pattern<TNeedle, AbndmAlgo> 
 
         while(find(f,me.verifier,- (int) me.limit)){
             TWord newP = position(finder) + position(f);
-#ifdef SEQAN_DEBUG_ABNDM
+#ifdef SEQAN2_DEBUG_ABNDM
             std::cout << "found on new position: " << newP << std::endl;
 #endif
             if(newP > startPos){
@@ -300,7 +300,7 @@ inline bool _findAbndmSmallNeedle(TFinder & finder, Pattern<TNeedle, AbndmAlgo> 
                 return true;
             }
         }
-#ifdef SEQAN_DEBUG_ABNDM
+#ifdef SEQAN2_DEBUG_ABNDM
         std::cout << "additional verification done .. shifted by last=" << me.last << std::endl << std::endl;
 #endif
         finder += me.last;
@@ -321,7 +321,7 @@ inline bool _findAbndmSmallNeedle(TFinder & finder, Pattern<TNeedle, AbndmAlgo> 
         nR = (TWord)-1;
     for(i = 1;i <= me.limit;++i) me.r_table[i] = nR;
 
-#ifdef SEQAN_DEBUG_ABNDM
+#ifdef SEQAN2_DEBUG_ABNDM
         std::cout << "reading " << *(finder + j) << std::endl;
         _printMask(me.b_table[pos],"");
         _printR(me);
@@ -340,7 +340,7 @@ inline bool _findAbndmSmallNeedle(TFinder & finder, Pattern<TNeedle, AbndmAlgo> 
                 oR = me.r_table[i];
                 me.r_table[i] = nR;
             }
-#ifdef SEQAN_DEBUG_ABNDM
+#ifdef SEQAN2_DEBUG_ABNDM
             std::cout << "reading " << *(finder + j - 1) << std::endl;
             _printMask(me.b_table[pos],"");
             _printR(me);
@@ -348,7 +348,7 @@ inline bool _findAbndmSmallNeedle(TFinder & finder, Pattern<TNeedle, AbndmAlgo> 
             --j;
             if((nR & 1) != 0){
                 if(j > 0){
-#ifdef SEQAN_DEBUG_ABNDM
+#ifdef SEQAN2_DEBUG_ABNDM
                     std::cout << "last bit is set so last is set to " << j << std::endl;
 #endif
                     me.last = j;
@@ -363,7 +363,7 @@ inline bool _findAbndmSmallNeedle(TFinder & finder, Pattern<TNeedle, AbndmAlgo> 
                     THostSegment s(infix(host(finder),me.cP, end));
                     THSFinder f(s);
 
-#ifdef SEQAN_DEBUG_ABNDM
+#ifdef SEQAN2_DEBUG_ABNDM
                     std::cout << "found verifiable prefix" << std::endl;
                     // init finder on infix
                     std::cout << "parameters are " << me.cP << " " << (me.cP + me.needleLength + me.limit) << std::endl;
@@ -381,7 +381,7 @@ inline bool _findAbndmSmallNeedle(TFinder & finder, Pattern<TNeedle, AbndmAlgo> 
                 }
             }
         }
-#ifdef SEQAN_DEBUG_ABNDM
+#ifdef SEQAN2_DEBUG_ABNDM
         std::cout << "automaton runs out of active stats so window is shifted by last=" << me.last << std::endl << std::endl;
 #endif
 
@@ -417,7 +417,7 @@ inline bool _findAbndmLargeNeedle(TFinder & finder, Pattern<TNeedle, AbndmAlgo> 
 
         THostSegment s(infix(host(finder),me.cP, end));
         THSFinder f(s);
-#ifdef SEQAN_DEBUG_ABNDM
+#ifdef SEQAN2_DEBUG_ABNDM
         std::cout << "additional verification of current position" << std::endl;
         std::cout << "initialized on: " << s << std::endl;
         std::cout << "parameters are: " << me.cP << " " << (me.cP + me.needleLength + me.limit) << std::endl;
@@ -426,7 +426,7 @@ inline bool _findAbndmLargeNeedle(TFinder & finder, Pattern<TNeedle, AbndmAlgo> 
 
         while(find(f,me.verifier,- (int) me.limit)){
             TWord newP = position(finder) + position(f);
-#ifdef SEQAN_DEBUG_ABNDM
+#ifdef SEQAN2_DEBUG_ABNDM
             std::cout << "found on new position: " << newP << std::endl;
 #endif
             if(newP > startPos){
@@ -434,7 +434,7 @@ inline bool _findAbndmLargeNeedle(TFinder & finder, Pattern<TNeedle, AbndmAlgo> 
                 return true;
             }
         }
-#ifdef SEQAN_DEBUG_ABNDM
+#ifdef SEQAN2_DEBUG_ABNDM
         std::cout << "additional verification done .. shifted by last=" << me.last << std::endl << std::endl;
 #endif
         finder += me.last;
@@ -446,7 +446,7 @@ inline bool _findAbndmLargeNeedle(TFinder & finder, Pattern<TNeedle, AbndmAlgo> 
             j = me.needleLength - me.limit - 1;
         me.last = j;
 
-#ifdef SEQAN_DEBUG_ABNDM
+#ifdef SEQAN2_DEBUG_ABNDM
     std::cout << "starting new frame ending at position " << me.cP + j << std::endl;
 #endif
         // init R_0
@@ -469,7 +469,7 @@ inline bool _findAbndmLargeNeedle(TFinder & finder, Pattern<TNeedle, AbndmAlgo> 
     // track active states in nR
     TWord nRTrack = 1;
 
-#ifdef SEQAN_DEBUG_ABNDM
+#ifdef SEQAN2_DEBUG_ABNDM
         std::cout << "reading " << *(finder + j) << std::endl;
         _printMask(me.b_table,pos * me.blockCount, me.blockCount," ");
         _printR(me);
@@ -507,7 +507,7 @@ inline bool _findAbndmLargeNeedle(TFinder & finder, Pattern<TNeedle, AbndmAlgo> 
                     me.r_table[i * me.blockCount + block] = nR[block];
                 }
             }
-#ifdef SEQAN_DEBUG_ABNDM
+#ifdef SEQAN2_DEBUG_ABNDM
             std::cout << "reading " << *(finder + j - 1) << std::endl;
          _printMask(me.b_table,pos*me.blockCount, me.blockCount," ");
             _printR(me);
@@ -519,7 +519,7 @@ inline bool _findAbndmLargeNeedle(TFinder & finder, Pattern<TNeedle, AbndmAlgo> 
 
             if((nR[0] & 1) != 0){
                 if(j > 0){
-#ifdef SEQAN_DEBUG_ABNDM
+#ifdef SEQAN2_DEBUG_ABNDM
                     std::cout << "last bit is set so last is set to " << j << std::endl;
 #endif
                     me.last = j;
@@ -534,7 +534,7 @@ inline bool _findAbndmLargeNeedle(TFinder & finder, Pattern<TNeedle, AbndmAlgo> 
                     THostSegment s(infix(host(finder),me.cP, end));
                     THSFinder f(s);
 
-#ifdef SEQAN_DEBUG_ABNDM
+#ifdef SEQAN2_DEBUG_ABNDM
                     std::cout << "found verifiable prefix" << std::endl;
                     // init finder on infix
                     std::cout << "parameters are " << me.cP << " " << (me.cP + me.needleLength + me.limit) << std::endl;
@@ -545,7 +545,7 @@ inline bool _findAbndmLargeNeedle(TFinder & finder, Pattern<TNeedle, AbndmAlgo> 
                         TWord nP = position(finder) + position(f);
                         if(nP > startPos){
                             finder += position(f);
-#ifdef SEQAN_DEBUG_ABNDM
+#ifdef SEQAN2_DEBUG_ABNDM
                             std::cout << "found pattern at position " << position(finder) << std::endl;
 #endif
                             me.findNext = true;
@@ -555,7 +555,7 @@ inline bool _findAbndmLargeNeedle(TFinder & finder, Pattern<TNeedle, AbndmAlgo> 
                 }
             }
         }
-#ifdef SEQAN_DEBUG_ABNDM
+#ifdef SEQAN2_DEBUG_ABNDM
         std::cout << "automaton runs out of active stats so window is shifted by last=" << me.last << std::endl << std::endl;
 #endif
 
@@ -568,7 +568,7 @@ inline bool _findAbndmLargeNeedle(TFinder & finder, Pattern<TNeedle, AbndmAlgo> 
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn AbndmAlgoPattern#scoreLimit
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief The minimal score a match must reach in approximate searching.
  *
  * @signature TScoreValue scoreLimit(pattern);
@@ -588,7 +588,7 @@ scoreLimit(Pattern<TNeedle, AbndmAlgo > const & me)
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn AbndmAlgoPattern#setSoreLimit
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Set the minimal score a match must reach in approximate serach.
  *
  * @signature void setScoreLimit(pattern, limit);
@@ -644,6 +644,6 @@ inline bool find (TFinder & finder,
 }
 
 //////////////////////////////////////////////////////////////////////////////
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_FIND_ABNDMALGO_H
+#endif //#ifndef SEQAN2_HEADER_FIND_ABNDMALGO_H

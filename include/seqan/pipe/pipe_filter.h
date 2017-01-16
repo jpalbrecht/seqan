@@ -32,13 +32,13 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_PIPE_FILTER_H
-#define SEQAN_HEADER_PIPE_FILTER_H
+#ifndef SEQAN2_HEADER_PIPE_FILTER_H
+#define SEQAN2_HEADER_PIPE_FILTER_H
 
-namespace seqan
+namespace seqan2
 {
 
-//namespace SEQAN_NAMESPACE_PIPELINING
+//namespace SEQAN2_NAMESPACE_PIPELINING
 //{
 
     template <typename TValue, typename TResult = typename Value<TValue, 1>::Type>
@@ -81,7 +81,7 @@ namespace seqan
 /*!
  * @class Filter
  * @extends Pipe
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Applies a specific function to the input stream.
  *
  * @signature template <typename TInput, typename TFunctor>

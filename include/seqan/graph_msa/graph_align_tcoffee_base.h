@@ -30,18 +30,18 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_GRAPH_ALIGN_TCOFFEE_BASE_H
-#define SEQAN_HEADER_GRAPH_ALIGN_TCOFFEE_BASE_H
+#ifndef SEQAN2_HEADER_GRAPH_ALIGN_TCOFFEE_BASE_H
+#define SEQAN2_HEADER_GRAPH_ALIGN_TCOFFEE_BASE_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
 // Distance unity
 //////////////////////////////////////////////////////////////////////////////
 
-//static const int SEQAN_DISTANCE_UNITY = 1 << 20;
-static const int SEQAN_DISTANCE_UNITY = 1;
+//static const int SEQAN2_DISTANCE_UNITY = 1 << 20;
+static const int SEQAN2_DISTANCE_UNITY = 1;
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -56,21 +56,21 @@ static const int SEQAN_DISTANCE_UNITY = 1;
  *
  *
  * @tag AlignmentGraphCombinationTags#FractionalScore
- * @headerfile <seqan/graph_msa.h>
+ * @headerfile <seqan2/graph_msa.h>
  * @brief Rescore matches with appropriate fractional scores.
  *
  * @signature typedef Tag<FractionalScore_> const FractionalScore;
  *
  *
  * @tag AlignmentGraphCombinationTags#FrequencingCounting
- * @headerfile <seqan/graph_msa.h>
+ * @headerfile <seqan2/graph_msa.h>
  * @brief Rescores matches with the frequency count for this edge.
  *
  * @signature typedef Tag<FrequencingCounting_> const FrequencingCounting;
  *
  *
  * @tag AlignmentGraphCombinationTags#ReScore
- * @headerfile <seqan/graph_msa.h>
+ * @headerfile <seqan2/graph_msa.h>
  * @brief Rescore the matches after segment-match refinement.
  *
  * @signature typedef Tag<FractionalScore_> const ReScore;
@@ -93,7 +93,7 @@ typedef Tag<ReScore_> const ReScore;
 
 /*!
  * @fn buildAlignmentGraph
- * @headerfile <seqan/graph_msa.h>
+ * @headerfile <seqan2/graph_msa.h>
  * @brief Builds an @link AlignmentGraph @endlink from a seqt of input alignments.
 
  * @signature void buildAlignmentGraph(matches[, score], outGraph, tag);
@@ -135,7 +135,7 @@ buildAlignmentGraph(String<TFragment, TSpec1>& matches,
     // Segment-match refinement
     matchRefinement(matches,strSet,outGraph);
 
-#ifdef SEQAN_TCOFFEE_DEBUG
+#ifdef SEQAN2_TCOFFEE_DEBUG
     double adaptScoresTime = sysTime();
 #endif
 
@@ -165,7 +165,7 @@ buildAlignmentGraph(String<TFragment, TSpec1>& matches,
         }
     }
 
-#ifdef SEQAN_TCOFFEE_DEBUG
+#ifdef SEQAN2_TCOFFEE_DEBUG
     std::cout << std::setw(30) << std::left << "Adapt scores:" << std::setw(10) << std::right << sysTime() - adaptScoresTime << "  s" << std::endl;
 #endif
 }
@@ -315,7 +315,7 @@ struct LessMsaEdgeCargo_ :
 
 /*!
  * @fn tripletLibraryExtension
- * @headerfile <seqan/graph_msa.h>
+ * @headerfile <seqan2/graph_msa.h>
  * @brief Performs a full or group-based consistency extension.
  *
  * @signature void tripletLibraryExtension(graph[, guideTree, minMembers]);
@@ -701,7 +701,7 @@ graphBasedTripletLibraryExtension(Graph<Alignment<TStringSet, TCargo, TSpec> >& 
         if (e == 0) addEdge(g, *itV, *itVNext, *itC);
         else cargo(e) += *itC;
     }
-    SEQAN_ASSERT(itC == end(edges_cargo));
+    SEQAN2_ASSERT(itC == end(edges_cargo));
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -764,7 +764,7 @@ graphBasedTripletLibraryExtension(Graph<Alignment<TStringSet, TCargo, TSpec> >& 
 
 /*!
  * @fn sumOfPairsScore
- * @headerfile <seqan/graph_msa.h>
+ * @headerfile <seqan2/graph_msa.h>
  * @brief Given a multiple alignment, this function calculates the sum-of-pairs score.
  *
  * @signature TScoreValue sumOfPairsScore(graph, scoringScheme);
@@ -877,7 +877,7 @@ sumOfPairsScoreInd(Graph<Alignment<TStringSet, TCargo, TSpec> > const& g,
 
 /*!
  * @fn alignmentEvaluation
- * @headerfile <seqan/graph_msa.h>
+ * @headerfile <seqan2/graph_msa.h>
  * @brief Given a multiple sequence alignment, this function calculates different kinds of alignment statistics.
  *
  * @signature TScoreVal alignmentEvaluation(graph, scoringScheme, gapExCount, gapCount, pairCount, numPairs, len);
@@ -1070,6 +1070,6 @@ convertAlignment(Align<TSource, TSpec2> const& align,
     return true;
 }
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

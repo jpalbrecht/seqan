@@ -38,12 +38,12 @@
 // analysis algorithms than then Boost one.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_MISC_ACCUMULATORS_H_
-#define INCLUDE_SEQAN_MISC_ACCUMULATORS_H_
+#ifndef INCLUDE_SEQAN2_MISC_ACCUMULATORS_H_
+#define INCLUDE_SEQAN2_MISC_ACCUMULATORS_H_
 
-#include <seqan/sequence.h>
+#include <seqan2/sequence.h>
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -66,7 +66,7 @@ typedef Tag<AccuCount_> AccuCount;
 
 /*!
  * @class Accumulator
- * @headerfile <seqan/misc/accumulators.h>
+ * @headerfile <seqan2/misc/accumulators.h>
  * @brief Accumulator base class.
  *
  * @signature template <typename TValue, typename TSpec>
@@ -86,7 +86,7 @@ struct Accumulator;
 /*!
  * @class AverageAccumulator
  * @extends Accumulator
- * @headerfile <seqan/misc/accumulators.h>
+ * @headerfile <seqan2/misc/accumulators.h>
  * @brief Accumulator for computing averages.
  *
  * @signature template <typename TValue>
@@ -344,6 +344,6 @@ count(Accumulator<TValue, AccuAverage> const & acc)
     return acc.count_;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_MISC_ACCUMULATORS_H_
+#endif  // #ifndef INCLUDE_SEQAN2_MISC_ACCUMULATORS_H_

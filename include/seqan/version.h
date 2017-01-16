@@ -34,15 +34,15 @@
 // Define SeqAn version.
 // ==========================================================================
 
-#ifndef SEQAN_VERSION_H_
-#define SEQAN_VERSION_H_
+#ifndef SEQAN2_VERSION_H_
+#define SEQAN2_VERSION_H_
 
-#define SEQAN_VERSION_MAJOR 2
+#define SEQAN2_VERSION_MAJOR 2
 
-#define SEQAN_VERSION_MINOR 3
+#define SEQAN2_VERSION_MINOR 3
 
-#define SEQAN_VERSION_PATCH 1
+#define SEQAN2_VERSION_PATCH 1
 
-#define SEQAN_VERSION_PRE_RELEASE 0
+#define SEQAN2_VERSION_PRE_RELEASE 0
 
-#endif  // SEQAN_VERSION_H_
+#endif  // SEQAN2_VERSION_H_

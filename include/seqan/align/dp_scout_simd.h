@@ -34,10 +34,10 @@
 // DPScout_ specialization for the SIMD alignment implementation.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_SIMD_DP_SCOUT_SIMD_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_SIMD_DP_SCOUT_SIMD_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_SIMD_DP_SCOUT_SIMD_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_SIMD_DP_SCOUT_SIMD_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -448,7 +448,7 @@ _hostLengthV(DPScout_<TDPCell, SimdAlignmentScout<SimdAlignVariableLength<TTrait
     return host(scout.state->sortedEndsV)[scout._simdLane] + 1;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_SIMD_DP_SCOUT_SIMD_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_SIMD_DP_SCOUT_SIMD_H_
 

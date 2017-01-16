@@ -30,15 +30,15 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_MISC_SET_H
-#define SEQAN_HEADER_MISC_SET_H
+#ifndef SEQAN2_HEADER_MISC_SET_H
+#define SEQAN2_HEADER_MISC_SET_H
 
 #include <set>
-#include <seqan/misc/base.h>
+#include <seqan2/misc/base.h>
 
 //////////////////////////////////////////////////////////////////////////////
 
-namespace seqan
+namespace seqan2
 {
 
     //////////////////////////////////////////////////////////////////////////////

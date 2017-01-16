@@ -47,10 +47,10 @@
 // see dp_scout_xdrop.h for an example.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_TEST_ALIGNMENT_DP_SCOUT_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_TEST_ALIGNMENT_DP_SCOUT_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_TEST_ALIGNMENT_DP_SCOUT_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_TEST_ALIGNMENT_DP_SCOUT_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -335,6 +335,6 @@ _incVerticalPos(DPScout_<TDPCell, TSpec> const & /*scout*/)
     // no-op.
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_TEST_ALIGNMENT_DP_SCOUT_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_TEST_ALIGNMENT_DP_SCOUT_H_

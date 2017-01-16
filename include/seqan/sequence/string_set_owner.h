@@ -35,10 +35,10 @@
 // Implementation of the StringSet specialization Owner.
 // ==========================================================================
 
-#ifndef SEQAN_SEQUENCE_STRING_SET_OWNER_H_
-#define SEQAN_SEQUENCE_STRING_SET_OWNER_H_
+#ifndef SEQAN2_SEQUENCE_STRING_SET_OWNER_H_
+#define SEQAN2_SEQUENCE_STRING_SET_OWNER_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -59,7 +59,7 @@ namespace seqan {
 /*!
  * @class OwnerStringSet Owner StringSet
  * @extends StringSet
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief String set implementation that owns the string.
  *
  * @signature template <typename TString>
@@ -235,7 +235,7 @@ inline void replace(
 
 // general case
 template <typename TString, typename TSpec, typename TPositionBegin, typename TPositionEnd, typename TSource, typename TExpand >
-inline SEQAN_FUNC_ENABLE_IF(And<Is<ContainerConcept<TSource> >, Is<ContainerConcept<typename Value<TSource>::Type> > >, void)
+inline SEQAN2_FUNC_ENABLE_IF(And<Is<ContainerConcept<TSource> >, Is<ContainerConcept<typename Value<TSource>::Type> > >, void)
 replace(StringSet<TString, Owner<TSpec> > & target,
         TPositionBegin pos_begin,
         TPositionEnd pos_end,
@@ -432,6 +432,6 @@ void swap(StringSet<TString, Owner<TSpec> > & lhs,
     swap(lhs.concat, rhs.concat);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_SEQUENCE_STRING_SET_OWNER_H_
+#endif  // #ifndef SEQAN2_SEQUENCE_STRING_SET_OWNER_H_

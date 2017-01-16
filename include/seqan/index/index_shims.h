@@ -33,10 +33,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_INDEX_SHIMS_H
-#define SEQAN_HEADER_INDEX_SHIMS_H
+#ifndef SEQAN2_HEADER_SEQAN2_INDEX_SHIMS_H
+#define SEQAN2_HEADER_SEQAN2_INDEX_SHIMS_H
 
-namespace seqan
+namespace seqan2
 {
 
     //////////////////////////////////////////////////////////////////////////////
@@ -69,7 +69,7 @@ namespace seqan
         creator_t    creator(unsigner);
 
         suffixArray << creator;
-        #ifdef SEQAN_TEST_INDEX
+        #ifdef SEQAN2_TEST_INDEX
             isSuffixArray(suffixArray, text);
         #endif
     }
@@ -107,7 +107,7 @@ namespace seqan
         creator_t    creator(unsigner, stringSetLimits(stringSet));
 
         suffixArray << creator;
-        #ifdef SEQAN_TEST_INDEX
+        #ifdef SEQAN2_TEST_INDEX
             //isSuffixArray(suffixArray, stringSet);
         #endif
     }
@@ -115,7 +115,7 @@ namespace seqan
 
 /*!
  * @fn createSuffixArray
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Creates a suffix array from a given text.
  *
  * @signature void createSuffixArray(suffixArray, text[, algoTag]);
@@ -202,7 +202,7 @@ namespace seqan
 
 /*!
  * @fn createInvSuffixArray
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Creates the inverse suffix array from a given suffix array.
  *
  * @signature void createInvSuffixArray(invSuffixArray, suffixArray);
@@ -231,7 +231,7 @@ namespace seqan
         TLimits const & limits = stringSetLimits(sa);
         Splitter<TSize> splitter(0, length(sa), TParallel());
 
-        SEQAN_OMP_PRAGMA(parallel for)
+        SEQAN2_OMP_PRAGMA(parallel for)
         for (TSignedSize job = 0; job < static_cast<TSignedSize>(length(splitter)); ++job)
         {
             TIter saIt = begin(sa, Standard()) + splitter[job];
@@ -273,7 +273,7 @@ namespace seqan
         creator_t    creator(bundle2(srcText, srcSA));
 
         LCP << creator;
-        #ifdef SEQAN_TEST_INDEX
+        #ifdef SEQAN2_TEST_INDEX
             isLCPTable(LCP, suffixArray, text);
         #endif
     }
@@ -309,7 +309,7 @@ namespace seqan
         creator_t    creator(bundle2(srcText, srcSA), stringSetLimits(stringSet));
 
         LCP << creator;
-        #ifdef SEQAN_TEST_INDEX
+        #ifdef SEQAN2_TEST_INDEX
             isLCPTable(LCP, suffixArray, text);
         #endif
     }
@@ -317,7 +317,7 @@ namespace seqan
 
 /*!
  * @fn createLcpTable
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Creates a LCP table from a given text and suffix array.
  *
  * @signature void createLcpTable(lcp, text, suffixArray[, algoTag]);
@@ -415,7 +415,7 @@ namespace seqan
         srcSA_t        srcSA(suffixArray);
         creator_t    creator(bundle2(srcText, srcSA));
 
-        #ifdef SEQAN_TEST_INDEX
+        #ifdef SEQAN2_TEST_INDEX
             isLCPTable(creator, suffixArray, text);
         #endif
         createLcpBinTree(LCPE, creator);
@@ -510,7 +510,7 @@ namespace seqan
 
 /*!
  * @fn createBWTable
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Creates a Burrows-Wheeler table from a given text and suffix array.
  *
  * @signature void createBWTable(bwt, text, suffixArray[, algoTag]);
@@ -564,7 +564,7 @@ namespace seqan
 //TODO(singer): Make this internal
 /*!
  * @fn orderOccurrences
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Sorts a string of occurrences.
  *
  * @signature void orderOccurrences(occString);
@@ -593,7 +593,7 @@ namespace seqan
 
 /*!
  * @fn Index#indexCreate
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Creates a specific @link Fibre @endlink.
  *
  * @signature bool indexCreate(index, fibreTag[, algoTag]);
@@ -676,7 +676,7 @@ inline bool indexCreate(Index<TText, TSpec> & index, FibreSA, Trie)
 
 /*!
  * @fn Index#indexSupplied
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns whether a specific @link Fibre @endlink is present.
  *
  * @signature bool indexSupplied(index, fibreTag);
@@ -695,7 +695,7 @@ inline bool indexCreate(Index<TText, TSpec> & index, FibreSA, Trie)
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn Index#indexRequire
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief On-demand creation of a specific @link Fibre @endlink.
  *
  * @signature bool indexRequire(index, fibreTag);

@@ -30,17 +30,17 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_PRIORITY_TYPE_TREE_H
-#define SEQAN_HEADER_PRIORITY_TYPE_TREE_H
+#ifndef SEQAN2_HEADER_PRIORITY_TYPE_TREE_H
+#define SEQAN2_HEADER_PRIORITY_TYPE_TREE_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
 
 /*!
  * @class PriorityHeap
- * @headerfile <seqan/misc/priority_type_heap.h>
+ * @headerfile <seqan2/misc/priority_type_heap.h>
  * @extends PriorityType
  * @brief Stores the priority data on a heap.
  *
@@ -108,7 +108,7 @@ clear (PriorityType<TValue,TLess, PriorityHeap> & me)
 
 /*!
  * @fn PriorityType#empty
- * @headerfile <seqan/misc/priority_type_heap.h>
+ * @headerfile <seqan2/misc/priority_type_heap.h>
  * @brief Query priority queue for beging empty.
  *
  * @signature bool empty(pq);
@@ -127,7 +127,7 @@ empty(PriorityType<TValue, TLess, PriorityHeap> const & me)
 
 /*!
  * @fn PriorityType#length
- * @headerfile <seqan/misc/priority_type_heap.h>
+ * @headerfile <seqan2/misc/priority_type_heap.h>
  * @brief Return number of elements in priority queue.
  *
  * @signature TSize length(pq);
@@ -366,6 +366,6 @@ struct Value<PriorityType<TValue, TLess, PriorityHeap> >
 
 //////////////////////////////////////////////////////////////////////////////
 
-} //namespace seqan
+} //namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

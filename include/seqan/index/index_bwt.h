@@ -32,13 +32,13 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_INDEX_BWT_H
-#define SEQAN_HEADER_INDEX_BWT_H
+#ifndef SEQAN2_HEADER_SEQAN2_INDEX_BWT_H
+#define SEQAN2_HEADER_SEQAN2_INDEX_BWT_H
 
-namespace seqan
+namespace seqan2
 {
 
-//namespace SEQAN_NAMESPACE_PIPELINING
+//namespace SEQAN2_NAMESPACE_PIPELINING
 //{
 
     struct Bwt {};
@@ -92,20 +92,20 @@ namespace seqan
             TInverter                    inverter;
             TCounterFilter                filter(inverter);
 
-            #ifdef SEQAN_DEBUG_INDEX
+            #ifdef SEQAN2_DEBUG_INDEX
                 std::cerr << "  invert suffix array" << std::endl;
             #endif
             inverter << sa;
-            SEQAN_PROMARK("Suffix-Array invertiert");
+            SEQAN2_PROMARK("Suffix-Array invertiert");
 
             TShiftText                    shifter(textIn);
             TJoiner                        joiner(bundle2(filter, shifter));
 
-            #ifdef SEQAN_DEBUG_INDEX
+            #ifdef SEQAN2_DEBUG_INDEX
                 std::cerr << "  de-invert suffix array" << std::endl;
             #endif
             mapper << joiner;
-            SEQAN_PROMARK("Suffix-Array linearisiert");
+            SEQAN2_PROMARK("Suffix-Array linearisiert");
 
             return true;
         }
@@ -208,20 +208,20 @@ namespace seqan
             TInverter                    inverter;
             TCounterFilter                filter(inverter);
 
-            #ifdef SEQAN_DEBUG_INDEX
+            #ifdef SEQAN2_DEBUG_INDEX
                 std::cerr << "  invert suffix array" << std::endl;
             #endif
             inverter << sa;
-            SEQAN_PROMARK("Suffix-Array invertiert");
+            SEQAN2_PROMARK("Suffix-Array invertiert");
 
             TShiftText                    shifter(textIn);
             TJoiner                        joiner(bundle2(filter, shifter));
 
-            #ifdef SEQAN_DEBUG_INDEX
+            #ifdef SEQAN2_DEBUG_INDEX
                 std::cerr << "  de-invert suffix array" << std::endl;
             #endif
             mapper << joiner;
-            SEQAN_PROMARK("Suffix-Array linearisiert");
+            SEQAN2_PROMARK("Suffix-Array linearisiert");
 
             return true;
         }

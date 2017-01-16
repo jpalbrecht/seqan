@@ -34,10 +34,10 @@
 // Positional iterator implementation.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_ITERATOR_POSITION_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_ITERATOR_POSITION_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ITERATOR_POSITION_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_ITERATOR_POSITION_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -52,7 +52,7 @@ typedef CountingIteratorImpl_<Nothing> PositionIterator;
 /*!
  * @class PositionIterator
  * @extends Iter
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Adapts a position iterator to a rooted iterator.
  *
  * @signature template <typename TContainer>
@@ -271,6 +271,6 @@ assign(Iter<TTargetContainer, PositionIterator> & target, TSource const & source
     setPosition(target, position(source));
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_ITERATOR_POSITION_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ITERATOR_POSITION_H_

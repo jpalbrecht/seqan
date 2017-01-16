@@ -37,10 +37,10 @@
 // and loops.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_METAPROGRAMMING_CONTROL_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_METAPROGRAMMING_CONTROL_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_METAPROGRAMMING_CONTROL_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_METAPROGRAMMING_CONTROL_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -141,7 +141,7 @@ struct Switch<TAG, NilCase>
 
 /*!
  * @class Loop
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Helper for loops.
  *
  * @signature template <typename TWorker, unsigned COUNT>
@@ -215,7 +215,7 @@ public:
  * @class LoopReverse
  * @brief Helper for reverse loops.
  *
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @signature template <typename TWorker, unsigned COUNT>
  *            struct LoopReverse;
@@ -275,6 +275,6 @@ class LoopReverse<Worker, 0>
 // Functions
 // ============================================================================
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_METAPROGRAMMING_CONTROL_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_METAPROGRAMMING_CONTROL_H_

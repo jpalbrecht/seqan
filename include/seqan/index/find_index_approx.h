@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_FIND_INDEX_APPROX_H
-#define SEQAN_HEADER_FIND_INDEX_APPROX_H
+#ifndef SEQAN2_HEADER_FIND_SEQAN2_INDEX_APPROX_H
+#define SEQAN2_HEADER_FIND_SEQAN2_INDEX_APPROX_H
 
-namespace seqan
+namespace seqan2
 {
 
 template <typename TSAValue1, typename TSAValue2>

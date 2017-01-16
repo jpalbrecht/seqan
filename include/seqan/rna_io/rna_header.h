@@ -33,10 +33,10 @@
 //          Gianvito Urgese <gianvito.urgese@polito.it>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_RNA_IO_RNA_HEADER_H_
-#define SEQAN_INCLUDE_SEQAN_RNA_IO_RNA_HEADER_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_RNA_IO_RNA_HEADER_H_
+#define SEQAN2_INCLUDE_SEQAN2_RNA_IO_RNA_HEADER_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags, Classes, Enums
@@ -48,7 +48,7 @@ namespace seqan {
 
 /*!
  * @class RnaHeader
- * @headerfile <seqan/rna_io.h>
+ * @headerfile <seqan2/rna_io.h>
  * @brief A container for labels of several RNA structures.
  *
  * @signature class RnaHeader;
@@ -116,6 +116,6 @@ inline void clear(RnaHeader & header)
     clear(header.typeLabels);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_RNA_IO_RNA_HEADER_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_RNA_IO_RNA_HEADER_H_

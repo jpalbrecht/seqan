@@ -34,10 +34,10 @@
 // Code for writing SAM.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_BAM_IO_WRITE_SAM_H_
-#define INCLUDE_SEQAN_BAM_IO_WRITE_SAM_H_
+#ifndef INCLUDE_SEQAN2_BAM_IO_WRITE_SAM_H_
+#define INCLUDE_SEQAN2_BAM_IO_WRITE_SAM_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Functions
@@ -105,7 +105,7 @@ inline void write(TTarget & target,
     }
 
     // Write missing @SQ header records.
-    SEQAN_ASSERT_LEQ(length(contigLengths(context)), length(contigNames(context)));
+    SEQAN2_ASSERT_LEQ(length(contigLengths(context)), length(contigNames(context)));
     for (unsigned i = 0; i < length(contigLengths(context)); ++i)
     {
         if (writtenSeqInfos[i])
@@ -128,16 +128,16 @@ inline void write(TTarget & target,
                   BamIOContext<TNameStore, TNameStoreCache, TStorageSpec> const & context,
                   Sam const & /*tag*/)
 {
-#ifdef SEQAN_DEBUG_OR_TEST_
+#ifdef SEQAN2_DEBUG_OR_TEST_
     // Check for valid IO Context.
     if (record.rID != BamAlignmentRecord::INVALID_REFID)
     {
-        SEQAN_ASSERT_LT_MSG(record.rID, static_cast<int32_t>(length(contigNames(context))),
+        SEQAN2_ASSERT_LT_MSG(record.rID, static_cast<int32_t>(length(contigNames(context))),
                             "SAM IO Assertion: Unknown REF ID!");
     }
     if (record.rNextId != BamAlignmentRecord::INVALID_REFID)
     {
-        SEQAN_ASSERT_LT_MSG(record.rNextId, static_cast<int32_t>(length(contigNames(context))),
+        SEQAN2_ASSERT_LT_MSG(record.rNextId, static_cast<int32_t>(length(contigNames(context))),
                             "SAM IO Assertion: Unknown NEXT REF ID!");
     }
 #endif
@@ -155,7 +155,7 @@ inline void write(TTarget & target,
 
     writeValue(target, '\t');
 
-    SEQAN_ASSERT_EQ((int32_t)BamAlignmentRecord::INVALID_POS + 1, (int32_t)0);
+    SEQAN2_ASSERT_EQ((int32_t)BamAlignmentRecord::INVALID_POS + 1, (int32_t)0);
     appendNumber(target, record.beginPos + 1);
 
     writeValue(target, '\t');
@@ -216,6 +216,6 @@ inline void write(TTarget & target,
     writeValue(target, '\n');
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_BAM_IO_WRITE_SAM_H_
+#endif  // #ifndef INCLUDE_SEQAN2_BAM_IO_WRITE_SAM_H_

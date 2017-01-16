@@ -35,16 +35,16 @@
 // Manual forwards for the sequence module.
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_SEQUENCE_FORWARDS_H
-#define SEQAN_HEADER_SEQUENCE_FORWARDS_H
+#ifndef SEQAN2_HEADER_SEQUENCE_FORWARDS_H
+#define SEQAN2_HEADER_SEQUENCE_FORWARDS_H
 
 #if !defined(_MSC_VER)
 
-//SEQAN_NO_GENERATED_FORWARDS: no forwards are generated for this file
+//SEQAN2_NO_GENERATED_FORWARDS: no forwards are generated for this file
 
 //////////////////////////////////////////////////////////////////////////////
 
-namespace seqan
+namespace seqan2
 {
 
 // ==========================================================================
@@ -95,14 +95,14 @@ template <typename T> inline typename Iterator<T, Standard>::Type _endDefault(T 
 template <typename T> inline typename Iterator<T const, Standard>::Type _endDefault(T const & me, Standard);
 template <typename T> inline typename Iterator<T, Rooted>::Type _endDefault(T & me, Rooted);
 template <typename T> inline typename Iterator<T const, Rooted>::Type _endDefault(T const & me, Rooted);
-template <typename TContainer> inline SEQAN_FUNC_ENABLE_IF(Is<StlContainerConcept<typename RemoveReference<TContainer>::Type> >, void) assign(TContainer && me, typename RemoveReference<TContainer>::Type source);
-template <typename TContainer, typename TSource> inline SEQAN_FUNC_ENABLE_IF(And<Not<IsSameType<typename RemoveReference<TContainer>::Type, TSource> >, Is<StlContainerConcept<typename RemoveReference<TContainer>::Type> > >, void) assign(TContainer && me, TSource const & source);
-template <typename TContainer, typename TSource> inline SEQAN_FUNC_ENABLE_IF(Is<StlContainerConcept<typename RemoveReference<TContainer>::Type> >, void) assign(TContainer && me, TSource const & source, typename Size<TSource>::Type limit);
-template<typename TTarget, typename TSource> inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<TTarget>::Type> >, void) assign(TTarget && target, TSource && source, typename Size<TTarget>::Type const limit);
+template <typename TContainer> inline SEQAN2_FUNC_ENABLE_IF(Is<StlContainerConcept<typename RemoveReference<TContainer>::Type> >, void) assign(TContainer && me, typename RemoveReference<TContainer>::Type source);
+template <typename TContainer, typename TSource> inline SEQAN2_FUNC_ENABLE_IF(And<Not<IsSameType<typename RemoveReference<TContainer>::Type, TSource> >, Is<StlContainerConcept<typename RemoveReference<TContainer>::Type> > >, void) assign(TContainer && me, TSource const & source);
+template <typename TContainer, typename TSource> inline SEQAN2_FUNC_ENABLE_IF(Is<StlContainerConcept<typename RemoveReference<TContainer>::Type> >, void) assign(TContainer && me, TSource const & source, typename Size<TSource>::Type limit);
+template<typename TTarget, typename TSource> inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<TTarget>::Type> >, void) assign(TTarget && target, TSource && source, typename Size<TTarget>::Type const limit);
 template <typename T> inline typename Iterator<T, typename DefaultGetIteratorSpec<T>::Type>::Type begin(T & me);
 template <typename T> inline typename Iterator<T const, typename DefaultGetIteratorSpec<T>::Type>::Type begin(T const & me);
-template <typename T, typename TSpec> inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, typename Iterator<T, Tag<TSpec> const>::Type) begin(T & me, Tag<TSpec> const tag_);
-template <typename T, typename TSpec> inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, typename Iterator<T const, Tag<TSpec> const>::Type) begin(T const & me, Tag<TSpec> const tag_);
+template <typename T, typename TSpec> inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, typename Iterator<T, Tag<TSpec> const>::Type) begin(T & me, Tag<TSpec> const tag_);
+template <typename T, typename TSpec> inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, typename Iterator<T const, Tag<TSpec> const>::Type) begin(T const & me, Tag<TSpec> const tag_);
 template <typename T> inline typename Position<T>::Type beginPosition(T &);
 template <typename T> inline typename Position<T>::Type beginPosition(T const &);
 template <typename T, typename TSize> inline TSize computeGenerousCapacity(T const & , TSize capacity);
@@ -112,31 +112,31 @@ template <typename T, typename TSpec> inline typename Iterator<T, Tag<TSpec> con
 template <typename T, typename TSpec> inline typename Iterator<T const, Tag<TSpec> const>::Type end(T const & me, Tag<TSpec> const tag_);
 template <typename T> inline typename Position<T>::Type endPosition(T & me);
 template <typename T> inline typename Position<T>::Type endPosition(T const & me);
-template <typename T> inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, void const *) getObjectId(T const & me);
-template <typename TContainer> inline SEQAN_FUNC_ENABLE_IF(Is<StlContainerConcept<typename RemoveReference<TContainer>::Type> >, void const *) getObjectId(TContainer && me);
+template <typename T> inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, void const *) getObjectId(T const & me);
+template <typename TContainer> inline SEQAN2_FUNC_ENABLE_IF(Is<StlContainerConcept<typename RemoveReference<TContainer>::Type> >, void const *) getObjectId(TContainer && me);
 template <typename T, typename TPos> inline typename Iterator<T, typename DefaultGetIteratorSpec<T>::Type>::Type iter(T & me, TPos const pos);
 template <typename T, typename TPos> inline typename Iterator<T const, typename DefaultGetIteratorSpec<T>::Type>::Type iter(T const & me, TPos const pos);
 template <typename T, typename TPos, typename TTag> inline typename Iterator<T, Tag<TTag> const>::Type iter(T & me, TPos const pos, Tag<TTag> const &);
 template <typename T, typename TPos, typename TTag> inline typename Iterator<T const, Tag<TTag> const>::Type iter(T const & me, TPos const pos, Tag<TTag> const &);
-template <typename T> inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, typename Size<T>::Type) length(T const & /*me*/);
+template <typename T> inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, typename Size<T>::Type) length(T const & /*me*/);
 template <typename TChar, typename TAlloc> inline typename Size<std::forward_list<TChar, TAlloc> >::Type length(std::forward_list<TChar, TAlloc> const & me);
 template <typename T, typename TValue, typename TPos> inline void moveValue(T & me, TPos pos, TValue const & _value);
 template <typename T, typename TValue, typename TPos> inline void moveValue(T const & me, TPos pos, TValue const & _value);
-template <typename TContainer> inline SEQAN_FUNC_ENABLE_IF(Is<StlContainerConcept<TContainer> >, typename Size<TContainer>::Type) length(TContainer const & me);
+template <typename TContainer> inline SEQAN2_FUNC_ENABLE_IF(Is<StlContainerConcept<TContainer> >, typename Size<TContainer>::Type) length(TContainer const & me);
 template <typename T, typename TSize, typename TBeginPosition, typename TEndPosition> inline TSize resizeSpace(T & me, TSize size, TBeginPosition pos_begin, TEndPosition pos_end);
 template <typename T, typename TSize, typename TBeginPosition, typename TEndPosition, typename TLimit> inline TSize resizeSpace(T & me, TSize size, TBeginPosition pos_begin, TEndPosition pos_end, TLimit limit);
 template <typename T1, typename T2> inline bool shareResources(T1 const & obj1, T2 const & obj2);
 template <typename T> inline void shrinkToFit(T & me);
-template <typename T, typename TPos> inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, typename Reference<T>::Type) value(T & me, TPos /*pos*/);
-template <typename T, typename TPos> inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, typename Reference<T const>::Type) value(T const & me, TPos /*pos*/);
-template <typename TContainer, typename TPos> inline SEQAN_FUNC_ENABLE_IF(And<Is<StlContainerConcept<TContainer> >, HasSubscriptOperator<TContainer> >, typename Reference<TContainer>::Type) value(TContainer & me, TPos const pos);
-template <typename TContainer, typename TPos> inline SEQAN_FUNC_ENABLE_IF(And<Is<StlContainerConcept<TContainer> >, HasSubscriptOperator<TContainer> >, typename Reference<TContainer const>::Type) value(TContainer const & me, TPos const pos);
-template <typename TContainer, typename TPos> inline SEQAN_FUNC_ENABLE_IF(And<Is<StlContainerConcept<TContainer> >, HasSubscriptOperator<TContainer> >, typename Value<TContainer>::Type) value(TContainer && me, TPos const pos);
-template <typename TContainer, typename TPos> inline SEQAN_FUNC_ENABLE_IF(And<Is<StlContainerConcept<TContainer> >, Not<HasSubscriptOperator<TContainer> > >, typename Reference<TContainer>::Type) value(TContainer & me, TPos const pos);
-template <typename TContainer, typename TPos> inline SEQAN_FUNC_ENABLE_IF(And<Is<StlContainerConcept<TContainer> >, Not<HasSubscriptOperator<TContainer> > >, typename Reference<TContainer const>::Type) value(TContainer const & me, TPos const pos);
-template <typename TContainer, typename TPos> inline SEQAN_FUNC_ENABLE_IF(And<Is<StlContainerConcept<TContainer> >, Not<HasSubscriptOperator<TContainer> > >, typename Value<TContainer>::Type) value(TContainer && me, TPos const pos);
-template <typename TContainer> inline SEQAN_FUNC_ENABLE_IF(Is<StlContainerConcept<TContainer> >, bool) empty(TContainer const & me);
-template <typename T> inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, bool) empty(T const & me);
+template <typename T, typename TPos> inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, typename Reference<T>::Type) value(T & me, TPos /*pos*/);
+template <typename T, typename TPos> inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, typename Reference<T const>::Type) value(T const & me, TPos /*pos*/);
+template <typename TContainer, typename TPos> inline SEQAN2_FUNC_ENABLE_IF(And<Is<StlContainerConcept<TContainer> >, HasSubscriptOperator<TContainer> >, typename Reference<TContainer>::Type) value(TContainer & me, TPos const pos);
+template <typename TContainer, typename TPos> inline SEQAN2_FUNC_ENABLE_IF(And<Is<StlContainerConcept<TContainer> >, HasSubscriptOperator<TContainer> >, typename Reference<TContainer const>::Type) value(TContainer const & me, TPos const pos);
+template <typename TContainer, typename TPos> inline SEQAN2_FUNC_ENABLE_IF(And<Is<StlContainerConcept<TContainer> >, HasSubscriptOperator<TContainer> >, typename Value<TContainer>::Type) value(TContainer && me, TPos const pos);
+template <typename TContainer, typename TPos> inline SEQAN2_FUNC_ENABLE_IF(And<Is<StlContainerConcept<TContainer> >, Not<HasSubscriptOperator<TContainer> > >, typename Reference<TContainer>::Type) value(TContainer & me, TPos const pos);
+template <typename TContainer, typename TPos> inline SEQAN2_FUNC_ENABLE_IF(And<Is<StlContainerConcept<TContainer> >, Not<HasSubscriptOperator<TContainer> > >, typename Reference<TContainer const>::Type) value(TContainer const & me, TPos const pos);
+template <typename TContainer, typename TPos> inline SEQAN2_FUNC_ENABLE_IF(And<Is<StlContainerConcept<TContainer> >, Not<HasSubscriptOperator<TContainer> > >, typename Value<TContainer>::Type) value(TContainer && me, TPos const pos);
+template <typename TContainer> inline SEQAN2_FUNC_ENABLE_IF(Is<StlContainerConcept<TContainer> >, bool) empty(TContainer const & me);
+template <typename T> inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<typename RemoveReference<T>::Type> >, bool) empty(T const & me);
 
 // --------------------------------------------------------------------------
 // Forwards For arrays and pointers.
@@ -191,7 +191,7 @@ template <typename TValue, typename TSize, typename TExpand> inline size_t resiz
 template <typename TValue, typename TPos> inline TValue & value(TValue * me, TPos pos);
 template <typename TValue, typename TPos> inline TValue const & value(TValue const * me, TPos pos);
 
-}  // namespace seqan
+}  // namespace seqan2
 
 #endif  // #if !defined(_MSC_VER)
 

@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_INDEX_SKEW7_MULTI_H
-#define SEQAN_HEADER_INDEX_SKEW7_MULTI_H
+#ifndef SEQAN2_HEADER_SEQAN2_INDEX_SKEW7_MULTI_H
+#define SEQAN2_HEADER_SEQAN2_INDEX_SKEW7_MULTI_H
 
-namespace seqan
+namespace seqan2
 {
 
     //////////////////////////////////////////////////////////////////////////////
@@ -275,10 +275,10 @@ namespace seqan
         TMerger                in;
         TLimitsString       const &limits;
 
-        // (weese): The SEQAN_CTOR_ENABLE_IF is necessary to avoid implicit casts and references to temporaries
+        // (weese): The SEQAN2_CTOR_ENABLE_IF is necessary to avoid implicit casts and references to temporaries
 
         template <typename TLimitsString_>
-        Pipe(TLimitsString_ const &_limits, SEQAN_CTOR_ENABLE_IF(IsSameType<TLimitsString, TLimitsString_>)) :
+        Pipe(TLimitsString_ const &_limits, SEQAN2_CTOR_ENABLE_IF(IsSameType<TLimitsString, TLimitsString_>)) :
             in(bundle5(sortedS0, sortedS3, sortedS5, sortedS6, sortedS124), _limits),
             limits(_limits)
         {
@@ -286,7 +286,7 @@ namespace seqan
         }
 
         template <typename TLimitsString_>
-        Pipe(TInput& _textIn, TLimitsString_ const &_limits, SEQAN_CTOR_ENABLE_IF(IsSameType<TLimitsString, TLimitsString_>)) :
+        Pipe(TInput& _textIn, TLimitsString_ const &_limits, SEQAN2_CTOR_ENABLE_IF(IsSameType<TLimitsString, TLimitsString_>)) :
             in(bundle5(sortedS0, sortedS3, sortedS5, sortedS6, sortedS124), _limits),
             limits(_limits)
         {
@@ -297,10 +297,10 @@ namespace seqan
         template < typename TInput_ >
         bool process(TInput_ &textIn) {
 
-            SEQAN_PROADD(SEQAN_PRODEPTH, 1);
-            SEQAN_PROMARK("Enter recursion");
-            #ifdef SEQAN_DEBUG_INDEX
-                std::cerr << "enter level " << SEQAN_PROVAL(SEQAN_PRODEPTH) << " bit-packing: ";
+            SEQAN2_PROADD(SEQAN2_PRODEPTH, 1);
+            SEQAN2_PROMARK("Enter recursion");
+            #ifdef SEQAN2_DEBUG_INDEX
+                std::cerr << "enter level " << SEQAN2_PROVAL(SEQAN2_PRODEPTH) << " bit-packing: ";
                 std::cerr << IsSameType<TPack, BitPacked<> >::VALUE << " "<<ValueSize<TypeOf_(TInput)>::VALUE<<"" << std::endl;
             #endif
             {
@@ -311,18 +311,18 @@ namespace seqan
             // step 1
             TSamplerDC7                 sampler(textIn, limits);
             TSortTuples                 sorter;
-            #ifdef SEQAN_DEBUG_INDEX
+            #ifdef SEQAN2_DEBUG_INDEX
                 std::cerr << "  sort names (" << length(sampler)<< ")" << std::endl;
             #endif
             sorter << sampler;
-            SEQAN_PROMARK("Sorter (2) - sort 7-mers");
+            SEQAN2_PROMARK("Sorter (2) - sort 7-mers");
 
             TNamer                      namer(sorter);
             func_slice_t                func_slice(limits);
 
             TSlicedPos                    slicedPos(namer, func_slice);
             TNames_Sliced               names_sliced;
-            #ifdef SEQAN_DEBUG_INDEX
+            #ifdef SEQAN2_DEBUG_INDEX
                 std::cerr << "  slice names" << std::endl;
             #endif
             names_sliced << slicedPos;
@@ -331,11 +331,11 @@ namespace seqan
                 // unique names
 
                 clear(sorter);
-                SEQAN_PROMARK("Mapper (4) - construct s124");
+                SEQAN2_PROMARK("Mapper (4) - construct s124");
 
                 TNames_Linear               names_S1, names_S2, names_S4;
 
-                #ifdef SEQAN_DEBUG_INDEX
+                #ifdef SEQAN2_DEBUG_INDEX
                     std::cerr << "  make names linear" << std::endl;
                 #endif
 
@@ -344,7 +344,7 @@ namespace seqan
                     names_S1, names_S2, names_S4);
 
                 clear(names_sliced);
-                SEQAN_PROMARK("Mapper (10) - construct ISA124");
+                SEQAN2_PROMARK("Mapper (10) - construct ISA124");
 
                 // step 2
                 _skew7ExtendMulti(
@@ -356,7 +356,7 @@ namespace seqan
                 // non-unique names
 
                 clear(sorter);
-                SEQAN_PROMARK("Mapper (4) - construct s124");
+                SEQAN2_PROMARK("Mapper (4) - construct s124");
 
                 TFilter                     filter(names_sliced);
                 TNames_Linear               names_S1, names_S2, names_S4;
@@ -366,11 +366,11 @@ namespace seqan
                     // recursion
                     TRecurse                    recurse(filter);
 
-                    #ifdef SEQAN_TEST_SKEW7
+                    #ifdef SEQAN2_TEST_SKEW7
                     {
                         String<typename Value<TFilter>::Type, Alloc<> > _text;
                         _text << filter;
-                        SEQAN_ASSERT(isSuffixArray(recurse, _text));
+                        SEQAN2_ASSERT(isSuffixArray(recurse, _text));
                     }
                     #endif
 
@@ -379,7 +379,7 @@ namespace seqan
 
                     // partition SA by residue classes
 
-                    #ifdef SEQAN_DEBUG_INDEX
+                    #ifdef SEQAN2_DEBUG_INDEX
                         std::cerr << "  rename names" << std::endl;
                     #endif
 
@@ -397,10 +397,10 @@ namespace seqan
                         names_S1, names_S2, names_S4);
                 }
 */
-                SEQAN_PROMARK("Mapper (10) - construct ISA124");
+                SEQAN2_PROMARK("Mapper (10) - construct ISA124");
 
                 // step 2
-                #ifdef SEQAN_DEBUG_INDEX
+                #ifdef SEQAN2_DEBUG_INDEX
                     std::cerr << "  prepare merge" << std::endl;
                 #endif
                 _skew7ExtendMulti(
@@ -408,17 +408,17 @@ namespace seqan
                     names_S1, names_S2, names_S4,
                     sortedS0, sortedS3, sortedS5, sortedS6, sortedS124);
 
-                SEQAN_PROMARK("Mapper (12), Sorter (13-16) - merge SA124, SA3, SA5, SA6, SA0");
+                SEQAN2_PROMARK("Mapper (12), Sorter (13-16) - merge SA124, SA3, SA5, SA6, SA0");
             }
 
             // step 3
             // ... is done on-demand by merger
             }
-            #ifdef SEQAN_DEBUG_INDEX
-                std::cerr << "left level " << SEQAN_PROVAL(SEQAN_PRODEPTH) << std::endl;
+            #ifdef SEQAN2_DEBUG_INDEX
+                std::cerr << "left level " << SEQAN2_PROVAL(SEQAN2_PRODEPTH) << std::endl;
             #endif
-            SEQAN_PROMARK("Left recursion");
-            SEQAN_PROSUB(SEQAN_PRODEPTH, 1);
+            SEQAN2_PROMARK("Left recursion");
+            SEQAN2_PROSUB(SEQAN2_PRODEPTH, 1);
 
             return true;
         }

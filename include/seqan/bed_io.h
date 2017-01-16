@@ -34,26 +34,26 @@
 // Facade header for module bed_io.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_BED_IO_H_
-#define INCLUDE_SEQAN_BED_IO_H_
+#ifndef INCLUDE_SEQAN2_BED_IO_H_
+#define INCLUDE_SEQAN2_BED_IO_H_
 
 // ===========================================================================
 // Prerequisites.
 // ===========================================================================
 
-#include <seqan/basic.h>
-#include <seqan/stream.h>
-#include <seqan/sequence.h>
+#include <seqan2/basic.h>
+#include <seqan2/stream.h>
+#include <seqan2/sequence.h>
 
 // ===========================================================================
 // First Header Group.
 // ===========================================================================
 
-#include <seqan/bed_io/bed_record.h>
+#include <seqan2/bed_io/bed_record.h>
 
-#include <seqan/bed_io/read_bed.h>
-#include <seqan/bed_io/write_bed.h>
+#include <seqan2/bed_io/read_bed.h>
+#include <seqan2/bed_io/write_bed.h>
 
-#include <seqan/bed_io/bed_file.h>
+#include <seqan2/bed_io/bed_file.h>
 
-#endif  // INCLUDE_SEQAN_BED_IO_H_
+#endif  // INCLUDE_SEQAN2_BED_IO_H_

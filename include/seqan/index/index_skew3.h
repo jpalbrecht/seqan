@@ -32,13 +32,13 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_INDEX_SKEW3_H
-#define SEQAN_HEADER_INDEX_SKEW3_H
+#ifndef SEQAN2_HEADER_SEQAN2_INDEX_SKEW3_H
+#define SEQAN2_HEADER_SEQAN2_INDEX_SKEW3_H
 
-namespace seqan
+namespace seqan2
 {
 
-//namespace SEQAN_NAMESPACE_PIPELINING
+//namespace SEQAN2_NAMESPACE_PIPELINING
 //{
 
     struct Skew3 {};
@@ -222,10 +222,10 @@ namespace seqan
         bool process(TInput_ &textIn)
         {
 
-            SEQAN_PROADD(SEQAN_PRODEPTH, 1);
-            SEQAN_PROMARK("Rekursionsabstieg");
-            #ifdef SEQAN_DEBUG_INDEX
-                std::cerr << "enter level " << SEQAN_PROVAL(SEQAN_PRODEPTH) << std::endl;
+            SEQAN2_PROADD(SEQAN2_PRODEPTH, 1);
+            SEQAN2_PROMARK("Rekursionsabstieg");
+            #ifdef SEQAN2_DEBUG_INDEX
+                std::cerr << "enter level " << SEQAN2_PROVAL(SEQAN2_PRODEPTH) << std::endl;
             #endif
             {
 
@@ -235,17 +235,17 @@ namespace seqan
             // step 1
             TSamplerDC3                 sampler(textIn);
             TSortTuples                 sorter;
-            #ifdef SEQAN_DEBUG_INDEX
+            #ifdef SEQAN2_DEBUG_INDEX
                 std::cerr << "  sort names (" << length(sampler)<< ")" << std::endl;
             #endif
             sorter << sampler;
-            SEQAN_PROMARK("Sorter (2) - Triplets sortieren");
+            SEQAN2_PROMARK("Sorter (2) - Triplets sortieren");
 
             TNamer                      namer(sorter);
             nmap_sliced_t               map_sliced(length(namer));
             nmap_linear_t               map_linear(length(namer));
             TNames_Sliced               names_sliced(map_sliced);
-            #ifdef SEQAN_DEBUG_INDEX
+            #ifdef SEQAN2_DEBUG_INDEX
                 std::cerr << "  slice names" << std::endl;
             #endif
             names_sliced << namer;
@@ -255,15 +255,15 @@ namespace seqan
                 // unique names
 
                 clear(sorter);
-                SEQAN_PROMARK("Mapper (4) - s12 konstruieren");
+                SEQAN2_PROMARK("Mapper (4) - s12 konstruieren");
                 TNames_Linear_Unique        names_linear(map_linear);
 
-                #ifdef SEQAN_DEBUG_INDEX
+                #ifdef SEQAN2_DEBUG_INDEX
                     std::cerr << "  make names linear" << std::endl;
                 #endif
                 names_linear << names_sliced;
                 clear(names_sliced);
-                SEQAN_PROMARK("Mapper (10) - ISA12 konstruieren");
+                SEQAN2_PROMARK("Mapper (10) - ISA12 konstruieren");
 
                 // step 2
                 _skew3Extend(textIn, names_linear, sortedS0, sortedS12);
@@ -274,16 +274,16 @@ namespace seqan
                 // non-unique names
 
                 clear(sorter);
-                SEQAN_PROMARK("Mapper (4) - s12 konstruieren");
+                SEQAN2_PROMARK("Mapper (4) - s12 konstruieren");
 
                 TFilter                     filter(names_sliced);
                 TRecurse                    recurse(filter);
 
-                #ifdef SEQAN_TEST_SKEW3
+                #ifdef SEQAN2_TEST_SKEW3
                 {
                     String<typename Value<TFilter>::Type, Alloc<> > _text;
                     _text << filter;
-                    SEQAN_ASSERT(isSuffixArray(recurse, _text));
+                    SEQAN2_ASSERT(isSuffixArray(recurse, _text));
                 }
                 #endif
 
@@ -293,29 +293,29 @@ namespace seqan
                 TRenamer                    renamer(unslicer);
 
                 TNames_Linear               names_linear(map_linear);
-                #ifdef SEQAN_DEBUG_INDEX
+                #ifdef SEQAN2_DEBUG_INDEX
                     std::cerr << "  rename names" << std::endl;
                 #endif
                 names_linear << renamer;
                 clear(renamer);
-                SEQAN_PROMARK("Mapper (10) - ISA12 konstruieren");
+                SEQAN2_PROMARK("Mapper (10) - ISA12 konstruieren");
 
                 // step 2
-                #ifdef SEQAN_DEBUG_INDEX
+                #ifdef SEQAN2_DEBUG_INDEX
                     std::cerr << "  prepare merge" << std::endl;
                 #endif
                 _skew3Extend(textIn, names_linear, sortedS0, sortedS12);
-                SEQAN_PROMARK("Mapper (12), Sorter (13) - SA12 und SA0 verschmelzen");
+                SEQAN2_PROMARK("Mapper (12), Sorter (13) - SA12 und SA0 verschmelzen");
             }
 
             // step 3
             // ... is done on-demand by merger
             }
-            #ifdef SEQAN_DEBUG_INDEX
-                std::cerr << "left level " << SEQAN_PROVAL(SEQAN_PRODEPTH) << std::endl;
+            #ifdef SEQAN2_DEBUG_INDEX
+                std::cerr << "left level " << SEQAN2_PROVAL(SEQAN2_PRODEPTH) << std::endl;
             #endif
-            SEQAN_PROMARK("Rekursionsaufstieg");
-            SEQAN_PROSUB(SEQAN_PRODEPTH, 1);
+            SEQAN2_PROMARK("Rekursionsaufstieg");
+            SEQAN2_PROSUB(SEQAN2_PRODEPTH, 1);
             return true;
         }
 
@@ -397,7 +397,7 @@ namespace seqan
         typedef typename Value<TSA>::Type TSize;
         typedef typename Value<TText>::Type TValue;
 
-        #ifdef SEQAN_DEBUG_INDEX
+        #ifdef SEQAN2_DEBUG_INDEX
             std::cerr << "--- CREATE SUFFIX ARRAY ---" << std::endl;
             std::cerr << "Skew3 [random access]" << std::endl;
         #endif
@@ -408,10 +408,10 @@ namespace seqan
         TSize n0=n/3, n1=(n+2)/3, n2=(n+1)/3, n12=n1+n2;
         TSize         o1=(n+2)%3, o2=(n+1)%3;
 
-        SEQAN_PROSET(SEQAN_PRODEPTH, depth);
-        SEQAN_PROSET(SEQAN_PROEXTRA1, K);
-        SEQAN_PROMARK("Rekursionsabstieg");
-        #ifdef SEQAN_DEBUG_INDEX
+        SEQAN2_PROSET(SEQAN2_PRODEPTH, depth);
+        SEQAN2_PROSET(SEQAN2_PROEXTRA1, K);
+        SEQAN2_PROMARK("Rekursionsabstieg");
+        #ifdef SEQAN2_DEBUG_INDEX
             std::cerr << "enter level " << depth << " (" << n << ")" << std::endl;
         #endif
 
@@ -442,7 +442,7 @@ namespace seqan
             radixPass(s12, SA12, s, cnt, K, 1);
             radixPass(SA12, s12, s, cnt, K);
         }
-        SEQAN_PROMARK("Triplets sortiert");
+        SEQAN2_PROMARK("Triplets sortiert");
 
         // find lexicographic names of triples
         TSize name = 0;
@@ -466,7 +466,7 @@ namespace seqan
             }
             s12[(n-l) % 3 == 2 ? l/3 : l/3 + n2] = name - 1;    // left or right half
         }
-        SEQAN_PROMARK("s12 konstruiert");
+        SEQAN2_PROMARK("s12 konstruiert");
 
         // recurse if names are not yet unique
         if (name < n12)
@@ -474,8 +474,8 @@ namespace seqan
             if (depth != maxdepth)
             {
                 createSuffixArray(SA12, s12, Skew3(), name, maxdepth, depth + 1);
-                #ifdef SEQAN_TEST_SKEW3
-                    SEQAN_ASSERT(isSuffixArray(SA12, s12));
+                #ifdef SEQAN2_TEST_SKEW3
+                    SEQAN2_ASSERT(isSuffixArray(SA12, s12));
                 #endif
             }
             // store unique names in s12 using the suffix array
@@ -505,16 +505,16 @@ namespace seqan
                             s0[j++] = l - 1;
                 radixPass(SA0, s0, s, cnt, K);
             }
-            SEQAN_PROMARK("SA0 konstruiert");
+            SEQAN2_PROMARK("SA0 konstruiert");
 
             // merge sorted SA0 suffixes and sorted SA12 suffixes
-            #define SEQAN_GET_ISKEW3(ii) (ii < n2 ? ii * 3 + o2 : (ii - n2) * 3 + o1)
+            #define SEQAN2_GET_ISKEW3(ii) (ii < n2 ? ii * 3 + o2 : (ii - n2) * 3 + o1)
             if (n0)
             {
                 for (TSize p=0,  t=0,  k=0,  clip = n - 1;  k < n;  k++)
                 {
                     TSize ii = SA12[t];                    // pos of current interleave offset 12 suffix
-                    TSize i  = SEQAN_GET_ISKEW3(ii);    // pos of current offset 12 suffix
+                    TSize i  = SEQAN2_GET_ISKEW3(ii);    // pos of current offset 12 suffix
                     TSize j  = SA0[p];                    // pos of current offset 0  suffix
                     if (ii < n2 ?
                         _leqSkew3<TValue, TSize> (s[i],       s12[ii + n1],     s[j],        s12[j/3 + n2  - n0]) :
@@ -531,19 +531,19 @@ namespace seqan
                     {
                         SA[k] = j;
                         if (++p == n0)  // done --- only SA12 suffixes left
-                            for (;  t < n12;  t++) { ii = SA12[t]; SA[++k] = SEQAN_GET_ISKEW3(ii); }
+                            for (;  t < n12;  t++) { ii = SA12[t]; SA[++k] = SEQAN2_GET_ISKEW3(ii); }
                     }
                 }
             } else
-                for (TSize t = 0;  t < n12;  t++) { TSize ii = SA12[t]; SA[t] = SEQAN_GET_ISKEW3(ii); }
+                for (TSize t = 0;  t < n12;  t++) { TSize ii = SA12[t]; SA[t] = SEQAN2_GET_ISKEW3(ii); }
         }
-        SEQAN_PROMARK("SA12 und SA0 verschmolzen");
+        SEQAN2_PROMARK("SA12 und SA0 verschmolzen");
 
-        #ifdef SEQAN_DEBUG_INDEX
+        #ifdef SEQAN2_DEBUG_INDEX
             std::cerr << "left level " << depth << std::endl;
         #endif
-        SEQAN_PROMARK("Rekursionsaufstieg");
-        SEQAN_PROSUB(SEQAN_PRODEPTH, 1);
+        SEQAN2_PROMARK("Rekursionsaufstieg");
+        SEQAN2_PROSUB(SEQAN2_PRODEPTH, 1);
     }
 
     template < typename TSA,

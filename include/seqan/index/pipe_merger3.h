@@ -32,13 +32,13 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_INDEX_MERGER3_H
-#define SEQAN_HEADER_INDEX_MERGER3_H
+#ifndef SEQAN2_HEADER_SEQAN2_INDEX_MERGER3_H
+#define SEQAN2_HEADER_SEQAN2_INDEX_MERGER3_H
 
-namespace seqan
+namespace seqan2
 {
 
-//namespace SEQAN_NAMESPACE_PIPELINING
+//namespace SEQAN2_NAMESPACE_PIPELINING
 //{
 
     struct Merger3;
@@ -105,7 +105,7 @@ namespace seqan
 
         inline Pipe& operator++() {
             if (minStream) {
-                #ifdef SEQAN_TEST_SKEW3
+                #ifdef SEQAN2_TEST_SKEW3
                     InType12 a = *in.in2;
                 #endif
                 ++in.in2;
@@ -113,15 +113,15 @@ namespace seqan
                     minStream = (twoStreams)? 0: -1;
                     twoStreams = false;
                 }
-                #ifdef SEQAN_TEST_SKEW3
+                #ifdef SEQAN2_TEST_SKEW3
                     else {
                         InType12 b = *in.in2;
-                        SEQAN_ASSERT((a.i3[0] < b.i3[0]) || (a.i3[0] == b.i3[0] && a.i3[1] <= b.i3[1]));
-                        SEQAN_ASSERT_LT(a.i2[0], b.i2[0]);
+                        SEQAN2_ASSERT((a.i3[0] < b.i3[0]) || (a.i3[0] == b.i3[0] && a.i3[1] <= b.i3[1]));
+                        SEQAN2_ASSERT_LT(a.i2[0], b.i2[0]);
                     }
                 #endif
             } else {
-                #ifdef SEQAN_TEST_SKEW3
+                #ifdef SEQAN2_TEST_SKEW3
                     InType0 a = *in.in1;
                 #endif
                 ++in.in1;
@@ -129,11 +129,11 @@ namespace seqan
                     minStream = (twoStreams)? 1: -1;
                     twoStreams = false;
                 }
-                #ifdef SEQAN_TEST_SKEW3
+                #ifdef SEQAN2_TEST_SKEW3
                     else {
                         InType0 b = *in.in1;
-                        SEQAN_ASSERT((a.i3[0] < b.i3[0]) || (a.i3[0] == b.i3[0] && a.i3[1] <= b.i3[1]));
-                        SEQAN_ASSERT((a.i3[0] < b.i3[0]) || (a.i3[0] == b.i3[0] && a.i2[0] < b.i2[0]));
+                        SEQAN2_ASSERT((a.i3[0] < b.i3[0]) || (a.i3[0] == b.i3[0] && a.i3[1] <= b.i3[1]));
+                        SEQAN2_ASSERT((a.i3[0] < b.i3[0]) || (a.i3[0] == b.i3[0] && a.i2[0] < b.i2[0]));
                     }
                 #endif
             }

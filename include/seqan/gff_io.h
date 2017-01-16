@@ -34,23 +34,23 @@
 // Facade header for module gff_io.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_GFF_IO_H_
-#define INCLUDE_SEQAN_GFF_IO_H_
+#ifndef INCLUDE_SEQAN2_GFF_IO_H_
+#define INCLUDE_SEQAN2_GFF_IO_H_
 
 // ===========================================================================
 // Prerequisites.
 // ===========================================================================
 
-#include <seqan/basic.h>
-#include <seqan/file.h>
-#include <seqan/sequence.h>
-#include <seqan/stream.h>
+#include <seqan2/basic.h>
+#include <seqan2/file.h>
+#include <seqan2/sequence.h>
+#include <seqan2/stream.h>
 
 // ===========================================================================
 // First Header Group.
 // ===========================================================================
 
-#include <seqan/gff_io/gff_io_base.h>
-#include <seqan/gff_io/gff_file.h>
+#include <seqan2/gff_io/gff_io_base.h>
+#include <seqan2/gff_io/gff_file.h>
 
-#endif  // INCLUDE_SEQAN_GFF_IO_H_
+#endif  // INCLUDE_SEQAN2_GFF_IO_H_

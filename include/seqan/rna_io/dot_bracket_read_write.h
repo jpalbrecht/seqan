@@ -35,10 +35,10 @@
 // This file contains routines to write to DotBracket format files (.ct)
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_RNA_IO_DOT_BRACKET_READ_WRITE_H_
-#define SEQAN_INCLUDE_SEQAN_RNA_IO_DOT_BRACKET_READ_WRITE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_RNA_IO_DOT_BRACKET_READ_WRITE_H_
+#define SEQAN2_INCLUDE_SEQAN2_RNA_IO_DOT_BRACKET_READ_WRITE_H_
 
-#include <seqan/stream.h>
+#include <seqan2/stream.h>
 #include <stack>
 #include <array>
 #include <cstddef>
@@ -56,7 +56,7 @@ GCGGAUUUAGCUCAGUUGGGAGAGCGCCAGACUGAAGAUUUGGAGGUCCUGUGUUCGAUCCACAGAAUUCGCA
 -Dot-Bracket notation for knots or pseudoknots | Energy of rna strand
 */
 
-namespace seqan{
+namespace seqan2{
 
 // ==========================================================================
 // Tags, Classes, Enums
@@ -68,7 +68,7 @@ namespace seqan{
 
 /*!
  * @tag FileFormats#DotBracket
- * @headerfile <seqan/rna_io.h>
+ * @headerfile <seqan2/rna_io.h>
  * @brief Dot Bracket format for RNA structures (*.dbn).
  * @signature typedef Tag<DotBracket_> DotBracket;
  * @see FileFormats#RnaStruct
@@ -178,19 +178,19 @@ inline void bracket2graph(String<RnaStructureGraph> & graphSet, CharString const
             }
             else
             {
-                SEQAN_THROW(ParseError("Invalid bracket notation: unpaired closing bracket"));
+                SEQAN2_THROW(ParseError("Invalid bracket notation: unpaired closing bracket"));
             }
         }
         else
         {
-            SEQAN_THROW(ParseError("Invalid bracket notation: unknown symbol"));
+            SEQAN2_THROW(ParseError("Invalid bracket notation: unknown symbol"));
         }
     }
 
     for (decltype(length(DotBracketArgs<>::open)) idx = 0; idx < length(DotBracketArgs<>::open); ++idx)
     {
         if (!stack[idx].empty())
-            SEQAN_THROW(ParseError("Invalid bracket notation: unpaired opening bracket"));
+            SEQAN2_THROW(ParseError("Invalid bracket notation: unpaired opening bracket"));
     }
 
     append(graphSet, graph);
@@ -265,7 +265,7 @@ inline CharString const graph2bracket(RnaStructureGraph const & graph)
     {
         if (degree(graph.inter, idx) == 0)              // unpaired
         {
-            SEQAN_ASSERT(colors[idx] == 0);
+            SEQAN2_ASSERT(colors[idx] == 0);
             bracketStr[idx] = '.';
             continue;
         }
@@ -273,12 +273,12 @@ inline CharString const graph2bracket(RnaStructureGraph const & graph)
         RnaAdjacencyIterator adj_it(graph.inter, idx);
         if (idx < value(adj_it))                        // open bracket
         {
-            SEQAN_ASSERT(colors[idx] > 0);
+            SEQAN2_ASSERT(colors[idx] > 0);
             bracketStr[idx] = DotBracketArgs<>::open[colors[idx]-1];
         }
         else                                            // close bracket
         {
-            SEQAN_ASSERT(colors[idx] > 0);
+            SEQAN2_ASSERT(colors[idx] > 0);
             bracketStr[idx] = DotBracketArgs<>::close[colors[idx]-1];
         }
     }
@@ -325,7 +325,7 @@ readRecord(RnaRecord & record, TForwardIter & iter, DotBracket const & /*tag*/)
     readUntil(buffer, iter, IsWhitespace());
     if (length(buffer) != record.seqLen)
     {
-        SEQAN_THROW(ParseError("ERROR: Bracket string (" + std::to_string(length(buffer)) +
+        SEQAN2_THROW(ParseError("ERROR: Bracket string (" + std::to_string(length(buffer)) +
                                ") must be as long as sequence (" + std::to_string(record.seqLen) + ")."));
     }
 
@@ -339,7 +339,7 @@ readRecord(RnaRecord & record, TForwardIter & iter, DotBracket const & /*tag*/)
         skipOne(iter);
         readUntil(buffer, iter, EqualsChar<')'>());
         if (!lexicalCast(record.fixedGraphs[0].energy, buffer))
-            SEQAN_THROW(BadLexicalCast(record.fixedGraphs[0].energy, buffer));
+            SEQAN2_THROW(BadLexicalCast(record.fixedGraphs[0].energy, buffer));
         clear(buffer);
     }
     if (!atEnd(iter))
@@ -362,9 +362,9 @@ inline void
 writeRecord(TTarget & target, RnaRecord const & record, DotBracket const & /*tag*/)
 {
     if (empty(record.sequence) && length(rows(record.align)) != 1u)
-        SEQAN_THROW(ParseError("ERROR: DotBracket formatted file cannot contain an alignment."));
+        SEQAN2_THROW(ParseError("ERROR: DotBracket formatted file cannot contain an alignment."));
     if (length(record.fixedGraphs) != 1u)
-        SEQAN_THROW(ParseError("ERROR: DotBracket formatted file cannot contain multiple structure graphs."));
+        SEQAN2_THROW(ParseError("ERROR: DotBracket formatted file cannot contain multiple structure graphs."));
 
     Rna5String const sequence = empty(record.sequence) ? source(row(record.align, 0)) : record.sequence;
 
@@ -406,4 +406,4 @@ writeRecord(TTarget & target, RnaRecord const & record, RnaIOContext & /*context
 }
 
 }
-#endif // SEQAN_INCLUDE_SEQAN_RNA_IO_DOT_BRACKET_READ_WRITE_H_
+#endif // SEQAN2_INCLUDE_SEQAN2_RNA_IO_DOT_BRACKET_READ_WRITE_H_

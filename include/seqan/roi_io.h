@@ -34,26 +34,26 @@
 // Facade header for module roi_io.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_ROI_IO_H_
-#define INCLUDE_SEQAN_ROI_IO_H_
+#ifndef INCLUDE_SEQAN2_ROI_IO_H_
+#define INCLUDE_SEQAN2_ROI_IO_H_
 
 // ===========================================================================
 // Prerequisites.
 // ===========================================================================
 
-#include <seqan/basic.h>
-#include <seqan/file.h>
-#include <seqan/sequence.h>
+#include <seqan2/basic.h>
+#include <seqan2/file.h>
+#include <seqan2/sequence.h>
 
 // ===========================================================================
 // Module Contents
 // ===========================================================================
 
-#include <seqan/roi_io/roi_record.h>
+#include <seqan2/roi_io/roi_record.h>
 
-#include <seqan/roi_io/roi_io_context.h>
-#include <seqan/roi_io/read_roi.h>
-#include <seqan/roi_io/write_roi.h>
-#include <seqan/roi_io/roi_file.h>
+#include <seqan2/roi_io/roi_io_context.h>
+#include <seqan2/roi_io/read_roi.h>
+#include <seqan2/roi_io/write_roi.h>
+#include <seqan2/roi_io/roi_file.h>
 
-#endif  // INCLUDE_SEQAN_ROI_IO_H_
+#endif  // INCLUDE_SEQAN2_ROI_IO_H_

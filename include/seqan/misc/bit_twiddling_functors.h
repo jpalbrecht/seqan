@@ -34,10 +34,10 @@
 // Implements basic functors.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_MISC_BIT_TWIDDLING_FUNCTORS_H_
-#define INCLUDE_SEQAN_MISC_BIT_TWIDDLING_FUNCTORS_H_
+#ifndef INCLUDE_SEQAN2_MISC_BIT_TWIDDLING_FUNCTORS_H_
+#define INCLUDE_SEQAN2_MISC_BIT_TWIDDLING_FUNCTORS_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -137,4 +137,4 @@ struct FunctorNested
 
 }
 
-#endif // INCLUDE_SEQAN_MISC_BIT_TWIDDLING_FUNCTORS_H_
+#endif // INCLUDE_SEQAN2_MISC_BIT_TWIDDLING_FUNCTORS_H_

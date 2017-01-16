@@ -34,10 +34,10 @@
 // Implementation of the Packed String class.
 // ==========================================================================
 
-#ifndef SEQAN_SEQUENCE_STRING_PACKED_H_
-#define SEQAN_SEQUENCE_STRING_PACKED_H_
+#ifndef SEQAN2_SEQUENCE_STRING_PACKED_H_
+#define SEQAN2_SEQUENCE_STRING_PACKED_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -60,7 +60,7 @@ struct HostIterator;
 /*!
  * @class PackedString Packed String
  * @extends String
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief A string that stores as many values in one machine word as possible.
  *
  * @signature template <typename TValue, typename THostSpec>
@@ -1829,7 +1829,7 @@ inline void transform(String<bool, Packed<THostSpec> > & target,
     if (empty(host(lhs)) || empty(host(rhs)))
         return;
 
-    SEQAN_ASSERT_EQ(length(lhs), length(rhs));
+    SEQAN2_ASSERT_EQ(length(lhs), length(rhs));
 
     resize(target, length(lhs), Exact());
 
@@ -2034,6 +2034,6 @@ inline bool save(String<TValue, Packed<THostspec> > const & me, const char *file
     return save(host(me), fileName, openMode);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_SEQUENCE_STRING_PACKED_H_
+#endif  // #ifndef SEQAN2_SEQUENCE_STRING_PACKED_H_

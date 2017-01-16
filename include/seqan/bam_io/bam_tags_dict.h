@@ -35,10 +35,10 @@
 // Code for read/write access to BAM tag dicts.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_BAM_IO_BAM_TAGS_DICT_H_
-#define INCLUDE_SEQAN_BAM_IO_BAM_TAGS_DICT_H_
+#ifndef INCLUDE_SEQAN2_BAM_IO_BAM_TAGS_DICT_H_
+#define INCLUDE_SEQAN2_BAM_IO_BAM_TAGS_DICT_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -87,7 +87,7 @@ struct Position<BamTagsDict>
 
 /*!
  * @class BamTagsDict
- * @headerfile <seqan/bam_io.h>
+ * @headerfile <seqan2/bam_io.h>
  * @brief Indexes start positions of BAM tags in a @link CharString @endlink and provides a dict-like API.
  *
  * @signature class BamTagsDict;
@@ -193,7 +193,7 @@ hasIndex(BamTagsDict const & bamTags)
 
 /*!
  * @fn getBamTypeSize
- * @headerfile <seqan/bam_io.h>
+ * @headerfile <seqan2/bam_io.h>
  * @brief Return size of the type identified by a type char.
  *
  * @signature int getBamTypeSize(c);
@@ -277,7 +277,7 @@ buildIndex(BamTagsDict const & bamTags)
     TIter itEnd = end(host(bamTags), Standard());
     for (TIter it = itBegin; it != itEnd; )
     {
-        SEQAN_ASSERT(it < itEnd);
+        SEQAN2_ASSERT(it < itEnd);
         // skip tag name (e.g. "NM")
         it += 2;
 
@@ -289,7 +289,7 @@ buildIndex(BamTagsDict const & bamTags)
             while (*it != '\0')
             {
                 ++it;
-                SEQAN_ASSERT(it != itEnd);
+                SEQAN2_ASSERT(it != itEnd);
             }
             ++it;
         }
@@ -498,7 +498,7 @@ struct ExtractTagValueHelper_
 };
 
 template <typename TResultValue, typename TId>
-SEQAN_FUNC_ENABLE_IF(Is<NumberConcept<TResultValue> >, bool)
+SEQAN2_FUNC_ENABLE_IF(Is<NumberConcept<TResultValue> >, bool)
 extractTagValue(TResultValue & val, BamTagsDict const & tags, TId id)
 {
     typedef Infix<Host<BamTagsDict const>::Type>::Type TInfix;
@@ -516,7 +516,7 @@ extractTagValue(TResultValue & val, BamTagsDict const & tags, TId id)
 }
 
 template <typename TResultValue, typename TId>
-SEQAN_FUNC_ENABLE_IF(IsSequence<TResultValue>, bool)
+SEQAN2_FUNC_ENABLE_IF(IsSequence<TResultValue>, bool)
 extractTagValue(TResultValue & val, BamTagsDict const & tags, TId id)
 {
     typedef Infix<Host<BamTagsDict const>::Type>::Type TInfix;
@@ -535,7 +535,7 @@ extractTagValue(TResultValue & val, BamTagsDict const & tags, TId id)
 
 /*!
  * @fn getBamTypeChar
- * @headerfile <seqan/bam_io.h>
+ * @headerfile <seqan2/bam_io.h>
  * @brief Return char identifying the type of the argument type.
  *
  * @signature char getBamTypeChar<T>();
@@ -579,7 +579,7 @@ inline char getBamTypeChar(T const &)
 /*!
  * @fn BamTagsDict#setTagValue
  *
- * @headerfile <seqan/bam_io.h>
+ * @headerfile <seqan2/bam_io.h>
  *
  * @brief Set the value of a tag through a @link BamTagsDict @endlink.
  *
@@ -673,7 +673,7 @@ struct ToBamTagValueHelper_
 
 // Convert "atomic" value to BAM tag.  Return whether val was atomic.
 template <typename TBamValueSequence, typename TValue>
-SEQAN_FUNC_ENABLE_IF(Is<NumberConcept<TValue> >, bool)
+SEQAN2_FUNC_ENABLE_IF(Is<NumberConcept<TValue> >, bool)
 _toBamTagValue(TBamValueSequence & result, TValue const & val, char typeC)
 {
     if (typeC == 'Z')
@@ -689,7 +689,7 @@ _toBamTagValue(TBamValueSequence & result, TValue const & val, char typeC)
 }
 
 template <typename TBamValueSequence, typename TValue>
-SEQAN_FUNC_ENABLE_IF(IsSequence<TValue>, bool)
+SEQAN2_FUNC_ENABLE_IF(IsSequence<TValue>, bool)
 _toBamTagValue(TBamValueSequence & result, TValue const & val, char typeC)
 {
     if (typeC != 'Z')
@@ -750,7 +750,7 @@ setTagValue(BamTagsDict & tags, TKey const & key, TValue const & val)
 /*!
  * @fn BamTagsDict#appendTagValue
  *
- * @headerfile <seqan/bam_io.h>
+ * @headerfile <seqan2/bam_io.h>
  *
  * @brief Append a tag/value pair to a @link BamTagsDict @endlink.
  *
@@ -823,7 +823,7 @@ appendTagValue(TDictOrString & tags, TKey const & key, TValue const & val)
  */
 
 template <typename TKey>
-inline SEQAN_FUNC_DISABLE_IF(Is<NumberConcept<TKey> >, bool)
+inline SEQAN2_FUNC_DISABLE_IF(Is<NumberConcept<TKey> >, bool)
 eraseTag(BamTagsDict & tags, TKey const & key)
 {
     if (!hasIndex(tags))
@@ -839,7 +839,7 @@ eraseTag(BamTagsDict & tags, TKey const & key)
 }
 
 template <typename TId>
-inline SEQAN_FUNC_ENABLE_IF(Is<NumberConcept<TId> >, bool)
+inline SEQAN2_FUNC_ENABLE_IF(Is<NumberConcept<TId> >, bool)
 eraseTag(BamTagsDict & tags, TId const & id)
 {
     typedef typename Iterator<String<typename BamTagsDict::TPos>, Standard>::Type TIter;
@@ -885,6 +885,6 @@ tagsToBamRecord(BamAlignmentRecord & record,
     record.tags = host(dict);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_BAM_IO_BAM_TAGS_DICT_H_
+#endif  // #ifndef INCLUDE_SEQAN2_BAM_IO_BAM_TAGS_DICT_H_

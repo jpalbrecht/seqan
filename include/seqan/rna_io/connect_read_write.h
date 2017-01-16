@@ -35,8 +35,8 @@
 // This file contains routines to read and write to connect format files (.ct)
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_RNA_IO_CONNECT_READ_WRITE_H_
-#define SEQAN_INCLUDE_SEQAN_RNA_IO_CONNECT_READ_WRITE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_RNA_IO_CONNECT_READ_WRITE_H_
+#define SEQAN2_INCLUDE_SEQAN2_RNA_IO_CONNECT_READ_WRITE_H_
 
 /* IMPLEMENTATION NOTES
 
@@ -65,7 +65,7 @@ record
 
 */
 
-namespace seqan{
+namespace seqan2{
 
 // ==========================================================================
 // Tags, Classes, Enums
@@ -77,7 +77,7 @@ namespace seqan{
 
 /*!
  * @tag FileFormats#Connect
- * @headerfile <seqan/rna_io.h>
+ * @headerfile <seqan2/rna_io.h>
  * @brief Connect format for RNA structures (*.ct).
  * @signature typedef Tag<Connect_> Connect;
  * @see FileFormats#RnaStruct
@@ -133,7 +133,7 @@ readRecord(RnaRecord & record, TForwardIter & iter, Connect const & /*tag*/)
     skipUntil(iter, NotFunctor<IsWhitespace>());
     readUntil(buffer, iter, IsWhitespace());
     if (!lexicalCast(record.seqLen, buffer))
-        SEQAN_THROW(BadLexicalCast(record.seqLen, buffer));
+        SEQAN2_THROW(BadLexicalCast(record.seqLen, buffer));
 
     clear(buffer);
 
@@ -148,7 +148,7 @@ readRecord(RnaRecord & record, TForwardIter & iter, Connect const & /*tag*/)
         clear(buffer);
         readUntil(buffer, iter, IsWhitespace());
         if (!lexicalCast(graph.energy, buffer))
-            SEQAN_THROW(BadLexicalCast(graph.energy, buffer));
+            SEQAN2_THROW(BadLexicalCast(graph.energy, buffer));
 
         skipUntil(iter, NotFunctor<IsWhitespace>());
     }
@@ -186,7 +186,7 @@ readRecord(RnaRecord & record, TForwardIter & iter, Connect const & /*tag*/)
         {
             readUntil(buffer, iter, IsWhitespace());
             if (!lexicalCast(record.offset, buffer))
-                SEQAN_THROW(BadLexicalCast(record.offset, buffer));
+                SEQAN2_THROW(BadLexicalCast(record.offset, buffer));
 
             currPos = record.offset;
             clear(buffer);
@@ -210,21 +210,21 @@ readRecord(RnaRecord & record, TForwardIter & iter, Connect const & /*tag*/)
         unsigned pairPos;
         readUntil(buffer, iter, IsWhitespace());
         if (!lexicalCast(pairPos, buffer))
-            SEQAN_THROW(BadLexicalCast(pairPos, buffer));
+            SEQAN2_THROW(BadLexicalCast(pairPos, buffer));
 
         if (pairPos != 0 && currPos > pairPos)
         {
             if (pairPos >= record.offset)
                 addEdge(graph.inter, pairPos - record.offset, currPos - record.offset, 1.0);
             else
-                SEQAN_THROW(ParseError("ERROR: Incompatible pairing position in input file."));
+                SEQAN2_THROW(ParseError("ERROR: Incompatible pairing position in input file."));
         }
 
         clear(buffer);
         skipLine(iter);
     }
     append(record.fixedGraphs, graph);
-    SEQAN_ASSERT_EQ(record.seqLen, length(record.sequence));
+    SEQAN2_ASSERT_EQ(record.seqLen, length(record.sequence));
 }
 
 template <typename TForwardIter>
@@ -243,9 +243,9 @@ inline void
 writeRecord(TTarget & target, RnaRecord const & record, Connect const & /*tag*/)
 {
     if (empty(record.sequence) && length(rows(record.align)) != 1)
-        SEQAN_THROW(ParseError("ERROR: Connect formatted file cannot contain an alignment."));
+        SEQAN2_THROW(ParseError("ERROR: Connect formatted file cannot contain an alignment."));
     if (length(record.fixedGraphs) != 1)
-        SEQAN_THROW(ParseError("ERROR: Connect formatted file cannot contain multiple structure graphs."));
+        SEQAN2_THROW(ParseError("ERROR: Connect formatted file cannot contain multiple structure graphs."));
 
     Rna5String const sequence = empty(record.sequence) ? source(row(record.align, 0)) : record.sequence;
     RnaStructureGraph const & graph = record.fixedGraphs[0];
@@ -297,6 +297,6 @@ writeRecord(TTarget & target, RnaRecord const & record, RnaIOContext & /*context
     writeRecord(target, record, Connect());
 }
 
-} // namespace seqan
+} // namespace seqan2
 
-#endif // SEQAN_INCLUDE_SEQAN_RNA_IO_CONNECT_READ_WRITE_H_
+#endif // SEQAN2_INCLUDE_SEQAN2_RNA_IO_CONNECT_READ_WRITE_H_

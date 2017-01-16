@@ -32,8 +32,8 @@
 // Umbrella header for the modifier module.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_MODIFIER_H_
-#define SEQAN_INCLUDE_SEQAN_MODIFIER_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_MODIFIER_H_
+#define SEQAN2_INCLUDE_SEQAN2_MODIFIER_H_
 
 // --------------------------------------------------------------------------
 // Prerequisites
@@ -43,40 +43,40 @@
 #include <list>
 #include <utility>  // std::forward()
 
-#include <seqan/basic.h>
-#include <seqan/sequence.h>
-#include <seqan/parallel.h>
+#include <seqan2/basic.h>
+#include <seqan2/sequence.h>
+#include <seqan2/parallel.h>
 
 // --------------------------------------------------------------------------
 // Modified Alphabets
 // --------------------------------------------------------------------------
 
-#include <seqan/modifier/modifier_alphabet.h>
-#include <seqan/modifier/modifier_alphabet_expansion.h>
+#include <seqan2/modifier/modifier_alphabet.h>
+#include <seqan2/modifier/modifier_alphabet_expansion.h>
 
 // --------------------------------------------------------------------------
 // Modified Strings and Iterators Base Classes
 // --------------------------------------------------------------------------
 
-#include <seqan/modifier/modifier_iterator.h>
-#include <seqan/modifier/modifier_string.h>
+#include <seqan2/modifier/modifier_iterator.h>
+#include <seqan2/modifier/modifier_string.h>
 
 // --------------------------------------------------------------------------
 // Auxiliary header for special modifiers
 // --------------------------------------------------------------------------
 
-#include <seqan/modifier/cyclic_shape.h>
+#include <seqan2/modifier/cyclic_shape.h>
 
 // --------------------------------------------------------------------------
 // Applications of Base Classes
 // --------------------------------------------------------------------------
 
-#include <seqan/modifier/modifier_functors.h>
-#include <seqan/modifier/modifier_view.h>
-#include <seqan/modifier/modifier_reverse.h>
-#include <seqan/modifier/modifier_shortcuts.h>
-#include <seqan/modifier/modifier_cyclic_shape.h>
-#include <seqan/modifier/modifier_position.h>
-#include <seqan/modifier/modifier_padding.h>
+#include <seqan2/modifier/modifier_functors.h>
+#include <seqan2/modifier/modifier_view.h>
+#include <seqan2/modifier/modifier_reverse.h>
+#include <seqan2/modifier/modifier_shortcuts.h>
+#include <seqan2/modifier/modifier_cyclic_shape.h>
+#include <seqan2/modifier/modifier_position.h>
+#include <seqan2/modifier/modifier_padding.h>
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_MODIFIER_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_MODIFIER_H_

@@ -34,24 +34,24 @@
 // Facade header for module realign.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_REALIGN_H_
-#define INCLUDE_SEQAN_REALIGN_H_
+#ifndef INCLUDE_SEQAN2_REALIGN_H_
+#define INCLUDE_SEQAN2_REALIGN_H_
 
 // ===========================================================================
 // Prerequisites.
 // ===========================================================================
 
-#include <seqan/basic.h>
-#include <seqan/file.h>
-#include <seqan/sequence.h>
-#include <seqan/store.h>
-#include <seqan/consensus.h>
+#include <seqan2/basic.h>
+#include <seqan2/file.h>
+#include <seqan2/sequence.h>
+#include <seqan2/store.h>
+#include <seqan2/consensus.h>
 
 // ===========================================================================
 // Realignment Code
 // ===========================================================================
 
-#include <seqan/realign/realign_helper_functions.h>
-#include <seqan/realign/realign_base.h>
+#include <seqan2/realign/realign_helper_functions.h>
+#include <seqan2/realign/realign_base.h>
 
-#endif  // INCLUDE_SEQAN_REALIGN_H_
+#endif  // INCLUDE_SEQAN2_REALIGN_H_

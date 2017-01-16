@@ -36,10 +36,10 @@
 // works.
 // ==========================================================================
 
-//SEQAN_NO_GENERATED_FORWARDS: no forwards are generated for this file
+//SEQAN2_NO_GENERATED_FORWARDS: no forwards are generated for this file
 
-#ifndef SEQAN_HEADER_MISC_MAP_H
-#define SEQAN_HEADER_MISC_MAP_H
+#ifndef SEQAN2_HEADER_MISC_MAP_H
+#define SEQAN2_HEADER_MISC_MAP_H
 
 #include <algorithm>
 #include "base.h"
@@ -47,7 +47,7 @@
 
 //////////////////////////////////////////////////////////////////////////////
 
-namespace seqan
+namespace seqan2
 {
 
     //////////////////////////////////////////////////////////////////////////////

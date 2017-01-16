@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_INDEX_FIND_BINARY_H
-#define SEQAN_HEADER_INDEX_FIND_BINARY_H
+#ifndef SEQAN2_HEADER_SEQAN2_INDEX_FIND_BINARY_H
+#define SEQAN2_HEADER_SEQAN2_INDEX_FIND_BINARY_H
 
-namespace seqan
+namespace seqan2
 {
     //////////////////////////////////////////////////////////////////////////////
     // different layouts of a suffix array or lcp table
@@ -205,7 +205,7 @@ namespace seqan
                 return *this;
             }
             _iSize -= mid();
-            SEQAN_ASSERT_NEQ(_iSize, 0u);    // _xSize/2 is less than _iSize by invariant
+            SEQAN2_ASSERT_NEQ(_iSize, 0u);    // _xSize/2 is less than _iSize by invariant
 
             // step down right
             _descendRight();
@@ -1172,7 +1172,7 @@ namespace seqan
 
         TDiff delta = length(sa) - 1;
         TDiff lcp;
-        #ifdef SEQAN_PROFILE_LCPEFIND
+        #ifdef SEQAN2_PROFILE_LCPEFIND
             TDiff skippedCompares = 0;    // difference of char compares related to xxx_bound_sa
         #endif
 
@@ -1196,7 +1196,7 @@ namespace seqan
                 if (lcpMidLower > lcpLower)
                 {
                     // second half
-                    #ifdef SEQAN_PROFILE_LCPEFIND
+                    #ifdef SEQAN2_PROFILE_LCPEFIND
                         skippedCompares += lcpLower - lcpUpper;
                     #endif
                     first = mid;
@@ -1210,7 +1210,7 @@ namespace seqan
                 else if (lcpMidLower < lcpLower)
                 {
                     // first half
-                    #ifdef SEQAN_PROFILE_LCPEFIND
+                    #ifdef SEQAN2_PROFILE_LCPEFIND
                         skippedCompares += lcpMidLower - lcpUpper;
                     #endif
                     lcpUpper = lcpMidLower;
@@ -1230,7 +1230,7 @@ namespace seqan
                 if (lcpMidUpper > lcpUpper)
                 {
                     // first half
-                    #ifdef SEQAN_PROFILE_LCPEFIND
+                    #ifdef SEQAN2_PROFILE_LCPEFIND
                         skippedCompares += lcpUpper - lcpLower;
                     #endif
                     treeIter.left();
@@ -1241,7 +1241,7 @@ namespace seqan
                 else if (lcpMidUpper < lcpUpper)
                 {
                     // second half
-                    #ifdef SEQAN_PROFILE_LCPEFIND
+                    #ifdef SEQAN2_PROFILE_LCPEFIND
                         skippedCompares += lcpMidUpper - lcpLower;
                     #endif
                     lcpLower = lcpMidUpper;
@@ -1265,7 +1265,7 @@ namespace seqan
 
             // lcp search changes MIN to MAX here
 //            TDiff lcp = _max(lcpLower, lcpUpper);
-            #ifdef SEQAN_PROFILE_LCPEFIND
+            #ifdef SEQAN2_PROFILE_LCPEFIND
                 skippedCompares += lcp - _min(lcpLower, lcpUpper);
             #endif
             goFurther(t, lcp);
@@ -1294,8 +1294,8 @@ namespace seqan
             }
         }
 
-        #ifdef SEQAN_PROFILE_LCPEFIND
-            SEQAN_PROADD(SEQAN_PROEXTRA3, skippedCompares);
+        #ifdef SEQAN2_PROFILE_LCPEFIND
+            SEQAN2_PROADD(SEQAN2_PROEXTRA3, skippedCompares);
         #endif
 
         // binary search for intervals of 2 or less elements

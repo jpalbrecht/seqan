@@ -33,12 +33,12 @@
 // Author: Anne-Katrin Emde <anne-katrin.emde@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_GRAPH_ALGORITHM_REFINE_INEXACT_H_
-#define SEQAN_INCLUDE_SEQAN_GRAPH_ALGORITHM_REFINE_INEXACT_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_GRAPH_ALGORITHM_REFINE_INEXACT_H_
+#define SEQAN2_INCLUDE_SEQAN2_GRAPH_ALGORITHM_REFINE_INEXACT_H_
 
-//SEQAN_NO_DDDOC: do not generate documentation for this file
+//SEQAN2_NO_DDDOC: do not generate documentation for this file
 
-namespace seqan {
+namespace seqan2 {
 
 
 struct TagInexactRefinement_;
@@ -110,7 +110,7 @@ _getCutEndPos(TAliGraph & ali_g,
         else
         {
             end_knot =  findVertex(ali_g,seq,cut_end_pos-1);
-            SEQAN_ASSERT(cut_end_pos == fragmentBegin(ali_g,end_knot)+fragmentLength(ali_g,end_knot));
+            SEQAN2_ASSERT(cut_end_pos == fragmentBegin(ali_g,end_knot)+fragmentLength(ali_g,end_knot));
         }
     }
 }
@@ -139,7 +139,7 @@ _getCutBeginPos(TAliGraph & ali_g,
         else
         {
             act_knot =  findVertex(ali_g,seq,cut_act_pos); // have to watch out with cut_act_pos==seqLength!
-            SEQAN_ASSERT(act_knot == getNil<typename VertexDescriptor<TAliGraph>::Type>() ||
+            SEQAN2_ASSERT(act_knot == getNil<typename VertexDescriptor<TAliGraph>::Type>() ||
                          cut_act_pos == fragmentBegin(ali_g, act_knot));
         }
     }
@@ -278,7 +278,7 @@ _makeRefinedGraphEdges(TAlignmentString & alis,
 
 /*!
  * @fn matchRefinement
- * @headerfile <seqan/graph_align.h>
+ * @headerfile <seqan2/graph_align.h>
  * @brief Refines (i.e. cuts into smaller parts) a set of pairwise segment matches in such a way that none of the
  *        segments partly overlap. They are either identical (fully overlapping) or non-overlapping.
  *
@@ -326,6 +326,6 @@ matchRefinement(TAlignmentString & alis,
         matchRefinement(alis,seq,fake_score,ali_graph,min_frag_len,anno,ExactRefinement());
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_GRAPH_ALGORITHM_REFINE_INEXACT_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_GRAPH_ALGORITHM_REFINE_INEXACT_H_

@@ -32,10 +32,10 @@
 // Author: Manuel Holtgrewe <manuel.holtgrewe@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_REALIGN_REALIGN_HELPER_FUNCTIONS_H_
-#define INCLUDE_SEQAN_REALIGN_REALIGN_HELPER_FUNCTIONS_H_
+#ifndef INCLUDE_SEQAN2_REALIGN_REALIGN_HELPER_FUNCTIONS_H_
+#define INCLUDE_SEQAN2_REALIGN_REALIGN_HELPER_FUNCTIONS_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -200,6 +200,6 @@ void _printProfile(TStream & stream,
     }
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_REALIGN_REALIGN_HELPER_FUNCTIONS_H_
+#endif  // #ifndef INCLUDE_SEQAN2_REALIGN_REALIGN_HELPER_FUNCTIONS_H_

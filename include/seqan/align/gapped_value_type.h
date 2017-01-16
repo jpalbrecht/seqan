@@ -33,10 +33,10 @@
 // Author: Manuel Holtgrewe <manuel.holtgrewe@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_GAPPED_VALUE_TYPE_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_GAPPED_VALUE_TYPE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_GAPPED_VALUE_TYPE_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_GAPPED_VALUE_TYPE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -52,7 +52,7 @@ namespace seqan {
 
 /*!
  * @mfn GappedValueType
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Returns a value type that contains a black value <tt>'-'</tt>.
  *
  * @signature GappedValueType<T>::Type
@@ -82,6 +82,6 @@ struct GappedValueType<SimpleType<TValue, TSpec> >
 // Functions
 // ============================================================================
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_GAPPED_VALUE_TYPE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_GAPPED_VALUE_TYPE_H_

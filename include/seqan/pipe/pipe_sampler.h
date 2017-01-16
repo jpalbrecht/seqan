@@ -32,13 +32,13 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_PIPE_SAMPLER_H
-#define SEQAN_HEADER_PIPE_SAMPLER_H
+#ifndef SEQAN2_HEADER_PIPE_SAMPLER_H
+#define SEQAN2_HEADER_PIPE_SAMPLER_H
 
-namespace seqan
+namespace seqan2
 {
 
-//namespace SEQAN_NAMESPACE_PIPELINING
+//namespace SEQAN2_NAMESPACE_PIPELINING
 //{
 
     template <int I, typename T = void>
@@ -72,7 +72,7 @@ namespace seqan
 /*!
  * @class Sampler
  * @extends Pipe
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Outputs m-tuples beginning at a position of difference cover DC.
  *
  * @signature template <typename TInput, unsigned M[, typename TPack]>
@@ -618,13 +618,13 @@ namespace seqan
         TLimitsString const &limits = me.limits;
         int64_t seqCountPlusOne = length(me.limits);
 
-        SEQAN_OMP_PRAGMA(parallel for reduction(+:sum))
+        SEQAN2_OMP_PRAGMA(parallel for reduction(+:sum))
         for (int64_t i = 1; i < seqCountPlusOne; ++i)
         {
             TSize prev = limits[i - 1];
             TSize cur = limits[i];
 
-            SEQAN_ASSERT_LEQ(prev, cur);
+            SEQAN2_ASSERT_LEQ(prev, cur);
             TSize size = cur - prev;
 
             // sum up the number of tuples in each residue class

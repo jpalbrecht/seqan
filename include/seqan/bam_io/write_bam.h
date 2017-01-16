@@ -35,10 +35,10 @@
 // Code for writing BAM.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_BAM_IO_WRITE_BAM_H_
-#define INCLUDE_SEQAN_BAM_IO_WRITE_BAM_H_
+#ifndef INCLUDE_SEQAN2_BAM_IO_WRITE_BAM_H_
+#define INCLUDE_SEQAN2_BAM_IO_WRITE_BAM_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Functions
@@ -140,9 +140,9 @@ _writeBamRecord(TTarget & target,
                 BamAlignmentRecord const & record,
                 Bam const & /*tag*/)
 {
-    typedef typename Iterator<String<CigarElement<> > const, Standard>::Type SEQAN_RESTRICT TCigarIter;
-    typedef typename Iterator<IupacString const, Standard>::Type SEQAN_RESTRICT             TSeqIter;
-    typedef typename Iterator<CharString const, Standard>::Type SEQAN_RESTRICT              TQualIter;
+    typedef typename Iterator<String<CigarElement<> > const, Standard>::Type SEQAN2_RESTRICT TCigarIter;
+    typedef typename Iterator<IupacString const, Standard>::Type SEQAN2_RESTRICT             TSeqIter;
+    typedef typename Iterator<CharString const, Standard>::Type SEQAN2_RESTRICT              TQualIter;
 
     // bin_mq_nl
     unsigned l = 0;
@@ -192,7 +192,7 @@ _writeBamRecord(TTarget & target,
         writeValue(target, ordValue(getValue(sit++)) << 4);
 
     // qual
-    SEQAN_ASSERT_LEQ(length(record.qual), length(record.seq));
+    SEQAN2_ASSERT_LEQ(length(record.qual), length(record.seq));
     TQualIter qit = begin(record.qual, Standard());
     TQualIter qitEnd = end(record.qual, Standard());
     TQualIter qitVirtEnd = qit + record._l_qseq;
@@ -225,7 +225,7 @@ _writeBamRecordWrapper(TTarget & target,
                        uint32_t size,
                        Bam const & tag)
 {
-    if (SEQAN_LIKELY(size + 4 <= length(range)))
+    if (SEQAN2_LIKELY(size + 4 <= length(range)))
     {
         appendRawPod(range.begin, size);
         _writeBamRecord(range.begin, record, tag);
@@ -244,16 +244,16 @@ void write(TTarget & target,
            BamIOContext<TNameStore, TNameStoreCache, TStorageSpec> & context,
            Bam const & tag)
 {
-#ifdef SEQAN_DEBUG_OR_TEST_
+#ifdef SEQAN2_DEBUG_OR_TEST_
     // Check for valid IO Context.
     if (record.rID != BamAlignmentRecord::INVALID_REFID)
     {
-        SEQAN_ASSERT_LT_MSG(record.rID, static_cast<int32_t>(length(contigNames(context))),
+        SEQAN2_ASSERT_LT_MSG(record.rID, static_cast<int32_t>(length(contigNames(context))),
                             "BAM IO Assertion: Unknown REF ID!");
     }
     if (record.rNextId != BamAlignmentRecord::INVALID_REFID)
     {
-        SEQAN_ASSERT_LT_MSG(record.rNextId, static_cast<int32_t>(length(contigNames(context))),
+        SEQAN2_ASSERT_LT_MSG(record.rNextId, static_cast<int32_t>(length(contigNames(context))),
                             "BAM IO Assertion: Unknown NEXT REF ID!");
     }
 #endif
@@ -271,6 +271,6 @@ void write(TTarget & target,
     _writeBamRecordWrapper(target, record, ochunk, size, tag);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_BAM_IO_WRITE_BAM_H_
+#endif  // #ifndef INCLUDE_SEQAN2_BAM_IO_WRITE_BAM_H_

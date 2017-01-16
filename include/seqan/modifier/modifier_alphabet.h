@@ -32,10 +32,10 @@
 // Author: Andreas Gogol-Doering <andreas.doering@mdc-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_MODIFIER_ALPHABET_H
-#define SEQAN_HEADER_MODIFIER_ALPHABET_H
+#ifndef SEQAN2_HEADER_MODIFIER_ALPHABET_H
+#define SEQAN2_HEADER_MODIFIER_ALPHABET_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -43,7 +43,7 @@ namespace seqan
 /*!
  * @class ModifiedAlphabet
  * @implements AlphabetConcept
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Modifies value types.
  *
  * @signature template <typename TAlphabet, typename TSpec>
@@ -723,6 +723,6 @@ public:
 template <typename TSource>
 unsigned * AlphabetOrdTable_<TSource>::table = AlphabetOrdTable_<TSource>::initialize();
 
-}  // namespace seqan
+}  // namespace seqan2
 
 #endif

@@ -43,10 +43,10 @@
 //  - implement Tabix index creation (and BAM index creation as well)
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_TABIX_IO_TABIX_INDEX_TBI_H_
-#define INCLUDE_SEQAN_TABIX_IO_TABIX_INDEX_TBI_H_
+#ifndef INCLUDE_SEQAN2_TABIX_IO_TABIX_INDEX_TBI_H_
+#define INCLUDE_SEQAN2_TABIX_IO_TABIX_INDEX_TBI_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -87,7 +87,7 @@ struct TabixRecord_
 
 /*!
  * @class TabixIndex
- * @headerfile <seqan/tabix_io.h>
+ * @headerfile <seqan2/tabix_io.h>
  * @brief Access to Tabix indexed files.
  *
  * @signature class TabixIndex;
@@ -149,7 +149,7 @@ public:
         _nameStoreCache(_nameStore)
     {
         if (!open(*this, fileName))
-            SEQAN_THROW(FileOpenError(fileName));
+            SEQAN2_THROW(FileOpenError(fileName));
     }
 };
 
@@ -452,7 +452,7 @@ open(TabixIndex & index, char const * filename)
     String<char, Array<4> > magic;
     read(magic, iter, 4);
     if (magic != "TBI\1")
-        SEQAN_THROW(ParseError("Not in TBI format."));
+        SEQAN2_THROW(ParseError("Not in TBI format."));
 
     // Read parameters.
     int32_t nRef = 0;
@@ -527,6 +527,6 @@ open(TabixIndex & index, char const * filename)
     return true;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_TABIX_IO_TABIX_INDEX_TBI_H_
+#endif  // #ifndef INCLUDE_SEQAN2_TABIX_IO_TABIX_INDEX_TBI_H_

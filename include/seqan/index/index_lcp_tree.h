@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_INDEX_LCP_TREE_H
-#define SEQAN_HEADER_INDEX_LCP_TREE_H
+#ifndef SEQAN2_HEADER_SEQAN2_INDEX_LCP_TREE_H
+#define SEQAN2_HEADER_SEQAN2_INDEX_LCP_TREE_H
 
-namespace seqan
+namespace seqan2
 {
 
     template <

@@ -34,10 +34,10 @@
 // Operations on alignments such as integration
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_ALIGNMENT_OPERATIONS_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_ALIGNMENT_OPERATIONS_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_ALIGNMENT_OPERATIONS_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_ALIGNMENT_OPERATIONS_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -68,7 +68,7 @@ integrateGaps(Gaps<TSource0, TGapSpec0> & targetRow,
 
     // This assertion ensures that the number of sequence characters after viewPos is greater than or equal to
     // the number of source characters in the clipped infix row.
-    SEQAN_ASSERT_GEQ(endPosition(targetRow) - toSourcePosition(targetRow, viewPos),
+    SEQAN2_ASSERT_GEQ(endPosition(targetRow) - toSourcePosition(targetRow, viewPos),
                      endPosition(sourceRow) - beginPosition(sourceRow));
 
     // init iterators
@@ -103,7 +103,7 @@ integrateGaps(Gaps<TSource0, TGapSpec0> & targetRow,
 
 /*!
  * @fn integrateAlign
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Integrates an alignment into another by copying the gaps.
  *
  * @signature void integrateAlign(align1, align2[, positions]);
@@ -126,7 +126,7 @@ void integrateAlign(Align<TSource1, TSpec1> & align,
                     Align<TSource2, TSpec2> const & infixAlign,
                     String<TPos> const & viewPos)
 {
-    SEQAN_ASSERT_EQ_MSG(length(rows(infixAlign)), length(rows(align)), "Both align objects need same number of rows.");
+    SEQAN2_ASSERT_EQ_MSG(length(rows(infixAlign)), length(rows(align)), "Both align objects need same number of rows.");
     typedef typename Size<Align<TSource1, TSpec1> >::Type TSize;
     //NOTE(h-2): could be parallelized
     for (TSize i = 0; i < length(rows(align)); ++i)
@@ -137,13 +137,13 @@ template <typename TSource1, typename TSpec1, typename TSource2, typename TSpec2
 void integrateAlign(Align<TSource1, TSpec1> & align,
                     Align<TSource2, TSpec2> const & infixAlign)
 {
-    SEQAN_ASSERT_EQ_MSG(length(rows(infixAlign)), length(rows(align)), "Both align objects need same number of rows.");
+    SEQAN2_ASSERT_EQ_MSG(length(rows(infixAlign)), length(rows(align)), "Both align objects need same number of rows.");
     typedef typename Size<Align<TSource1, TSpec1> >::Type TSize;
     //NOTE(h-2): could be parallelized
     for (TSize i = 0; i < length(rows(align)); ++i)
         integrateGaps(row(align, i), row(infixAlign, i));
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_ALIGNMENT_OPERATIONS_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_ALIGNMENT_OPERATIONS_H_

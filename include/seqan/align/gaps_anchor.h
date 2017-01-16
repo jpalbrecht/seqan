@@ -38,10 +38,10 @@
 // TODO(holtgrew): Clipping in leading and trailing gaps is not possible right now. Dave and I have to discuss this further.
 // TODO(holtgrew): Also, inserting gaps in the front changes the clipped begin position which is unexpected.
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_GAPS_ANCHOR_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_GAPS_ANCHOR_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_GAPS_ANCHOR_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_GAPS_ANCHOR_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -49,7 +49,7 @@ namespace seqan {
 
 /*!
  * @tag GapsSpecTag#AnchorGaps
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Tag for the Anchor Gaps specialization.
  *
  * @signature template <typename TGapAnchors>
@@ -73,7 +73,7 @@ inline void _reinitAnchorGaps(Gaps<TSequence, AnchorGaps<TGapAnchors> > & gaps);
 /*!
  * @class AnchorGaps
  * @extends Gaps
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Stores gaps as anchors of the first characters behind gaps.
  *
  * @signature template <typename TSource, typename TGapAnchors = String<GapAnchor<unsigned> > >
@@ -193,7 +193,7 @@ public:
 
     // if source is not const & (but possibly const) there are also regular & constructors
     Gaps(TSourceNoConstNoRef & source, TGapAnchors & anchors,
-         SEQAN_CTOR_DISABLE_IF(IsSameType<TSource, TSourceConstRef>)) :
+         SEQAN2_CTOR_DISABLE_IF(IsSameType<TSource, TSourceConstRef>)) :
         data_source(source),
         data_gaps(anchors),
         data_cutBegin(0),
@@ -205,7 +205,7 @@ public:
     }
 
     Gaps(TSourceNoConstNoRef & source, TGapAnchors const & anchors,
-        SEQAN_CTOR_DISABLE_IF(IsSameType<TSource, TSourceConstRef>)) :
+        SEQAN2_CTOR_DISABLE_IF(IsSameType<TSource, TSourceConstRef>)) :
         data_source(source),
         data_gaps(anchors),
         data_cutBegin(0),
@@ -933,6 +933,6 @@ clippedEndPosition(Gaps<TSequence, AnchorGaps<TGapAnchors> > const & gaps)
     return _unclippedLength(gaps) - gaps.data_viewCutEnd;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_GAPS_ANCHOR_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_GAPS_ANCHOR_H_

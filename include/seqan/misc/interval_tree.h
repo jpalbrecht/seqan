@@ -49,13 +49,13 @@
 //   - addInterval
 
 
-#ifndef SEQAN_HEADER_MISC_INTERVAL_TREE_H
-#define SEQAN_HEADER_MISC_INTERVAL_TREE_H
+#ifndef SEQAN2_HEADER_MISC_INTERVAL_TREE_H
+#define SEQAN2_HEADER_MISC_INTERVAL_TREE_H
 
-#include <seqan/graph_types.h>
+#include <seqan2/graph_types.h>
 
 
-namespace seqan {
+namespace seqan2 {
 //////////////////////////////////////////////////////////////////////////////
 // Graph - Interval Tree Types
 //////////////////////////////////////////////////////////////////////////////
@@ -68,7 +68,7 @@ namespace seqan {
 
 /*!
  * @class IntervalAndCargo
- * @headerfile <seqan/misc/interval_tree.h>
+ * @headerfile <seqan2/misc/interval_tree.h>
  * @brief A simple record type that stores an interval and a cargo value.
  *
  * @signature template <[typename TValue[, typename TCargo]]>
@@ -124,7 +124,7 @@ public:
 
 /*!
  * @class PointAndCargo
- * @headerfile <seqan/misc/interval_tree.h>
+ * @headerfile <seqan2/misc/interval_tree.h>
  * @brief Simple record class storing a point (one-value) interval and cargo.
  *
  * @signature template <[typename TValue[, typename TCargo]]>
@@ -174,12 +174,12 @@ public:
  * @brief Tags to select the node type for @link IntervalTree @endlink.
  *
  * @tag IntervalTreeNodeTypeTags#StorePointsOnly
- * @headerfile <seqan/misc/interval_tree.h>
+ * @headerfile <seqan2/misc/interval_tree.h>
  * @signature struct StorePointsOnly {};
  * @brief The tree nodes store points.
  *
  * @tag IntervalTreeNodeTypeTags#StoreIntervals
- * @headerfile <seqan/misc/interval_tree.h>
+ * @headerfile <seqan2/misc/interval_tree.h>
  * @signature struct StoreIntervals {};
  * @brief The tree nodes store intervals.
  */
@@ -191,7 +191,7 @@ struct StoreIntervals {};
 
 /*!
  * @class IntervalTreeNode
- * @headerfile <seqan/misc/interval_tree.h>
+ * @headerfile <seqan2/misc/interval_tree.h>
  * @brief Element of @link IntervalTree @endlink.
  *
  * @signature template <typename TInterval[, typename TSpec]>
@@ -208,7 +208,7 @@ class IntervalTreeNode;
 /*!
  * @class StoreIntervalsIntervalTreeNode
  * @extends IntervalTreeNode
- * @headerfile <seqan/misc/interval_tree.h>
+ * @headerfile <seqan2/misc/interval_tree.h>
  * @brief An IntervalTreeNode that stores intervals explicitely in each node.
  *
  * @signature template <typename TInterval>
@@ -246,7 +246,7 @@ public:
 /*!
  * @class StorePointsOnlyIntervalTreeNode
  * @extends IntervalTreeNode
- * @headerfile <seqan/misc/interval_tree.h>
+ * @headerfile <seqan2/misc/interval_tree.h>
  * @brief An IntervalTreeNode that stores only the relevant points in each node.
  *
  * Only the end points of the intervals in the list sorted by endpoints (list2) and only the begin point of the interval
@@ -304,7 +304,7 @@ public:
 
 /*!
  * @class IntervalTree
- * @headerfile <seqan/misc/interval_tree.h>
+ * @headerfile <seqan2/misc/interval_tree.h>
  * @brief Data structure for efficient interval storage.
  *
  * @signature template <[typename TValue[, typename TCargo]]>
@@ -1204,7 +1204,7 @@ typename Value<typename Value<TIntervals>::Type>::Type
 _calcIntervalTreeRootCenter(TIntervals & intervals)
 {
 
-    SEQAN_ASSERT_GT(length(intervals), 0u);
+    SEQAN2_ASSERT_GT(length(intervals), 0u);
 
     typedef typename Value<typename Value<TIntervals>::Type>::Type TValue;
     typedef typename Iterator<TIntervals, Standard>::Type TIntervalIterator;
@@ -1222,11 +1222,11 @@ _calcIntervalTreeRootCenter(TIntervals & intervals)
             min = leftBoundary(*it);
         if (rightBoundary(*it) > max)
             max = rightBoundary(*it);
-        SEQAN_ASSERT_LEQ(min, max);
+        SEQAN2_ASSERT_LEQ(min, max);
         ++it;
     }
 
-    SEQAN_ASSERT_LEQ(min, max);
+    SEQAN2_ASSERT_LEQ(min, max);
 
     // return middle between max and min
     return min + (max - min) / (TValue)2.0;
@@ -1236,7 +1236,7 @@ _calcIntervalTreeRootCenter(TIntervals & intervals)
 /*!
  * @fn IntervalTree#addInterval
  *
- * @headerfile <seqan/misc/interval_tree.h>
+ * @headerfile <seqan2/misc/interval_tree.h>
  *
  * @brief Adds an interval to an interval tree.
  *
@@ -1909,6 +1909,6 @@ struct Cargo<IntervalTree<TValue, TCargo> >
     typedef TCargo Type;
 };
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  //#ifndef SEQAN_MISC_INTERVAL_TREE_H
+#endif  //#ifndef SEQAN2_MISC_INTERVAL_TREE_H

@@ -30,13 +30,13 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_GRAPH_UTILITY_PARSING_H
-#define SEQAN_HEADER_GRAPH_UTILITY_PARSING_H
+#ifndef SEQAN2_HEADER_GRAPH_UTILITY_PARSING_H
+#define SEQAN2_HEADER_GRAPH_UTILITY_PARSING_H
 
 
 #include <fstream>
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -89,6 +89,6 @@ _loadSequences(TPath const& in_path,
 }
 */
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

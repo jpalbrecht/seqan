@@ -32,10 +32,10 @@
 // Author: Enrico Siragusa <enrico.siragusa@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INDEX_FIND_INDEX_MULTIPLE_H
-#define SEQAN_INDEX_FIND_INDEX_MULTIPLE_H
+#ifndef SEQAN2_SEQAN2_INDEX_FIND_SEQAN2_INDEX_MULTIPLE_H
+#define SEQAN2_SEQAN2_INDEX_FIND_SEQAN2_INDEX_MULTIPLE_H
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags
@@ -364,7 +364,7 @@ _find(Finder_<TText, TPattern, Multiple<TSpec> > & finder,
     TFinderContext ctx(finderView, delegate);
 
     // Find all needles in parallel.
-    SEQAN_OMP_PRAGMA(parallel for schedule(dynamic) firstprivate(ctx))
+    SEQAN2_OMP_PRAGMA(parallel for schedule(dynamic) firstprivate(ctx))
     for (TSize needleId = 0; needleId < needlesCount; ++needleId)
     {
         clear(ctx.baseFinder);
@@ -452,4 +452,4 @@ _getScore(FinderContext_<TText, TPattern, Multiple<TSpec>, TDelegate> const & ct
 
 }
 
-#endif  // #ifndef SEQAN_INDEX_FIND_INDEX_MULTIPLE_H
+#endif  // #ifndef SEQAN2_SEQAN2_INDEX_FIND_SEQAN2_INDEX_MULTIPLE_H

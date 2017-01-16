@@ -38,51 +38,51 @@
 
 #include <ctime>
 
-//SEQAN_NO_GENERATED_FORWARDS: no forwards are generated for this file
+//SEQAN2_NO_GENERATED_FORWARDS: no forwards are generated for this file
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_PROFILING_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_PROFILING_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_PROFILING_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_PROFILING_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // todo: substitute defines with inlines
-#ifndef SEQAN_PROFILE
+#ifndef SEQAN2_PROFILE
 
-    #define SEQAN_PROSET(i,v)           do {} while (false)
-    #define SEQAN_PROADD(i,v)           do {} while (false)
-    #define SEQAN_PROSUB(i,v)           do {} while (false)
-    #define SEQAN_PROVAL(i)             0
-    #define SEQAN_PROEXTRAS(i)          do {} while (false)
-    #define SEQAN_PROMARK(m)            do {} while (false)
-    #define SEQAN_PROENDMARK(m)         do {} while (false)
-    #define SEQAN_PRORESET              do {} while (false)
-    #define SEQAN_PROGETTIME            0
-    #define SEQAN_PROTIMESTART(a)       do {} while (false)
-    #define SEQAN_PROTIMEDIFF(a)        0
-    #define SEQAN_PROTIMEUPDATE(a)      0
+    #define SEQAN2_PROSET(i,v)           do {} while (false)
+    #define SEQAN2_PROADD(i,v)           do {} while (false)
+    #define SEQAN2_PROSUB(i,v)           do {} while (false)
+    #define SEQAN2_PROVAL(i)             0
+    #define SEQAN2_PROEXTRAS(i)          do {} while (false)
+    #define SEQAN2_PROMARK(m)            do {} while (false)
+    #define SEQAN2_PROENDMARK(m)         do {} while (false)
+    #define SEQAN2_PRORESET              do {} while (false)
+    #define SEQAN2_PROGETTIME            0
+    #define SEQAN2_PROTIMESTART(a)       do {} while (false)
+    #define SEQAN2_PROTIMEDIFF(a)        0
+    #define SEQAN2_PROTIMEUPDATE(a)      0
     // replace malloc and free in external tools
-    // with SEQAN_PROMALLOC and SEQAN_PROFREE to profile
+    // with SEQAN2_PROMALLOC and SEQAN2_PROFREE to profile
     // their memory usage
-    #define SEQAN_PROMALLOC(s)          malloc(s)
-    #define SEQAN_PROFREE(p)            free(p)
+    #define SEQAN2_PROMALLOC(s)          malloc(s)
+    #define SEQAN2_PROFREE(p)            free(p)
 
 #else
 
-    #define SEQAN_PROSET(i,v)           _profileSet(i,v)
-    #define SEQAN_PROADD(i,v)           _profileAdd(i,v)
-    #define SEQAN_PROSUB(i,v)           _profileSub(i,v)
-    #define SEQAN_PROVAL(i)             (ProfileData_<>::_proValue[i])
-    #define SEQAN_PROEXTRAS(i)          {ProfileData_<>::_proExtraCount = i;}
-    #define SEQAN_PROMARK(m)            _profileMark(m)
-    #define SEQAN_PROENDMARK(m)         _profileEndMark(m)
-    #define SEQAN_PRORESET              _profileReset()
-    #define SEQAN_PROGETTIME            sysTime()
-    #define SEQAN_PROTIMESTART(a)       _proFloat a = sysTime()
-    #define SEQAN_PROTIMEDIFF(a)        (sysTime() - a)
-    #define SEQAN_PROTIMEUPDATE(a)      (_profileUpdate(a))
-    #define SEQAN_PROMALLOC(s)          _profileMalloc(s)
-    #define SEQAN_PROFREE(p)            _profileFree(p)
+    #define SEQAN2_PROSET(i,v)           _profileSet(i,v)
+    #define SEQAN2_PROADD(i,v)           _profileAdd(i,v)
+    #define SEQAN2_PROSUB(i,v)           _profileSub(i,v)
+    #define SEQAN2_PROVAL(i)             (ProfileData_<>::_proValue[i])
+    #define SEQAN2_PROEXTRAS(i)          {ProfileData_<>::_proExtraCount = i;}
+    #define SEQAN2_PROMARK(m)            _profileMark(m)
+    #define SEQAN2_PROENDMARK(m)         _profileEndMark(m)
+    #define SEQAN2_PRORESET              _profileReset()
+    #define SEQAN2_PROGETTIME            sysTime()
+    #define SEQAN2_PROTIMESTART(a)       _proFloat a = sysTime()
+    #define SEQAN2_PROTIMEDIFF(a)        (sysTime() - a)
+    #define SEQAN2_PROTIMEUPDATE(a)      (_profileUpdate(a))
+    #define SEQAN2_PROMALLOC(s)          _profileMalloc(s)
+    #define SEQAN2_PROFREE(p)            _profileFree(p)
 
 #endif
 
@@ -98,50 +98,50 @@ namespace seqan
     typedef _proFloat ProfileTimeValue_; //IOREV _notio_
 
     enum ProfileConstants_ {
-        SEQAN_PROPAGESIZE         = 4096, // B in byte
-        SEQAN_PROFLOAT            = 0,
-        SEQAN_PROINT              = 1,
-        SEQAN_PROTIME             = 2,
-        SEQAN_PROTYPEMASK         = 3,
-        SEQAN_PROSTATE            = 4
+        SEQAN2_PROPAGESIZE         = 4096, // B in byte
+        SEQAN2_PROFLOAT            = 0,
+        SEQAN2_PROINT              = 1,
+        SEQAN2_PROTIME             = 2,
+        SEQAN2_PROTYPEMASK         = 3,
+        SEQAN2_PROSTATE            = 4
     };
 
     enum ProfileValueIndex_ {
-        SEQAN_PROSYSTIME          = 0,
-        SEQAN_PROCPUTIME          = 1,
-        SEQAN_PROMEMORY           = 2,    // current memory usage (state value)
-        SEQAN_PROIO               = 3,    // IOs done (measured in Blocks of size B)
-        SEQAN_PROIORANDOM         = 4,    // IOs calls done (read/write calls done)
-        SEQAN_PROIOVOLUME         = 5,    // current disk usage (state value)
-        SEQAN_PRODEPTH            = 6,    // algorithmic rec. depth or loop count
-        SEQAN_PROOPENFILES        = 7,    // currently opened files
-        SEQAN_PROIWAIT            = 8,    // waiting time (initiating)
-        SEQAN_PROCWAIT            = 9,    // waiting time (completing)
-        SEQAN_PROEXTRA1           = 10,
-        SEQAN_PROEXTRA2           = 11,
-        SEQAN_PROEXTRA3           = 12,
-        SEQAN_PROINDEXCOUNT       = 13,
-        SEQAN_PROEXTRACOUNT       = 3
+        SEQAN2_PROSYSTIME          = 0,
+        SEQAN2_PROCPUTIME          = 1,
+        SEQAN2_PROMEMORY           = 2,    // current memory usage (state value)
+        SEQAN2_PROIO               = 3,    // IOs done (measured in Blocks of size B)
+        SEQAN2_PROIORANDOM         = 4,    // IOs calls done (read/write calls done)
+        SEQAN2_PROIOVOLUME         = 5,    // current disk usage (state value)
+        SEQAN2_PRODEPTH            = 6,    // algorithmic rec. depth or loop count
+        SEQAN2_PROOPENFILES        = 7,    // currently opened files
+        SEQAN2_PROIWAIT            = 8,    // waiting time (initiating)
+        SEQAN2_PROCWAIT            = 9,    // waiting time (completing)
+        SEQAN2_PROEXTRA1           = 10,
+        SEQAN2_PROEXTRA2           = 11,
+        SEQAN2_PROEXTRA3           = 12,
+        SEQAN2_PROINDEXCOUNT       = 13,
+        SEQAN2_PROEXTRACOUNT       = 3
     };
 
     const char ProfileValueType_[] = {
-        SEQAN_PROTIME,
-        SEQAN_PROTIME,
-        SEQAN_PROINT + SEQAN_PROSTATE,
-        SEQAN_PROINT,
-        SEQAN_PROINT,
-        SEQAN_PROINT + SEQAN_PROSTATE,
-        SEQAN_PROINT + SEQAN_PROSTATE,
-        SEQAN_PROINT + SEQAN_PROSTATE,
-        SEQAN_PROFLOAT,
-        SEQAN_PROFLOAT,
-        SEQAN_PROFLOAT + SEQAN_PROSTATE,
-        SEQAN_PROFLOAT + SEQAN_PROSTATE,
-        SEQAN_PROFLOAT + SEQAN_PROSTATE
+        SEQAN2_PROTIME,
+        SEQAN2_PROTIME,
+        SEQAN2_PROINT + SEQAN2_PROSTATE,
+        SEQAN2_PROINT,
+        SEQAN2_PROINT,
+        SEQAN2_PROINT + SEQAN2_PROSTATE,
+        SEQAN2_PROINT + SEQAN2_PROSTATE,
+        SEQAN2_PROINT + SEQAN2_PROSTATE,
+        SEQAN2_PROFLOAT,
+        SEQAN2_PROFLOAT,
+        SEQAN2_PROFLOAT + SEQAN2_PROSTATE,
+        SEQAN2_PROFLOAT + SEQAN2_PROSTATE,
+        SEQAN2_PROFLOAT + SEQAN2_PROSTATE
     };
 
-    typedef ProfileTimeValue_ ProfileTStates_[SEQAN_PROINDEXCOUNT]; //IOREV _notio_
-    typedef _proFloat  ProfileTTimes[SEQAN_PROINDEXCOUNT]; //IOREV _notio_
+    typedef ProfileTimeValue_ ProfileTStates_[SEQAN2_PROINDEXCOUNT]; //IOREV _notio_
+    typedef _proFloat  ProfileTTimes[SEQAN2_PROINDEXCOUNT]; //IOREV _notio_
 
 
 
@@ -179,7 +179,7 @@ namespace seqan
 
 /*!
  * @fn cpuTime
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Returns the cpu time in seconds.
  *
  * @signature double cpuTime();
@@ -208,7 +208,7 @@ namespace seqan
 
 /*!
  * @fn sysTime
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Returns the system time in seconds.
  *
  * @signature double sysTime();
@@ -248,12 +248,12 @@ namespace seqan
 
         #include <unistd.h>
         #if _POSIX_TIMERS > 0
-            #ifndef SEQAN_USE_CLOCKGETTIME
-            #define SEQAN_USE_CLOCKGETTIME
+            #ifndef SEQAN2_USE_CLOCKGETTIME
+            #define SEQAN2_USE_CLOCKGETTIME
             #endif
         #endif
 
-        #ifndef SEQAN_USE_CLOCKGETTIME
+        #ifndef SEQAN2_USE_CLOCKGETTIME
         /* some systems e.g. darwin have no clock_gettime */
 
             #include <sys/time.h>
@@ -352,8 +352,8 @@ namespace seqan
         }
 
         inline void maximize(ProfileTStates_ &dst, ProfileTStates_ const &src) {
-            for(int i = 0; i < SEQAN_PROINDEXCOUNT; ++i)
-                if (((ProfileValueType_[i] & SEQAN_PROSTATE) != 0))
+            for(int i = 0; i < SEQAN2_PROINDEXCOUNT; ++i)
+                if (((ProfileValueType_[i] & SEQAN2_PROSTATE) != 0))
                     if (dst[i] < src[i])
                         dst[i] = src[i];
         }
@@ -391,25 +391,25 @@ namespace seqan
 
         inline void dumpValue(ProfileTStates_ &stat, int valNum) {
             _proFloat f = stat[valNum];
-            if ((ProfileValueType_[valNum] & SEQAN_PROSTATE) == 0)
+            if ((ProfileValueType_[valNum] & SEQAN2_PROSTATE) == 0)
                 f = ProfileData_<>::_proValue[valNum] - f;
 
-            switch (ProfileValueType_[valNum] & SEQAN_PROTYPEMASK) {
-                case SEQAN_PROINT:                                      // state value -> print last seen maximum
+            switch (ProfileValueType_[valNum] & SEQAN2_PROTYPEMASK) {
+                case SEQAN2_PROINT:                                      // state value -> print last seen maximum
                     fprintf(out, "%.0f", f);
                     break;
 
-                case SEQAN_PROFLOAT:
+                case SEQAN2_PROFLOAT:
                     fprintf(out, "%f", f);
                     break;
 
-                case SEQAN_PROTIME:
+                case SEQAN2_PROTIME:
                     dumpTimeEx(f);
             }
         }
 
         inline void dumpSysValues(ProfileTStates_ &stat) {
-            for(int i = 0; i < SEQAN_PROINDEXCOUNT - SEQAN_PROEXTRACOUNT; ++i) {
+            for(int i = 0; i < SEQAN2_PROINDEXCOUNT - SEQAN2_PROEXTRACOUNT; ++i) {
                 dumpTab();
                 dumpValue(stat, i);
             }
@@ -418,7 +418,7 @@ namespace seqan
         inline void dumpExtraValues(ProfileTStates_ &stat) {
             for(int i = 0; i < ProfileData_<>::_proExtraCount; ++i) {
                 dumpTab();
-                dumpValue(stat, SEQAN_PROINDEXCOUNT - SEQAN_PROEXTRACOUNT + i);
+                dumpValue(stat, SEQAN2_PROINDEXCOUNT - SEQAN2_PROEXTRACOUNT + i);
             }
     }
 
@@ -510,7 +510,7 @@ namespace seqan
 
     inline void _profileSignalNewMax(int valNum) {
 //IOREV _notio_
-        if (((ProfileValueType_[valNum] & SEQAN_PROSTATE) != 0)) {
+        if (((ProfileValueType_[valNum] & SEQAN2_PROSTATE) != 0)) {
             if (ProfileData_<>::_proPFileStream) ProfileData_<>::_proPFileStream->signalNewMax(valNum);
             if (ProfileData_<>::_proPFile)       ProfileData_<>::_proPFile->signalNewMax(valNum);
         }
@@ -556,7 +556,7 @@ namespace seqan
         _proFloat now = sysTime();
         ProfileData_<>::_proValue[valNum] += value;
         ProfileData_<>::_proLastUpdate[valNum] = now;
-        if (valNum == SEQAN_PROIO) _profileAdd(SEQAN_PROIORANDOM, 1);
+        if (valNum == SEQAN2_PROIO) _profileAdd(SEQAN2_PROIORANDOM, 1);
         _profileSignalNewMax(valNum);
         _profileSignalDumpTest(now);
     }
@@ -575,7 +575,7 @@ namespace seqan
 //IOREV _notio_
         size_t *ptr = reinterpret_cast<size_t*>(malloc(size + sizeof(size_t)));
         if (ptr) {
-            _profileAdd(SEQAN_PROMEMORY, (_proFloat)(*ptr = size));
+            _profileAdd(SEQAN2_PROMEMORY, (_proFloat)(*ptr = size));
 //          printf("_profileMalloc %x size %d\n", ptr, size);
             ++ptr;
         }
@@ -588,7 +588,7 @@ namespace seqan
         if (ptr) {
             --ptr;
 //          printf("_profileFree   %x size %d\n", _ptr, *ptr);
-            _profileSub(SEQAN_PROMEMORY, (_proFloat)*ptr);
+            _profileSub(SEQAN2_PROMEMORY, (_proFloat)*ptr);
         }
         free(ptr);
     }
@@ -601,4 +601,4 @@ namespace seqan
     }
 }
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_PROFILING_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_PROFILING_H_

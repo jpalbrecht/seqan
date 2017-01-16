@@ -36,10 +36,10 @@
 // Taken from the Math Library in Boost version 1.47.
 // ==========================================================================
 
-#ifndef SEQAN_MATH_OPERATORS_H_
-#define SEQAN_MATH_OPERATORS_H_
+#ifndef SEQAN2_MATH_OPERATORS_H_
+#define SEQAN2_MATH_OPERATORS_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -60,7 +60,7 @@ namespace detail
 // templates, which are explicitly targeted at the 1-type-argument and
 // 2-type-argument operator forms, respectively. Some compilers get confused
 // when inline friend functions are overloaded in namespaces other than the
-// global namespace. When SEQAN_NO_OPERATORS_IN_NAMESPACE is defined, all of
+// global namespace. When SEQAN2_NO_OPERATORS_IN_NAMESPACE is defined, all of
 // these templates must go in the global namespace.
 
 //  Basic operator classes (contributed by Dave Abrahams) ------------------//
@@ -102,18 +102,18 @@ struct equality_comparable1 : B
 };
 
 // A macro which produces "name_2left" from "name".
-#define SEQAN_OPERATOR2_LEFT(name) name##2##_##left
+#define SEQAN2_OPERATOR2_LEFT(name) name##2##_##left
 
 //  NRVO-friendly implementation (contributed by Daniel Frey) ---------------//
 
-#if defined(SEQAN_HAS_NRVO) || defined(SEQAN_FORCE_SYMMETRIC_OPERATORS)
+#if defined(SEQAN2_HAS_NRVO) || defined(SEQAN2_FORCE_SYMMETRIC_OPERATORS)
 
 // This is the optimal implementation for ISO/ANSI C++,
 // but it requires the compiler to implement the NRVO.
 // If the compiler has no NRVO, this is the best symmetric
 // implementation available.
 
-#define SEQAN_BINARY_OPERATOR_COMMUTATIVE( NAME, OP )                         \
+#define SEQAN2_BINARY_OPERATOR_COMMUTATIVE( NAME, OP )                         \
 template <class T, class U, class B = detail::empty_base<T> >        \
 struct NAME##2 : B                                                            \
 {                                                                             \
@@ -130,7 +130,7 @@ struct NAME##1 : B                                                            \
     { T nrv( lhs ); nrv OP##= rhs; return nrv; }                              \
 };
 
-#define SEQAN_BINARY_OPERATOR_NON_COMMUTATIVE( NAME, OP )               \
+#define SEQAN2_BINARY_OPERATOR_NON_COMMUTATIVE( NAME, OP )               \
 template <class T, class U, class B = detail::empty_base<T> >  \
 struct NAME##2 : B                                                      \
 {                                                                       \
@@ -139,7 +139,7 @@ struct NAME##2 : B                                                      \
 };                                                                      \
                                                                         \
 template <class T, class U, class B = detail::empty_base<T> >  \
-struct SEQAN_OPERATOR2_LEFT(NAME) : B                                   \
+struct SEQAN2_OPERATOR2_LEFT(NAME) : B                                   \
 {                                                                       \
   friend T operator OP( const U& lhs, const T& rhs )                    \
     { T nrv( lhs ); nrv OP##= rhs; return nrv; }                        \
@@ -152,14 +152,14 @@ struct NAME##1 : B                                                      \
     { T nrv( lhs ); nrv OP##= rhs; return nrv; }                        \
 };
 
-#else // defined(SEQAN_HAS_NRVO) || defined(SEQAN_FORCE_SYMMETRIC_OPERATORS)
+#else // defined(SEQAN2_HAS_NRVO) || defined(SEQAN2_FORCE_SYMMETRIC_OPERATORS)
 
 // For compilers without NRVO the following code is optimal, but not
 // symmetric!  Note that the implementation of
-// SEQAN_OPERATOR2_LEFT(NAME) only looks cool, but doesn't provide
+// SEQAN2_OPERATOR2_LEFT(NAME) only looks cool, but doesn't provide
 // optimization opportunities to the compiler :)
 
-#define SEQAN_BINARY_OPERATOR_COMMUTATIVE( NAME, OP )                   \
+#define SEQAN2_BINARY_OPERATOR_COMMUTATIVE( NAME, OP )                   \
 template <class T, class U, class B = detail::empty_base<T> >  \
 struct NAME##2 : B                                                      \
 {                                                                       \
@@ -173,7 +173,7 @@ struct NAME##1 : B                                                      \
   friend T operator OP( T lhs, const T& rhs ) { return lhs OP##= rhs; } \
 };
 
-#define SEQAN_BINARY_OPERATOR_NON_COMMUTATIVE( NAME, OP )               \
+#define SEQAN2_BINARY_OPERATOR_NON_COMMUTATIVE( NAME, OP )               \
 template <class T, class U, class B = detail::empty_base<T> >  \
 struct NAME##2 : B                                                      \
 {                                                                       \
@@ -181,7 +181,7 @@ struct NAME##2 : B                                                      \
 };                                                                      \
                                                                         \
 template <class T, class U, class B = detail::empty_base<T> >  \
-struct SEQAN_OPERATOR2_LEFT(NAME) : B                                   \
+struct SEQAN2_OPERATOR2_LEFT(NAME) : B                                   \
 {                                                                       \
   friend T operator OP( const U& lhs, const T& rhs )                    \
     { return T( lhs ) OP##= rhs; }                                      \
@@ -193,20 +193,20 @@ struct NAME##1 : B                                                      \
   friend T operator OP( T lhs, const T& rhs ) { return lhs OP##= rhs; } \
 };
 
-#endif // defined(SEQAN_HAS_NRVO) || defined(SEQAN_FORCE_SYMMETRIC_OPERATORS)
+#endif // defined(SEQAN2_HAS_NRVO) || defined(SEQAN2_FORCE_SYMMETRIC_OPERATORS)
 
-SEQAN_BINARY_OPERATOR_COMMUTATIVE( multipliable, * )
-SEQAN_BINARY_OPERATOR_COMMUTATIVE( addable, + )
-SEQAN_BINARY_OPERATOR_NON_COMMUTATIVE( subtractable, - )
-SEQAN_BINARY_OPERATOR_NON_COMMUTATIVE( dividable, / )
-SEQAN_BINARY_OPERATOR_NON_COMMUTATIVE( modable, % )
-SEQAN_BINARY_OPERATOR_COMMUTATIVE( xorable, ^ )
-SEQAN_BINARY_OPERATOR_COMMUTATIVE( andable, & )
-SEQAN_BINARY_OPERATOR_COMMUTATIVE( orable, | )
+SEQAN2_BINARY_OPERATOR_COMMUTATIVE( multipliable, * )
+SEQAN2_BINARY_OPERATOR_COMMUTATIVE( addable, + )
+SEQAN2_BINARY_OPERATOR_NON_COMMUTATIVE( subtractable, - )
+SEQAN2_BINARY_OPERATOR_NON_COMMUTATIVE( dividable, / )
+SEQAN2_BINARY_OPERATOR_NON_COMMUTATIVE( modable, % )
+SEQAN2_BINARY_OPERATOR_COMMUTATIVE( xorable, ^ )
+SEQAN2_BINARY_OPERATOR_COMMUTATIVE( andable, & )
+SEQAN2_BINARY_OPERATOR_COMMUTATIVE( orable, | )
 
-#undef SEQAN_BINARY_OPERATOR_COMMUTATIVE
-#undef SEQAN_BINARY_OPERATOR_NON_COMMUTATIVE
-#undef SEQAN_OPERATOR2_LEFT
+#undef SEQAN2_BINARY_OPERATOR_COMMUTATIVE
+#undef SEQAN2_BINARY_OPERATOR_NON_COMMUTATIVE
+#undef SEQAN2_OPERATOR2_LEFT
 
 //  incrementable and decrementable contributed by Jeremy Siek
 
@@ -259,9 +259,9 @@ struct indexable : B
 //  More operator classes (contributed by Daryle Walker) --------------------//
 //  (NRVO-friendly implementation contributed by Daniel Frey) ---------------//
 
-#if defined(SEQAN_HAS_NRVO) || defined(SEQAN_FORCE_SYMMETRIC_OPERATORS)
+#if defined(SEQAN2_HAS_NRVO) || defined(SEQAN2_FORCE_SYMMETRIC_OPERATORS)
 
-#define SEQAN_BINARY_OPERATOR( NAME, OP )                                     \
+#define SEQAN2_BINARY_OPERATOR( NAME, OP )                                     \
 template <class T, class U, class B = detail::empty_base<T> >        \
 struct NAME##2 : B                                                            \
 {                                                                             \
@@ -276,9 +276,9 @@ struct NAME##1 : B                                                            \
     { T nrv( lhs ); nrv OP##= rhs; return nrv; }                              \
 };
 
-#else // defined(SEQAN_HAS_NRVO) || defined(SEQAN_FORCE_SYMMETRIC_OPERATORS)
+#else // defined(SEQAN2_HAS_NRVO) || defined(SEQAN2_FORCE_SYMMETRIC_OPERATORS)
 
-#define SEQAN_BINARY_OPERATOR( NAME, OP )                                     \
+#define SEQAN2_BINARY_OPERATOR( NAME, OP )                                     \
 template <class T, class U, class B = detail::empty_base<T> >        \
 struct NAME##2 : B                                                            \
 {                                                                             \
@@ -291,12 +291,12 @@ struct NAME##1 : B                                                            \
   friend T operator OP( T lhs, const T& rhs ) { return lhs OP##= rhs; }       \
 };
 
-#endif // defined(SEQAN_HAS_NRVO) || defined(SEQAN_FORCE_SYMMETRIC_OPERATORS)
+#endif // defined(SEQAN2_HAS_NRVO) || defined(SEQAN2_FORCE_SYMMETRIC_OPERATORS)
 
-SEQAN_BINARY_OPERATOR( left_shiftable, << )
-SEQAN_BINARY_OPERATOR( right_shiftable, >> )
+SEQAN2_BINARY_OPERATOR( left_shiftable, << )
+SEQAN2_BINARY_OPERATOR( right_shiftable, >> )
 
-#undef SEQAN_BINARY_OPERATOR
+#undef SEQAN2_BINARY_OPERATOR
 
 template <class T, class U, class B = detail::empty_base<T> >
 struct equivalent2 : B
@@ -592,56 +592,56 @@ struct random_access_iteratable
       > > > > {};
 
 
-// SEQAN_IMPORT_TEMPLATE1 .. SEQAN_IMPORT_TEMPLATE4 -
+// SEQAN2_IMPORT_TEMPLATE1 .. SEQAN2_IMPORT_TEMPLATE4 -
 //
-// When SEQAN_NO_OPERATORS_IN_NAMESPACE is defined we need a way to import an
-// operator template into the boost namespace. SEQAN_IMPORT_TEMPLATE1 is used
-// for one-argument forms of operator templates; SEQAN_IMPORT_TEMPLATE2 for
+// When SEQAN2_NO_OPERATORS_IN_NAMESPACE is defined we need a way to import an
+// operator template into the boost namespace. SEQAN2_IMPORT_TEMPLATE1 is used
+// for one-argument forms of operator templates; SEQAN2_IMPORT_TEMPLATE2 for
 // two-argument forms. Note that these macros expect to be invoked from within
 // boost.
 
-#ifndef SEQAN_NO_OPERATORS_IN_NAMESPACE
+#ifndef SEQAN2_NO_OPERATORS_IN_NAMESPACE
 
   // The template is already in boost so we have nothing to do.
-# define SEQAN_IMPORT_TEMPLATE4(template_name)
-# define SEQAN_IMPORT_TEMPLATE3(template_name)
-# define SEQAN_IMPORT_TEMPLATE2(template_name)
-# define SEQAN_IMPORT_TEMPLATE1(template_name)
+# define SEQAN2_IMPORT_TEMPLATE4(template_name)
+# define SEQAN2_IMPORT_TEMPLATE3(template_name)
+# define SEQAN2_IMPORT_TEMPLATE2(template_name)
+# define SEQAN2_IMPORT_TEMPLATE1(template_name)
 
-#else // SEQAN_NO_OPERATORS_IN_NAMESPACE
+#else // SEQAN2_NO_OPERATORS_IN_NAMESPACE
 
-#  ifndef SEQAN_NO_USING_TEMPLATE
+#  ifndef SEQAN2_NO_USING_TEMPLATE
 
      // Bring the names in with a using-declaration
      // to avoid stressing the compiler.
-#    define SEQAN_IMPORT_TEMPLATE4(template_name) using ::template_name;
-#    define SEQAN_IMPORT_TEMPLATE3(template_name) using ::template_name;
-#    define SEQAN_IMPORT_TEMPLATE2(template_name) using ::template_name;
-#    define SEQAN_IMPORT_TEMPLATE1(template_name) using ::template_name;
+#    define SEQAN2_IMPORT_TEMPLATE4(template_name) using ::template_name;
+#    define SEQAN2_IMPORT_TEMPLATE3(template_name) using ::template_name;
+#    define SEQAN2_IMPORT_TEMPLATE2(template_name) using ::template_name;
+#    define SEQAN2_IMPORT_TEMPLATE1(template_name) using ::template_name;
 
 #  else
 
      // Otherwise, because a Borland C++ 5.5 bug prevents a using declaration
      // from working, we are forced to use inheritance for that compiler.
-#    define SEQAN_IMPORT_TEMPLATE4(template_name)                                             \
+#    define SEQAN2_IMPORT_TEMPLATE4(template_name)                                             \
      template <class T, class U, class V, class W, class B = detail::empty_base<T> > \
      struct template_name : ::template_name<T, U, V, W, B> {};
 
-#    define SEQAN_IMPORT_TEMPLATE3(template_name)                                    \
+#    define SEQAN2_IMPORT_TEMPLATE3(template_name)                                    \
      template <class T, class U, class V, class B = detail::empty_base<T> > \
      struct template_name : ::template_name<T, U, V, B> {};
 
-#    define SEQAN_IMPORT_TEMPLATE2(template_name)                           \
+#    define SEQAN2_IMPORT_TEMPLATE2(template_name)                           \
      template <class T, class U, class B = detail::empty_base<T> > \
      struct template_name : ::template_name<T, U, B> {};
 
-#    define SEQAN_IMPORT_TEMPLATE1(template_name)                  \
+#    define SEQAN2_IMPORT_TEMPLATE1(template_name)                  \
      template <class T, class B = detail::empty_base<T> > \
      struct template_name : ::template_name<T, B> {};
 
-#  endif // SEQAN_NO_USING_TEMPLATE
+#  endif // SEQAN2_NO_USING_TEMPLATE
 
-#endif // SEQAN_NO_OPERATORS_IN_NAMESPACE
+#endif // SEQAN2_NO_OPERATORS_IN_NAMESPACE
 
 //
 // Here's where we put it all together, defining the xxxx forms of the templates
@@ -649,7 +649,7 @@ struct random_access_iteratable
 // the xxxx, xxxx1, and xxxx2 templates, importing them into boost:: as
 // necessary.
 //
-#ifndef SEQAN_NO_TEMPLATE_PARTIAL_SPECIALIZATION
+#ifndef SEQAN2_NO_TEMPLATE_PARTIAL_SPECIALIZATION
 
 // is_chained_base<> - a traits class used to distinguish whether an operator
 // template argument is being used for base class chaining, or is specifying a
@@ -671,8 +671,8 @@ template<class T> struct is_chained_base {
 
 // Import a 4-type-argument operator template into boost (if necessary) and
 // provide a specialization of 'is_chained_base<>' for it.
-# define SEQAN_OPERATOR_TEMPLATE4(template_name4)                     \
-  SEQAN_IMPORT_TEMPLATE4(template_name4)                              \
+# define SEQAN2_OPERATOR_TEMPLATE4(template_name4)                     \
+  SEQAN2_IMPORT_TEMPLATE4(template_name4)                              \
   template<class T, class U, class V, class W, class B>               \
   struct is_chained_base< template_name4<T, U, V, W, B> > {  \
     typedef detail::true_t value;                            \
@@ -680,8 +680,8 @@ template<class T> struct is_chained_base {
 
 // Import a 3-type-argument operator template into boost (if necessary) and
 // provide a specialization of 'is_chained_base<>' for it.
-# define SEQAN_OPERATOR_TEMPLATE3(template_name3)                     \
-  SEQAN_IMPORT_TEMPLATE3(template_name3)                              \
+# define SEQAN2_OPERATOR_TEMPLATE3(template_name3)                     \
+  SEQAN2_IMPORT_TEMPLATE3(template_name3)                              \
   template<class T, class U, class V, class B>                        \
   struct is_chained_base< template_name3<T, U, V, B> > {     \
     typedef detail::true_t value;                            \
@@ -689,8 +689,8 @@ template<class T> struct is_chained_base {
 
 // Import a 2-type-argument operator template into boost (if necessary) and
 // provide a specialization of 'is_chained_base<>' for it.
-# define SEQAN_OPERATOR_TEMPLATE2(template_name2)                  \
-  SEQAN_IMPORT_TEMPLATE2(template_name2)                           \
+# define SEQAN2_OPERATOR_TEMPLATE2(template_name2)                  \
+  SEQAN2_IMPORT_TEMPLATE2(template_name2)                           \
   template<class T, class U, class B>                              \
   struct is_chained_base< template_name2<T, U, B> > {     \
     typedef detail::true_t value;                         \
@@ -698,14 +698,14 @@ template<class T> struct is_chained_base {
 
 // Import a 1-type-argument operator template into boost (if necessary) and
 // provide a specialization of 'is_chained_base<>' for it.
-# define SEQAN_OPERATOR_TEMPLATE1(template_name1)                  \
-  SEQAN_IMPORT_TEMPLATE1(template_name1)                           \
+# define SEQAN2_OPERATOR_TEMPLATE1(template_name1)                  \
+  SEQAN2_IMPORT_TEMPLATE1(template_name1)                           \
   template<class T, class B>                                       \
   struct is_chained_base< template_name1<T, B> > {        \
     typedef detail::true_t value;                         \
   };
 
-// SEQAN_OPERATOR_TEMPLATE(template_name) defines template_name<> such that it
+// SEQAN2_OPERATOR_TEMPLATE(template_name) defines template_name<> such that it
 // can be used for specifying both 1-argument and 2-argument forms. Requires the
 // existence of two previously defined class templates named '<template_name>1'
 // and '<template_name>2' which must implement the corresponding 1- and 2-
@@ -719,7 +719,7 @@ template<class T> struct is_chained_base {
 // implementation in terms of either '<template_name>1' or '<template_name>2'.
 //
 
-# define SEQAN_OPERATOR_TEMPLATE(template_name)                    \
+# define SEQAN2_OPERATOR_TEMPLATE(template_name)                    \
 template <class T                                                  \
          ,class U = T                                              \
          ,class B = detail::empty_base<T>                 \
@@ -740,86 +740,86 @@ struct is_chained_base< template_name<T, U, B, O> > {     \
   typedef detail::true_t value;                           \
 };                                                                 \
                                                                    \
-SEQAN_OPERATOR_TEMPLATE2(template_name##2)                         \
-SEQAN_OPERATOR_TEMPLATE1(template_name##1)
+SEQAN2_OPERATOR_TEMPLATE2(template_name##2)                         \
+SEQAN2_OPERATOR_TEMPLATE1(template_name##1)
 
 
-#else // SEQAN_NO_TEMPLATE_PARTIAL_SPECIALIZATION
+#else // SEQAN2_NO_TEMPLATE_PARTIAL_SPECIALIZATION
 
-#  define SEQAN_OPERATOR_TEMPLATE4(template_name4) \
-        SEQAN_IMPORT_TEMPLATE4(template_name4)
-#  define SEQAN_OPERATOR_TEMPLATE3(template_name3) \
-        SEQAN_IMPORT_TEMPLATE3(template_name3)
-#  define SEQAN_OPERATOR_TEMPLATE2(template_name2) \
-        SEQAN_IMPORT_TEMPLATE2(template_name2)
-#  define SEQAN_OPERATOR_TEMPLATE1(template_name1) \
-        SEQAN_IMPORT_TEMPLATE1(template_name1)
+#  define SEQAN2_OPERATOR_TEMPLATE4(template_name4) \
+        SEQAN2_IMPORT_TEMPLATE4(template_name4)
+#  define SEQAN2_OPERATOR_TEMPLATE3(template_name3) \
+        SEQAN2_IMPORT_TEMPLATE3(template_name3)
+#  define SEQAN2_OPERATOR_TEMPLATE2(template_name2) \
+        SEQAN2_IMPORT_TEMPLATE2(template_name2)
+#  define SEQAN2_OPERATOR_TEMPLATE1(template_name1) \
+        SEQAN2_IMPORT_TEMPLATE1(template_name1)
 
    // In this case we can only assume that template_name<> is equivalent to the
    // more commonly needed template_name1<> form.
-#  define SEQAN_OPERATOR_TEMPLATE(template_name)                   \
+#  define SEQAN2_OPERATOR_TEMPLATE(template_name)                   \
    template <class T, class B = detail::empty_base<T> >   \
    struct template_name : template_name##1<T, B> {};
 
-#endif // SEQAN_NO_TEMPLATE_PARTIAL_SPECIALIZATION
+#endif // SEQAN2_NO_TEMPLATE_PARTIAL_SPECIALIZATION
 
-SEQAN_OPERATOR_TEMPLATE(less_than_comparable)
-SEQAN_OPERATOR_TEMPLATE(equality_comparable)
-SEQAN_OPERATOR_TEMPLATE(multipliable)
-SEQAN_OPERATOR_TEMPLATE(addable)
-SEQAN_OPERATOR_TEMPLATE(subtractable)
-SEQAN_OPERATOR_TEMPLATE2(subtractable2_left)
-SEQAN_OPERATOR_TEMPLATE(dividable)
-SEQAN_OPERATOR_TEMPLATE2(dividable2_left)
-SEQAN_OPERATOR_TEMPLATE(modable)
-SEQAN_OPERATOR_TEMPLATE2(modable2_left)
-SEQAN_OPERATOR_TEMPLATE(xorable)
-SEQAN_OPERATOR_TEMPLATE(andable)
-SEQAN_OPERATOR_TEMPLATE(orable)
+SEQAN2_OPERATOR_TEMPLATE(less_than_comparable)
+SEQAN2_OPERATOR_TEMPLATE(equality_comparable)
+SEQAN2_OPERATOR_TEMPLATE(multipliable)
+SEQAN2_OPERATOR_TEMPLATE(addable)
+SEQAN2_OPERATOR_TEMPLATE(subtractable)
+SEQAN2_OPERATOR_TEMPLATE2(subtractable2_left)
+SEQAN2_OPERATOR_TEMPLATE(dividable)
+SEQAN2_OPERATOR_TEMPLATE2(dividable2_left)
+SEQAN2_OPERATOR_TEMPLATE(modable)
+SEQAN2_OPERATOR_TEMPLATE2(modable2_left)
+SEQAN2_OPERATOR_TEMPLATE(xorable)
+SEQAN2_OPERATOR_TEMPLATE(andable)
+SEQAN2_OPERATOR_TEMPLATE(orable)
 
-SEQAN_OPERATOR_TEMPLATE1(incrementable)
-SEQAN_OPERATOR_TEMPLATE1(decrementable)
+SEQAN2_OPERATOR_TEMPLATE1(incrementable)
+SEQAN2_OPERATOR_TEMPLATE1(decrementable)
 
-SEQAN_OPERATOR_TEMPLATE2(dereferenceable)
-SEQAN_OPERATOR_TEMPLATE3(indexable)
+SEQAN2_OPERATOR_TEMPLATE2(dereferenceable)
+SEQAN2_OPERATOR_TEMPLATE3(indexable)
 
-SEQAN_OPERATOR_TEMPLATE(left_shiftable)
-SEQAN_OPERATOR_TEMPLATE(right_shiftable)
-SEQAN_OPERATOR_TEMPLATE(equivalent)
-SEQAN_OPERATOR_TEMPLATE(partially_ordered)
+SEQAN2_OPERATOR_TEMPLATE(left_shiftable)
+SEQAN2_OPERATOR_TEMPLATE(right_shiftable)
+SEQAN2_OPERATOR_TEMPLATE(equivalent)
+SEQAN2_OPERATOR_TEMPLATE(partially_ordered)
 
-SEQAN_OPERATOR_TEMPLATE(totally_ordered)
-SEQAN_OPERATOR_TEMPLATE(additive)
-SEQAN_OPERATOR_TEMPLATE(multiplicative)
-SEQAN_OPERATOR_TEMPLATE(integer_multiplicative)
-SEQAN_OPERATOR_TEMPLATE(arithmetic)
-SEQAN_OPERATOR_TEMPLATE(integer_arithmetic)
-SEQAN_OPERATOR_TEMPLATE(bitwise)
-SEQAN_OPERATOR_TEMPLATE1(unit_steppable)
-SEQAN_OPERATOR_TEMPLATE(shiftable)
-SEQAN_OPERATOR_TEMPLATE(ring_operators)
-SEQAN_OPERATOR_TEMPLATE(ordered_ring_operators)
-SEQAN_OPERATOR_TEMPLATE(field_operators)
-SEQAN_OPERATOR_TEMPLATE(ordered_field_operators)
-SEQAN_OPERATOR_TEMPLATE(euclidian_ring_operators)
-SEQAN_OPERATOR_TEMPLATE(ordered_euclidian_ring_operators)
-SEQAN_OPERATOR_TEMPLATE(euclidean_ring_operators)
-SEQAN_OPERATOR_TEMPLATE(ordered_euclidean_ring_operators)
-SEQAN_OPERATOR_TEMPLATE2(input_iteratable)
-SEQAN_OPERATOR_TEMPLATE1(output_iteratable)
-SEQAN_OPERATOR_TEMPLATE2(forward_iteratable)
-SEQAN_OPERATOR_TEMPLATE2(bidirectional_iteratable)
-SEQAN_OPERATOR_TEMPLATE4(random_access_iteratable)
+SEQAN2_OPERATOR_TEMPLATE(totally_ordered)
+SEQAN2_OPERATOR_TEMPLATE(additive)
+SEQAN2_OPERATOR_TEMPLATE(multiplicative)
+SEQAN2_OPERATOR_TEMPLATE(integer_multiplicative)
+SEQAN2_OPERATOR_TEMPLATE(arithmetic)
+SEQAN2_OPERATOR_TEMPLATE(integer_arithmetic)
+SEQAN2_OPERATOR_TEMPLATE(bitwise)
+SEQAN2_OPERATOR_TEMPLATE1(unit_steppable)
+SEQAN2_OPERATOR_TEMPLATE(shiftable)
+SEQAN2_OPERATOR_TEMPLATE(ring_operators)
+SEQAN2_OPERATOR_TEMPLATE(ordered_ring_operators)
+SEQAN2_OPERATOR_TEMPLATE(field_operators)
+SEQAN2_OPERATOR_TEMPLATE(ordered_field_operators)
+SEQAN2_OPERATOR_TEMPLATE(euclidian_ring_operators)
+SEQAN2_OPERATOR_TEMPLATE(ordered_euclidian_ring_operators)
+SEQAN2_OPERATOR_TEMPLATE(euclidean_ring_operators)
+SEQAN2_OPERATOR_TEMPLATE(ordered_euclidean_ring_operators)
+SEQAN2_OPERATOR_TEMPLATE2(input_iteratable)
+SEQAN2_OPERATOR_TEMPLATE1(output_iteratable)
+SEQAN2_OPERATOR_TEMPLATE2(forward_iteratable)
+SEQAN2_OPERATOR_TEMPLATE2(bidirectional_iteratable)
+SEQAN2_OPERATOR_TEMPLATE4(random_access_iteratable)
 
-#undef SEQAN_OPERATOR_TEMPLATE
-#undef SEQAN_OPERATOR_TEMPLATE4
-#undef SEQAN_OPERATOR_TEMPLATE3
-#undef SEQAN_OPERATOR_TEMPLATE2
-#undef SEQAN_OPERATOR_TEMPLATE1
-#undef SEQAN_IMPORT_TEMPLATE1
-#undef SEQAN_IMPORT_TEMPLATE2
-#undef SEQAN_IMPORT_TEMPLATE3
-#undef SEQAN_IMPORT_TEMPLATE4
+#undef SEQAN2_OPERATOR_TEMPLATE
+#undef SEQAN2_OPERATOR_TEMPLATE4
+#undef SEQAN2_OPERATOR_TEMPLATE3
+#undef SEQAN2_OPERATOR_TEMPLATE2
+#undef SEQAN2_OPERATOR_TEMPLATE1
+#undef SEQAN2_IMPORT_TEMPLATE1
+#undef SEQAN2_IMPORT_TEMPLATE2
+#undef SEQAN2_IMPORT_TEMPLATE3
+#undef SEQAN2_IMPORT_TEMPLATE4
 
 // The following 'operators' classes can only be used portably if the derived class
 // declares ALL of the required member operators.
@@ -830,7 +830,7 @@ struct operators2
     , bitwise2<T,U
       > > > {};
 
-#ifndef SEQAN_NO_TEMPLATE_PARTIAL_SPECIALIZATION
+#ifndef SEQAN2_NO_TEMPLATE_PARTIAL_SPECIALIZATION
 template <class T, class U = T>
 struct operators : operators2<T, U> {};
 
@@ -906,6 +906,6 @@ struct random_access_iterator_helper
 
 */
 
-} // namespace seqan
+} // namespace seqan2
 
-#endif // SEQAN_MATH_OPERATORS_H_
+#endif // SEQAN2_MATH_OPERATORS_H_

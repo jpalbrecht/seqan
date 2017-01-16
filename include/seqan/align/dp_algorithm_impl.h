@@ -130,10 +130,10 @@
 // sequence to determine there orientation within the matrix.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_ALGORITHM_IMPL_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_DP_ALGORITHM_IMPL_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_ALGORITHM_IMPL_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_ALGORITHM_IMPL_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -163,8 +163,8 @@ prepareAlign(StringSet<Align<TSequence, TAlignSpec> > & align,
 {
     size_t numAlignments = length(setV);
 
-    SEQAN_ASSERT_EQ(length(align), 0u);
-    SEQAN_ASSERT_GT(numAlignments, 0u);
+    SEQAN2_ASSERT_EQ(length(align), 0u);
+    SEQAN2_ASSERT_GT(numAlignments, 0u);
 
     resize(align, numAlignments);
     for(size_t i = 0; i < numAlignments; ++i)
@@ -365,7 +365,7 @@ _computeTrack(TDPScout & scout,
         // Compute the inner cell.
         // If we have variable length simd, we need to check if we reached the end of one of the sequences.
         // For all other cases, the function returns always false.
-        if (SEQAN_UNLIKELY(_reachedVerticalEndPoint(scout, iter)))
+        if (SEQAN2_UNLIKELY(_reachedVerticalEndPoint(scout, iter)))
         {
             _computeCell(scout, dpTraceMatrixNavigator, value(dpScoreMatrixNavigator),
                          previousCellDiagonal(dpScoreMatrixNavigator), previousCellHorizontal(dpScoreMatrixNavigator),
@@ -442,8 +442,8 @@ _computeUnbandedAlignment(TDPScout & scout,
     TConstSeqVIterator seqVBegin = begin(seqV, Rooted());
     TConstSeqVIterator seqVEnd = end(seqV, Rooted());
 
-    SEQAN_ASSERT_GT(length(seqH), 0u);
-    SEQAN_ASSERT_GT(length(seqV), 0u);
+    SEQAN2_ASSERT_GT(length(seqH), 0u);
+    SEQAN2_ASSERT_GT(length(seqV), 0u);
     _computeTrack(scout, dpScoreMatrixNavigator, dpTraceMatrixNavigator,
                   sequenceEntryForScore(scoringScheme, seqH, 0),
                   sequenceEntryForScore(scoringScheme, seqV, 0),
@@ -459,7 +459,7 @@ _computeUnbandedAlignment(TDPScout & scout,
     for (; seqHIter != seqHIterEnd; ++seqHIter)
     {
         // We might only select it if SIMD version is available.
-        if (SEQAN_UNLIKELY(_reachedHorizontalEndPoint(scout, seqHIter)))
+        if (SEQAN2_UNLIKELY(_reachedHorizontalEndPoint(scout, seqHIter)))
         {
             _computeTrack(scout, dpScoreMatrixNavigator, dpTraceMatrixNavigator,
                           sequenceEntryForScore(scoringScheme, seqH, position(seqHIter)),
@@ -887,7 +887,7 @@ _computeBandedAlignment(TDPScout & scout,
 //    // We start at the least at the first sequence or wherever the lower diagonal begins first.
 //    TConstSeqHIterator seqHIterBegin = begin(seqH, Standard()) + _max(0, _min(static_cast<int>(length(seqH) - 1), lowerDiagonal(band)));
 //    // TODO(rmaerker): Cehck if this assertion is correct.
-////    SEQAN_ASSERT_NEQ(seqHIterBegin, end(seqH, Standard()));  // The iterator never points to the end of the horizontal sequence.
+////    SEQAN2_ASSERT_NEQ(seqHIterBegin, end(seqH, Standard()));  // The iterator never points to the end of the horizontal sequence.
 //
 //    // The horizontal initial phase ends after the upper diagonal but at most after the horizontal sequence, or there is no horizontal initialization phase.
 //    TConstSeqHIterator seqHIterEndColumnTop = begin(seqH, Standard()) + _min(static_cast<int>(length(seqH))-1, _max(0, upperDiagonal(band)));
@@ -1334,7 +1334,7 @@ void _printTracebackMatrix(TTraceMatrix & dpTraceMatrix, TPosition const simdLan
 // ----------------------------------------------------------------------------
 
 template <typename TTraceNavigator, typename TScoreValue, typename TDPScoutSpec>
-inline SEQAN_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, void)
 _correctTraceValue(TTraceNavigator &,
                    DPScout_<DPCell_<TScoreValue, LinearGaps>, TDPScoutSpec> const &)
 {
@@ -1342,7 +1342,7 @@ _correctTraceValue(TTraceNavigator &,
 }
 
 template <typename TTraceNavigator, typename TScoreValue, typename TDPScoutSpec>
-inline SEQAN_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, void)
 _correctTraceValue(TTraceNavigator &,
                    DPScout_<DPCell_<TScoreValue, LinearGaps>, TDPScoutSpec> const &)
 {
@@ -1350,7 +1350,7 @@ _correctTraceValue(TTraceNavigator &,
 }
 
 template <typename TTraceNavigator, typename TScoreValue, typename TDPScoutSpec>
-inline SEQAN_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, void)
 _correctTraceValue(TTraceNavigator & traceNavigator,
                    DPScout_<DPCell_<TScoreValue, AffineGaps>, TDPScoutSpec>  const & dpScout)
 {
@@ -1369,7 +1369,7 @@ _correctTraceValue(TTraceNavigator & traceNavigator,
 }
 
 template <typename TTraceNavigator, typename TScoreValue, typename TDPScoutSpec>
-inline SEQAN_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, void)
 _correctTraceValue(TTraceNavigator & traceNavigator,
                    DPScout_<DPCell_<TScoreValue, AffineGaps>, TDPScoutSpec>  const & dpScout)
 {
@@ -1388,7 +1388,7 @@ _correctTraceValue(TTraceNavigator & traceNavigator,
 }
 
 template <typename TTraceNavigator, typename TScoreValue, typename TDPScoutSpec>
-inline SEQAN_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, void)
 _correctTraceValue(TTraceNavigator & traceNavigator,
                    DPScout_<DPCell_<TScoreValue, DynamicGaps>, TDPScoutSpec>  const & dpScout)
 {
@@ -1406,7 +1406,7 @@ _correctTraceValue(TTraceNavigator & traceNavigator,
 }
 
 template <typename TTraceNavigator, typename TScoreValue, typename TDPScoutSpec>
-inline SEQAN_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, void)
 _correctTraceValue(TTraceNavigator & traceNavigator,
                    DPScout_<DPCell_<TScoreValue, DynamicGaps>, TDPScoutSpec>  const & dpScout)
 {
@@ -1435,7 +1435,7 @@ template <typename TTraceTarget,
           typename TSeqV,
           typename TBandSwitch,
           typename TAlignmentAlgorithm, typename TGapScheme, typename TTraceFlag>
-inline SEQAN_FUNC_ENABLE_IF(Not<IsTracebackEnabled_<TTraceFlag> >, TScoreValue)
+inline SEQAN2_FUNC_ENABLE_IF(Not<IsTracebackEnabled_<TTraceFlag> >, TScoreValue)
 _finishAlignment(TTraceTarget & /*traceSegments*/,
                  TTraceMatNavigator & /*dpTraceMatrixNavigator*/,
                  DPScout_<DPCell_<TScoreValue, TGapsModel>, TDPScoutSpec> & dpScout,
@@ -1454,7 +1454,7 @@ template <typename TTraceTarget,
           typename TSeqV,
           typename TBandSwitch,
           typename TAlignmentAlgorithm, typename TGapScheme, typename TTraceFlag>
-inline SEQAN_FUNC_ENABLE_IF(And<Is<SimdVectorConcept<TScoreValue> >, IsTracebackEnabled_<TTraceFlag> >, TScoreValue)
+inline SEQAN2_FUNC_ENABLE_IF(And<Is<SimdVectorConcept<TScoreValue> >, IsTracebackEnabled_<TTraceFlag> >, TScoreValue)
 _finishAlignment(TTraceTarget & traceSegments,
                  TTraceMatNavigator & dpTraceMatrixNavigator,
                  DPScout_<DPCell_<TScoreValue, TGapsModel>, TDPScoutSpec> & scout,
@@ -1487,7 +1487,7 @@ template <typename TTraceTarget,
           typename TSeqV,
           typename TBandSwitch,
           typename TAlignmentAlgorithm, typename TGapScheme, typename TTraceFlag>
-inline SEQAN_FUNC_ENABLE_IF(And<Not<Is<SimdVectorConcept<TScoreValue> > >, IsTracebackEnabled_<TTraceFlag> >, TScoreValue)
+inline SEQAN2_FUNC_ENABLE_IF(And<Not<Is<SimdVectorConcept<TScoreValue> > >, IsTracebackEnabled_<TTraceFlag> >, TScoreValue)
 _finishAlignment(TTraceTarget & traceSegments,
                  TTraceMatNavigator & dpTraceMatrixNavigator,
                  DPScout_<DPCell_<TScoreValue, TGapsModel>, TDPScoutSpec> & dpScout,
@@ -1575,7 +1575,7 @@ _computeAlignment(DPContext<TScoreValue, TGapScheme> & dpContext,
     _init(dpTraceMatrixNavigator, dpTraceMatrix, band);
 
     TDPScout dpScout(scoutState);
-#if SEQAN_ALIGN_SIMD_PROFILE
+#if SEQAN2_ALIGN_SIMD_PROFILE
     profile.preprTimer += sysTime() - timer;
     timer = sysTime();
 #endif
@@ -1587,13 +1587,13 @@ _computeAlignment(DPContext<TScoreValue, TGapScheme> & dpContext,
     else
         _computeBandedAlignment(dpScout, dpScoreMatrixNavigator, dpTraceMatrixNavigator, seqH, seqV, scoreScheme,
                                 band, dpProfile);
-#if SEQAN_ALIGN_SIMD_PROFILE
+#if SEQAN2_ALIGN_SIMD_PROFILE
     profile.alignTimer += sysTime() - timer;
     timer = sysTime();
 #endif
     return _finishAlignment(traceSegments, dpTraceMatrixNavigator, dpScout, seqH, seqV, band, dpProfile);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_ALGORITHM_IMPL_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_ALGORITHM_IMPL_H_

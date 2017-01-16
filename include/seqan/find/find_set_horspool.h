@@ -32,10 +32,10 @@
 // Author: Tobias Rausch <rausch@embl.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_FIND_SETHORSPOOL_H
-#define SEQAN_HEADER_FIND_SETHORSPOOL_H
+#ifndef SEQAN2_HEADER_FIND_SETHORSPOOL_H
+#define SEQAN2_HEADER_FIND_SETHORSPOOL_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -45,7 +45,7 @@ namespace seqan
 /*!
  * @class SetHorspoolPattern
  * @extends Pattern
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  *
  * @brief Multiple exact string matching using set horspool algorithm.
  *
@@ -94,7 +94,7 @@ public:
 
     template <typename TNeedle2>
     Pattern(TNeedle2 && ndl,
-            SEQAN_CTOR_DISABLE_IF(IsSameType<typename std::remove_reference<TNeedle2>::type const &, Pattern const &>))
+            SEQAN2_CTOR_DISABLE_IF(IsSameType<typename std::remove_reference<TNeedle2>::type const &, Pattern const &>))
     {
         setHost(*this, std::forward<TNeedle2>(ndl));
         ignoreUnusedVariableWarning(dummy);
@@ -254,6 +254,6 @@ inline bool find(TFinder & finder, Pattern<TNeedle, SetHorspool> & me) {
     return false;
 }
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_FIND_SETHORSPOOL_H
+#endif //#ifndef SEQAN2_HEADER_FIND_SETHORSPOOL_H

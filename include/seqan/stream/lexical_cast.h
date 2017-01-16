@@ -35,10 +35,10 @@
 // String => Numerical conversions
 // ==========================================================================
 
-#ifndef SEQAN_STREAM_LEXICAL_CAST_H
-#define SEQAN_STREAM_LEXICAL_CAST_H
+#ifndef SEQAN2_STREAM_LEXICAL_CAST_H
+#define SEQAN2_STREAM_LEXICAL_CAST_H
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Exceptions
@@ -51,7 +51,7 @@ namespace seqan {
 /*!
  * @class BadLexicalCast
  * @extends ParseError
- * @headerfile <seqan/stream.h>
+ * @headerfile <seqan2/stream.h>
  * @brief Throw on bad lexical casts.
  *
  * @signature struct BadLexicalCast : ParseError;
@@ -90,7 +90,7 @@ struct BadLexicalCast : ParseError
 
 /*!
  * @fn lexicalCast
- * @headerfile <seqan/stream.h>
+ * @headerfile <seqan2/stream.h>
  * @brief Interpret the character sequence in <tt>source</tt> as the numeric value and write to <tt>target</tt>.
  *
  * @signature bool lexicalCast(target, source);
@@ -118,7 +118,7 @@ template <typename TSource>
 inline bool
 lexicalCast(char & target, TSource const & source)
 {
-    if (SEQAN_UNLIKELY(length(source) != 1))
+    if (SEQAN2_UNLIKELY(length(source) != 1))
         return false;
     target = getValue(begin(source, Standard()));
     return true;
@@ -128,7 +128,7 @@ lexicalCast(char & target, TSource const & source)
 
 // Generic version for unsigned integers.
 template <typename TInteger, typename TSource>
-inline SEQAN_FUNC_ENABLE_IF(Is<UnsignedIntegerConcept<TInteger> >, bool)
+inline SEQAN2_FUNC_ENABLE_IF(Is<UnsignedIntegerConcept<TInteger> >, bool)
 lexicalCast(TInteger & target, TSource const & source)
 {
     typedef typename Iterator<TSource const, Standard>::Type TIter;
@@ -136,7 +136,7 @@ lexicalCast(TInteger & target, TSource const & source)
     TIter it = begin(source, Standard());
     TIter itEnd = end(source, Standard());
 
-    if (SEQAN_UNLIKELY(it == itEnd))
+    if (SEQAN2_UNLIKELY(it == itEnd))
         return false;
 
     TInteger val = 0;
@@ -145,17 +145,17 @@ lexicalCast(TInteger & target, TSource const & source)
         unsigned char digit = *it++ - '0';
 
         // invalid digit detection
-        if (SEQAN_UNLIKELY(digit > 9))
+        if (SEQAN2_UNLIKELY(digit > 9))
             return false;
 
         // overflow detection
-        if (SEQAN_UNLIKELY(val > MaxValue<TInteger>::VALUE / 10))
+        if (SEQAN2_UNLIKELY(val > MaxValue<TInteger>::VALUE / 10))
             return false;
         val *= 10;
 
         // overflow detection
         val += digit;
-        if (SEQAN_UNLIKELY(val < digit))
+        if (SEQAN2_UNLIKELY(val < digit))
             return false;
     }
     while (it != itEnd);
@@ -165,7 +165,7 @@ lexicalCast(TInteger & target, TSource const & source)
 
 // Generic version for signed integers.
 template <typename TInteger, typename TSource>
-inline SEQAN_FUNC_ENABLE_IF(Is<SignedIntegerConcept<TInteger> >, bool)
+inline SEQAN2_FUNC_ENABLE_IF(Is<SignedIntegerConcept<TInteger> >, bool)
 lexicalCast(TInteger & target, TSource const & source)
 {
     typedef typename Iterator<TSource const, Standard>::Type TIter;
@@ -173,7 +173,7 @@ lexicalCast(TInteger & target, TSource const & source)
     TIter it = begin(source, Standard());
     TIter itEnd = end(source, Standard());
 
-    if (SEQAN_UNLIKELY(it == itEnd))
+    if (SEQAN2_UNLIKELY(it == itEnd))
         return false;
 
     TInteger val = 0;
@@ -185,40 +185,40 @@ lexicalCast(TInteger & target, TSource const & source)
             unsigned char digit = *it++ - '0';
 
             // invalid digit detection
-            if (SEQAN_UNLIKELY(digit > 9))
+            if (SEQAN2_UNLIKELY(digit > 9))
                 return false;
 
             // overflow detection
-            if (SEQAN_UNLIKELY(val > MaxValue<TInteger>::VALUE / 10))
+            if (SEQAN2_UNLIKELY(val > MaxValue<TInteger>::VALUE / 10))
                 return false;
             val *= 10;
 
             // overflow detection
             val += digit;
-            if (SEQAN_UNLIKELY(val < digit))
+            if (SEQAN2_UNLIKELY(val < digit))
                 return false;
         }
         while (it != itEnd);
     }
     else
     {
-        if (SEQAN_UNLIKELY(++it == itEnd))
+        if (SEQAN2_UNLIKELY(++it == itEnd))
             return false;
         do
         {
             unsigned char digit = *it++ - '0';
 
             // invalid digit detection
-            if (SEQAN_UNLIKELY(digit > 9))
+            if (SEQAN2_UNLIKELY(digit > 9))
                 return false;
 
             // overflow detection
-            if (SEQAN_UNLIKELY(val < MinValue<TInteger>::VALUE / 10))
+            if (SEQAN2_UNLIKELY(val < MinValue<TInteger>::VALUE / 10))
                 return false;
             val *= 10;
 
             // overflow detection
-            if (SEQAN_UNLIKELY(MinValue<TInteger>::VALUE - val > -(TInteger)digit))
+            if (SEQAN2_UNLIKELY(MinValue<TInteger>::VALUE - val > -(TInteger)digit))
                 return false;
             val -= digit;
         }
@@ -262,7 +262,7 @@ inline TTarget lexicalCast(TSource const & source)
 
 /*!
  * @fn lexicalCastWithException
- * @headerfile <seqan/stream.h>
+ * @headerfile <seqan2/stream.h>
  * @brief Interpret the character sequence in <tt>source</tt> as the numeric value and write to <tt>target</tt>.
  *
  * @signature void lexicalCastWithException(target, source);
@@ -284,4 +284,4 @@ inline void lexicalCastWithException(TTarget & target, TSource const & source)
 
 }
 
-#endif //def SEQAN_STREAM_LEXICAL_CAST_H
+#endif //def SEQAN2_STREAM_LEXICAL_CAST_H

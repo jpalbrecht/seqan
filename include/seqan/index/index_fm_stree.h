@@ -34,12 +34,12 @@
 // Author: Enrico Siragusa <enrico.siragusa@fu-berlin.de>
 // ==========================================================================
 
-//SEQAN_NO_DDDOC:do not generate documentation for this file
+//SEQAN2_NO_DDDOC:do not generate documentation for this file
 
-#ifndef INDEX_FM_STREE_H_
-#define INDEX_FM_STREE_H_
+#ifndef SEQAN2_INDEX_FM_STREE_H_
+#define SEQAN2_INDEX_FM_STREE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ==========================================================================
 // Classes
@@ -554,4 +554,4 @@ parentEdgeFirstChar(Iter<Index<TText, FMIndex<TOccSpec, TIndexSpec > >, VSTree<T
 }
 
 }
-#endif  // INDEX_FM_STREE_H_
+#endif  // SEQAN2_INDEX_FM_STREE_H_

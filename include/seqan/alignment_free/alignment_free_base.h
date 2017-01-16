@@ -37,14 +37,14 @@
 
 // TODO(holtgrew): Make struct a class here.
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGNMENT_FREE_ALIGNMENT_FREE_BASE_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGNMENT_FREE_ALIGNMENT_FREE_BASE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGNMENT_FREE_ALIGNMENT_FREE_BASE_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGNMENT_FREE_ALIGNMENT_FREE_BASE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 /*!
  * @class AFScore
- * @headerfile <seqan/alignment_free.h>
+ * @headerfile <seqan2/alignment_free.h>
  * @brief Used to specify parameters and methods for alignment-free sequence comparison.
  *
  * @signature template <typename TSpec>
@@ -61,7 +61,7 @@ struct AFScore;
 /*!
  * @class D2AFScore D2 AFScore
  * @extends AFScore
- * @headerfile <seqan/alignment_free.h>
+ * @headerfile <seqan2/alignment_free.h>
  *
  * @brief D2 computes the inner product of the kmer count vectors.
  *
@@ -110,7 +110,7 @@ struct AFScore<D2>
 /*!
  * @class D2StarAFScore D2Star AFSScore
  * @extends AFScore
- * @headerfile <seqan/alignment_free.h>
+ * @headerfile <seqan2/alignment_free.h>
  * @brief D2Star computes the inner product of the standardised kmer count vectors.
  *
  * @signature template <>
@@ -164,7 +164,7 @@ struct AFScore<D2Star>
 /*!
  * @class N2AFScore N2 AFScore
  * @extends AFScore
- * @headerfile <seqan/alignment_free.h>
+ * @headerfile <seqan2/alignment_free.h>
  * @brief N2 computes the inner product of the standardised neighbourhood kmer count vectors.
  *
  * @signature template <>
@@ -286,7 +286,7 @@ struct AFScore<N2>
 /*!
  * @class D2zAFScore D2zAFScore
  * @extends AFScore
- * @headerfile <seqan/alignment_free.h>
+ * @headerfile <seqan2/alignment_free.h>
  * @brief D2z computes a z-score of the inner product of kmer count vectors
  *
  * @signature template <>
@@ -335,6 +335,6 @@ struct AFScore<D2z>
     {}
 };
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_INCLUDE_SEQAN_ALIGNMENT_FREE_ALIGNMENT_FREE_BASE_H_
+#endif  // SEQAN2_INCLUDE_SEQAN2_ALIGNMENT_FREE_ALIGNMENT_FREE_BASE_H_

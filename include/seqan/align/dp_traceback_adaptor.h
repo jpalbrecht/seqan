@@ -35,10 +35,10 @@
 // alignment representing structure.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_TRACEBACK_ADAPTOR_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_DP_TRACEBACK_ADAPTOR_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_TRACEBACK_ADAPTOR_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_TRACEBACK_ADAPTOR_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ----------------------------------------------------------------------------
 // Function _writeTraceSegmentToFile()
@@ -316,6 +316,6 @@ _adaptTraceSegmentsTo(String<Fragment<TSize, TFragmentSpec>, TStringSpec> & matc
 //    }
 //}
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_TRACEBACK_ADAPTOR_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_TRACEBACK_ADAPTOR_H_

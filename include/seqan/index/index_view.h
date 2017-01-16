@@ -34,10 +34,10 @@
 // This file contains Index specializations for Views.
 // ==========================================================================
 
-#ifndef SEQAN_INDEX_VIEW_H_
-#define SEQAN_INDEX_VIEW_H_
+#ifndef SEQAN2_SEQAN2_INDEX_VIEW_H_
+#define SEQAN2_SEQAN2_INDEX_VIEW_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Metafunctions
@@ -589,7 +589,7 @@ inline bool
 indexRequire(Index<ContainerView<TText, TViewSpec>, TSpec> & index, Tag<TFibre> const fibre)
 {
     bool supplied = indexSupplied(index, fibre);
-    SEQAN_ASSERT_MSG(supplied, "Fibre must be supplied on a view.");
+    SEQAN2_ASSERT_MSG(supplied, "Fibre must be supplied on a view.");
     return supplied;
 }
 
@@ -598,7 +598,7 @@ inline bool
 indexRequire(Index<StringSet<ContainerView<TText, TViewSpec>, TSSetSpec>, TSpec> & index, Tag<TFibre> const fibre)
 {
     bool supplied = indexSupplied(index, fibre);
-    SEQAN_ASSERT_MSG(supplied, "Fibre must be supplied on a view.");
+    SEQAN2_ASSERT_MSG(supplied, "Fibre must be supplied on a view.");
     return supplied;
 }
 
@@ -611,7 +611,7 @@ inline bool
 indexRequire(Index<ContainerView<TText, TViewSpec>, FMIndex<TSpec, TConfig> > & index, Tag<TFibre> const fibre)
 {
     bool supplied = indexSupplied(index, fibre);
-    SEQAN_ASSERT_MSG(supplied, "Fibre must be supplied on a view.");
+    SEQAN2_ASSERT_MSG(supplied, "Fibre must be supplied on a view.");
     return supplied;
 }
 
@@ -620,7 +620,7 @@ inline bool
 indexRequire(Index<StringSet<ContainerView<TText, TViewSpec>, TSSetSpec>, FMIndex<TSpec, TConfig> > & index, Tag<TFibre> const fibre)
 {
     bool supplied = indexSupplied(index, fibre);
-    SEQAN_ASSERT_MSG(supplied, "Fibre must be supplied on a view.");
+    SEQAN2_ASSERT_MSG(supplied, "Fibre must be supplied on a view.");
     return supplied;
 }
 
@@ -632,7 +632,7 @@ template <typename TText, typename TViewSpec, typename TSpec, typename TFibre>
 inline bool
 indexCreate(Index<ContainerView<TText, TViewSpec>, TSpec> & /* index */, Tag<TFibre> const /* fibre */)
 {
-    SEQAN_ASSERT_MSG(false, "Fibre cannot be created on a view.");
+    SEQAN2_ASSERT_MSG(false, "Fibre cannot be created on a view.");
     return false;
 }
 
@@ -640,7 +640,7 @@ template <typename TText, typename TViewSpec, typename TSSetSpec, typename TSpec
 inline bool
 indexCreate(Index<StringSet<ContainerView<TText, TViewSpec>, TSSetSpec>, TSpec> & /* index */, Tag<TFibre> const /* fibre */)
 {
-    SEQAN_ASSERT_MSG(false, "Fibre cannot be created on a view.");
+    SEQAN2_ASSERT_MSG(false, "Fibre cannot be created on a view.");
     return false;
 }
 
@@ -652,7 +652,7 @@ template <typename TText, typename TViewSpec, typename TSpec, typename TConfig, 
 inline bool
 indexCreate(Index<ContainerView<TText, TViewSpec>, FMIndex<TSpec, TConfig> > & /* index */, Tag<TFibre> const /* fibre */)
 {
-    SEQAN_ASSERT_MSG(false, "Fibre cannot be created on a view.");
+    SEQAN2_ASSERT_MSG(false, "Fibre cannot be created on a view.");
     return false;
 }
 
@@ -660,7 +660,7 @@ template <typename TText, typename TViewSpec, typename TSSetSpec, typename TSpec
 inline bool
 indexCreate(Index<StringSet<ContainerView<TText, TViewSpec>, TSSetSpec>, FMIndex<TSpec, TConfig> > & /* index */, Tag<TFibre> const /* fibre */)
 {
-    SEQAN_ASSERT_MSG(false, "Fibre cannot be created on a view.");
+    SEQAN2_ASSERT_MSG(false, "Fibre cannot be created on a view.");
     return false;
 }
 
@@ -857,4 +857,4 @@ view(SparseString<TString, TSpec> & sparseString)
 
 }
 
-#endif  // #ifndef SEQAN_INDEX_VIEW_H_
+#endif  // #ifndef SEQAN2_SEQAN2_INDEX_VIEW_H_

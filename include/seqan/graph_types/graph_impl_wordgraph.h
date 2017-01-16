@@ -30,10 +30,10 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_GRAPH_IMPL_WORDGRAPH_H
-#define SEQAN_HEADER_GRAPH_IMPL_WORDGRAPH_H
+#ifndef SEQAN2_HEADER_GRAPH_IMPL_WORDGRAPH_H
+#define SEQAN2_HEADER_GRAPH_IMPL_WORDGRAPH_H
 
-namespace seqan
+namespace seqan2
 {
 
 template <typename TSpec = Default>
@@ -48,7 +48,7 @@ struct WordGraph;
 /*!
  * @class WordGraph
  * @extends Automaton
- * @headerfile <seqan/graph_type.h>
+ * @headerfile <seqan2/graph_type.h>
  * @brief A special automaton that stores words instead of single characters along its edges.
  *
  * @signature template <[typename TAlphabet[, typename Spec]]>
@@ -106,8 +106,8 @@ addEdge(Graph<Automaton<TAlphabet, String<TAlphabet>, WordGraph<TSpec> > >& g,
         TVertexDescriptor const target,
         String<TAlphabet> const & label)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, source));
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, target));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, source));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, target));
 
     typedef Graph<Automaton<TAlphabet, String<TAlphabet>, WordGraph<TSpec> > > TGraph;
     typedef typename EdgeDescriptor<TGraph>::Type TEdgeDescriptor;
@@ -147,7 +147,7 @@ addEdge(Graph<Automaton<TAlphabet, String<TAlphabet>, WordGraph<TSpec> > >& /*g*
 {
     // No additional cargo allowed. Cargo is used for the words in the graph.
     // Use external property map.
-    SEQAN_ASSERT_FAIL("No additional cargo allowed. Cargo is used for the words in the graph. Use external property map.");
+    SEQAN2_ASSERT_FAIL("No additional cargo allowed. Cargo is used for the words in the graph. Use external property map.");
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -160,8 +160,8 @@ removeEdge(Graph<Automaton<TAlphabet, String<TAlphabet>, WordGraph<TSpec> > >& g
         String<TAlphabet> const& label)
 {
     (void)target;  // In case it is compiled without assertions.
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, source));
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, target));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, source));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, target));
 
     TAlphabet firstChar = getValue(label, 0);
     removeEdge(g, findEdge(g,source, firstChar));
@@ -227,7 +227,7 @@ getSuccessor(Graph<Automaton<TAlphabet, String<TAlphabet>, WordGraph<TSpec> > > 
              TVertexDescriptor vertex,
              TCharacters const& chars)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, vertex));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, vertex));
     typedef Graph<Automaton<TAlphabet, String<TAlphabet>, WordGraph<TSpec> > > TGraph;
     typedef typename EdgeType<TGraph>::Type TEdgeStump;
     TEdgeStump* ed = findEdge(g, vertex, getValue(chars, 0));
@@ -278,7 +278,7 @@ parseString(Graph<Automaton<TAlphabet, String<TAlphabet>, WordGraph<TSpec> > > c
             TIterator beginIt,
             TIterator endIt)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, vertex));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, vertex));
     typedef Graph<Automaton<TAlphabet, String<TAlphabet>, WordGraph<TSpec> > > TGraph;
     typedef typename Size<TGraph>::Type TSize;
     TVertexDescriptor nilVal = getNil<TVertexDescriptor>();
@@ -322,6 +322,6 @@ parseString(Graph<Automaton<TAlphabet, String<TAlphabet>, WordGraph<TSpec> > > c
 // TODO(holtgrew): Not implemented yet!
 
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

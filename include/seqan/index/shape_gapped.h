@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_SHAPE_GAPPED_H
-#define SEQAN_HEADER_SHAPE_GAPPED_H
+#ifndef SEQAN2_HEADER_SHAPE_GAPPED_H
+#define SEQAN2_HEADER_SHAPE_GAPPED_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -44,7 +44,7 @@ namespace seqan
 /*!
  * @class HardwiredShape
  * @extends GappedShape
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief A structure to define a fixed gapped shape.
  *
  * @signature template <typename TValue, typename P1[, typename P2[, ..., typename Pn]]>
@@ -59,9 +59,9 @@ namespace seqan
  *
  * The shape <tt>1100101</tt> corresponds to <tt>HardwiredShape<1,3,2></tt>.
  *
- * Note The following predefined shapes are already available in <tt>seqan/index/shape_predefined.h</tt>:
+ * Note The following predefined shapes are already available in <tt>seqan2/index/shape_predefined.h</tt>:
  *
- * @include include/seqan/index/shape_predefined.h
+ * @include include/seqan2/index/shape_predefined.h
  *
  * @see GappedShape
  * @see GenericShape
@@ -208,7 +208,7 @@ namespace seqan
 /*!
  * @class GenericShape
  * @extends Shape
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief A variable gapped shape.
  *
  * @signature template <typename TValue>
@@ -309,7 +309,7 @@ namespace seqan
         operator=(Shape<TValue, UngappedShape<q> > const &other)
         {
             span = length(other);
-            weight = seqan::weight(other);
+            weight = seqan2::weight(other);
             if (weight > 0)
             {
                 resize(diffs, weight - 1);
@@ -356,7 +356,7 @@ namespace seqan
 /*!
  * @class GappedShape
  * @extends Shape
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief A fixed gapped shape.
  *
@@ -429,7 +429,7 @@ namespace seqan
         //typedef typename Value< Shape<TValue, GenericShape> >::Type    THValue;
         typedef typename Size< Shape<TValue, GenericShape> >::Type    TSize;
 
-        SEQAN_ASSERT_GT((unsigned)me.weight, 0u);
+        SEQAN2_ASSERT_GT((unsigned)me.weight, 0u);
 
         me.hValue = ordValue((TValue)*it);
         TSize iEnd = me.weight - 1;
@@ -449,7 +449,7 @@ namespace seqan
         if (charsLeft >= (TSize)me.span)
             return hash(me, it);
 
-        SEQAN_ASSERT_GT((unsigned)me.weight, 0u);
+        SEQAN2_ASSERT_GT((unsigned)me.weight, 0u);
 
         TSize i = 0;
         if (charsLeft > 0) {
@@ -482,7 +482,7 @@ namespace seqan
             return ++me.hValue;
         }
 
-        SEQAN_ASSERT_GT((unsigned)me.weight, 0u);
+        SEQAN2_ASSERT_GT((unsigned)me.weight, 0u);
 
         TSize i = 0;
         if (charsLeft > 0) {
@@ -693,6 +693,6 @@ namespace seqan
         reverse(me.diffs);
     }
 
-}    // namespace seqan
+}    // namespace seqan2
 
 #endif

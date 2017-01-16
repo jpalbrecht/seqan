@@ -35,12 +35,12 @@
 // Definitions for piggybacking qualities in free bits of bytes.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_ALPHABET_QUALITIES_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_ALPHABET_QUALITIES_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ALPHABET_QUALITIES_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_ALPHABET_QUALITIES_H_
 
 // TODO(holtgrew): Should the documentation be here?
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -104,7 +104,7 @@ struct HasQualities
 
 /*!
  * @fn convertQuality
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @brief Convert an integer quality value into its ASCII representation for FASTQ (Phred scale).
  *
@@ -124,6 +124,6 @@ void convertQuality(char & c, int q)
     c = '!' + char(q);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_ALPHABET_QUALITIES_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ALPHABET_QUALITIES_H_

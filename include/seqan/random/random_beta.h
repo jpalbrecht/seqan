@@ -37,10 +37,10 @@
 // source: http://stackoverflow.com/questions/15165202/random-number-generator-with-beta-distribution.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_RANDOM_RANDOM_BETA_DIST_H_
-#define INCLUDE_SEQAN_RANDOM_RANDOM_BETA_DIST_H_
+#ifndef INCLUDE_SEQAN2_RANDOM_RANDOM_BETA_DIST_H_
+#define INCLUDE_SEQAN2_RANDOM_RANDOM_BETA_DIST_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -53,7 +53,7 @@ namespace seqan
 
 /*!
  * @class BetaDistribution
- * @headerfile <seqan/random.h>
+ * @headerfile <seqan2/random.h>
  * @brief Wrapper for beta distribution which is not part of the stl random module.
  *
  * @signature class BetaDistribution<TRealType>;
@@ -346,6 +346,6 @@ operator>>(TStream & source,
     return source;
 }
     
-} // namespace seqan
+} // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_RANDOM_RANDOM_BETA_DIST_H_
+#endif  // #ifndef INCLUDE_SEQAN2_RANDOM_RANDOM_BETA_DIST_H_

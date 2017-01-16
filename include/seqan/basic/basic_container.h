@@ -34,26 +34,26 @@
 // Facade header for the basic_container submodule.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_BASIC_CONTAINER_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_BASIC_CONTAINER_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_CONTAINER_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_CONTAINER_H_
 
 // --------------------------------------------------------------------------
 // Dependencies
 // --------------------------------------------------------------------------
 
-#include <seqan/platform.h>
-#include <seqan/basic/basic_fundamental.h>
-#include <seqan/basic/basic_concept.h>
-#include <seqan/basic/basic_alphabet.h>
+#include <seqan2/platform.h>
+#include <seqan2/basic/basic_fundamental.h>
+#include <seqan2/basic/basic_concept.h>
+#include <seqan2/basic/basic_alphabet.h>
 
 // --------------------------------------------------------------------------
 // Sub Module Headers
 // --------------------------------------------------------------------------
 
 // PropertyMap concept.
-#include <seqan/basic/property_map_concept.h>
+#include <seqan2/basic/property_map_concept.h>
 
 // Container concept.
-#include <seqan/basic/container_concept.h>
+#include <seqan2/basic/container_concept.h>
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_BASIC_CONTAINER_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_CONTAINER_H_

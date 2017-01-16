@@ -33,10 +33,10 @@
 // Author: Manuel Holtgrewe <manuel.holtgrewe@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_UCSC_UCSC_IO_H_
-#define SEQAN_INCLUDE_SEQAN_UCSC_UCSC_IO_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_UCSC_UCSC_IO_H_
+#define SEQAN2_INCLUDE_SEQAN2_UCSC_UCSC_IO_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -49,7 +49,7 @@ namespace seqan
 
 /*!
  * @tag FileFormats#Ucsc
- * @headerfile <seqan/ucsc_io.h>
+ * @headerfile <seqan2/ucsc_io.h>
  * @brief UCSC Genome browser annotation file (aka knownGene format).
  *
  * @signature typedef Tag<Ucsc_<UcscKnownGene_> > const Ucsc;
@@ -67,7 +67,7 @@ typedef Tag<Ucsc_<UcscKnownGene_> > UcscKnownGene;
 
 /*!
  * @tag FileFormats#UcscIsoforms
- * @headerfile <seqan/ucsc_io.h>
+ * @headerfile <seqan2/ucsc_io.h>
  * @brief UCSC Genome browser isoform file (aka knownIsoforms format).
  *
  * @signature typedef Tag<Ucsc_<UcscIsoforms_> > const UcscIsoforms;
@@ -177,7 +177,7 @@ guessFormatFromStream(TStream &istream, Tag<Ucsc_<TFormatSpec> > const & format)
     String<char, Array<1000> > putbackBuf;
     bool match = false;
 
-    SEQAN_ASSERT(istream.good());
+    SEQAN2_ASSERT(istream.good());
 
     // try to read and check header
     size_t numRead = istream.readsome(&putbackBuf[0], capacity(putbackBuf));
@@ -189,7 +189,7 @@ guessFormatFromStream(TStream &istream, Tag<Ucsc_<TFormatSpec> > const & format)
     for (; numRead > 0; --numRead)
         istream.unget();
 
-    SEQAN_ASSERT(istream.good());
+    SEQAN2_ASSERT(istream.good());
 
     return match;
 }
@@ -216,14 +216,14 @@ void readRecord(UcscRecord & record,
     // read column 1: gene name (stored in .transName)
     readUntil(record.transName, iter, nextRecord);
     if (empty(record.transName))
-        SEQAN_THROW(EmptyFieldError("clusterId"));
+        SEQAN2_THROW(EmptyFieldError("clusterId"));
     insert(record.transName, 0, "GENE");    // prepend "GENE" for compatibility reasons
     skipOne(iter, IsTab());
 
     // read column 2: transcript name (stored in .contigName)
     readUntil(record.contigName, iter, lastRecord);
     if (empty(record.contigName))
-        SEQAN_THROW(EmptyFieldError("transcript"));
+        SEQAN2_THROW(EmptyFieldError("transcript"));
     skipLine(iter);
 }
 
@@ -247,13 +247,13 @@ void readRecord(UcscRecord & record,
     // read column 1: transcript name
     readUntil(record.transName, iter, nextRecord);
     if (empty(record.transName))
-        SEQAN_THROW(EmptyFieldError("name"));
+        SEQAN2_THROW(EmptyFieldError("name"));
     skipOne(iter, IsTab());
 
     // read column 2: contig name
     readUntil(record.contigName, iter, nextRecord);
     if (empty(record.contigName))
-        SEQAN_THROW(EmptyFieldError("chrom"));
+        SEQAN2_THROW(EmptyFieldError("chrom"));
     skipOne(iter, IsTab());
 
     // read column 3: orientation
@@ -441,6 +441,6 @@ void writeRecord(TTarget & target,
     writeValue(target, '\n');
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_UCSC_UCSC_IO_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_UCSC_UCSC_IO_H_

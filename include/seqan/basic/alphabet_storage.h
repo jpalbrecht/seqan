@@ -36,12 +36,12 @@
 // construction type (simple, non-simple) and storage size.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_ALPHABET_STORAGE_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_ALPHABET_STORAGE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ALPHABET_STORAGE_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_ALPHABET_STORAGE_H_
 
 #include <float.h>
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -139,7 +139,7 @@ struct InternalValueSize_
 
 /*!
  * @mfn BytesPerValue
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Number of bytes needed to store a value.
  *
  * @signature BytesPerValue<T>::VALUE
@@ -168,7 +168,7 @@ struct BytesPerValue
 
 /*!
  * @mfn IntegralForValue
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Returns an itegral type that provides sufficient space to store a value.
  *
  * @signature IntegralForValue<T>::Type;
@@ -286,6 +286,6 @@ valueSize()
     return +ValueSize<T>::VALUE;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_ALPHABET_STORAGE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ALPHABET_STORAGE_H_

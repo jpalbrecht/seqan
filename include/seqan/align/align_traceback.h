@@ -39,10 +39,10 @@
 // defined.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_ALIGN_TRACEBACK_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_ALIGN_TRACEBACK_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_ALIGN_TRACEBACK_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_ALIGN_TRACEBACK_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -60,7 +60,7 @@ namespace seqan {
 
 /*!
  * @typedef TraceBack
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Traceback value.
  *
  * @signature struct TraceBack_;
@@ -98,7 +98,7 @@ template <> struct BitsPerValue<TraceBack>
 
 /*!
  * @class AlignTraceback
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Data structure for storing alignment traceback.
  *
  * @signature template <typename TSize>
@@ -156,6 +156,6 @@ _alignTracePrint(AlignTraceback<TSize> & tb,
     appendValue(tb.tvs, tv);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_ALIGN_TRACEBACK_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_ALIGN_TRACEBACK_H_

@@ -33,10 +33,10 @@
 // Author: Anne-Katrin Emde <anne-katrin.emde@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_GRAPH_ALGORITHM_REFINE_FRAGMENT_H_
-#define SEQAN_INCLUDE_SEQAN_GRAPH_ALGORITHM_REFINE_FRAGMENT_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_GRAPH_ALGORITHM_REFINE_FRAGMENT_H_
+#define SEQAN2_INCLUDE_SEQAN2_GRAPH_ALGORITHM_REFINE_FRAGMENT_H_
 
-namespace seqan {
+namespace seqan2 {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -198,4 +198,4 @@ _getRefinedMatchScore(Score<TScoreValue, Simple> & score_type,
 
 }  // namespace
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_GRAPH_ALGORITHM_REFINE_FRAGMENT_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_GRAPH_ALGORITHM_REFINE_FRAGMENT_H_

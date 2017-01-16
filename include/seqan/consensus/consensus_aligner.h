@@ -32,19 +32,19 @@
 // Author: Manuel Holtgrewe <manuel.holtgrewe@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_CONSENSUS_CONSENSUS_ALIGNER_H_
-#define INCLUDE_SEQAN_CONSENSUS_CONSENSUS_ALIGNER_H_
+#ifndef INCLUDE_SEQAN2_CONSENSUS_CONSENSUS_ALIGNER_H_
+#define INCLUDE_SEQAN2_CONSENSUS_CONSENSUS_ALIGNER_H_
 
 #include <map>
 #include <vector>
 #include <stdexcept>
 
-#include <seqan/store.h>
+#include <seqan2/store.h>
 
 #include "consensus_alignment_options.h"
 #include "consensus_builder.h"
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -60,7 +60,7 @@ namespace seqan {
 
 /*!
  * @class ConsensusAlignerIllegalArgumentException
- * @headerfile <seqan/consensus.h>
+ * @headerfile <seqan2/consensus.h>
  * @brief Thrown in ConsensusAlignerInputException on invalid arguments.
  *
  * @signature class ConsensusAlignerException;
@@ -181,6 +181,6 @@ inline void ConsensusAligner_<TFragmentStore>::run()
 // Functions
 // ============================================================================
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_CONSENSUS_CONSENSUS_ALIGNER_H_
+#endif  // #ifndef INCLUDE_SEQAN2_CONSENSUS_CONSENSUS_ALIGNER_H_

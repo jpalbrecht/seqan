@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_INDEX_SA_QSORT_H
-#define SEQAN_HEADER_INDEX_SA_QSORT_H
+#ifndef SEQAN2_HEADER_SEQAN2_INDEX_SA_QSORT_H
+#define SEQAN2_HEADER_SEQAN2_INDEX_SA_QSORT_H
 
-namespace seqan
+namespace seqan2
 {
 
     struct SAQSort {};

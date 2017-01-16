@@ -32,10 +32,10 @@
 
 // TODO(holtgrew): Move to misc?
 
-#ifndef SEQAN_HEADER_GRAPH_IDMANAGER_H
-#define SEQAN_HEADER_GRAPH_IDMANAGER_H
+#ifndef SEQAN2_HEADER_GRAPH_IDMANAGER_H
+#define SEQAN2_HEADER_GRAPH_IDMANAGER_H
 
-namespace seqan
+namespace seqan2
 {
 //////////////////////////////////////////////////////////////////////////////
 // IdManager
@@ -43,7 +43,7 @@ namespace seqan
 
 /*!
  * @class IdManager
- * @headerfile <seqan/graph_types.h>
+ * @headerfile <seqan2/graph_types.h>
  * @brief ID manager that provides uniq ids for vertices and edges.
  *
  * @signature template <typename TIdType, typename TSpec>
@@ -191,7 +191,7 @@ inline void
 releaseId(IdManager<TIdType, TSpec>& idm,
           TId const id)
 {
-    SEQAN_ASSERT(idInUse(idm,id));
+    SEQAN2_ASSERT(idInUse(idm,id));
     if (id == (TId) length(idm.data_in_use) - 1) {
         resize(idm.data_in_use, length(idm.data_in_use) - 1, Generous());
     } else {
@@ -319,7 +319,7 @@ idInUse(IdManager<TIdType, TSpec> const& idm,
 /*!
  * @class CountingIdManager
  * @extends IdManager
- * @headerfile <seqan/graph_types.h>
+ * @headerfile <seqan2/graph_types.h>
  * @brief IdManager that just counts the number of ids in use.
  *
  * @signature template <typename TSpec>
@@ -453,6 +453,6 @@ idInUse(IdManager<void, TSpec> const&,
     return false;
 }
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

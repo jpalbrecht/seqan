@@ -35,10 +35,10 @@
 // Implementation of the StringSet specialization Dependent<Generous>.
 // ==========================================================================
 
-#ifndef SEQAN_SEQUENCE_STRING_SET_DEPENDENT_GENEROUS_H_
-#define SEQAN_SEQUENCE_STRING_SET_DEPENDENT_GENEROUS_H_
+#ifndef SEQAN2_SEQUENCE_STRING_SET_DEPENDENT_GENEROUS_H_
+#define SEQAN2_SEQUENCE_STRING_SET_DEPENDENT_GENEROUS_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -51,7 +51,7 @@ namespace seqan {
 /*!
  * @class GenerousDependentStringSet Generous Dependent StringSet
  * @extends DependentStringSet
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Dependent StringSet implementation with efficient sequence access by sequence id.
  *
  * @signature template <typename TString>
@@ -267,13 +267,13 @@ assignValueById(StringSet<TString, Dependent<Generous> >& me,
                 TString& obj,
                 TId id)
 {
-    SEQAN_ASSERT_EQ(length(stringSetLimits(me)), length(me) + 1);
+    SEQAN2_ASSERT_EQ(length(stringSetLimits(me)), length(me) + 1);
     if (id >= (TId) length(me.strings)) resize(me.strings, id+1, (TString*) 0);
     if ((TString*) me.strings[id] == (TString*) 0)
         resize(me.limits, length(me.limits) + 1, Generous());
     me.strings[id] = &obj;
     me.limitsValid = false;
-    SEQAN_ASSERT_EQ(length(stringSetLimits(me)), length(me) + 1);
+    SEQAN2_ASSERT_EQ(length(stringSetLimits(me)), length(me) + 1);
     return id;
 }
 
@@ -327,6 +327,6 @@ idToPosition(StringSet<TString, Dependent<Generous> > const& me,
     return _countNonZeroValues(me.strings,id);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_SEQUENCE_STRING_SET_DEPENDENT_GENEROUS_H_
+#endif  // #ifndef SEQAN2_SEQUENCE_STRING_SET_DEPENDENT_GENEROUS_H_

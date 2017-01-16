@@ -35,12 +35,12 @@
 // not pooled.
 // ==========================================================================
 
-#ifndef SEQAN_BASIC_BASIC_ALLOCATOR_SINGLE_POOL_H_
-#define SEQAN_BASIC_BASIC_ALLOCATOR_SINGLE_POOL_H_
+#ifndef SEQAN2_BASIC_BASIC_ALLOCATOR_SINGLE_POOL_H_
+#define SEQAN2_BASIC_BASIC_ALLOCATOR_SINGLE_POOL_H_
 
-#include <seqan/basic/allocator_interface.h>
+#include <seqan2/basic/allocator_interface.h>
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -53,7 +53,7 @@ namespace seqan {
 /*!
  * @class SinglePoolAllocator
  * @extends Allocator
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Allocator that pools memory blocks of a specific size.
  *
  * @signature template <unsigned SIZE, typename TParentAllocator>
@@ -245,6 +245,6 @@ deallocate(Allocator<SinglePool<SIZE, TParentAllocator> > & me,
     me.data_recycled_blocks = reinterpret_cast<char *>(data);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_BASIC_BASIC_ALLOCATOR_SINGLE_POOL_H_
+#endif  // #ifndef SEQAN2_BASIC_BASIC_ALLOCATOR_SINGLE_POOL_H_

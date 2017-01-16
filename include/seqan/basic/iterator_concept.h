@@ -32,19 +32,19 @@
 // Author: Manuel Holtgrewe <manuel.holtgrewe@fu-berlin.de>
 // ==========================================================================
 
-// SEQAN_NO_GENERATED_FORWARDS
+// SEQAN2_NO_GENERATED_FORWARDS
 
-#ifndef INCLUDE_SEQAN_BASIC_ITERATOR_CONCEPT_H_
-#define INCLUDE_SEQAN_BASIC_ITERATOR_CONCEPT_H_
+#ifndef INCLUDE_SEQAN2_BASIC_ITERATOR_CONCEPT_H_
+#define INCLUDE_SEQAN2_BASIC_ITERATOR_CONCEPT_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // Forward Declaration / Prototype.
 template <typename T> struct Pointer;
 
 /*!
  * @concept IteratorAssociatedTypesConcept
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Requires metafunctions for the associated types used in the iterator concepts.
  *
  * @signature IteratorAssociatedTypesConcept<T>
@@ -143,7 +143,7 @@ template <typename T> struct Pointer;
  * @return TGetValue The get-value that is pointed to.
  */
 
-SEQAN_CONCEPT(IteratorAssociatedTypesConcept, (T))
+SEQAN2_CONCEPT(IteratorAssociatedTypesConcept, (T))
 {
     typedef typename Value<T>::Type      TValue;
     typedef typename GetValue<T>::Type   TGetValue;
@@ -151,9 +151,9 @@ SEQAN_CONCEPT(IteratorAssociatedTypesConcept, (T))
     typedef typename Reference<T>::Type  TReference;
     typedef typename Pointer<T>::Type    TPointer;
 
-    SEQAN_CONCEPT_ASSERT((SignedIntegerConcept<TDifference>));
+    SEQAN2_CONCEPT_ASSERT((SignedIntegerConcept<TDifference>));
 
-    SEQAN_CONCEPT_USAGE(IteratorAssociatedTypesConcept)
+    SEQAN2_CONCEPT_USAGE(IteratorAssociatedTypesConcept)
     {
     }
 };
@@ -163,7 +163,7 @@ SEQAN_CONCEPT(IteratorAssociatedTypesConcept, (T))
  * @extends IteratorAssociatedTypesConcept
  * @extends CopyConstructibleConcept
  * @extends EqualityComparableConcept
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Iterator that allows dereferenced reading.
  *
  * @signature InputIteratorConcept<T>
@@ -219,7 +219,7 @@ SEQAN_CONCEPT(IteratorAssociatedTypesConcept, (T))
  * This function is equivalent to <tt>++iterator</tt>.
  */
 
-SEQAN_CONCEPT_REFINE(InputIteratorConcept, (T), (IteratorAssociatedTypesConcept)(CopyConstructible)(EqualityComparable))
+SEQAN2_CONCEPT_REFINE(InputIteratorConcept, (T), (IteratorAssociatedTypesConcept)(CopyConstructible)(EqualityComparable))
 {
     typedef typename Value<T>::Type      TValue;
     typedef typename GetValue<T>::Type   TGetValue;
@@ -230,12 +230,12 @@ SEQAN_CONCEPT_REFINE(InputIteratorConcept, (T), (IteratorAssociatedTypesConcept)
     TValue v;
     T      x, y;
 
-    SEQAN_CONCEPT_USAGE(InputIteratorConcept)
+    SEQAN2_CONCEPT_USAGE(InputIteratorConcept)
     {
         TReference & rv = v;
         T & rx =          x;
 
-        SEQAN_CONCEPT_ASSERT((SignedIntegerConcept<TDifference>));
+        SEQAN2_CONCEPT_ASSERT((SignedIntegerConcept<TDifference>));
         // TODO(holtgrew): requires Convertible<reference, value_type>;
         // TODO(holtgrew): requires Convertible<pointer, cont value_type*>;
 
@@ -258,7 +258,7 @@ SEQAN_CONCEPT_REFINE(InputIteratorConcept, (T), (IteratorAssociatedTypesConcept)
  * @concept OutputIteratorConcept
  * @extends IteratorAssociatedTypesConcept
  * @extends CopyConstructibleConcept
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @brief Iterator that allows dereferenced writing.
  *
@@ -330,16 +330,16 @@ SEQAN_CONCEPT_REFINE(InputIteratorConcept, (T), (IteratorAssociatedTypesConcept)
  * This function is equivalent to <tt>++iterator</tt>.
  */
 
-SEQAN_CONCEPT_REFINE(OutputIteratorConcept, (T), (CopyConstructible))
+SEQAN2_CONCEPT_REFINE(OutputIteratorConcept, (T), (CopyConstructible))
 {
     typedef typename Value<T>::Type TValue;
 
-    SEQAN_CONCEPT_ASSERT((Is<Assignable<TValue> >));
+    SEQAN2_CONCEPT_ASSERT((Is<Assignable<TValue> >));
 
     T      x;
     TValue v;
 
-    SEQAN_CONCEPT_USAGE(OutputIteratorConcept)
+    SEQAN2_CONCEPT_USAGE(OutputIteratorConcept)
     {
         *x = v;
         assignValue(x, v);
@@ -358,7 +358,7 @@ SEQAN_CONCEPT_REFINE(OutputIteratorConcept, (T), (CopyConstructible))
  * @concept ForwardIteratorConcept
  * @extends InputIteratorConcept
  * @extends DefaultConstructibleConcept
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Iterator that allows passing over a linear sequence multiple times.
  *
  * @signature ForwardIteratorConcept<T>
@@ -377,13 +377,13 @@ SEQAN_CONCEPT_REFINE(OutputIteratorConcept, (T), (CopyConstructible))
  * @endcode
  */
 
-SEQAN_CONCEPT_REFINE(ForwardIteratorConcept, (T), (InputIteratorConcept)(DefaultConstructible))
+SEQAN2_CONCEPT_REFINE(ForwardIteratorConcept, (T), (InputIteratorConcept)(DefaultConstructible))
 {
     typedef typename Value<T>::Type TValue;
 
     T x;
 
-    SEQAN_CONCEPT_USAGE(ForwardIteratorConcept)
+    SEQAN2_CONCEPT_USAGE(ForwardIteratorConcept)
     {
         ++x;
         ignoreUnusedVariableWarning(*x++);
@@ -394,21 +394,21 @@ SEQAN_CONCEPT_REFINE(ForwardIteratorConcept, (T), (InputIteratorConcept)(Default
  * @concept MutableForwardIteratorConcept
  * @extends ForwardIteratorConcept
  * @extends OutputIteratorConcept
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @brief A @link ForwardIteratorConcept Forward Iterator @endlink that allows dereferenced assignment.
  *
  * The SeqAn iterators mirror the definitions from <a href="http://generic-programming.org/languages/conceptcpp/concept_web.php?header=iterator">ConceptC++</a>.
  */
 
-SEQAN_CONCEPT_REFINE(MutableForwardIteratorConcept, (T), (ForwardIteratorConcept)(OutputIteratorConcept))
+SEQAN2_CONCEPT_REFINE(MutableForwardIteratorConcept, (T), (ForwardIteratorConcept)(OutputIteratorConcept))
 {
     typedef typename Value<T>::Type      TValue;
 
     T      x;
     TValue v;
 
-    SEQAN_CONCEPT_USAGE(MutableForwardIteratorConcept)
+    SEQAN2_CONCEPT_USAGE(MutableForwardIteratorConcept)
     {
         *x = v;
     }
@@ -417,7 +417,7 @@ SEQAN_CONCEPT_REFINE(MutableForwardIteratorConcept, (T), (ForwardIteratorConcept
 /*!
  * @concept BidirectionalIteratorConcept
  *
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @extends ForwardIteratorConcept
  *
@@ -473,11 +473,11 @@ SEQAN_CONCEPT_REFINE(MutableForwardIteratorConcept, (T), (ForwardIteratorConcept
  * This function is equivalent to <tt>--iterator</tt>.
  */
 
-SEQAN_CONCEPT_REFINE(BidirectionalIteratorConcept, (T), (ForwardIteratorConcept))
+SEQAN2_CONCEPT_REFINE(BidirectionalIteratorConcept, (T), (ForwardIteratorConcept))
 {
     T x;
 
-    SEQAN_CONCEPT_USAGE(BidirectionalIteratorConcept)
+    SEQAN2_CONCEPT_USAGE(BidirectionalIteratorConcept)
     {
         --x;
         x--;
@@ -489,19 +489,19 @@ SEQAN_CONCEPT_REFINE(BidirectionalIteratorConcept, (T), (ForwardIteratorConcept)
  * @concept MutableBidirectionalIteratorConcept
  * @extends BidirectionalIteratorConcept
  * @brief Bidirectional iterator that also allows writing of dereferenced values.
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @signature MutableBidirectionalIteratorConcept<T>
  */
 
-SEQAN_CONCEPT_REFINE(MutableBidirectionalIteratorConcept, (T), (BidirectionalIteratorConcept)(MutableForwardIteratorConcept))
+SEQAN2_CONCEPT_REFINE(MutableBidirectionalIteratorConcept, (T), (BidirectionalIteratorConcept)(MutableForwardIteratorConcept))
 {
     typedef typename Value<T>::Type TValue;
 
     T      x;
     TValue v;
 
-    SEQAN_CONCEPT_USAGE(MutableBidirectionalIteratorConcept)
+    SEQAN2_CONCEPT_USAGE(MutableBidirectionalIteratorConcept)
     {
         *x = v;
     }
@@ -512,7 +512,7 @@ SEQAN_CONCEPT_REFINE(MutableBidirectionalIteratorConcept, (T), (BidirectionalIte
  * @extends BidirectionalIteratorConcept
  * @extends LessThanComparableConcept
  * @brief An iterator allowing random access.
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @signature RandomAccessIteratorConcept<T>
  *
@@ -631,7 +631,7 @@ SEQAN_CONCEPT_REFINE(MutableBidirectionalIteratorConcept, (T), (BidirectionalIte
  * @return bool Whether or not the iterator is at the nil positions (NULL for pointers).
  */
 
-SEQAN_CONCEPT_REFINE(RandomAccessIteratorConcept, (T), (BidirectionalIteratorConcept)(LessThanComparable))
+SEQAN2_CONCEPT_REFINE(RandomAccessIteratorConcept, (T), (BidirectionalIteratorConcept)(LessThanComparable))
 {
     typedef typename Difference<T>::Type TDifference;
     typedef typename Value<T>::Type      TValue;
@@ -640,7 +640,7 @@ SEQAN_CONCEPT_REFINE(RandomAccessIteratorConcept, (T), (BidirectionalIteratorCon
     TValue      t;
     TDifference n;
 
-    SEQAN_CONCEPT_USAGE(RandomAccessIteratorConcept)
+    SEQAN2_CONCEPT_USAGE(RandomAccessIteratorConcept)
     {
 
         x += n;
@@ -661,13 +661,13 @@ SEQAN_CONCEPT_REFINE(RandomAccessIteratorConcept, (T), (BidirectionalIteratorCon
 /*!
  * @concept MutableRandomAccessIteratorConcept
  * @extends RandomAccessIteratorConcept
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief A random access iterator whose dereferenced values can be assigned.
  *
  * @signature MutableRandomAccessIteratorConcept<T>
  */
 
-SEQAN_CONCEPT_REFINE(MutableRandomAccessIteratorConcept, (T), (RandomAccessIteratorConcept)(MutableBidirectionalIteratorConcept))
+SEQAN2_CONCEPT_REFINE(MutableRandomAccessIteratorConcept, (T), (RandomAccessIteratorConcept)(MutableBidirectionalIteratorConcept))
 {
     typedef typename Difference<T>::Type TDifference;
     typedef typename Value<T>::Type      TValue;
@@ -676,7 +676,7 @@ SEQAN_CONCEPT_REFINE(MutableRandomAccessIteratorConcept, (T), (RandomAccessItera
     TValue      t;
     TDifference n;
 
-    SEQAN_CONCEPT_USAGE(MutableRandomAccessIteratorConcept)
+    SEQAN2_CONCEPT_USAGE(MutableRandomAccessIteratorConcept)
     {
         value(x, n) = t;  // TODO(holtgrew): Not supported?
         x[n] = t;
@@ -736,13 +736,13 @@ SEQAN_CONCEPT_REFINE(MutableRandomAccessIteratorConcept, (T), (RandomAccessItera
  * @return bool Whether or not the iterator is at the end.
  */
 
-SEQAN_CONCEPT_REFINE(RootedIteratorConcept, (T), (IteratorAssociatedTypesConcept))
+SEQAN2_CONCEPT_REFINE(RootedIteratorConcept, (T), (IteratorAssociatedTypesConcept))
 {
     typedef typename Container<T>::Type TContainer;
 
     T x;
 
-    SEQAN_CONCEPT_USAGE(RootedIteratorConcept)
+    SEQAN2_CONCEPT_USAGE(RootedIteratorConcept)
     {
         T xs;
         ignoreUnusedVariableWarning(xs);
@@ -764,9 +764,9 @@ SEQAN_CONCEPT_REFINE(RootedIteratorConcept, (T), (IteratorAssociatedTypesConcept
  * @signature MutableRootedIteratorConcept<T>
  */
 
-SEQAN_CONCEPT_REFINE(MutableRootedIteratorConcept, (T), (RootedIteratorConcept)(MutableForwardIteratorConcept))
+SEQAN2_CONCEPT_REFINE(MutableRootedIteratorConcept, (T), (RootedIteratorConcept)(MutableForwardIteratorConcept))
 {
-    SEQAN_CONCEPT_USAGE(MutableRootedIteratorConcept)
+    SEQAN2_CONCEPT_USAGE(MutableRootedIteratorConcept)
     {
     }
 };
@@ -830,11 +830,11 @@ SEQAN_CONCEPT_REFINE(MutableRootedIteratorConcept, (T), (RootedIteratorConcept)(
  * @param[in,out] it  The iterator to set the position of.
  */
 
-SEQAN_CONCEPT_REFINE(RootedRandomAccessIteratorConcept, (T), (RootedIteratorConcept)(RandomAccessIteratorConcept))
+SEQAN2_CONCEPT_REFINE(RootedRandomAccessIteratorConcept, (T), (RootedIteratorConcept)(RandomAccessIteratorConcept))
 {
     typedef typename Position<T>::Type TPosition;
 
-    SEQAN_CONCEPT_USAGE(RootedRandomAccessIteratorConcept)
+    SEQAN2_CONCEPT_USAGE(RootedRandomAccessIteratorConcept)
     {
         T x;
 
@@ -854,13 +854,13 @@ SEQAN_CONCEPT_REFINE(RootedRandomAccessIteratorConcept, (T), (RootedIteratorConc
  * @signature RootedRandomAccessIteratorConcept<T>
  */
 
-SEQAN_CONCEPT_REFINE(MutableRootedRandomAccessIteratorConcept, (T), (RootedRandomAccessIteratorConcept)(MutableBidirectionalIteratorConcept))
+SEQAN2_CONCEPT_REFINE(MutableRootedRandomAccessIteratorConcept, (T), (RootedRandomAccessIteratorConcept)(MutableBidirectionalIteratorConcept))
 {
-    SEQAN_CONCEPT_USAGE(MutableRootedRandomAccessIteratorConcept)
+    SEQAN2_CONCEPT_USAGE(MutableRootedRandomAccessIteratorConcept)
     {
     }
 };
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_BASIC_ITERATOR_CONCEPT_H_
+#endif  // #ifndef INCLUDE_SEQAN2_BASIC_ITERATOR_CONCEPT_H_

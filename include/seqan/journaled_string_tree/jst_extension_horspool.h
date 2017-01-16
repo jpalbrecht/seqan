@@ -32,10 +32,10 @@
 // Author: Rene Rahn <rene.rahn@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_JOURNALED_STRING_TREE_JST_EXTENSION_HORSPOOL_H_
-#define INCLUDE_SEQAN_JOURNALED_STRING_TREE_JST_EXTENSION_HORSPOOL_H_
+#ifndef INCLUDE_SEQAN2_JOURNALED_STRING_TREE_JST_EXTENSION_HORSPOOL_H_
+#define INCLUDE_SEQAN2_JOURNALED_STRING_TREE_JST_EXTENSION_HORSPOOL_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -83,7 +83,7 @@ run(JstExtension<Pattern<TNeedle, Horspool> > const & me,
     TIterator hystkEnd)
 {
     using TDiff = typename Difference<TIterator>::Type;
-    SEQAN_ASSERT(!empty(needle(me._pattern)));
+    SEQAN2_ASSERT(!empty(needle(me._pattern)));
 
     // Sanity check: Range must have same size as needle!
     if (hystkEnd - hystkBegin != static_cast<TDiff>(length(needle(me._pattern)) - 1))
@@ -100,6 +100,6 @@ run(JstExtension<Pattern<TNeedle, Horspool> > const & me,
                                    hstkIt == hystkBegin && getValue(ndlIt) == getValue(hstkIt));
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_JOURNALED_STRING_TREE_JST_EXTENSION_HORSPOOL_H_
+#endif  // #ifndef INCLUDE_SEQAN2_JOURNALED_STRING_TREE_JST_EXTENSION_HORSPOOL_H_

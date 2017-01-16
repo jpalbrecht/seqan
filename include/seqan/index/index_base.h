@@ -33,12 +33,12 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_INDEX_BASE_H
-#define SEQAN_HEADER_INDEX_BASE_H
+#ifndef SEQAN2_HEADER_SEQAN2_INDEX_BASE_H
+#define SEQAN2_HEADER_SEQAN2_INDEX_BASE_H
 
-//#define SEQAN_TEST_INDEX
+//#define SEQAN2_TEST_INDEX
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -72,12 +72,12 @@ namespace seqan
 /*!
  * @concept StringIndexConcept
  * @brief An index that can be traversed top-down.
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @signature StringIndexConcept<T>
  */
 
-SEQAN_CONCEPT(StringIndexConcept, (TIndex))
+SEQAN2_CONCEPT(StringIndexConcept, (TIndex))
 {
 //    typedef typename Iterator<TIndex, TopDown<> >::Type     TTopDownIterator;
     typedef typename VertexDescriptor<TIndex>::Type         TVertexDescriptor;
@@ -86,7 +86,7 @@ SEQAN_CONCEPT(StringIndexConcept, (TIndex))
     TIndex          index;
     TPropertyMap    pm;
 
-    SEQAN_CONCEPT_USAGE(StringIndexConcept)
+    SEQAN2_CONCEPT_USAGE(StringIndexConcept)
     {
         // property map interface
         resizeVertexMap(pm, index);
@@ -99,22 +99,22 @@ SEQAN_CONCEPT(StringIndexConcept, (TIndex))
 /*!
  * @concept StringTreeConcept
  * @brief An index that can be traversed top-down as a tree.
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @signature StringTreeConcept<T>
  */
 
-SEQAN_CONCEPT_REFINE(StringTreeConcept, (TIndex), (StringIndexConcept)) {};
+SEQAN2_CONCEPT_REFINE(StringTreeConcept, (TIndex), (StringIndexConcept)) {};
 
 /*!
  * @concept StringTrieConcept
  * @brief An index that can be traversed top-down as a trie.
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @signature StringTrieConcept<T>
  */
 
-SEQAN_CONCEPT_REFINE(StringTrieConcept, (TIndex), (StringIndexConcept)) {};
+SEQAN2_CONCEPT_REFINE(StringTrieConcept, (TIndex), (StringIndexConcept)) {};
 
 
 /*!
@@ -168,7 +168,7 @@ SEQAN_CONCEPT_REFINE(StringTrieConcept, (TIndex), (StringIndexConcept)) {};
 // ----------------------------------------------------------------------------
 /*!
  * @mfn Index#DefaultIndexSpec
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Default @link Index @endlink specialization type.
  *
  * @signature DefaultIndexSpec<TText>::Type;
@@ -198,7 +198,7 @@ SEQAN_CONCEPT_REFINE(StringTrieConcept, (TIndex), (StringIndexConcept)) {};
 
 /*!
  * @mfn Index#DefaultIndexStringSpec
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Default @link String @endlink specialization type of the @link Fibre
  *        @endlink of an @link Index @endlink.
  *
@@ -228,7 +228,7 @@ template <
 
 /*!
  * @class Index
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Indices are data structures which contain preprocessing data of a fixed text (or set of texts). In combination
  *        with a @link Finder @endlink or an @link VSTreeIterator @endlink it allows fast dictionary look-up and advanced computations.
  *
@@ -295,7 +295,7 @@ template <
     };
 /*!
  * @mfn Fibre
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Type of a specific container member (fibre).
  *
  * @signature Fibre<TObject, TSpec>::Type;
@@ -347,7 +347,7 @@ template <
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @mfn Index#DefaultIndexCreator
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @note Advanced functionality, not commonly used.
  * @brief Default algorithm to create a demanded and not yet existing @link Fibre @endlink.
  *
@@ -466,7 +466,7 @@ template <
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @mfn SAValue
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief The default alphabet type of a suffix array, i.e. the type to store a
  *        position of a string or string set.
  *
@@ -549,7 +549,7 @@ template <
 
 /*!
  * @mfn Index#Size
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns the size type of an Index.
  *
  * @signature Size<TIndex>::Type;
@@ -754,7 +754,7 @@ template <
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn Index#getFibre
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns a specific fibre of a container.
  *
  * @signature TFibre getFibre(index, fibreTag);
@@ -930,7 +930,7 @@ template <
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn Index#length
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns the number of characters in the underlying text of the index.
  *
  * @signature TSize length(index);
@@ -962,7 +962,7 @@ template <
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn Index#countSequences
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Return the number of sequences in an index' underlying text.
  *
  * @signature TSize countSequences(index);
@@ -1052,7 +1052,7 @@ template <
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexEsa#textAt
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>value(indexText(..), ..)</tt>.
  *
  * @signature TValue textAt(position, index);
@@ -1117,7 +1117,7 @@ template <
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn Index#rawtextAt
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>value(indexRawText(..), ..)</tt>.
  *
  * @signature TValue rawtextAt(position, index);
@@ -1144,7 +1144,7 @@ template <
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexEsa#saAt
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>value(indexSA(..), ..)</tt>.
  *
  * @signature TValue saAt(position, index);
@@ -1169,7 +1169,7 @@ template <
 
 /*
  * @fn IndexEsa#rawsaAt
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @note Advanced functionality, not commonly used.
  * @brief Shortcut for <tt>value(indexRawSA(..), ..)</tt>.
  *
@@ -1190,7 +1190,7 @@ template <
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexEsa#isaAt
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>value(indexIsa(..), ..)</tt>.
  *
  * @signature TValue isaAt(position, index);
@@ -1212,7 +1212,7 @@ template <
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexEsa#lcpAt
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>value(indexLcp(..), ..)</tt>.
  *
  * @signature TValue lcpAt(position, index);
@@ -1235,7 +1235,7 @@ template <
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexEsa#lcpeAt
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>value(indexLcpe(..), ..)</tt>.
  *
  * @signature TValue lcpeAt(position, index);
@@ -1258,7 +1258,7 @@ template <
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexEsa#childAt
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>value(indexChildtab(..), ..)</tt>.
  *
  * @signature TValue childAt(position, index);
@@ -1281,7 +1281,7 @@ template <
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexEsa#bwtAt
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>value(indexBwt(..), ..)</tt>.
  *
  * @signature TValue bwtAt(position, index);
@@ -1329,7 +1329,7 @@ template <
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn Index#indexText
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>getFibre(.., EsaText)</tt>.
  *
  * @signature TFibre indexText(index);
@@ -1398,7 +1398,7 @@ template <
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn Index#indexRawText
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>$getFibre(.., FibreRawText)</tt>.
  *
  * @signature TFibre indexRawText(position, index);
@@ -1429,7 +1429,7 @@ template <
 
 /*!
  * @fn IndexEsa#indexSA
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>getFibre(.., EsaSA)</tt>.
  *
  * @signature TSA indexSA(index);
@@ -1450,7 +1450,7 @@ template <
 
 /*
  * @fn IndexEsa#indexRawSA
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>getFibre(.., EsaRawSA)</tt>.
  *
  * @signature TSA indexRawSA(index);
@@ -1468,7 +1468,7 @@ template <
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexEsa#indexIsa
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>getFibre(.., EsaIsa)</tt>.
  *
  * @signature TIsa indexIsa(index);
@@ -1486,7 +1486,7 @@ template <
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexEsa#indexLcp
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>getFibre(.., EsaLcp)</tt>.
  *
  * @signature TLcp indexLcp(index);
@@ -1504,7 +1504,7 @@ template <
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexEsa#indexLcpe
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>getFibre(.., EsaLcpe)</tt>.
  *
  * @signature TLcpe indexLcpe(index);
@@ -1522,7 +1522,7 @@ template <
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexEsa#indexBwt
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>getFibre(.., EsaBwt)</tt>.
  *
  * @signature TBwt indexBwt(index);
@@ -1540,7 +1540,7 @@ template <
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexEsa#indexChildtab
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>getFibre(.., EsaChildtab)</tt>.
  *
  * @signature TChildTab indexChildtab(index);
@@ -1561,7 +1561,7 @@ template <
 // ----------------------------------------------------------------------------
 /*!
  * @fn Index#open
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief This functions opens an index from disk.
  *
  * @signature bool open(index, fileName[, mode]);
@@ -1593,7 +1593,7 @@ template <
 
 /*!
  * @fn Index#save
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief This functions saves an index to disk.
  *
  * @signature bool save(index, fileName[, mode]);

@@ -34,26 +34,26 @@
 // Facade header for the basic/smart_pointer sub module.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_BASIC_SMART_POINTER_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_BASIC_SMART_POINTER_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_SMART_POINTER_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_SMART_POINTER_H_
 
 // --------------------------------------------------------------------------
 // Dependencies
 // --------------------------------------------------------------------------
 
-#include <seqan/platform.h>
-#include <seqan/basic/basic_fundamental.h>
-#include <seqan/basic/basic_allocator.h>  // TODO(holtgrew): Drop dependency, only for pointer holder which does not work anyway.
-#include <seqan/basic/basic_type.h>  // TODO(holtgrew): Really required? Deprecated header?
+#include <seqan2/platform.h>
+#include <seqan2/basic/basic_fundamental.h>
+#include <seqan2/basic/basic_allocator.h>  // TODO(holtgrew): Drop dependency, only for pointer holder which does not work anyway.
+#include <seqan2/basic/basic_type.h>  // TODO(holtgrew): Really required? Deprecated header?
 
 // --------------------------------------------------------------------------
 // Sub Module Headers
 // --------------------------------------------------------------------------
 
-#include <seqan/basic/holder_base.h>
-#include <seqan/basic/holder_simple.h>
-#include <seqan/basic/holder_tristate.h>
+#include <seqan2/basic/holder_base.h>
+#include <seqan2/basic/holder_simple.h>
+#include <seqan2/basic/holder_tristate.h>
 
-#include <seqan/basic/volatile_ptr.h>
+#include <seqan2/basic/volatile_ptr.h>
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_BASIC_SMART_POINTER_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_SMART_POINTER_H_

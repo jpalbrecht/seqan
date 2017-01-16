@@ -34,10 +34,10 @@
 // Tokenization.
 // ==========================================================================
 
-#ifndef SEQAN_STREAM_TOKENIZATION_H_
-#define SEQAN_STREAM_TOKENIZATION_H_
+#ifndef SEQAN2_STREAM_TOKENIZATION_H_
+#define SEQAN2_STREAM_TOKENIZATION_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Functors
@@ -179,13 +179,13 @@ inline void _skipUntil(TFwdIterator &iter, TStopFunctor &stopFunctor, Range<TVal
     {
         Range<TIValue const *> ichunk;
         getChunk(ichunk, iter, Input());
-        SEQAN_ASSERT(!empty(ichunk));
+        SEQAN2_ASSERT(!empty(ichunk));
 
-        const TIValue* SEQAN_RESTRICT ptr = ichunk.begin;
+        const TIValue* SEQAN2_RESTRICT ptr = ichunk.begin;
 
         for (; ptr != ichunk.end; ++ptr)
         {
-            if (SEQAN_UNLIKELY(stopFunctor(*ptr)))
+            if (SEQAN2_UNLIKELY(stopFunctor(*ptr)))
             {
                 iter += ptr - ichunk.begin;    // advance input iterator
                 return;
@@ -226,7 +226,7 @@ inline void skipOne(TFwdIterator &iter, TFunctor &functor)
 {
     AssertFunctor<TFunctor, ParseError> asserter(functor);
 
-    if (SEQAN_UNLIKELY(atEnd(iter)))
+    if (SEQAN2_UNLIKELY(atEnd(iter)))
         throw UnexpectedEnd();
 
     asserter(*iter);
@@ -258,9 +258,9 @@ _readUntil(TTarget &target, TFwdIterator &iter, TStopFunctor &stopFunctor, TIgno
     typename RemoveConst<typename Value<TFwdIterator>::Type>::Type val;
     for (; !atEnd(iter); ++iter)
     {
-        if (SEQAN_UNLIKELY(stopFunctor(val = *iter)))
+        if (SEQAN2_UNLIKELY(stopFunctor(val = *iter)))
             return;
-        if (SEQAN_LIKELY(!ignoreFunctor(val)))
+        if (SEQAN2_LIKELY(!ignoreFunctor(val)))
             writeValue(target, val);
     }
 }
@@ -278,29 +278,29 @@ inline void _readUntil(TTarget &target,
                        Range<TOValue*> *)
 {
     Range<TOValue*> ochunk(NULL, NULL);
-    TOValue* SEQAN_RESTRICT optr = NULL;
+    TOValue* SEQAN2_RESTRICT optr = NULL;
 
     Range<TIValue*> ichunk;
     for (; !atEnd(iter); )
     {
         getChunk(ichunk, iter, Input());
-        const TIValue* SEQAN_RESTRICT iptr = ichunk.begin;
-        SEQAN_ASSERT(iptr < ichunk.end);
+        const TIValue* SEQAN2_RESTRICT iptr = ichunk.begin;
+        SEQAN2_ASSERT(iptr < ichunk.end);
 
         for (; iptr != ichunk.end; ++iptr)
         {
-            if (SEQAN_UNLIKELY(stopFunctor(*iptr)))
+            if (SEQAN2_UNLIKELY(stopFunctor(*iptr)))
             {
                 iter += iptr - ichunk.begin;               // advance input iterator
                 advanceChunk(target, optr - ochunk.begin); // extend target string size
                 return;
             }
 
-            if (SEQAN_UNLIKELY(ignoreFunctor(*iptr)))
+            if (SEQAN2_UNLIKELY(ignoreFunctor(*iptr)))
                 continue;
 
             // construct values in reserved memory
-            if (SEQAN_UNLIKELY(optr == ochunk.end))
+            if (SEQAN2_UNLIKELY(optr == ochunk.end))
             {
                 advanceChunk(target, optr - ochunk.begin);
                 // reserve memory for the worst-case
@@ -308,7 +308,7 @@ inline void _readUntil(TTarget &target,
                 reserveChunk(target, length(ichunk), Output());
                 getChunk(ochunk, target, Output());
                 optr = ochunk.begin;
-                SEQAN_ASSERT(optr < ochunk.end);
+                SEQAN2_ASSERT(optr < ochunk.end);
             }
             *optr++ = *iptr;
         }
@@ -364,7 +364,7 @@ inline void readUntil(TTarget &target, TFwdIterator &iter, TStopFunctor &stopFun
 template <typename TTarget, typename TFwdIterator, typename TFunctor>
 inline void readOne(TTarget & target, TFwdIterator &iter, TFunctor &functor)
 {
-    if (SEQAN_UNLIKELY(atEnd(iter)))
+    if (SEQAN2_UNLIKELY(atEnd(iter)))
         throw UnexpectedEnd();
 
     AssertFunctor<TFunctor, ParseError> asserter(functor);
@@ -384,7 +384,7 @@ inline void readOne(TTarget & target, TFwdIterator &iter, TFunctor const &functo
 template <typename TTarget, typename TFwdIterator>
 inline void readOne(TTarget & target, TFwdIterator &iter)
 {
-    if (SEQAN_UNLIKELY(atEnd(iter)))
+    if (SEQAN2_UNLIKELY(atEnd(iter)))
         throw UnexpectedEnd();
 
     target = *iter;
@@ -413,14 +413,14 @@ inline void readLine(TTarget &target, TFwdIterator &iter)
 
     // consume "\r\n.", "\r[!\n]" or "\n."
 
-    if (SEQAN_UNLIKELY(atEnd(iter)))
+    if (SEQAN2_UNLIKELY(atEnd(iter)))
         return;
 
     // If the current character is Line Feed ('\r') then this can be an ANSI or a Mac line ending.
     if (*iter == '\r')
     {
         ++iter;     // consume the found newline
-        if (SEQAN_UNLIKELY(atEnd(iter)))
+        if (SEQAN2_UNLIKELY(atEnd(iter)))
             return;
     }
 
@@ -440,14 +440,14 @@ inline void skipLine(TFwdIterator &iter)
 
     // consume "\r\n.", "\r[!\n]" or "\n."
 
-    if (SEQAN_UNLIKELY(atEnd(iter)))
+    if (SEQAN2_UNLIKELY(atEnd(iter)))
         return;
 
     // If the current character is Line Feed ('\r') then this can be an ANSI or a Mac line ending.
     if (*iter == '\r')
     {
         ++iter;     // consume the found newline
-        if (SEQAN_UNLIKELY(atEnd(iter)))
+        if (SEQAN2_UNLIKELY(atEnd(iter)))
             return;
     }
 
@@ -512,7 +512,7 @@ findLast(TContainer const &cont, TFunctor const &func)
 {
     typedef ModifiedString<TContainer const, ModReverse> TRevContainer;
 
-    SEQAN_CONCEPT_ASSERT((IntegerConcept<typename Position<TContainer>::Type>));
+    SEQAN2_CONCEPT_ASSERT((IntegerConcept<typename Position<TContainer>::Type>));
 
     // search from back to front
     TRevContainer rev(cont);
@@ -607,7 +607,7 @@ cropOuter(TContainer &cont, TFunctor const &func)
  */
 
 template <typename TResult, typename TSequence, typename TFunctor, typename TSize>
-inline SEQAN_FUNC_ENABLE_IF(And<Is<ContainerConcept<TResult> >,
+inline SEQAN2_FUNC_ENABLE_IF(And<Is<ContainerConcept<TResult> >,
                                 Is<ContainerConcept<typename Value<TResult>::Type > > >, void)
 strSplit(TResult & result,
          TSequence const & sequence,
@@ -660,7 +660,7 @@ strSplit(TResult & result,
 }
 
 template <typename TResult, typename TSequence, typename TFunctor>
-inline SEQAN_FUNC_ENABLE_IF(And<Is<ContainerConcept<TResult> >,
+inline SEQAN2_FUNC_ENABLE_IF(And<Is<ContainerConcept<TResult> >,
                                 Is<ContainerConcept<typename Value<TResult>::Type > > >, void)
 strSplit(TResult & result, TSequence const & sequence, TFunctor const & sep, bool const allowEmptyStrings)
 {
@@ -668,7 +668,7 @@ strSplit(TResult & result, TSequence const & sequence, TFunctor const & sep, boo
 }
 
 template <typename TResult, typename TSequence, typename TFunctor>
-inline SEQAN_FUNC_ENABLE_IF(And<Is<ContainerConcept<TResult> >,
+inline SEQAN2_FUNC_ENABLE_IF(And<Is<ContainerConcept<TResult> >,
                                 Is<ContainerConcept<typename Value<TResult>::Type > > >, void)
 strSplit(TResult & result, TSequence const & sequence, TFunctor const & sep)
 {
@@ -676,13 +676,13 @@ strSplit(TResult & result, TSequence const & sequence, TFunctor const & sep)
 }
 
 template <typename TResult, typename TSequence>
-inline SEQAN_FUNC_ENABLE_IF(And<Is<ContainerConcept<TResult> >,
+inline SEQAN2_FUNC_ENABLE_IF(And<Is<ContainerConcept<TResult> >,
                                 Is<ContainerConcept<typename Value<TResult>::Type > > >, void)
 strSplit(TResult & result, TSequence const & sequence)
 {
     strSplit(result, sequence, EqualsChar<' '>(), false);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_STREAM_TOKENIZATION_H_
+#endif  // #ifndef SEQAN2_STREAM_TOKENIZATION_H_

@@ -30,10 +30,10 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_GRAPH_ITERATOR_DFS_H
-#define SEQAN_HEADER_GRAPH_ITERATOR_DFS_H
+#ifndef SEQAN2_HEADER_GRAPH_ITERATOR_DFS_H
+#define SEQAN2_HEADER_GRAPH_ITERATOR_DFS_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -43,7 +43,7 @@ namespace seqan
 /*!
  * @class DfsPreorderIterator
  * @extends Iter
- * @headerfile <seqan/graph_types.h>
+ * @headerfile <seqan2/graph_types.h>
  * @brief Iterate vertices of a graph in depth-first preorder fashion.
  *
  * @signature Iterator<TGraph, DfsPreorderIterator>::Type;
@@ -297,6 +297,6 @@ operator !=(Iter<TGraph, GraphIterator<InternalDfsIterator<TSpec> > >& it1,
             (it1.data_stack!=it2.data_stack));
 }
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

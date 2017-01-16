@@ -33,10 +33,10 @@
 // Author: Manuel Holtgrewe <manuel.holtgrewe@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_MODIFIER_MODIFIER_STRING_H_
-#define SEQAN_MODIFIER_MODIFIER_STRING_H_
+#ifndef SEQAN2_MODIFIER_MODIFIER_STRING_H_
+#define SEQAN2_MODIFIER_MODIFIER_STRING_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // ==========================================================================
@@ -58,7 +58,7 @@ template <typename TType, typename TTestType> struct IsAnInnerHost;
 /*!
  * @class ModifiedString
  * @implements ContainerConcept
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Allows you to generate modified versions of a string in a non-inplace way.
  *
  * @signature template <typename THost[, typename TSpec]>
@@ -123,7 +123,7 @@ public:
     template <typename THost_>
     explicit
     ModifiedString(THost_ & host,
-                   SEQAN_CTOR_ENABLE_IF(IsConstructible<THost, THost_>)) :
+                   SEQAN2_CTOR_ENABLE_IF(IsConstructible<THost, THost_>)) :
             _host(_toPointer(host)),
             _cargo()
     {
@@ -134,7 +134,7 @@ public:
     template <typename THost_>
     explicit
     ModifiedString(THost_ && host,
-                   SEQAN_CTOR_ENABLE_IF(IsAnInnerHost<
+                   SEQAN2_CTOR_ENABLE_IF(IsAnInnerHost<
                                             typename RemoveReference<THost>::Type,
                                             typename RemoveReference<THost_>::Type >)) :
             _host(std::forward<THost_>(host)),
@@ -421,10 +421,10 @@ struct IsSequence<ModifiedString<THost, TSpec> > : True
 // ----------------------------------------------------------------------------
 
 template <typename THost, typename TSpec>
-SEQAN_CONCEPT_IMPL((ModifiedString<THost, TSpec>), (ContainerConcept));
+SEQAN2_CONCEPT_IMPL((ModifiedString<THost, TSpec>), (ContainerConcept));
 
 template <typename THost, typename TSpec>
-SEQAN_CONCEPT_IMPL((ModifiedString<THost, TSpec> const), (ContainerConcept));
+SEQAN2_CONCEPT_IMPL((ModifiedString<THost, TSpec> const), (ContainerConcept));
 
 // --------------------------------------------------------------------------
 // Metafunction AllowsFastRandomAccess
@@ -892,6 +892,6 @@ template <typename THost, typename TSpec >
 inline void clear(ModifiedString<THost, TSpec> &)
 {}
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_MODIFIER_MODIFIER_STRING_H_
+#endif  // SEQAN2_MODIFIER_MODIFIER_STRING_H_

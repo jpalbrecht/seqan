@@ -32,10 +32,10 @@
 // Author: Manuel Holtgrewe <manuel.holtgrewe@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_BASIC_PROPERTY_MAP_CONCEPT_H_
-#define INCLUDE_SEQAN_BASIC_PROPERTY_MAP_CONCEPT_H_
+#ifndef INCLUDE_SEQAN2_BASIC_PROPERTY_MAP_CONCEPT_H_
+#define INCLUDE_SEQAN2_BASIC_PROPERTY_MAP_CONCEPT_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -51,7 +51,7 @@ namespace seqan {
 
 /*!
  * @concept PropertyMapConcept
- * @headerfile <seqan/graph_types.h>
+ * @headerfile <seqan2/graph_types.h>
  * @brief Concept for maps from contained elements (such as graph vertices or index nodes) to values.
  *
  * @signature concept PropertyMapConcept;
@@ -145,14 +145,14 @@ namespace seqan {
  * @see StringConcept#resize
  */
 
-SEQAN_CONCEPT(PropertyMapConcept, (TPropertyMap))
+SEQAN2_CONCEPT(PropertyMapConcept, (TPropertyMap))
 {
 public:
     typedef typename Value<TPropertyMap>::Type                TValue;
     typedef typename GetValue<TPropertyMap>::Type             TGetValue;
     typedef typename Reference<TPropertyMap>::Type            TReference;
 
-    SEQAN_CONCEPT_USAGE(PropertyMapConcept)
+    SEQAN2_CONCEPT_USAGE(PropertyMapConcept)
     {}
 };
 
@@ -164,6 +164,6 @@ public:
 // Functions
 // ============================================================================
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_BASIC_PROPERTY_MAP_CONCEPT_H_
+#endif  // #ifndef INCLUDE_SEQAN2_BASIC_PROPERTY_MAP_CONCEPT_H_

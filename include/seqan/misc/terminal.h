@@ -34,14 +34,14 @@
 // Terminal-related functionality.
 // ==========================================================================
 
-#ifndef SEQAN_MISC_TERMINAL_H_
-#define SEQAN_MISC_TERMINAL_H_
+#ifndef SEQAN2_MISC_TERMINAL_H_
+#define SEQAN2_MISC_TERMINAL_H_
 
 #include <cstdio>
 
-#include <seqan/platform.h>
+#include <seqan2/platform.h>
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -65,7 +65,7 @@ namespace seqan {
 
 /*!
  * @fn isTerminal
- * @headerfile <seqan/misc/terminal.h>
+ * @headerfile <seqan2/misc/terminal.h>
  * @brief Check whether we are printing to a terminal.
  *
  * @signature bool isTerminal();
@@ -93,7 +93,7 @@ inline bool isTerminal()
 
 inline bool isTerminal()
 {
-#ifdef SEQAN_NO_TERMINAL
+#ifdef SEQAN2_NO_TERMINAL
     return false;    // explicitly disable false positive terminal detection
 #else
     return isatty(fileno(stdout));
@@ -108,7 +108,7 @@ inline bool isTerminal()
 
 /*!
  * @fn isAnsiColorTerminal
- * @headerfile <seqan/misc/terminal.h>
+ * @headerfile <seqan2/misc/terminal.h>
  * @brief Check whether we are printing to a terminal that supports ANSI color codes.
  *
  * @signature bool isAnsiColorTerminal();
@@ -145,7 +145,7 @@ inline bool isAnsiColorTerminal()
 
 /*!
  * @fn getTerminalSize
- * @headerfile <seqan/misc/terminal.h>
+ * @headerfile <seqan2/misc/terminal.h>
  * @brief Retrieve size of terminal.
  *
  * @signature bool getTerminalSize(cols, rows);
@@ -210,6 +210,6 @@ inline bool getTerminalSize(unsigned & cols, unsigned & rows)
 
 #endif  // #if !defined(STDLIB_VS)
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif // #ifndef SEQAN_MISC_TERMINAL_H_
+#endif // #ifndef SEQAN2_MISC_TERMINAL_H_

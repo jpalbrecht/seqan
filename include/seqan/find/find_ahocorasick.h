@@ -32,12 +32,12 @@
 // Author: Tobias Rausch <rausch@embl.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_FIND_AHOCORASICK_H
-#define SEQAN_HEADER_FIND_AHOCORASICK_H
+#ifndef SEQAN2_HEADER_FIND_AHOCORASICK_H
+#define SEQAN2_HEADER_FIND_AHOCORASICK_H
 
 // TODO(holtgrew): Needles should be a StringSet<CharString>!
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -47,7 +47,7 @@ namespace seqan
 /*!
  * @class AhoCorasickPattern
  * @extends Pattern
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Multiple exact string matching using Aho-Corasick.
  *
  * @signature template <typename TNeedle>
@@ -117,7 +117,7 @@ public:
 
     template <typename TNeedle2>
     Pattern(TNeedle2 && ndl,
-            SEQAN_CTOR_DISABLE_IF(IsSameType<typename std::remove_reference<TNeedle2>::type const &, Pattern const &>))
+            SEQAN2_CTOR_DISABLE_IF(IsSameType<typename std::remove_reference<TNeedle2>::type const &, Pattern const &>))
         : data_keywordIndex(0), data_needleLength(0)
     {
         setHost(*this, std::forward<TNeedle2>(ndl));
@@ -201,7 +201,7 @@ _createAcTrie(Pattern<TNeedle, AhoCorasick> & me)
 
 template <typename TNeedle>
 void _reinitPattern(Pattern<TNeedle, AhoCorasick> & me) {
-    SEQAN_ASSERT_NOT(empty(needle(me)));
+    SEQAN2_ASSERT_NOT(empty(needle(me)));
     clear(me.data_graph);
     clear(me.data_supplyMap);
     clear(me.data_endPositions);
@@ -306,6 +306,6 @@ inline bool find(TFinder & finder, Pattern<TNeedle, AhoCorasick> & me) {
     return false;
 }
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_FIND_AHOCORASICK_H
+#endif //#ifndef SEQAN2_HEADER_FIND_AHOCORASICK_H

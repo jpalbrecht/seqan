@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_POOL_MAPPER_H
-#define SEQAN_HEADER_POOL_MAPPER_H
+#ifndef SEQAN2_HEADER_POOL_MAPPER_H
+#define SEQAN2_HEADER_POOL_MAPPER_H
 
-namespace seqan
+namespace seqan2
 {
 
     // external synchronous permutation mapping
@@ -43,7 +43,7 @@ namespace seqan
 /*!
  * @class MapperConfigSize
  * @extends MapperSpec
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Configuration of Mapper.
  *
  * @signature template <typename TMap, typename TSize[, typename TFile]>
@@ -70,7 +70,7 @@ namespace seqan
 /*!
  * @class MapperConfig
  * @extends MapperSpec
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Configuration of Mapper.
  *
  * @signature template <typename TMap[, typename TFile]>
@@ -97,7 +97,7 @@ namespace seqan
 /*!
  * @class MapperSpec
  * @extends Pool
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Permutes all elements using a custom destination function.
  *
  * @signature template <typename TValue, typename TConfig>
@@ -141,14 +141,14 @@ namespace seqan
 
         typename TConfig::Map M = me->pool.handlerArgs;
         for(TValue *cur = buf.begin; cur != buf.end; ++cur) {
-            #ifdef SEQAN_DEBUG
+            #ifdef SEQAN2_DEBUG
                 if (!(M(*cur) >= offset && M(*cur) < offset + capacity(buf))) {
                     std::cerr << "Mapper assertion failed: " << std::hex << M(*cur);
                     std::cerr << " not in [" << offset << "," << (offset + capacity(buf)) << ") at " << (cur - buf.begin);
                     std::cerr << " element is " << std::dec << *cur << std::endl;
                 }
             #endif
-            SEQAN_ASSERT(M(*cur) >= offset && M(*cur) < offset + capacity(buf));
+            SEQAN2_ASSERT(M(*cur) >= offset && M(*cur) < offset + capacity(buf));
             me->mapBuffer[M(*cur) - offset] = *cur;
         }
         resize(me->mapBuffer, size(buf));
@@ -184,14 +184,14 @@ namespace seqan
             if (partiallyFilled && dstPos == undefinedPos)
                 continue;                            // don't move undefined values
 
-            #ifdef SEQAN_DEBUG
+            #ifdef SEQAN2_DEBUG
             if (!(dstPos >= offset && dstPos < offset + (TSize)capacity(buf))) {
                 std::cerr << "Mapper assertion failed: " << std::hex << dstPos;
                 std::cerr << " not in [" << offset << "," << (offset + capacity(buf)) << ") at " << (cur - buf.begin);
                 std::cerr << " element is " << std::dec << *cur << std::endl;
             }
             #endif
-            SEQAN_ASSERT(dstPos >= offset && dstPos < offset + (TSize)capacity(buf));
+            SEQAN2_ASSERT(dstPos >= offset && dstPos < offset + (TSize)capacity(buf));
 
             TValue *I = buf.begin + (dstPos - offset);
             if (I != cur) {
@@ -208,7 +208,7 @@ namespace seqan
                         I = cur;                    // move the undefined value to an arbitrary free position (*cur)
                     else
                     {
-                        #ifdef SEQAN_DEBUG
+                        #ifdef SEQAN2_DEBUG
                             if (!(dstPos >= offset && dstPos < offset + (TSize)capacity(buf))) {
                                 std::cerr << "Mapper assertion failed: " << std::hex << dstPos;
                                 std::cerr << " not in [" << offset << "," << (offset + capacity(buf)) << ") at " << (refNext - buf.begin);
@@ -216,11 +216,11 @@ namespace seqan
                             }
                             TValue *oldI = I;
                         #endif
-                        SEQAN_ASSERT(dstPos >= offset && dstPos < offset + (TSize)capacity(buf));
+                        SEQAN2_ASSERT(dstPos >= offset && dstPos < offset + (TSize)capacity(buf));
 
                         I = buf.begin + (dstPos - offset);
 
-                        #ifdef SEQAN_DEBUG
+                        #ifdef SEQAN2_DEBUG
                             if (!partiallyFilled && I < cur) {
                                 std::cerr << "Mapper assertion failed: I=" << std::hex << I;
                                 std::cerr << " < cur=" << cur << std::dec << std::endl;
@@ -298,13 +298,13 @@ namespace seqan
 
         inline void _initializeBuffer() {
             if (empty(buffer)) return;
-            arrayFill(seqan::begin(buffer, Standard()), seqan::end(buffer, Standard()), pool.undefinedValue);
+            arrayFill(seqan2::begin(buffer, Standard()), seqan2::end(buffer, Standard()), pool.undefinedValue);
         }
 
         inline bool begin() {
             buffer = handler.first();
             _initializeBuffer();
-            return seqan::begin(buffer) != NULL;
+            return seqan2::begin(buffer) != NULL;
         }
 
         inline void push(TValue const & Val_) {
@@ -370,13 +370,13 @@ namespace seqan
 
         inline void push(TValue const &item) {
             unsigned pageNo = pool.handlerArgs(item) / pool.pageSize;
-            #ifdef SEQAN_DEBUG
+            #ifdef SEQAN2_DEBUG
                 if (!(pageNo < cache.size())) {
                     std::cerr << "Mapper push assertion failed: " << pageNo << " >= " << cache.size();
                     std::cerr << " element is " << item << std::endl;
                 }
             #endif
-            SEQAN_ASSERT_LT(pageNo, cache.size());
+            SEQAN2_ASSERT_LT(pageNo, cache.size());
             TPageBucket &cb = cache[pageNo];
 
             *cb.cur = item;
@@ -474,7 +474,7 @@ namespace seqan
 
             if (clusterSize == 0) {
                 clusterSize = UINT_MAX;
-                #ifdef SEQAN_DEBUG
+                #ifdef SEQAN2_DEBUG
                     std::cerr << "mapper switched to synchronous mode" << std::endl;
                 #endif
                 return equiDistantDistribution(
@@ -483,7 +483,7 @@ namespace seqan
                     insertBucket(*this));
             }
 
-            #ifdef SEQAN_VERBOSE
+            #ifdef SEQAN2_VERBOSE
                 std::cerr << "async mapper clustersize " << clusterSize << std::endl;
             #endif
             allocPage(writeCache, chain.maxFrames * clusterSize, pool.file);
@@ -503,7 +503,7 @@ namespace seqan
         inline void push(TValue const &item)
         {
             unsigned pageNo = pool.handlerArgs(item) / pool.pageSize;
-            #ifdef SEQAN_DEBUG
+            #ifdef SEQAN2_DEBUG
                 if (!(pageNo < cache.size())) {
                     std::cerr << "Mapper push assertion failed: " << pageNo << " >= " << cache.size();
                     std::cerr << " element is " << item << std::endl;
@@ -511,7 +511,7 @@ namespace seqan
                     std::cerr << " = " << pageNo << std::dec << std::endl;
                 }
             #endif
-            SEQAN_ASSERT_LT(pageNo, cache.size());
+            SEQAN2_ASSERT_LT(pageNo, cache.size());
             TPageBucket &cb = cache[pageNo];
 
             *cb.cur = item;

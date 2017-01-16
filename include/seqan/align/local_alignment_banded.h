@@ -34,10 +34,10 @@
 // Interface functions for banded local alignment.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_LOCAL_ALIGNMENT_BANDED_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_LOCAL_ALIGNMENT_BANDED_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_LOCAL_ALIGNMENT_BANDED_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_LOCAL_ALIGNMENT_BANDED_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -72,7 +72,7 @@ TScoreValue localAlignment(Align<TSequence, TAlignSpec> & align,
     typedef TraceSegment_<TPosition, TSize> TTraceSegment;
     typedef AlignConfig2<DPLocal, DPBandConfig<BandOn>, FreeEndGaps_<> > TAlignConfig2;
 
-    SEQAN_ASSERT_EQ(length(rows(align)), 2u);
+    SEQAN2_ASSERT_EQ(length(rows(align)), 2u);
 
     String<TTraceSegment> trace;
     DPScoutState_<Default> dpScoutState;
@@ -89,7 +89,7 @@ TScoreValue localAlignment(Align<TSequence, TAlignSpec> & align,
                            int lowerDiag,
                            int upperDiag)
 {
-    SEQAN_ASSERT(length(rows(align)) == 2u);
+    SEQAN2_ASSERT(length(rows(align)) == 2u);
     if (_usesAffineGaps(scoringScheme, source(row(align, 0)), source(row(align, 1))))
         return localAlignment(align, scoringScheme, lowerDiag, upperDiag, AffineGaps());
     else
@@ -172,7 +172,7 @@ TScoreValue localAlignment(Graph<Alignment<TStringSet, TCargo, TGraphSpec> > & a
                            int lowerDiag,
                            int upperDiag)
 {
-    SEQAN_ASSERT(length(stringSet(alignmentGraph)) == 2u);
+    SEQAN2_ASSERT(length(stringSet(alignmentGraph)) == 2u);
 
     if (_usesAffineGaps(scoringScheme, stringSet(alignmentGraph)[0], stringSet(alignmentGraph)[1]))
         return localAlignment(alignmentGraph, scoringScheme, lowerDiag, upperDiag, AffineGaps());
@@ -216,7 +216,7 @@ TScoreValue localAlignment(String<Fragment<TSize, TFragmentSpec>, TStringSpec> &
                            int lowerDiag,
                            int upperDiag)
 {
-    SEQAN_ASSERT(length(strings) == 2u);
+    SEQAN2_ASSERT(length(strings) == 2u);
 
     if (_usesAffineGaps(scoringScheme, strings[0], strings[1]))
         return localAlignment(fragmentString, strings, scoringScheme, lowerDiag, upperDiag, AffineGaps());
@@ -293,6 +293,6 @@ String<TScoreValue> localAlignment(StringSet<Align<TSequence, TAlignSpec> > & al
         return localAlignment(align, scoringScheme, lowerDiag, upperDiag, LinearGaps());
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_LOCAL_ALIGNMENT_BANDED_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_LOCAL_ALIGNMENT_BANDED_H_

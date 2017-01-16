@@ -15,8 +15,8 @@
 //
 // Author: Jonathan de Halleux, dehalleux@pelikhan.com, 2003
 
-#ifndef INCLUDE_SEQAN_STREAM_IOSTREAM_BZIP2_H_
-#define INCLUDE_SEQAN_STREAM_IOSTREAM_BZIP2_H_
+#ifndef INCLUDE_SEQAN2_STREAM_IOSTREAM_BZIP2_H_
+#define INCLUDE_SEQAN2_STREAM_IOSTREAM_BZIP2_H_
 
 #define BZ_NO_STDIO
 
@@ -299,4 +299,4 @@ typedef basic_bzip2_istream<wchar_t> bzip2_wistream;
 
 #include "iostream_bzip2_impl.h"
 
-#endif // INCLUDE_SEQAN_STREAM_IOSTREAM_BZIP2_H_
+#endif // INCLUDE_SEQAN2_STREAM_IOSTREAM_BZIP2_H_

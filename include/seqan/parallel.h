@@ -34,16 +34,16 @@
 // Umbrella header for the parallel module.
 // ==========================================================================
 
-#ifndef SEQAN_PARALLEL_H_
-#define SEQAN_PARALLEL_H_
+#ifndef SEQAN2_PARALLEL_H_
+#define SEQAN2_PARALLEL_H_
 
 // ============================================================================
 // Prerequisites
 // ============================================================================
 
-#include <seqan/platform.h>
-#include <seqan/basic.h>
-#include <seqan/sequence.h>
+#include <seqan2/platform.h>
+#include <seqan2/basic.h>
+#include <seqan2/sequence.h>
 
 // ----------------------------------------------------------------------------
 // STL
@@ -69,25 +69,25 @@
 // ============================================================================
 
 // Misc.
-#include <seqan/parallel/parallel_tags.h>
-#include <seqan/parallel/parallel_macros.h>
+#include <seqan2/parallel/parallel_tags.h>
+#include <seqan2/parallel/parallel_macros.h>
 
 // Atomic operations.
-#include <seqan/parallel/parallel_atomic_primitives.h>
-#include <seqan/parallel/parallel_atomic_misc.h>
-#include <seqan/parallel/parallel_lock.h>
+#include <seqan2/parallel/parallel_atomic_primitives.h>
+#include <seqan2/parallel/parallel_atomic_misc.h>
+#include <seqan2/parallel/parallel_lock.h>
 
 // Splitting.
-#include <seqan/parallel/parallel_splitting.h>
+#include <seqan2/parallel/parallel_splitting.h>
 
 // Parallel variants of basic algorithms
-#include <seqan/parallel/parallel_algorithms.h>
+#include <seqan2/parallel/parallel_algorithms.h>
 
 // Thread-safe / lock-free container operations.
-#include <seqan/parallel/parallel_sequence.h>
-#include <seqan/parallel/parallel_queue.h>
-#include <seqan/parallel/parallel_queue_suspendable.h>
-#include <seqan/parallel/parallel_resource_pool.h>
-#include <seqan/parallel/parallel_serializer.h>
+#include <seqan2/parallel/parallel_sequence.h>
+#include <seqan2/parallel/parallel_queue.h>
+#include <seqan2/parallel/parallel_queue_suspendable.h>
+#include <seqan2/parallel/parallel_resource_pool.h>
+#include <seqan2/parallel/parallel_serializer.h>
 
-#endif  // SEQAN_PARALLEL_H_
+#endif  // SEQAN2_PARALLEL_H_

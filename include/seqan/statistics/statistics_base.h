@@ -30,10 +30,10 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_STATISTICS_STATISTICS_BASE_H_
-#define SEQAN_STATISTICS_STATISTICS_BASE_H_
+#ifndef SEQAN2_STATISTICS_STATISTICS_BASE_H_
+#define SEQAN2_STATISTICS_STATISTICS_BASE_H_
 
-namespace seqan
+namespace seqan2
 {
 
 template <typename TAlgorithm, typename TFloat, typename TAlphabet>
@@ -41,7 +41,7 @@ void _numOccurrences(TFloat &nW, String<TAlphabet>& haystack, StringSet<String<T
 
 /*
  * @fn _zscore
- * @headerfile <seqan/statistics.h>
+ * @headerfile <seqan2/statistics.h>
  * @brief Auxiliary function to compure the z-score index for a set of patterns w.r.t. a set of text strings and a
  *        MarkovMovel.
  *
@@ -84,7 +84,7 @@ TFloat _zscore(TStringSet W,  TStringSet& X, MarkovModel<TAlphabet, TFloat, TSpe
 
 /*
  * @fn _numOccurrences
- * @headerfile <seqan/statistics.h>
+ * @headerfile <seqan2/statistics.h>
  * @brief Auxiliary function to compute the number of occurrences of a set of patterns in a set of text strings.
  *
  * @signature void _numOccurrences(W, haystack, needle, algoTag);
@@ -135,7 +135,7 @@ TFloat _computeExpectation(MarkovModel<TAlphabet, TFloat, TSpec> &mm,
 
 /*
  * @fn _computeVariance
- * @headerfile <seqan/statistics.h>
+ * @headerfile <seqan2/statistics.h>
  * @brief Auxiliary function to compute the variance for a set of patterns w.r.t. a set of text strings and a MarkovModel.
  *
  * @signature TFloat _computeVariance(W, X, M);
@@ -243,7 +243,7 @@ TFloat _computeVariance( StringSet<String<TAlphabet> > W,  StringSet<String<TAlp
 
 /*
  * @fn _overlapExpectation
- * @headerfile <seqan/statistics.h>
+ * @headerfile <seqan2/statistics.h>
  * @brief Auxiliary function necessary when correction factors have to be computed.
  *
  * @signature TFloat _overlapExpectation(W, M, n);
@@ -289,7 +289,7 @@ TFloat _overlapExpectation(StringSet<String<TAlphabet> > W, MarkovModel<TAlphabe
 
 /*
  * @fn _addReverseComplemenents
- * @headerfile <seqan/statistics.h>
+ * @headerfile <seqan2/statistics.h>
  * @brief Computes the reverse complemenets of a set of strings in the input.
  *
  * @signature void _addReverseComplements(ss);
@@ -318,7 +318,7 @@ typedef String<TDnaAlphabet> TDnaSequence;
 
 /*!
  * @fn zscore
- * @headerfile <seqan/statistics.h>
+ * @headerfile <seqan2/statistics.h>
  * @brief Computes the z-score index for a set of patterns w.r.t. a set of text strings and a MarkovModel.
  *
  * @signature TFloat zscore(W, X, M, algoTag);
@@ -395,7 +395,7 @@ TFloat zscore(StringSet<TDnaSequence> W,  StringSet<TDnaSequence> &X, MarkovMode
 
 /*!
  * @fn variance
- * @headerfile <seqan/statistics.h>
+ * @headerfile <seqan2/statistics.h>
  * @brief Computes the variance for a set of patterns w.r.t a set of text strings and a MarkovModel.
  *
  * @signature TFloat variance(W, X, M);
@@ -456,7 +456,7 @@ TFloat variance(StringSet<String<Dna> > W, StringSet<String<Dna> > &X, MarkovMod
 
 /*!
  * @fn expectation
- * @headerfile <seqan/statistics.h>
+ * @headerfile <seqan2/statistics.h>
  * @brief Computes the expectation for a set of patterns w.r.t a set of text strings and a MarkovModel.
  *
  * @signature TFloat expectation(W, X, M);
@@ -484,6 +484,6 @@ TFloat expectation(StringSet<String<TAlphabet> > & W, StringSet<String<TAlphabet
     return E;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_STATISTICS_STATISTICS_BASE_H_
+#endif  // #ifndef SEQAN2_STATISTICS_STATISTICS_BASE_H_

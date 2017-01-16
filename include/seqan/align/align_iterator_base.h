@@ -32,10 +32,10 @@
 //  Author: Andreas Gogol-Doering <andreas.doering@mdc-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_ALIGN_ITERATOR_BASE_H
-#define SEQAN_HEADER_ALIGN_ITERATOR_BASE_H
+#ifndef SEQAN2_HEADER_ALIGN_ITERATOR_BASE_H
+#define SEQAN2_HEADER_ALIGN_ITERATOR_BASE_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -46,7 +46,7 @@ namespace seqan
 /*!
  * @class AlignColIterator
  * @extends Iter
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Iterator for alignment columns.
  *
  * @signature template <typename TAlign, typename TSpec>
@@ -495,8 +495,8 @@ inline typename Difference<TAlign>::Type
 operator -(Iter<TAlign, AlignColIterator<TSpec> > const & left,
            Iter<TAlign, AlignColIterator<TSpec> > const & right)
 {
-    SEQAN_ASSERT_GT(length(left.data_iterators), 0u);
-    SEQAN_ASSERT_GT(length(right.data_iterators), 0u);
+    SEQAN2_ASSERT_GT(length(left.data_iterators), 0u);
+    SEQAN2_ASSERT_GT(length(right.data_iterators), 0u);
 
     return (left.data_iterators[0] - right.data_iterators[0]);
 }
@@ -522,6 +522,6 @@ position(Iter<TAlign, AlignColIterator<TSpec> > const & me)
 
 //////////////////////////////////////////////////////////////////////////////
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

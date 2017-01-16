@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_ITERATOR_RANGE_H
-#define SEQAN_INCLUDE_SEQAN_BASIC_ITERATOR_RANGE_H
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ITERATOR_RANGE_H
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_ITERATOR_RANGE_H
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -57,7 +57,7 @@ struct IsView;
 
 /*!
  * @class Range
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief A range between two iterators.
  *
  * @signature template <typename TIterator>
@@ -141,10 +141,10 @@ public:
 // ----------------------------------------------------------------------------
 
 template <typename TIterator>
-SEQAN_CONCEPT_IMPL((Range<TIterator>), (ContainerConcept));
+SEQAN2_CONCEPT_IMPL((Range<TIterator>), (ContainerConcept));
 
 template <typename TIterator>
-SEQAN_CONCEPT_IMPL((Range<TIterator> const), (ContainerConcept));
+SEQAN2_CONCEPT_IMPL((Range<TIterator> const), (ContainerConcept));
 
 // ----------------------------------------------------------------------------
 // Metafunction IsView
@@ -305,7 +305,7 @@ resize(
 {
     ignoreUnusedVariableWarning(new_length);
 
-    SEQAN_ASSERT_EQ(new_length, (TSize)length(me));
+    SEQAN2_ASSERT_EQ(new_length, (TSize)length(me));
     return length(me);
 }
 
@@ -393,6 +393,6 @@ inline void operator << (Range<TIterator> &dest, Pipe<TInput, TPipeSpec> &src)
     assign(dest, src);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_ITERATOR_RANGE_H
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ITERATOR_RANGE_H

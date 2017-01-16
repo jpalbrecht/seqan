@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_FIND_SWIFT_H
-#define SEQAN_HEADER_FIND_SWIFT_H
+#ifndef SEQAN2_HEADER_FIND_SWIFT_H
+#define SEQAN2_HEADER_FIND_SWIFT_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -49,7 +49,7 @@ namespace seqan
 /*!
  * @class SwiftPattern
  * @extends Pattern
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Pattern for SWIFT search, must be used together with @link SwiftFinder @endlink.
  *
  * @signature template <typename TIndex, typename TSpec>
@@ -73,7 +73,7 @@ namespace seqan
 /*!
  * @class SwiftFinder
  * @extends Finder
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Finder for SWIFT search, must be used together with @link SwiftPattern @endlink.
  *
  * @signature template <typename THaystack, typename TSpec>
@@ -90,7 +90,7 @@ namespace seqan
 /*!
  * @class SwiftLocalPattern
  * @extends SwiftPattern
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief The specialization for the general SWIFT filter that finds &epsilon;-matches between haystack and needle.
  *
@@ -103,7 +103,7 @@ namespace seqan
 /*!
  * @class SwiftLocalFinder
  * @extends SwiftFinder
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief The specialization for the general SWIFT filter that finds &epsilon;-matches between haystack and needle.
  *
  * @signature template <typename THaystack>
@@ -115,7 +115,7 @@ namespace seqan
 /*!
  * @class SwiftSemiGlobalPattern
  * @extends SwiftPattern
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief The specialization for the semi-global swift filter that finds regions of the haystack where a needle matches
  *        with an error rate less than \epsilon.
  *
@@ -128,7 +128,7 @@ namespace seqan
 /*!
  * @class SwiftSemiGlobalFinder
  * @extends SwiftFinder
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief The specialization for the semi-global swift filter that finds regions of the haystack where a needle matches
  *        with an error rate less than \epsilon.
  *
@@ -184,7 +184,7 @@ struct Swift<SwiftLocal> {
 
 /*!
  * @class SwiftParameters
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Parameters for the SWIFT algorithm.
  *
  * @signature struct SwiftParameters;
@@ -246,7 +246,7 @@ struct SwiftParameters
         TShortSize              counter;        // q-gram hits
         TShortSize              threshold;      // at least threshold q-gram hits induce an approx match
         bool                    notListed;         // true if bucket is not listed in the patterns' verify list
-#ifdef SEQAN_DEBUG_SWIFT
+#ifdef SEQAN2_DEBUG_SWIFT
         TSize                   _lastIncDiag;
 #endif
     };
@@ -260,7 +260,7 @@ struct SwiftParameters
         TSize                   lastIncrement;
         TShortSize              counter;        // q-gram hits
         TShortSize              threshold;      // at least threshold q-gram hits induce an approx match
-#ifdef SEQAN_DEBUG_SWIFT
+#ifdef SEQAN2_DEBUG_SWIFT
         int                     _lastIncDiag;
 #endif
     };
@@ -645,7 +645,7 @@ _qgramLemma(Pattern<TIndex, Swift<TSpec> > const & pattern, TSeqNo seqNo, int er
 
 /*!
  * @fn SwiftPattern#setMinThreshold
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Set minimal threshold (<i>t</i>) for a given needle.
  *
  * This function can be used to make the filter allow less errors for a given needle.
@@ -790,7 +790,7 @@ inline void _patternInit(Pattern<TIndex, Swift<TSpec> > &pattern, TFloat errorRa
                 else
                     bucketParams.threshold = pattern.params.minThreshold;
 
-                SEQAN_ASSERT_GT_MSG((1 / errorRate), span, "SWIFT only works if span < 1 / error rate!");
+                SEQAN2_ASSERT_GT_MSG((1 / errorRate), span, "SWIFT only works if span < 1 / error rate!");
                 TSize errors = (TSize) floor((2 * bucketParams.threshold + span - 3) / (1 / errorRate - span));
 
 
@@ -910,7 +910,7 @@ inline void _patternInit(Pattern<TIndex, Swift<TSpec> > &pattern, TFloat errorRa
                     bucketsPerCol2 = 2;
                 }
 
-    //          SEQAN_ASSERT_LEQ(distanceCut, bucketsPerCol * (TSize) delta);
+    //          SEQAN2_ASSERT_LEQ(distanceCut, bucketsPerCol * (TSize) delta);
 
                 bucketParams.firstBucket = count;
                 bucketParams.reuseMask = bucketsPerCol2 - 1;
@@ -1131,7 +1131,7 @@ inline bool _swiftMultiProcessQGram(
 
             (*bkt).lastIncrement = curPos;
             (*bkt).counter = hitCount;
-#ifdef SEQAN_DEBUG_SWIFT
+#ifdef SEQAN2_DEBUG_SWIFT
             (*bkt)._lastIncDiag = diag;
 #endif
 
@@ -1249,7 +1249,7 @@ inline bool _swiftMultiProcessQGram(
 
             (*bkt).lastIncrement = curPos;
             (*bkt).counter = hitCount;
-#ifdef SEQAN_DEBUG_SWIFT
+#ifdef SEQAN2_DEBUG_SWIFT
             (*bkt)._lastIncDiag = diag;
 #endif
 
@@ -1260,7 +1260,7 @@ inline bool _swiftMultiProcessQGram(
                 if (Swift<Tag<SwiftSemiGlobal_<TSpec_> > >::DIAGONAL == 1)
                     height = sequenceLength(getSeqNo(ndlPos), host(pattern)) - 1;
 
-#ifdef SEQAN_DEBUG_SWIFT
+#ifdef SEQAN2_DEBUG_SWIFT
                 // upper bucket no. of lastIncr. q-gram
                 int64_t upperBktNo = ((*bkt).lastIncrement - pattern.finderPosOffset) >> bucketParams.logDelta;
 
@@ -1483,7 +1483,7 @@ beginPosition(Finder<THaystack, Swift<TSpec> > & finder)
 
 /*!
  * @fn SwiftPattern#beginPosition
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns the begin position of the local match in the pattern.
  *
  * @signature TPosition beginPosition(pattern);
@@ -1524,7 +1524,7 @@ beginPosition(Pattern<TIndex, Swift<TSpec> > & pattern)
 
 /*!
  * @fn SwiftPattern#endPosition
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns the end position of the local match in the pattern.
  *
  * @signature TPosition endPosition(pattern);
@@ -1583,7 +1583,7 @@ endPosition(Pattern<TIndex, Swift<TSpec> > & pattern)
 //____________________________________________________________________________
 /*!
  * @fn SwiftFinder#positionRangeNoClip
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns a pair of the begin and end position in or beyond the haystack or needle for the last hit found.
  *
  * @signature TPair positionRangeNoClip(finder);
@@ -1601,7 +1601,7 @@ endPosition(Pattern<TIndex, Swift<TSpec> > & pattern)
 
 /*!
  * @fn SwiftPattern#positionRangeNoClip
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns a pair of the begin and end position in or beyond the haystack or needle for the last hit found.
  *
  * @signature TPair positionRangeNoClip(pattern)
@@ -1637,7 +1637,7 @@ positionRangeNoClip(Finder<THaystack, Swift<TSpec> > & finder)
 //____________________________________________________________________________
 /*!
  * @fn SwiftFinder#positionRange
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns a pair of the begin and end position in the haystack or needle for the last hit found.
  *
  * @signature TPair positionRange(finder);
@@ -1655,7 +1655,7 @@ positionRangeNoClip(Finder<THaystack, Swift<TSpec> > & finder)
 
 /*!
  * @fn SwiftPattern#positionRange
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns a pair of the begin and end position in the haystack or needle for the last hit found.
  *
  * @signature TPair positionRange(pattern);
@@ -1723,7 +1723,7 @@ swiftInfix(TSwiftHit const & hit, TText & text)
 
     if (hitBegin < 0) hitBegin = 0;
     if (hitEnd > textEnd) hitEnd = textEnd;
-    SEQAN_ASSERT_LEQ(hitBegin, hitEnd);
+    SEQAN2_ASSERT_LEQ(hitBegin, hitEnd);
     return infix(text, hitBegin, hitEnd);
 }
 
@@ -2032,7 +2032,7 @@ find(
         if (eof(finder.in))
         {
             endRead(finder.in);
-#ifdef SEQAN_DEBUG_SWIFT
+#ifdef SEQAN2_DEBUG_SWIFT
             _printSwiftBuckets(pattern);
 #endif
             if(_swiftMultiFlushBuckets(finder, pattern))
@@ -2054,7 +2054,7 @@ find(
 
 /*!
  * @fn SwiftFinder#windowFindBegin
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Initializes the pattern. Sets the finder on the begin position.  Gets the first non-repeat range and sets it
  *        in the finder.  Used together with @link SwiftFinder#windowFindEnd @endlink.
  *
@@ -2093,7 +2093,7 @@ windowFindBegin(
 
 /*!
  * @fn SwiftFinder#windowFindNext
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Searches over the next window with the finder. The found hits can be retrieved with @link
  *        SwiftFinder#getWindowFindHits @endlink.  Used together with @link SwiftFinder#windowFindBegin @endlink and
  *        @link SwiftFinder#windowFindEnd @endlink.
@@ -2164,7 +2164,7 @@ windowFindNext(
 
 /*!
  * @fn SwiftFinder#windowFindEnd
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Flushes the finder.  Used together with @link SwiftFinder#windowFindBegin @endlink and @link
  *        SwiftFinder#windowFindNext @endlink.
  *
@@ -2188,7 +2188,7 @@ windowFindEnd(
 
 /*!
  * @fn SwiftFinder#getWindowFindHits
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns the string of hits from the finder.
  *
  * @signature THitString getWindowFindHits(finder);
@@ -2209,7 +2209,7 @@ getWindowFindHits(Finder<THaystack, Swift<TSpec> > &finder)
 
 /*!
  * @fn SwiftPattern#getMaxDeviationOfOrder
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns the maximal out-of-order distance of adjacent hits.
  *
  * @signature TSize getMaxDeviationOfOrder(pattern);
@@ -2228,7 +2228,7 @@ getMaxDeviationOfOrder(Pattern<TIndex, Swift<TSpec> > &pattern)
 }
 
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_FIND_SHIFTAND_H
+#endif //#ifndef SEQAN2_HEADER_FIND_SHIFTAND_H
 

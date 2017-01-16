@@ -32,10 +32,10 @@
 // Author: Rene Rahn <rene.rahn@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_TRAVERSER_NODE_H_
-#define INCLUDE_SEQAN_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_TRAVERSER_NODE_H_
+#ifndef INCLUDE_SEQAN2_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_TRAVERSER_NODE_H_
+#define INCLUDE_SEQAN2_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_TRAVERSER_NODE_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -129,4 +129,4 @@ operator<<(TStream & stream, JstTraversalNode<TJst> const & node)
 
 }
 
-#endif  // #ifndef INCLUDE_SEQAN_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_TRAVERSER_NODE_H_
+#endif  // #ifndef INCLUDE_SEQAN2_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_TRAVERSER_NODE_H_

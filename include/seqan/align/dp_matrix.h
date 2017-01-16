@@ -43,10 +43,10 @@
 
 // TODO(holtgrew): Documentation in this header necessary or internal only?
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_MATRIX_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_DP_MATRIX_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_MATRIX_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_MATRIX_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -458,7 +458,7 @@ inline typename Size<DPMatrix_<TValue, TMatrixSpec> const>::Type
 length(DPMatrix_<TValue, TMatrixSpec> const & dpMatrix,
        unsigned int dimension)
 {
-    SEQAN_ASSERT(_checkCorrectDimension(dimension));
+    SEQAN2_ASSERT(_checkCorrectDimension(dimension));
 
     return length(value(dpMatrix.data_host), dimension);
 }
@@ -510,7 +510,7 @@ setLength(DPMatrix_<TValue, TMatrixSpec> & dpMatrix,
           unsigned int dimension,
           TSize const & newLength)
 {
-    SEQAN_ASSERT(_checkCorrectDimension(dimension));
+    SEQAN2_ASSERT(_checkCorrectDimension(dimension));
     setLength(value(dpMatrix.data_host), dimension, newLength);
 }
 
@@ -639,6 +639,6 @@ coordinate(DPMatrix_<TValue, FullDPMatrix> const & dpMatrix,
     return coordinate(value(dpMatrix.data_host), hostPos, dimension);
 }
 
-} // namespace seqan
+} // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_MATRIX_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_MATRIX_H_

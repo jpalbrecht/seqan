@@ -35,12 +35,12 @@
 // Concept definitions for alphabets.
 // ==========================================================================
 
-// SEQAN_NO_GENERATED_FORWARDS
+// SEQAN2_NO_GENERATED_FORWARDS
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_ALPHABET_CONCEPT_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_ALPHABET_CONCEPT_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ALPHABET_CONCEPT_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_ALPHABET_CONCEPT_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Concepts for generic alphabets
@@ -51,7 +51,7 @@ namespace seqan {
  * @extends AssignableConcept
  * @extends DefaultConstructibleConcept
  * @extends CopyConstructibleConcept
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Natural container value.
  *
  * @signature concept AlphabetConcept;
@@ -67,7 +67,7 @@ namespace seqan {
 
 /*!
  * @mfn AlphabetConcept#BitsPerValue
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Number of bits needed to store a value.
  *
  * @signature BitsPerValue<T>::VALUE
@@ -81,15 +81,15 @@ namespace seqan {
 template <typename T> struct BitsPerValue;
 
 // minimal requirements for the alphabet of a String class
-SEQAN_CONCEPT_REFINE(AlphabetConcept, (TValue), (Assignable)(DefaultConstructible)(CopyConstructible))
+SEQAN2_CONCEPT_REFINE(AlphabetConcept, (TValue), (Assignable)(DefaultConstructible)(CopyConstructible))
 {
     typedef typename BitsPerValue<TValue>::Type TBitsPerValue;
 
     TValue val, val2;
 
-    SEQAN_CONCEPT_USAGE(AlphabetConcept)
+    SEQAN2_CONCEPT_USAGE(AlphabetConcept)
     {
-        SEQAN_STATIC_ASSERT_MSG(BitsPerValue<TValue>::VALUE != 0, "Alphabet types must implement the BitsPerValue metafunction with non-zero value.");
+        SEQAN2_STATIC_ASSERT_MSG(BitsPerValue<TValue>::VALUE != 0, "Alphabet types must implement the BitsPerValue metafunction with non-zero value.");
 
         // assign must be available as an equivalent to '='
         assign(val, val2);
@@ -109,7 +109,7 @@ SEQAN_CONCEPT_REFINE(AlphabetConcept, (TValue), (Assignable)(DefaultConstructibl
  * @concept OrderedAlphabetConcept
  * @extends AlphabetConcept
  * @extends ComparableConcept
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @brief Totally strict ordered alphabet.
  *
@@ -129,7 +129,7 @@ SEQAN_CONCEPT_REFINE(AlphabetConcept, (TValue), (Assignable)(DefaultConstructibl
 
 /*!
  * @mfn OrderedAlphabetConcept#MaxValue
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Supremum for a given type.
  *
  * @signature MaxValue<T>::VALUE
@@ -143,7 +143,7 @@ SEQAN_CONCEPT_REFINE(AlphabetConcept, (TValue), (Assignable)(DefaultConstructibl
 
 /*!
  * @mfn OrderedAlphabetConcept#MinValue
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Infimum for a given type.
  *
  * @signature MinValue<T>::VALUE
@@ -248,11 +248,11 @@ template <typename T> T const & minValue(T);
 template <typename T> T const & maxValue();
 template <typename T> T const & maxValue(T);
 
-SEQAN_CONCEPT_REFINE(OrderedAlphabetConcept, (TValue), (AlphabetConcept)(Comparable))
+SEQAN2_CONCEPT_REFINE(OrderedAlphabetConcept, (TValue), (AlphabetConcept)(Comparable))
 {
     TValue val;
 
-    SEQAN_CONCEPT_USAGE(OrderedAlphabetConcept)
+    SEQAN2_CONCEPT_USAGE(OrderedAlphabetConcept)
     {
         // type consistency checks
         sameType(minValue(val), val);
@@ -265,19 +265,19 @@ SEQAN_CONCEPT_REFINE(OrderedAlphabetConcept, (TValue), (AlphabetConcept)(Compara
         // TODO(holtgrew): This does not work in C++98, we need C++11 with constexpr.
         // TODO(holtgrew): Do these tests for each alphabet in runtime tests.
         // sanity checks
-        // SEQAN_STATIC_ASSERT_MSG(MinValue<TValue>::VALUE <= MaxValue<TValue>::VALUE, "Minimal alphabet value must be less or equal to the maximal value.");
+        // SEQAN2_STATIC_ASSERT_MSG(MinValue<TValue>::VALUE <= MaxValue<TValue>::VALUE, "Minimal alphabet value must be less or equal to the maximal value.");
 
         // TODO(holtgrew): This does not work in C++98, we need C++11 with constexpr, cannot cast non-integral and non-enumeration types at compile time in C++98.
         // 0 must be an element of the alphabet, as we want to be able
         // to initialize a TValue variable to omit uninitialized warnings.
-        // SEQAN_STATIC_ASSERT_MSG(MinValue<TValue>::VALUE <= static_cast<TValue>(0), "0 must be convertible to a valid alphabet value.");
-        // SEQAN_STATIC_ASSERT_MSG(static_cast<TValue>(0) <= MaxValue<TValue>::VALUE, "0 must be convertible to a valid alphabet value.");
+        // SEQAN2_STATIC_ASSERT_MSG(MinValue<TValue>::VALUE <= static_cast<TValue>(0), "0 must be convertible to a valid alphabet value.");
+        // SEQAN2_STATIC_ASSERT_MSG(static_cast<TValue>(0) <= MaxValue<TValue>::VALUE, "0 must be convertible to a valid alphabet value.");
     }
 };
 
 /*!
  * @concept FiniteOrderedAlphabetConcept
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @extends OrderedAlphabetConcept
  * @brief An type that is of finite domain and totally ordered and thus has a minimum and maximum value.
  */
@@ -307,15 +307,15 @@ SEQAN_CONCEPT_REFINE(OrderedAlphabetConcept, (TValue), (AlphabetConcept)(Compara
  * The temporary assignment workaround.
  *
  * @code{.cpp}
- * SEQAN_ASSERT_EQ(ValueSize<bool>::VALUE, 2u);    // Linker error.
- * SEQAN_ASSERT_EQ(+ValueSize<bool>::VALUE, 2u);   // OK
- * SEQAN_ASSERT_EQ(valueSize<bool>(), 2u);         // OK
+ * SEQAN2_ASSERT_EQ(ValueSize<bool>::VALUE, 2u);    // Linker error.
+ * SEQAN2_ASSERT_EQ(+ValueSize<bool>::VALUE, 2u);   // OK
+ * SEQAN2_ASSERT_EQ(valueSize<bool>(), 2u);         // OK
  * @endcode
  */
 
 /*!
  * @fn FiniteOrderedAlphabetConcept#ordValue
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Maps an alphabet 1-to-1 to the interval [0..ValueSize).
  *
  * @signature T ordValue(value);
@@ -348,16 +348,16 @@ template <typename T> typename ValueSize<T>::Type valueSize();
 // Forwards for Metafunctions and Functions.
 template <typename TValue> inline typename ValueSize<TValue>::Type ordValue(TValue const & c);
 
-SEQAN_CONCEPT_REFINE(FiniteOrderedAlphabetConcept, (TValue), (OrderedAlphabetConcept))
+SEQAN2_CONCEPT_REFINE(FiniteOrderedAlphabetConcept, (TValue), (OrderedAlphabetConcept))
 {
     typedef typename ValueSize<TValue>::Type TSize;
 
     TValue  val;
     TSize   size;
 
-    SEQAN_CONCEPT_ASSERT((UnsignedIntegerConcept<TSize>));
+    SEQAN2_CONCEPT_ASSERT((UnsignedIntegerConcept<TSize>));
 
-    SEQAN_CONCEPT_USAGE(FiniteOrderedAlphabetConcept)
+    SEQAN2_CONCEPT_USAGE(FiniteOrderedAlphabetConcept)
     {
         // a finite alphabet must be countable
         sameType(ordValue(val), size);
@@ -365,7 +365,7 @@ SEQAN_CONCEPT_REFINE(FiniteOrderedAlphabetConcept, (TValue), (OrderedAlphabetCon
         sameType(ValueSize<TValue>::VALUE, size);
 
         // alphabet must be non-empty
-        SEQAN_STATIC_ASSERT_MSG(static_cast<TSize>(0) < ValueSize<TValue>::VALUE, "Alphabet size be greater than zero.");
+        SEQAN2_STATIC_ASSERT_MSG(static_cast<TSize>(0) < ValueSize<TValue>::VALUE, "Alphabet size be greater than zero.");
 
         // convert integer to alphabet value
         val = 0;
@@ -384,7 +384,7 @@ SEQAN_CONCEPT_REFINE(FiniteOrderedAlphabetConcept, (TValue), (OrderedAlphabetCon
 /*!
  * @concept AlphabetWithGapsConcept
  * @extends AlphabetConcept
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @brief An alphabet that includes a specific gap character.
  */
@@ -425,11 +425,11 @@ SEQAN_CONCEPT_REFINE(FiniteOrderedAlphabetConcept, (TValue), (OrderedAlphabetCon
 template <typename T> T gapValue();
 template <typename T> T gapValueImpl(T *);
 
-SEQAN_CONCEPT_REFINE(AlphabetWithGapsConcept, (TValue), (AlphabetConcept))
+SEQAN2_CONCEPT_REFINE(AlphabetWithGapsConcept, (TValue), (AlphabetConcept))
 {
     TValue val;
 
-    SEQAN_CONCEPT_USAGE(AlphabetWithGapsConcept)
+    SEQAN2_CONCEPT_USAGE(AlphabetWithGapsConcept)
     {
         // Test the availability and return type of gapValue() and gapValueImpl().
         sameType(gapValue<TValue>(), val);
@@ -440,7 +440,7 @@ SEQAN_CONCEPT_REFINE(AlphabetWithGapsConcept, (TValue), (AlphabetConcept))
 /*!
  * @concept AlphabetWithUnknownValueConcept
  * @extends AlphabetConcept
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @brief An alphabet which includes a specific "unknown" character.
  */
@@ -479,11 +479,11 @@ SEQAN_CONCEPT_REFINE(AlphabetWithGapsConcept, (TValue), (AlphabetConcept))
 template <typename T> T unknownValue();
 template <typename T> T unknownValueImpl(T *);
 
-SEQAN_CONCEPT_REFINE(AlphabetWithUnknownValueConcept, (TValue), (AlphabetConcept))
+SEQAN2_CONCEPT_REFINE(AlphabetWithUnknownValueConcept, (TValue), (AlphabetConcept))
 {
     TValue val;
 
-    SEQAN_CONCEPT_USAGE(AlphabetWithUnknownValueConcept)
+    SEQAN2_CONCEPT_USAGE(AlphabetWithUnknownValueConcept)
     {
         // Test the availability and return type of unknownValue() and unknownValueImpl().
         sameType(unknownValue<TValue>(), val);
@@ -494,14 +494,14 @@ SEQAN_CONCEPT_REFINE(AlphabetWithUnknownValueConcept, (TValue), (AlphabetConcept
 /*!
  * @concept AlphabetWithQualitiesConcept
  * @extends AlphabetConcept
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @brief An alphabet where qualities can be attached to the characters.
  */
 
 /*!
  * @mfn AlphabetWithQualitiesConcept#HasQualities
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Return whether the given type stores qualities besides the alphabet.
  *
  * @signature HasQualities<TAlphabet>::VALUE;
@@ -570,17 +570,17 @@ SEQAN_CONCEPT_REFINE(AlphabetWithUnknownValueConcept, (TValue), (AlphabetConcept
 
 // TODO(holtgrew): What about different quality types? Guess scaling? Look at how other packages do this.
 
-SEQAN_CONCEPT_REFINE(AlphabetWithQualitiesConcept, (TValue), (AlphabetConcept))
+SEQAN2_CONCEPT_REFINE(AlphabetWithQualitiesConcept, (TValue), (AlphabetConcept))
 {
     TValue val;
 
-    SEQAN_CONCEPT_USAGE(AlphabetWithQualitiesConcept)
+    SEQAN2_CONCEPT_USAGE(AlphabetWithQualitiesConcept)
     {
         // TODO(holtgrew): Write me!
     }
 };
 
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_ALPHABET_CONCEPT_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ALPHABET_CONCEPT_H_

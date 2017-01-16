@@ -30,10 +30,10 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_GRAPH_ITERATOR_ADJACENCY_H
-#define SEQAN_HEADER_GRAPH_ITERATOR_ADJACENCY_H
+#ifndef SEQAN2_HEADER_GRAPH_ITERATOR_ADJACENCY_H
+#define SEQAN2_HEADER_GRAPH_ITERATOR_ADJACENCY_H
 
-namespace seqan
+namespace seqan2
 {
 //////////////////////////////////////////////////////////////////////////////
 // Graph AdjacencyIterator
@@ -44,7 +44,7 @@ namespace seqan
 /*!
  * @class AdjacencyIterator
  * @extends Iter
- * @headerfile <seqan/graph_types.h>
+ * @headerfile <seqan2/graph_types.h>
  * @brief Adjacent edge iterator for a @link Graph @endlink.
  *
  * @signature AdjacencyIterator<TGraph, AdjacencyIterator>::Type;
@@ -335,6 +335,6 @@ operator !=(Iter<TGraph, GraphIterator<InternalAdjacencyIterator<TSpec> > >& it1
 
 //////////////////////////////////////////////////////////////////////////////
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

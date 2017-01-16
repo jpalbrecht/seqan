@@ -30,10 +30,10 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_INDEX_ESA_ALGS_MULTI_H
-#define SEQAN_HEADER_INDEX_ESA_ALGS_MULTI_H
+#ifndef SEQAN2_HEADER_SEQAN2_INDEX_ESA_ALGS_MULTI_H
+#define SEQAN2_HEADER_SEQAN2_INDEX_ESA_ALGS_MULTI_H
 
-namespace seqan
+namespace seqan2
 {
 
     //////////////////////////////////////////////////////////////////////////////
@@ -45,7 +45,7 @@ namespace seqan
 /*!
  * @class MumsIterator Mums Iterator
  * @extends BottomUpIterator
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief Iterator to search for all maximum unique matches.
  *
@@ -149,7 +149,7 @@ namespace seqan
 /*!
  * @class MultiMemsIterator Multi Mems Iterator
  * @extends BottomUpIterator
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief Iterator to search for MultiMems.
  *

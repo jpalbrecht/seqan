@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_INDEX_QGRAM_OPENADRESSING_H
-#define SEQAN_HEADER_INDEX_QGRAM_OPENADRESSING_H
+#ifndef SEQAN2_HEADER_SEQAN2_INDEX_QGRAM_OPENADRESSING_H
+#define SEQAN2_HEADER_SEQAN2_INDEX_QGRAM_OPENADRESSING_H
 
-namespace seqan
+namespace seqan2
 {
 
     struct OpenAddressing_;
@@ -63,7 +63,7 @@ namespace seqan
 /*!
  * @class OpenAddressingQGramIndex
  * @extends IndexQGram
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief A <i>q</i>-gram that uses open addressing hashing instead of an array.
  *
  * @signature template <typename TIndex, typename TShapeSpec>
@@ -222,7 +222,7 @@ namespace seqan
         if (hlen == 0ul) return code;
 
         TSize h1 = _hashFunction(bucketMap, code);
-#ifdef SEQAN_OPENADDRESSING_COMPACT
+#ifdef SEQAN2_OPENADDRESSING_COMPACT
         --hlen;
         h1 %= hlen;
 #else
@@ -236,12 +236,12 @@ namespace seqan
 
         // if not we have a collision -> probe for our code or an empty entry
         //
-        // do linear probing if we need to save memory (when SEQAN_OPENADDRESSING_COMPACT is defined)
+        // do linear probing if we need to save memory (when SEQAN2_OPENADDRESSING_COMPACT is defined)
         // otherwise do quadratic probing to avoid clustering (Cormen 1998)
         TSize delta = 0;
         (void)delta;
         do {
-#ifdef SEQAN_OPENADDRESSING_COMPACT
+#ifdef SEQAN2_OPENADDRESSING_COMPACT
             h1 = (h1 + 1) % hlen;               // linear probing guarantees that all entries are visited
 #else
             h1 = (h1 + delta + 1) & hlen;       // for power2-sized tables the (i*i+i)/2 probing guarantees the same
@@ -266,7 +266,7 @@ namespace seqan
         if (hlen == 0ul) return code;
 
         TSize h1 = _hashFunction(bucketMap, code);
-#ifdef SEQAN_OPENADDRESSING_COMPACT
+#ifdef SEQAN2_OPENADDRESSING_COMPACT
         --hlen;
         h1 %= hlen;
 #else
@@ -276,13 +276,13 @@ namespace seqan
 
         // probe for our code or an empty entry
         //
-        // do linear probing if we need to save memory (when SEQAN_OPENADDRESSING_COMPACT is defined)
+        // do linear probing if we need to save memory (when SEQAN2_OPENADDRESSING_COMPACT is defined)
         // otherwise do quadratic probing to avoid clustering (Cormen 1998)
         TSize delta = 0;
         (void)delta;
         while (bucketMap.qgramCode[h1] != code && bucketMap.qgramCode[h1] != TBucketMap::EMPTY)
         {
-#ifdef SEQAN_OPENADDRESSING_COMPACT
+#ifdef SEQAN2_OPENADDRESSING_COMPACT
             h1 = (h1 + 1) % hlen;               // linear probing guarantees that all entries are visited
 #else
             h1 = (h1 + delta + 1) & hlen;       // for power2-sized tables the (i*i+i)/2 probing guarantees the same
@@ -321,7 +321,7 @@ namespace seqan
         if (num_qgrams * (sizeof(TDirValue) + sizeof(THashValue)) < max_qgrams * sizeof(TDirValue))
         {
             qgrams = (int64_t)ceil(num_qgrams);
-#ifndef SEQAN_OPENADDRESSING_COMPACT
+#ifndef SEQAN2_OPENADDRESSING_COMPACT
             int64_t power2 = 1;
             while (power2 < qgrams)
                 power2 <<= 1;
@@ -399,4 +399,4 @@ inline bool save(Index<TText, IndexQGram<TShapeSpec, OpenAddressing> > &index, c
 
 }
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

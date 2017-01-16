@@ -34,10 +34,10 @@
 // Adapts traceback to a journaled string using SortedArray specialization.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_JOURNALED_SET_JOURNAL_ALIGNMENT_TRACEBACK_ADAPTOR_H_
-#define INCLUDE_SEQAN_JOURNALED_SET_JOURNAL_ALIGNMENT_TRACEBACK_ADAPTOR_H_
+#ifndef INCLUDE_SEQAN2_JOURNALED_SET_JOURNAL_ALIGNMENT_TRACEBACK_ADAPTOR_H_
+#define INCLUDE_SEQAN2_JOURNALED_SET_JOURNAL_ALIGNMENT_TRACEBACK_ADAPTOR_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -79,7 +79,7 @@ _adaptTraceSegmentsTo(String<TValue, Journaled<THostSpec, SortedArray, TBuffSpec
     typedef TraceSegment_<TPosition, TSize> TTraceSegment;
     typedef typename Iterator<String<TTraceSegment, TStringSpec> const>::Type TTraceIterator;
 
-    SEQAN_ASSERT_NOT_MSG(empty(host(targetJournal)), "No reference sequence set!");
+    SEQAN2_ASSERT_NOT_MSG(empty(host(targetJournal)), "No reference sequence set!");
 
     // TODO(rmaerker): Hot-fix for new alignment module.
     clear(targetJournal._journalEntries._journalNodes);
@@ -121,6 +121,6 @@ _adaptTraceSegmentsTo(String<TValue, Journaled<THostSpec, SortedArray, TBuffSpec
     _setLength(targetJournal, virtualPos);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_JOURNALED_SET_JOURNAL_ALIGNMENT_TRACEBACK_ADAPTOR_H_
+#endif  // #ifndef INCLUDE_SEQAN2_JOURNALED_SET_JOURNAL_ALIGNMENT_TRACEBACK_ADAPTOR_H_

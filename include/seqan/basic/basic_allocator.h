@@ -34,31 +34,31 @@
 // Facade header for basic/allocator submodule.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_BASIC_ALLOCATOR_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_BASIC_ALLOCATOR_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_ALLOCATOR_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_ALLOCATOR_H_
 
 // --------------------------------------------------------------------------
 // Dependencies
 // --------------------------------------------------------------------------
 
-#include <seqan/platform.h>
-#include <seqan/basic/basic_fundamental.h>
-#include <seqan/basic/basic_smart_pointer.h>
+#include <seqan2/platform.h>
+#include <seqan2/basic/basic_fundamental.h>
+#include <seqan2/basic/basic_smart_pointer.h>
 
 // --------------------------------------------------------------------------
 // Sub Module Headers
 // --------------------------------------------------------------------------
 
 // The allocator interface definitions.
-#include <seqan/basic/allocator_interface.h>
+#include <seqan2/basic/allocator_interface.h>
 
 // The allocator specializations.
-#include <seqan/basic/allocator_simple.h>
-#include <seqan/basic/allocator_singlepool.h>
-#include <seqan/basic/allocator_multipool.h>
-#include <seqan/basic/allocator_chunkpool.h>
+#include <seqan2/basic/allocator_simple.h>
+#include <seqan2/basic/allocator_singlepool.h>
+#include <seqan2/basic/allocator_multipool.h>
+#include <seqan2/basic/allocator_chunkpool.h>
 
 // Adaption from SeqAn allocator to STL allocator.
-#include <seqan/basic/allocator_to_std.h>
+#include <seqan2/basic/allocator_to_std.h>
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_BASIC_ALLOCATOR_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_ALLOCATOR_H_

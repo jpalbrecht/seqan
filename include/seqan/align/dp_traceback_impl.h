@@ -34,13 +34,13 @@
 // Implements the traceback algorithm.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_TRACEBACK_IMPL_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_DP_TRACEBACK_IMPL_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_TRACEBACK_IMPL_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_TRACEBACK_IMPL_H_
 
 // TODO(holtgrew): GapsRight traceback is currently untested.
 // TODO(rmaerker): Change Tracback to TraceConfig<TGapsPlacement, TPathSpec> | TraceBackOff
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -413,7 +413,7 @@ _doTraceback(TTarget & target,
             {
                 return;
             }
-            SEQAN_ASSERT_FAIL("Reached undefined traceback value!");
+            SEQAN2_ASSERT_FAIL("Reached undefined traceback value!");
         }
     }
     else  // Gaps should be placed on the right.
@@ -444,7 +444,7 @@ _doTraceback(TTarget & target,
             {
                 return;
             }
-            SEQAN_ASSERT_FAIL("Reached undefined traceback value!");
+            SEQAN2_ASSERT_FAIL("Reached undefined traceback value!");
         }
     }
 }
@@ -492,7 +492,7 @@ template <typename TTarget,
           typename TSizeV,
           typename TBandFlag,
           typename TAlgorithm, typename TGapCosts, typename TTracebackSpec>
-inline SEQAN_FUNC_DISABLE_IF(Is<ContainerConcept<TSizeH> >, void)
+inline SEQAN2_FUNC_DISABLE_IF(Is<ContainerConcept<TSizeH> >, void)
 _computeTraceback(TTarget & target,
                   TDPTraceMatrixNavigator & matrixNavigator,
                   unsigned  maxHostPosition,
@@ -515,8 +515,8 @@ _computeTraceback(TTarget & target,
     // Set the navigator to the position where the maximum was found.
     _setToPosition(matrixNavigator, maxHostPosition);
 
-    SEQAN_ASSERT_LEQ(coordinate(matrixNavigator, +DPMatrixDimension_::HORIZONTAL), seqHSize);
-    SEQAN_ASSERT_LEQ(coordinate(matrixNavigator, +DPMatrixDimension_::VERTICAL), seqVSize);
+    SEQAN2_ASSERT_LEQ(coordinate(matrixNavigator, +DPMatrixDimension_::HORIZONTAL), seqHSize);
+    SEQAN2_ASSERT_LEQ(coordinate(matrixNavigator, +DPMatrixDimension_::VERTICAL), seqVSize);
 
     TTraceValue traceValue = scalarValue(matrixNavigator);
     TTraceValue lastTraceValue = _retrieveInitialTraceDirection(traceValue, dpProfile);
@@ -558,7 +558,7 @@ template <typename TTarget,
           typename TSequenceV,
           typename TBandFlag,
           typename TAlgorithm, typename TGapCosts, typename TTracebackSpec>
-inline SEQAN_FUNC_ENABLE_IF(Is<ContainerConcept<TSequenceH> >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Is<ContainerConcept<TSequenceH> >, void)
 _computeTraceback(TTarget & target,
                   TDPTraceMatrixNavigator & matrixNavigator,
                   unsigned  maxHostPosition,
@@ -579,7 +579,7 @@ template <typename TTarget,
           typename TAlgorithm,
           typename TGapCosts,
           typename TTracebackSpec>
-inline SEQAN_FUNC_DISABLE_IF(Is<ContainerConcept<TSizeH> >, void)
+inline SEQAN2_FUNC_DISABLE_IF(Is<ContainerConcept<TSizeH> >, void)
 _computeTraceback(TTarget & target,
                   TDPTraceMatrixNavigator & matrixNavigator,
                   DPScout_<TDPCell, TScoutSpec> const & dpScout,
@@ -594,7 +594,7 @@ _computeTraceback(TTarget & target,
 template <typename TTarget, typename TDPTraceMatrixNavigator, typename TDPCell, typename TScoutSpec,
           typename TSequenceH, typename TSequenceV, typename TBandFlag, typename TAlgorithm, typename TGapCosts,
           typename TTracebackSpec>
-inline SEQAN_FUNC_ENABLE_IF(Is<ContainerConcept<TSequenceH> >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Is<ContainerConcept<TSequenceH> >, void)
 _computeTraceback(TTarget & target,
                   TDPTraceMatrixNavigator & matrixNavigator,
                   DPScout_<TDPCell, TScoutSpec> const & dpScout,
@@ -606,6 +606,6 @@ _computeTraceback(TTarget & target,
     _computeTraceback(target, matrixNavigator, maxHostPosition(dpScout), length(seqH), length(seqV), band, dpProfile);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_TRACEBACK_IMPL_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_TRACEBACK_IMPL_H_

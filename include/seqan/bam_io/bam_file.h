@@ -34,10 +34,10 @@
 // Class for reading/writing files in SAM or BAM format.
 // ==========================================================================
 
-#ifndef SEQAN_BAM_IO_BAM_FILE_H_
-#define SEQAN_BAM_IO_BAM_FILE_H_
+#ifndef SEQAN2_BAM_IO_BAM_FILE_H_
+#define SEQAN2_BAM_IO_BAM_FILE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Typedefs
@@ -51,7 +51,7 @@ namespace seqan {
  * @class BamFileIn
  * @signature typedef FormattedFile<Bam, Input> BamFileIn;
  * @extends FormattedFileIn
- * @headerfile <seqan/bam_io.h>
+ * @headerfile <seqan2/bam_io.h>
  * @brief Class for reading SAM and BAM files.
  *
  * @see BamHeader
@@ -78,7 +78,7 @@ typedef FormattedFile<Bam, Input> BamFileIn;
  * @class BamFileOut
  * @signature typedef FormattedFile<Bam, Output> BamFileOut;
  * @extends FormattedFileOut
- * @headerfile <seqan/bam_io.h>
+ * @headerfile <seqan2/bam_io.h>
  * @brief Class for writing SAM and BAM files.
  *
  * @see BamHeader
@@ -120,7 +120,7 @@ struct FormattedFileContext<FormattedFile<Bam, TDirection, TSpec>, TStorageSpec>
 template <typename TDirection, typename TSpec>
 struct FileFormat<FormattedFile<Bam, TDirection, TSpec> >
 {
-#if SEQAN_HAS_ZLIB
+#if SEQAN2_HAS_ZLIB
     typedef TagSelector<
                 TagList<Bam,
                 TagList<Sam
@@ -153,7 +153,7 @@ readHeader(BamHeader & /* header */,
            TForwardIter & /* iter */,
            TagSelector<> const & /* format */)
 {
-    SEQAN_FAIL("BamFileIn: File format not specified.");
+    SEQAN2_FAIL("BamFileIn: File format not specified.");
 }
 
 template <typename TForwardIter, typename TNameStore, typename TNameStoreCache, typename TStorageSpec, typename TTagList>
@@ -188,7 +188,7 @@ template <typename TBuffer, typename TForwardIter>
 inline void
 _readBamRecord(TBuffer & /* rawRecord */, TForwardIter & /* iter */, TagSelector<> const & /* format */)
 {
-    SEQAN_FAIL("BamFileIn: File format not specified.");
+    SEQAN2_FAIL("BamFileIn: File format not specified.");
 }
 
 template <typename TBuffer, typename TForwardIter, typename TTagList>
@@ -215,7 +215,7 @@ readRecord(BamAlignmentRecord & /* record */,
            TForwardIter & /* iter */,
            TagSelector<> const & /* format */)
 {
-    SEQAN_FAIL("BamFileIn: File format not specified.");
+    SEQAN2_FAIL("BamFileIn: File format not specified.");
 }
 
 template <typename TForwardIter, typename TNameStore, typename TNameStoreCache, typename TStorageSpec, typename TTagList>
@@ -242,7 +242,7 @@ readRecord(BamAlignmentRecord & record, FormattedFile<Bam, Input, TSpec> & file)
 }
 
 template <typename TRecords, typename TSpec, typename TSize>
-inline SEQAN_FUNC_ENABLE_IF(And<IsSameType<typename Value<TRecords>::Type, BamAlignmentRecord>,
+inline SEQAN2_FUNC_ENABLE_IF(And<IsSameType<typename Value<TRecords>::Type, BamAlignmentRecord>,
                                 IsInteger<TSize> >, TSize)
 readRecords(TRecords & records, FormattedFile<Bam, Input, TSpec> & file, TSize maxRecords)
 {
@@ -256,7 +256,7 @@ readRecords(TRecords & records, FormattedFile<Bam, Input, TSpec> & file, TSize m
     for (; numRecords < maxRecords && !atEnd(file.iter); ++numRecords)
         _readBamRecord(buffers[numRecords], file.iter, file.format);
 
-//    SEQAN_OMP_PRAGMA(parallel for)
+//    SEQAN2_OMP_PRAGMA(parallel for)
     for (int i = 0; i < (int)numRecords; ++i)
     {
         CharIterator bufIter = begin(buffers[i]);
@@ -277,7 +277,7 @@ write(TTarget & /* target */,
       BamIOContext<TNameStore, TNameStoreCache, TStorageSpec> & /* context */,
       TagSelector<> const & /* format */)
 {
-    SEQAN_FAIL("BamFileOut: File format not specified.");
+    SEQAN2_FAIL("BamFileOut: File format not specified.");
 }
 
 template <typename TTarget, typename TNameStore, typename TNameStoreCache, typename TStorageSpec, typename TTagList>
@@ -315,7 +315,7 @@ write(TTarget & /* target */,
       BamIOContext<TNameStore, TNameStoreCache, TStorageSpec> & /* context */,
       TagSelector<> const & /* format */)
 {
-    SEQAN_FAIL("BamFileOut: File format not specified.");
+    SEQAN2_FAIL("BamFileOut: File format not specified.");
 }
 
 template <typename TTarget, typename TNameStore, typename TNameStoreCache, typename TStorageSpec, typename TTagList>
@@ -341,14 +341,14 @@ writeRecord(FormattedFile<Bam, Output, TSpec> & file, BamAlignmentRecord const &
 }
 
 template <typename TSpec, typename TRecords>
-inline SEQAN_FUNC_ENABLE_IF(IsSameType<typename Value<TRecords>::Type, BamAlignmentRecord>, void)
+inline SEQAN2_FUNC_ENABLE_IF(IsSameType<typename Value<TRecords>::Type, BamAlignmentRecord>, void)
 writeRecords(FormattedFile<Bam, Output, TSpec> & file, TRecords const & records)
 {
     String<CharString> & buffers = context(file).buffers;
     if (length(buffers) < length(records))
         resize(buffers, length(records));
 
-    SEQAN_OMP_PRAGMA(parallel for)
+    SEQAN2_OMP_PRAGMA(parallel for)
     for (int i = 0; i < (int)length(records); ++i)
     {
         clear(buffers[i]);
@@ -358,6 +358,6 @@ writeRecords(FormattedFile<Bam, Output, TSpec> & file, TRecords const & records)
         write(file.iter, buffers[i]);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif // SEQAN_BAM_IO_BAM_FILE_H_
+#endif // SEQAN2_BAM_IO_BAM_FILE_H_

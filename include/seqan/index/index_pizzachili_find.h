@@ -32,10 +32,10 @@
 // Author: Konrad Ludwig Moritz Rudolph <konrad.rudolph@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_INDEX_PIZZACHILI_FIND_H
-#define SEQAN_HEADER_INDEX_PIZZACHILI_FIND_H
+#ifndef SEQAN2_HEADER_SEQAN2_INDEX_PIZZACHILI_FIND_H
+#define SEQAN2_HEADER_SEQAN2_INDEX_PIZZACHILI_FIND_H
 
-namespace seqan {
+namespace seqan2 {
 
 struct PizzaChiliFinder_;
 
@@ -150,12 +150,12 @@ inline void _findFirstIndex(
         );
 
     if (e != 0)
-        SEQAN_ABORT(TCodeProvider::error_index(e));
+        SEQAN2_ABORT(TCodeProvider::error_index(e));
 
     finder.range.i1 = occ;
     finder.range.i2 = occ + numocc;
 }
 
-} // namespace seqan
+} // namespace seqan2
 
-#endif // SEQAN_HEADER_INDEX_PIZZACHILI_FIND_H
+#endif // SEQAN2_HEADER_SEQAN2_INDEX_PIZZACHILI_FIND_H

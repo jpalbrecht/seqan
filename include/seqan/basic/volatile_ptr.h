@@ -37,10 +37,10 @@
 // for more details
 // ==========================================================================
 
-#ifndef SEQAN_BASIC_BASIC_VOLATILE_PTR_H_
-#define SEQAN_BASIC_BASIC_VOLATILE_PTR_H_
+#ifndef SEQAN2_BASIC_BASIC_VOLATILE_PTR_H_
+#define SEQAN2_BASIC_BASIC_VOLATILE_PTR_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -55,7 +55,7 @@ namespace seqan {
 
 /*!
  * @class VolatilePtr
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Helper data structure for handling volatile data.
  *
  * @signature template <typename T>
@@ -220,6 +220,6 @@ inline void nukeCopies(VolatilePtr<TValue> & ptr)
     ptr.nukeCopies();
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_BASIC_BASIC_VOLATILE_PTR_H_
+#endif  // #ifndef SEQAN2_BASIC_BASIC_VOLATILE_PTR_H_

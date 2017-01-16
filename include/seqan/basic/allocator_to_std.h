@@ -37,10 +37,10 @@
 // TODO(holtgrew): Rename STD to STL?
 // TODO(holtgrew): Rename to allocator_to_stl.h, remove basic_ prefix of all other allocator headers.
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_ALLOCATOR_TO_STD_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_ALLOCATOR_TO_STD_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ALLOCATOR_TO_STD_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_ALLOCATOR_TO_STD_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -52,7 +52,7 @@ namespace seqan {
 
 /*!
  * @class ToStdAllocator
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Emulates standard conform allocator.
  *
  * @signature template <typename THost, typename TValue>
@@ -105,20 +105,20 @@ struct ToStdAllocator
     pointer allocate(size_type count)
     {
         value_type * ptr;
-        seqan::allocate(*m_host, ptr, count);
+        seqan2::allocate(*m_host, ptr, count);
         return pointer(ptr);
     }
 
     pointer allocate(size_type count, const void *)
     {
         value_type * ptr;
-        seqan::allocate(*m_host, ptr, count);
+        seqan2::allocate(*m_host, ptr, count);
         return pointer(ptr);
     }
 
     void deallocate(pointer data, size_type count)
     {
-        seqan::deallocate(*m_host, data, count);
+        seqan2::deallocate(*m_host, data, count);
     }
 
     void construct(pointer ptr, const_reference data)
@@ -184,7 +184,7 @@ struct StdAllocator
 
 /*!
  * @fn ToStdAllocator#host
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief The object a given object depends on.
  *
  * @signature THost host(allocator);
@@ -201,6 +201,6 @@ host(ToStdAllocator<THost, TValue> & me)
    return *me.m_host;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_ALLOCATOR_TO_STD_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ALLOCATOR_TO_STD_H_

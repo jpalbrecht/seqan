@@ -34,10 +34,10 @@
 // Global alignment interface for journaled strings.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_JOURNALED_SET_JOURNAL_ALIGNMENT_INTERFACE_H_
-#define INCLUDE_SEQAN_JOURNALED_SET_JOURNAL_ALIGNMENT_INTERFACE_H_
+#ifndef INCLUDE_SEQAN2_JOURNALED_SET_JOURNAL_ALIGNMENT_INTERFACE_H_
+#define INCLUDE_SEQAN2_JOURNALED_SET_JOURNAL_ALIGNMENT_INTERFACE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -249,6 +249,6 @@ TScoreValue globalAlignment(String<TValue, Journaled<THostSpec, TJournalSpec, TB
     return globalAlignment(journaledString, reference, source, scoringScheme, alignConfig, lowerDiag, upperDiag);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_JOURNALED_SET_JOURNAL_ALIGNMENT_INTERFACE_H_
+#endif  // #ifndef INCLUDE_SEQAN2_JOURNALED_SET_JOURNAL_ALIGNMENT_INTERFACE_H_

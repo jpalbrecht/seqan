@@ -36,10 +36,10 @@
 // to SeqAn's code conventions.
 // ==========================================================================
 
-#ifndef SEQAN_MATH_COMMON_FACTOR_H_
-#define SEQAN_MATH_COMMON_FACTOR_H_
+#ifndef SEQAN2_MATH_COMMON_FACTOR_H_
+#define SEQAN2_MATH_COMMON_FACTOR_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -519,6 +519,6 @@ leastCommonMultiple
     return solver( a, b );
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_MATH_COMMON_FACTOR_H_
+#endif  // #ifndef SEQAN2_MATH_COMMON_FACTOR_H_

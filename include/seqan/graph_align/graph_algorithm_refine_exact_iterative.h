@@ -36,10 +36,10 @@
 // This is required for some large inputs to circumvent stack overflows.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_GRAPH_ALGORITHM_REFINE_EXACT_ITERATIVE_H_
-#define SEQAN_INCLUDE_SEQAN_GRAPH_ALGORITHM_REFINE_EXACT_ITERATIVE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_GRAPH_ALGORITHM_REFINE_EXACT_ITERATIVE_H_
+#define SEQAN2_INCLUDE_SEQAN2_GRAPH_ALGORITHM_REFINE_EXACT_ITERATIVE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 struct TagExactRefinement_;
 typedef Tag<TagExactRefinement_> const ExactRefinement;
@@ -319,9 +319,9 @@ _makeRefinedGraphEdges(TAlignmentString & alis,
         //get sequence, begin position and end position
         TValue seq_id,begin_pos,end_pos;
         _getSeqBeginAndEnd(*ali_it,seq_map,seq_id,begin_pos,end_pos,(TValue)0);
-        SEQAN_ASSERT_LEQ(end_pos, length(seqs[idToPosition(seqs, seq_id)]));
-        SEQAN_ASSERT(ali_it.data_container == ali_end.data_container);
-        SEQAN_ASSERT(ali_it.data_iterator != ali_end.data_iterator);
+        SEQAN2_ASSERT_LEQ(end_pos, length(seqs[idToPosition(seqs, seq_id)]));
+        SEQAN2_ASSERT(ali_it.data_container == ali_end.data_container);
+        SEQAN2_ASSERT(ali_it.data_iterator != ali_end.data_iterator);
 
         //get the node represents the current interval (begin_pos until next_cut_pos or end_pos)
         TVertexDescriptor act_knot = findVertex(ali_g,seq_id,begin_pos);
@@ -335,7 +335,7 @@ _makeRefinedGraphEdges(TAlignmentString & alis,
             //get other sequence and projected position
             TValue seq_j_id,pos_j;
             _getOtherSequenceAndProject(*ali_it,(TValue)0,seq_map,seq_id,act_pos,seq_j_id,pos_j);
-            SEQAN_ASSERT_NEQ(pos_j, static_cast<TValue>(-1));
+            SEQAN2_ASSERT_NEQ(pos_j, static_cast<TValue>(-1));
             //find node that contains the projected position (pos_j)
             TVertexDescriptor vd = findVertex(ali_g, seq_j_id, pos_j);
             bool doAddEdge = true;
@@ -498,7 +498,7 @@ matchRefinement(TAlignmentString & alis,
     typedef typename Cargo<typename Value<TPropertyMap>::Type>::Type TAlignmentPointer;
     typedef typename Iterator<String<TAlignmentPointer>, Rooted>::Type TSegmentIterator;
 
-#ifdef SEQAN_TCOFFEE_DEBUG
+#ifdef SEQAN2_TCOFFEE_DEBUG
     double refinementTime = sysTime();
 #endif
 
@@ -632,7 +632,7 @@ matchRefinement(TAlignmentString & alis,
     //}
     //std::cout <<"building tree..."<<std::flush;
 
-#ifdef SEQAN_TCOFFEE_DEBUG
+#ifdef SEQAN2_TCOFFEE_DEBUG
     std::cout << std::setw(30) << std::left << "Segment-match refinement:" << std::setw(10) << std::right << sysTime() - refinementTime << "  s" << std::endl;
 
     double buildGraphTime = sysTime();
@@ -642,7 +642,7 @@ matchRefinement(TAlignmentString & alis,
     //build refined alignment graph
     _makeAlignmentGraphFromRefinedSegments(all_nodes,alis,score_type,seq,seq_map,ali_graph,tag,annotation);
 
-#ifdef SEQAN_TCOFFEE_DEBUG
+#ifdef SEQAN2_TCOFFEE_DEBUG
     std::cout << std::setw(30) << std::left << "Build alignment graph:" << std::setw(10) << std::right << sysTime() - buildGraphTime << "  s" << std::endl;
 #endif
 
@@ -678,6 +678,6 @@ matchRefinement(TFragmentString & matches,
     matchRefinement(matches,strSet,fake_score,ali_graph,1,anno,ExactRefinement());
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_GRAPH_ALGORITHM_REFINE_EXACT_ITERATIVE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_GRAPH_ALGORITHM_REFINE_EXACT_ITERATIVE_H_

@@ -34,10 +34,10 @@
 
  //TODO(weese:) sync new documentation to old dddoc updates
 
-#ifndef SEQAN_HEADER_SHAPE_BASE_H
-#define SEQAN_HEADER_SHAPE_BASE_H
+#ifndef SEQAN2_HEADER_SHAPE_BASE_H
+#define SEQAN2_HEADER_SHAPE_BASE_H
 
-namespace seqan
+namespace seqan2
 {
 
     template <unsigned q>
@@ -51,7 +51,7 @@ namespace seqan
 
 /*!
  * @class Shape
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Stores hash value and shape for an ungapped or gapped q-gram.
  *
  * @signature template <typename TValue, typename TSpec>
@@ -183,7 +183,7 @@ namespace seqan
 /*!
  * @class SimpleShape
  * @extends Shape
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief A variable length ungapped shape (also called q-gram or k-mer).
  *
  * @signature template <typename TValue>
@@ -277,7 +277,7 @@ namespace seqan
 /*!
  * @class UngappedShape
  * @extends Shape
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief A fixed length ungapped shape (also called q-gram or k-mer).
  *
  * @signature template <typename TValue, unsigned Q>
@@ -320,7 +320,7 @@ namespace seqan
 
 /*!
  * @fn Shape#value
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns the current hash value of the Shape.
  *
  * @signature TValue value(shape);
@@ -439,7 +439,7 @@ namespace seqan
         //typedef typename Value< Shape<TValue, SimpleShape> >::Type    THValue;
         typedef typename Size< Shape<TValue, SimpleShape> >::Type    TSize;
 
-        SEQAN_ASSERT_GT((unsigned)me.span, 0u);
+        SEQAN2_ASSERT_GT((unsigned)me.span, 0u);
 
         me.hValue = ordValue(me.leftChar = *it);
         for(TSize i = 1; i < me.span; ++i) {
@@ -483,7 +483,7 @@ namespace seqan
         //typedef typename Value< Shape<TValue, SimpleShape> >::Type    THValue;
         typedef typename Size< Shape<TValue, SimpleShape> >::Type    TSize;
 
-        SEQAN_ASSERT_GT((unsigned)me.span, 0u);
+        SEQAN2_ASSERT_GT((unsigned)me.span, 0u);
 
         me.leftChar = 0;
         me.hValue = ordValue(*it);
@@ -546,7 +546,7 @@ namespace seqan
     {
         //typedef typename Value< Shape<TValue, TSpec> >::Type    THValue;
 
-        SEQAN_ASSERT_GT((unsigned)me.span, 0u);
+        SEQAN2_ASSERT_GT((unsigned)me.span, 0u);
 
         TSize iEnd = me.span;
         if (iEnd > charsLeft) iEnd = charsLeft;
@@ -656,7 +656,7 @@ namespace seqan
     {
         //typedef typename Value< Shape<TValue, TSpec> >::Type    THValue;
 
-        SEQAN_ASSERT_GT((unsigned)me.span, 0u);
+        SEQAN2_ASSERT_GT((unsigned)me.span, 0u);
 
         TSize iEnd = me.span;
         if (iEnd > charsLeft) iEnd = charsLeft;
@@ -682,7 +682,7 @@ namespace seqan
 
 /*!
  * @fn Shape#hashNext
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Computes the hash value for the adjacent shape.
  *
  * @signature TValue hashNext(shape, it);
@@ -704,7 +704,7 @@ namespace seqan
         typedef typename Value< Shape<TValue, TSpec> >::Type    THValue;
         typedef typename Size< Shape<TValue, TSpec> >::Type        TSize;
 
-        SEQAN_ASSERT_GT((unsigned)me.span, 0u);
+        SEQAN2_ASSERT_GT((unsigned)me.span, 0u);
 
         me.hValue =
             (me.hValue - ordValue(me.leftChar) * (THValue)me.leftFactor) * ValueSize<TValue>::VALUE
@@ -740,7 +740,7 @@ namespace seqan
     {
         //typedef typename Value< Shape<TValue, TSpec> >::Type    THValue;
 
-        SEQAN_ASSERT_GT((unsigned)me.span, 0u);
+        SEQAN2_ASSERT_GT((unsigned)me.span, 0u);
 
         TSize iEnd = me.span;
         if (iEnd > charsLeft) iEnd = charsLeft;
@@ -791,7 +791,7 @@ namespace seqan
     {
         typedef typename Value< Shape<TValue, TSpec> >::Type    THValue;
 
-        SEQAN_ASSERT_GT((unsigned)me.span, 0u);
+        SEQAN2_ASSERT_GT((unsigned)me.span, 0u);
 
         TSize iEnd = me.span;
         if (iEnd > charsLeft) iEnd = charsLeft;
@@ -825,7 +825,7 @@ namespace seqan
 
 /*!
  * @fn Shape#hash2Next
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Computes a unique hash value for the adjacent shape, even if it is shorter than q.
  *
  * @signature TValue hash2Next(shape, it);
@@ -847,7 +847,7 @@ namespace seqan
         // remove first, shift left, and add next character
         typedef typename Value< Shape<TValue, TSpec> >::Type    THValue;
 
-        SEQAN_ASSERT_GT((unsigned)me.span, 0u);
+        SEQAN2_ASSERT_GT((unsigned)me.span, 0u);
 
         if (charsLeft >= me.span) {
             // update sum of x_i
@@ -869,7 +869,7 @@ namespace seqan
 
 /*!
  * @fn Shape#unhash
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Inverse of the @link Shape#hash @endlink function; for ungapped shapes.
  *
  * @signature void unhash(result, hash, q);
@@ -970,6 +970,6 @@ namespace seqan
     {
     }
 
-}    // namespace seqan
+}    // namespace seqan2
 
 #endif

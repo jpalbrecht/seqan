@@ -40,10 +40,10 @@
 // is thrown.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_MATRIX_NAVIGATOR_TRACE_MATRIX_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_DP_MATRIX_NAVIGATOR_TRACE_MATRIX_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_MATRIX_NAVIGATOR_TRACE_MATRIX_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_MATRIX_NAVIGATOR_TRACE_MATRIX_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -340,7 +340,7 @@ _setToPosition(DPMatrixNavigator_<DPMatrix_<TValue, FullDPMatrix>, DPTraceMatrix
     if (IsSameType<TTraceFlag, TracebackOff>::VALUE)
         return;
 
-    SEQAN_ASSERT_LT(hostPosition, static_cast<TPosition>(length(container(dpNavigator))));
+    SEQAN2_ASSERT_LT(hostPosition, static_cast<TPosition>(length(container(dpNavigator))));
 
     dpNavigator._activeColIterator = begin(*dpNavigator._ptrDataContainer, Standard()) + hostPosition;
 }
@@ -357,8 +357,8 @@ _setToPosition(DPMatrixNavigator_<DPMatrix_<TValue, FullDPMatrix>, DPTraceMatrix
 {
     if (IsSameType<TTraceFlag, TracebackOff>::VALUE)
         return;
-    SEQAN_ASSERT_LT(horizontalPosition, static_cast<TPositionH>(length(container(dpNavigator), +DPMatrixDimension_::HORIZONTAL)));
-    SEQAN_ASSERT_LT(verticalPosition, static_cast<TPositionV>(length(container(dpNavigator), +DPMatrixDimension_::VERTICAL)));
+    SEQAN2_ASSERT_LT(horizontalPosition, static_cast<TPositionH>(length(container(dpNavigator), +DPMatrixDimension_::HORIZONTAL)));
+    SEQAN2_ASSERT_LT(verticalPosition, static_cast<TPositionV>(length(container(dpNavigator), +DPMatrixDimension_::VERTICAL)));
 
     TPositionH  hostPosition = horizontalPosition * _dataFactors(container(dpNavigator))[+DPMatrixDimension_::HORIZONTAL] + verticalPosition;
     dpNavigator._activeColIterator = begin(*dpNavigator._ptrDataContainer, Standard()) + hostPosition;
@@ -385,7 +385,7 @@ assignValue(DPMatrixNavigator_<TDPMatrix, DPTraceMatrix<TTraceFlag>, TNavigation
 
 // SIMD Version. Returns always a copy and never a reference.
 template <typename TValue, typename TPos>
-inline SEQAN_FUNC_ENABLE_IF(Is<SimdVectorConcept<TValue> >, typename Value<TValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Is<SimdVectorConcept<TValue> >, typename Value<TValue>::Type)
 _scalarValue(TValue const & vec,
              TPos const pos)
 {
@@ -394,7 +394,7 @@ _scalarValue(TValue const & vec,
 
 // Non-simd variant. Identity version.
 template <typename TValue, typename TPos>
-inline SEQAN_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TValue> > >, TValue &)
+inline SEQAN2_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TValue> > >, TValue &)
 _scalarValue(TValue & val,
              TPos const /*pos*/)
 {
@@ -407,7 +407,7 @@ inline auto
 scalarValue(DPMatrixNavigator_<TDPMatrix, DPTraceMatrix<TTraceFlag>, TNavigationSpec> const & dpNavigator)
 {
     if (IsSameType<TTraceFlag, TracebackOff>::VALUE)
-        SEQAN_ASSERT_FAIL("Try to access uninitialized object!");
+        SEQAN2_ASSERT_FAIL("Try to access uninitialized object!");
 
     return _scalarValue(*dpNavigator._activeColIterator, dpNavigator._simdLane);
 }
@@ -422,7 +422,7 @@ inline typename Reference<DPMatrixNavigator_<TDPMatrix, DPTraceMatrix<TTraceFlag
 value(DPMatrixNavigator_<TDPMatrix, DPTraceMatrix<TTraceFlag>, TNavigationSpec> & dpNavigator)
 {
     if (IsSameType<TTraceFlag, TracebackOff>::VALUE)
-        SEQAN_ASSERT_FAIL("Try to access uninitialized object!");
+        SEQAN2_ASSERT_FAIL("Try to access uninitialized object!");
 
     return *dpNavigator._activeColIterator;
 }
@@ -432,7 +432,7 @@ inline typename Reference<DPMatrixNavigator_<TDPMatrix, DPTraceMatrix<TTraceFlag
 value(DPMatrixNavigator_<TDPMatrix, DPTraceMatrix<TTraceFlag>, TNavigationSpec> const & dpNavigator)
 {
     if (IsSameType<TTraceFlag, TracebackOff>::VALUE)
-        SEQAN_ASSERT_FAIL("Try to access uninitialized object!");
+        SEQAN2_ASSERT_FAIL("Try to access uninitialized object!");
 
     return *dpNavigator._activeColIterator;
 }
@@ -444,7 +444,7 @@ value(DPMatrixNavigator_<TDPMatrix, DPTraceMatrix<TTraceFlag>, TNavigationSpec> 
       TPosition const & position)
 {
     if (IsSameType<TTraceFlag, TracebackOff>::VALUE)
-        SEQAN_ASSERT_FAIL("Try to access uninitialized object!");
+        SEQAN2_ASSERT_FAIL("Try to access uninitialized object!");
 
     return *(begin(*dpNavigator._ptrDataContainer) + position);
 }
@@ -455,7 +455,7 @@ value(DPMatrixNavigator_<TDPMatrix, DPTraceMatrix<TTraceFlag>, TNavigationSpec> 
       TPosition const & position)
 {
     if (IsSameType<TTraceFlag, TracebackOff>::VALUE)
-        SEQAN_ASSERT_FAIL("Try to access uninitialized object!");
+        SEQAN2_ASSERT_FAIL("Try to access uninitialized object!");
 
     return *(begin(*dpNavigator._ptrDataContainer) + position);
 }
@@ -472,8 +472,8 @@ coordinate(DPMatrixNavigator_<TDPMatrix, DPTraceMatrix<TTraceFlag>, TNavigationS
            typename DPMatrixDimension_::TValue const & dimension)
 {
     if (IsSameType<TTraceFlag, TracebackOff>::VALUE)
-        SEQAN_ASSERT_FAIL("Try to access uninitialized object!");
-    SEQAN_ASSERT_EQ(_checkCorrectDimension(dimension), true);
+        SEQAN2_ASSERT_FAIL("Try to access uninitialized object!");
+    SEQAN2_ASSERT_EQ(_checkCorrectDimension(dimension), true);
 
     if (IsSameType<TTraceFlag, TracebackOff>::VALUE)
         return _dataLengths(*dpNavigator._ptrDataContainer)[dimension];  // Return lengths of given dimension.
@@ -507,11 +507,11 @@ inline void
 _setSimdLane(DPMatrixNavigator_<TDPMatrix, DPTraceMatrix<TTraceFlag>, TNavigationSpec> & dpNavigator,
              TPos const pos)
 {
-    SEQAN_ASSERT_LT(pos, static_cast<TPos>(LENGTH<typename Value<TDPMatrix>::Type>::VALUE));
+    SEQAN2_ASSERT_LT(pos, static_cast<TPos>(LENGTH<typename Value<TDPMatrix>::Type>::VALUE));
 
     dpNavigator._simdLane = pos;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_MATRIX_NAVIGATOR_TRACE_MATRIX_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_MATRIX_NAVIGATOR_TRACE_MATRIX_H_

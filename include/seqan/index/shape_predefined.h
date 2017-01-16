@@ -32,12 +32,12 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_SHAPE_PREDEFINED_H
-#define SEQAN_HEADER_SHAPE_PREDEFINED_H
+#ifndef SEQAN2_HEADER_SHAPE_PREDEFINED_H
+#define SEQAN2_HEADER_SHAPE_PREDEFINED_H
 
-//SEQAN_NO_GENERATED_FORWARDS: no forwards are generated for this file
+//SEQAN2_NO_GENERATED_FORWARDS: no forwards are generated for this file
 
-namespace seqan
+namespace seqan2
 {
 
     //////////////////////////////////////////////////////////////////////////////
@@ -123,6 +123,6 @@ namespace seqan
     > ShapeIlieB3;
 
 
-}    // namespace seqan
+}    // namespace seqan2
 
 #endif

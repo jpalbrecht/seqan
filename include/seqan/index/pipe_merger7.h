@@ -32,13 +32,13 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_INDEX_MERGER7_H
-#define SEQAN_HEADER_INDEX_MERGER7_H
+#ifndef SEQAN2_HEADER_SEQAN2_INDEX_MERGER7_H
+#define SEQAN2_HEADER_SEQAN2_INDEX_MERGER7_H
 
-namespace seqan
+namespace seqan2
 {
 
-//namespace SEQAN_NAMESPACE_PIPELINING
+//namespace SEQAN2_NAMESPACE_PIPELINING
 //{
 
     template <int I, typename T = void>

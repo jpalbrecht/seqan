@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_INDEX_ESA_ALGS_H
-#define SEQAN_HEADER_INDEX_ESA_ALGS_H
+#ifndef SEQAN2_HEADER_SEQAN2_INDEX_ESA_ALGS_H
+#define SEQAN2_HEADER_SEQAN2_INDEX_ESA_ALGS_H
 
-namespace seqan
+namespace seqan2
 {
 
     //////////////////////////////////////////////////////////////////////////////
@@ -47,7 +47,7 @@ namespace seqan
 /*!
  * @class SuperMaxRepeatsIterator Super Max Repeats Iterator
  * @extends BottomUpIterator
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief Iterator to search for all supermaximal repeats.
  *
@@ -145,7 +145,7 @@ namespace seqan
 /*!
  * @class SuperMaxRepeatsFastIterator Super Max Repeats Fast Iterator
  * @extends BottomUpIterator
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief Iterator to search for all supermaximal repeats (for enh. suffix arrays only).
  *
@@ -285,7 +285,7 @@ namespace seqan
 /*!
  * @class MaxRepeatsIterator Max Repeats Iterator
  * @extends BottomUpIterator
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief Iterator to search for all maximal repeats.
  *
@@ -677,7 +677,7 @@ namespace seqan
 
 /*!
  * @fn MaxRepeatsIterator#length
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Return the number of repeats.
  *
  * @signature TSize length(it);

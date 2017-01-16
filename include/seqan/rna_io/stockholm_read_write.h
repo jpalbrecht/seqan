@@ -34,12 +34,12 @@
 // This file contains routines to read and write to connect format files (.ct)
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_RNA_IO_STOCKHOLM_READ_WRITE_H_
-#define SEQAN_INCLUDE_SEQAN_RNA_IO_STOCKHOLM_READ_WRITE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_RNA_IO_STOCKHOLM_READ_WRITE_H_
+#define SEQAN2_INCLUDE_SEQAN2_RNA_IO_STOCKHOLM_READ_WRITE_H_
 
-#include <seqan/stream.h>
+#include <seqan2/stream.h>
 // for bracket-graph transformation
-#include <seqan/rna_io/dot_bracket_read_write.h>
+#include <seqan2/rna_io/dot_bracket_read_write.h>
 #include "rna_record.h"
 
 /* IMPLEMENTATION NOTES
@@ -80,7 +80,7 @@ Stockholm FORMAT:
 
 */
 
-namespace seqan{
+namespace seqan2{
 
 // ==========================================================================
 // Tags, Classes, Enums
@@ -92,7 +92,7 @@ namespace seqan{
 
 /*!
  * @tag FileFormats#Stockholm
- * @headerfile <seqan/rna_io.h>
+ * @headerfile <seqan2/rna_io.h>
  * @brief Stockholm format for RNA structures (*.sth).
  * @signature typedef Tag<Stockholm_> Stockholm;
  * @see FileFormats#RnaStruct
@@ -147,7 +147,7 @@ readRecord(RnaRecord & record, TForwardIter & iter, Stockholm const & /*tag*/)
     skipUntil(iter, NotFunctor<IsWhitespace>());
     readUntil(buffer, iter, IsNewline());
     if (buffer.find("STOCKHOLM") == std::string::npos)
-        SEQAN_THROW(ParseError("Expected STOCKHOLM identifier in the first line."));
+        SEQAN2_THROW(ParseError("Expected STOCKHOLM identifier in the first line."));
     skipOne(iter);
     clear(buffer);
 
@@ -242,11 +242,11 @@ readRecord(RnaRecord & record, TForwardIter & iter, Stockholm const & /*tag*/)
         clear(buffer);
     }
     if (empty(bracketStr))
-        SEQAN_THROW(ParseError("Expected a secondary structure line."));
+        SEQAN2_THROW(ParseError("Expected a secondary structure line."));
     if (empty(sequence))
-        SEQAN_THROW(ParseError("Expected a sequence line."));
+        SEQAN2_THROW(ParseError("Expected a sequence line."));
 
-    SEQAN_ASSERT_EQ(length(sequence), length(gapPos));
+    SEQAN2_ASSERT_EQ(length(sequence), length(gapPos));
 
     // store the alignment with gaps in record
     resize(rows(record.align), length(sequence));
@@ -280,7 +280,7 @@ inline void
 writeRecord(TTarget & target, RnaRecord const & record, Stockholm const & /*tag*/)
 {
     if (length(record.fixedGraphs) != 1u)
-        SEQAN_THROW(ParseError("ERROR: Cannot deal with multiple structure graphs."));
+        SEQAN2_THROW(ParseError("ERROR: Cannot deal with multiple structure graphs."));
 
     write(target, "# STOCKHOLM 1.0\n");                         // header
     if (!empty(record.name))
@@ -304,7 +304,7 @@ writeRecord(TTarget & target, RnaRecord const & record, Stockholm const & /*tag*
     }
     else
     {                                                           // alignment
-        SEQAN_ASSERT_EQ(length(record.seqID), length(rows(record.align)));
+        SEQAN2_ASSERT_EQ(length(record.seqID), length(rows(record.align)));
         typename Size<CharString>::Type maxlen = 12;            // determine indentation
         forEach(record.seqID, [&](CharString const & sID)
         {
@@ -334,6 +334,6 @@ writeRecord(TTarget & target, RnaRecord const & record, RnaIOContext & /*context
     writeRecord(target, record, Stockholm());
 }
 
-} // namespace seqan
+} // namespace seqan2
 
-#endif // SEQAN_INCLUDE_SEQAN_RNA_IO_STOCKHOLM_READ_WRITE_H_
+#endif // SEQAN2_INCLUDE_SEQAN2_RNA_IO_STOCKHOLM_READ_WRITE_H_

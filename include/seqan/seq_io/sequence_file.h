@@ -35,10 +35,10 @@
 // Class for reading/writing files in Fasta or Fastq format.
 // ==========================================================================
 
-#ifndef SEQAN_SEQ_IO_SEQUENCE_FILE_H_
-#define SEQAN_SEQ_IO_SEQUENCE_FILE_H_
+#ifndef SEQAN2_SEQ_IO_SEQUENCE_FILE_H_
+#define SEQAN2_SEQ_IO_SEQUENCE_FILE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Classes
@@ -52,7 +52,7 @@ namespace seqan {
  * @class SeqFileIn
  * @signature typedef FormattedFile<Fastq, Input> SeqFileIn;
  * @extends FormattedFileIn
- * @headerfile <seqan/seq_io.h>
+ * @headerfile <seqan2/seq_io.h>
  * @brief Class for reading RAW, FASTA, FASTQ, EMBL and GENBANK files containing unaligned sequences.
  */
 
@@ -62,7 +62,7 @@ typedef FormattedFile<Fastq, Input>     SeqFileIn;
  * @class SeqFileOut
  * @signature typedef FormattedFile<Fastq, Output> SeqFileOut;
  * @extends FormattedFileOut
- * @headerfile <seqan/seq_io.h>
+ * @headerfile <seqan2/seq_io.h>
  * @brief Class for writing RAW, FASTA, FASTQ, EMBL and GENBANK files containing unaligned sequences.
  */
 
@@ -76,7 +76,7 @@ typedef FormattedFile<Fastq, Output>    SeqFileOut;
 /*!
  * @class AutoSeqFormat
  * @extends TagSelector
- * @headerfile <seqan/file.h>
+ * @headerfile <seqan2/file.h>
  * @brief Auto-detects and stores a file format.
  *
  * @signature typedef TagList<Fastq, TagList<Fasta, TagList<Raw> > > SeqFormats;
@@ -275,7 +275,7 @@ readRecord(TIdString & meta,
 // Function readRecord(); With separate qualities
 // ----------------------------------------------------------------------------
 template <typename TSpec, typename TIdString, typename TSeqString, typename TQualString>
-inline SEQAN_FUNC_ENABLE_IF(Is<InputStreamConcept<typename FormattedFile<Fastq, Input, TSpec>::TStream> >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Is<InputStreamConcept<typename FormattedFile<Fastq, Input, TSpec>::TStream> >, void)
 readRecord(TIdString & meta, TSeqString & seq, TQualString & qual, FormattedFile<Fastq, Input, TSpec> & file)
 {
     readRecord(meta, seq, qual, file, file.format);
@@ -286,7 +286,7 @@ readRecord(TIdString & meta, TSeqString & seq, TQualString & qual, FormattedFile
 // Function readRecord(); Without separate qualities or No qualities
 // ----------------------------------------------------------------------------
 template <typename TSpec, typename TIdString, typename TSeqString>
-inline SEQAN_FUNC_ENABLE_IF(Is<InputStreamConcept<typename FormattedFile<Fastq, Input, TSpec>::TStream> > , void)
+inline SEQAN2_FUNC_ENABLE_IF(Is<InputStreamConcept<typename FormattedFile<Fastq, Input, TSpec>::TStream> > , void)
 readRecord(TIdString & meta, TSeqString & seq, FormattedFile<Fastq, Input, TSpec> & file)
 {
     readRecord(meta, seq, file, file.format);
@@ -469,7 +469,7 @@ inline void writeRecord(TFile & file,
         writeRecord(file, meta, seq, static_cast<typename TagSelector<TTagList>::Base const & >(format));
 }
 template <typename TSpec, typename TIdString, typename TSeqString>
-inline SEQAN_FUNC_ENABLE_IF(Is<OutputStreamConcept<typename FormattedFile<Fastq, Output, TSpec>::TStream> >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Is<OutputStreamConcept<typename FormattedFile<Fastq, Output, TSpec>::TStream> >, void)
 writeRecord(FormattedFile<Fastq, Output, TSpec> & file, TIdString const & meta, TSeqString const & seq)
 {
     writeRecord(file, meta, seq, file.format);
@@ -509,7 +509,7 @@ writeRecord(FormattedFile<Fastq, Output, TSpec> & file,
 // ----------------------------------------------------------------------------
 
 template <typename TFile, typename TIdString, typename TSeqString, typename TQualString>
-inline SEQAN_FUNC_ENABLE_IF(And<Is<OutputStreamConcept<typename TFile::TStream> >, IsSequence<TQualString> >, void)
+inline SEQAN2_FUNC_ENABLE_IF(And<Is<OutputStreamConcept<typename TFile::TStream> >, IsSequence<TQualString> >, void)
 writeRecord(TFile & file, TIdString const & meta, TSeqString const & seq, TQualString const & qual)
 {
     writeRecord(file, meta, seq, qual, file.format);
@@ -547,6 +547,6 @@ writeRecords(TFile & file, TIdStringSet const & meta, TSeqStringSet const & seq,
         writeRecord(file, meta[i], seq[i], qual[i], file.format);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif // SEQAN_SEQ_IO_SEQUENCE_FILE_H_
+#endif // SEQAN2_SEQ_IO_SEQUENCE_FILE_H_

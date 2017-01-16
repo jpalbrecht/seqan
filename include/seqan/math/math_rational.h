@@ -35,10 +35,10 @@
 // Taken from the Rational Number Library in Boost version 1.47.
 // ==========================================================================
 
-#ifndef SEQAN_MATH_RATIONAL_H_
-#define SEQAN_MATH_RATIONAL_H_
+#ifndef SEQAN2_MATH_RATIONAL_H_
+#define SEQAN2_MATH_RATIONAL_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -76,7 +76,7 @@ class Rational :
     > > > > > > > > > > > > > > > >
 {
     // Class-wide pre-conditions
-//    SEQAN_STATIC_ASSERT( std::numeric_limits<TInt>::is_specialized );
+//    SEQAN2_STATIC_ASSERT( std::numeric_limits<TInt>::is_specialized );
 
     // Helper types
 //    typedef typename boost::call_traits<TInt>::param_type param_type;
@@ -90,7 +90,7 @@ public:
     Rational() : num(0), den(1) {}
 
     template <typename T>
-    Rational(T const & n, SEQAN_CTOR_ENABLE_IF( IsInteger<T> ) ) : num(n), den(1) { (void)dummy; }
+    Rational(T const & n, SEQAN2_CTOR_ENABLE_IF( IsInteger<T> ) ) : num(n), den(1) { (void)dummy; }
     Rational(param_type n, param_type d) : num(n), den(d) { normalize(); }
 
     // Default copy constructor and assignment are fine
@@ -129,7 +129,7 @@ public:
     operator bool_type() const { return operator !() ? 0 : &helper::parts; }
     operator double() const
     {
-        SEQAN_ASSERT_NEQ (den, TInt(0));
+        SEQAN2_ASSERT_NEQ (den, TInt(0));
         return (double)num / (double)den;
     }
 
@@ -259,7 +259,7 @@ Rational<TInt>& Rational<TInt>::operator/= (const Rational<TInt>& r)
     TInt zero(0);
 
     // Trap division by zero
-    SEQAN_ASSERT_NEQ (r_num, zero);
+    SEQAN2_ASSERT_NEQ (r_num, zero);
 
     if (num == zero)
         return *this;
@@ -334,8 +334,8 @@ bool Rational<TInt>::operator< (const Rational<TInt>& r) const
     // checks is that for 2's complement systems, INT_MIN has no corresponding
     // positive, so negating it during normalization keeps it INT_MIN, which
     // is bad for later calculations that assume a positive denominator.
-    SEQAN_ASSERT_GT( this->den, zero );
-    SEQAN_ASSERT_GT( r.den, zero );
+    SEQAN2_ASSERT_GT( this->den, zero );
+    SEQAN2_ASSERT_GT( r.den, zero );
 
     // Determine relative order by expanding each value to its simple continued
     // fraction representation using the Euclidian GCD algorithm.
@@ -406,7 +406,7 @@ bool Rational<TInt>::operator< (param_type i) const
     int_type const  zero( 0 );
 
     // Break value into mixed-fraction form, w/ always-nonnegative remainder
-    SEQAN_ASSERT_GT( this->den, zero );
+    SEQAN2_ASSERT_GT( this->den, zero );
     int_type  q = this->num / this->den, r = this->num % this->den;
     while ( r < zero )  { r += this->den; --q; }
 
@@ -455,7 +455,7 @@ void Rational<TInt>::normalize()
     // Avoid repeated construction
     TInt zero(0);
 
-    SEQAN_ASSERT_NEQ (den, zero);
+    SEQAN2_ASSERT_NEQ (den, zero);
 
     // Handle the case of zero separately, to avoid division by zero
     if (num == zero) {
@@ -474,7 +474,7 @@ void Rational<TInt>::normalize()
         den = -den;
     }
 
-    SEQAN_ASSERT( this->test_invariant() );
+    SEQAN2_ASSERT( this->test_invariant() );
 }
 
 // Input and output
@@ -556,7 +556,7 @@ inline TInt floor(const Rational<TInt>& r)
     // Avoid repeated construction
     TInt zero(0);
 
-    SEQAN_ASSERT_NEQ (r.denominator(), zero);
+    SEQAN2_ASSERT_NEQ (r.denominator(), zero);
 
     if (r.numerator() >= zero)
         return r.numerator() / r.denominator();
@@ -570,7 +570,7 @@ inline TInt ceil(const Rational<TInt>& r)
     // Avoid repeated construction
     TInt zero(0);
 
-    SEQAN_ASSERT_NEQ (r.denominator(), zero);
+    SEQAN2_ASSERT_NEQ (r.denominator(), zero);
 
     if (r.numerator() > zero)
         return ((r.numerator() - 1) / r.denominator()) + 1;
@@ -579,6 +579,6 @@ inline TInt ceil(const Rational<TInt>& r)
 }
 
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_MATH_RATIONAL_H_
+#endif  // #ifndef SEQAN2_MATH_RATIONAL_H_

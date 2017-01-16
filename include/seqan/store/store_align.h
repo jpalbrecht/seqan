@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_STORE_ALIGN_H
-#define SEQAN_HEADER_STORE_ALIGN_H
+#ifndef SEQAN2_HEADER_STORE_ALIGN_H
+#define SEQAN2_HEADER_STORE_ALIGN_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -44,7 +44,7 @@ namespace seqan
 
 /*!
  * @class AlignedReadStoreElement
- * @headerfile <seqan/store.h>
+ * @headerfile <seqan2/store.h>
  * @brief Represents an alignment of a read to a contig.
  *
  * @signature template <typename TPos, typename TGapAnchors[, typename TSpec]>
@@ -202,7 +202,7 @@ AlignedReadStoreElement<TPos, TGapAnchor, TSpec>::INVALID_ID = MaxValue<typename
 
 /*!
  * @class AlignQualityStoreElement
- * @headerfile <seqan/store.h>
+ * @headerfile <seqan2/store.h>
  * @brief Stores the alignment qualities.
  *
  * @signature template <typename TScore[, typename TSpec]>
@@ -269,37 +269,37 @@ struct AlignQualityStoreElement
  * @see upperBoundAlignedReads
  *
  * @tag SortAlignedReadTags#SortContigId
- * @headerfile <seqan/store.h>
+ * @headerfile <seqan2/store.h>
  * @brief Sort aligned reads by @link AlignedReadStoreElement::contigId @endlink.
  *
  * @signature typedef Tag<SortContigId_> const SortContigId;
  *
  * @tag SortAlignedReadTags#SortId
- * @headerfile <seqan/store.h>
+ * @headerfile <seqan2/store.h>
  * @brief Sort aligned reads by @link AlignedReadStoreElement::id @endlink.
  *
  * @signature typedef Tag<SortId_> const SortId;
  *
  * @tag SortAlignedReadTags#SortBeginPos
- * @headerfile <seqan/store.h>
+ * @headerfile <seqan2/store.h>
  * @brief Sort aligned reads by @link AlignedReadStoreElement::beginPos @endlink.
  *
  * @signature typedef Tag<SortBeginPos_> const SortBeginPos;
  *
  * @tag SortAlignedReadTags#SortEndPos
- * @headerfile <seqan/store.h>
+ * @headerfile <seqan2/store.h>
  * @brief Sort aligned reads by @link AlignedReadStoreElement::endPos @endlink.
  *
  * @signature typedef Tag<SortEndPos_> const SortEndPos;
  *
  * @tag SortAlignedReadTags#SortPairMatchId
- * @headerfile <seqan/store.h>
+ * @headerfile <seqan2/store.h>
  * @brief Sort aligned reads by @link AlignedReadStoreElement::pairMatchId @endlink.
  *
  * @signature typedef Tag<SortPairMatchId_> const SortPairMatchId;
  *
  * @tag SortAlignedReadTags#SortReadId
- * @headerfile <seqan/store.h>
+ * @headerfile <seqan2/store.h>
  * @brief Sort aligned reads by @link AlignedReadStoreElement::readId @endlink.
  *
  * @signature typedef Tag<SortReadId_> const SortReadId;
@@ -417,7 +417,7 @@ struct _LessAlignedRead<TAlignedRead, SortReadId> :
 
 /*!
  * @fn sortAlignedReads
- * @headerfile <seqan/store.h>
+ * @headerfile <seqan2/store.h>
  * @brief Stably read alignments, e.g. in @link FragmentStore::alignedReadStore @endlink.
  *
  * @signature void sortAlignedReads(alignStore, sortTag);
@@ -435,7 +435,7 @@ struct _LessAlignedRead<TAlignedRead, SortReadId> :
 
 /*!
  * @fn lowerBoundAlignedReads
- * @headerfile <seqan/store.h>
+ * @headerfile <seqan2/store.h>
  * @brief Performs a binary lower bound search on read alignments.
  *
  * @signature TIter1 lowerBoundAlignedReads(alignStore, value, sortTag);
@@ -459,7 +459,7 @@ struct _LessAlignedRead<TAlignedRead, SortReadId> :
 
 /*!
  * @fn upperBoundAlignedReads
- * @headerfile <seqan/store.h>
+ * @headerfile <seqan2/store.h>
  * @brief Performs a binary upper bound search on read alignments.
  *
  * @signature TIter1 upperBoundAlignedReads(alignStore, value, sortTag);
@@ -1410,6 +1410,6 @@ upperBoundAlignedReads(TReadAlignElement * const & alignedReadsItBegin,
 
 //////////////////////////////////////////////////////////////////////////////
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

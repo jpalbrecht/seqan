@@ -33,10 +33,10 @@
 // Author: Manuel Holtgrewe <manuel.holtgrewe@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_MODIFIER_REVERSE_H
-#define SEQAN_HEADER_MODIFIER_REVERSE_H
+#ifndef SEQAN2_HEADER_MODIFIER_REVERSE_H
+#define SEQAN2_HEADER_MODIFIER_REVERSE_H
 
-namespace seqan
+namespace seqan2
 {
 
 // ==========================================================================
@@ -54,7 +54,7 @@ namespace seqan
 /*!
  * @class ModReverseIterator
  * @extends ModifiedIterator
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Mirror the characters from begin to end.
  *
  * @signature template <typename THost>
@@ -66,7 +66,7 @@ namespace seqan
 /*!
  * @class ModReverseString
  * @extends ModifiedString
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Mirror the characters from begin to end.
  *
  * @signature template <typename THost>
@@ -522,7 +522,7 @@ end(ModifiedString<THost, ModReverse> & me, Tag<TTagSpec> const)
 
 /*!
  * @fn reverse
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Reverse a container in-place.
  *
  * @signature void reverse(sequence);
@@ -567,7 +567,7 @@ reverse(TSequence & sequence, Tag<TParallelTag> parallelTag)
         resize(splitter, 1);
 
     // (weese:) We have to cast the result of length to int to circumvent an internal gcc compiler error
-    SEQAN_OMP_PRAGMA(parallel for num_threads((int)length(splitter)) schedule(static))
+    SEQAN2_OMP_PRAGMA(parallel for num_threads((int)length(splitter)) schedule(static))
     for (int job = 0; job < (int)length(splitter); ++job)
     {
         TIter it1 = itBeg + splitter[job];
@@ -586,13 +586,13 @@ reverse(StringSet<TSequence, TSpec> & stringSet, Tag<TParallelTag>)
     typedef typename MakeSigned<TPos>::Type                         TSPos;
 
     TSPos seqCount = length(stringSet);
-    SEQAN_OMP_PRAGMA(parallel for if (IsSameType<Tag<TParallelTag>, Parallel>::VALUE))
+    SEQAN2_OMP_PRAGMA(parallel for if (IsSameType<Tag<TParallelTag>, Parallel>::VALUE))
     for (TSPos seqNo = 0; seqNo < seqCount; ++seqNo)
         reverse(stringSet[seqNo], Serial());
 }
 
 template < typename TText >
-inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<TText> >)
+inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<TText> >)
 reverse(TText & text)
 {
     reverse(text, Parallel());

@@ -34,12 +34,12 @@
 // General purpose allocator.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_ALLOCATOR_SIMPLE_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_ALLOCATOR_SIMPLE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ALLOCATOR_SIMPLE_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_ALLOCATOR_SIMPLE_H_
 
-#include <seqan/basic/allocator_interface.h>
+#include <seqan2/basic/allocator_interface.h>
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -52,7 +52,7 @@ namespace seqan {
 /*!
  * @class SimpleAllocator
  * @extends Allocator
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief General purpose allocator.
  *
  * @signature template <typename TParentAllocator>
@@ -234,6 +234,6 @@ deallocate(Allocator<SimpleAlloc<TParentAllocator> > & me,
     deallocate(parentAllocator(me), ptr, header.size);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_ALLOCATOR_SIMPLE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ALLOCATOR_SIMPLE_H_

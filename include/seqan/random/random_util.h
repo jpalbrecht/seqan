@@ -35,10 +35,10 @@
 // Shuffling and conversion
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_RANDOM_RANDOM_UTIL_H_
-#define INCLUDE_SEQAN_RANDOM_RANDOM_UTIL_H_
+#ifndef INCLUDE_SEQAN2_RANDOM_RANDOM_UTIL_H_
+#define INCLUDE_SEQAN2_RANDOM_RANDOM_UTIL_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ===========================================================================
 // Forwards, Tags.
@@ -58,7 +58,7 @@ namespace seqan {
 
 /*!
  * @fn shuffle
- * @headerfile <seqan/random.h>
+ * @headerfile <seqan2/random.h>
  * @brief Shuffle the given container.
  *
  * @signature void shuffle(container, rng);
@@ -86,7 +86,7 @@ void shuffle(TContainer & container, TRNG & rng)
 
 /*!
  * @fn calcBetaDistParam
- * @headerfile <seqan/random.h>
+ * @headerfile <seqan2/random.h>
  * @brief Computes alpha and beta paramters for the beta distribution from mean and stddev of the underlying distribution.
  *
  * @signature param cvtBetaDistParam(mean, stddev);
@@ -107,7 +107,7 @@ auto cvtBetaDistParam(TRealType const & mean, TRealType const & stddev)
 
 /*!
  * @fn calcLogNormalDistParam
- * @headerfile <seqan/random.h>
+ * @headerfile <seqan2/random.h>
  * @brief Computes <tt>m</tt> and <tt>s</tt> paramters for the lognormal distribution from mean and stddev of the underlying distribution.
  *
  * @signature param cvtLogNormalDistParam(mean, stddev);
@@ -128,6 +128,6 @@ auto cvtLogNormalDistParam(TRealType const & mean, TRealType const & stddev)
                       static_cast<TRealType>(std::sqrt(std::log(1.0 + stddev * stddev / mean / mean))));
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // INCLUDE_SEQAN_RANDOM_RANDOM_UTIL_H_
+#endif  // INCLUDE_SEQAN2_RANDOM_RANDOM_UTIL_H_

@@ -36,10 +36,10 @@
 // journal set.
 // ==========================================================================
 
-#ifndef EXTRAS_INCLUDE_SEQAN_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_IMPL_H_
-#define EXTRAS_INCLUDE_SEQAN_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_IMPL_H_
+#ifndef EXTRAS_INCLUDE_SEQAN2_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_IMPL_H_
+#define EXTRAS_INCLUDE_SEQAN2_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_IMPL_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -56,7 +56,7 @@ namespace seqan
 
 /*!
  * @class JournaledStringTree Journaled String Tree
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief This data structure represents a virtual set of strings using a veritcal compression scheme.
  *
  * @signature template <typename TSequence[, typename TConfig][, TSpec]>
@@ -96,7 +96,7 @@ public:
     /*!
      * @fn JournaledStringTree::JournaledStringTree
      * @brief Constructor.
-     * @headerfile <seqan/journaled_string_tree.h>
+     * @headerfile <seqan2/journaled_string_tree.h>
      *
      * @signature JournaledStringTree();
      * @signature JournaledStringTree(size);
@@ -133,7 +133,7 @@ public:
 
 /*!
  * @mfn JournaledStringTree#Spec
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Returns the specialization type.
  *
  * @signature Spec<TJst>::Type;
@@ -155,7 +155,7 @@ struct Spec<JournaledStringTree<TSequence, TConfig, TSpec> >
 
 /*!
  * @mfn JournaledStringTree#Size
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief The size type.
  *
  * @signature Size<TJst>::Type;
@@ -184,7 +184,7 @@ struct Size<JournaledStringTree<TSequence, TConfig, TSpec> >
 
 /*!
  * @mfn JournaledStringTree#Position
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief The position type.
  *
  * @signature Position<TJst>::Type;
@@ -207,7 +207,7 @@ struct Position<JournaledStringTree<TSequence, TConfig, TSpec> >
 
 /*!
  * @mfn JournaledStringTree#Host
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief The host type.
  *
  * @signature Host<TJst>::Type;
@@ -354,7 +354,7 @@ member(JournaledStringTree<TSequence, TConfig, TSpec> const & jst,
 
 /*!
  * @fn JournaledStringTree#host
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Returns the set base sequence.
  *
  * @signature THost host(jst);
@@ -384,7 +384,7 @@ host(JournaledStringTree<TSequence, TConfig, TSpec> const & jst)
 
 /*!
  * @fn JournaledStringTree#setHost
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Sets the base sequence of the journaled string tree.
  *
  * @signature void setHost(jst, host);
@@ -410,7 +410,7 @@ setHost(JournaledStringTree<TSequence, TConfig, TSpec> & jst,
 
 /*!
  * @fn JournaledStringTree#length
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Returns the number of sequences represented by the journaled string tree.
  *
  * @signature TSize length(jst);
@@ -433,7 +433,7 @@ length(JournaledStringTree<TSequence, TConfig, TSpec> const & jst)
 
 /*!
  * @fn JournaledStringTree#resize
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Resizes the number of sequences represented by the journaled string tree.
  *
  * @signature void resize(jst, size);
@@ -471,7 +471,7 @@ resize(JournaledStringTree<TSequence, TConfig, TSpec> & jst,
 
 /*
  * @fn JournaledStringTree#maxSize
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Returns the maximal number of delta events that can be stored in the journaled string tree.
  *
  * @signature TSize maxSize(jst);
@@ -494,7 +494,7 @@ maxSize(JournaledStringTree<TSequence, TConfig, TSpec> const & /*jst*/)
 
 /*
  * @fn JournaledStringTree#size
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Returns the number of delta events stored in the journaled string tree.
  *
  * @signature TSize size(jst);
@@ -517,7 +517,7 @@ size(JournaledStringTree<TSequence, TConfig, TSpec> const jst)
 
 /*
  * @fn JournaledStringTree#empty
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Checks whether the underlying @link DeltaMap @endlink is empty.
  *
  * @signature bool empty(jst);
@@ -540,7 +540,7 @@ empty(JournaledStringTree<TSequence, TConfig, TSpec> const jst)
 
 /*!
  * @fn JournaledStringTree#clear
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Clears the journaled string tree.
  *
  * @signature void clear(jst);
@@ -563,7 +563,7 @@ clear(JournaledStringTree<TSequence, TConfig, TSpec> & jst)
 
 /*!
  * @fn JournaledStringTree#insert
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Adds a new delta ecent to the journaled string tree.
  *
  * @signature bool insert(jst, pos, val, ids, type);
@@ -588,7 +588,7 @@ clear(JournaledStringTree<TSequence, TConfig, TSpec> & jst)
 
 template <typename TSequence, typename TConfig, typename TSpec, typename TPos, typename TValue, typename TIds,
           typename TDeltaType>
-inline SEQAN_FUNC_ENABLE_IF(Is<ContainerConcept<TIds> >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Is<ContainerConcept<TIds> >, void)
 insert(JournaledStringTree<TSequence, TConfig, TSpec> & jst,
        TPos srcPos,
        TValue const & deltaVal,
@@ -599,19 +599,19 @@ insert(JournaledStringTree<TSequence, TConfig, TSpec> & jst,
     typedef typename Member<TJst, JstDeltaMapMember>::Type  TDeltaMap;
     typedef typename DeltaCoverage<TDeltaMap>::Type         TCoverage;
     typedef typename Value<TIds>::Type                      TID;
-    typedef typename Size<TJst>::Type                       TSize   SEQAN_TYPEDEF_FOR_DEBUG;
+    typedef typename Size<TJst>::Type                       TSize   SEQAN2_TYPEDEF_FOR_DEBUG;
 
     if (IsSameType<TDeltaType, DeltaTypeIns>::VALUE)
-        SEQAN_ASSERT_LEQ(static_cast<TSize>(srcPos), length(impl::member(jst, JstSourceMember())));  // Make sure the delta position does not exceed the source.
+        SEQAN2_ASSERT_LEQ(static_cast<TSize>(srcPos), length(impl::member(jst, JstSourceMember())));  // Make sure the delta position does not exceed the source.
     else
-        SEQAN_ASSERT_LT(static_cast<TSize>(srcPos), length(impl::member(jst, JstSourceMember())));
+        SEQAN2_ASSERT_LT(static_cast<TSize>(srcPos), length(impl::member(jst, JstSourceMember())));
     // Transform the ids into coverage value.
     TCoverage coverage;
     resize(coverage, length(jst), false, Exact());
 
     forEach(ids,[&jst, &coverage](TID seqId)
     {
-        SEQAN_ASSERT_LT(static_cast<TSize>(seqId), length(jst));  // Check that id is valid.
+        SEQAN2_ASSERT_LT(static_cast<TSize>(seqId), length(jst));  // Check that id is valid.
         coverage[seqId] = true;
     });
 
@@ -624,7 +624,7 @@ insert(JournaledStringTree<TSequence, TConfig, TSpec> & jst,
 
 /*!
  * @fn JournaledStringTree#erase
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Erases a delta event in the journaled string tree.
  *
  * @signature bool erase(jst, pos, type);
@@ -670,4 +670,4 @@ erase(JournaledStringTree<TSequence, TConfig, TSpec> & jst,
 
 }
 
-#endif // EXTRAS_INCLUDE_SEQAN_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_IMPL_H_
+#endif // EXTRAS_INCLUDE_SEQAN2_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_IMPL_H_

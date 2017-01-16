@@ -41,14 +41,14 @@
 // TODO(holtgrew): Add DDDoc documentation.
 // TODO(holtgrew): Port all tests over to new system?
 
-#ifndef INCLUDE_SEQAN_BASIC_TEST_SYSTEM_H_
-#define INCLUDE_SEQAN_BASIC_TEST_SYSTEM_H_
+#ifndef INCLUDE_SEQAN2_BASIC_TEST_SYSTEM_H_
+#define INCLUDE_SEQAN2_BASIC_TEST_SYSTEM_H_
 
 #ifdef STDLIB_VS
 #include <typeinfo>
 #endif  // #ifdef STDLIB_VS
 
-#include <seqan/basic/fundamental_tags.h>
+#include <seqan2/basic/fundamental_tags.h>
 
 #include <memory>
 #include <string>
@@ -57,7 +57,7 @@
 #include <cxxabi.h>
 #endif  // #if !defined(STDLIB_VS)
 
-namespace seqan {
+namespace seqan2 {
 
 // ==========================================================================
 // Classes
@@ -109,8 +109,8 @@ public:
 //
 // int main(int argc, char const ** argv)
 // {
-//     seqan::TestSystem::init(argc, argv);
-//     return seqan::TestSystem::runAll();
+//     seqan2::TestSystem::init(argc, argv);
+//     return seqan2::TestSystem::runAll();
 // }
 
 class TestSystem
@@ -124,7 +124,7 @@ public:
     static void init(int argc, char const ** argv)
     {
         (void)argc;
-        seqan::ClassTest::beginTestSuite("tests", argv[0]);
+        seqan2::ClassTest::beginTestSuite("tests", argv[0]);
     }
 
     static TestSystem * getInstance()
@@ -152,33 +152,33 @@ public:
                 testName += " type parameter ";
                 testName += (*it)->typeName;
             }
-            seqan::ClassTest::beginTest(testName.c_str());
+            seqan2::ClassTest::beginTest(testName.c_str());
             try {
                 (*it)->instance->setUp();
                 (*it)->instance->runTest();
                 (*it)->instance->tearDown();
-            } catch(seqan::ClassTest::AssertionFailedException e) {
+            } catch(seqan2::ClassTest::AssertionFailedException e) {
                 /* Swallow exception, go on with next test. */
                 (void) e;  /* Get rid of unused variable warning. */
-            } catch (seqan::Exception const & e) {
+            } catch (seqan2::Exception const & e) {
                 std::cerr << "Unexpected exception of type "
-                            << toCString(seqan::Demangler< seqan::Exception>(e))
+                            << toCString(seqan2::Demangler< seqan2::Exception>(e))
                             << "; message: " << e.what() << "\n";
-                seqan::ClassTest::StaticData::thisTestOk() = false;
-                seqan::ClassTest::StaticData::errorCount() += 1;
+                seqan2::ClassTest::StaticData::thisTestOk() = false;
+                seqan2::ClassTest::StaticData::errorCount() += 1;
             } catch (...) {
                 std::cerr << "Unexpected exception of unknown type\n";
-                seqan::ClassTest::StaticData::thisTestOk() = false;
-                seqan::ClassTest::StaticData::errorCount() += 1;
+                seqan2::ClassTest::StaticData::thisTestOk() = false;
+                seqan2::ClassTest::StaticData::errorCount() += 1;
             }
-            seqan::ClassTest::endTest();
+            seqan2::ClassTest::endTest();
         }
 
         // explicitly delete heap allocated resources
         for (auto test: instance.testDescriptions)
             delete test;
 
-        return seqan::ClassTest::endTestSuite();
+        return seqan2::ClassTest::endTestSuite();
     }
 };
 
@@ -264,113 +264,113 @@ public:
 // ==========================================================================
 
 // --------------------------------------------------------------------------
-// Helper Macro SEQAN_TEST_NAME_()
+// Helper Macro SEQAN2_TEST_NAME_()
 // --------------------------------------------------------------------------
 
 // Helper macro for getting the name of a test.
 
-#define SEQAN_TEST_NAME_(testCaseName, testName) \
+#define SEQAN2_TEST_NAME_(testCaseName, testName) \
     testCaseName ## __ ## testName
 
 // --------------------------------------------------------------------------
-// Macro SEQAN_TEST()
+// Macro SEQAN2_TEST()
 // --------------------------------------------------------------------------
 
 // Macro for defining a test.
 
-#define SEQAN_TEST(testCaseName, testName)                                    \
-    class SEQAN_TEST_NAME_(testCaseName, testName) : public seqan::Test     \
+#define SEQAN2_TEST(testCaseName, testName)                                    \
+    class SEQAN2_TEST_NAME_(testCaseName, testName) : public seqan2::Test     \
     {                                                                         \
     public:                                                                   \
-        SEQAN_TEST_NAME_(testCaseName, testName)() {}                         \
+        SEQAN2_TEST_NAME_(testCaseName, testName)() {}                         \
                                                                               \
         virtual void runTest();                                               \
                                                                               \
-        static seqan::TestDescription_ * description;                       \
+        static seqan2::TestDescription_ * description;                       \
     };                                                                        \
                                                                               \
-    seqan::TestDescription_ *                                               \
-    SEQAN_TEST_NAME_(testCaseName, testName)::description =                   \
-    seqan::TestCaseFactory_<SEQAN_TEST_NAME_(testCaseName, testName)>::make(\
-            SEQAN_MKSTRING(testCaseName),                                     \
-            SEQAN_MKSTRING(testName));                                        \
+    seqan2::TestDescription_ *                                               \
+    SEQAN2_TEST_NAME_(testCaseName, testName)::description =                   \
+    seqan2::TestCaseFactory_<SEQAN2_TEST_NAME_(testCaseName, testName)>::make(\
+            SEQAN2_MKSTRING(testCaseName),                                     \
+            SEQAN2_MKSTRING(testName));                                        \
                                                                               \
-    void SEQAN_TEST_NAME_(testCaseName, testName)::runTest()
+    void SEQAN2_TEST_NAME_(testCaseName, testName)::runTest()
 
 // --------------------------------------------------------------------------
-// Macro SEQAN_TEST_F()
+// Macro SEQAN2_TEST_F()
 // --------------------------------------------------------------------------
 
 // Macro for defining a test with a fixture.
 
-#define SEQAN_TEST_F(testCaseName, testName)                                  \
-    class SEQAN_TEST_NAME_(testCaseName, testName) : public testCaseName      \
+#define SEQAN2_TEST_F(testCaseName, testName)                                  \
+    class SEQAN2_TEST_NAME_(testCaseName, testName) : public testCaseName      \
     {                                                                         \
     public:                                                                   \
-        SEQAN_TEST_NAME_(testCaseName, testName)() {}                         \
+        SEQAN2_TEST_NAME_(testCaseName, testName)() {}                         \
                                                                               \
         virtual void runTest();                                               \
                                                                               \
-        static seqan::TestDescription_ * description;                       \
+        static seqan2::TestDescription_ * description;                       \
     };                                                                        \
                                                                               \
-    seqan::TestDescription_ *                                               \
-    SEQAN_TEST_NAME_(testCaseName, testName)::description =                   \
-    seqan::TestCaseFactory_<SEQAN_TEST_NAME_(testCaseName, testName)>::make(\
-            SEQAN_MKSTRING(testCaseName),                                     \
-            SEQAN_MKSTRING(testName));                                        \
+    seqan2::TestDescription_ *                                               \
+    SEQAN2_TEST_NAME_(testCaseName, testName)::description =                   \
+    seqan2::TestCaseFactory_<SEQAN2_TEST_NAME_(testCaseName, testName)>::make(\
+            SEQAN2_MKSTRING(testCaseName),                                     \
+            SEQAN2_MKSTRING(testName));                                        \
                                                                               \
-    void SEQAN_TEST_NAME_(testCaseName, testName)::runTest()
+    void SEQAN2_TEST_NAME_(testCaseName, testName)::runTest()
 
 // --------------------------------------------------------------------------
-// Helper Macro SEQAN_TYPED_TEST_CASE_TYPES_NAME_()
+// Helper Macro SEQAN2_TYPED_TEST_CASE_TYPES_NAME_()
 // --------------------------------------------------------------------------
 
 // Helper macro for getting the name of a test case.
 
-#define SEQAN_TYPED_TEST_CASE_TYPES_NAME_(testCaseName, types)  \
-    SEQAN_TYPED_TEST_CASE_TYPES_ ## testCaseName ## _
+#define SEQAN2_TYPED_TEST_CASE_TYPES_NAME_(testCaseName, types)  \
+    SEQAN2_TYPED_TEST_CASE_TYPES_ ## testCaseName ## _
 
 // --------------------------------------------------------------------------
-// Macro SEQAN_TYPED_TEST_CASE()
+// Macro SEQAN2_TYPED_TEST_CASE()
 // --------------------------------------------------------------------------
 
 // Helper macro for fixing the types to run with a typed test case.
 
-#define SEQAN_TYPED_TEST_CASE(testCaseName, types)                      \
-    typedef types SEQAN_TYPED_TEST_CASE_TYPES_NAME_(testCaseName, types)
+#define SEQAN2_TYPED_TEST_CASE(testCaseName, types)                      \
+    typedef types SEQAN2_TYPED_TEST_CASE_TYPES_NAME_(testCaseName, types)
 
 // --------------------------------------------------------------------------
-// Macro SEQAN_TYPED_TEST()
+// Macro SEQAN2_TYPED_TEST()
 // --------------------------------------------------------------------------
 
 // Define a typed test, i.e. one that is run for all types in a list.
 
-#define SEQAN_TYPED_TEST(testCaseName, testName)    \
-    template <typename SEQAN_TParam> \
-    class SEQAN_TEST_NAME_(testCaseName, testName) : public testCaseName<SEQAN_TParam> \
+#define SEQAN2_TYPED_TEST(testCaseName, testName)    \
+    template <typename SEQAN2_TParam> \
+    class SEQAN2_TEST_NAME_(testCaseName, testName) : public testCaseName<SEQAN2_TParam> \
     {                                                                   \
     public:                                                             \
-        SEQAN_TEST_NAME_(testCaseName, testName)(){}                    \
+        SEQAN2_TEST_NAME_(testCaseName, testName)(){}                    \
                                                                         \
         virtual void runTest();                                         \
                                                                         \
-        typedef testCaseName<SEQAN_TParam> TestFixture;                 \
+        typedef testCaseName<SEQAN2_TParam> TestFixture;                 \
     };                                                                  \
                                                                         \
-    bool SEQAN_ ## testCaseName ## __ ## testName ## _registered_ =     \
-            seqan::TypedTestFactory_<SEQAN_TEST_NAME_(testCaseName, testName), \
-                               SEQAN_TYPED_TEST_CASE_TYPES_NAME_(testCaseName, types) \
-                               >::make(SEQAN_MKSTRING(testCaseName), SEQAN_MKSTRING(testName)); \
+    bool SEQAN2_ ## testCaseName ## __ ## testName ## _registered_ =     \
+            seqan2::TypedTestFactory_<SEQAN2_TEST_NAME_(testCaseName, testName), \
+                               SEQAN2_TYPED_TEST_CASE_TYPES_NAME_(testCaseName, types) \
+                               >::make(SEQAN2_MKSTRING(testCaseName), SEQAN2_MKSTRING(testName)); \
                                                                         \
-    template <typename SEQAN_TParam>                                    \
-    void SEQAN_TEST_NAME_(testCaseName, testName)<SEQAN_TParam>::runTest()
+    template <typename SEQAN2_TParam>                                    \
+    void SEQAN2_TEST_NAME_(testCaseName, testName)<SEQAN2_TParam>::runTest()
 
 // --------------------------------------------------------------------------
-// Macro SEQAN_TEST_EXCEPTION()
+// Macro SEQAN2_TEST_EXCEPTION()
 // --------------------------------------------------------------------------
 
-#define SEQAN_TEST_EXCEPTION(_exception_type, command)                              \
+#define SEQAN2_TEST_EXCEPTION(_exception_type, command)                              \
     do                                                                              \
     {                                                                               \
         bool caughtException = false;                                               \
@@ -384,13 +384,13 @@ public:
         }                                                                           \
         catch(...)                                                                  \
         {                                                                           \
-            SEQAN_FAIL("Wrong exception thrown: %s", #_exception_type);             \
+            SEQAN2_FAIL("Wrong exception thrown: %s", #_exception_type);             \
         }                                                                           \
         if (!caughtException)                                                       \
-            SEQAN_FAIL("No exception thrown!");                                     \
+            SEQAN2_FAIL("No exception thrown!");                                     \
     } while(false)
 
-#define SEQAN_TEST_EXCEPTION_WITH_MESSAGE(_exception_type, command, _message)       \
+#define SEQAN2_TEST_EXCEPTION_WITH_MESSAGE(_exception_type, command, _message)       \
     do                                                                              \
     {                                                                               \
         bool caughtException = false;                                               \
@@ -401,19 +401,19 @@ public:
         catch(_exception_type& ex)                                                  \
         {                                                                           \
             if(std::string(ex.what()) != _message)                                  \
-                SEQAN_FAIL("Got correct exception but wrong message: '%s' != '%s'", \
+                SEQAN2_FAIL("Got correct exception but wrong message: '%s' != '%s'", \
                            ex.what(), _message);                                    \
             caughtException = true;                                                 \
         }                                                                           \
         catch(...)                                                                  \
         {                                                                           \
-            SEQAN_FAIL("Wrong exception thrown: %s", #_exception_type);             \
+            SEQAN2_FAIL("Wrong exception thrown: %s", #_exception_type);             \
         }                                                                           \
         if (!caughtException)                                                       \
-            SEQAN_FAIL("No exception thrown!");                                     \
+            SEQAN2_FAIL("No exception thrown!");                                     \
     } while(false)
 
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_BASIC_TEST_SYSTEM_H_
+#endif  // #ifndef INCLUDE_SEQAN2_BASIC_TEST_SYSTEM_H_

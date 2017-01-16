@@ -32,12 +32,12 @@
 // Author: Manuel Holtgrewe <manuel.holtgrewe@fu-berlin.de>
 // ==========================================================================
 
-// SEQAN_NO_GENERATED_FORWARDS
+// SEQAN2_NO_GENERATED_FORWARDS
 
-#ifndef INCLUDE_SEQAN_PARSE_LM_PARSE_STELLAR_GFF_H_
-#define INCLUDE_SEQAN_PARSE_LM_PARSE_STELLAR_GFF_H_
+#ifndef INCLUDE_SEQAN2_PARSE_LM_PARSE_STELLAR_GFF_H_
+#define INCLUDE_SEQAN2_PARSE_LM_PARSE_STELLAR_GFF_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -218,6 +218,6 @@ readRecord(TLocalMatchStore & store,
     appendLocalMatch(store, subjectName, subjectBeginPos, subjectEndPos, queryName, queryBeginPos, queryEndPos, buffer);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // INCLUDE_SEQAN_PARSE_LM_PARSE_STELLAR_GFF_H_
+#endif  // INCLUDE_SEQAN2_PARSE_LM_PARSE_STELLAR_GFF_H_

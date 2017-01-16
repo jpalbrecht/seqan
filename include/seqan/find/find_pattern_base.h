@@ -35,19 +35,19 @@
 // metafunctions.
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_FIND_PATTERN_BASE_H
-#define SEQAN_HEADER_FIND_PATTERN_BASE_H
+#ifndef SEQAN2_HEADER_FIND_PATTERN_BASE_H
+#define SEQAN2_HEADER_FIND_PATTERN_BASE_H
 
 
 //////////////////////////////////////////////////////////////////////////////
 
-namespace seqan {
+namespace seqan2 {
 
 //////////////////////////////////////////////////////////////////////////////
 
 /*!
  * @class Pattern
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Holds the needle and preprocessing data (depends on algorithm).
  *
  * @signature template <typename TNeedle[, typename TSpec]>
@@ -250,7 +250,7 @@ inline void
 setHost(Pattern<TNeedle, TSpec> & me,
         TNeedle2 && ndl)
 {
-    SEQAN_ASSERT(!empty(ndl));
+    SEQAN2_ASSERT(!empty(ndl));
     setValue(_dataHost(me), std::forward<TNeedle2>(ndl));
     _reinitPattern(me);
 }
@@ -466,6 +466,6 @@ setScoringScheme(Pattern<TNeedle, TSpec> & /*me*/,
 }
 //////////////////////////////////////////////////////////////////////////////
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

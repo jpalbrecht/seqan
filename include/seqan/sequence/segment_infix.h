@@ -34,10 +34,10 @@
 // Implementation of the Infix Segment specialization.
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_SEGMENT_INFIX_H
-#define SEQAN_HEADER_SEGMENT_INFIX_H
+#ifndef SEQAN2_HEADER_SEGMENT_INFIX_H
+#define SEQAN2_HEADER_SEGMENT_INFIX_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -47,7 +47,7 @@ namespace seqan
 /*!
  * @class InfixSegment Infix Segment
  * @extends Segment
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief An infix of a sequence.
  *
  * @signature template <typename THost>
@@ -77,7 +77,7 @@ public:
     // Check member variables with assertions.  This is called in the
     // constructors.
     inline void _checkMemberVariables() const {
-        SEQAN_ASSERT_LEQ(data_begin_position, data_end_position);
+        SEQAN2_ASSERT_LEQ(data_begin_position, data_end_position);
     }
 
    
@@ -565,7 +565,7 @@ inline typename Reference< Segment<THost, TSpec> >::Type
 value(Segment<THost, TSpec> & me,
       TPos pos)
 {
-    SEQAN_ASSERT_LT_MSG(pos, static_cast<TPos>(length(me)), "Trying to acces an element behind the last one!");
+    SEQAN2_ASSERT_LT_MSG(pos, static_cast<TPos>(length(me)), "Trying to acces an element behind the last one!");
     return *(begin(me, Standard()) + pos);
 }
 
@@ -574,7 +574,7 @@ inline typename Reference< Segment<THost, TSpec> const >::Type
 value(Segment<THost, TSpec> const & me,
       TPos pos)
 {
-    SEQAN_ASSERT_LT_MSG(pos, static_cast<TPos>(length(me)), "Trying to acces an element behind the last one!");
+    SEQAN2_ASSERT_LT_MSG(pos, static_cast<TPos>(length(me)), "Trying to acces an element behind the last one!");
     return *(begin(me, Standard()) + pos);
 }
 
@@ -694,6 +694,6 @@ setEnd(TIterator new_end)
 
 //////////////////////////////////////////////////////////////////////////////
 
-} //namespace seqan
+} //namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

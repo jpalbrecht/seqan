@@ -35,35 +35,35 @@
 // Umbrella header for the moduel graph_align.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_GRAPH_ALIGN_H_
-#define SEQAN_INCLUDE_SEQAN_GRAPH_ALIGN_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_GRAPH_ALIGN_H_
+#define SEQAN2_INCLUDE_SEQAN2_GRAPH_ALIGN_H_
 
 // External STL
 #include <map>
 
 // Seqan
-#include <seqan/score.h>
-#include <seqan/align/fragment.h>
-#include <seqan/graph_types.h>
-#include <seqan/graph_algorithms.h>
+#include <seqan2/score.h>
+#include <seqan2/align/fragment.h>
+#include <seqan2/graph_types.h>
+#include <seqan2/graph_algorithms.h>
 
 
 // Alignment graph
-#include <seqan/graph_align/graph_impl_align.h>
-#include <seqan/graph_align/graph_impl_align_adapt.h>
+#include <seqan2/graph_align/graph_impl_align.h>
+#include <seqan2/graph_align/graph_impl_align_adapt.h>
 
 // Interval trees
-#include <seqan/misc/interval_tree.h>
+#include <seqan2/misc/interval_tree.h>
 
 // Refinement
-//#include <seqan/graph_align/graph_algorithm_refine.h>
-#include <seqan/graph_align/graph_algorithm_refine_scoring.h>
-#include <seqan/graph_align/graph_algorithm_refine_fragment.h>
-#include <seqan/graph_align/graph_algorithm_refine_aligngraph.h>
-#include <seqan/graph_align/graph_algorithm_refine_align.h>
-//#include <seqan/graph_align/graph_algorithm_refine_exact.h>
-#include <seqan/graph_align/graph_algorithm_refine_exact_iterative.h>
-#include <seqan/graph_align/graph_algorithm_refine_inexact.h>
-#include <seqan/graph_align/graph_algorithm_refine_annotation.h>
+//#include <seqan2/graph_align/graph_algorithm_refine.h>
+#include <seqan2/graph_align/graph_algorithm_refine_scoring.h>
+#include <seqan2/graph_align/graph_algorithm_refine_fragment.h>
+#include <seqan2/graph_align/graph_algorithm_refine_aligngraph.h>
+#include <seqan2/graph_align/graph_algorithm_refine_align.h>
+//#include <seqan2/graph_align/graph_algorithm_refine_exact.h>
+#include <seqan2/graph_align/graph_algorithm_refine_exact_iterative.h>
+#include <seqan2/graph_align/graph_algorithm_refine_inexact.h>
+#include <seqan2/graph_align/graph_algorithm_refine_annotation.h>
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_GRAPH_ALIGN_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_GRAPH_ALIGN_H_

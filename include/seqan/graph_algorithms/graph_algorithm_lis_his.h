@@ -32,10 +32,10 @@
 
 // TODO(holtgrew): Move this away?
 
-#ifndef SEQAN_HEADER_GRAPH_ALGORITHM_LIS_HIS_H
-#define SEQAN_HEADER_GRAPH_ALGORITHM_LIS_HIS_H
+#ifndef SEQAN2_HEADER_GRAPH_ALGORITHM_LIS_HIS_H
+#define SEQAN2_HEADER_GRAPH_ALGORITHM_LIS_HIS_H
 
-namespace seqan
+namespace seqan2
 {
 
 struct Lcs_;
@@ -92,7 +92,7 @@ _nextInSortedSequence(TSortedSequence const& list, TIterator const& prev) {
 
 /*!
  * @fn longestIncreasingSubsequence
- * @headerfile <seqan/graph_algorithms.h>
+ * @headerfile <seqan2/graph_algorithms.h>
  * @brief Computes the longest increasing subsequence.
  *
  * @signature void longestIncreasingSubsequence(str, pos);
@@ -181,7 +181,7 @@ longestIncreasingSubsequence(TString const& str, TPositions& pos) {
 
 /*!
  * @fn longestCommonSubsequence
- * @headerfile <seqan/graph_algorithms.h>
+ * @headerfile <seqan2/graph_algorithms.h>
  * @brief Computes the longest common subsequence.
  *
  * @signature void longestCommonSubsequence(str1, str2, nSize, pos);
@@ -330,7 +330,7 @@ globalAlignment(TAlign& align,
 
 /*!
  * @fn heaviestIncreasingSubsequence
- * @headerfile <seqan/graph_algorithms.h>
+ * @headerfile <seqan2/graph_algorithms.h>
  * @brief Computes the heaviest increasing subseqnece.
  *
  * @signature void heaviestIncreasingSubsequence(str, weights, pos);
@@ -444,6 +444,6 @@ heaviestIncreasingSubsequence(TString const& str,
 
 
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

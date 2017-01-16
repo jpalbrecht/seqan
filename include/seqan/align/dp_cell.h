@@ -37,10 +37,10 @@
 // scores necessary for the affine gap function.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_CELL_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_DP_CELL_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_CELL_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_CELL_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -278,6 +278,6 @@ setGapExtension(DPCell_<TScoreValue, TGapSpec> & /*dpCell*/, TF1 , TF2, TScoreVa
     // no-op
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_CELL_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_CELL_H_

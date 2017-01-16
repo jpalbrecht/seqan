@@ -34,10 +34,10 @@
 // Tags to select serial/parallel algorithms.
 // ==========================================================================
 
-#ifndef SEQAN_PARALLEL_PARALLEL_TAGS_H_
-#define SEQAN_PARALLEL_PARALLEL_TAGS_H_
+#ifndef SEQAN2_PARALLEL_PARALLEL_TAGS_H_
+#define SEQAN2_PARALLEL_PARALLEL_TAGS_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -56,11 +56,11 @@ namespace seqan {
  * @brief Tags for enabling/disabling parallelism.
  *
  * @tag ParallelismTags#Parallel
- * @headerfile <seqan/parallel.h>
+ * @headerfile <seqan2/parallel.h>
  * @brief Tag to select the parallel implementation of an algorithm.
  *
  * @tag ParallelismTags#Serial
- * @headerfile <seqan/parallel.h>
+ * @headerfile <seqan2/parallel.h>
  * @brief Tag to select the serial implementation of an algorithm.
  */
 
@@ -81,6 +81,6 @@ struct DefaultParallelSpec
     typedef Parallel Type;
 };
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_PARALLEL_PARALLEL_TAGS_H_
+#endif  // #ifndef SEQAN2_PARALLEL_PARALLEL_TAGS_H_

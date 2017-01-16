@@ -32,12 +32,12 @@
 // Global chaining algorithms.
 // ==========================================================================
 
-#ifndef SEQAN_SEEDS_SEEDS_GLOBAL_CHAINING_H_
-#define SEQAN_SEEDS_SEEDS_GLOBAL_CHAINING_H_
+#ifndef SEQAN2_SEEDS_SEEDS_GLOBAL_CHAINING_H_
+#define SEQAN2_SEEDS_SEEDS_GLOBAL_CHAINING_H_
 
 #include <map>
 
-namespace seqan {
+namespace seqan2 {
 
 // ===========================================================================
 // Enums, Tags, Classes, Specializations
@@ -64,7 +64,7 @@ typedef Tag<SparseChaining_> SparseChaining;
 
 /*!
  * @fn chainSeedsGlobally
- * @headerfile <seqan/seeds.h>
+ * @headerfile <seqan2/seeds.h>
  * @brief Global chaining of seeds.
  *
  * @signature void chainSeedsGlobally(target, seedSet, tag);
@@ -189,12 +189,12 @@ chainSeedsGlobally(
                     continue;
                 }
             } else {
-                SEQAN_ASSERT_GT(intermediateSolutions.size(), 0u);  // TODO(holtgrew): Remove this assertion?
+                SEQAN2_ASSERT_GT(intermediateSolutions.size(), 0u);  // TODO(holtgrew): Remove this assertion?
                 --itJ;
             }
             // std::cout << "     --> " << seeds[itJ->i3] << std::endl;
             // Now, we have found such a seed j.
-            SEQAN_ASSERT_LEQ(endPositionV(seeds[itJ->i3]), endPositionV(seedK));
+            SEQAN2_ASSERT_LEQ(endPositionV(seeds[itJ->i3]), endPositionV(seedK));
             // Update the intermediate solution value for k and set predecessor.
             qualityOfChainEndingIn[it->i3] += itJ->i2;
             // std::cout << "  UPDATE qualityOfChainEndingIn[" << it->i3 << "] == " << qualityOfChainEndingIn[it->i3] << std::endl;
@@ -209,7 +209,7 @@ chainSeedsGlobally(
             // We work with upper_bound here which gives us the first
             // value that is > so we have to work around this to get
             // >= again...
-            SEQAN_ASSERT_GT(endPositionV(seedK), 0u);
+            SEQAN2_ASSERT_GT(endPositionV(seedK), 0u);
             TIntermediateSolution referenceSolution(endPositionV(seedK), 0, maxValue<unsigned>());
             TIntermediateSolutionsIterator itSol = intermediateSolutions.upper_bound(referenceSolution);
             if (itSol == intermediateSolutions.end()) {
@@ -219,7 +219,7 @@ chainSeedsGlobally(
                 intermediateSolutions.insert(sol);
             } else {
                 // Found this intermediate solution.
-                SEQAN_ASSERT_GEQ(itSol->i1, endPositionV(seedK));
+                SEQAN2_ASSERT_GEQ(itSol->i1, endPositionV(seedK));
                 TSeed const & seedJ = seeds[itSol->i3];
                 // Possibly start a new chain at k if the end1 is
                 // before the end1 of the chain ending in j or they
@@ -264,7 +264,7 @@ chainSeedsGlobally(
     reverse(target);
 
     // Assert that the resulting chain is non-overlapping.
-    #if SEQAN_ENABLE_DEBUG
+    #if SEQAN2_ENABLE_DEBUG
     if (length(target) > 0u) {
         typedef typename Iterator<TTargetContainer, Standard>::Type TIterator;
         // std::cerr << ".-- Chain (" << __FILE__ << ":" << __LINE__ << "):" << std::endl;
@@ -278,14 +278,14 @@ chainSeedsGlobally(
         ++it;
         for (; it != itEnd; ++it) {
             // std::cout << *it << std::endl;
-            SEQAN_ASSERT_LEQ(endPositionH(*itPrevious), beginPositionH(*it));
-            SEQAN_ASSERT_LEQ(endPositionV(*itPrevious), beginPositionV(*it));
+            SEQAN2_ASSERT_LEQ(endPositionH(*itPrevious), beginPositionH(*it));
+            SEQAN2_ASSERT_LEQ(endPositionV(*itPrevious), beginPositionV(*it));
             itPrevious = it;
         }
     }
-    #endif  // #if SEQAN_ENABLE_DEBUG
+    #endif  // #if SEQAN2_ENABLE_DEBUG
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_SEEDS_SEEDS_GLOBAL_CHAINING_H_
+#endif  // #ifndef SEQAN2_SEEDS_SEEDS_GLOBAL_CHAINING_H_

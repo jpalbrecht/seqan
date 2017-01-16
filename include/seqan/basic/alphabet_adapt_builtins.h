@@ -36,12 +36,12 @@
 // concepts they are in.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_BASIC_ALPHABET_ADAPT_BUILTINS_H_
-#define SEQAN_INCLUDE_BASIC_ALPHABET_ADAPT_BUILTINS_H_
+#ifndef SEQAN2_INCLUDE_BASIC_ALPHABET_ADAPT_BUILTINS_H_
+#define SEQAN2_INCLUDE_BASIC_ALPHABET_ADAPT_BUILTINS_H_
 
 #include <limits>
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -81,7 +81,7 @@ struct BitsPerValue<bool>
 
 /*!
  * @mfn IsCharType
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @brief Return whether the argument is <tt>char</tt>, <tt>wchar_t</tt>, <tt>char const</tt>, or <tt>wchar_t
  *               const</tt>.
@@ -231,6 +231,6 @@ infimumValueImpl(long double *)
     return _value;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_BASIC_ALPHABET_ADAPT_BUILTINS_H_
+#endif  // #ifndef SEQAN2_INCLUDE_BASIC_ALPHABET_ADAPT_BUILTINS_H_

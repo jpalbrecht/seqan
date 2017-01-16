@@ -32,81 +32,81 @@
 // Umbrella header for the basic module.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_H_
 
 // --------------------------------------------------------------------------
 // Prerequisites
 // --------------------------------------------------------------------------
 
-#include <seqan/platform.h>
+#include <seqan2/platform.h>
 
 // --------------------------------------------------------------------------
 // Include Sub Modules
 // --------------------------------------------------------------------------
 
 // Code for debugging and testing (assertions, test system) and profiling.
-#include <seqan/basic/basic_debug.h>
+#include <seqan2/basic/basic_debug.h>
 
 // C++ Metaprogramming Support Code, generally independent of SeqAn.
-#include <seqan/basic/basic_metaprogramming.h>
+#include <seqan2/basic/basic_metaprogramming.h>
 
 // Basic functors.
-#include <seqan/basic/basic_functors.h>
+#include <seqan2/basic/basic_functors.h>
 
 // Fundamental meta and global functions.  This is what makes SeqAn SeqAn.
-#include <seqan/basic/basic_fundamental.h>
+#include <seqan2/basic/basic_fundamental.h>
 
 // Basic exceptions.
-#include <seqan/basic/basic_exception.h>
+#include <seqan2/basic/basic_exception.h>
 
 // More advanced debug system constructs.
 // TODO(holtgrew): Move into basic_debug subsystem, some stuff from metaprogramming and fundamental required, those should not depend on debug system.
-#include <seqan/basic/test_system.h>
+#include <seqan2/basic/test_system.h>
 
 // SeqAn Concept Checking Library (ported from Boost).
-#include <seqan/basic/basic_concept.h>
+#include <seqan2/basic/basic_concept.h>
 
 // Container concept and supporting code.
-#include <seqan/basic/basic_container.h>
+#include <seqan2/basic/basic_container.h>
 
 // Memory allocation code.
-#include <seqan/basic/basic_allocator.h>
+#include <seqan2/basic/basic_allocator.h>
 
 // High level parallelism support.
-#include <seqan/basic/basic_parallelism.h>
+#include <seqan2/basic/basic_parallelism.h>
 
 // Mathematical functions and utilities.
-#include <seqan/basic/basic_math.h>
+#include <seqan2/basic/basic_math.h>
 
 // Smart pointers, including Holder<> class hierarchy.
-#include <seqan/basic/basic_smart_pointer.h>
+#include <seqan2/basic/basic_smart_pointer.h>
 
 // Iterator concept and implementation.
-#include <seqan/basic/basic_iterator.h>
+#include <seqan2/basic/basic_iterator.h>
 
 // Functions to efficiently move data between containers/iterators/streams
-#include <seqan/basic/basic_stream.h>
+#include <seqan2/basic/basic_stream.h>
 
 // Alphabet concept and biological implementations.
-#include <seqan/basic/basic_alphabet.h>
+#include <seqan2/basic/basic_alphabet.h>
 
 // Proxy class and supporting code.
-#include <seqan/basic/basic_proxy.h>
+#include <seqan2/basic/basic_proxy.h>
 
 // Aggregate data types (pairs, triples, tuples).
-#include <seqan/basic/basic_aggregate.h>
+#include <seqan2/basic/basic_aggregate.h>
 
 // Remaining code with cyclic dependencies.
-#include <seqan/basic/basic_tangle.h>
+#include <seqan2/basic/basic_tangle.h>
 
 // Basic views functions and metafunctions.
-#include <seqan/basic/basic_view.h>
+#include <seqan2/basic/basic_view.h>
 
 // Basic device metafunctions.
-#include <seqan/basic/basic_device.h>
+#include <seqan2/basic/basic_device.h>
 
 // Basic SIMD vector implementation using intrinsics.
-#include <seqan/basic/basic_simd_vector.h>
+#include <seqan2/basic/basic_simd_vector.h>
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_H_

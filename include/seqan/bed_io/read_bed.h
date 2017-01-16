@@ -34,12 +34,12 @@
 // Reading of BED from files.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_BED_IO_READ_BED_H_
-#define INCLUDE_SEQAN_BED_IO_READ_BED_H_
+#ifndef INCLUDE_SEQAN2_BED_IO_READ_BED_H_
+#define INCLUDE_SEQAN2_BED_IO_READ_BED_H_
 
-#include <seqan/stream.h>
+#include <seqan2/stream.h>
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags, Classes, Enums
@@ -274,6 +274,6 @@ readRecord(BedRecord<TSpec> & record,
     readLine(record.data, iter);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_BED_IO_READ_BED_H_
+#endif  // #ifndef INCLUDE_SEQAN2_BED_IO_READ_BED_H_

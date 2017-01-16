@@ -34,10 +34,10 @@
 // Basic parallel algorithms.
 // ==========================================================================
 
-#ifndef SEQAN_PARALLEL_PARALLEL_ALGORITHMS_H_
-#define SEQAN_PARALLEL_PARALLEL_ALGORITHMS_H_
+#ifndef SEQAN2_PARALLEL_PARALLEL_ALGORITHMS_H_
+#define SEQAN2_PARALLEL_PARALLEL_ALGORITHMS_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Functions
@@ -56,7 +56,7 @@ arrayFill(TIterator begin_,
 {
     Splitter<TIterator> splitter(begin_, end_, parallelTag);
 
-    SEQAN_OMP_PRAGMA(parallel for)
+    SEQAN2_OMP_PRAGMA(parallel for)
     for (int job = 0; job < (int)length(splitter); ++job)
         arrayFill(splitter[job], splitter[job + 1], value, Serial());
 }
@@ -67,7 +67,7 @@ arrayFill(TIterator begin_,
 
 /*!
  * @fn sum
- * @headerfile <seqan/parallel.h>
+ * @headerfile <seqan2/parallel.h>
  * @brief Returns the sum of all elements in a sequence.
  *
  * @signature TValue sum(seq[, parallelTag]);
@@ -102,7 +102,7 @@ sum(TSequence const &seq, Tag<TParallelTag> parallelTag)
     Splitter<typename Size<TSequence>::Type> splitter(0, length(seq), parallelTag);
 
     typename Value<TSequence>::Type threadSum = 0;
-    SEQAN_OMP_PRAGMA(parallel for reduction(+:threadSum))
+    SEQAN2_OMP_PRAGMA(parallel for reduction(+:threadSum))
     for (int job = 0; job < (int)length(splitter); ++job)
         threadSum += sum(infix(seq, splitter[job], splitter[job + 1]), Serial());
     return threadSum;
@@ -121,7 +121,7 @@ sum(TSequence const &seq)
 
 /*!
  * @fn partialSum
- * @headerfile <seqan/parallel.h>
+ * @headerfile <seqan2/parallel.h>
  * @brief Computes the partial sum of a sequence.
  *
  * @signature TValue partialSum(target, source[, parallelTag]);
@@ -160,7 +160,7 @@ partialSum(TTarget &target, TSource const &source, Tag<TParallelTag> parallelTag
 
     // STEP 1: compute sums of all subintervals (in parallel)
     //
-    SEQAN_OMP_PRAGMA(parallel for)
+    SEQAN2_OMP_PRAGMA(parallel for)
     for (int job = 0; job < (int)length(splitter) - 1; ++job)
         localSums[job + 1] = sum(infix(source, splitter[job], splitter[job + 1]), Serial());
 
@@ -171,7 +171,7 @@ partialSum(TTarget &target, TSource const &source, Tag<TParallelTag> parallelTag
 
     // STEP 3: compute partial sums of each subinterval starting from offset (in parallel)
     //
-    SEQAN_OMP_PRAGMA(parallel for)
+    SEQAN2_OMP_PRAGMA(parallel for)
     for (int job = 0; job < (int)length(splitter); ++job)
     {
         TConstIterator it = begin(source, Standard()) + splitter[job];
@@ -237,7 +237,7 @@ inline void iterate(TContainer & c, TFunctor f, Tag<TIterTag> const & iterTag, P
 
     Splitter<TPos> splitter(0, length(c), Parallel());
 
-    SEQAN_OMP_PRAGMA(parallel for firstprivate(f))
+    SEQAN2_OMP_PRAGMA(parallel for firstprivate(f))
     for (TPos i = 0; i < length(splitter); ++i)
     {
        TIter it = begin(c, iterTag) + splitter[i];
@@ -287,7 +287,7 @@ forEach(TContainer const & c, TFunctor f, Tag<TParallelTag> const & /* tag */)
 template <typename TTarget, typename TSource, typename TUnaryOperator, typename TParallelTag>
 inline void transform(TTarget & target, TSource & source, TUnaryOperator o, Tag<TParallelTag> const & /* tag */)
 {
-    SEQAN_ASSERT_GEQ(length(target), length(source));
+    SEQAN2_ASSERT_GEQ(length(target), length(source));
     std::transform(begin(source, Standard()), end(source, Standard()), begin(target, Standard()), o);
 }
 
@@ -393,7 +393,7 @@ template <typename TContainer, typename TUnaryPredicate, typename TParallelTag>
 inline typename Reference<TContainer const>::Type
 maxElement(TContainer const & c, TUnaryPredicate p, Tag<TParallelTag> const & /* tag */)
 {
-    SEQAN_ASSERT_NOT(empty(c));
+    SEQAN2_ASSERT_NOT(empty(c));
     return value(std::max_element(begin(c, Standard()), end(c, Standard()), p));
 }
 
@@ -401,7 +401,7 @@ template <typename TContainer, typename TParallelTag>
 inline typename Reference<TContainer const>::Type
 maxElement(TContainer const & c, Tag<TParallelTag> const & /* tag */)
 {
-    SEQAN_ASSERT_NOT(empty(c));
+    SEQAN2_ASSERT_NOT(empty(c));
     return value(std::max_element(begin(c, Standard()), end(c, Standard())));
 }
 
@@ -413,7 +413,7 @@ template <typename TContainer, typename TUnaryPredicate, typename TParallelTag>
 inline typename Reference<TContainer const>::Type
 minElement(TContainer const & c, TUnaryPredicate p, Tag<TParallelTag> const & /* tag */)
 {
-    SEQAN_ASSERT_NOT(empty(c));
+    SEQAN2_ASSERT_NOT(empty(c));
     return value(std::min_element(begin(c, Standard()), end(c, Standard()), p));
 }
 
@@ -421,7 +421,7 @@ template <typename TContainer, typename TParallelTag>
 inline typename Reference<TContainer const>::Type
 minElement(TContainer const & c, Tag<TParallelTag> const & /* tag */)
 {
-    SEQAN_ASSERT_NOT(empty(c));
+    SEQAN2_ASSERT_NOT(empty(c));
     return value(std::min_element(begin(c, Standard()), end(c, Standard())));
 }
 
@@ -487,7 +487,7 @@ inline TFunctor forEach(TContainer const & c, TFunctor f, Parallel)
 template <typename TTarget, typename TSource, typename TUnaryOperator>
 inline void transform(TTarget & target, TSource & source, TUnaryOperator o, Parallel)
 {
-    SEQAN_ASSERT_GEQ(length(target), length(source));
+    SEQAN2_ASSERT_GEQ(length(target), length(source));
     __gnu_parallel::transform(begin(source, Standard()), end(source, Standard()), begin(target, Standard()), o);
 }
 
@@ -577,7 +577,7 @@ template <typename TContainer, typename TUnaryPredicate>
 inline typename Reference<TContainer const>::Type
 maxElement(TContainer const & c, TUnaryPredicate p, Parallel)
 {
-    SEQAN_ASSERT_NOT(empty(c));
+    SEQAN2_ASSERT_NOT(empty(c));
     return value(__gnu_parallel::max_element(begin(c, Standard()), end(c, Standard()), p));
 }
 
@@ -585,7 +585,7 @@ template <typename TContainer>
 inline typename Reference<TContainer const>::Type
 maxElement(TContainer const & c, Parallel)
 {
-    SEQAN_ASSERT_NOT(empty(c));
+    SEQAN2_ASSERT_NOT(empty(c));
     return value(__gnu_parallel::max_element(begin(c, Standard()), end(c, Standard())));
 }
 
@@ -597,7 +597,7 @@ template <typename TContainer, typename TUnaryPredicate>
 inline typename Reference<TContainer const>::Type
 minElement(TContainer const & c, TUnaryPredicate p, Parallel)
 {
-    SEQAN_ASSERT_NOT(empty(c));
+    SEQAN2_ASSERT_NOT(empty(c));
     return value(__gnu_parallel::min_element(begin(c, Standard()), end(c, Standard()), p));
 }
 
@@ -605,7 +605,7 @@ template <typename TContainer>
 inline typename Reference<TContainer const>::Type
 minElement(TContainer const & c, Parallel)
 {
-    SEQAN_ASSERT_NOT(empty(c));
+    SEQAN2_ASSERT_NOT(empty(c));
     return value(__gnu_parallel::min_element(begin(c, Standard()), end(c, Standard())));
 }
 
@@ -833,6 +833,6 @@ inline void stableSort(TContainer && c)
     stableSort(c, Serial());
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_PARALLEL_PARALLEL_ALGORITHMS_H_
+#endif  // #ifndef SEQAN2_PARALLEL_PARALLEL_ALGORITHMS_H_

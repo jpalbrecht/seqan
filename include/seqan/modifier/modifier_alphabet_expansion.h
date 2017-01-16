@@ -32,10 +32,10 @@
 // Author: Andreas Gogol-Doering <andreas.doering@mdc-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_MODIFIER_ALPHABET_EXPANSION_H
-#define SEQAN_HEADER_MODIFIER_ALPHABET_EXPANSION_H
+#ifndef SEQAN2_HEADER_MODIFIER_ALPHABET_EXPANSION_H
+#define SEQAN2_HEADER_MODIFIER_ALPHABET_EXPANSION_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -44,7 +44,7 @@ namespace seqan
 
 /*!
  * @class AlphabetExpansion
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Modifier that adds a character to an alphabet.
  *
  * @signature template <typename TAlphabet, char CHAR[, typename TSpec]>

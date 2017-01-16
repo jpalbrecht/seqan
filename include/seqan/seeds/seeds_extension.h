@@ -45,10 +45,10 @@
 //  doi:10.1089/10665270050081478
 // ==========================================================================
 
-#ifndef SEQAN_SEEDS_SEEDS_EXTENSION_H_
-#define SEQAN_SEEDS_SEEDS_EXTENSION_H_
+#ifndef SEQAN2_SEEDS_SEEDS_EXTENSION_H_
+#define SEQAN2_SEEDS_SEEDS_EXTENSION_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ===========================================================================
 // Enums, Tags, Classes, Specializations
@@ -65,19 +65,19 @@ namespace seqan {
  * @see Seed#extendSeed
  *
  * @tag SeedExtensionTags#MatchExtend
- * @headerfile <seqan/seeds.h>
+ * @headerfile <seqan2/seeds.h>
  * @brief Extends a seed until a mismatch occurs.
  *
  * @signature typedef Tag<MatchExtend_> const MatchExtend;
  *
  * @tag SeedExtensionTags#UnGappedXDrop
- * @headerfile <seqan/seeds.h>
+ * @headerfile <seqan2/seeds.h>
  * @brief Ungapped extension of a seed until score drops below a given value.
  *
  * @signature typedef Tag<UngappedXDrop_> const UnGappedXDrop;
  *
  * @tag SeedExtensionTags#GappedXDrop
- * @headerfile <seqan/seeds.h>
+ * @headerfile <seqan2/seeds.h>
  * @brief Gapped extension of a seed until score drops below a given value; only works for SimpleSeed.
  *
  * @signature typedef Tag<GappedXDrop_> const GappedXDrop;
@@ -100,7 +100,7 @@ typedef Tag<GappedXDrop_> const GappedXDrop;
 
 /*!
  * @enum ExtensionDirection
- * @headerfile <seqan/seeds.h>
+ * @headerfile <seqan2/seeds.h>
  * @brief Direction for seed extension.
  *
  * @signature enum ExtensionDirection;
@@ -142,7 +142,7 @@ enum ExtensionDirection
 
 /*!
  * @fn Seed#extendSeed
- * @headerfile <seqan/seeds.h>
+ * @headerfile <seqan2/seeds.h>
  * @brief Extends a seed.
  *
  * @signature void extendSeed(seed, database, query, direction, MatchExtend);
@@ -230,7 +230,7 @@ extendSeed(Seed<ChainedSeed, TConfig> & seed,
            MatchExtend const &)
 {
     // For match extension of Chained Seeds, we extend the first and the last Seed Diagonal.
-    SEQAN_ASSERT_GT(length(seed), 0u);
+    SEQAN2_ASSERT_GT(length(seed), 0u);
 
     typedef Seed<ChainedSeed, TConfig> TSeed;
     typedef typename Value<TSeed>::Type TSeedDiagonal;
@@ -569,11 +569,11 @@ _updateExtendedSeed(TSeed & seed,
         setEndPositionH(seed, endPositionH(seed) + rows);
         setEndPositionV(seed, endPositionV(seed) + cols);
     }
-    SEQAN_ASSERT_GEQ(upperDiagonal(seed), lowerDiagonal(seed));
-    SEQAN_ASSERT_GEQ(upperDiagonal(seed), beginDiagonal(seed));
-    SEQAN_ASSERT_GEQ(upperDiagonal(seed), endDiagonal(seed));
-    SEQAN_ASSERT_GEQ(beginDiagonal(seed), lowerDiagonal(seed));
-    SEQAN_ASSERT_GEQ(endDiagonal(seed), lowerDiagonal(seed));
+    SEQAN2_ASSERT_GEQ(upperDiagonal(seed), lowerDiagonal(seed));
+    SEQAN2_ASSERT_GEQ(upperDiagonal(seed), beginDiagonal(seed));
+    SEQAN2_ASSERT_GEQ(upperDiagonal(seed), endDiagonal(seed));
+    SEQAN2_ASSERT_GEQ(beginDiagonal(seed), lowerDiagonal(seed));
+    SEQAN2_ASSERT_GEQ(endDiagonal(seed), lowerDiagonal(seed));
 }
 
 // Limit score;  In the general case we cannot do this so we simply perform a check on the score mismatch values.
@@ -585,17 +585,17 @@ _extendSeedGappedXDropOneDirectionLimitScoreMismatch(Score<TScoreValue, TScoreSp
 {
     // We cannot set a lower limit for the mismatch score since the score might be a scoring matrix such as Blosum62.
     // Instead, we perform a check on the matrix scores.
-#if SEQAN_ENABLE_DEBUG
+#if SEQAN2_ENABLE_DEBUG
     {
         for (unsigned i = 0; i < valueSize<TAlphabet>(); ++i)
             for (unsigned j = 0; j <= i; ++j)
-                SEQAN_ASSERT_GEQ_MSG(score(scoringScheme, TAlphabet(i), TAlphabet(j)), minErrScore,
+                SEQAN2_ASSERT_GEQ_MSG(score(scoringScheme, TAlphabet(i), TAlphabet(j)), minErrScore,
                                      "Mismatch score too small!, i = %u, j = %u");
     }
 #else
     (void)scoringScheme;
     (void)minErrScore;
-#endif  // #if SEQAN_ENABLE_DEBUG
+#endif  // #if SEQAN2_ENABLE_DEBUG
 }
 
 // In the case of a SimpleScore, however, we can set this.
@@ -792,11 +792,11 @@ extendSeed(Seed<Simple, TConfig> & seed,
     // and match scores > 0.
     // TODO(holtgrew): We could introduce such check functions for score matrices.
     // TODO(holtgrew): Originally, this function only worked for simple scoring schemes, does the algorithm also work correctly for BLOSUM62? This matrix contains zeroes. Also see [10729].
-    // SEQAN_ASSERT_GT(scoreMatch(scoringScheme), 0);
-    // SEQAN_ASSERT_LT(scoreMismatch(scoringScheme), 0);
-    SEQAN_ASSERT_LT(scoreGapOpen(scoringScheme), 0);
-    SEQAN_ASSERT_LT(scoreGapExtend(scoringScheme), 0);
-    SEQAN_ASSERT_EQ(scoreGapExtend(scoringScheme), scoreGapOpen(scoringScheme));
+    // SEQAN2_ASSERT_GT(scoreMatch(scoringScheme), 0);
+    // SEQAN2_ASSERT_LT(scoreMismatch(scoringScheme), 0);
+    SEQAN2_ASSERT_LT(scoreGapOpen(scoringScheme), 0);
+    SEQAN2_ASSERT_LT(scoreGapExtend(scoringScheme), 0);
+    SEQAN2_ASSERT_EQ(scoreGapExtend(scoringScheme), scoreGapOpen(scoringScheme));
 
     if (direction == EXTEND_LEFT || direction == EXTEND_BOTH)
     {
@@ -848,7 +848,7 @@ extendSeed(Seed<ChainedSeed, TConfig> & /*seed*/,
     // diagonals to the front and end of the list of seed diagonals and modify
     // the first and last one of the current set of seed diagonals.
 
-    SEQAN_ASSERT_FAIL("Write me! Look into the function where this assertion fails for instructions on how to do this.");
+    SEQAN2_ASSERT_FAIL("Write me! Look into the function where this assertion fails for instructions on how to do this.");
     // TODO(holtgrew): Implement gapped X-drop extension with Chained seeds. As follows:
     //
     // Create a simple seed, copy over from chained seed.  Then,
@@ -868,6 +868,6 @@ extendSeed(Seed<ChainedSeed, TConfig> & /*seed*/,
     // TODO(holtgrew): Update seed's score?!
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_SEEDS_SEEDS_EXTENSION_H_
+#endif  // SEQAN2_SEEDS_SEEDS_EXTENSION_H_

@@ -34,11 +34,11 @@
 // Implementation of the Prefix Segment specialization.
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_SEGMENT_PREFIX_H
-#define SEQAN_HEADER_SEGMENT_PREFIX_H
+#ifndef SEQAN2_HEADER_SEGMENT_PREFIX_H
+#define SEQAN2_HEADER_SEGMENT_PREFIX_H
 
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -48,7 +48,7 @@ namespace seqan
 /*!
  * @class PrefixSegment Prefix Segment
  * @extends Segment
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief A prefix of a sequence.
  *
  * @signature template <typename THost>
@@ -637,6 +637,6 @@ prefix(Segment<T, SuffixSegment> const & t,
 
 //////////////////////////////////////////////////////////////////////////////
 
-} //namespace seqan
+} //namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

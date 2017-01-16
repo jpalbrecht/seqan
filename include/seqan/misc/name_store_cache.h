@@ -37,10 +37,10 @@
 //             the new one with its id
 
 
-#ifndef SEQAN_HEADER_MISC_NAME_STORE_CACHE_H
-#define SEQAN_HEADER_MISC_NAME_STORE_CACHE_H
+#ifndef SEQAN2_HEADER_MISC_NAME_STORE_CACHE_H
+#define SEQAN2_HEADER_MISC_NAME_STORE_CACHE_H
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -93,7 +93,7 @@ struct NameStoreLess_
 
 /*!
  * @class NameStoreCache
- * @headerfile <seqan/misc/name_store_cache.h>
+ * @headerfile <seqan2/misc/name_store_cache.h>
  * @brief Fast mapping from string names to numeric ids.
  *
  * NameStore objects store a binary search tree (using <tt>std::map&lt;&gt;</tt>) on a @link StringSet @endlink (the
@@ -364,7 +364,7 @@ getIdByName(TPos & pos, NameStoreCache<TCNameStore, TCName> const & context, TNa
     // To avoid local variables to copy the name into we use a member in context.
     // However, changing the NameStoreCache per query is not thread-safe and the user might not notice it.
     // To avoid pitfalls, we should introduce a critical section.
-    //SEQAN_OMP_PRAGMA(critical (nameStoreFind))
+    //SEQAN2_OMP_PRAGMA(critical (nameStoreFind))
     {
 
         context.name = name;
@@ -432,6 +432,6 @@ nameToId(NameStoreCache<TNameStore, TName> & cache, TName2 const & name)
     return nameId;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_HEADER_MISC_NAME_STORE_CACHE_H
+#endif  // #ifndef SEQAN2_HEADER_MISC_NAME_STORE_CACHE_H

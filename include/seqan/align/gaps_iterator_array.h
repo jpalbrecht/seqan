@@ -33,10 +33,10 @@
 // Author: Manuel Holtgrewe <manuel.holtgrewe@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_GAPS_ITERATOR_ARRAY_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_GAPS_ITERATOR_ARRAY_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_GAPS_ITERATOR_ARRAY_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_GAPS_ITERATOR_ARRAY_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -229,7 +229,7 @@ position(Iter<TGaps, GapsIterator<ArrayGaps> > const & it)
     unclippedViewPosition += it._bucketOffset;
 
     // TODO(holtgrew): Simply return it._unclippedViewPosition?
-    SEQAN_ASSERT_EQ(it._unclippedViewPosition, unclippedViewPosition);
+    SEQAN2_ASSERT_EQ(it._unclippedViewPosition, unclippedViewPosition);
 
     return unclippedViewPosition - clippedBeginPosition(*it._container);
 }
@@ -336,7 +336,7 @@ goPrevious(Iter<TGaps, GapsIterator<ArrayGaps> > & it)
     {
         // At the beginning of a bucket.
         it._bucketIndex -= 1;
-        SEQAN_ASSERT_GT(it._container->_array[it._bucketIndex], 0u);
+        SEQAN2_ASSERT_GT(it._container->_array[it._bucketIndex], 0u);
         it._bucketOffset = it._container->_array[it._bucketIndex] - 1;
     }
 
@@ -380,15 +380,15 @@ goNext(Iter<TGaps, GapsIterator<ArrayGaps> > & it)
             // Go to next.
             it._bucketIndex += 1;
             if (it._bucketIndex > length(it._container->_array))
-                SEQAN_ASSERT_GT(it._container->_array[it._bucketIndex], 0u);
+                SEQAN2_ASSERT_GT(it._container->_array[it._bucketIndex], 0u);
             it._bucketOffset = 0;
         }
         else
         {
             // Go to end of bucket.
             it._bucketOffset += 1;
-            SEQAN_ASSERT_EQ(it._bucketIndex + 1, length(it._container->_array));
-            SEQAN_ASSERT_EQ(it._bucketOffset, back(it._container->_array));
+            SEQAN2_ASSERT_EQ(it._bucketIndex + 1, length(it._container->_array));
+            SEQAN2_ASSERT_EQ(it._bucketOffset, back(it._container->_array));
         }
     }
 
@@ -457,15 +457,15 @@ goFurther(Iter<TGaps, GapsIterator<ArrayGaps> > & it,
                 // Go to next.
                 it._bucketIndex += 1;
                 if (it._bucketIndex > length(it._container->_array))
-                    SEQAN_ASSERT_GT(it._container->_array[it._bucketIndex], 0u);
+                    SEQAN2_ASSERT_GT(it._container->_array[it._bucketIndex], 0u);
                 it._bucketOffset = 0;
             }
             else
             {
                 // Go to end of bucket.
                 it._bucketOffset += shift;
-                SEQAN_ASSERT_EQ(it._bucketIndex + 1, length(it._container->_array));
-                SEQAN_ASSERT_EQ(it._bucketOffset, back(it._container->_array));
+                SEQAN2_ASSERT_EQ(it._bucketIndex + 1, length(it._container->_array));
+                SEQAN2_ASSERT_EQ(it._bucketOffset, back(it._container->_array));
             }
             counter = 0;
         }
@@ -729,7 +729,7 @@ difference(Iter<TGaps, GapsIterator<ArrayGaps> > const & lhs,
         return -difference(rhs, lhs);
     if (lhs == rhs)
         return 0;
-    SEQAN_ASSERT(lhs < rhs);  // Makes code below simpler.
+    SEQAN2_ASSERT(lhs < rhs);  // Makes code below simpler.
 
     typedef Iter<TGaps, GapsIterator<ArrayGaps> > TIter;
     typedef typename Difference<TIter>::Type      TDifference;
@@ -778,6 +778,6 @@ operator+(Iter<TGaps, GapsIterator<ArrayGaps> > const & lhs, TDifference d)
     return result;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_INCLUDE_SEQAN_ALIGN_GAPS_ITERATOR_ARRAY_H_
+#endif  // SEQAN2_INCLUDE_SEQAN2_ALIGN_GAPS_ITERATOR_ARRAY_H_

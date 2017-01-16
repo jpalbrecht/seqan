@@ -34,11 +34,11 @@
 // Modified Iterator and Modified String for CyclicShapes
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_MODIFIER_SHAPE_H
-#define SEQAN_HEADER_MODIFIER_SHAPE_H
+#ifndef SEQAN2_HEADER_MODIFIER_SHAPE_H
+#define SEQAN2_HEADER_MODIFIER_SHAPE_H
 
 
-namespace seqan {
+namespace seqan2 {
 
 // NOTE(meiers): Only a few functions are documented, the rest should be derived
 
@@ -57,7 +57,7 @@ struct ModCyclicShape
 /*!
  * @class ModCyclicShapeModifiedIterator ModCyclicShape ModifiedIterator
  * @extends ModifiedIterator
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  *
  * @brief Iterates over a string leaving out don't-care-positions defined in
  *      CyclicShape.
@@ -150,7 +150,7 @@ public:
 /*!
  * @class ModCyclicShapeModifiedString ModCyclicShape ModifiedString
  * @extends ModifiedString
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  *
  * @brief A string leaving out don't-care-positions defined in CyclicShape.
  *
@@ -219,7 +219,7 @@ public:
     template<typename THost_>
     explicit
     ModifiedString(THost_ & host,
-                   SEQAN_CTOR_ENABLE_IF(IsConstructible<THost, THost_>)) :
+                   SEQAN2_CTOR_ENABLE_IF(IsConstructible<THost, THost_>)) :
         _host(_toPointer(host))
     {
         ignoreUnusedVariableWarning(dummy);
@@ -229,7 +229,7 @@ public:
     template<typename THost_>
     explicit ModifiedString(THost_ & host,
                             TCyclicShape const & shape,
-                            SEQAN_CTOR_ENABLE_IF(IsConstructible<THost, THost_>)) :
+                            SEQAN2_CTOR_ENABLE_IF(IsConstructible<THost, THost_>)) :
         _host(_toPointer(host)), _cargo(shape)
     {
         ignoreUnusedVariableWarning(dummy);
@@ -239,7 +239,7 @@ public:
     template<typename THost_>
     explicit
     ModifiedString(THost_ && host,
-                   SEQAN_CTOR_ENABLE_IF(IsAnInnerHost<
+                   SEQAN2_CTOR_ENABLE_IF(IsAnInnerHost<
                                             typename RemoveReference<THost>::Type,
                                             typename RemoveReference<THost_>::Type>)) :
         _host(host)                     // TODO(meiers): need std::forward<THost_>(host) here?
@@ -253,7 +253,7 @@ public:
     explicit
     ModifiedString(THost_ && host,
                    TCyclicShape const & shape,
-                   SEQAN_CTOR_ENABLE_IF(IsAnInnerHost<
+                   SEQAN2_CTOR_ENABLE_IF(IsAnInnerHost<
                                             typename RemoveReference<THost>::Type,
                                             typename RemoveReference<THost_>::Type>)) :
         _host(host), _cargo(shape)
@@ -286,7 +286,7 @@ public:
 
 /*!
  * @mfn ModCyclicShapeModifiedIterator#Cargo
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Cargo of ModCyclicShape ModCyclicShape Modified Iterator and ModCyclicShape Modified String.
  * @signature Cargo<ModifiedIterator<THost, ModCyclicShape<CyclicShape<TSpec> > > >::Type;
  * @tparam THost Host iterator of ModifiedIterator.
@@ -306,7 +306,7 @@ struct Cargo<ModifiedIterator<THost, ModCyclicShape<CyclicShape<TSpec> > > >
 
 /*!
  * @mfn ModCyclicShapeModifiedString#Cargo
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Cargo of ModCyclicShape ModCyclicShape Modified Iterator and ModCyclicShape Modified String.
  * @signature Cargo<ModifiedString<THost, ModCyclicShape<CyclicShape<TSpec> > > >::Type;
  * @tparam THost Host container of ModifiedString.
@@ -394,7 +394,7 @@ begin(ModifiedString<THost, ModCyclicShape<CyclicShape<TSpec> > > & me, Tag<TTag
 
 /*!
  * @fn ModCyclicShapeModifiedString#end
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Returns an iterator to the end of the container.
  * @signature TIterator end(modStr[, tag]);
  * @tparam TIterator ModCyclicShape Modified Iterator to be returned.

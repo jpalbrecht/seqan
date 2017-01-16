@@ -35,10 +35,10 @@
 // whether a band was selected or not.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_BAND_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_DP_BAND_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_BAND_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_BAND_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -55,13 +55,13 @@ namespace seqan
  *
  * @tag DPBandSwitch#BandOn
  * @brief Switches banded alignment on.
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @signature struct BandOn_;
  * @signature typedef Tag<BandOn_> BandOn;
  *
  * @tag DPBandSwitch#BandOff
  * @brief Switches banded alignment off.
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @signature struct BandOff_;
  * @signature typedef Tag<BandOff_> BandOff;
  */
@@ -88,7 +88,7 @@ typedef Tag<BandOn_> BandOn;
 
 /*!
  * @class DPBandConfig
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Simple class to configure banded alignments.
  *
  * @signature template <typename TSwitch>
@@ -157,13 +157,13 @@ struct DPBandConfig<BandOn>
     DPBandConfig(int lowerDiagonal, int upperDiagonal) :
         _lowerDiagonal(lowerDiagonal), _upperDiagonal(upperDiagonal)
     {
-        SEQAN_ASSERT_LEQ(lowerDiagonal, upperDiagonal);
+        SEQAN2_ASSERT_LEQ(lowerDiagonal, upperDiagonal);
     }
 };
 
 /*!
  * @typedef DPBand
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Global typedef used for @link DPBandConfig @endlink specialized with @link DPBandSwitch#BandOn @endlink.
  *
  * @signature typedef DPBandConfig<BandOn> DPBand;
@@ -178,7 +178,7 @@ typedef DPBandConfig<BandOn> DPBand;
 
 /*!
  * @mfn DPBandConfig#Position
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Metafunction returning the position type.
  *
  * @signature typename Position<T>::Type;
@@ -207,7 +207,7 @@ struct Position<DPBandConfig<T> const>:
 
 /*!
  * @mfn DPBandConfig#Size
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Metafunction returning the size type.
  *
  * @signature typename Size<T>::Type;
@@ -237,7 +237,7 @@ struct Size<DPBandConfig<T> const>:
 
 /*!
  * @fn DPBandConfig#setLowerDiagonal
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Sets the value of the lower diagonal.
  *
  * @signature setLowerDiagonal(obj, val);
@@ -266,7 +266,7 @@ setLowerDiagonal(DPBandConfig<BandOn> & dpBand, int newLowerDiagonal)
 
 /*!
  * @fn DPBandConfig#lowerDiagonal
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Returns the value of the lower diagonal.
  *
  * @signature TPosition lowerDiagonal(obj);
@@ -296,7 +296,7 @@ lowerDiagonal(DPBandConfig<TSwitch> const & dpBand)
 
 /*!
  * @fn DPBandConfig#setUpperDiagonal
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Sets the value of the upper diagonal.
  *
  * @signature setUpperDiagonal(obj, val);
@@ -325,7 +325,7 @@ setUpperDiagonal(DPBandConfig<BandOn> & dpBand, int newUpperDiagonal)
 
 /*!
  * @fn DPBandConfig#upperDiagonal
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Returns the value of the upper diagonal.
  *
  * @signature TPosition upperDiagonal(obj);
@@ -355,7 +355,7 @@ upperDiagonal(DPBandConfig<TSwitch> const & dpBand)
 
 /*!
  * @fn DPBandConfig#bandSize
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Returns the size of the band.
  *
  * @signature TSize bandSize(obj);
@@ -379,6 +379,6 @@ bandSize(DPBandConfig<TSwitch> const & band)
     return upperDiagonal(band) - lowerDiagonal(band) + 1;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_BAND_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_BAND_H_

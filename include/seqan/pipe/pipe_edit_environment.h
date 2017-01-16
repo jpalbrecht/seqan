@@ -32,13 +32,13 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_PIPE_EDIT_ENVIRONMENT_H
-#define SEQAN_HEADER_PIPE_EDIT_ENVIRONMENT_H
+#ifndef SEQAN2_HEADER_PIPE_EDIT_ENVIRONMENT_H
+#define SEQAN2_HEADER_PIPE_EDIT_ENVIRONMENT_H
 
-namespace seqan
+namespace seqan2
 {
 
-//namespace SEQAN_NAMESPACE_PIPELINING
+//namespace SEQAN2_NAMESPACE_PIPELINING
 //{
 
     template < typename TDistanceSpec, unsigned STEP_SIZE = 1 >
@@ -47,7 +47,7 @@ namespace seqan
 /*!
  * @class EditEnvironment
  * @extends Pipe
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Outputs tuples of the <tt>tupleLen</tt> consecutive elements of the input stream.
  *
  * @signature template <typename TInput, unsigned TUPLE_LEN, bool OMIT_LAST>
@@ -209,7 +209,7 @@ namespace seqan
 
             case INSERT_EOS_:
                 state = INSERT_;
-                SEQAN_FALLTHROUGH
+                SEQAN2_FALLTHROUGH
             case INSERT_:
             case INSERT_LAST_:
                 // before INSERT_ (prev=orig, ++in; tmp=prev) holds

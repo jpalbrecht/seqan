@@ -34,10 +34,10 @@
 // Reduced Versions of the 24-letter amino acid alphabet
 // ==========================================================================
 
-#ifndef SEQAN_REDUCED_AMINOACID_CLUSTER_RED_BASE_H_
-#define SEQAN_REDUCED_AMINOACID_CLUSTER_RED_BASE_H_
+#ifndef SEQAN2_REDUCED_AMINOACID_CLUSTER_RED_BASE_H_
+#define SEQAN2_REDUCED_AMINOACID_CLUSTER_RED_BASE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -54,7 +54,7 @@ namespace seqan {
 /*
  * @class ClusterReduction
  * @brief Specialization for @link ReducedAminoAcid @endlink
- * @headerfile seqan/reduced_aminoacid.h
+ * @headerfile seqan2/reduced_aminoacid.h
  *
  * @signature template <unsigned char n, unsigned char m = 24, typename TMatrix = Blosum62>
  * struct ClusterReduction;
@@ -132,4 +132,4 @@ struct BitsPerValue<
 // ============================================================================
 
 }
-#endif // def SEQAN_REDUCED_AMINOACID_CLUSTER_RED_BASE_H_
+#endif // def SEQAN2_REDUCED_AMINOACID_CLUSTER_RED_BASE_H_

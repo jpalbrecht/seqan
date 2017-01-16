@@ -34,15 +34,15 @@
 // Implementation of the Holder base class.
 // ==========================================================================
 
-#ifndef SEQAN_BASIC_HOLDER_BASE_H_
-#define SEQAN_BASIC_HOLDER_BASE_H_
+#ifndef SEQAN2_BASIC_HOLDER_BASE_H_
+#define SEQAN2_BASIC_HOLDER_BASE_H_
 
 // By default, disable holders to pointers, this is used/tested nowhere and does probably not work.
-#ifndef SEQAN_ENABLE_POINTER_HOLDER
-#define SEQAN_ENABLE_POINTER_HOLDER 0
-#endif  //#ifndef SEQAN_ENABLE_POINTER_HOLDER
+#ifndef SEQAN2_ENABLE_POINTER_HOLDER
+#define SEQAN2_ENABLE_POINTER_HOLDER 0
+#endif  //#ifndef SEQAN2_ENABLE_POINTER_HOLDER
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -58,7 +58,7 @@ namespace seqan {
 
 /*!
  * @class Holder
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Manages relationship to another object.
  *
  * @signature template <typename TValue[, typename TSpec>
@@ -150,14 +150,14 @@ struct Value<Holder<TValue, TSpec> const>
     typedef TValue Type;
 };
 
-#if SEQAN_ENABLE_POINTER_HOLDER
+#if SEQAN2_ENABLE_POINTER_HOLDER
 // TODO(holtgrew): What about holders on pointers?
 template <typename TValue, typename TSpec>
 struct Value<Holder<TValue * const, TSpec> >
 {
     typedef TValue * Type;
 };
-#endif  // #if SEQAN_ENABLE_POINTER_HOLDER
+#endif  // #if SEQAN2_ENABLE_POINTER_HOLDER
 
 // ----------------------------------------------------------------------------
 // Metafunction Spec
@@ -213,13 +213,13 @@ struct Reference< Holder<TValue, TSpec> const>
     typedef typename Value<Holder<TValue, TSpec> const>::Type & Type;
 };
 
-#if SEQAN_ENABLE_POINTER_HOLDER
+#if SEQAN2_ENABLE_POINTER_HOLDER
 template <typename TValue, typename TSpec>
 struct Reference<Holder<TValue *, TSpec> const>
 {
     typedef typename Value<Holder<TValue *, TSpec> const>::Type const & Type;
 };
-#endif  // #if SEQAN_ENABLE_POINTER_HOLDER
+#endif  // #if SEQAN2_ENABLE_POINTER_HOLDER
 
 // ============================================================================
 // Functions
@@ -316,8 +316,8 @@ struct Reference<Holder<TValue *, TSpec> const>
 /*!
  * @fn Holder#assignValue
  *
- * @headerfile <seqan/basic.h>
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/basic.h>
+ * @headerfile <seqan2/sequence.h>
  *
  * @brief Assigns value to item.
  *
@@ -349,7 +349,7 @@ struct Reference<Holder<TValue *, TSpec> const>
 
 /*
  * @fn Holder#dependent
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Test whether Holder depends on other objects.
  *
  * @signature bool dependent(holder);
@@ -397,7 +397,7 @@ struct Reference<Holder<TValue *, TSpec> const>
 /*!
  * @fn Holder#moveValue
  *
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  *
  * @brief Move a value of into a holder.
  *
@@ -438,6 +438,6 @@ getValue(Holder<TValue, TSpec> & holder)
     return value(holder);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_BASIC_HOLDER_BASE_H_
+#endif  // #ifndef SEQAN2_BASIC_HOLDER_BASE_H_

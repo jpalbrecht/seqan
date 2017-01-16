@@ -34,15 +34,15 @@
 // Code for the Simple Scoring Schema.
 // ==========================================================================
 
-#ifndef SEQAN_SSCORE_SIMPLE_H_
-#define SEQAN_SSCORE_SIMPLE_H_
+#ifndef SEQAN2_SSCORE_SIMPLE_H_
+#define SEQAN2_SSCORE_SIMPLE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 /*!
  * @class SimpleScore
  * @extends Score
- * @headerfile <seqan/score.h>
+ * @headerfile <seqan2/score.h>
  * @brief Simple scoring scheme that has scores for matches, mismatches, opening gaps and extending gaps.
  *
  * @signature template <typename TValue>
@@ -99,7 +99,7 @@ public:
 
 /*!
  * @typedef SimpleScoreTypedef SimpleScore
- * @headerfile <seqan/score.h>
+ * @headerfile <seqan2/score.h>
  * @brief Simple scoring scheme.
  *
  * @signature typedef Score<int, Simple> SimpleScore;
@@ -286,6 +286,6 @@ setScoreGap(Score<TValue, TSpec> & me, TValue const & value) {
 //        return scoreMismatch(me);
 //}
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_SSCORE_SIMPLE_H_
+#endif  // SEQAN2_SSCORE_SIMPLE_H_

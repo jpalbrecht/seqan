@@ -35,10 +35,10 @@
 // rooted by adding a pointer to the original container.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_ITERATOR_ADAPTOR_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_ITERATOR_ADAPTOR_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ITERATOR_ADAPTOR_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_ITERATOR_ADAPTOR_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -61,7 +61,7 @@ struct AdaptorIterator;
 /*!
  * @class AdaptorIterator
  * @extends Iter
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Adapts iterators to RootedIteratorConcept.
  *
  * @signature template <typename TContainer, typename TIterator[, typename TSpec]>
@@ -130,7 +130,7 @@ public:
     template <typename TContainer_, typename TIterator2>
    
     Iter(Iter<TContainer_, AdaptorIterator<TIterator2, TSpec> > const & other,
-         SEQAN_CTOR_ENABLE_IF(IsSameType<TContainer, TContainer_ const>)) :
+         SEQAN2_CTOR_ENABLE_IF(IsSameType<TContainer, TContainer_ const>)) :
             data_container(other.data_container), data_iterator(other.data_iterator)
     {
         ignoreUnusedVariableWarning(dummy);\
@@ -150,7 +150,7 @@ public:
     }
 
     template <typename TContainer_>
-    SEQAN_FUNC_ENABLE_IF(IsSameType<TContainer, TContainer_ const>, Iter &)
+    SEQAN2_FUNC_ENABLE_IF(IsSameType<TContainer, TContainer_ const>, Iter &)
    
     operator=(Iter<TContainer_, AdaptorIterator<TIterator, TSpec> > const & other_)
     {
@@ -754,6 +754,6 @@ getChunk(TChunk &result, Iter<TContainer, AdaptorIterator<TValue*, TSpec> > &roo
     return assignRange(result, hostIterator(rootedIter), begin(cont, Standard()) + capacity(cont));
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_ITERATOR_ADAPTOR_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ITERATOR_ADAPTOR_H_

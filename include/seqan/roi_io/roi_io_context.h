@@ -34,12 +34,12 @@
 // Class RoiIOContext, accessor functions.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_ROI_IO_ROI_IO_CONTEXT_H_
-#define INCLUDE_SEQAN_ROI_IO_ROI_IO_CONTEXT_H_
+#ifndef INCLUDE_SEQAN2_ROI_IO_ROI_IO_CONTEXT_H_
+#define INCLUDE_SEQAN2_ROI_IO_ROI_IO_CONTEXT_H_
 
-#include <seqan/store.h>
+#include <seqan2/store.h>
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -65,7 +65,7 @@ public:
 // Functions
 // ============================================================================
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_ROI_IO_ROI_IO_CONTEXT_H_
+#endif  // #ifndef INCLUDE_SEQAN2_ROI_IO_ROI_IO_CONTEXT_H_
 

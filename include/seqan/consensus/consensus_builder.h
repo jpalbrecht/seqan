@@ -32,18 +32,18 @@
 // Author: Manuel Holtgrewe <manuel.holtgrewe@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_CONSENSUS_CONSENSUS_BUILDER_H_
-#define INCLUDE_SEQAN_CONSENSUS_CONSENSUS_BUILDER_H_
+#ifndef INCLUDE_SEQAN2_CONSENSUS_CONSENSUS_BUILDER_H_
+#define INCLUDE_SEQAN2_CONSENSUS_CONSENSUS_BUILDER_H_
 
 #include <map>
 
-#include <seqan/graph_types.h>
-#include <seqan/store.h>
+#include <seqan2/graph_types.h>
+#include <seqan2/store.h>
 
 #include "consensus_alignment_options.h"
 #include "overlapper.h"
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -225,7 +225,7 @@ bool alignmentGraphToFragmentStore(TFragmentStore & store,
         unsigned c = *it;     // Current component.
         unsigned fLen = fragmentLength(g, front(componentVertices[c]));
         for (unsigned i = 1; i < length(componentVertices[c]); ++i)
-            SEQAN_ASSERT_EQ(fragmentLength(g, front(componentVertices[c][0])),
+            SEQAN2_ASSERT_EQ(fragmentLength(g, front(componentVertices[c][0])),
                             fragmentLength(g, front(componentVertices[c][i])));
         unsigned cl = seqToCluster[idToPosition(stringSet(g), sequenceId(g, front(componentVertices[c])))];  // Current cluster/contig.
 
@@ -289,7 +289,7 @@ bool alignmentGraphToFragmentStore(TFragmentStore & store,
             typedef typename Value<TAlignedReadStore>::Type TAlignedRead;
             typedef typename TAlignedRead::TGapAnchors TGapAnchors;
             typedef typename TFragmentStore::TReadSeq TReadSeq;
-            SEQAN_ASSERT_NOT(empty(store.readSeqStore[*itS]));
+            SEQAN2_ASSERT_NOT(empty(store.readSeqStore[*itS]));
             Gaps<TReadSeq, AnchorGaps<TGapAnchors> > gaps(static_cast<TReadSeq>(store.readSeqStore[*itS]),
                                                           store.alignedReadStore[*itS].gaps);
             insertGaps(gaps, from - store.alignedReadStore[*itS].beginPos, fLen);
@@ -306,7 +306,7 @@ bool alignmentGraphToFragmentStore(TFragmentStore & store,
             activeReads[cl].erase(*it);
     }
 
-// #if SEQAN_ENABLE_DEBUG
+// #if SEQAN2_ENABLE_DEBUG
     {
         // Check for consistency.
         typedef typename TFragmentStore::TAlignedReadStore TAlignedReadStore;
@@ -318,17 +318,17 @@ bool alignmentGraphToFragmentStore(TFragmentStore & store,
         {
             typedef Gaps<TReadSeq, AnchorGaps<String<typename TFragmentStore::TReadGapAnchor> > > TReadGaps;
             TReadGaps readGaps(static_cast<TReadSeq>(store.readSeqStore[it2->readId]), it2->gaps);
-            SEQAN_ASSERT_EQ(length(readGaps) - length(store.readSeqStore[it2->readId]), gapCount[it2->readId]);
+            SEQAN2_ASSERT_EQ(length(readGaps) - length(store.readSeqStore[it2->readId]), gapCount[it2->readId]);
             if (DEBUG_INCONSISTENT_LEN)
                 std::cerr << "READ GAPS\t" << (it2 - begin(store.alignedReadStore, Standard())) << "\t>>>" << readGaps << "<<< (" << length(readGaps) << ")\n"
                           << "  beginPos == " << it2->beginPos << ", endPos == " << it2->endPos << ", gapCount == " << gapCount[it2->readId] << "\n";
             if ((unsigned)std::abs(it2->endPos - it2->beginPos) != length(readGaps))
             {
-                SEQAN_FAIL("Inconsistent begin/endPos");
+                SEQAN2_FAIL("Inconsistent begin/endPos");
             }
         }
     }
-// #endif  // #if SEQAN_ENABLE_DEBUG
+// #endif  // #if SEQAN2_ENABLE_DEBUG
 
     return true;
 }
@@ -410,10 +410,10 @@ void ConsensusBuilder_<TFragmentStore>::run(TFragmentStore & store,
     String<unsigned> component;
     String<unsigned> order;
     std::map<unsigned, unsigned> componentLength;
-    SEQAN_ASSERT_NOT(empty(graph));
+    SEQAN2_ASSERT_NOT(empty(graph));
     bool b = convertAlignment(graph, component, order, componentLength);
     (void) b;
-    SEQAN_ASSERT(b);
+    SEQAN2_ASSERT(b);
     unsigned numComponents = length(order);
     if (options.verbosity >= 2)
         std::cerr << "AG\n"
@@ -445,7 +445,7 @@ void ConsensusBuilder_<TFragmentStore>::run(TFragmentStore & store,
     if (options.verbosity >= 2)
     {
         std::cerr << "before realignment\n";
-        seqan::AlignedReadLayout layout;
+        seqan2::AlignedReadLayout layout;
         layoutAlignment(layout, store);
         for (unsigned contigID = 0; contigID < length(store.contigStore); ++contigID)
         {
@@ -467,7 +467,7 @@ void ConsensusBuilder_<TFragmentStore>::run(TFragmentStore & store,
     if (options.verbosity >= 2)
     {
         std::cerr << "after realignment\n";
-        seqan::AlignedReadLayout layout;
+        seqan2::AlignedReadLayout layout;
         layoutAlignment(layout, store);
         for (unsigned contigID = 0; contigID < length(store.contigStore); ++contigID)
         {
@@ -489,6 +489,6 @@ void ConsensusBuilder_<TFragmentStore>::run(TFragmentStore & store,
 // Functions
 // ============================================================================
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_CONSENSUS_CONSENSUS_BUILDER_H_
+#endif  // #ifndef INCLUDE_SEQAN2_CONSENSUS_CONSENSUS_BUILDER_H_

@@ -34,14 +34,14 @@
 // Implementation of the Union-Find data structure.
 // ==========================================================================
 
-#ifndef SEQAN_MISC_UNION_FIND_H_
-#define SEQAN_MISC_UNION_FIND_H_
+#ifndef SEQAN2_MISC_UNION_FIND_H_
+#define SEQAN2_MISC_UNION_FIND_H_
 
-#include <seqan/basic.h>
-#include <seqan/sequence.h>
+#include <seqan2/basic.h>
+#include <seqan2/sequence.h>
 // TODO(holtgrew): Comprehensive tests. Currently, there are *some* tests in the tests for graph_algorithm.
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -55,7 +55,7 @@ template <typename TSpec> class Graph;
 
 /*!
  * @class UnionFind
- * @headerfile <seqan/misc/union_find.h>
+ * @headerfile <seqan2/misc/union_find.h>
  * @brief Union-Find data structure.
  *
  * @signature template <typename T>
@@ -328,9 +328,9 @@ findSet(UnionFind<TValue> & unionFind,
     TValue j = query;
     while (unionFind._values[j] >= 0)
         j = unionFind._values[j];
-    SEQAN_ASSERT_LT(unionFind._values[j], static_cast<int>(length(unionFind._values)));
-    SEQAN_ASSERT_GEQ(j, static_cast<TValue>(0));
-    SEQAN_ASSERT_LT(j, static_cast<TValue>(length(unionFind._values)));
+    SEQAN2_ASSERT_LT(unionFind._values[j], static_cast<int>(length(unionFind._values)));
+    SEQAN2_ASSERT_GEQ(j, static_cast<TValue>(0));
+    SEQAN2_ASSERT_LT(j, static_cast<TValue>(length(unionFind._values)));
 
     TValue i = query;
     while (unionFind._values[i] >= 0)
@@ -385,6 +385,6 @@ joinSets(UnionFind<TValue> & unionFind,
     }
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif // #ifndef SEQAN_MISC_UNION_FIND_H_
+#endif // #ifndef SEQAN2_MISC_UNION_FIND_H_

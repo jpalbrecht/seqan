@@ -35,10 +35,10 @@
 // values for the three matrices: diagonal, vertical and horizontal.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_CELL_AFFINE_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_DP_CELL_AFFINE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_CELL_AFFINE_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_CELL_AFFINE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -142,14 +142,14 @@ _verticalScoreOfCell(DPCell_<TScoreValue, AffineGaps> const & dpCell)
 
 // Returns the score of the matrix for vertical-gaps of the given cell.
 template <typename TScoreValue>
-inline SEQAN_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >,void)
+inline SEQAN2_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >,void)
 _setVerticalScoreOfCell(DPCell_<TScoreValue, AffineGaps> & dpCell, TScoreValue const & newVerticalScore)
 {
     dpCell._verticalScore = newVerticalScore;
 }
 
 template <typename TScoreValue>
-inline SEQAN_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >,void)
+inline SEQAN2_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >,void)
 _setVerticalScoreOfCell(DPCell_<TScoreValue, AffineGaps> & dpCell, TScoreValue const & newVerticalScore, TScoreValue const & mask)
 {
     dpCell._verticalScore = blend(dpCell._verticalScore, newVerticalScore, mask);
@@ -180,14 +180,14 @@ _horizontalScoreOfCell(DPCell_<TScoreValue, AffineGaps> const & dpCell)
 
 // Returns the score of the matrix for vertical-gaps of the given cell.
 template <typename TScoreValue>
-inline SEQAN_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >,void)
+inline SEQAN2_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >,void)
 _setHorizontalScoreOfCell(DPCell_<TScoreValue, AffineGaps> & dpCell, TScoreValue const & newHorizontalScore)
 {
     dpCell._horizontalScore = newHorizontalScore;
 }
 
 template <typename TScoreValue>
-inline SEQAN_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >,void)
+inline SEQAN2_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >,void)
 _setHorizontalScoreOfCell(DPCell_<TScoreValue, AffineGaps> & dpCell, TScoreValue const & newHorizontalScore, TScoreValue const & mask)
 {
     dpCell._horizontalScore = blend(dpCell._horizontalScore, newHorizontalScore, mask);
@@ -203,6 +203,6 @@ swap(DPCell_<TScoreValue, AffineGaps> & lhs,
     std::swap(lhs._verticalScore, rhs._verticalScore);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_CELL_AFFINE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_CELL_AFFINE_H_

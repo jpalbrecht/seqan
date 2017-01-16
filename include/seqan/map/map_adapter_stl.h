@@ -30,12 +30,12 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_MAP_ADAPTER_STL_H
-#define SEQAN_HEADER_MAP_ADAPTER_STL_H
+#ifndef SEQAN2_HEADER_MAP_ADAPTER_STL_H
+#define SEQAN2_HEADER_MAP_ADAPTER_STL_H
 
 //////////////////////////////////////////////////////////////////////////////
 
-namespace seqan
+namespace seqan2
 {
 
 template <typename TKey, typename TCargo, typename TCompare, typename TAlloc>
@@ -707,4 +707,4 @@ erase(std::map<TKey,TCargo, TCompare, TAlloc> & me,
 }
 
 }
-#endif // #ifndef SEQAN_HEADER
+#endif // #ifndef SEQAN2_HEADER

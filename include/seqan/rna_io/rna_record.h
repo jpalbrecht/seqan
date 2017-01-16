@@ -33,12 +33,12 @@
 //          Joerg Winkler <j.winkler@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_RNA_IO_RNA_RECORD_H_
-#define SEQAN_INCLUDE_SEQAN_RNA_IO_RNA_RECORD_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_RNA_IO_RNA_RECORD_H_
+#define SEQAN2_INCLUDE_SEQAN2_RNA_IO_RNA_RECORD_H_
 
 #include <cstdint>
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Typedefs
@@ -46,7 +46,7 @@ namespace seqan {
 
 /*!
  * @typedef RnaAdjacencyIterator
- * @headerfile <seqan/rna_io.h>
+ * @headerfile <seqan2/rna_io.h>
  * @brief Iterator for adjacent vertices in a @link RnaStructureGraph @endlink.
  * @signature typedef typename Iterator<Graph<Undirected<double> >, AdjacencyIterator>::Type RnaAdjacencyIterator;
  */
@@ -54,7 +54,7 @@ typedef typename Iterator<Graph<Undirected<double> >, AdjacencyIterator>::Type R
 
 /*!
  * @typedef TSizeRna5String
- * @headerfile <seqan/rna_io.h>
+ * @headerfile <seqan2/rna_io.h>
  * @brief Type for the length of @link Rna5String @endlink.
  * @signature typedef typename Size<Rna5String>::Type TSizeRna5String;
  */
@@ -70,7 +70,7 @@ typedef typename Size<Rna5String>::Type TSizeRna5String;
 
 /*!
  * @class RnaStructureGraph
- * @headerfile <seqan/rna_io.h>
+ * @headerfile <seqan2/rna_io.h>
  * @brief An undirected graph representing an RNA structure.
  *
  * @signature class RnaStructureGraph;
@@ -109,7 +109,7 @@ public:
 
 /*!
  * @class RnaRecord
- * @headerfile <seqan/rna_io.h>
+ * @headerfile <seqan2/rna_io.h>
  * @brief A container for RNA structure data.
  *
  * @signature class RnaRecord;
@@ -274,6 +274,6 @@ inline void clear(RnaRecord & record)
     clear(record.reactError);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_INCLUDE_SEQAN_RNA_IO_RNA_RECORD_H_
+#endif  // SEQAN2_INCLUDE_SEQAN2_RNA_IO_RNA_RECORD_H_

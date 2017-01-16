@@ -30,10 +30,10 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_GRAPH_ALIGN_TCOFFEE_KMER_H
-#define SEQAN_HEADER_GRAPH_ALIGN_TCOFFEE_KMER_H
+#ifndef SEQAN2_HEADER_GRAPH_ALIGN_TCOFFEE_KMER_H
+#define SEQAN2_HEADER_GRAPH_ALIGN_TCOFFEE_KMER_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -138,7 +138,7 @@ getKmerSimilarityMatrix(StringSet<TString, TSpec> const& strSet,
             // = Number of common q-grams / Number of possible common q-grams
             TValue minVal = (mat[col*nseq+col] < mat[row*nseq+row]) ? mat[col*nseq+col] : mat[row*nseq+row];
             if (minVal == 0) mat[row*nseq+col] = 0;
-            else mat[row*nseq+col] = (mat[row*nseq+col] * SEQAN_DISTANCE_UNITY) / minVal;
+            else mat[row*nseq+col] = (mat[row*nseq+col] * SEQAN2_DISTANCE_UNITY) / minVal;
             //std::cout << mat[row*nseq+col] << ",";
         }
         //std::cout << std::endl;
@@ -148,6 +148,6 @@ getKmerSimilarityMatrix(StringSet<TString, TSpec> const& strSet,
 
 
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

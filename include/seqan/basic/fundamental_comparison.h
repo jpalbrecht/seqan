@@ -34,10 +34,10 @@
 // Basic comparison code.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_FUNDAMENTAL_COMPARISON_H_
-#define SEQAN_INCLUDE_SEQAN_FUNDAMENTAL_COMPARISON_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_FUNDAMENTAL_COMPARISON_H_
+#define SEQAN2_INCLUDE_SEQAN2_FUNDAMENTAL_COMPARISON_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -59,7 +59,7 @@ template <typename TValue> inline typename ValueSize<TValue>::Type ordValue(TVal
 
 /*!
  * @mfn CompareType
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Type to convert other types for comparisons.
  *
  * @signature CompareType<T1, T2>::Type;
@@ -83,7 +83,7 @@ template <typename TValue> inline typename ValueSize<TValue>::Type ordValue(TVal
 
 /*!
  * @mfn CompareTypeImpl
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Implementation of CompareType.
  *
  * @signature CompareTypeImpl<T1, T2>::Type;
@@ -144,6 +144,6 @@ inline bool ordGreater(TValue1 const & left, TValue2 const & right)
     return ordValue(left) > ordValue(static_cast<TValue1>(right));
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_FUNDAMENTAL_COMPARISON_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_FUNDAMENTAL_COMPARISON_H_

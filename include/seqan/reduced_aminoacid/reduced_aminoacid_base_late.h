@@ -34,10 +34,10 @@
 // Reduced Versions of the 24-letter amino acid alphabet
 // ==========================================================================
 
-#ifndef SEQAN_REDUCED_AMINOACID_BASE_LATE_H_
-#define SEQAN_REDUCED_AMINOACID_BASE_LATE_H_
+#ifndef SEQAN2_REDUCED_AMINOACID_BASE_LATE_H_
+#define SEQAN2_REDUCED_AMINOACID_BASE_LATE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -104,4 +104,4 @@ inline void assign(SimpleType<unsigned char,
 }
 
 }
-#endif // def SEQAN_REDUCED_AMINOACID_BASE_LATE_H_
+#endif // def SEQAN2_REDUCED_AMINOACID_BASE_LATE_H_

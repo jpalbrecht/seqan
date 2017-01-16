@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_INDEX_QGRAM_H
-#define SEQAN_HEADER_INDEX_QGRAM_H
+#ifndef SEQAN2_HEADER_SEQAN2_INDEX_QGRAM_H
+#define SEQAN2_HEADER_SEQAN2_INDEX_QGRAM_H
 
-namespace seqan
+namespace seqan2
 {
 
 
@@ -177,7 +177,7 @@ typedef FibreBucketMap    QGramBucketMap;
  * @class IndexQGram
  * @extends Index
  * @implements StringTrieConcept
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief An index based on an array of sorted q-grams.
  *
@@ -309,10 +309,10 @@ public:
 };
 
 template <typename TText, typename TShapeSpec, typename TSpec>
-SEQAN_CONCEPT_IMPL((Index<TText, IndexQGram<TShapeSpec, TSpec> >), (StringTrieConcept));
+SEQAN2_CONCEPT_IMPL((Index<TText, IndexQGram<TShapeSpec, TSpec> >), (StringTrieConcept));
 
 template <typename TText, typename TShapeSpec, typename TSpec>
-SEQAN_CONCEPT_IMPL((Index<TText, IndexQGram<TShapeSpec, TSpec> > const), (StringTrieConcept));
+SEQAN2_CONCEPT_IMPL((Index<TText, IndexQGram<TShapeSpec, TSpec> > const), (StringTrieConcept));
 
 
 template < typename TText, typename TShapeSpec, typename TSpec >
@@ -408,7 +408,7 @@ getFibre(Index<TText, TSpec> const &index, FibreShape) {
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexQGram#indexSA
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>getFibre(.., QGramSA)</tt>.
  *
  * @signature TSa indexSA(index);
@@ -420,7 +420,7 @@ getFibre(Index<TText, TSpec> const &index, FibreShape) {
 
 /*!
  * @fn IndexQGram#saAt
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @note Advanced functionality, not commonly used.
  * @brief Shortcut for <tt>value(indexSA(..), ..)</tt>.
  *
@@ -437,7 +437,7 @@ getFibre(Index<TText, TSpec> const &index, FibreShape) {
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexQGram#indexDir
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>getFibre(.., QGramDir())</tt>.
  * @signature TFibre indexDir(index);
  *
@@ -460,7 +460,7 @@ indexDir(Index<TText, TSpec> const &index) {
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexQGram#dirAt
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>value(indexDir(index), position)</tt>.
  *
  * @signature TFibre dirAt(position, index);
@@ -486,7 +486,7 @@ dirAt(TPos i, TIndex const &index) {
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexQGram#indexCounts
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>getFibre(index, QGramCounts())</tt>.
  *
  * @signature TFibre indexCounts(index);
@@ -509,7 +509,7 @@ indexCounts(Index<TText, TSpec> const &index) {
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexQGram#indexCountsDir
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>getFibre(index, QGramCountsDir())</tt>.
  *
  * @signature TFibre indexCountsDir(index);
@@ -533,7 +533,7 @@ indexCountsDir(Index<TText, TSpec> const &index) {
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexQGram#indexBucketMap
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>getFibre(index, QGramBucketMap())</tt>.
  *
  * @signature TFibre indexBucketMap(index);
@@ -558,7 +558,7 @@ indexBucketMap(Index<TText, TSpec> const &index) {
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexQGram#indexShape
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>getFibre(index, QGramShape())</tt>.
  * @signature TFibre indexShape(index);
  *
@@ -581,7 +581,7 @@ indexShape(Index<TText, TSpec> const &index) {
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexQGram#getStepSize
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Return the <i>q</i>-gram step size used for index creation.
  * @signature TSize getStepSize(index);
  *
@@ -602,7 +602,7 @@ getStepSize(Index<TText, IndexQGram<TShapeSpec, TSpec> > const &index)
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexQGram#setStepSize
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Change the <i>q</i>-gram step size used for index creation.
  *
  * @signature void setStepSize(index, stepSize);
@@ -1314,7 +1314,7 @@ _qgramPostprocessBuckets(TDir &dir)
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexQGram#createQGramIndex
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Builds a <i>q</i>-gram index on a sequence.
  *
  * @signature void createQGramIndex(index);
@@ -1421,7 +1421,7 @@ void createQGramIndex(
 
     // 3. cumulative sum
     int64_t res = _qgramCummulativeSum(dir, False());
-    SEQAN_ASSERT_EQ(res, static_cast<int64_t>(length(sa)));
+    SEQAN2_ASSERT_EQ(res, static_cast<int64_t>(length(sa)));
     ignoreUnusedVariableWarning(res);
 
     // 4. fill suffix array
@@ -1450,7 +1450,7 @@ void createQGramIndex(
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexQGram#createQGramIndexSAOnly
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Builds the suffix array of a q-gram index on a sequence.
  *
  * @signature void createQGramIndexSAOnly(sa, text, shape, stepSize)
@@ -1531,7 +1531,7 @@ void createQGramIndexSAOnly(
             }
         }
     }
-    SEQAN_ASSERT_EQ(it, end(sa, Standard()));
+    SEQAN2_ASSERT_EQ(it, end(sa, Standard()));
 
     // 2. Sort suffix array with quicksort
     TSize q = length(shape);
@@ -1616,7 +1616,7 @@ inline void _refineQGramIndex(
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexQGram#createQGramIndexDirOnly
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Builds the directory of a <i>q</i>-gram index on a sequence.
  *
  * @signature void createQGramIndexDirOnly(dir, bucketMap, text, shape, stepSize);
@@ -1665,7 +1665,7 @@ void createQGramIndexDirOnly(
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexQGram#createCountArray
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Builds an index on a StringSet storing how often a <i>q</i>-gram occurs in each sequence.
  *
  * @signature void createCountsArray(counts, dir, bucketMap, stringSet, shape, stepSize);
@@ -1915,7 +1915,7 @@ void createQGramIndexExt(Index<TText_, IndexQGram<TShapeSpec, TSpec> > &index)
                 old_qgram = *sorter;
                 code = hash(shape, getValueI2(old_qgram));
 
-                SEQAN_ASSERT_LT(old_code, code);
+                SEQAN2_ASSERT_LT(old_code, code);
 
                 // copy bucket begin
                 typename Size<TSortTuples>::Type i = length(sorter) - leftToRead;
@@ -2326,7 +2326,7 @@ inline bool indexCreate(
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexQGram#getKmerSimilarityMatrix
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Creates a matrix storing the number of common q-grams between all pairs of sequences.
  *
  * @signature void getKmerSimilarityMatrix(index, distMat[, seqSet]);
@@ -2557,7 +2557,7 @@ inline void getKmerSimilarityMatrix(
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexQGram#range
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns the suffix array interval borders of a q-gram in the index text.
  *
  * @signature TPair range(index, shape);
@@ -2599,7 +2599,7 @@ range(
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexQGram#getOccurrence
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns an occurrence a q-gram in the index text.
  *
  * @signature TSAValue getOccurrence(index, shape);
@@ -2635,7 +2635,7 @@ getOccurrence(
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexQGram#getOccurrences
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns all occurrences of a q-gram in the index text.
  *
  * @signature TSAInfix getOccurrences(index, shape);
@@ -2723,7 +2723,7 @@ getOccurrences(Index<TText, IndexQGram<MinimizerShape<TSPAN, TWEIGHT, TShapeSpec
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexQGram#countOccurrences
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns the number of occurrences of a q-gram in the index text.
  *
  * @signature TSize countOccurrences(index, shape);
@@ -2766,7 +2766,7 @@ countOccurrences(
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexQGram#countOccurrencesMultiple
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Returns the number of occurrences of a q-gram for every sequence of a @link StringSet @endlink .
  *
  * @signature TCountInfix countOccurrencesMultiple(index, shape);
@@ -2883,4 +2883,4 @@ inline bool save(
     
 }
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

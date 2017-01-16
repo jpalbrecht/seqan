@@ -35,10 +35,10 @@
 // Some useful functors to be used along with the Finder class.
 // ==========================================================================
 
-#ifndef SEQAN_INDEX_FIND_FUNCTORS_H_
-#define SEQAN_INDEX_FIND_FUNCTORS_H_
+#ifndef SEQAN2_SEQAN2_INDEX_FIND_FUNCTORS_H_
+#define SEQAN2_SEQAN2_INDEX_FIND_FUNCTORS_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags
@@ -197,4 +197,4 @@ countOccurrences(Index<TText, TSpec> & index, StringSet<TNeedle, TSSetSpec> & ne
 
 }
 
-#endif  // #ifndef SEQAN_INDEX_FIND_FUNCTORS_H_
+#endif  // #ifndef SEQAN2_SEQAN2_INDEX_FIND_FUNCTORS_H_

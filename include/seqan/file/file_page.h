@@ -35,8 +35,8 @@
 // by the External String, external sorters and mappers (Pool), FileStream.
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_FILE_PAGE_H
-#define SEQAN_HEADER_FILE_PAGE_H
+#ifndef SEQAN2_HEADER_FILE_PAGE_H
+#define SEQAN2_HEADER_FILE_PAGE_H
 
 
 /* IOREV
@@ -58,7 +58,7 @@
 
 //////////////////////////////////////////////////////////////////////////////
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -73,7 +73,7 @@ struct MMap;
 
     struct Dynamic;
 
-    template <size_t SEQAN_PAGESIZE>
+    template <size_t SEQAN2_PAGESIZE>
     struct Fixed;
 
     template <typename TFile, typename TSpec = Dynamic>
@@ -160,11 +160,11 @@ struct MMap;
         return me.pageSize;
     }
 
-    template <typename TValue, typename TFile, size_t SEQAN_PAGESIZE>
-    inline typename Size<Buffer<TValue, PageFrame<TFile, Fixed<SEQAN_PAGESIZE> > > >::Type
-    capacity(Buffer<TValue, PageFrame<TFile, Fixed<SEQAN_PAGESIZE> > > const &)
+    template <typename TValue, typename TFile, size_t SEQAN2_PAGESIZE>
+    inline typename Size<Buffer<TValue, PageFrame<TFile, Fixed<SEQAN2_PAGESIZE> > > >::Type
+    capacity(Buffer<TValue, PageFrame<TFile, Fixed<SEQAN2_PAGESIZE> > > const &)
     {
-        return SEQAN_PAGESIZE;
+        return SEQAN2_PAGESIZE;
     }
 
     template <typename TValue, typename TSpec, typename TSize>
@@ -181,11 +181,11 @@ struct MMap;
         return me.end - me.begin;
     }
 
-    template <typename TValue, typename TFile, size_t SEQAN_PAGESIZE>
-    inline typename Size<Buffer<TValue, PageFrame<TFile, Fixed<SEQAN_PAGESIZE> > > >::Type
-    length(Buffer<TValue, PageFrame<TFile, Fixed<SEQAN_PAGESIZE> > > const &)
+    template <typename TValue, typename TFile, size_t SEQAN2_PAGESIZE>
+    inline typename Size<Buffer<TValue, PageFrame<TFile, Fixed<SEQAN2_PAGESIZE> > > >::Type
+    length(Buffer<TValue, PageFrame<TFile, Fixed<SEQAN2_PAGESIZE> > > const &)
     {
-        return SEQAN_PAGESIZE;
+        return SEQAN2_PAGESIZE;
     }
 
     template <typename TValue, typename TSpec, typename TSize>
@@ -203,7 +203,7 @@ struct MMap;
         allocate(me, buffer.begin, size);
         _setCapacity(buffer, size);
         resize(buffer, size);
-        #ifdef SEQAN_VVERBOSE
+        #ifdef SEQAN2_VVERBOSE
             std::cerr << "allocPage: " << std::hex << (void*)buffer.begin << std::dec << std::endl;
         #endif
         return buffer.begin != NULL;
@@ -214,7 +214,7 @@ struct MMap;
     freePage(Buffer<TValue, TSpec> &buffer, T const & me)
     {
 //IOREV _nodoc_
-        #ifdef SEQAN_VVERBOSE
+        #ifdef SEQAN2_VVERBOSE
             if ((void*)buffer.begin)
                 std::cerr << "freePage:  " << std::hex << (void*)buffer.begin << std::dec << std::endl;
         #endif
@@ -397,14 +397,14 @@ struct MMap;
 
     template < typename TValue,
                typename TFile,
-               size_t SEQAN_PAGESIZE_ >
-    struct Buffer<TValue, PageFrame<TFile, Fixed<SEQAN_PAGESIZE_> > >
+               size_t SEQAN2_PAGESIZE_ >
+    struct Buffer<TValue, PageFrame<TFile, Fixed<SEQAN2_PAGESIZE_> > >
     {
         typedef TFile                                       File;
         typedef typename AsyncRequest<TFile>::Type          AsyncRequest;
         typedef    typename Iterator<Buffer, Standard>::Type   TIterator;
 
-        enum            { SEQAN_PAGESIZE = SEQAN_PAGESIZE_ };
+        enum            { SEQAN2_PAGESIZE = SEQAN2_PAGESIZE_ };
         enum DataStatus    { ON_DISK = -1, UNINITIALIZED = -2 };
         enum Priority    { NORMAL_LEVEL = 0, PREFETCH_LEVEL = 1, ITERATOR_LEVEL = 2, PERMANENT_LEVEL = 3 };
 
@@ -470,17 +470,17 @@ struct MMap;
 
     template < typename TValue,
                typename TFile,
-               size_t SEQAN_PAGESIZE_ >
-    struct HasMoveConstructor<Buffer<TValue, PageFrame<TFile, Fixed<SEQAN_PAGESIZE_> > > > : True {};
+               size_t SEQAN2_PAGESIZE_ >
+    struct HasMoveConstructor<Buffer<TValue, PageFrame<TFile, Fixed<SEQAN2_PAGESIZE_> > > > : True {};
 
 
     template < typename TValue,
                typename TFile,
-               size_t SEQAN_PAGESIZE_ >
+               size_t SEQAN2_PAGESIZE_ >
     inline void
-    clear(Buffer<TValue, PageFrame<TFile, Fixed<SEQAN_PAGESIZE_> > > &me)
+    clear(Buffer<TValue, PageFrame<TFile, Fixed<SEQAN2_PAGESIZE_> > > &me)
     {
-        typedef Buffer<TValue, PageFrame<TFile, Fixed<SEQAN_PAGESIZE_> > > TPageFrame;
+        typedef Buffer<TValue, PageFrame<TFile, Fixed<SEQAN2_PAGESIZE_> > > TPageFrame;
         me.status = READY;
         me.dataStatus = TPageFrame::UNINITIALIZED;
         me.priority = TPageFrame::NORMAL_LEVEL;
@@ -513,14 +513,14 @@ struct MMap;
     //////////////////////////////////////////////////////////////////////////////
     // meta-function interface
 
-    template <typename TValue, typename TFile, size_t SEQAN_PAGESIZE>
-    struct Iterator<Buffer<TValue, PageFrame<TFile, Fixed<SEQAN_PAGESIZE> > >, Standard >
+    template <typename TValue, typename TFile, size_t SEQAN2_PAGESIZE>
+    struct Iterator<Buffer<TValue, PageFrame<TFile, Fixed<SEQAN2_PAGESIZE> > >, Standard >
     {
         typedef VolatilePtr<TValue> Type;
     };
 
-    template <typename TValue, typename TFile, size_t SEQAN_PAGESIZE>
-    struct Iterator<Buffer<TValue, PageFrame<TFile, Fixed<SEQAN_PAGESIZE> > > const, Standard >
+    template <typename TValue, typename TFile, size_t SEQAN2_PAGESIZE>
+    struct Iterator<Buffer<TValue, PageFrame<TFile, Fixed<SEQAN2_PAGESIZE> > > const, Standard >
     {
         typedef VolatilePtr<TValue> const Type;
     };
@@ -592,7 +592,7 @@ struct MMap;
         allocate(me, tmp, capacity(pf));
         //bzero(tmp, sizeof(TValue) * capacity(pf));
         pf.begin = tmp;
-        #ifdef SEQAN_VVERBOSE
+        #ifdef SEQAN2_VVERBOSE
             std::cerr << "allocPage: " << std::hex << &pf << '\t' << tmp << std::dec << std::endl;
         #endif
     }
@@ -601,7 +601,7 @@ struct MMap;
     void freePage(Buffer<TValue, PageFrame<TFile, TSpec> > &pf, T const & me)
     {
 //IOREV _nodoc_
-        #ifdef SEQAN_VVERBOSE
+        #ifdef SEQAN2_VVERBOSE
             if ((void*)pf.begin)
                 std::cerr << "freePage:  " << std::hex << &pf << '\t' << (void*)pf.begin << std::dec << std::endl;
         #endif
@@ -616,7 +616,7 @@ struct MMap;
     {
 //IOREV _nodoc_
         typedef typename Position<TFile>::Type TPos;
-        #ifdef SEQAN_VVERBOSE
+        #ifdef SEQAN2_VVERBOSE
             std::cerr << "readPage:  " << std::hex << &pf << '\t' << (void*)pf.begin;
             std::cerr << " from page " << std::dec << pageNo << std::endl;
         #endif
@@ -628,7 +628,7 @@ struct MMap;
 
         // TODO(weese): Throw an I/O exception
         if (!readResult)
-            SEQAN_FAIL("%s operation could not be initiated: \"%s\"", _pageFrameStatusString(pf.status), strerror(errno));
+            SEQAN2_FAIL("%s operation could not be initiated: \"%s\"", _pageFrameStatusString(pf.status), strerror(errno));
 
         return readResult;
     }
@@ -653,7 +653,7 @@ struct MMap;
         typedef typename Position<TFile>::Type TPos;
         unmapPage(pf, file);
         pf.status = READY;
-        SEQAN_ASSERT_GT(size, 0);
+        SEQAN2_ASSERT_GT(size, 0);
 
 #ifdef STDLIB_VS
 #if 0
@@ -674,10 +674,10 @@ struct MMap;
         me.handle = CreateFileMapping(file.handle, &MMapStringDefaultAttributes, prot, largeSize.HighPart, largeSize.LowPart, NULL);
         if (me.handle == NULL)
         {
-            SEQAN_FAIL(
+            SEQAN2_FAIL(
                 "CreateFileMapping(%d, %d, 0, 0, 0) failed in mapReadPage: \"%s\"",
                 file.handle, access, strerror(errno));
-        #if SEQAN_ENABLE_DEBUG
+        #if SEQAN2_ENABLE_DEBUG
             std::cerr << "CreateFileMapping failed. (ErrNo=" << GetLastError() << ")" << std::endl;
         #endif
             return false;
@@ -686,7 +686,7 @@ struct MMap;
         pf.begin = (TValue *) MapViewOfFile(pf.handle, access, 0, 0, 0);
         if (pf.begin == NULL)
         {
-            SEQAN_FAIL(
+            SEQAN2_FAIL(
                 "MapViewOfFile(%d, %d, 0, 0, 0) failed in mapReadPage: \"%s\"",
                 pf.handle, access, strerror(errno));
             return false;
@@ -700,7 +700,7 @@ struct MMap;
         if (pf.begin == MAP_FAILED)
         {
             pf.begin = pf.end = NULL;
-            SEQAN_FAIL(
+            SEQAN2_FAIL(
                 "mmap(NULL, %llu, PROT_READ | PROT_WRITE, MAP_PRIVATE, %d, %llu) failed in mapReadPage: \"%s\"",
                 size * sizeof(TValue), file.handle, (TPos)pf.pageNo * (TPos)capacity(pf) * (TPos)sizeof(TValue), strerror(errno));
             return false;
@@ -716,7 +716,7 @@ struct MMap;
         typedef typename Position<TFile>::Type TPos;
         unmapPage(pf, file);
         pf.status = READY;
-        SEQAN_ASSERT_GT(size, 0u);
+        SEQAN2_ASSERT_GT(size, 0u);
 
 #ifdef STDLIB_VS
 #else
@@ -725,7 +725,7 @@ struct MMap;
         if (pf.begin == MAP_FAILED)
         {
             pf.begin = pf.end = NULL;
-            SEQAN_FAIL(
+            SEQAN2_FAIL(
                 "mmap(NULL, %llu, PROT_READ | PROT_WRITE, MAP_SHARED, %d, %llu) failed in mapWritePage: \"%s\"",
                 size * sizeof(TValue), file.handle, (TPos)pf.pageNo * (TPos)capacity(pf) * (TPos)sizeof(TValue), strerror(errno));
             return false;
@@ -740,7 +740,7 @@ struct MMap;
     {
 //IOREV _nodoc_
         typedef typename Position<TFile>::Type TPos;
-        #ifdef SEQAN_VVERBOSE
+        #ifdef SEQAN2_VVERBOSE
             std::cerr << "writePage: " << std::hex << &pf << '\t' << (void*)pf.begin;
             std::cerr << " from page " << std::dec << pageNo << std::endl;
         #endif
@@ -751,7 +751,7 @@ struct MMap;
 
         // TODO(weese): Throw an I/O exception
         if (!writeResult)
-            SEQAN_FAIL("%s operation could not be initiated: \"%s\"", _pageFrameStatusString(pf.status), strerror(errno));
+            SEQAN2_FAIL("%s operation could not be initiated: \"%s\"", _pageFrameStatusString(pf.status), strerror(errno));
 
         return writeResult;
     }
@@ -761,7 +761,7 @@ struct MMap;
     {
 //IOREV _nodoc_
         typedef typename Position<TFile>::Type TPos;
-        #ifdef SEQAN_VVERBOSE
+        #ifdef SEQAN2_VVERBOSE
             std::cerr << "readPage:  " << std::hex << &pf << '\t' << (void*)pf.begin;
             std::cerr << " from page " << std::dec << pageNo << " size " << size << std::endl;
         #endif
@@ -773,7 +773,7 @@ struct MMap;
 
         // TODO(weese): Throw an I/O exception
         if (!readResult)
-            SEQAN_FAIL("%s operation could not be initiated: \"%s\"", _pageFrameStatusString(pf.status), strerror(errno));
+            SEQAN2_FAIL("%s operation could not be initiated: \"%s\"", _pageFrameStatusString(pf.status), strerror(errno));
 
         return readResult;
     }
@@ -783,7 +783,7 @@ struct MMap;
     {
 //IOREV _nodoc_
         typedef typename Position<TFile>::Type TPos;
-        #ifdef SEQAN_VVERBOSE
+        #ifdef SEQAN2_VVERBOSE
             std::cerr << "writePage: " << std::hex << &pf << '\t' << (void*)pf.begin;
             std::cerr << " from page " << std::dec << pageNo << " size " << size << std::endl;
         #endif
@@ -795,7 +795,7 @@ struct MMap;
 
         // TODO(weese): Throw an I/O exception
         if (!writeResult)
-            SEQAN_FAIL("%s operation could not be initiated: \"%s\"", _pageFrameStatusString(pf.status), strerror(errno));
+            SEQAN2_FAIL("%s operation could not be initiated: \"%s\"", _pageFrameStatusString(pf.status), strerror(errno));
 
         return writeResult;
     }
@@ -813,7 +813,7 @@ struct MMap;
         if (!waitResult)
         {
             //printRequest(pf.request);
-            SEQAN_FAIL("%s operation could not be completed: \"%s\"", _pageFrameStatusString(pf.status), strerror(errno));
+            SEQAN2_FAIL("%s operation could not be completed: \"%s\"", _pageFrameStatusString(pf.status), strerror(errno));
         }
 
         pf.status = READY;
@@ -837,7 +837,7 @@ struct MMap;
         if (!waitResult)
         {
             //printRequest(pf.request);
-            SEQAN_FAIL("%s operation could not be completed: \"%s\"", _pageFrameStatusString(pf.status), strerror(errno));
+            SEQAN2_FAIL("%s operation could not be completed: \"%s\"", _pageFrameStatusString(pf.status), strerror(errno));
         }
 
         if (!inProgress)
@@ -891,7 +891,7 @@ struct MMap;
 //IOREV _nodoc_
         typedef typename Position<TFile>::Type TPos;
         size_t readSize = _min(dataSize - b.pageOfs, (size_t)(b.end - b.begin));
-        #ifdef SEQAN_VVERBOSE
+        #ifdef SEQAN2_VVERBOSE
             std::cerr << "readBucket:  " << std::hex << b.begin;
             std::cerr << " from page " << std::dec << pageNo << " at " << (TPos)pageNo * (TPos)pageSize + b.pageOfs;
             std::cerr << " size " << readSize << std::endl;
@@ -910,7 +910,7 @@ struct MMap;
     {
 //IOREV _nodoc_
         typedef typename Position<TFile>::Type TPos;
-        #ifdef SEQAN_VVERBOSE
+        #ifdef SEQAN2_VVERBOSE
             std::cerr << "writeBucket: " << std::hex << b.begin;
             std::cerr << " from page " << std::dec << pageNo << " at " << (TPos)pageNo * (TPos)pageSize + b.pageOfs;
             std::cerr << " size " << b.cur - b.begin << std::endl;
@@ -928,7 +928,7 @@ struct MMap;
     {
 //IOREV _nodoc_
         typedef typename Position<TFile>::Type TPos;
-        #ifdef SEQAN_VVERBOSE
+        #ifdef SEQAN2_VVERBOSE
             std::cerr << "writeBucket: " << std::hex << pf.begin;
             std::cerr << " from page " << std::dec << pf.pageNo << " at " << (TPos)pf.pageNo * (TPos)capacity(pf) + pageOfs;
             std::cerr << " size " << length(pf) << std::endl;
@@ -996,7 +996,7 @@ struct PageChain
 
             // TODO(weese): Throw an I/O exception
             if (!waitResult)
-                SEQAN_FAIL("%s operation could not be completed: \"%s\"", _pageFrameStatusString(first->status), strerror(errno));
+                SEQAN2_FAIL("%s operation could not be completed: \"%s\"", _pageFrameStatusString(first->status), strerror(errno));
 
             if (!inProgress)
                 return &pushBack(*this, *(new TPageFrame()));
@@ -1006,7 +1006,7 @@ struct PageChain
 
         // TODO(weese): Throw an I/O exception
         if (!waitResult)
-            SEQAN_FAIL("%s operation could not be completed: \"%s\"", _pageFrameStatusString(first->status), strerror(errno));
+            SEQAN2_FAIL("%s operation could not be completed: \"%s\"", _pageFrameStatusString(first->status), strerror(errno));
 
         return &firstToEnd(*this);
     }
@@ -1027,7 +1027,7 @@ struct PageChain
 
             // TODO(weese): Throw an I/O exception
             if (!waitResult)
-                SEQAN_FAIL("%s operation could not be completed: \"%s\"", _pageFrameStatusString(p->status), strerror(errno));
+                SEQAN2_FAIL("%s operation could not be completed: \"%s\"", _pageFrameStatusString(p->status), strerror(errno));
         }
     }
 };
@@ -1139,7 +1139,7 @@ erase(PageChain<TPageFrame> &pageChain, TPageFrame & pageFrame)
         prev = p;
     }
     // we assert that the page has been found
-    SEQAN_ASSERT(p != NULL);
+    SEQAN2_ASSERT(p != NULL);
     return pageFrame;
 }
 
@@ -1158,7 +1158,7 @@ popFront(PageChain<TPageFrame> &pageChain)
         --pageChain.frames;
     }
     else
-        SEQAN_FAIL("pop() was called on an empty PageChain.");
+        SEQAN2_FAIL("pop() was called on an empty PageChain.");
     return *p;
 }
 
@@ -1229,7 +1229,7 @@ firstToEnd(PageChain<TPageFrame> &pageChain)
         inline void erase(int frameNo)
         {
             lruList[pages[frameNo].priority].erase(pages[frameNo].lruEntry);
-            seqan::erase(pages, frameNo);
+            seqan2::erase(pages, frameNo);
         }
 
         inline void rename(int frameNo)
@@ -1240,7 +1240,7 @@ firstToEnd(PageChain<TPageFrame> &pageChain)
         inline void pop_back()
         {
             lruList[back(pages).priority].erase(back(pages).lruEntry);
-            seqan::erase(pages, endPosition(pages) - 1);
+            seqan2::erase(pages, endPosition(pages) - 1);
         }
 
         inline void _print()
@@ -1317,7 +1317,7 @@ firstToEnd(PageChain<TPageFrame> &pageChain)
                         if (Func_(pf)) return *I;
                 };
             }
-            #ifdef SEQAN_VVERBOSE
+            #ifdef SEQAN2_VVERBOSE
                 std::cerr << "ALL PAGES DIRTY OR IN USE (try to use const iterators) :-(" << std::endl;
             #endif
             return -1;

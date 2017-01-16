@@ -36,10 +36,10 @@
 // TODO(holtgrew): Break out into adapt_pointer.h and adapt_array.h? The important main distinction is the fixed size at compile time.
 // ==========================================================================
 
-#ifndef SEQAN_SEQUENCE_ADAPT_ARRAY_POINTER_H_
-#define SEQAN_SEQUENCE_ADAPT_ARRAY_POINTER_H_
+#ifndef SEQAN2_SEQUENCE_ADAPT_ARRAY_POINTER_H_
+#define SEQAN2_SEQUENCE_ADAPT_ARRAY_POINTER_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ===========================================================================
 // Enums, Tags, Classes, Specializations
@@ -125,16 +125,16 @@ struct IsSequence< TValue const [SIZE] > : public True {};
 
 // NOTE(h-2): removed because we really don't want this
 // template <typename TValue>
-// SEQAN_CONCEPT_IMPL((TValue *), (ContainerConcept));
+// SEQAN2_CONCEPT_IMPL((TValue *), (ContainerConcept));
 //
 // template <typename TValue>
-// SEQAN_CONCEPT_IMPL((TValue * const), (ContainerConcept));
+// SEQAN2_CONCEPT_IMPL((TValue * const), (ContainerConcept));
 
 template <typename TValue, size_t SIZE>
-SEQAN_CONCEPT_IMPL((TValue [SIZE]), (ContainerConcept));
+SEQAN2_CONCEPT_IMPL((TValue [SIZE]), (ContainerConcept));
 
 template <typename TValue, size_t SIZE>
-SEQAN_CONCEPT_IMPL((TValue const [SIZE]), (ContainerConcept));
+SEQAN2_CONCEPT_IMPL((TValue const [SIZE]), (ContainerConcept));
 
 // ----------------------------------------------------------------------------
 // Metafunction Iterator
@@ -764,8 +764,8 @@ operator >= (TLeftValue * left,
 */
 //////////////////////////////////////////////////////////////////////////////
 
-}  // namespace seqan
+}  // namespace seqan2
 
 //____________________________________________________________________________
 
-#endif  // #ifndef SEQAN_SEQUENCE_ADAPT_ARRAY_POINTER_H_
+#endif  // #ifndef SEQAN2_SEQUENCE_ADAPT_ARRAY_POINTER_H_

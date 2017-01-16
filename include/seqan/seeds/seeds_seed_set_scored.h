@@ -34,10 +34,10 @@
 // Scored SeedSet specialization.
 // ==========================================================================
 
-#ifndef SEQAN_SEEDS_SEEDS_SEED_SET_SCORED_H_
-#define SEQAN_SEEDS_SEEDS_SEED_SET_SCORED_H_
+#ifndef SEQAN2_SEEDS_SEEDS_SEED_SET_SCORED_H_
+#define SEQAN2_SEEDS_SEEDS_SEED_SET_SCORED_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ===========================================================================
 // Enums, Tags, Classes, Specializations
@@ -51,6 +51,6 @@ namespace seqan {
 // Functions
 // ===========================================================================
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_SEEDS_SEEDS_SEED_SET_SCORED_H_
+#endif  // SEQAN2_SEEDS_SEEDS_SEED_SET_SCORED_H_

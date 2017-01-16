@@ -32,18 +32,18 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_REPEAT_BASE_H
-#define SEQAN_HEADER_REPEAT_BASE_H
+#ifndef SEQAN2_HEADER_REPEAT_BASE_H
+#define SEQAN2_HEADER_REPEAT_BASE_H
 
-#if SEQAN_ENABLE_PARALLELISM
-#include <seqan/parallel.h>
-#endif  // #if SEQAN_ENABLE_PARALLELISM
+#if SEQAN2_ENABLE_PARALLELISM
+#include <seqan2/parallel.h>
+#endif  // #if SEQAN2_ENABLE_PARALLELISM
 
-namespace seqan {
+namespace seqan2 {
 
 /*!
  * @class Repeat
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Store information about a repeat.
  *
  * @signature template <typename TPos, typename TPeriod>
@@ -158,7 +158,7 @@ namespace seqan {
 */
 /*!
  * @fn findRepeats
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Search for repeats in a text.
  *
  * @signature void findRepeats(repeatString, text, minRepeatLength[, maxPeriod]);
@@ -208,7 +208,7 @@ namespace seqan {
         typedef typename Iterator<TString const>::Type    TIterator;
         typedef typename Size<TString>::Type        TSize;
 
-#if SEQAN_ENABLE_PARALLELISM
+#if SEQAN2_ENABLE_PARALLELISM
         typedef typename Value<TString>::Type        TValue;
 
         if (length(text) > (TSize)(omp_get_max_threads() * 2 * minRepeatLen)) {
@@ -391,7 +391,7 @@ namespace seqan {
                           iter(repString, outSplitters[t], Standard()));
             }  // end of #pragma omp parallel
         } else {
-#endif  // #if SEQAN_ENABLE_PARALLELISM
+#endif  // #if SEQAN2_ENABLE_PARALLELISM
             // Sequential case.
             TRepeat rep;
             rep.period = 1;
@@ -426,9 +426,9 @@ namespace seqan {
                 //            std::cerr<<"left:"<<rep.beginPosition<<"  right:"<<rep.endPosition<<"  length:"<<posSub(rep.endPosition,rep.beginPosition)<<"  period:"<<rep.period<<std::endl;
                 appendValue(repString, rep);
             }
-#if SEQAN_ENABLE_PARALLELISM
+#if SEQAN2_ENABLE_PARALLELISM
         }
-#endif  // #if SEQAN_ENABLE_PARALLELISM
+#endif  // #if SEQAN2_ENABLE_PARALLELISM
         // #pragma omp critical
         // {
         //     std::cerr << "thread #" << omp_get_thread_num() << " REPEATS:";
@@ -589,6 +589,6 @@ namespace seqan {
             appendValue(repString, (*lit).second);
     }
 
-}    // namespace seqan
+}    // namespace seqan2
 
 #endif

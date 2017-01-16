@@ -32,10 +32,10 @@
 // Author: Rene Rahn <rene.rahn@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_JOURNALED_SET_SBIAFFINE_H_
-#define INCLUDE_SEQAN_JOURNALED_SET_SBIAFFINE_H_
+#ifndef INCLUDE_SEQAN2_JOURNALED_SET_SBIAFFINE_H_
+#define INCLUDE_SEQAN2_JOURNALED_SET_SBIAFFINE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -294,6 +294,6 @@ setScoreGapExtendVertical(Score<TScoreValue, BiAffine> & scoringScheme, TScoreVa
     scoringScheme._gapExtendVertical = score;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_JOURNALED_SET_SBIAFFINE_H_
+#endif  // #ifndef INCLUDE_SEQAN2_JOURNALED_SET_SBIAFFINE_H_

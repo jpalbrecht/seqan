@@ -34,10 +34,10 @@
 // Basic definitions for the stream module.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_BASIC_STREAM_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_BASIC_STREAM_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_STREAM_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_STREAM_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -59,7 +59,7 @@ template <typename TValue, typename TTraits>
 inline bool atEnd(std::istreambuf_iterator<TValue, TTraits> const &it);
 
 template <typename TContainer>
-inline SEQAN_FUNC_ENABLE_IF(Is<StlContainerConcept<TContainer> >, typename Size<TContainer>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Is<StlContainerConcept<TContainer> >, typename Size<TContainer>::Type)
 length(TContainer const & me);
 
 template <typename TContainer, typename TSource>
@@ -67,19 +67,19 @@ inline void
 appendValue(TContainer && me, TSource && source);
 
 /*!
- * @macro SEQAN_HAS_ZLIB
- * @headerfile <seqan/stream.h>
+ * @macro SEQAN2_HAS_ZLIB
+ * @headerfile <seqan2/stream.h>
  * @brief Defined as 0 or 1, depending on zlib being available.
  *
- * @signature #define SEQAN_HAS_ZLIB 0  // or 1
+ * @signature #define SEQAN2_HAS_ZLIB 0  // or 1
  */
 
 /*!
- * @macro SEQAN_HAS_BZIP2
- * @headerfile <seqan/stream.h>
+ * @macro SEQAN2_HAS_BZIP2
+ * @headerfile <seqan2/stream.h>
  * @brief Defined as 0 or 1, depending on bzlib being available.
  *
- * @signature #define SEQAN_HAS_BZIP 0  // or 1
+ * @signature #define SEQAN2_HAS_BZIP 0  // or 1
  */
 
 // ============================================================================
@@ -96,7 +96,7 @@ appendValue(TContainer && me, TSource && source);
 
 /*!
  * @concept StreamConcept
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @brief Base concept for streams.
  *
@@ -163,7 +163,7 @@ appendValue(TContainer && me, TSource && source);
  * @return bool <tt>true</tt> if the file at EOF, <tt>false</tt> otherwise.
  */
 
-SEQAN_CONCEPT(StreamConcept, (TStream))
+SEQAN2_CONCEPT(StreamConcept, (TStream))
 {};
 
 // --------------------------------------------------------------------------
@@ -173,22 +173,22 @@ SEQAN_CONCEPT(StreamConcept, (TStream))
 /*!
  * @concept InputStreamConcept Input StreamConcept
  * @extends StreamConcept
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @signature concept InputStreamConcept : StreamConcept;
  *
  * @brief Concept for input streams (for reading).
  */
 
-SEQAN_CONCEPT_REFINE(InputStreamConcept, (TStream), (StreamConcept))
+SEQAN2_CONCEPT_REFINE(InputStreamConcept, (TStream), (StreamConcept))
 {
     typedef typename Value<TStream>::Type       TValue;
     typedef typename Size<TStream>::Type        TSize;
     typedef typename Position<TStream>::Type    TPosition;
 
-    SEQAN_CONCEPT_ASSERT((SignedIntegerConcept<TPosition>));
+    SEQAN2_CONCEPT_ASSERT((SignedIntegerConcept<TPosition>));
 
-    SEQAN_CONCEPT_USAGE(InputStreamConcept)
+    SEQAN2_CONCEPT_USAGE(InputStreamConcept)
     {}
 };
 
@@ -199,22 +199,22 @@ SEQAN_CONCEPT_REFINE(InputStreamConcept, (TStream), (StreamConcept))
 /*!
  * @concept OutputStreamConcept Output StreamConcept
  * @extends StreamConcept
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @signature concept OutputStreamConcept : StreamConcept;
  *
  * @brief Concept for output streams (for writing).
  */
 
-SEQAN_CONCEPT_REFINE(OutputStreamConcept, (TStream), (StreamConcept))
+SEQAN2_CONCEPT_REFINE(OutputStreamConcept, (TStream), (StreamConcept))
 {
     typedef typename Value<TStream>::Type       TValue;
     typedef typename Size<TStream>::Type        TSize;
     typedef typename Position<TStream>::Type    TPosition;
 
-    SEQAN_CONCEPT_ASSERT((SignedIntegerConcept<TPosition>));
+    SEQAN2_CONCEPT_ASSERT((SignedIntegerConcept<TPosition>));
 
-    SEQAN_CONCEPT_USAGE(OutputStreamConcept)
+    SEQAN2_CONCEPT_USAGE(OutputStreamConcept)
     {}
 };
 
@@ -225,14 +225,14 @@ SEQAN_CONCEPT_REFINE(OutputStreamConcept, (TStream), (StreamConcept))
 /*!
  * @concept BidirectionalStreamConcept Bidirectional StreamConcept
  * @extends StreamConcept
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @signature concept BidirectionalStreamConcept : StreamConcept;
  *
  * @brief Concept for bidirectional streams (both for reading and writing).
  */
 
-SEQAN_CONCEPT_REFINE(BidirectionalStreamConcept, (TStream), (InputStreamConcept)(OutputStreamConcept))
+SEQAN2_CONCEPT_REFINE(BidirectionalStreamConcept, (TStream), (InputStreamConcept)(OutputStreamConcept))
 {};
 
 // ============================================================================
@@ -246,7 +246,7 @@ SEQAN_CONCEPT_REFINE(BidirectionalStreamConcept, (TStream), (InputStreamConcept)
 /*!
  * @class FormattedNumber
  * @implements NumberConcept
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @brief Helper class for storing a numeric value together with a
  *        <a href="http://www.cplusplus.com/reference/cstdio/printf/">printf format string</a>.
@@ -302,7 +302,7 @@ struct Is< NumberConcept< FormattedNumber<TValue> > > :
 /*!
  * @class ParseError
  * @extends RuntimeError
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @brief Exception class for parser errors.
  *
@@ -313,7 +313,7 @@ struct ParseError : RuntimeError
 {
     /*!
      * @fn ParseError::ParseError
-     * @headerfile <seqan/basic.h>
+     * @headerfile <seqan2/basic.h>
      *
      * @brief Constructor.
      *
@@ -335,7 +335,7 @@ struct ParseError : RuntimeError
 /*!
  * @class UnexpectedEnd
  * @extends ParseError
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @brief Exception class for "unexpected end of input" errors.
  *
@@ -346,7 +346,7 @@ struct UnexpectedEnd : ParseError
 {
     /*!
      * @fn UnexpectedEnd::UnexpectedEnd
-     * @headerfile <seqan/basic.h>
+     * @headerfile <seqan2/basic.h>
      *
      * @brief Default constructor, makes the object use a default message.
      *
@@ -365,7 +365,7 @@ struct UnexpectedEnd : ParseError
 /*!
  * @class EmptyFieldError
  * @extends ParseError
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @brief Exception class for "empty field" errors.
  *
@@ -376,7 +376,7 @@ struct EmptyFieldError : ParseError
 {
     /*!
      * @fn EmptyFieldError::EmptyFieldError
-     * @headerfile <seqan/basic.h>
+     * @headerfile <seqan2/basic.h>
      *
      * @brief Construct the exception with <tt>fieldName + " field was empty."</tt>.
      *
@@ -431,7 +431,7 @@ struct DirectionIterator :
 
 /*!
  * @mfn BasicStream
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Return the stream type to read or write values.
  *
  * @signature BasicStream<TValue, TDirection[, TTraits]>::Type;
@@ -461,7 +461,7 @@ struct BasicStream :
 
 /*!
  * @mfn IosOpenMode
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Return the <tt>std::ios</tt> open mode for a direction.
  *
  * @signature IosOpenMode<TDirection[, TDummy]>::Type;
@@ -509,7 +509,7 @@ const int IosOpenMode<Bidirectional, TDummy>::VALUE = std::ios::in | std::ios::o
 
 /*!
  * @mfn MagicHeader
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Returns the magic header for a file format tag.
  *
  * The magic header is used for recognizing files from the first few bytes.
@@ -542,7 +542,7 @@ char const * MagicHeader<Nothing, T>::VALUE = NULL;
 
 /*!
  * @mfn FileExtensions
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Returns an array of file format extension strings for file foramt tag.
  *
  * @signature FileExtensions<TFormat[, TDummy]>::VALUE;
@@ -698,7 +698,7 @@ struct IntegerFormatString_<TIsUnsigned, 8, T> :
 
 // resizable containers
 template <typename TSequence, typename TValue>
-inline SEQAN_FUNC_ENABLE_IF(Is<ContainerConcept<TSequence> >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Is<ContainerConcept<TSequence> >, void)
 writeValue(TSequence &cont, TValue val)
 {
     appendValue(cont, val);
@@ -749,7 +749,7 @@ writeValue(Range<TIterator> &range, TValue val)
 
 // resizable containers
 template <typename TSequence, typename TSpec, typename TValue>
-inline SEQAN_FUNC_ENABLE_IF(Is<ContainerConcept<TSequence> >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Is<ContainerConcept<TSequence> >, void)
 writeValue(Iter<TSequence, TSpec> & iter, TValue val)
 {
     typedef Iter<TSequence, TSpec> TIter;
@@ -774,10 +774,10 @@ writeValue(Iter<TSequence, TSpec> & iter, TValue val)
 
 // non-resizable containers
 template <typename TNoSequence, typename TSpec, typename TValue>
-inline SEQAN_FUNC_DISABLE_IF(Is<ContainerConcept<TNoSequence> >, void)
+inline SEQAN2_FUNC_DISABLE_IF(Is<ContainerConcept<TNoSequence> >, void)
 writeValue(Iter<TNoSequence, TSpec> & iter, TValue val)
 {
-    SEQAN_ASSERT_LT(position(iter), length(container(iter)));
+    SEQAN2_ASSERT_LT(position(iter), length(container(iter)));
 
     assignValue(iter, val);
     ++iter;
@@ -837,14 +837,14 @@ inline void _write(TTarget &target, TFwdIterator &iter, TSize n, Range<TIValue*>
 
         TTargetSize minChunkSize = std::min((TTargetSize)length(ichunk), (TTargetSize)length(ochunk));
 
-        if (SEQAN_UNLIKELY(minChunkSize == 0u))
+        if (SEQAN2_UNLIKELY(minChunkSize == 0u))
         {
             reserveChunk(target, n, Output());
             reserveChunk(iter, n, Input());
             getChunk(ochunk, target, Output());
             getChunk(ichunk, iter, Input());
             minChunkSize = std::min((TTargetSize)length(ichunk), (TTargetSize)length(ochunk));
-            if (SEQAN_UNLIKELY(minChunkSize == 0u))
+            if (SEQAN2_UNLIKELY(minChunkSize == 0u))
             {
                 _write(target, iter, n, TNoChunking(), TNoChunking());
                 return;
@@ -864,7 +864,7 @@ inline void _write(TTarget &target, TFwdIterator &iter, TSize n, Range<TIValue*>
 
 // chunked, target is pointer (e.g. readRawPod)
 template <typename TOValue, typename TFwdIterator, typename TSize>
-inline SEQAN_FUNC_DISABLE_IF(IsSameType<typename Chunk<TFwdIterator>::Type, Nothing>, void)
+inline SEQAN2_FUNC_DISABLE_IF(IsSameType<typename Chunk<TFwdIterator>::Type, Nothing>, void)
 write(TOValue *ptr, TFwdIterator &iter, TSize n)
 {
     typedef Nothing* TNoChunking;
@@ -878,12 +878,12 @@ write(TOValue *ptr, TFwdIterator &iter, TSize n)
         getChunk(ichunk, iter, Input());
         TSourceSize chunkSize = length(ichunk);
 
-        if (SEQAN_UNLIKELY(chunkSize == 0u))
+        if (SEQAN2_UNLIKELY(chunkSize == 0u))
         {
             reserveChunk(iter, n, Input());
             getChunk(ichunk, iter, Input());
             TSourceSize chunkSize = length(ichunk);
-            if (SEQAN_UNLIKELY(chunkSize == 0u))
+            if (SEQAN2_UNLIKELY(chunkSize == 0u))
             {
                 _write(ptr, iter, n, TNoChunking(), TNoChunking());
                 return;
@@ -903,7 +903,7 @@ write(TOValue *ptr, TFwdIterator &iter, TSize n)
 
 // non-chunked fallback
 template <typename TTarget, typename TIValue, typename TSize>
-inline SEQAN_FUNC_ENABLE_IF(And< IsSameType<typename Chunk<TTarget>::Type, Nothing>,
+inline SEQAN2_FUNC_ENABLE_IF(And< IsSameType<typename Chunk<TTarget>::Type, Nothing>,
                                  Is<Convertible<typename Value<TTarget>::Type, TIValue> > >, void)
 write(TTarget &target, TIValue *ptr, TSize n)
 {
@@ -912,7 +912,7 @@ write(TTarget &target, TIValue *ptr, TSize n)
 
 // ostream shortcut, source is pointer (e.g. readRawPod)
 template <typename TTarget, typename TSize>
-inline SEQAN_FUNC_ENABLE_IF(Is< OutputStreamConcept<TTarget> >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Is< OutputStreamConcept<TTarget> >, void)
 write(TTarget &target, const char *ptr, TSize n)
 {
     target.write(ptr, n);
@@ -920,7 +920,7 @@ write(TTarget &target, const char *ptr, TSize n)
 
 // ostream shortcut, source is pointer (e.g. readRawPod)
 template <typename TTarget, typename TSize>
-inline SEQAN_FUNC_ENABLE_IF(Is< OutputStreamConcept<TTarget> >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Is< OutputStreamConcept<TTarget> >, void)
 write(TTarget &target, char *ptr, TSize n)
 {
     target.write(ptr, n);
@@ -928,7 +928,7 @@ write(TTarget &target, char *ptr, TSize n)
 
 // chunked, source is pointer (e.g. readRawPod)
 template <typename TTarget, typename TIValue, typename TSize>
-inline SEQAN_FUNC_ENABLE_IF(And< Not<IsSameType<typename Chunk<TTarget>::Type, Nothing> >,
+inline SEQAN2_FUNC_ENABLE_IF(And< Not<IsSameType<typename Chunk<TTarget>::Type, Nothing> >,
                                  Is<Convertible<typename Value<TTarget>::Type, TIValue> > >, void)
 write(TTarget &target, TIValue *ptr, TSize n)
 {
@@ -943,12 +943,12 @@ write(TTarget &target, TIValue *ptr, TSize n)
         getChunk(ochunk, target, Output());
         TTargetSize chunkSize = length(ochunk);
 
-        if (SEQAN_UNLIKELY(chunkSize == 0u))
+        if (SEQAN2_UNLIKELY(chunkSize == 0u))
         {
             reserveChunk(target, n, Output());
             getChunk(ochunk, target, Output());
             chunkSize = length(ochunk);
-            if (SEQAN_UNLIKELY(chunkSize == 0u))
+            if (SEQAN2_UNLIKELY(chunkSize == 0u))
             {
                 _write(target, ptr, n, TNoChunking(), TNoChunking());
                 return;
@@ -967,7 +967,7 @@ write(TTarget &target, TIValue *ptr, TSize n)
 }
 
 template <typename TOValue, typename TIValue, typename TSize>
-inline SEQAN_FUNC_ENABLE_IF(And< Is<CharConcept<TOValue> >,
+inline SEQAN2_FUNC_ENABLE_IF(And< Is<CharConcept<TOValue> >,
                                  Is<CharConcept<TIValue> > >, void)
 write(TOValue * &optr, TIValue *iptr, TSize n)
 {
@@ -976,7 +976,7 @@ write(TOValue * &optr, TIValue *iptr, TSize n)
 }
 
 template <typename TOValue, typename TIValue, typename TSize>
-inline SEQAN_FUNC_ENABLE_IF(And< Is<CharConcept<TOValue> >,
+inline SEQAN2_FUNC_ENABLE_IF(And< Is<CharConcept<TOValue> >,
                                  Is<CharConcept<TIValue> > >, void)
 write(TOValue * optr, TIValue * &iptr, TSize n)
 {
@@ -990,7 +990,7 @@ write(TOValue * optr, TIValue * &iptr, TSize n)
 // NOTE(esiragusa): should it be defined for Streams and Containers?
 
 //template <typename TTarget, typename TValue, typename TSize>
-//inline SEQAN_FUNC_ENABLE_IF(Or<Is<OutputStreamConcept<TTarget> >, Is<ContainerConcept<TTarget> > >, void)
+//inline SEQAN2_FUNC_ENABLE_IF(Or<Is<OutputStreamConcept<TTarget> >, Is<ContainerConcept<TTarget> > >, void)
 //write(TTarget &target, TValue *ptr, TSize n)
 //{
 //    typedef Range<TValue*>                          TRange;
@@ -1022,8 +1022,8 @@ write(TOValue * optr, TIValue * &iptr, TSize n)
 
 //TODO(singer): Enable this!
 template <typename TTarget, typename TFwdIterator, typename TSize>
-//inline SEQAN_FUNC_ENABLE_IF(Or<Is<OutputStreamConcept<TTarget> >, Is<ContainerConcept<TTarget> > >, void)
-inline SEQAN_FUNC_ENABLE_IF(And< Is<IntegerConcept<TSize> >,
+//inline SEQAN2_FUNC_ENABLE_IF(Or<Is<OutputStreamConcept<TTarget> >, Is<ContainerConcept<TTarget> > >, void)
+inline SEQAN2_FUNC_ENABLE_IF(And< Is<IntegerConcept<TSize> >,
                                  Is<Convertible<typename Value<TTarget>::Type,
                                                 typename Value<TFwdIterator>::Type> > >, void)
 write(TTarget &target, TFwdIterator &iter, TSize n)
@@ -1037,8 +1037,8 @@ write(TTarget &target, TFwdIterator &iter, TSize n)
 // write for more complex values (defer to write of iterator value)
 // used for Strings of Pairs
 template <typename TTarget, typename TFwdIterator, typename TSize>
-//inline SEQAN_FUNC_ENABLE_IF(Or<Is<OutputStreamConcept<TTarget> >, Is<ContainerConcept<TTarget> > >, void)
-inline SEQAN_FUNC_ENABLE_IF(And<
+//inline SEQAN2_FUNC_ENABLE_IF(Or<Is<OutputStreamConcept<TTarget> >, Is<ContainerConcept<TTarget> > >, void)
+inline SEQAN2_FUNC_ENABLE_IF(And<
     Is<IntegerConcept<TSize> >,
     Not< Is<Convertible<typename Value<TTarget>::Type,
                         typename Value<TFwdIterator>::Type> > > >, void)
@@ -1056,7 +1056,7 @@ write(TTarget &target, TFwdIterator &iter, TSize n)
 // ----------------------------------------------------------------------------
 
 template <typename TTarget, typename TContainer>
-inline SEQAN_FUNC_ENABLE_IF(And< Not<IsContiguous<TContainer> >,
+inline SEQAN2_FUNC_ENABLE_IF(And< Not<IsContiguous<TContainer> >,
                                  And< Is<ContainerConcept<TContainer> >,
                                       Not<Is<ContainerConcept<typename Value<TContainer>::Type> > > > >, void)
 write(TTarget &target, TContainer &cont)
@@ -1066,7 +1066,7 @@ write(TTarget &target, TContainer &cont)
 }
 
 template <typename TTarget, typename TContainer>
-inline SEQAN_FUNC_ENABLE_IF(And< IsContiguous<TContainer>,
+inline SEQAN2_FUNC_ENABLE_IF(And< IsContiguous<TContainer>,
                                  And< Is<ContainerConcept<TContainer> >,
                                       Not<Is<ContainerConcept<typename Value<TContainer>::Type> > > > >, void)
 write(TTarget &target, TContainer &cont)
@@ -1076,7 +1076,7 @@ write(TTarget &target, TContainer &cont)
 }
 
 template <typename TTarget, typename TContainer>
-inline SEQAN_FUNC_ENABLE_IF(And< Not<IsContiguous<TContainer> >,
+inline SEQAN2_FUNC_ENABLE_IF(And< Not<IsContiguous<TContainer> >,
                                  And< Is<ContainerConcept<TContainer> >,
                                       Not<Is<ContainerConcept<typename Value<TContainer>::Type> > > > >, void)
 write(TTarget &target, TContainer const &cont)
@@ -1086,7 +1086,7 @@ write(TTarget &target, TContainer const &cont)
 }
 
 template <typename TTarget, typename TContainer>
-inline SEQAN_FUNC_ENABLE_IF(And< IsContiguous<TContainer>,
+inline SEQAN2_FUNC_ENABLE_IF(And< IsContiguous<TContainer>,
                                  And< Is<ContainerConcept<TContainer> >,
                                       Not<Is<ContainerConcept<typename Value<TContainer>::Type> > > > >, void)
 write(TTarget &target, TContainer const &cont)
@@ -1108,7 +1108,7 @@ write(TTarget &target, TValue * ptr)
 // Generic version for integers.
 
 template <typename TTarget, typename TInteger>
-inline SEQAN_FUNC_ENABLE_IF(Is<IntegerConcept<TInteger> >, typename Size<TTarget>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Is<IntegerConcept<TInteger> >, typename Size<TTarget>::Type)
 appendNumber(TTarget & target, TInteger i)
 {
     typedef IntegerFormatString_<typename Is<UnsignedIntegerConcept<TInteger> >::Type,
@@ -1207,7 +1207,7 @@ appendRawPod(TTargetValue * &ptr, TValue const & val)
 // ----------------------------------------------------------------------------
 
 template <typename TTarget, typename TValue>
-inline SEQAN_FUNC_ENABLE_IF(And< Is<Convertible<typename Value<TTarget>::Type, TValue> >,
+inline SEQAN2_FUNC_ENABLE_IF(And< Is<Convertible<typename Value<TTarget>::Type, TValue> >,
                                  Is<FundamentalConcept<TValue> > >, void)
 write(TTarget &target, TValue &number)
 {
@@ -1218,7 +1218,7 @@ write(TTarget &target, TValue &number)
 }
 
 template <typename TTarget, typename TValue>
-inline SEQAN_FUNC_ENABLE_IF(And< Is<Convertible<typename Value<TTarget>::Type, TValue> >,
+inline SEQAN2_FUNC_ENABLE_IF(And< Is<Convertible<typename Value<TTarget>::Type, TValue> >,
                                  Is<FundamentalConcept<TValue> > >, void)
 write(TTarget &target, TValue const &number)
 {
@@ -1233,7 +1233,7 @@ write(TTarget &target, TValue const &number)
 // ----------------------------------------------------------------------------
 
 template <typename TTarget, typename TValue>
-inline SEQAN_FUNC_ENABLE_IF(And< Is<Convertible<typename Value<TTarget>::Type, TValue> >,
+inline SEQAN2_FUNC_ENABLE_IF(And< Is<Convertible<typename Value<TTarget>::Type, TValue> >,
                                  Not<Is<FundamentalConcept<TValue> > > >, void)
 write(TTarget &target, TValue &number)
 {
@@ -1241,7 +1241,7 @@ write(TTarget &target, TValue &number)
 }
 
 template <typename TTarget, typename TValue>
-inline SEQAN_FUNC_ENABLE_IF(And< Is<Convertible<typename Value<TTarget>::Type, TValue const> >,
+inline SEQAN2_FUNC_ENABLE_IF(And< Is<Convertible<typename Value<TTarget>::Type, TValue const> >,
                                  Not<Is<FundamentalConcept<TValue const> > > >, void)
 write(TTarget &target, TValue const &number)
 {
@@ -1253,7 +1253,7 @@ write(TTarget &target, TValue const &number)
 // ----------------------------------------------------------------------------
 
 template <typename TTarget, typename TFwdIterator, typename TSize>
-inline SEQAN_FUNC_ENABLE_IF(Is<IntegerConcept<TSize> >, TSize)
+inline SEQAN2_FUNC_ENABLE_IF(Is<IntegerConcept<TSize> >, TSize)
 read(TTarget &target, TFwdIterator &iter, TSize n)
 {
     TSize i;
@@ -1300,4 +1300,4 @@ operator<<(TStream & target,
 
 }  // namespace seqean
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_BASIC_STREAM_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_STREAM_H_

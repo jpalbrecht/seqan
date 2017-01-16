@@ -34,12 +34,12 @@
 // Concept definitions for containers.
 // ==========================================================================
 
-// SEQAN_NO_GENERATED_FORWARDS
+// SEQAN2_NO_GENERATED_FORWARDS
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_CONTAINER_CONCEPT_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_CONTAINER_CONCEPT_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_CONTAINER_CONCEPT_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_CONTAINER_CONCEPT_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -63,7 +63,7 @@ template <typename TContainer, typename TSpec> struct Iterator;
  * @extends AssignableConcept
  * @extends DestructibleConcept
  * @brief A container is an object that stores other objects (<i>elements</i>).
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @signature ContainerConcept<T>
  *
@@ -303,11 +303,11 @@ struct ContainerConcept :
     TDifference diff;
     TIterator   iter;
 
-    SEQAN_CONCEPT_ASSERT((AlphabetConcept<TValue>));
-    SEQAN_CONCEPT_ASSERT((SignedIntegerConcept<TDifference>));
-    SEQAN_CONCEPT_ASSERT((UnsignedIntegerConcept<TSize>));
+    SEQAN2_CONCEPT_ASSERT((AlphabetConcept<TValue>));
+    SEQAN2_CONCEPT_ASSERT((SignedIntegerConcept<TDifference>));
+    SEQAN2_CONCEPT_ASSERT((UnsignedIntegerConcept<TSize>));
 
-    SEQAN_CONCEPT_USAGE(ContainerConcept)
+    SEQAN2_CONCEPT_USAGE(ContainerConcept)
     {
         // test return of const values
         sameType(getValue(c, 0), val);
@@ -339,7 +339,7 @@ struct ContainerConcept :
     }
 };
 
-SEQAN_CONCEPT_REFINE(StringConcept, (TString), (ContainerConcept)(PropertyMapConcept))
+SEQAN2_CONCEPT_REFINE(StringConcept, (TString), (ContainerConcept)(PropertyMapConcept))
 {
     typedef typename Value<TString>::Type                 TValue;
     typedef typename Size<TString>::Type                  TSize;
@@ -353,7 +353,7 @@ SEQAN_CONCEPT_REFINE(StringConcept, (TString), (ContainerConcept)(PropertyMapCon
 
     TString     str, str2;
 
-    SEQAN_CONCEPT_USAGE(StringConcept)
+    SEQAN2_CONCEPT_USAGE(StringConcept)
     {
         pos = 0u;
 
@@ -379,9 +379,9 @@ SEQAN_CONCEPT_REFINE(StringConcept, (TString), (ContainerConcept)(PropertyMapCon
 //     ContainerConcept<TContainer>
     
 
-SEQAN_CONCEPT_REFINE(StlContainerConcept, (TContainer), (ContainerConcept))
+SEQAN2_CONCEPT_REFINE(StlContainerConcept, (TContainer), (ContainerConcept))
 {
-    SEQAN_CONCEPT_USAGE(StlContainerConcept)
+    SEQAN2_CONCEPT_USAGE(StlContainerConcept)
     {}
 };
 
@@ -391,7 +391,7 @@ SEQAN_CONCEPT_REFINE(StlContainerConcept, (TContainer), (ContainerConcept))
 
 /*!
  * @mfn IsContiguous
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Determines whether a container stores its elements contiguously in memory.
  *
  * @signature IsContiguous<T>::Type;
@@ -426,7 +426,7 @@ struct HasSubscriptOperator :
 /*!
  * @concept ForwardContainerConcept
  * @extends ContainerConcept
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief A forward container is a Container whose elements follow a strict linear ordering.
  *
  * @signature ForwardContainerConcept<T>
@@ -439,7 +439,7 @@ struct HasSubscriptOperator :
 /*!
  * @concept ReversibleContainerConcept
  * @extends ForwardContainerConcept
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief A reversible container is a forward container that can also be iterated in reverse order.
  *
  * @signature ReversibleContainerConcept<T>
@@ -448,7 +448,7 @@ struct HasSubscriptOperator :
 /*!
  * @concept RandomAccessContainerConcept
  * @extends ReversibleContainerConcept
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief A random access container is a reversible container whose iterator is a random access iterator.
  *
  * @signature RandomAccessContainerConcept<T>
@@ -510,14 +510,14 @@ struct HasSubscriptOperator :
  * @concept StringConcept
  * @brief Sequences are dense linear containers that have positions.
  * @extends RandomAccessContainerConcept
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @signature StringConcept<T>
  */
 
 /*!
  * @fn StringConcept#iter
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Iterator to the item at the given position in a container.
  *
  * @signature TIterator iter(seq, pos[, tag]);
@@ -628,6 +628,6 @@ struct HasSubscriptOperator :
  * @param[in,out] seq The sequence to remove the last element from.
  */
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_CONTAINER_CONCEPT_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_CONTAINER_CONCEPT_H_

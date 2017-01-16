@@ -34,12 +34,12 @@
 // Approximate string matching via backtracking on two substring indices.
 // ==========================================================================
 
-#ifndef SEQAN_FIND_BACKTRACKING_MULTIPLE_H_
-#define SEQAN_FIND_BACKTRACKING_MULTIPLE_H_
+#ifndef SEQAN2_FIND_BACKTRACKING_MULTIPLE_H_
+#define SEQAN2_FIND_BACKTRACKING_MULTIPLE_H_
 
-//#define SEQAN_DEBUG
+//#define SEQAN2_DEBUG
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -309,8 +309,8 @@ _updateVertexScore(TVertexScore current,
     }
 
     // Assert end of columns.
-    SEQAN_ASSERT_EQ(currentIt + 1, end(current, Standard()));
-    SEQAN_ASSERT_EQ(previousIt + 1, end(previous, Standard()));
+    SEQAN2_ASSERT_EQ(currentIt + 1, end(current, Standard()));
+    SEQAN2_ASSERT_EQ(previousIt + 1, end(previous, Standard()));
 }
 
 template <typename TVertexScore, typename TTextValue, typename TPatternValue>
@@ -335,8 +335,8 @@ _updateVertexScore(TVertexScore current,
     value(currentIt) = _min(value(previousIt) + score, value(previousIt + 1) + 1);
 
     // Assert end of columns.
-    SEQAN_ASSERT_EQ(currentIt + 1, end(current, Standard()));
-    SEQAN_ASSERT_EQ(previousIt + 2, end(previous, Standard()));
+    SEQAN2_ASSERT_EQ(currentIt + 1, end(current, Standard()));
+    SEQAN2_ASSERT_EQ(previousIt + 2, end(previous, Standard()));
 }
 
 // ----------------------------------------------------------------------------
@@ -385,7 +385,7 @@ _initState(Finder_<Index<TText, TTextIndexSpec>, Index<TPattern, TPatternIndexSp
 
     _initScore(finder);
 
-#ifdef SEQAN_DEBUG
+#ifdef SEQAN2_DEBUG
         _printState(finder, StageInitial_());
 #endif
 }
@@ -433,7 +433,7 @@ _pushState(Finder_<Index<TText, TTextIndexSpec>, Index<TPattern, TPatternIndexSp
     {
         _updateScore(finder, TStage());
 
-#ifdef SEQAN_DEBUG
+#ifdef SEQAN2_DEBUG
         _printPush(finder, TStage());
 #endif
         return true;
@@ -588,7 +588,7 @@ _nextState(Finder_<Index<TText, TTextIndexSpec>, Index<TPattern, TPatternIndexSp
     {
         _updateScore(finder, TStage());
 
-#ifdef SEQAN_DEBUG
+#ifdef SEQAN2_DEBUG
         _printState(finder, TStage());
 #endif
         return true;
@@ -689,7 +689,7 @@ _popState(Finder_<Index<TText, TTextIndexSpec>, Index<TPattern, TPatternIndexSpe
     _popIterators(finder, TStage());
     _popScore(finder, TStage());
 
-#ifdef SEQAN_DEBUG
+#ifdef SEQAN2_DEBUG
     _printPop(finder, TStage());
 #endif
 }
@@ -1285,7 +1285,7 @@ _find(Finder_<Index<TText, TTextIndexSpec>, Index<TPattern, TPatternIndexSpec>, 
     typedef Backtracking<TDistance, TSpec>                      TBacktracking;
     typedef typename NextStage_<TBacktracking, TStage>::Type    TNextStage;
 
-#ifdef SEQAN_DEBUG
+#ifdef SEQAN2_DEBUG
     _printCall(finder, TStage());
 #endif
 
@@ -1322,7 +1322,7 @@ _find(Finder_<Index<TText, TTextIndexSpec>, Index<TPattern, TPatternIndexSpec>, 
         }
     }
 
-#ifdef SEQAN_DEBUG
+#ifdef SEQAN2_DEBUG
     _printReturn(finder, TStage());
 #endif
 }
@@ -1356,4 +1356,4 @@ _find(Finder_<Index<TText, TTextIndexSpec>, Index<TPattern, TPatternIndexSpec>, 
 
 }
 
-#endif  // #ifndef SEQAN_FIND_BACKTRACKING_MULTIPLE_H_
+#endif  // #ifndef SEQAN2_FIND_BACKTRACKING_MULTIPLE_H_

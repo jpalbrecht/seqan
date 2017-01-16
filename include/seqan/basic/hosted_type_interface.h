@@ -37,10 +37,10 @@
 // TODO(holtgrew): We could add a HostedTypeConcept and make this a submodule of basic, e.g. basic/hosted.
 // TODO(holtgrew): This looks a bit unused/underused.
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_HOSTED_TYPE_INTERFACE_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_HOSTED_TYPE_INTERFACE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_HOSTED_TYPE_INTERFACE_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_HOSTED_TYPE_INTERFACE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -286,6 +286,6 @@ moveHost(T & me,
     moveValue(_dataHost(me), host_);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_HOSTED_TYPE_INTERFACE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_HOSTED_TYPE_INTERFACE_H_

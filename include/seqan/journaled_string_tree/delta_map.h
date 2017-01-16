@@ -35,10 +35,10 @@
 // their position within the base sequence in ascending order.
 // ==========================================================================
 
-#ifndef EXTRAS_INCLUDE_SEQAN_JOURNALED_STRING_TREE_DELTA_MAP_H_
-#define EXTRAS_INCLUDE_SEQAN_JOURNALED_STRING_TREE_DELTA_MAP_H_
+#ifndef EXTRAS_INCLUDE_SEQAN2_JOURNALED_STRING_TREE_DELTA_MAP_H_
+#define EXTRAS_INCLUDE_SEQAN2_JOURNALED_STRING_TREE_DELTA_MAP_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -78,7 +78,7 @@ typedef Tag<DeltaMapStoreMember_> DeltaMapStoreMember;
 /*!
  * @class DeltaMap
  *
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  *
  * @brief Stores delta information and maps them to a common coordinate system.
  *
@@ -164,7 +164,7 @@ struct Member<DeltaMap<TConfig, TSpec> const, TTag>
 
 /*!
  * @mfn DeltaMap#Value
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Returns value type for the delta map.
  *
  * @signature Value<TDeltaMap>::Type
@@ -192,7 +192,7 @@ struct Value<DeltaMap<TConfig, TSpec> const>
 
 /*!
  * @mfn DeltaMap#Size
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Returns size type for a delta map.
  *
  * @signature Size<TDeltaMap>::Type
@@ -217,7 +217,7 @@ struct Size<DeltaMap<TConfig, TSpec> const > :
 
 /*!
  * @mfn DeltaMap#Iterator
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Returns iterator type for a delta map.
  *
  * @signature Iterator<TDeltaMap, Standard>::Type
@@ -263,7 +263,7 @@ struct Iterator<DeltaMap<TConfig, TSpec> const, Tag<TIteratorSpec> const>
 
 /*!
  * @mfn DeltaMap#DeltaValue
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Returns value type for a specific delta.
  *
  * @signature DeltaValue<TDeltaMap, TType>::Type
@@ -296,7 +296,7 @@ struct DeltaValue<DeltaMap<TConfig, TSpec> const, TDeltaType>
 
 /*!
  * @mfn DeltaMap#DeltaCoverage
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Returns coverage type for a delta map.
  *
  * @signature DeltaCoverage<TDeltaMap>::Type
@@ -578,7 +578,7 @@ insert(Iter<TDeltaMap, DeltaMapIteratorSpec> mapIt,
 
 /*!
  * @fn DeltaMap#lowerBound
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Finds the first element that compares not less than the specified key.
  *
  * @signature TIterator lowerBound(deltaMap, pos, type)
@@ -619,7 +619,7 @@ lowerBound(DeltaMap<TConfig, TSpec> & deltaMap,
 
 /*!
  * @fn DeltaMap#upperBound
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Finds the first element that compares not less or equal to the specified key.
  *
  * @signature TIterator upperBound(deltaMap, pos, type)
@@ -658,7 +658,7 @@ upperBound(DeltaMap<TConfig, TSpec> & deltaMap,
 
 /*!
  * @fn DeltaMap#find
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Finds the element specified by the given delta position and delta type.
  *
  * @signature TIterator find(deltaMap, pos, type)
@@ -697,7 +697,7 @@ find(DeltaMap<TConfig, TSpec> & deltaMap,
 
 /*!
  * @fn DeltaMap#count
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Counts the number of elements that compare equal to the specified key.
  *
  * @signature TSize count(deltaMap, pos, type)
@@ -735,7 +735,7 @@ count(DeltaMap<TConfig, TSpec> const & deltaMap,
 
 /*!
  * @fn DeltaMap#equalRange
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Returns the range over all elements comparing equal to the specified key.
  *
  * @signature Pair<TIterator> equalRange(deltaMap, pos, type)
@@ -766,7 +766,7 @@ equalRange(DeltaMap<TConfig, TSpec> const & deltaMap, TPosition refPosition, TDe
 
 /*!
  * @fn DeltaMap#insert
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Inserts a new delta entry.
  *
  * @signature bool insert(deltaMap, pos, val, cov, type);
@@ -791,7 +791,7 @@ insert(DeltaMap<TConfig, TSpec> & deltaMap,
        TCoverage const & coverage,
        TDeltaType const & /*deltaType*/)
 {
-    if (SEQAN_UNLIKELY(empty(deltaMap)))
+    if (SEQAN2_UNLIKELY(empty(deltaMap)))
         reserve(deltaMap._entries, 1);
 
     auto it = upperBound(deltaMap, deltaPos, TDeltaType());
@@ -804,7 +804,7 @@ insert(DeltaMap<TConfig, TSpec> & deltaMap,
 
 /*!
  * @fn DeltaMap#erase
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Erases an existing delta entry.
  *
  * @signature bool erase(deltaMap, pos, type);
@@ -833,7 +833,7 @@ erase(DeltaMap<TConfig, TSpec> & deltaMap,
     typedef typename Value<TDeltaMap>::Type TEntry;
     typedef typename Size<TStore>::Type TStoreSize;
 
-    if (SEQAN_UNLIKELY(empty(deltaMap)))  // Check for empty deltaMap.
+    if (SEQAN2_UNLIKELY(empty(deltaMap)))  // Check for empty deltaMap.
         return false;
 
     auto itRange = equalRange(deltaMap, deltaPos, TDeltaType());
@@ -851,7 +851,7 @@ erase(DeltaMap<TConfig, TSpec> & deltaMap,
                                   DeltaEndType::IS_RIGHT,
                                   TDeltaType());
 
-            SEQAN_ASSERT_LEQ(position(it, deltaMap), position(itR, deltaMap));
+            SEQAN2_ASSERT_LEQ(position(it, deltaMap), position(itR, deltaMap));
             if (it != itR)
             {
                 erase(deltaMap._entries, itR - begin(deltaMap, Standard()));
@@ -861,7 +861,7 @@ erase(DeltaMap<TConfig, TSpec> & deltaMap,
 
         // Erase the delta record from the corresponding delta store.
         TStoreSize storePos = getDeltaRecord(*it).i2;
-        SEQAN_ASSERT_LT(storePos, length(getDeltaStore(deltaMap._deltaStore, TDeltaType())));
+        SEQAN2_ASSERT_LT(storePos, length(getDeltaStore(deltaMap._deltaStore, TDeltaType())));
         eraseDeltaValue(deltaMap._deltaStore, storePos, TDeltaType());
         // Update record position for all entries.
         forEach(deltaMap, [storePos](TEntry & entry)
@@ -883,7 +883,7 @@ erase(DeltaMap<TConfig, TSpec> & deltaMap,
 
 /*!
  * @fn DeltaMap#begin
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Returns an iterator pointing to the beginning of the map.
  *
  * @signature TIterator begin(deltaMap, tag)
@@ -936,7 +936,7 @@ iter(DeltaMap<TConfig, TSpec> const & deltaMap,
 
 /*!
  * @fn DeltaMap#end
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Returns an iterator pointing to the end of the map.
  *
  * @signature TIterator end(deltaMap, tag)
@@ -967,7 +967,7 @@ end(DeltaMap<TConfig, TSpec> const & deltaMap, Tag<TIteratorSpec> const /*tag*/)
 
 /*!
  * @fn DeltaMap#clear
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Clears the delta map.
  *
  * @signature clear(deltaMap)
@@ -989,7 +989,7 @@ clear(DeltaMap<TConfig, TSpec> & deltaMap)
 
 /*!
  * @fn DeltaMap#empty
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Checks if the delta map is empty.
  *
  * @signature bool empty(deltaMap)
@@ -1012,7 +1012,7 @@ empty(DeltaMap<TConfig, TSpec> const & deltaMap)
 
 /*!
  * @fn DeltaMap#size
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Returns the number of mapped delta events.
  *
  * @signature TSize size(deltaMap)
@@ -1035,7 +1035,7 @@ size(DeltaMap<TConfig, TSpec> const & deltaMap) -> decltype(length(deltaMap._ent
 
 /*!
  * @fn DeltaMap#maxSize
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Returns the number of mapped delta events.
  *
  * @signature TSize size(deltaMap)
@@ -1054,4 +1054,4 @@ maxSize(DeltaMap<TConfig, TSpec> const & /*deltaMap*/)
 
 }
 
-#endif // EXTRAS_INCLUDE_SEQAN_JOURNALED_STRING_TREE_DELTA_MAP_H_
+#endif // EXTRAS_INCLUDE_SEQAN2_JOURNALED_STRING_TREE_DELTA_MAP_H_

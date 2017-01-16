@@ -32,10 +32,10 @@
 // Author: Manuel Holtgrewe <manuel.holtgrewe@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_CONSENSUS_CONSENSUS_ALIGNMENT_OPTIONS_H_
-#define INCLUDE_SEQAN_CONSENSUS_CONSENSUS_ALIGNMENT_OPTIONS_H_
+#ifndef INCLUDE_SEQAN2_CONSENSUS_CONSENSUS_ALIGNMENT_OPTIONS_H_
+#define INCLUDE_SEQAN2_CONSENSUS_CONSENSUS_ALIGNMENT_OPTIONS_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -51,7 +51,7 @@ namespace seqan {
 
 /*!
  * @class ConsensusAlignmentOptions
- * @headerfile <seqan/consensus.h>
+ * @headerfile <seqan2/consensus.h>
  * @brief Configuration for @link consensusAlignment @endlink
  *
  * @signature struct ConsensusAlignmentOptions;
@@ -140,6 +140,6 @@ struct ConsensusAlignmentOptions
 // Functions
 // ============================================================================
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_CONSENSUS_CONSENSUS_ALIGNMENT_OPTIONS_H_
+#endif  // #ifndef INCLUDE_SEQAN2_CONSENSUS_CONSENSUS_ALIGNMENT_OPTIONS_H_

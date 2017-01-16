@@ -32,10 +32,10 @@
 // Author: Tobias Rausch <rausch@embl.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_FIND_BOM_H
-#define SEQAN_HEADER_FIND_BOM_H
+#ifndef SEQAN2_HEADER_FIND_BOM_H
+#define SEQAN2_HEADER_FIND_BOM_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -45,7 +45,7 @@ namespace seqan
 /*!
  * @class BfamPattern
  * @extends Pattern
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Backward Factor Automaton Matching algorithm.
  *
  * @signature template <typename TNeedle, typename TAutomaton>
@@ -62,7 +62,7 @@ namespace seqan
 /*!
  * @class OracleBfamPattern
  * @extends BfamPattern
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Backward Oracle Matching algorithm.
  *
  * @signature template <typename TNeedle>
@@ -79,7 +79,7 @@ namespace seqan
 /*!
  * @class TrieBfamPattern
  * @extends BfamPattern
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Backward Suffix Trie Matching algorithm.
  *
  * @signature template <typename TNeedle>
@@ -121,7 +121,7 @@ public:
 
     template <typename TNeedle2>
     Pattern(TNeedle2 && ndl,
-            SEQAN_CTOR_DISABLE_IF(IsSameType<typename std::remove_reference<TNeedle2>::type const &, Pattern const &>))
+            SEQAN2_CTOR_DISABLE_IF(IsSameType<typename std::remove_reference<TNeedle2>::type const &, Pattern const &>))
     {
         ignoreUnusedVariableWarning(dummy);
         setHost(*this, std::forward<TNeedle2>(ndl));
@@ -210,6 +210,6 @@ find(TFinder & finder, Pattern<TNeedle, Bfam<TSpec> > & me)
     return false;
 }
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_FIND_SHIFTAND_H
+#endif //#ifndef SEQAN2_HEADER_FIND_SHIFTAND_H

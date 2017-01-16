@@ -30,10 +30,10 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_GRAPH_IMPL_AUTOMATON_H
-#define SEQAN_HEADER_GRAPH_IMPL_AUTOMATON_H
+#ifndef SEQAN2_HEADER_GRAPH_IMPL_AUTOMATON_H
+#define SEQAN2_HEADER_GRAPH_IMPL_AUTOMATON_H
 
-namespace seqan
+namespace seqan2
 {
 //////////////////////////////////////////////////////////////////////////////
 // Graph - Automaton
@@ -58,7 +58,7 @@ public:
 
 /*!
  * @class Automaton
- * @headerfile <seqan/graph_types.h>
+ * @headerfile <seqan2/graph_types.h>
  * @extends Graph
  * @brief Representation of a automaton graph.
  *
@@ -295,7 +295,7 @@ inline typename Size<Graph<Automaton<TAlphabet, TCargo, TSpec> > >::Type
 outDegree(Graph<Automaton<TAlphabet, TCargo, TSpec> > const& g,
           TVertexDescriptor const vertex)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, vertex));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, vertex));
 
     typedef Graph<Automaton<TAlphabet, TCargo, TSpec> > TGraph;
     typedef typename Size<TGraph>::Type TSize;
@@ -313,7 +313,7 @@ inline typename Size<Graph<Automaton<TAlphabet, TCargo, TSpec> > >::Type
 inDegree(Graph<Automaton<TAlphabet, TCargo, TSpec> > const& g,
          TVertexDescriptor const vertex)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, vertex));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, vertex));
 
     typedef Graph<Automaton<TAlphabet, TCargo, TSpec> > TGraph;
     typedef typename EdgeType<TGraph>::Type TEdge;
@@ -366,7 +366,7 @@ inline void
 removeVertex(Graph<Automaton<TAlphabet, TCargo, TSpec> >& g,
              TVertexDescriptor const v)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, v));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, v));
 
     removeOutEdges(g,v); // Remove all outgoing edges
     removeInEdges(g,v); // Remove all incoming edges
@@ -382,8 +382,8 @@ addEdge(Graph<Automaton<TAlphabet, TCargo, TSpec> >& g,
         TVertexDescriptor const target,
         TLabel const label)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, source));
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, target));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, source));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, target));
     typedef Graph<Automaton<TAlphabet, TCargo, TSpec> > TGraph;
     typedef typename EdgeDescriptor<TGraph>::Type TEdgeDescriptor;
 
@@ -424,8 +424,8 @@ removeEdge(Graph<Automaton<TAlphabet, TCargo, TSpec> >& g,
 {
     (void) source;  // If compiled without assertions.
     (void) target;  // If compiled without assertions.
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, source));
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, target));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, source));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, target));
     removeEdge(g, &g.data_vertex[source].data_edge[ordValue((TAlphabet) label)]);
 }
 
@@ -436,7 +436,7 @@ inline void
 removeEdge(Graph<Automaton<TAlphabet, TCargo, TSpec> >& g,
            TEdgeDescriptor const edge)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, _getId(edge)));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, _getId(edge)));
     typedef Graph<Automaton<TAlphabet, TCargo, TSpec> > TGraph;
     typedef typename VertexDescriptor<TGraph>::Type TVertexDescriptor;
 
@@ -451,7 +451,7 @@ inline void
 removeOutEdges(Graph<Automaton<TAlphabet, TCargo, TSpec> >& g,
                TVertexDescriptor const vertex)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, vertex));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, vertex));
 
     typedef Graph<Automaton<TAlphabet, TCargo, TSpec> > TGraph;
     typedef typename EdgeDescriptor<TGraph>::Type TEdgeDescriptor;
@@ -472,7 +472,7 @@ inline void
 removeInEdges(Graph<Automaton<TAlphabet, TCargo, TSpec> >& g,
               TVertexDescriptor const vertex)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, vertex));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, vertex));
 
     typedef Graph<Automaton<TAlphabet, TCargo, TSpec> > TGraph;
     typedef typename EdgeType<TGraph>::Type TEdge;
@@ -534,7 +534,7 @@ sourceVertex(Graph<Automaton<TAlphabet, TCargo, TSpec> >& g,
             }
         }
     }
-    SEQAN_ASSERT_FAIL("We should never reach this point.");
+    SEQAN2_ASSERT_FAIL("We should never reach this point.");
     return 0;
 }
 
@@ -635,7 +635,7 @@ findEdge(Graph<Automaton<TAlphabet, TCargo, TSpec> >& g,
          TVertexDescriptor const v,
          TLabel const c)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, v));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, v));
     return &g.data_vertex[v].data_edge[ordValue((TAlphabet) c)];
 }
 
@@ -647,7 +647,7 @@ findEdge(Graph<Automaton<TAlphabet, TCargo, TSpec> > const& g,
          TVertexDescriptor const v,
          TLabel const c)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, v));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, v));
     typedef Graph<Automaton<TAlphabet, TCargo, TSpec> > TGraph;
     TGraph* graph = const_cast<TGraph*>(&g);
     return findEdge(*graph, v, c);
@@ -820,7 +820,7 @@ getSuccessor(Graph<Automaton<TAlphabet, TCargo, TSpec> > const& g,
              TVertexDescriptor vertex,
              TChar const c)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, vertex));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, vertex));
     return getTarget(findEdge(g, vertex, c));
 }
 
@@ -853,7 +853,7 @@ parseString(Graph<Automaton<TAlphabet, TCargo, TSpec> > const& g,
             TIterator & beginIt,
             TIterator const & endIt)
 {
-    SEQAN_ASSERT(idInUse(g.data_id_managerV, vertex));
+    SEQAN2_ASSERT(idInUse(g.data_id_managerV, vertex));
     TVertexDescriptor nilVal = getNil<TVertexDescriptor>();
     TVertexDescriptor succ = vertex;
     while (beginIt!=endIt) {
@@ -956,6 +956,6 @@ canParseString(Graph<Automaton<TAlphabet, TCargo, TSpec> > & g,
 }
 
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

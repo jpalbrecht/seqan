@@ -35,10 +35,10 @@
 // Provides a platform independent access to memory mapping of files.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_FILE_MAPPING_H_
-#define SEQAN_INCLUDE_SEQAN_FILE_MAPPING_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_FILE_MAPPING_H_
+#define SEQAN2_INCLUDE_SEQAN2_FILE_MAPPING_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -50,7 +50,7 @@ namespace seqan {
 
 /*!
  * @enum FileMappingMode
- * @headerfile <seqan/file.h>
+ * @headerfile <seqan2/file.h>
  * @brief Flags to determine the mapping mode of mapFileSegment.
  *
  * @signature enum FileMappingMode;
@@ -80,7 +80,7 @@ enum FileMappingMode {
 
 /*!
  * @enum FileMappingAdvise
- * @headerfile <seqan/file.h>
+ * @headerfile <seqan2/file.h>
  * @brief Enum with MMAP advise values.
  *
  * @signature enum FileMappingAdvise;
@@ -125,7 +125,7 @@ enum FileMappingAdvise {
 
 /*!
  * @class FileMapping
- * @headerfile <seqan/file.h>
+ * @headerfile <seqan2/file.h>
  * @brief A structure to memory-map a file.
  *
  * @signature template <[typename TSpec]>
@@ -295,7 +295,7 @@ _mapFile(FileMapping<TSpec> &mapping, TSize mappingSize)
             0,
             NULL);
 
-        SEQAN_FAIL("CreateFileMapping failed in resize: \"%s\"", lpMsgBuf /*strerror(GetLastError())*/);
+        SEQAN2_FAIL("CreateFileMapping failed in resize: \"%s\"", lpMsgBuf /*strerror(GetLastError())*/);
         LocalFree(lpMsgBuf);
     }
 #endif
@@ -329,7 +329,7 @@ _unmapFile(FileMapping<TSpec> &mapping)
                 0,
                 NULL);
 
-            SEQAN_FAIL("CloseHandle failed in unmap: \"%s\"", lpMsgBuf /*strerror(GetLastError())*/);
+            SEQAN2_FAIL("CloseHandle failed in unmap: \"%s\"", lpMsgBuf /*strerror(GetLastError())*/);
             LocalFree(lpMsgBuf);
         }
         mapping.handle = NULL;
@@ -651,8 +651,8 @@ template <typename TSpec, typename TPos, typename TSize, typename TFileMappingMo
 inline void *
 mapFileSegment(FileMapping<TSpec> &mapping, TPos fileOfs, TSize size, TFileMappingMode mode)
 {
-    SEQAN_ASSERT_EQ((int)OPEN_RDONLY, (int)MAP_RDONLY);
-    SEQAN_ASSERT_EQ((int)OPEN_WRONLY, (int)MAP_WRONLY);
+    SEQAN2_ASSERT_EQ((int)OPEN_RDONLY, (int)MAP_RDONLY);
+    SEQAN2_ASSERT_EQ((int)OPEN_WRONLY, (int)MAP_WRONLY);
 
     void *addr;
     if (size == 0)
@@ -697,7 +697,7 @@ mapFileSegment(FileMapping<TSpec> &mapping, TPos fileOfs, TSize size, TFileMappi
 #endif
     if (addr == NULL)
     {
-        SEQAN_FAIL("mapFileSegment(%i,%i,%i) failed (filesize=%i): \"%s\"", fileOfs, size, mode, length(mapping.file), strerror(errno));
+        SEQAN2_FAIL("mapFileSegment(%i,%i,%i) failed (filesize=%i): \"%s\"", fileOfs, size, mode, length(mapping.file), strerror(errno));
     }
     return addr;
 }
@@ -743,7 +743,7 @@ unmapFileSegment(FileMapping<TSpec> &, void *addr, TSize size)
 
 #endif
     if (!result)
-        SEQAN_FAIL("unmapFileSegment(%x,%i) failed: \"%s\"", (uint64_t)addr, size, strerror(errno));
+        SEQAN2_FAIL("unmapFileSegment(%x,%i) failed: \"%s\"", (uint64_t)addr, size, strerror(errno));
     return result;
 }
 
@@ -781,10 +781,10 @@ remapFileSegment(FileMapping<TSpec> &mapping, void *oldAddr, TPos oldFileOfs, TS
     addr = mapFileSegment(mapping, oldFileOfs, newSize);
 #endif
     if (addr == NULL)
-        SEQAN_FAIL("remapFileSegment failed: \"%s\"", strerror(errno));
+        SEQAN2_FAIL("remapFileSegment failed: \"%s\"", strerror(errno));
     return addr;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_FILE_MAPPING_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_FILE_MAPPING_H_

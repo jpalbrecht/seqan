@@ -32,10 +32,10 @@
 // Author: Manuel Holtgrewe <manuel.holtgrewe@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_BAM_IO_BAM_ALIGNMENT_RECORD_UTIL_H_
-#define INCLUDE_SEQAN_BAM_IO_BAM_ALIGNMENT_RECORD_UTIL_H_
+#ifndef INCLUDE_SEQAN2_BAM_IO_BAM_ALIGNMENT_RECORD_UTIL_H_
+#define INCLUDE_SEQAN2_BAM_IO_BAM_ALIGNMENT_RECORD_UTIL_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Functions
@@ -120,9 +120,9 @@ getClippedPos(unsigned & posBegin, unsigned & posEnd, BamAlignmentRecord const &
         else
             break;
     }
-    SEQAN_ASSERT_LEQ(posBegin, posEnd);
-    SEQAN_ASSERT_LEQ(posBegin, length(record.seq));
-    SEQAN_ASSERT_LEQ(posEnd, length(record.seq));
+    SEQAN2_ASSERT_LEQ(posBegin, posEnd);
+    SEQAN2_ASSERT_LEQ(posBegin, length(record.seq));
+    SEQAN2_ASSERT_LEQ(posEnd, length(record.seq));
 
     return (posBegin != 0) || (posEnd != length(record.seq));
 }
@@ -200,7 +200,7 @@ inline unsigned countPaddings(String<CigarElement<> > const & cigarString)
 
 /*!
  * @fn BamAlignmentRecord#bamRecordToAlignment
- * @headerfile <seqan/bam_io.h>
+ * @headerfile <seqan2/bam_io.h>
  * @brief Construct an @link Align @endlink object from a BamAlignmentRecord object.
  *
  * @signature void bamRecordToAlignment(align, reference, record);
@@ -248,6 +248,6 @@ bamRecordToAlignment(Align<TSource, TSpec> & result, TReference & reference, Bam
     cigarToGapAnchorRead(row(result, 1), record.cigar);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_BAM_IO_BAM_ALIGNMENT_RECORD_UTIL_H_
+#endif  // #ifndef INCLUDE_SEQAN2_BAM_IO_BAM_ALIGNMENT_RECORD_UTIL_H_

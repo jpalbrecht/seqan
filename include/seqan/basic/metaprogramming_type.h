@@ -38,10 +38,10 @@
 // and modifying it, such as querying for const-ness.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_METAPROGRAMMING_TYPE_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_METAPROGRAMMING_TYPE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_METAPROGRAMMING_TYPE_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_METAPROGRAMMING_TYPE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -61,7 +61,7 @@ namespace seqan {
 
 /*!
  * @mfn IsSameType
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Metaprogramming type comparison.
  *
  * @signature IsSameType<T1, T2>::Type;
@@ -86,7 +86,7 @@ struct IsSameType<Type1, Type1> : True {};
 
 /*!
  * @mfn MakeUnsigned
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Convert an integral value into its unsigned variant.
  *
  * Returns T itself if T is not signed.
@@ -134,7 +134,7 @@ struct MakeUnsigned_ : MakeUnsigned<T> {};
 
 /*!
  * @mfn MakeSigned
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Convert an integral value into its signed variant.
  *
  * Returns T if T is already signed.
@@ -182,7 +182,7 @@ struct MakeSigned_ : MakeSigned<T> {};
 
 /*!
  * @mfn RemoveReference
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Converts a (reference) type into the same type without a reference.
  *
  * @signature RemoveReference<T>::Type;
@@ -204,7 +204,7 @@ struct RemoveReference
 
 /*!
  * @mfn RemovePointer
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Converts a (pointer) type into the same type without a pointer.
  *
  * @signature RemovePointer<T>::Type;
@@ -235,7 +235,7 @@ struct IsPointer<T * const> : True {};
 
 /*!
  * @mfn RemoveConst
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Converts a (const) type into the corresponding non-const type.
  *
  * @signature RemoveConst<T>::Type;
@@ -333,6 +333,6 @@ struct ClassIdentifier_
 // Functions
 // ============================================================================
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_METAPROGRAMMING_TYPE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_METAPROGRAMMING_TYPE_H_

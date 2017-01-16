@@ -32,10 +32,10 @@
 // Author: Rene Rahn <rene.rahn@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_ALIGN_ALIGN_INTERFACE_WRAPPER_H_
-#define INCLUDE_SEQAN_ALIGN_ALIGN_INTERFACE_WRAPPER_H_
+#ifndef INCLUDE_SEQAN2_ALIGN_ALIGN_INTERFACE_WRAPPER_H_
+#define INCLUDE_SEQAN2_ALIGN_ALIGN_INTERFACE_WRAPPER_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -78,7 +78,7 @@ _alignWrapperSequential(StringSet<TString1, TSpec1> const & stringsH,
     forEach(zipCont,
             [&] (auto tuple)
             {
-                using namespace seqan;
+                using namespace seqan2;
                 DPScoutState_<Default> dpScoutState;
                 String<TraceSegment_<unsigned, unsigned> > traceSegments;  // Dummy segments.
                 std::get<0>(tuple) = _setUpAndRunAlignment(traceSegments, dpScoutState,
@@ -112,7 +112,7 @@ _alignWrapperSequential(TString1 const & stringH,
     forEach(zipCont,
             [&] (auto tuple)
             {
-                using namespace seqan;
+                using namespace seqan2;
                 DPScoutState_<Default> dpScoutState;
                 String<TraceSegment_<unsigned, unsigned> > traceSegments;  // Dummy segments.
                 std::get<0>(tuple) = _setUpAndRunAlignment(traceSegments, dpScoutState, stringH, std::get<1>(tuple),
@@ -149,7 +149,7 @@ _alignWrapperSequential(StringSet<Gaps<TSequenceH, TGapsSpecH>, TSetSpecH> & gap
     forEach(zipCont,
             [&] (auto tuple)
             {
-                using namespace seqan;
+                using namespace seqan2;
                 String<TTraceSegment> trace;
                 DPScoutState_<Default> dpScoutState;
                 std::get<0>(tuple) = _setUpAndRunAlignment(trace, dpScoutState, source(std::get<1>(tuple)),
@@ -167,13 +167,13 @@ _alignWrapperSequential(StringSet<Gaps<TSequenceH, TGapsSpecH>, TSetSpecH> & gap
 template <typename... TArgs>
 inline auto _alignWrapper(TArgs && ...args)
 {
-#ifdef SEQAN_SIMD_ENABLED
+#ifdef SEQAN2_SIMD_ENABLED
     return _alignWrapperSimd(std::forward<TArgs>(args)...);
 #else
     return _alignWrapperSequential(std::forward<TArgs>(args)...);
 #endif
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_ALIGN_ALIGN_INTERFACE_WRAPPER_H_
+#endif  // #ifndef INCLUDE_SEQAN2_ALIGN_ALIGN_INTERFACE_WRAPPER_H_

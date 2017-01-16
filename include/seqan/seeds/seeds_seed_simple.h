@@ -34,10 +34,10 @@
 // Specialization "Simple" for class Seed.
 // ==========================================================================
 
-#ifndef SEQAN_SEEDS_SEEDS_SEED_SIMPLE_H_
-#define SEQAN_SEEDS_SEEDS_SEED_SIMPLE_H_
+#ifndef SEQAN2_SEEDS_SEEDS_SEED_SIMPLE_H_
+#define SEQAN2_SEEDS_SEEDS_SEED_SIMPLE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ===========================================================================
 // Enums, Tags, Classes, Specializations
@@ -49,7 +49,7 @@ namespace seqan {
 
 /*!
  * @class SimpleSeed
- * @headerfile <seqan/seeds.h>
+ * @headerfile <seqan2/seeds.h>
  * @extends Seed
  * @brief Describes a seed with start and end position and diagonal upper and lower bounds.
  *
@@ -100,7 +100,7 @@ public:
             _endPositionV(beginPositionV + seedLength), _lowerDiagonal(static_cast<TDiagonal>(beginPositionH - beginPositionV)),
             _upperDiagonal(static_cast<TDiagonal>(beginPositionH - beginPositionV)), _score(0)
     {
-        SEQAN_ASSERT_GEQ(_upperDiagonal, _lowerDiagonal);
+        SEQAN2_ASSERT_GEQ(_upperDiagonal, _lowerDiagonal);
     }
 
     Seed(TPosition beginPositionH, TPosition beginPositionV, TPosition endPositionH, TPosition endPositionV) :
@@ -114,7 +114,7 @@ public:
                                     static_cast<TDiagonal>(endPositionH - endPositionV))),
             _score(0)
     {
-        SEQAN_ASSERT_GEQ(_upperDiagonal, _lowerDiagonal);
+        SEQAN2_ASSERT_GEQ(_upperDiagonal, _lowerDiagonal);
     }
 
     template <typename TSeed2>
@@ -127,7 +127,7 @@ public:
               _upperDiagonal(upperDiagonal(other)),
               _score(0)
     {
-        SEQAN_ASSERT_GEQ(_upperDiagonal, _lowerDiagonal);
+        SEQAN2_ASSERT_GEQ(_upperDiagonal, _lowerDiagonal);
     }
 };
 
@@ -273,6 +273,6 @@ __write(TStream & stream, Seed<Simple, TConfig> const & seed, Tikz_ const &)
     stream << "\\draw[seed] (" << getBeginDim1(seed) << ", -" << getBeginDim0(seed) << ") -- (" << (getEndDim1(seed) - 1) << ", -" << (getEndDim0(seed) - 1) << ");" << std::endl;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_SEEDS_SEEDS_SEED_SIMPLE_H_
+#endif  // SEQAN2_SEEDS_SEEDS_SEED_SIMPLE_H_

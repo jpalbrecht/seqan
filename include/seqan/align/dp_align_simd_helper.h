@@ -32,13 +32,13 @@
 // Author: Rene Rahn <rene.rahn@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_ALIGN_DP_ALIGN_SIMD_HELPER_H_
-#define INCLUDE_SEQAN_ALIGN_DP_ALIGN_SIMD_HELPER_H_
+#ifndef INCLUDE_SEQAN2_ALIGN_DP_ALIGN_SIMD_HELPER_H_
+#define INCLUDE_SEQAN2_ALIGN_DP_ALIGN_SIMD_HELPER_H_
 
-namespace seqan
+namespace seqan2
 {
 
-#if SEQAN_ALIGN_SIMD_PROFILE
+#if SEQAN2_ALIGN_SIMD_PROFILE
 struct AlignSimdProfile_
 {
     double preprTimer = 0.0;
@@ -89,16 +89,16 @@ struct SimdAlignVariableLengthTraits
 // Function _createSimdRepImpl()
 // ----------------------------------------------------------------------------
 
-#define SEQAN_CREATE_SIMD_REP_IMPL_2(data, strPos, chrPos)    getValue(data[strPos + 1], chrPos), getValue(data[strPos], chrPos)
-#define SEQAN_CREATE_SIMD_REP_IMPL_4(data, strPos, chrPos)    SEQAN_CREATE_SIMD_REP_IMPL_2(data, strPos + 2, chrPos),  SEQAN_CREATE_SIMD_REP_IMPL_2(data, strPos, chrPos)
-#define SEQAN_CREATE_SIMD_REP_IMPL_8(data, strPos, chrPos)    SEQAN_CREATE_SIMD_REP_IMPL_4(data, strPos + 4, chrPos),  SEQAN_CREATE_SIMD_REP_IMPL_4(data, strPos, chrPos)
-#define SEQAN_CREATE_SIMD_REP_IMPL_16(data, strPos, chrPos)   SEQAN_CREATE_SIMD_REP_IMPL_8(data, strPos + 8, chrPos),  SEQAN_CREATE_SIMD_REP_IMPL_8(data, strPos, chrPos)
-#define SEQAN_CREATE_SIMD_REP_IMPL_32(data, strPos, chrPos)   SEQAN_CREATE_SIMD_REP_IMPL_16(data, strPos + 16, chrPos), SEQAN_CREATE_SIMD_REP_IMPL_16(data, strPos, chrPos)
+#define SEQAN2_CREATE_SIMD_REP_IMPL_2(data, strPos, chrPos)    getValue(data[strPos + 1], chrPos), getValue(data[strPos], chrPos)
+#define SEQAN2_CREATE_SIMD_REP_IMPL_4(data, strPos, chrPos)    SEQAN2_CREATE_SIMD_REP_IMPL_2(data, strPos + 2, chrPos),  SEQAN2_CREATE_SIMD_REP_IMPL_2(data, strPos, chrPos)
+#define SEQAN2_CREATE_SIMD_REP_IMPL_8(data, strPos, chrPos)    SEQAN2_CREATE_SIMD_REP_IMPL_4(data, strPos + 4, chrPos),  SEQAN2_CREATE_SIMD_REP_IMPL_4(data, strPos, chrPos)
+#define SEQAN2_CREATE_SIMD_REP_IMPL_16(data, strPos, chrPos)   SEQAN2_CREATE_SIMD_REP_IMPL_8(data, strPos + 8, chrPos),  SEQAN2_CREATE_SIMD_REP_IMPL_8(data, strPos, chrPos)
+#define SEQAN2_CREATE_SIMD_REP_IMPL_32(data, strPos, chrPos)   SEQAN2_CREATE_SIMD_REP_IMPL_16(data, strPos + 16, chrPos), SEQAN2_CREATE_SIMD_REP_IMPL_16(data, strPos, chrPos)
 
-#define SEQAN_CREATE_SIMD_REP_FILL_IMPL_2(MACRO, data, chrPos) MACRO(data, 0, chrPos)
-#define SEQAN_CREATE_SIMD_REP_FILL_IMPL(data, chrPos, SIZE) SEQAN_CREATE_SIMD_REP_FILL_IMPL_2(SEQAN_CREATE_SIMD_REP_IMPL_##SIZE, data, chrPos)
+#define SEQAN2_CREATE_SIMD_REP_FILL_IMPL_2(MACRO, data, chrPos) MACRO(data, 0, chrPos)
+#define SEQAN2_CREATE_SIMD_REP_FILL_IMPL(data, chrPos, SIZE) SEQAN2_CREATE_SIMD_REP_FILL_IMPL_2(SEQAN2_CREATE_SIMD_REP_IMPL_##SIZE, data, chrPos)
 
-#define SEQAN_CREATE_SIMD_REP_IMPL(SIZE)                                                \
+#define SEQAN2_CREATE_SIMD_REP_IMPL(SIZE)                                                \
 template <typename TSimdVecs, typename TStrings>                                        \
 inline void _createSimdRepImpl(TSimdVecs & simdStr,                                     \
                                TStrings const & strings,                                \
@@ -107,14 +107,14 @@ inline void _createSimdRepImpl(TSimdVecs & simdStr,                             
     auto itB = begin(simdStr, Standard());                                              \
     auto itE = end(simdStr, Standard());                                                \
     for (auto it = itB; it != itE; ++it)                                                \
-        fillVector(*it, SEQAN_CREATE_SIMD_REP_FILL_IMPL(strings, it - itB, SIZE));      \
+        fillVector(*it, SEQAN2_CREATE_SIMD_REP_FILL_IMPL(strings, it - itB, SIZE));      \
 }
 
-SEQAN_CREATE_SIMD_REP_IMPL(2)
-SEQAN_CREATE_SIMD_REP_IMPL(4)
-SEQAN_CREATE_SIMD_REP_IMPL(8)
-SEQAN_CREATE_SIMD_REP_IMPL(16)
-SEQAN_CREATE_SIMD_REP_IMPL(32)
+SEQAN2_CREATE_SIMD_REP_IMPL(2)
+SEQAN2_CREATE_SIMD_REP_IMPL(4)
+SEQAN2_CREATE_SIMD_REP_IMPL(8)
+SEQAN2_CREATE_SIMD_REP_IMPL(16)
+SEQAN2_CREATE_SIMD_REP_IMPL(32)
 
 template <typename TSimdVecs, typename TStrings>
 inline void _createSimdRepImpl(TSimdVecs & simdStr,
@@ -126,7 +126,7 @@ inline void _createSimdRepImpl(TSimdVecs & simdStr,
 // Actually precompute value if scoring scheme is score matrix and simd version.
 template <typename TSeqValue,
 typename TScoreValue, typename TScore>
-inline SEQAN_FUNC_ENABLE_IF(And<Is<SimdVectorConcept<TSeqValue> >, IsScoreMatrix_<TScore> >, TSeqValue)
+inline SEQAN2_FUNC_ENABLE_IF(And<Is<SimdVectorConcept<TSeqValue> >, IsScoreMatrix_<TScore> >, TSeqValue)
 _precomputeScoreMatrixOffset(TSeqValue const & seqVal,
                              Score<TScoreValue, ScoreSimdWrapper<TScore> > const & /*score*/)
 {
@@ -184,8 +184,8 @@ _prepareAndRunSimdAlignment(TResult & results,
                             TGapModel const & /*gapModel*/,
                             SimdAlignVariableLength<TTraits> const /*tag*/)
 {
-    SEQAN_ASSERT_EQ(length(seqH), length(seqV));
-    SEQAN_ASSERT_EQ(static_cast<decltype(length(seqH))>(LENGTH<TResult>::VALUE), length(seqH));
+    SEQAN2_ASSERT_EQ(length(seqH), length(seqV));
+    SEQAN2_ASSERT_EQ(static_cast<decltype(length(seqH))>(LENGTH<TResult>::VALUE), length(seqH));
 
     using TPadStringH = ModifiedString<typename Value<TSequencesH const>::Type, ModPadding>;
     using TPadStringV = ModifiedString<typename Value<TSequencesV const>::Type, ModPadding>;
@@ -325,7 +325,7 @@ _alignWrapperSimd(StringSet<TString1, TSpec1> const & stringsH,
     for (auto pos = 0u; pos < fullSize; pos += sizeBatch)
     {
         TSimdAlign resultsBatch;
-        if (SEQAN_UNLIKELY(numAlignments < pos + sizeBatch))
+        if (SEQAN2_UNLIKELY(numAlignments < pos + sizeBatch))
         {
             StringSet<TString1, Dependent<> > depSetH;
             StringSet<TString2, Dependent<> > depSetV;
@@ -342,8 +342,8 @@ _alignWrapperSimd(StringSet<TString1, TSpec1> const & stringsH,
                     appendValue(depSetV, stringsV[i]);
                 }
             }
-            SEQAN_ASSERT_EQ(length(depSetH), sizeBatch);
-            SEQAN_ASSERT_EQ(length(depSetV), sizeBatch);
+            SEQAN2_ASSERT_EQ(length(depSetH), sizeBatch);
+            SEQAN2_ASSERT_EQ(length(depSetV), sizeBatch);
 
             _prepareAndRunSimdAlignment(resultsBatch, trace, depSetH, depSetV, simdScoringScheme, config, TGapModel());
         }
@@ -400,7 +400,7 @@ _alignWrapperSimd(TString1 const & stringH,
     for (auto pos = 0u; pos < fullSize; pos += sizeBatch)
     {
         TSimdAlign resultsBatch;
-        if (SEQAN_UNLIKELY(numAlignments < pos + sizeBatch))
+        if (SEQAN2_UNLIKELY(numAlignments < pos + sizeBatch))
         {
             StringSet<TString2, Dependent<> > depSetV;
             for (unsigned i = pos; i < fullSize; ++i)
@@ -410,7 +410,7 @@ _alignWrapperSimd(TString1 const & stringH,
                 else
                     appendValue(depSetV, stringsV[i]);
             }
-            SEQAN_ASSERT_EQ(length(depSetV), sizeBatch);
+            SEQAN2_ASSERT_EQ(length(depSetV), sizeBatch);
 
             _prepareAndRunSimdAlignment(resultsBatch, trace, setH, depSetV, simdScoringScheme, config, TGapModel());
         }
@@ -450,7 +450,7 @@ _alignWrapperSimd(StringSet<Gaps<TSequenceH, TGapsSpecH>, TSetSpecH> & gapSeqSet
 
     typedef typename SimdVector<int16_t>::Type                          TSimdAlign;
 
-#if SEQAN_ALIGN_SIMD_PROFILE
+#if SEQAN2_ALIGN_SIMD_PROFILE
     timer = sysTime();
 #endif
 
@@ -504,7 +504,7 @@ _alignWrapperSimd(StringSet<Gaps<TSequenceH, TGapsSpecH>, TSetSpecH> & gapSeqSet
             results[x] = resultsBatch[x - pos];
             _adaptTraceSegmentsTo(gapSeqSetH[x], gapSeqSetV[x], trace[x - pos]);
         }
-#if SEQAN_ALIGN_SIMD_PROFILE
+#if SEQAN2_ALIGN_SIMD_PROFILE
         profile.traceTimer += sysTime() - timer;
         timer = sysTime();
 #endif
@@ -512,6 +512,6 @@ _alignWrapperSimd(StringSet<Gaps<TSequenceH, TGapsSpecH>, TSetSpecH> & gapSeqSet
     return results;
 }
 
-}  // namespace seqan
-#endif  // #ifndef INCLUDE_SEQAN_ALIGN_DP_ALIGN_SIMD_HELPER_H_
+}  // namespace seqan2
+#endif  // #ifndef INCLUDE_SEQAN2_ALIGN_DP_ALIGN_SIMD_HELPER_H_
 

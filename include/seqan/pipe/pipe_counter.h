@@ -32,13 +32,13 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_PIPE_COUNTER_H
-#define SEQAN_HEADER_PIPE_COUNTER_H
+#ifndef SEQAN2_HEADER_PIPE_COUNTER_H
+#define SEQAN2_HEADER_PIPE_COUNTER_H
 
-namespace seqan
+namespace seqan2
 {
 
-//namespace SEQAN_NAMESPACE_PIPELINING
+//namespace SEQAN2_NAMESPACE_PIPELINING
 //{
 
     struct Counter;
@@ -55,7 +55,7 @@ namespace seqan
 /*!
  * @class Counter
  * @extends Pipe
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Extends the input stream by a second field which enumerates the elements.
  *
  * @signature template <typename TInput>

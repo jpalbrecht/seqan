@@ -34,12 +34,12 @@
 // Author: Enrico Siragusa <enrico.siragusa@fu-berlin.de>
 // ==========================================================================
 
-//SEQAN_NO_DDDOC:do not generate documentation for this file
+//SEQAN2_NO_DDDOC:do not generate documentation for this file
 
-#ifndef INDEX_FM_H
-#define INDEX_FM_H
+#ifndef SEQAN2_INDEX_FM_H
+#define SEQAN2_INDEX_FM_H
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Metafunctions
@@ -51,7 +51,7 @@ namespace seqan {
 
 /*!
  * @class FMIndexConfig
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief A configuration object that determines the data types of certain fibres of the @link FMIndex @endlink.
  *
  * @signature template <[typename TSpec[, typename TLengthSum[, unsigned LEVELS[, unsigned WORDS_PER_BLOCK]]]]>
@@ -96,7 +96,7 @@ struct FMIndexConfig
 
 /*!
  * @class FastFMIndexConfig
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief A configuration object that determines the data types of certain fibres of the @link FMIndex @endlink.
  *
  * @signature template <[typename TSpec[, typename TLengthSum[, unsigned LEVELS[, unsigned WORDS_PER_BLOCK]]]]>
@@ -225,7 +225,7 @@ struct DefaultFinder<Index<TText, FMIndex<TSpec, TConfig> > >
  * @class FMIndex
  * @extends Index
  * @implements StringTrieConcept
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief An index based on the Burrows-Wheeler transform.
  *
  * @signature template <typename TText[, typename TSpec[, typename TConfig]]>
@@ -268,10 +268,10 @@ public:
 };
 
 template <typename TText, typename TSpec, typename TConfig>
-SEQAN_CONCEPT_IMPL((Index<TText, FMIndex<TSpec, TConfig> >), (StringTrieConcept));
+SEQAN2_CONCEPT_IMPL((Index<TText, FMIndex<TSpec, TConfig> >), (StringTrieConcept));
 
 template <typename TText, typename TSpec, typename TConfig>
-SEQAN_CONCEPT_IMPL((Index<TText, FMIndex<TSpec, TConfig> > const), (StringTrieConcept));
+SEQAN2_CONCEPT_IMPL((Index<TText, FMIndex<TSpec, TConfig> > const), (StringTrieConcept));
 
 // ============================================================================
 // Functions
@@ -326,7 +326,7 @@ getFibre(Index<TText, FMIndex<TSpec, TConfig> > const & index, FibreLF /*tag*/)
 // ----------------------------------------------------------------------------
 /*!
  * @fn FMIndex#indexLF
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief A shortcut for <tt>getFibre(index, FibreLF())</tt>.
  *
  * @signature TFibre indexLF(index);
@@ -356,7 +356,7 @@ indexLF(Index<TText, FMIndex<TSpec, TConfig> > const & index)
 
 /*!
  * @fn FMIndex#toSuffixPosition
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief This function computes the position of a specified position in the compressed suffix array (additionally
  *        containing entries for the sentinels). The returned position corresponds to the suffix array of the original
  *        text without sentinels.
@@ -378,7 +378,7 @@ template <typename TText, typename TSpec, typename TConfig, typename TPos, typen
 inline typename SAValue<Index<TText, FMIndex<TSpec, TConfig> > >::Type
 toSuffixPosition(Index<TText, FMIndex<TSpec, TConfig> > & index, TPos i, TSize offset)
 {
-    SEQAN_ASSERT_GEQ(suffixLength(i, index), offset);
+    SEQAN2_ASSERT_GEQ(suffixLength(i, index), offset);
     setSeqOffset(i, suffixLength(i, index) - offset);
     return i;
 }
@@ -387,7 +387,7 @@ template <typename TText, typename TSpec, typename TConfig, typename TPos, typen
 inline typename SAValue<Index<TText, FMIndex<TSpec, TConfig> > const>::Type
 toSuffixPosition(Index<TText, FMIndex<TSpec, TConfig> > const & index, TPos i, TSize offset)
 {
-    SEQAN_ASSERT_GEQ(suffixLength(i, index), offset);
+    SEQAN2_ASSERT_GEQ(suffixLength(i, index), offset);
     setSeqOffset(i, suffixLength(i, index) - offset);
     return i;
 }
@@ -545,4 +545,4 @@ inline bool save(Index<TText, FMIndex<TSpec, TConfig> > const & index, const cha
 }
 
 }
-#endif // INDEX_FM_H
+#endif // SEQAN2_INDEX_FM_H

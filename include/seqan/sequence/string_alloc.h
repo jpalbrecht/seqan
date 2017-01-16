@@ -34,10 +34,10 @@
 // Implementation of the Alloc string class.
 // ==========================================================================
 
-#ifndef SEQAN_SEQUENCE_STRING_ALLOC_H_
-#define SEQAN_SEQUENCE_STRING_ALLOC_H_
+#ifndef SEQAN2_SEQUENCE_STRING_ALLOC_H_
+#define SEQAN2_SEQUENCE_STRING_ALLOC_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -51,7 +51,7 @@ namespace seqan {
  * @class AllocString Alloc String
  * @extends String
  * @brief Expandable string that is stored on the heap.
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  *
  * @signature template <typename TValue, typename TSpec>
  *            class String<TValue, Alloc<TSpec> >;
@@ -75,7 +75,7 @@ public:
               data_end(0),
               data_capacity(0)
     {
-        SEQAN_ASSERT_LEQ_MSG(data_begin, data_end, "String end is before begin!");
+        SEQAN2_ASSERT_LEQ_MSG(data_begin, data_end, "String end is before begin!");
     }
 
     template <typename TSource>
@@ -86,7 +86,7 @@ public:
     {
         if (length(source) > 0u)
             assign(*this, source);
-        SEQAN_ASSERT_LEQ_MSG(data_begin, data_end, "String end is before begin!");
+        SEQAN2_ASSERT_LEQ_MSG(data_begin, data_end, "String end is before begin!");
     }
 
     template <typename TSource>
@@ -97,7 +97,7 @@ public:
     {
         if (length(source) > 0u)
             assign(*this, source);
-        SEQAN_ASSERT_LEQ_MSG(data_begin, data_end, "String end is before begin!");
+        SEQAN2_ASSERT_LEQ_MSG(data_begin, data_end, "String end is before begin!");
     }
 
     String(String & source)
@@ -108,7 +108,7 @@ public:
         reserve(*this, std::min(capacity(source), computeGenerousCapacity(source, length(source))), Exact());
         if (length(source) > 0u)
             assign(*this, source);
-        SEQAN_ASSERT_LEQ_MSG(data_begin, data_end, "String end is before begin!");
+        SEQAN2_ASSERT_LEQ_MSG(data_begin, data_end, "String end is before begin!");
     }
 
     String(String const & source)
@@ -119,7 +119,7 @@ public:
         reserve(*this, std::min(capacity(source), computeGenerousCapacity(source, length(source))), Exact());
         if (length(source) > 0u)
             assign(*this, source);
-        SEQAN_ASSERT_LEQ_MSG(data_begin, data_end, "String end is before begin!");
+        SEQAN2_ASSERT_LEQ_MSG(data_begin, data_end, "String end is before begin!");
     }
 
     String(String & source, Move const &)
@@ -128,7 +128,7 @@ public:
           data_capacity(0)
     {
         move(*this, source);
-        SEQAN_ASSERT_LEQ_MSG(data_begin, data_end, "String end is before begin!");
+        SEQAN2_ASSERT_LEQ_MSG(data_begin, data_end, "String end is before begin!");
     }
 
     String(String && source, Move const &)
@@ -137,7 +137,7 @@ public:
           data_capacity(0)
     {
         move(*this, source);
-        SEQAN_ASSERT_LEQ_MSG(data_begin, data_end, "String end is before begin!");
+        SEQAN2_ASSERT_LEQ_MSG(data_begin, data_end, "String end is before begin!");
     }
 
     template <typename TSource, typename TSize>
@@ -148,7 +148,7 @@ public:
     {
         if (length(source) > 0u)
             assign(*this, source, limit);
-        SEQAN_ASSERT_LEQ_MSG(data_begin, data_end, "String end is before begin!");
+        SEQAN2_ASSERT_LEQ_MSG(data_begin, data_end, "String end is before begin!");
     }
 
     template <typename TSource, typename TSize>
@@ -159,7 +159,7 @@ public:
     {
         if (length(source) > 0u)
             assign(*this, source, limit);
-        SEQAN_ASSERT_LEQ_MSG(data_begin, data_end, "String end is before begin!");
+        SEQAN2_ASSERT_LEQ_MSG(data_begin, data_end, "String end is before begin!");
     }
 
 
@@ -168,7 +168,7 @@ public:
     String & operator=(TSource const & source)
     {
         assign(*this, source);
-        SEQAN_ASSERT_LEQ_MSG(data_begin, data_end, "String end is before begin!");
+        SEQAN2_ASSERT_LEQ_MSG(data_begin, data_end, "String end is before begin!");
         return *this;
     }
 
@@ -176,7 +176,7 @@ public:
     String & operator=(String const & source)
     {
         assign(*this, source);
-        SEQAN_ASSERT_LEQ_MSG(data_begin, data_end, "String end is before begin!");
+        SEQAN2_ASSERT_LEQ_MSG(data_begin, data_end, "String end is before begin!");
         return *this;
     }
 
@@ -441,6 +441,6 @@ move(String<TValue, Alloc<TSpec> > & target,
     move(target, const_cast<String<TValue, Alloc<TSpec> > &>(source));
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_SEQUENCE_STRING_ALLOC_H_
+#endif  // #ifndef SEQAN2_SEQUENCE_STRING_ALLOC_H_

@@ -34,31 +34,31 @@
 // Facade header for the basic/metaprogramming submodule.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_BASIC_METAPROGRAMMING_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_BASIC_METAPROGRAMMING_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_METAPROGRAMMING_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_METAPROGRAMMING_H_
 
 #include <cstdlib>
 
 #include <type_traits>
 
-#include <seqan/platform.h>
+#include <seqan2/platform.h>
 
 // Metaprogramming logical operations.
-#include <seqan/basic/metaprogramming_logic.h>
+#include <seqan2/basic/metaprogramming_logic.h>
 
 // Metaprogramming control structures.
-#include <seqan/basic/metaprogramming_control.h>
+#include <seqan2/basic/metaprogramming_control.h>
 
 // Metaprogramming mathematics.
-#include <seqan/basic/metaprogramming_math.h>
+#include <seqan2/basic/metaprogramming_math.h>
 
 // Metaprogramming for querying and modifying types.
-#include <seqan/basic/metaprogramming_type.h>
+#include <seqan2/basic/metaprogramming_type.h>
 
 // Metaprogramming for type algebra.
-#include <seqan/basic/metaprogramming_type_algebra.h>
+#include <seqan2/basic/metaprogramming_type_algebra.h>
 
 // Metaprogramming for conditional enabling/disabling of code.
-#include <seqan/basic/metaprogramming_enable_if.h>
+#include <seqan2/basic/metaprogramming_enable_if.h>
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_METAPROGRAMMING_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_METAPROGRAMMING_H_

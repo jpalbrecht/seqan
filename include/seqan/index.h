@@ -31,22 +31,22 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_INDEX_H
-#define SEQAN_HEADER_INDEX_H
+#ifndef SEQAN2_HEADER_INDEX_H
+#define SEQAN2_HEADER_INDEX_H
 
 // ==========================================================================
 // Prerequisites.
 // ==========================================================================
 
-#include <seqan/sequence.h>
-#include <seqan/pipe.h>
-#include <seqan/modifier.h>
-#include <seqan/parallel.h>
+#include <seqan2/sequence.h>
+#include <seqan2/pipe.h>
+#include <seqan2/modifier.h>
+#include <seqan2/parallel.h>
 
-#include <seqan/find.h>
-#include <seqan/misc/set.h>
-#include <seqan/misc/memset.h>
-#include <seqan/misc/bit_twiddling.h>
+#include <seqan2/find.h>
+#include <seqan2/misc/set.h>
+#include <seqan2/misc/memset.h>
+#include <seqan2/misc/bit_twiddling.h>
 
 #include <climits>
 #include <functional>
@@ -67,144 +67,144 @@
 // Index construction.
 // ==========================================================================
 
-#include <seqan/index/index_forwards.h>
+#include <seqan2/index/index_forwards.h>
 
-#ifdef SEQAN_PARALLEL
-#include <seqan/parallel.h>
-#endif  // #ifdef SEQAN_PARALLEL
+#ifdef SEQAN2_PARALLEL
+#include <seqan2/parallel.h>
+#endif  // #ifdef SEQAN2_PARALLEL
 
-#include <seqan/index/index_base.h>
-#include <seqan/index/index_bidirectional.h>
+#include <seqan2/index/index_base.h>
+#include <seqan2/index/index_bidirectional.h>
 
-#include <seqan/index/find_index_binary.h>
+#include <seqan2/index/find_index_binary.h>
 
 // ----------------------------------------------------------------------------
 // q-Gram index creator.
 // ----------------------------------------------------------------------------
 
-#include <seqan/index/shape_base.h>
-#include <seqan/index/shape_gapped.h>
-#include <seqan/index/shape_onegapped.h>
-#include <seqan/index/shape_predefined.h>
-#include <seqan/index/shape_threshold.h>
-#include <seqan/index/shape_minimizer.h>
-#include <seqan/index/index_qgram.h>
-#include <seqan/index/index_qgram_openaddressing.h>
+#include <seqan2/index/shape_base.h>
+#include <seqan2/index/shape_gapped.h>
+#include <seqan2/index/shape_onegapped.h>
+#include <seqan2/index/shape_predefined.h>
+#include <seqan2/index/shape_threshold.h>
+#include <seqan2/index/shape_minimizer.h>
+#include <seqan2/index/index_qgram.h>
+#include <seqan2/index/index_qgram_openaddressing.h>
 
 // ----------------------------------------------------------------------------
 // Suffix array creators.
 // ----------------------------------------------------------------------------
 
-#include <seqan/index/radix.h>
-#include <seqan/index/index_sa_btree.h>
-#include <seqan/index/index_sa_lss.h>
-#include <seqan/index/index_sa_mm.h>
-#include <seqan/index/index_sa_qsort.h>
-#include <seqan/index/index_sa_bwtwalk.h>
+#include <seqan2/index/radix.h>
+#include <seqan2/index/index_sa_btree.h>
+#include <seqan2/index/index_sa_lss.h>
+#include <seqan2/index/index_sa_mm.h>
+#include <seqan2/index/index_sa_qsort.h>
+#include <seqan2/index/index_sa_bwtwalk.h>
 
-#include <seqan/index/pump_extender3.h>
-#include <seqan/index/pipe_merger3.h>
-#include <seqan/index/index_skew3.h>
+#include <seqan2/index/pump_extender3.h>
+#include <seqan2/index/pipe_merger3.h>
+#include <seqan2/index/index_skew3.h>
 
-#include <seqan/index/pump_extender7.h>
-#include <seqan/index/pipe_merger7.h>
-#include <seqan/index/index_skew7.h>
+#include <seqan2/index/pump_extender7.h>
+#include <seqan2/index/pipe_merger7.h>
+#include <seqan2/index/index_skew7.h>
 
-#include <seqan/index/pump_separator7.h>
-#include <seqan/index/index_skew7_multi.h>
+#include <seqan2/index/pump_separator7.h>
+#include <seqan2/index/index_skew7_multi.h>
 
 // ----------------------------------------------------------------------------
 // Enhanced table creators.
 // ----------------------------------------------------------------------------
 
-#include <seqan/index/pump_lcp_core.h>
-#include <seqan/index/index_lcp.h>
-#include <seqan/index/index_lcp_tree.h>
+#include <seqan2/index/pump_lcp_core.h>
+#include <seqan2/index/index_lcp.h>
+#include <seqan2/index/index_lcp_tree.h>
 
-#include <seqan/index/index_childtab.h>
-#include <seqan/index/index_bwt.h>
+#include <seqan2/index/index_childtab.h>
+#include <seqan2/index/index_bwt.h>
 
 // ==========================================================================
 // Index usage.
 // ==========================================================================
 
-#include <seqan/index/index_shims.h>
+#include <seqan2/index/index_shims.h>
 
 // ----------------------------------------------------------------------------
 // Virtual string trees.
 // ----------------------------------------------------------------------------
 
-#include <seqan/index/index_esa_base.h>
-#include <seqan/index/index_esa_stree.h>
-#include <seqan/index/index_bidirectional_stree.h>
-#include <seqan/index/index_wotd.h>
-#include <seqan/index/index_dfi.h>
-#include <seqan/index/index_sa_stree.h>
-#include <seqan/index/index_sa_truncated.h>
-#include <seqan/index/index_qgram_stree.h>
-#include <seqan/index/index_qgram_bucketrefinement.h>
+#include <seqan2/index/index_esa_base.h>
+#include <seqan2/index/index_esa_stree.h>
+#include <seqan2/index/index_bidirectional_stree.h>
+#include <seqan2/index/index_wotd.h>
+#include <seqan2/index/index_dfi.h>
+#include <seqan2/index/index_sa_stree.h>
+#include <seqan2/index/index_sa_truncated.h>
+#include <seqan2/index/index_qgram_stree.h>
+#include <seqan2/index/index_qgram_bucketrefinement.h>
 
 // ----------------------------------------------------------------------------
 // Rank dictionaries.
 // ----------------------------------------------------------------------------
 
-#include <seqan/index/index_fm_rank_dictionary_base.h>
-#include <seqan/index/index_fm_rank_dictionary_naive.h>
-#include <seqan/index/index_fm_rank_dictionary_levels.h>
-#include <seqan/index/index_fm_right_array_binary_tree.h>
-#include <seqan/index/index_fm_right_array_binary_tree_iterator.h>
-#include <seqan/index/index_fm_rank_dictionary_wt.h>
+#include <seqan2/index/index_fm_rank_dictionary_base.h>
+#include <seqan2/index/index_fm_rank_dictionary_naive.h>
+#include <seqan2/index/index_fm_rank_dictionary_levels.h>
+#include <seqan2/index/index_fm_right_array_binary_tree.h>
+#include <seqan2/index/index_fm_right_array_binary_tree_iterator.h>
+#include <seqan2/index/index_fm_rank_dictionary_wt.h>
 
 // ----------------------------------------------------------------------------
 // Sparse strings.
 // ----------------------------------------------------------------------------
 
-#include <seqan/index/index_fm_sparse_string.h>
+#include <seqan2/index/index_fm_sparse_string.h>
 
 // ----------------------------------------------------------------------------
 // FM index.
 // ----------------------------------------------------------------------------
 
-#include <seqan/index/index_fm_lf_table.h>
-#include <seqan/index/index_fm_compressed_sa.h>
-#include <seqan/index/index_fm_compressed_sa_iterator.h>
-#include <seqan/index/index_fm.h>
-#include <seqan/index/index_fm_stree.h>
+#include <seqan2/index/index_fm_lf_table.h>
+#include <seqan2/index/index_fm_compressed_sa.h>
+#include <seqan2/index/index_fm_compressed_sa_iterator.h>
+#include <seqan2/index/index_fm.h>
+#include <seqan2/index/index_fm_stree.h>
 
 // ----------------------------------------------------------------------------
 // Bidirectional FM index.
 // ----------------------------------------------------------------------------
 
-#include <seqan/index/index_bifm.h>
-#include <seqan/index/index_bifm_stree.h>
+#include <seqan2/index/index_bifm.h>
+#include <seqan2/index/index_bifm_stree.h>
 
 // ----------------------------------------------------------------------------
 // Suffix tree algorithms.
 // ----------------------------------------------------------------------------
 
-#include <seqan/index/index_esa_algs.h>
-#include <seqan/index/index_esa_algs_multi.h>
-#include <seqan/index/index_esa_drawing.h>
-#include <seqan/index/repeat_base.h>
+#include <seqan2/index/index_esa_algs.h>
+#include <seqan2/index/index_esa_algs_multi.h>
+#include <seqan2/index/index_esa_drawing.h>
+#include <seqan2/index/repeat_base.h>
 
 // ----------------------------------------------------------------------------
 // Pizza & Chili interface (compressed indices).
 // ----------------------------------------------------------------------------
 
-#include <seqan/index/index_pizzachili.h>
-#include <seqan/index/index_pizzachili_find.h>
+#include <seqan2/index/index_pizzachili.h>
+#include <seqan2/index/index_pizzachili_find.h>
 
 // ----------------------------------------------------------------------------
 // Shawarma interface (suffix array creators).
 // ----------------------------------------------------------------------------
 
-#include <seqan/index/index_shawarma.h>
+#include <seqan2/index/index_shawarma.h>
 
 // ----------------------------------------------------------------------------
 // View and device indices.
 // ----------------------------------------------------------------------------
 
-#include <seqan/index/index_view.h>
+#include <seqan2/index/index_view.h>
 
 // ==========================================================================
 // Finder interface.
@@ -214,30 +214,30 @@
 // Index based finders.
 // ----------------------------------------------------------------------------
 
-#include <seqan/index/find_index_esa.h>
-#include <seqan/index/find_index_approx.h>
-#include <seqan/index/find_index_qgram.h>
-#include <seqan/index/find_index.h>
-#include <seqan/index/find_quasar.h>
-#include <seqan/index/find_swift.h>
-#include <seqan/index/find_pigeonhole.h>
-#include <seqan/index/find_backtracking.h>
+#include <seqan2/index/find_index_esa.h>
+#include <seqan2/index/find_index_approx.h>
+#include <seqan2/index/find_index_qgram.h>
+#include <seqan2/index/find_index.h>
+#include <seqan2/index/find_quasar.h>
+#include <seqan2/index/find_swift.h>
+#include <seqan2/index/find_pigeonhole.h>
+#include <seqan2/index/find_backtracking.h>
 
 // ----------------------------------------------------------------------------
 // Non-standard index based finders.
 // ----------------------------------------------------------------------------
 
-#include <seqan/index/find2_base.h>
-#include <seqan/index/find2_index.h>
-#include <seqan/index/find2_backtracking.h>
-#include <seqan/index/find2_vstree_factory.h>
-#include <seqan/index/find2_index_multi.h>
-#include <seqan/index/find2_functors.h>
+#include <seqan2/index/find2_base.h>
+#include <seqan2/index/find2_index.h>
+#include <seqan2/index/find2_backtracking.h>
+#include <seqan2/index/find2_vstree_factory.h>
+#include <seqan2/index/find2_index_multi.h>
+#include <seqan2/index/find2_functors.h>
 
 // ----------------------------------------------------------------------------
 // Lambda interface.
 // ----------------------------------------------------------------------------
 
-#include <seqan/index/find_index_lambda.h>
+#include <seqan2/index/find_index_lambda.h>
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

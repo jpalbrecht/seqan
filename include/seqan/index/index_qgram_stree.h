@@ -33,16 +33,16 @@
 // ==========================================================================
 // TopDown Iterators for the QGram Index.
 // ==========================================================================
-// Define SEQAN_INDEX_QGRAM_TREE to let the edge labels be tree-like infixes
+// Define SEQAN2_SEQAN2_INDEX_QGRAM_TREE to let the edge labels be tree-like infixes
 // of arbitrary length instead of trie-like unitary symbols.
 // ==========================================================================
 
-#ifndef SEQAN_INDEX_QGRAM_STREE_H_
-#define SEQAN_INDEX_QGRAM_STREE_H_
+#ifndef SEQAN2_SEQAN2_INDEX_QGRAM_STREE_H_
+#define SEQAN2_SEQAN2_INDEX_QGRAM_STREE_H_
 
-//#define SEQAN_DEBUG
+//#define SEQAN2_DEBUG
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags, Classes, Enums
@@ -123,7 +123,7 @@ public:
     typedef HistoryStackQGram_<TSize, TShape>                   Type;
 };
 
-#ifndef SEQAN_INDEX_QGRAM_TREE
+#ifndef SEQAN2_SEQAN2_INDEX_QGRAM_TREE
 template <typename TText, typename TShapeSpec, typename TIndexSpec, typename TSpec>
 struct EdgeLabel<Iter<Index<TText, IndexQGram<TShapeSpec, TIndexSpec> >, VSTree<TSpec> > >
 {
@@ -166,7 +166,7 @@ repLength(TIndex const &, VertexQGram<TSize, TShape> const & vDesc)
     return vDesc.repLen;
 }
 
-#ifndef SEQAN_INDEX_QGRAM_TREE
+#ifndef SEQAN2_SEQAN2_INDEX_QGRAM_TREE
 template <typename TText, typename TShapeSpec, typename TIndexSpec, typename TSpec>
 inline typename EdgeLabel<Iter<Index<TText, IndexQGram<TShapeSpec, TIndexSpec> >, VSTree<TopDown<TSpec> > > >::Type
 parentEdgeLabel(Iter<Index<TText, IndexQGram<TShapeSpec, TIndexSpec> >, VSTree<TopDown<TSpec> > > const & it)
@@ -197,7 +197,7 @@ inline void goRoot(Iter<Index<TText, IndexQGram<TShapeSpec, TIndexSpec> >, VSTre
     value(it).hash.i2 = ValueSize<TShape>::VALUE;
     value(it).repLen = 0;
 
-#ifdef SEQAN_DEBUG
+#ifdef SEQAN2_DEBUG
     std::cout << "[" << value(it).hash.i1 << "," << value(it).hash.i2 << ")" << std::endl;
 #endif
 }
@@ -249,7 +249,7 @@ _getNodeByChar(Iter<Index<TText, IndexQGram<TShapeSpec, TIndexSpec> >, VSTree<TS
     childDesc.hash.i1 = childDesc.hash.i1 + ordValue(childDesc.lastChar) * h;
     childDesc.hash.i2 = childDesc.hash.i2 - (ValueSize<TAlphabet>::VALUE - 1 - ordValue(childDesc.lastChar)) * h;
 
-#ifdef SEQAN_DEBUG
+#ifdef SEQAN2_DEBUG
     std::cout << "[" << childDesc.hash.i1 << "," << childDesc.hash.i2 << ")" << std::endl;
 #endif
 
@@ -258,7 +258,7 @@ _getNodeByChar(Iter<Index<TText, IndexQGram<TShapeSpec, TIndexSpec> >, VSTree<TS
 
     childDesc.repLen++;
 
-#ifdef SEQAN_DEBUG
+#ifdef SEQAN2_DEBUG
     std::cout << "[" << childDesc.range.i1 << "," << childDesc.range.i2 << ")" << std::endl;
 #endif
 
@@ -377,6 +377,6 @@ _goUp(Iter<Index<TText, IndexQGram<TShapeSpec, TIndexSpec> >, VSTree<TopDown<Par
     return false;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INDEX_QGRAM_STREE_H_
+#endif  // #ifndef SEQAN2_SEQAN2_INDEX_QGRAM_STREE_H_

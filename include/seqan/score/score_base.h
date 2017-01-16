@@ -34,14 +34,14 @@
 
 // TODO(holtgrew): Should the public interface for the class Score not be defined here?
 
-#ifndef SEQAN_SSCORE_BASE_H_
-#define SEQAN_SSCORE_BASE_H_
+#ifndef SEQAN2_SSCORE_BASE_H_
+#define SEQAN2_SSCORE_BASE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 /*!
  * @class Score
- * @headerfile <seqan/score.h>
+ * @headerfile <seqan2/score.h>
  * @brief Scoring scheme.
  *
  * The Score class uses <b>similarity</b> scores, i.e. the greater the score value, the greater the similarity.
@@ -105,7 +105,7 @@ struct Spec<Score<TValue, TSpec> > {
 
 /*!
  * @mfn Score#SequenceEntryForScore
- * @headerfile <seqan/score.h>
+ * @headerfile <seqan2/score.h>
  *
  * @note This is used for unified interfaces for position dependent and independent scores.
  * @brief Returns representation type for a character of a position in a sequence.
@@ -339,6 +339,6 @@ score(Score<TValue, TSpec> const & me, TSeqHVal valH, TSeqVVal valV) {
         return scoreMismatch(me);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_SSCORE_BASE_H_
+#endif  // SEQAN2_SSCORE_BASE_H_

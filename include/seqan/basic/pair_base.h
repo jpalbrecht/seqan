@@ -36,10 +36,10 @@
 
 // TODO(holtgrew): What about move construction? Useful for pairs of strings and such. Tricky to implement since ints have no move constructor, for example.
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_PAIR_BASE_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_PAIR_BASE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_PAIR_BASE_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_PAIR_BASE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -58,7 +58,7 @@ typedef Tag<Output_> Output;
 /*!
  * @class Pair
  * @implements ComparableConcept
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Store two arbitrary objects.
  *
  * @signature template <typename T1, typename T2, typename TSpec>
@@ -477,6 +477,6 @@ swap(Pair<L1, L2, LPack> const & a,
     swap(a.i2, b.i2);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_PAIR_BASE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_PAIR_BASE_H_

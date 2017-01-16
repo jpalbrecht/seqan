@@ -58,10 +58,10 @@
    THE SOFTWARE.
 */
 
-#ifndef INCLUDE_SEQAN_BAM_IO_BAM_INDEX_BAI_H_
-#define INCLUDE_SEQAN_BAM_IO_BAM_INDEX_BAI_H_
+#ifndef INCLUDE_SEQAN2_BAM_IO_BAM_INDEX_BAI_H_
+#define INCLUDE_SEQAN2_BAM_IO_BAM_INDEX_BAI_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags, Classes, Enums
@@ -73,7 +73,7 @@ namespace seqan {
 
 /*!
  * @class BamIndex
- * @headerfile <seqan/bam_io.h>
+ * @headerfile <seqan2/bam_io.h>
  *
  * @brief Access to BAM indices.
  *
@@ -112,7 +112,7 @@ struct BaiBamIndexBinData_
 
 /*!
  * @class BaiBamIndex
- * @headerfile <seqan/bam_io.h>
+ * @headerfile <seqan2/bam_io.h>
  * @extends BamIndex
  * @brief Access to BAI (samtools-style).
  *
@@ -544,7 +544,7 @@ inline bool save(BamIndex<Bai> const & index, char const * baiFilename)
     // Open output file.
     std::ofstream out(baiFilename, std::ios::binary | std::ios::out);
 
-    SEQAN_ASSERT_EQ(length(index._binIndices), length(index._linearIndices));
+    SEQAN2_ASSERT_EQ(length(index._binIndices), length(index._linearIndices));
 
     // Write header.
     out.write("BAI\1", 4);
@@ -637,7 +637,7 @@ inline void _baiAddAlignmentChunkToBin(BamIndex<Bai> & index,
  */
 inline bool build(BamIndex<Bai> & index, char const * bamFilename)
 {
-    // SEQAN_FAIL("This does not work yet!");
+    // SEQAN2_FAIL("This does not work yet!");
 
     index._unalignedCount = 0;
     clear(index._binIndices);
@@ -762,7 +762,7 @@ inline bool build(BamIndex<Bai> & index, char const * bamFilename)
     // Count remaining unaligned records.
     while (!atEnd(bamFile))
     {
-        SEQAN_ASSERT_GT(index._unalignedCount, 0u);
+        SEQAN2_ASSERT_GT(index._unalignedCount, 0u);
 
         readRecord(record, bamFile);
         if (record.rID >= 0)
@@ -778,17 +778,17 @@ inline bool build(BamIndex<Bai> & index, char const * bamFilename)
         _baiAddAlignmentChunkToBin(index, currBin, currOffset, prevOffset);
 
         // Finally, write any empty references remaining at end of file.
-        SEQAN_ASSERT_GEQ(numRefSeqs, length(index._binIndices));
+        SEQAN2_ASSERT_GEQ(numRefSeqs, length(index._binIndices));
         BamIndex<Bai>::TBinIndex_ binIndex;
         resize(index._binIndices, numRefSeqs, binIndex);  // TODO(holtgrew): binIndex is unnecessary if resize used T() as default value as vector.resize() does.
     }
 
     // Merge small bins if possible.
-    // SEQAN_FAIL("TODO: Merge bins!");
+    // SEQAN2_FAIL("TODO: Merge bins!");
     return true;
 }
 
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_BAM_IO_BAM_INDEX_BAI_H_
+#endif  // #ifndef INCLUDE_SEQAN2_BAM_IO_BAM_INDEX_BAI_H_

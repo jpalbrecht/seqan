@@ -34,10 +34,10 @@
 // DPScout_ specialization for the split alignment implementation.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_SPLIT_DP_SCOUT_SPLIT_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_SPLIT_DP_SCOUT_SPLIT_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_SPLIT_DP_SCOUT_SPLIT_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_SPLIT_DP_SCOUT_SPLIT_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -63,8 +63,8 @@ class DPScoutState_<SplitAlignmentScout>
 {
 public:
     // The best score for each column.  Initialized with 0.5*minValue<TScoreVal>().
-    seqan::String<int> splitScore;
-    seqan::String<int> splitPos;
+    seqan2::String<int> splitScore;
+    seqan2::String<int> splitPos;
 
     DPScoutState_()
     {}
@@ -132,6 +132,6 @@ _scoutBestScore(DPScout_<TDPCell, SplitAlignmentScout> & dpScout,
     }
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_SPLIT_DP_SCOUT_SPLIT_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_SPLIT_DP_SCOUT_SPLIT_H_

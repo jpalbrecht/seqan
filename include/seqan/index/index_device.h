@@ -34,10 +34,10 @@
 // This file contains Index specializations for thrust::device_vector.
 // ==========================================================================
 
-#ifndef SEQAN_INDEX_DEVICE_H_
-#define SEQAN_INDEX_DEVICE_H_
+#ifndef SEQAN2_SEQAN2_INDEX_DEVICE_H_
+#define SEQAN2_SEQAN2_INDEX_DEVICE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Metafunctions
@@ -427,4 +427,4 @@ assign(SparseString<TString, TSpec> & sparseString, SparseString<TString2, TSpec
 
 }
 
-#endif  // #ifndef SEQAN_INDEX_DEVICE_H_
+#endif  // #ifndef SEQAN2_SEQAN2_INDEX_DEVICE_H_

@@ -37,10 +37,10 @@
 
 // TODO(holtgrew): Where is the documentation, shouldnt it be here?
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_ALPHABET_BIO_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_ALPHABET_BIO_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ALPHABET_BIO_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_ALPHABET_BIO_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -96,6 +96,6 @@ unknownValue()
     return unknownValueImpl(_tag);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_ALPHABET_BIO_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ALPHABET_BIO_H_

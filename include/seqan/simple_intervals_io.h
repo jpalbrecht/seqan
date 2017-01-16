@@ -34,21 +34,21 @@
 // Facade header for the intervals_io module.
 // ==========================================================================
 
-#ifndef SEQAN_SIMPLE_INTERVALS_IO_H_
-#define SEQAN_SIMPLE_INTERVALS_IO_H_
+#ifndef SEQAN2_SIMPLE_INTERVALS_IO_H_
+#define SEQAN2_SIMPLE_INTERVALS_IO_H_
 
 // ===========================================================================
 // Prerequisites
 // ===========================================================================
 
-#include <seqan/stream.h>
-#include <seqan/seq_io/genomic_region.h>
+#include <seqan2/stream.h>
+#include <seqan2/seq_io/genomic_region.h>
 
 // ===========================================================================
 // Module Contents
 // ===========================================================================
 
-#include <seqan/simple_intervals_io/simple_intervals_io.h>    // read/write record functions, tags
-#include <seqan/simple_intervals_io/simple_intervals_file.h>  // FormattedFile
+#include <seqan2/simple_intervals_io/simple_intervals_io.h>    // read/write record functions, tags
+#include <seqan2/simple_intervals_io/simple_intervals_file.h>  // FormattedFile
 
-#endif  // SEQAN_SIMPLE_INTERVALS_IO_H_
+#endif  // SEQAN2_SIMPLE_INTERVALS_IO_H_

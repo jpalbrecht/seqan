@@ -35,10 +35,10 @@
 // algorithm.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_SEEDS_BANDED_CHAIN_ALIGNMENT_H_
-#define INCLUDE_SEQAN_SEEDS_BANDED_CHAIN_ALIGNMENT_H_
+#ifndef INCLUDE_SEQAN2_SEEDS_BANDED_CHAIN_ALIGNMENT_H_
+#define INCLUDE_SEQAN2_SEEDS_BANDED_CHAIN_ALIGNMENT_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -58,7 +58,7 @@ namespace seqan {
 
 /*!
  * @fn bandedChainAlignment
- * @headerfile <seqan/seeds.h>
+ * @headerfile <seqan2/seeds.h>
  * @brief Computes the best global pairwise alignment between two sequences given a non-empty seed chain.
  *
  * @signature TValue bandedChainAlignment(align,          seedChain, scoringScheme1[, scoringScheme2] [, alignConfig] [, k]);
@@ -168,7 +168,7 @@ namespace seqan {
  *
  * @section Tutorial
  *
- * Also see the <a href="http://seqan.readthedocs.io/en/develop/Tutorial/Algorithms/SeedExtension.html">Seed-and-Extend Tutorial</a>
+ * Also see the <a href="http://seqan2.readthedocs.io/en/develop/Tutorial/Algorithms/SeedExtension.html">Seed-and-Extend Tutorial</a>
  *
  * @section Reference
  *
@@ -469,6 +469,6 @@ bandedChainAlignment(String<Fragment<TSize, TFragmentSpec>, TStringSpec> & fragm
                                 bandExtension);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_SEEDS_BANDED_CHAIN_ALIGNMENT_H_
+#endif  // #ifndef INCLUDE_SEQAN2_SEEDS_BANDED_CHAIN_ALIGNMENT_H_

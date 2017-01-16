@@ -33,10 +33,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_VCF_READ_VCF_H_
-#define SEQAN_INCLUDE_SEQAN_VCF_READ_VCF_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_VCF_READ_VCF_H_
+#define SEQAN2_INCLUDE_SEQAN2_VCF_READ_VCF_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags, Classes, Enums
@@ -48,7 +48,7 @@ namespace seqan {
 
 /*!
  * @tag FileFormats#Vcf
- * @headerfile <seqan/vcf_io.h>
+ * @headerfile <seqan2/vcf_io.h>
  * @brief Variant callinf format file.
  *
  * @signature typedef Tag<Vcf_> Vcf;
@@ -87,14 +87,14 @@ _readVcfContig(VcfIOContext<TNameStore, TNameStoreCache, TStorageSpec> & context
     }
 
     if (atEnd(headerIter))
-        SEQAN_THROW(ParseError("Contig ID key not found in header."));
+        SEQAN2_THROW(ParseError("Contig ID key not found in header."));
 
     // Read contig ID value.
     clear(buffer);
     skipOne(headerIter, EqualsChar<'='>());
     readUntil(buffer, headerIter, IsCommaOrGt());
     if (empty(buffer))
-        SEQAN_THROW(ParseError("Contig ID value not found in header."));
+        SEQAN2_THROW(ParseError("Contig ID value not found in header."));
     appendName(contigNamesCache(context), buffer);
 }
 
@@ -139,13 +139,13 @@ readHeader(VcfHeader & header,
             // Is line "#CHROM\t...".
             readLine(buffer, iter);
             if (!startsWith(buffer, "CHROM"))
-                SEQAN_THROW(ParseError("Invalid line with samples."));
+                SEQAN2_THROW(ParseError("Invalid line with samples."));
 
             // Split line, get sample names.
             StringSet<CharString> fields;
             strSplit(fields, buffer, IsTab());
             if (length(fields) < 9u)
-                SEQAN_THROW(ParseError("Not enough fields."));
+                SEQAN2_THROW(ParseError("Not enough fields."));
 
             // Get sample names.
             for (unsigned i = 9; i < length(fields); ++i)
@@ -175,7 +175,7 @@ readRecord(VcfRecord & record,
     clear(buffer);
     readUntil(buffer, iter, NextEntry());
     if (empty(buffer))
-        SEQAN_THROW(EmptyFieldError("CHROM"));
+        SEQAN2_THROW(EmptyFieldError("CHROM"));
     record.rID = nameToId(contigNamesCache(context), buffer);
     skipOne(iter);
 
@@ -183,33 +183,33 @@ readRecord(VcfRecord & record,
     clear(buffer);
     readUntil(buffer, iter, NextEntry());
     if (empty(buffer))
-        SEQAN_THROW(EmptyFieldError("POS"));
+        SEQAN2_THROW(EmptyFieldError("POS"));
     record.beginPos = lexicalCast<int32_t>(buffer) - 1; // Translate from 1-based to 0-based.
     skipOne(iter);
 
     // ID
     readUntil(record.id, iter, NextEntry());
     if (empty(record.id))
-        SEQAN_THROW(EmptyFieldError("ID"));
+        SEQAN2_THROW(EmptyFieldError("ID"));
     skipOne(iter);
 
     // REF
     readUntil(record.ref, iter, NextEntry());
     if (empty(record.id))
-        SEQAN_THROW(EmptyFieldError("REF"));
+        SEQAN2_THROW(EmptyFieldError("REF"));
     skipOne(iter);
 
     // ALT
     readUntil(record.alt, iter, NextEntry());
     if (empty(record.id))
-        SEQAN_THROW(EmptyFieldError("ALT"));
+        SEQAN2_THROW(EmptyFieldError("ALT"));
     skipOne(iter);
 
     // QUAL
     clear(buffer);
     readUntil(buffer, iter, NextEntry());
     if (empty(buffer))
-        SEQAN_THROW(EmptyFieldError("QUAL"));
+        SEQAN2_THROW(EmptyFieldError("QUAL"));
 
     if (buffer == ".")
         record.qual = VcfRecord::MISSING_QUAL();
@@ -221,13 +221,13 @@ readRecord(VcfRecord & record,
     // FILTER
     readUntil(record.filter, iter, NextEntry());
     if (empty(record.filter))
-        SEQAN_THROW(EmptyFieldError("FILTER"));
+        SEQAN2_THROW(EmptyFieldError("FILTER"));
     skipOne(iter);
 
     // INFO
     readUntil(record.info, iter, OrFunctor<IsTab, IsNewline>());
     if (empty(record.info))
-        SEQAN_THROW(EmptyFieldError("INFO"));
+        SEQAN2_THROW(EmptyFieldError("INFO"));
 
     // the following columns are optional
     if (atEnd(iter) || IsNewline()(value(iter)))
@@ -240,7 +240,7 @@ readRecord(VcfRecord & record,
     // FORMAT
     readUntil(record.format, iter, NextEntry());
     if (empty(record.format))
-        SEQAN_THROW(EmptyFieldError("FORMAT"));
+        SEQAN2_THROW(EmptyFieldError("FORMAT"));
     skipOne(iter);
 
     // The samples.
@@ -262,7 +262,7 @@ readRecord(VcfRecord & record,
         {
             char buffer[30];    // == 9 (GENOTYPE_) + 20 (#digits in MIN_INT64) + 1 (trailing zero)
             snprintf(buffer, 30, "GENOTYPE_%u", i + 1);
-            SEQAN_THROW(EmptyFieldError(buffer));
+            SEQAN2_THROW(EmptyFieldError(buffer));
         }
         appendValue(record.genotypeInfos, buffer);
     }
@@ -271,6 +271,6 @@ readRecord(VcfRecord & record,
     skipLine(iter);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_VCF_READ_VCF_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_VCF_READ_VCF_H_

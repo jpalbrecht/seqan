@@ -34,10 +34,10 @@
 // Implementation of Topological-Sort algorithm.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_GRAPH_ALGORITHMS_TOPOLOGICAL_SORT_H_
-#define INCLUDE_SEQAN_GRAPH_ALGORITHMS_TOPOLOGICAL_SORT_H_
+#ifndef INCLUDE_SEQAN2_GRAPH_ALGORITHMS_TOPOLOGICAL_SORT_H_
+#define INCLUDE_SEQAN2_GRAPH_ALGORITHMS_TOPOLOGICAL_SORT_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -61,7 +61,7 @@ namespace seqan {
 
 /*!
  * @fn topologicalSort
- * @headerfile <seqan/graph_algorithms.h>
+ * @headerfile <seqan2/graph_algorithms.h>
  * @brief Performs a topological sort on a directed acyclic graph (DAG).
  *
  * @signature void topologicalSort(topSort, g);
@@ -91,9 +91,9 @@ void topologicalSort(String<TVertexDescriptor> & topSort,
 
     // Perform DFS.
     depthFirstSearch(predMap, discoveryTimeMap, finishingTimeMap, g);
-    SEQAN_ASSERT_EQ(numVertices(g), length(predMap));
-    SEQAN_ASSERT_EQ(numVertices(g), length(discoveryTimeMap));
-    SEQAN_ASSERT_EQ(numVertices(g), length(finishingTimeMap));
+    SEQAN2_ASSERT_EQ(numVertices(g), length(predMap));
+    SEQAN2_ASSERT_EQ(numVertices(g), length(discoveryTimeMap));
+    SEQAN2_ASSERT_EQ(numVertices(g), length(finishingTimeMap));
 
     // Order vertices.
     typedef std::pair<TSize, TVertexDescriptor> TTimeVertexPair;
@@ -112,9 +112,9 @@ void topologicalSort(String<TVertexDescriptor> & topSort,
         q.pop();
         ++count;
     }
-    SEQAN_ASSERT_EQ(length(topSort), numVertices(g));
+    SEQAN2_ASSERT_EQ(length(topSort), numVertices(g));
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_GRAPH_ALGORITHMS_TOPOLOGICAL_SORT_H_
+#endif  // #ifndef INCLUDE_SEQAN2_GRAPH_ALGORITHMS_TOPOLOGICAL_SORT_H_

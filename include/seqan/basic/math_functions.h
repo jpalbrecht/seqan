@@ -34,10 +34,10 @@
 // Math-related utility routines.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_MATH_FUNCTIONS_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_MATH_FUNCTIONS_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_MATH_FUNCTIONS_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_MATH_FUNCTIONS_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -79,7 +79,7 @@ inline TValue _intPow(TValue a, TExponent b)
 
 /*!
  * @fn log2
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Computes floored logarithm of base 2 for integer types
  *
  * @signature unsigned log2(i);
@@ -136,7 +136,7 @@ log2(T val)
 // Function _min()
 // ----------------------------------------------------------------------------
 
-// TODO(holtgrew): Subject to removal.  http://trac.mi.fu-berlin.de/seqan/ticket/855
+// TODO(holtgrew): Subject to removal.  http://trac.mi.fu-berlin.de/seqan2/ticket/855
 
 // to avoid conflicts with non-standard macros and namespaces
 // we define our own Min/Max functions
@@ -162,7 +162,7 @@ Tx_ _min(const Tx_& _Left, const Ty_& Right_)
 // Function _max()
 // ----------------------------------------------------------------------------
 
-// TODO(holtgrew): Subject to removal.  http://trac.mi.fu-berlin.de/seqan/ticket/855
+// TODO(holtgrew): Subject to removal.  http://trac.mi.fu-berlin.de/seqan2/ticket/855
 
 // to avoid conflicts with non-standard macros and namespaces
 // we define our own Min/Max functions
@@ -200,7 +200,7 @@ T _abs(T const & x)
         return x;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_MATH_FUNCTIONS_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_MATH_FUNCTIONS_H_
 

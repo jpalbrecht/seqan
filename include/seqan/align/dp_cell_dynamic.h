@@ -36,10 +36,10 @@
 // Optimization" by Gianvito Urgese et al.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_ALIGN_DP_CELL_DYNAMIC_H_
-#define INCLUDE_SEQAN_ALIGN_DP_CELL_DYNAMIC_H_
+#ifndef INCLUDE_SEQAN2_ALIGN_DP_CELL_DYNAMIC_H_
+#define INCLUDE_SEQAN2_ALIGN_DP_CELL_DYNAMIC_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -186,7 +186,7 @@ inline void _setBit(DPCell_<TScoreValue, DynamicGaps> & cell,
 }
 
 template <typename TScoreValue, typename TSpec>
-inline SEQAN_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >,bool)
+inline SEQAN2_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >,bool)
 isGapExtension(DPCell_<TScoreValue, DynamicGaps> const & cell,
                TSpec const & /*spec*/)
 {
@@ -197,7 +197,7 @@ isGapExtension(DPCell_<TScoreValue, DynamicGaps> const & cell,
 }
 
 template <typename TScoreValue, typename TSpec>
-inline SEQAN_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >,TScoreValue)
+inline SEQAN2_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >,TScoreValue)
 isGapExtension(DPCell_<TScoreValue, DynamicGaps> const & cell,
                TSpec const & /*spec*/)
 {
@@ -207,7 +207,7 @@ isGapExtension(DPCell_<TScoreValue, DynamicGaps> const & cell,
 }
 
 template <typename TScoreValue, typename TFlagV, typename TFlagH>
-inline SEQAN_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, void)
 setGapExtension(DPCell_<TScoreValue, DynamicGaps> & cell,
                 TFlagV const & /*vert*/, TFlagH const & /*hori*/)
 {
@@ -215,7 +215,7 @@ setGapExtension(DPCell_<TScoreValue, DynamicGaps> & cell,
 }
 
 template <typename TScoreValue, typename TFlagV, typename TFlagH>
-inline SEQAN_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, void)
 setGapExtension(DPCell_<TScoreValue, DynamicGaps> & cell,
                 TFlagV const & /*vert*/, TFlagH const & /*hori*/,
                 TScoreValue const & cmp)
@@ -244,6 +244,6 @@ swap(DPCell_<TScoreValue, DynamicGaps> & lhs,
     std::swap(lhs._flagMask, rhs._flagMask);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // INCLUDE_SEQAN_ALIGN_DP_CELL_DYNAMIC_H_
+#endif  // INCLUDE_SEQAN2_ALIGN_DP_CELL_DYNAMIC_H_

@@ -32,10 +32,10 @@
 // Author: Andreas Gogol-Doering <andreas.doering@mdc-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_FIND_MULTIPLE_BFAM_H
-#define SEQAN_HEADER_FIND_MULTIPLE_BFAM_H
+#ifndef SEQAN2_HEADER_FIND_MULTIPLE_BFAM_H
+#define SEQAN2_HEADER_FIND_MULTIPLE_BFAM_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -45,7 +45,7 @@ namespace seqan
 /*!
  * @class MultiBfamPattern
  * @extends Pattern
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Multi-Pattern Backward Factor Automaton Matching.
  *
  * @signature template <typename TNeedle, typename TAutomaton>
@@ -60,7 +60,7 @@ namespace seqan
 /*!
  * @class OracleMultiBfamPattern
  * @extends MultiBfamPattern
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Multi-Pattern Backward Factor Automaton Matching using an oracle automaton.
  *
  * @signature template <typename TNeedle>
@@ -112,7 +112,7 @@ public:
 
     template <typename TNeedle2>
     Pattern(TNeedle2 && ndl,
-            SEQAN_CTOR_DISABLE_IF(IsSameType<typename std::remove_reference<TNeedle2>::type const &, Pattern const &>))
+            SEQAN2_CTOR_DISABLE_IF(IsSameType<typename std::remove_reference<TNeedle2>::type const &, Pattern const &>))
     {
         setHost(*this, std::forward<TNeedle2>(ndl));
         ignoreUnusedVariableWarning(dummy);
@@ -316,7 +316,7 @@ inline bool find(TFinder & finder,
 //VERIFY
                 me.position = begin(property(me.terminals, current), Standard());
                 me.position_end = end(property(me.terminals, current), Standard());
-                SEQAN_ASSERT_NEQ(me.position, me.position_end);
+                SEQAN2_ASSERT_NEQ(me.position, me.position_end);
 
                 if (_startVerifyMultiBfam(me, it1)) //this returns true if the lmin-length prefixe matches
                 {
@@ -360,6 +360,6 @@ VERIFY_NEXT:
 
 //////////////////////////////////////////////////////////////////////////////
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

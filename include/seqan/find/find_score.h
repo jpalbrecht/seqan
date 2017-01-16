@@ -32,10 +32,10 @@
 // Author: Andreas Gogol-Doering <andreas.doering@mdc-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_FIND_SH
-#define SEQAN_HEADER_FIND_SH
+#ifndef SEQAN2_HEADER_FIND_SH
+#define SEQAN2_HEADER_FIND_SH
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -49,7 +49,7 @@ struct DPSearch {};
 /*!
  * @class DPSearchPattern
  * @extends Pattern
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief A dynamic programming algorithm for approximate string-matching with a user-definable scoring function.
  *
  * @signature template <typename TNeedle, typename TScore[, typename TSpec[, typename TFindBeginPatternSpec]]>
@@ -206,7 +206,7 @@ setScoringScheme(Pattern<TNeedle, DPSearch<TScore, TSpec, TFindBeginPatternSpec>
 
 /*!
  * @fn DPSearchPattern#scoreLimit
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief The minimal score a match must reach in approximate searching.
  *
  * @signature TScoreValue scoreLimit(pattern);
@@ -227,7 +227,7 @@ scoreLimit(Pattern<TNeedle, DPSearch<TScore, TSpec, TFindBeginPatternSpec> > con
 
 /*!
  * @fn DPSearchPattern#setSoreLimit
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Set the minimal score a match must reach in approximate serach.
  *
  * @signature void setScoreLimit(pattern, limit);
@@ -251,7 +251,7 @@ setScoreLimit(Pattern<TNeedle, DPSearch<TScore, TSpec, TFindBeginPatternSpec> > 
 
 /*!
  * @fn DPSearchPattern#getScore
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Score of the last found match in approximate searching.
  *
  * @signature TScoreValue getScore(pattern);
@@ -290,10 +290,10 @@ inline void _patternInit (Pattern<TNeedle, DPSearch<TScore, TSpec, TFindBeginPat
     //allocate enough memory for one column of DP matrix
 
     TSize need_length = length(needle(me));
-    SEQAN_ASSERT_GT(need_length, 0u);
+    SEQAN2_ASSERT_GT(need_length, 0u);
 
     resize(string_tab, need_length);
-    SEQAN_ASSERT_GEQ(length(string_tab), need_length);
+    SEQAN2_ASSERT_GEQ(length(string_tab), need_length);
 
 //    if (length(_dataNeedle(me)) < got_length) throw(0); //???TODO: Throw "not enough memory" exception
 
@@ -444,7 +444,7 @@ inline bool
 find(TFinder & finder,
      Pattern<TNeedle, DPSearch<TScore, TSpec, TFindBeginPatternSpec> > & me)
 {
-    SEQAN_ASSERT_EQ(scoreGapOpen(scoringScheme(me)), scoreGapExtend(scoringScheme(me))); //this finder is only defined for linear gap costs
+    SEQAN2_ASSERT_EQ(scoreGapOpen(scoringScheme(me)), scoreGapExtend(scoringScheme(me))); //this finder is only defined for linear gap costs
     return _findScoreSimpleProportional(finder, me);
 }
 
@@ -454,7 +454,7 @@ find(TFinder & finder,
      Pattern<TNeedle, DPSearch<TScore, TSpec, TFindBeginPatternSpec> > & me,
      int const limit_)
 {
-    SEQAN_ASSERT_EQ(scoreGapOpen(scoringScheme(me)), scoreGapExtend(scoringScheme(me))); //this finder is only defined for linear gap costs
+    SEQAN2_ASSERT_EQ(scoreGapOpen(scoringScheme(me)), scoreGapExtend(scoringScheme(me))); //this finder is only defined for linear gap costs
     setScoreLimit(me, limit_);
     return _findScoreSimpleProportional(finder, me);
 }
@@ -462,6 +462,6 @@ find(TFinder & finder,
 
 //////////////////////////////////////////////////////////////////////////////
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

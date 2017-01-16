@@ -32,10 +32,10 @@
 // Author: Enrico Siragusa <enrico.siragusa@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INDEX_ITER_VSTREE_FACTORY_H
-#define SEQAN_INDEX_ITER_VSTREE_FACTORY_H
+#ifndef SEQAN2_SEQAN2_INDEX_ITER_VSTREE_FACTORY_H
+#define SEQAN2_SEQAN2_INDEX_ITER_VSTREE_FACTORY_H
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -309,7 +309,7 @@ template <typename TIndex, typename TSpec, typename TId>
 inline Iter<TIndex, VSTree<TopDown<ParentLinks<TSpec> > > >
 getObject(Factory<Iter<TIndex, VSTree<TopDown<ParentLinks<TSpec> > > > > & factory, TId objectId)
 {
-    SEQAN_ASSERT_LT(objectId, factory._maxObjects);
+    SEQAN2_ASSERT_LT(objectId, factory._maxObjects);
 
     Iter<TIndex, VSTree<TopDown<ParentLinks<TSpec> > > > it(_host(factory, typename IsView<TIndex>::Type()));
 
@@ -322,4 +322,4 @@ getObject(Factory<Iter<TIndex, VSTree<TopDown<ParentLinks<TSpec> > > > > & facto
 
 }
 
-#endif  // #ifndef SEQAN_INDEX_ITER_VSTREE_FACTORY_H
+#endif  // #ifndef SEQAN2_SEQAN2_INDEX_ITER_VSTREE_FACTORY_H

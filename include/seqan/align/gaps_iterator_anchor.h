@@ -32,10 +32,10 @@
 // Author: Manuel Holtgrewe <manuel.holtgrewe@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_GAPS_ITERATOR_ANCHOR_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_GAPS_ITERATOR_ANCHOR_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_GAPS_ITERATOR_ANCHOR_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_GAPS_ITERATOR_ANCHOR_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -776,6 +776,6 @@ operator+(Iter<TGaps, GapsIterator<AnchorGaps<TGapAnchors> > > const & lhs, TDif
 }
 
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_GAPS_ITERATOR_ANCHOR_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_GAPS_ITERATOR_ANCHOR_H_

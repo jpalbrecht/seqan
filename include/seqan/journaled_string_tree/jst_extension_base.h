@@ -32,10 +32,10 @@
 // Author: Rene Rahn <rene.rahn@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_JOURNALED_STRING_TREE_JST_EXTENSION_BASE_H_
-#define INCLUDE_SEQAN_JOURNALED_STRING_TREE_JST_EXTENSION_BASE_H_
+#ifndef INCLUDE_SEQAN2_JOURNALED_STRING_TREE_JST_EXTENSION_BASE_H_
+#define INCLUDE_SEQAN2_JOURNALED_STRING_TREE_JST_EXTENSION_BASE_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -312,6 +312,6 @@ find(TraverserImpl<TContainer, JstTraversalSpec<TSpec> > & traverser,
     }
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_JOURNALED_STRING_TREE_JST_EXTENSION_BASE_H_
+#endif  // #ifndef INCLUDE_SEQAN2_JOURNALED_STRING_TREE_JST_EXTENSION_BASE_H_

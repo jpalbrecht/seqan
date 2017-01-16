@@ -34,25 +34,25 @@
 // Facade header for the basic/math sub module.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_BASIC_MATH_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_BASIC_MATH_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_MATH_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_MATH_H_
 
 // --------------------------------------------------------------------------
 // Dependencies
 // --------------------------------------------------------------------------
 
 #include <cmath>
-#include <seqan/platform.h>
+#include <seqan2/platform.h>
 
-#include <seqan/basic/basic_fundamental.h>
-#include <seqan/basic/basic_concept.h>
+#include <seqan2/basic/basic_fundamental.h>
+#include <seqan2/basic/basic_concept.h>
 
 // --------------------------------------------------------------------------
 // Sub Module Headers
 // --------------------------------------------------------------------------
 
-#include <seqan/basic/math_functions.h>
-#include <seqan/basic/math_log_space_value.h>
+#include <seqan2/basic/math_functions.h>
+#include <seqan2/basic/math_log_space_value.h>
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_BASIC_MATH_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_MATH_H_
 

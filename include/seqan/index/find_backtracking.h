@@ -34,12 +34,12 @@
 // Approximate string matching via backtracking on VSTrees
 // ==========================================================================
 
-#ifndef SEQAN_FIND_BACKTRACKING_H_
-#define SEQAN_FIND_BACKTRACKING_H_
+#ifndef SEQAN2_FIND_BACKTRACKING_H_
+#define SEQAN2_FIND_BACKTRACKING_H_
 
-//#define SEQAN_DEBUG
+//#define SEQAN2_DEBUG
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -148,7 +148,7 @@ public:
 
     ~Finder()
     {
-#ifdef SEQAN_DEBUG
+#ifdef SEQAN2_DEBUG
         std::cout << "Finder Parents Height: " << length(this->index_parents) << std::endl;
 #endif
     }
@@ -175,7 +175,7 @@ public:
     Pattern() {}
 
     Pattern(TNeedle && needle,
-            SEQAN_CTOR_DISABLE_IF(IsSameType<typename std::remove_reference<TNeedle>::type const &, Pattern const &>))
+            SEQAN2_CTOR_DISABLE_IF(IsSameType<typename std::remove_reference<TNeedle>::type const &, Pattern const &>))
     {
         ignoreUnusedVariableWarning(dummy);
         setHost(*this, std::forward<TNeedle>(needle));
@@ -244,7 +244,7 @@ public:
 
     ~Pattern()
     {
-#ifdef SEQAN_DEBUG
+#ifdef SEQAN2_DEBUG
         std::cout << "BacktrackingState_ Height: " << length(this->state) << std::endl;
         std::cout << "atEnd Height: " << length(this->atEnd) << std::endl;
         std::cout << "Pattern Parents Height: " << length(this->index_parents) << std::endl;
@@ -316,7 +316,7 @@ setState(PrefixAligner_<TPrefix, HammingDistance> & me, TState const & state)
 {
     me.global_position = state.i1;
     me.errors = state.i2;
-#ifdef SEQAN_DEBUG
+#ifdef SEQAN2_DEBUG
     std::cout << "Old BacktrackingState_:      " << "(" << state.i1 << ", " << state.i2 << ")" << std::endl;
 #endif
 }
@@ -767,7 +767,7 @@ template <typename TNeedle, typename TSpec, typename TDistance, typename TBacktr
 inline typename Position<Pattern<Index<TNeedle, TSpec>, Backtracking<TDistance, TBacktrackingSpec> > >::Type
 beginPosition(Pattern<Index<TNeedle, TSpec>, Backtracking<TDistance, TBacktrackingSpec> > & me)
 {
-    SEQAN_ASSERT_NOT(empty(me));
+    SEQAN2_ASSERT_NOT(empty(me));
     return *me.data_iterator;
 }
 
@@ -820,9 +820,9 @@ _backtrack(Finder<Index<TText, TSpec>, Backtracking<TDistance, TBacktrackingSpec
 
     do
     {
-        SEQAN_ASSERT_NOT(empty(pattern.state));
+        SEQAN2_ASSERT_NOT(empty(pattern.state));
 
-#ifdef SEQAN_DEBUG
+#ifdef SEQAN2_DEBUG
         std::cout << "Stack Height:   " << length(pattern.state) << std::endl;
         std::cout << "Suffix:         " <<
         prefix(representative(finder.index_iterator),
@@ -895,11 +895,11 @@ _cut(Finder<Index<TText, TSpec>, Backtracking<TDistance, TBacktrackingSpec> > & 
     if (!goRight(finder.index_iterator))
         while (!isRoot(finder.index_iterator))
         {
-            SEQAN_ASSERT_NOT(empty(finder.index_parents));
+            SEQAN2_ASSERT_NOT(empty(finder.index_parents));
             finder.index_iterator = back(finder.index_parents);
             eraseBack(finder.index_parents);
 
-            SEQAN_ASSERT_NOT(empty(pattern.state));
+            SEQAN2_ASSERT_NOT(empty(pattern.state));
             eraseBack(pattern.state);
             if (goRight(finder.index_iterator))
                 break;
@@ -928,15 +928,15 @@ _resume(Finder<Index<TText, TTextSpec>, Backtracking<TDistance, TBacktrackingSpe
         if (_cut_exact(finder, pattern) && _search(finder, pattern))
             return true;
 
-        SEQAN_ASSERT_NOT(pattern.exact);
+        SEQAN2_ASSERT_NOT(pattern.exact);
 
-        SEQAN_ASSERT_NOT(empty(finder.index_parents));
+        SEQAN2_ASSERT_NOT(empty(finder.index_parents));
         finder.index_iterator = back(finder.index_parents);
         eraseBack(finder.index_parents);
-        SEQAN_ASSERT_NOT(empty(pattern.index_parents));
+        SEQAN2_ASSERT_NOT(empty(pattern.index_parents));
         pattern.index_iterator = back(pattern.index_parents);
         eraseBack(pattern.index_parents);
-        SEQAN_ASSERT_NOT(empty(pattern.state));
+        SEQAN2_ASSERT_NOT(empty(pattern.state));
         eraseBack(pattern.state);
 
         pattern.search = false;
@@ -963,13 +963,13 @@ _backtrack(Finder<Index<TText, TTextSpec>, Backtracking<TDistance, TBacktracking
 
     typedef typename BacktrackingState_<TNeedle, TDistance>::Type                    TState;
 
-    SEQAN_ASSERT_NOT(pattern.exact);
+    SEQAN2_ASSERT_NOT(pattern.exact);
 
     do
     {
-        SEQAN_ASSERT_NOT(empty(pattern.state));
+        SEQAN2_ASSERT_NOT(empty(pattern.state));
 
-#ifdef SEQAN_DEBUG
+#ifdef SEQAN2_DEBUG
         std::cout << "Stack Height:   " << length(pattern.state) << std::endl;
         std::cout << "Suffix:         "    << representative(finder.index_iterator) << std::endl;
         std::cout << "Prefix:         " << representative(pattern.index_iterator) << std::endl;
@@ -1017,15 +1017,15 @@ _backtrack(Finder<Index<TText, TTextSpec>, Backtracking<TDistance, TBacktracking
             if (_search(finder, pattern))
                 return true;
 
-            SEQAN_ASSERT_NOT(pattern.exact);
+            SEQAN2_ASSERT_NOT(pattern.exact);
 
-            SEQAN_ASSERT_NOT(empty(finder.index_parents));
+            SEQAN2_ASSERT_NOT(empty(finder.index_parents));
             finder.index_iterator = back(finder.index_parents);
             eraseBack(finder.index_parents);
-            SEQAN_ASSERT_NOT(empty(pattern.index_parents));
+            SEQAN2_ASSERT_NOT(empty(pattern.index_parents));
             pattern.index_iterator = back(pattern.index_parents);
             eraseBack(pattern.index_parents);
-            SEQAN_ASSERT_NOT(empty(pattern.state));
+            SEQAN2_ASSERT_NOT(empty(pattern.state));
             eraseBack(pattern.state);
 
             pattern.search = false;
@@ -1078,20 +1078,20 @@ inline bool
 _cut(Finder<Index<TText, TTextSpec>, Backtracking<TDistance, TBacktrackingSpec> > & finder,
      Pattern<Index<TNeedle, TNeedleSpec>, Backtracking<TDistance, TBacktrackingSpec> > & pattern)
 {
-    SEQAN_ASSERT_NOT(pattern.exact);
+    SEQAN2_ASSERT_NOT(pattern.exact);
 
     if (empty(pattern.atEnd))
         return false;
 
     do
     {
-        SEQAN_ASSERT_NOT(empty(pattern.atEnd));
+        SEQAN2_ASSERT_NOT(empty(pattern.atEnd));
 
         if (!back(pattern.atEnd))
         {
             if (goRight(finder.index_iterator))
             {
-                SEQAN_ASSERT_NOT(empty(pattern.index_parents));
+                SEQAN2_ASSERT_NOT(empty(pattern.index_parents));
                 pattern.index_iterator = back(pattern.index_parents);
                 break;
             }
@@ -1100,21 +1100,21 @@ _cut(Finder<Index<TText, TTextSpec>, Backtracking<TDistance, TBacktrackingSpec> 
         {
             if (goRight(pattern.index_iterator))
             {
-                SEQAN_ASSERT_NOT(empty(finder.index_parents));
+                SEQAN2_ASSERT_NOT(empty(finder.index_parents));
                 finder.index_iterator = back(finder.index_parents);
                 break;
             }
         }
 
-        SEQAN_ASSERT_NOT(empty(finder.index_parents));
+        SEQAN2_ASSERT_NOT(empty(finder.index_parents));
         finder.index_iterator = back(finder.index_parents);
         eraseBack(finder.index_parents);
-        SEQAN_ASSERT_NOT(empty(pattern.index_parents));
+        SEQAN2_ASSERT_NOT(empty(pattern.index_parents));
         pattern.index_iterator = back(pattern.index_parents);
         eraseBack(pattern.index_parents);
-        SEQAN_ASSERT_NOT(empty(pattern.state));
+        SEQAN2_ASSERT_NOT(empty(pattern.state));
         eraseBack(pattern.state);
-        SEQAN_ASSERT_NOT(empty(pattern.atEnd));
+        SEQAN2_ASSERT_NOT(empty(pattern.atEnd));
         eraseBack(pattern.atEnd);
     }
     while (!(isRoot(pattern.index_iterator) && isRoot(finder.index_iterator)));
@@ -1141,9 +1141,9 @@ _search(Finder<Index<TText, TTextSpec>, Backtracking<TDistance, TBacktrackingSpe
 
     do
     {
-        SEQAN_ASSERT_NOT(empty(pattern.state));
+        SEQAN2_ASSERT_NOT(empty(pattern.state));
 
-#ifdef SEQAN_DEBUG
+#ifdef SEQAN2_DEBUG
         std::cout << "Stack Height:   " << length(pattern.state) << std::endl;
         std::cout << "Exact Height:   " << pattern.exact << std::endl;
         std::cout << "Suffix:         "    << representative(finder.index_iterator) << std::endl;
@@ -1221,7 +1221,7 @@ _search(Finder<Index<TText, TTextSpec>, Backtracking<TDistance, TBacktrackingSpe
     }
     while (!(isRoot(pattern.index_iterator) && isRoot(finder.index_iterator)));
 
-    SEQAN_ASSERT_NOT(pattern.exact);
+    SEQAN2_ASSERT_NOT(pattern.exact);
 
     return false;
 }
@@ -1238,18 +1238,18 @@ _cut_exact(Finder<Index<TText, TTextSpec>, Backtracking<TDistance, TBacktracking
 
         if (goRight(pattern.index_iterator))
         {
-            SEQAN_ASSERT_NOT(empty(finder.index_parents));
+            SEQAN2_ASSERT_NOT(empty(finder.index_parents));
             finder.index_iterator = back(finder.index_parents);
             break;
         }
 
-        SEQAN_ASSERT_NOT(empty(finder.index_parents));
+        SEQAN2_ASSERT_NOT(empty(finder.index_parents));
         finder.index_iterator = back(finder.index_parents);
         eraseBack(finder.index_parents);
-        SEQAN_ASSERT_NOT(empty(pattern.index_parents));
+        SEQAN2_ASSERT_NOT(empty(pattern.index_parents));
         pattern.index_iterator = back(pattern.index_parents);
         eraseBack(pattern.index_parents);
-        SEQAN_ASSERT_NOT(empty(pattern.state));
+        SEQAN2_ASSERT_NOT(empty(pattern.state));
         eraseBack(pattern.state);
 
         --pattern.exact;
@@ -1372,4 +1372,4 @@ find(Finder<Index<TText, TTextSpec>, Backtracking<TDistance, TBacktrackingSpec> 
 
 }
 
-#endif  // #ifndef SEQAN_FIND_BACKTRACKING_H_
+#endif  // #ifndef SEQAN2_FIND_BACKTRACKING_H_

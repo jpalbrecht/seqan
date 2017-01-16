@@ -37,7 +37,7 @@
 #ifndef INCLUDE_ALIGN_ALIGN_EXTEND_H
 #define INCLUDE_ALIGN_ALIGN_EXTEND_H
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags, Classes, Enums
@@ -235,9 +235,9 @@ _extendAlignmentImpl(Gaps<TSource0, TGapsSpec0> & row0,
     TPos const hEndPos      = positions[2];
     TPos const vEndPos      = positions[3];
 
-    SEQAN_ASSERT_EQ(infix(source(row0), beginPosition(row0), endPosition(row0)),
+    SEQAN2_ASSERT_EQ(infix(source(row0), beginPosition(row0), endPosition(row0)),
                     infix(hSeq, hBeginPos, hEndPos));
-    SEQAN_ASSERT_EQ(infix(source(row1), beginPosition(row1), endPosition(row1)),
+    SEQAN2_ASSERT_EQ(infix(source(row1), beginPosition(row1), endPosition(row1)),
                     infix(vSeq, vBeginPos, vEndPos));
 
     bool extendLeft = ((direction & EXTEND_LEFT) && (hBeginPos > 0u) && (vBeginPos > 0u));
@@ -389,8 +389,8 @@ _extendAlignmentImpl(Align<TStringInfix, TAlignSpec> & align,
                      TBoolXDrop const & /**/,
                      TAliExtContext_ & alignContext)
 {
-    SEQAN_ASSERT_EQ_MSG(length(rows(align)), 2u, "Only works with pairwise alignments.");
-    SEQAN_ASSERT_EQ_MSG(length(row(align, 0)), length(row(align, 1)), "Invalid alignment!");
+    SEQAN2_ASSERT_EQ_MSG(length(rows(align)), 2u, "Only works with pairwise alignments.");
+    SEQAN2_ASSERT_EQ_MSG(length(row(align, 0)), length(row(align, 1)), "Invalid alignment!");
 
     return _extendAlignmentImpl(row(align, 0), row(align, 1), origScore, hSeq, vSeq, positions, direction, lowerDiag,
                                 upperDiag, xDrop, scoreScheme, TBoolBanded(), TBoolXDrop(), alignContext);
@@ -442,7 +442,7 @@ _extendAlignmentImpl(Align<TStringInfix, TAlignSpec> & align,
 
 /*!
  * @fn extendAlignment
- * @headerfile <seqan/align_extend.h>
+ * @headerfile <seqan2/align_extend.h>
  * @brief X-Drop extension for alignment objects.
  * @signature TScoreValue extendAlignment(align, [origScore,] hSeq, vSeq, positions, extensionDirection,
  *                                        [lowerDiag, upperDiag,] [xDrop,] scoreScheme);

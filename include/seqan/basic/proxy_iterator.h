@@ -37,10 +37,10 @@
 // using assignValue() on the iterator, reading via getValue().
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_PROXY_ITERATOR_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_PROXY_ITERATOR_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_PROXY_ITERATOR_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_PROXY_ITERATOR_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -53,7 +53,7 @@ namespace seqan {
 /*!
  * @class IteratorProxy
  * @extends Proxy
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Proxy that is implemented by an iterator.
  *
  * @signature template <typename TIterator>
@@ -306,7 +306,7 @@ operator<<(TStream & stream, Proxy<IteratorProxy<TIterator> > const & it)
     return stream;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
 
 
@@ -319,10 +319,10 @@ namespace std {
 // std::swap doesn't cover the case of const-ref proxies, so we provide it here
 template <typename TIterator>
 inline void
-swap(seqan::Proxy<seqan::IteratorProxy<TIterator> > const & left, seqan::Proxy<seqan::IteratorProxy<TIterator> > const & right)
+swap(seqan2::Proxy<seqan2::IteratorProxy<TIterator> > const & left, seqan2::Proxy<seqan2::IteratorProxy<TIterator> > const & right)
 {
-    typedef seqan::Proxy<seqan::IteratorProxy<TIterator> >  TProxy;
-    typedef typename seqan::GetValue<TProxy>::Type          TGetValue;
+    typedef seqan2::Proxy<seqan2::IteratorProxy<TIterator> >  TProxy;
+    typedef typename seqan2::GetValue<TProxy>::Type          TGetValue;
 
     TGetValue tmp = getValue(iter(left));
     assignValue(iter(left), getValue(iter(right)));
@@ -331,5 +331,5 @@ swap(seqan::Proxy<seqan::IteratorProxy<TIterator> > const & left, seqan::Proxy<s
 
 }  // namespace std
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_PROXY_ITERATOR_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_PROXY_ITERATOR_H_
 

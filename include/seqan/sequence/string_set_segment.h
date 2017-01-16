@@ -35,10 +35,10 @@
 // another container.
 // ==========================================================================
 
-#ifndef SEQAN_SEQUENCE_STRING_SET_SEGMENT_H_
-#define SEQAN_SEQUENCE_STRING_SET_SEGMENT_H_
+#ifndef SEQAN2_SEQUENCE_STRING_SET_SEGMENT_H_
+#define SEQAN2_SEQUENCE_STRING_SET_SEGMENT_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -353,7 +353,7 @@ inline void assignValue(StringSet<THost, Segment<TSpec> > & /* me */,
                         TSegment const & /* seq */)
 {
     // NOTE(esiragusa): The host global position would be lost in the Segment.
-    SEQAN_FAIL("Not implemented");
+    SEQAN2_FAIL("Not implemented");
 }
 
 // --------------------------------------------------------------------------
@@ -366,7 +366,7 @@ inline void appendValue(StringSet<THost, Segment<TSpec> > & /* me */,
                         Tag<TExpand> /* tag */)
 {
     // NOTE(esiragusa): The host global position would be lost in the Segment.
-    SEQAN_FAIL("Not implemented");
+    SEQAN2_FAIL("Not implemented");
 }
 
 // --------------------------------------------------------------------------
@@ -378,7 +378,7 @@ inline void
 assignInfixWithLength(StringSet<THost, Segment<TSpec> > & me,
                       TPos pos, TInfixPos infixPos, TSize len)
 {
-    SEQAN_ASSERT_LT(pos, length(me));
+    SEQAN2_ASSERT_LT(pos, length(me));
     assignValue(me.positions, pos, infixPos);
     me.limitsValid = false;
     // NOTE(esiragusa): this breaks the invariant on limits.
@@ -408,8 +408,8 @@ inline void
 appendInfix(StringSet<THost, Segment<TSpec> > & me,
             TPos posBegin, TPos posEnd, Tag<TExpand> tag)
 {
-    SEQAN_ASSERT_EQ(getSeqNo(posBegin), getSeqNo(posEnd));
-    SEQAN_ASSERT_LEQ(getSeqOffset(posBegin), getSeqOffset(posEnd));
+    SEQAN2_ASSERT_EQ(getSeqNo(posBegin), getSeqNo(posEnd));
+    SEQAN2_ASSERT_LEQ(getSeqOffset(posBegin), getSeqOffset(posEnd));
 
     appendValue(me.positions, posBegin, tag);
     appendValue(me.limits, lengthSum(me) + getSeqOffset(posEnd) - getSeqOffset(posBegin), tag);
@@ -477,7 +477,7 @@ template <typename THost, typename TSpec, typename TPos >
 inline typename InfixOnValue<THost>::Type
 value(StringSet<THost, Segment<TSpec> > & me, TPos pos)
 {
-    SEQAN_ASSERT_NOT(empty(me));
+    SEQAN2_ASSERT_NOT(empty(me));
     return infixWithLength(host(me), me.positions[pos], me.limits[pos + 1] - me.limits[pos]);
 }
 
@@ -485,7 +485,7 @@ template <typename THost, typename TSpec, typename TPos >
 inline typename InfixOnValue<THost const>::Type
 value(StringSet<THost, Segment<TSpec> > const & me, TPos pos)
 {
-    SEQAN_ASSERT_NOT(empty(me));
+    SEQAN2_ASSERT_NOT(empty(me));
     return infixWithLength(host(me), me.positions[pos], me.limits[pos + 1] - me.limits[pos]);
 }
 
@@ -506,6 +506,6 @@ void swap(StringSet<THost, Segment<TSpec> > & lhs,
     swap(lhs.concat, rhs.concat);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_SEQUENCE_STRING_SET_SEGMENT_H_
+#endif  // #ifndef SEQAN2_SEQUENCE_STRING_SET_SEGMENT_H_

@@ -37,10 +37,10 @@
 // and our own implementation of a parallel bgzfstream.
 // ==========================================================================
 
-#ifndef SEQAN_STREAM_VIRTUAL_STREAM_
-#define SEQAN_STREAM_VIRTUAL_STREAM_
+#ifndef SEQAN2_STREAM_VIRTUAL_STREAM_
+#define SEQAN2_STREAM_VIRTUAL_STREAM_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -58,18 +58,18 @@ struct StreamFormat;
 // --------------------------------------------------------------------------
 
 typedef
-#if SEQAN_HAS_ZLIB
+#if SEQAN2_HAS_ZLIB
     TagList<BgzfFile,
     TagList<GZFile,
 #endif
-#if SEQAN_HAS_BZIP2
+#if SEQAN2_HAS_BZIP2
     TagList<BZ2File,
 #endif
     TagList<Nothing>
-#if SEQAN_HAS_BZIP2
+#if SEQAN2_HAS_BZIP2
     >
 #endif
-#if SEQAN_HAS_ZLIB
+#if SEQAN2_HAS_ZLIB
     >
     >
 #endif
@@ -79,7 +79,7 @@ typedef
 // Metafunctions
 // ============================================================================
 
-#if SEQAN_HAS_ZLIB
+#if SEQAN2_HAS_ZLIB
 
 template <typename Elem, typename Tr, typename ElemA, typename ByteT, typename ByteAT>
 struct Value<basic_bgzf_istream<Elem, Tr, ElemA, ByteT, ByteAT> > :
@@ -100,10 +100,10 @@ struct Position<basic_bgzf_ostream<Elem, Tr, ElemA, ByteT, ByteAT> > :
 
 
 template <typename Elem, typename Tr, typename ElemA, typename ByteT, typename ByteAT>
-SEQAN_CONCEPT_IMPL((basic_bgzf_istream<Elem, Tr, ElemA, ByteT, ByteAT>), (InputStreamConcept));
+SEQAN2_CONCEPT_IMPL((basic_bgzf_istream<Elem, Tr, ElemA, ByteT, ByteAT>), (InputStreamConcept));
 
 template <typename Elem, typename Tr, typename ElemA, typename ByteT, typename ByteAT>
-SEQAN_CONCEPT_IMPL((basic_bgzf_ostream<Elem, Tr, ElemA, ByteT, ByteAT>), (OutputStreamConcept));
+SEQAN2_CONCEPT_IMPL((basic_bgzf_ostream<Elem, Tr, ElemA, ByteT, ByteAT>), (OutputStreamConcept));
 
 #endif
 
@@ -117,7 +117,7 @@ struct VirtualStreamSwitch_
     typedef Nothing Type;
 };
 
-#if SEQAN_HAS_ZLIB
+#if SEQAN2_HAS_ZLIB
 template <typename TValue>
 struct VirtualStreamSwitch_<TValue, Input, GZFile>
 {
@@ -144,7 +144,7 @@ struct VirtualStreamSwitch_<TValue, Output, BgzfFile>
 
 #endif
 
-#if SEQAN_HAS_BZIP2
+#if SEQAN2_HAS_BZIP2
 
 template <typename TValue>
 struct VirtualStreamSwitch_<TValue, Input, BZ2File>
@@ -222,7 +222,7 @@ struct VirtualStreamContext_<TValue, TDirection, TTraits, Nothing>:
 /*!
  * @class VirtualStream
  * @implements StreamConcept
- * @headerfile <seqan/stream.h>
+ * @headerfile <seqan2/stream.h>
  * @brief Provides seamless (de)compression for another @link StreamConcept stream @endlink.
  *
  * @signature template <typename TValue, typename TDirection, typename TTraits>
@@ -415,13 +415,13 @@ struct DefaultOpenMode<VirtualStream<TValue, Output, TTraits>, TDummy>
 // ----------------------------------------------------------------------------
 
 template <typename TValue>
-SEQAN_CONCEPT_IMPL((VirtualStream<TValue, Input>), (InputStreamConcept));
+SEQAN2_CONCEPT_IMPL((VirtualStream<TValue, Input>), (InputStreamConcept));
 
 template <typename TValue>
-SEQAN_CONCEPT_IMPL((VirtualStream<TValue, Output>), (OutputStreamConcept));
+SEQAN2_CONCEPT_IMPL((VirtualStream<TValue, Output>), (OutputStreamConcept));
 
 template <typename TValue>
-SEQAN_CONCEPT_IMPL((VirtualStream<TValue, Bidirectional>), (BidirectionalStreamConcept));
+SEQAN2_CONCEPT_IMPL((VirtualStream<TValue, Bidirectional>), (BidirectionalStreamConcept));
 
 // --------------------------------------------------------------------------
 // Class VirtualStreamFactoryContext_
@@ -548,10 +548,10 @@ _getUncompressedBasename(TFilename const & fname, TagSelector<TTagList> const & 
  */
 
 template <typename TValue, typename TDirection, typename TTraits, typename TStream, typename TCompressionType>
-inline SEQAN_FUNC_DISABLE_IF(IsPointer<TStream>, bool)
+inline SEQAN2_FUNC_DISABLE_IF(IsPointer<TStream>, bool)
 open(VirtualStream<TValue, TDirection, TTraits> &stream, TStream &fileStream, TCompressionType & compressionType)
 {
-    SEQAN_ASSERT_MSG(stream.context == NULL, "VirtualStream: close() must be called before re-opening.");
+    SEQAN2_ASSERT_MSG(stream.context == NULL, "VirtualStream: close() must be called before re-opening.");
 
     typedef VirtualStream<TValue, TDirection, TTraits> TVirtualStream;
     typedef typename TVirtualStream::TBufferedStream TBufferedStream;
@@ -579,7 +579,7 @@ open(VirtualStream<TValue, TDirection, TTraits> &stream, TStream &fileStream, TC
     if (stream.context == NULL)
         return false;
 
-    SEQAN_ASSERT(stream.context->streamBuf != NULL);
+    SEQAN2_ASSERT(stream.context->streamBuf != NULL);
     stream.streamBuf = stream.context->streamBuf;
 
     // reset our outer stream interface
@@ -588,7 +588,7 @@ open(VirtualStream<TValue, TDirection, TTraits> &stream, TStream &fileStream, TC
 }
 
 template <typename TValue, typename TDirection, typename TTraits, typename TStream, typename TCompressionType>
-inline SEQAN_FUNC_DISABLE_IF(IsPointer<TStream>, bool)
+inline SEQAN2_FUNC_DISABLE_IF(IsPointer<TStream>, bool)
 open(VirtualStream<TValue, TDirection, TTraits> &stream, TStream &fileStream, TCompressionType const & compressionType)
 {
     assign(stream.format, compressionType);
@@ -596,7 +596,7 @@ open(VirtualStream<TValue, TDirection, TTraits> &stream, TStream &fileStream, TC
 }
 
 template <typename TValue, typename TStream>
-inline SEQAN_FUNC_DISABLE_IF(IsPointer<TStream>, bool)
+inline SEQAN2_FUNC_DISABLE_IF(IsPointer<TStream>, bool)
 open(VirtualStream<TValue, Input> &stream, TStream &fileStream)
 {
     // detect compression type from file extension
@@ -610,7 +610,7 @@ open(VirtualStream<TValue, TDirection, TTraits> &stream,
      const char *fileName,
      int openMode = DefaultOpenMode<VirtualStream<TValue, TDirection, TTraits> >::VALUE)
 {
-    SEQAN_ASSERT_MSG(stream.context == NULL, "VirtualStream: close() must be called before re-opening.");
+    SEQAN2_ASSERT_MSG(stream.context == NULL, "VirtualStream: close() must be called before re-opening.");
 
     typedef VirtualStream<TValue, TDirection, TTraits> TVirtualStream;
 
@@ -687,6 +687,6 @@ format(VirtualStream<TValue, TDirection, TTraits> &stream)
     return stream.format;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_STREAM_VIRTUAL_STREAM_
+#endif  // #ifndef SEQAN2_STREAM_VIRTUAL_STREAM_

@@ -32,13 +32,13 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_INDEX_LCP_H
-#define SEQAN_HEADER_INDEX_LCP_H
+#ifndef SEQAN2_HEADER_SEQAN2_INDEX_LCP_H
+#define SEQAN2_HEADER_SEQAN2_INDEX_LCP_H
 
-namespace seqan
+namespace seqan2
 {
 
-//namespace SEQAN_NAMESPACE_PIPELINING
+//namespace SEQAN2_NAMESPACE_PIPELINING
 //{
 
     struct Kasai {};
@@ -118,13 +118,13 @@ namespace seqan
             TEchoer                        echoer(suffixArrayIn);
             TInverter                    inverter(echoer);
 
-            #ifdef SEQAN_DEBUG_INDEX
+            #ifdef SEQAN2_DEBUG_INDEX
                 std::cerr << "--- CREATE LCP TABLE ---" << std::endl;
                 std::cerr << "Start Kasai [pipelining]" << std::endl;
                 std::cerr << "  invert suffix array" << std::endl;
             #endif
             inverter << echoer;
-            SEQAN_PROMARK("Suffix-Array invertiert");
+            SEQAN2_PROMARK("Suffix-Array invertiert");
 
             _lcpProcess(textIn, inverter, mapper);
             return true;
@@ -223,13 +223,13 @@ namespace seqan
             map_inverse_t                _mapInverse(limits);
             TInverter                    inverter(echoer, _mapInverse);
 
-            #ifdef SEQAN_DEBUG_INDEX
+            #ifdef SEQAN2_DEBUG_INDEX
                 std::cerr << "--- CREATE LCP TABLE ---" << std::endl;
                 std::cerr << "Start Kasai [pipelining,stringset]" << std::endl;
                 std::cerr << "  invert suffix array" << std::endl;
             #endif
             inverter << echoer;
-            SEQAN_PROMARK("Suffix-Array invertiert");
+            SEQAN2_PROMARK("Suffix-Array invertiert");
 
             _lcpProcessMulti(textIn, limits, inverter, mapper);
             return true;
@@ -282,7 +282,7 @@ namespace seqan
     {
         typedef typename Value<TSA>::Type TSize;
 
-        #ifdef SEQAN_DEBUG_INDEX
+        #ifdef SEQAN2_DEBUG_INDEX
             std::cerr << "--- CREATE LCP TABLE ---" << std::endl;
             std::cerr << "Start Kasai [random access]" << std::endl;
             if (sizeof(TSize) > 4)
@@ -292,7 +292,7 @@ namespace seqan
         TSize n = length(s);
         if (n == 0) return;
 
-        #ifdef SEQAN_DEBUG_INDEX
+        #ifdef SEQAN2_DEBUG_INDEX
             TSize lcpMax = 0, lcpAvrg = 0, lcpNumer = 0, sigma = 1;    // for lcpMax, lcpMean, |Sigma|
         #endif
 
@@ -302,7 +302,7 @@ namespace seqan
         for(TSize i = 0; i < n; ++i)
             ISA[SA[i]] = i;
 
-        SEQAN_PROMARK("Suffix-Array invertiert");
+        SEQAN2_PROMARK("Suffix-Array invertiert");
 
         typename Iterator<TText const>::Type Ibegin = begin(s);
         typename Iterator<TText const>::Type I = Ibegin, J;
@@ -311,7 +311,7 @@ namespace seqan
                 J = Ibegin + h + (j = SA[isa - 1]);
                 for(TSize hMax = _min(n - i, n - j); h < hMax && *I == *J; ++I, ++J, ++h) ;
                 LCP[isa - 1] = h;
-                #ifdef SEQAN_DEBUG_INDEX
+                #ifdef SEQAN2_DEBUG_INDEX
                     if ((lcpNumer += h) > n) {
                         lcpNumer -= n;
                         ++lcpAvrg;
@@ -324,7 +324,7 @@ namespace seqan
             else ++I;
         }
         LCP[n - 1] = 0;
-        #ifdef SEQAN_DEBUG_INDEX
+        #ifdef SEQAN2_DEBUG_INDEX
             std::cerr << "  n: " << n;
             std::cerr << "  lcpMax: " << lcpMax;
             std::cerr << "  lcpAvrg: " << (TSize)(lcpAvrg + (lcpNumer + n/2) / n);
@@ -346,7 +346,7 @@ namespace seqan
     {
         typedef typename Value<TSA>::Type TSize;
 
-        #ifdef SEQAN_DEBUG_INDEX
+        #ifdef SEQAN2_DEBUG_INDEX
             std::cerr << "--- CREATE LCP TABLE ---" << std::endl;
             std::cerr << "Start Kasai [random access,inplace]" << std::endl;
             if (sizeof(TSize) > 4)
@@ -356,7 +356,7 @@ namespace seqan
         TSize n = length(s);
         if (n == 0) return;
 
-        #ifdef SEQAN_DEBUG_INDEX
+        #ifdef SEQAN2_DEBUG_INDEX
             TSize lcpMax = 0, lcpAvrg = 0, lcpNumer = 0, sigma = 1;    // for lcpMax, lcpMean, |Sigma|
         #endif
 
@@ -366,8 +366,8 @@ namespace seqan
         for(TSize i = 0; i < n; ++i)
             LCP[SA[i]] = i;
 
-        SEQAN_PROMARK("Suffix-Array invertiert");
-        #ifdef SEQAN_DEBUG_INDEX
+        SEQAN2_PROMARK("Suffix-Array invertiert");
+        #ifdef SEQAN2_DEBUG_INDEX
             std::cerr << "Suffix-Array invertiert" << std::endl;
         #endif
 
@@ -378,7 +378,7 @@ namespace seqan
                 J = Ibegin + h + (j = SA[isa]);
                 for(TSize hMax = _min(n - i, n - j); h < hMax && *I == *J; ++I, ++J, ++h) ;
                 LCP[i] = h | mark;
-                #ifdef SEQAN_DEBUG_INDEX
+                #ifdef SEQAN2_DEBUG_INDEX
                     if ((lcpNumer += h) > n) {
                         lcpNumer -= n;
                         ++lcpAvrg;
@@ -391,8 +391,8 @@ namespace seqan
             else ++I;
         }
         LCP[SA[n - 1]] = mark;
-        SEQAN_PROMARK("permutierte LCP-Tabelle erzeugt");
-        #ifdef SEQAN_DEBUG_INDEX
+        SEQAN2_PROMARK("permutierte LCP-Tabelle erzeugt");
+        #ifdef SEQAN2_DEBUG_INDEX
             std::cerr << "permutierte LCP-Tabelle erzeugt" << std::endl;
         #endif
         for(TSize i = 0, j, tmp; i < n; ++i)
@@ -405,11 +405,11 @@ namespace seqan
                 }
                 LCP[j] = tmp & mask;
             }
-        #ifdef SEQAN_DEBUG_INDEX
+        #ifdef SEQAN2_DEBUG_INDEX
             std::cerr << "LCP-Tabelle erzeugt" << std::endl;
         #endif
 
-        #ifdef SEQAN_DEBUG_INDEX
+        #ifdef SEQAN2_DEBUG_INDEX
             std::cerr << "  n: " << n;
             std::cerr << "  lcpMax: " << lcpMax;
             std::cerr << "  lcpAvrg: " << (TSize)(lcpAvrg + (lcpNumer + n/2) / n);
@@ -439,7 +439,7 @@ namespace seqan
         typedef PairDecrementer_<TPair, TLimitsString>                TDecrementer;
         typedef typename Value<TLCPTable>::Type                        TSize;
 
-        #ifdef SEQAN_DEBUG_INDEX
+        #ifdef SEQAN2_DEBUG_INDEX
             std::cerr << "--- CREATE LCP TABLE ---" << std::endl;
             std::cerr << "Start Kasai [random access,inplace,stringset]" << std::endl;
             if (sizeof(TSize) > 4)
@@ -451,7 +451,7 @@ namespace seqan
 
         if (n == 0) return;
 
-        #ifdef SEQAN_DEBUG_INDEX
+        #ifdef SEQAN2_DEBUG_INDEX
             TSize lcpMax = 0, lcpAvrg = 0, lcpNumer = 0, sigma = 1;    // for lcpMax, lcpMean, |Sigma|
         #endif
 
@@ -465,8 +465,8 @@ namespace seqan
                 LCP[posGlobalize(*itSA, limits)] = i;
         }
 
-        SEQAN_PROMARK("Suffix-Array invertiert");
-        #ifdef SEQAN_DEBUG_INDEX
+        SEQAN2_PROMARK("Suffix-Array invertiert");
+        #ifdef SEQAN2_DEBUG_INDEX
             std::cerr << "Suffix-Array invertiert" << std::endl;
         #endif
 
@@ -482,7 +482,7 @@ namespace seqan
 
                 for(TSize hMax = _min(getValueI2((TPair)dec), n - j); h < hMax && *I == *J; ++I, ++J, ++h) ;
                 LCP[i] = h | mark;
-                #ifdef SEQAN_DEBUG_INDEX
+                #ifdef SEQAN2_DEBUG_INDEX
                     if ((lcpNumer += h) > n) {
                         lcpNumer -= n;
                         ++lcpAvrg;
@@ -499,8 +499,8 @@ namespace seqan
 
         LCP[posGlobalize(SA[n - 1], limits)] = mark;
 
-        SEQAN_PROMARK("permutierte LCP-Tabelle erzeugt");
-        #ifdef SEQAN_DEBUG_INDEX
+        SEQAN2_PROMARK("permutierte LCP-Tabelle erzeugt");
+        #ifdef SEQAN2_DEBUG_INDEX
             std::cerr << "permutierte LCP-Tabelle erzeugt" << std::endl;
         #endif
         for(TSize sa_j, i = 0, j, tmp; i < n; ++i)
@@ -515,11 +515,11 @@ namespace seqan
                 }
                 LCP[j] = tmp & mask;
             }
-        #ifdef SEQAN_DEBUG_INDEX
+        #ifdef SEQAN2_DEBUG_INDEX
             std::cerr << "LCP-Tabelle erzeugt" << std::endl;
         #endif
 
-        #ifdef SEQAN_DEBUG_INDEX
+        #ifdef SEQAN2_DEBUG_INDEX
             std::cerr << "  n: " << n;
             std::cerr << "  lcpMax: " << lcpMax;
             std::cerr << "  lcpAvrg: " << (TSize)(lcpAvrg + (lcpNumer + n/2) / n);

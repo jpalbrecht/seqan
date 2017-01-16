@@ -32,10 +32,10 @@
 // Author: Manuel Holtgrewe <manuel.holtgrewe@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_LOCAL_ALIGNMENT_ENUMERATION_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_LOCAL_ALIGNMENT_ENUMERATION_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_LOCAL_ALIGNMENT_ENUMERATION_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_LOCAL_ALIGNMENT_ENUMERATION_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -54,7 +54,7 @@ class LocalAlignmentEnumerator;
 
 /*!
  * @class LocalAlignmentEnumerator
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Enumeration of local alignments.
  *
  * @signature template <typename TScore, typename TSpec>
@@ -77,7 +77,7 @@ class LocalAlignmentEnumerator;
 /*!
  * @class UnbandedLocalAlignmentEnumerator
  * @extends LocalAlignmentEnumerator
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Unbanded enumeration of local alignments using the Waterman-Eggert algorithm.
  *
  * @signature template <typename TScore>
@@ -124,7 +124,7 @@ class LocalAlignmentEnumerator;
 /*!
  * @class BandedLocalAlignmentEnumerator
  * @extends LocalAlignmentEnumerator
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Banded enumeration of local alignments using the Waterman-Eggert algorithm.
  *
  * @signature template <typename TScore>
@@ -184,7 +184,7 @@ class LocalAlignmentEnumerator;
 
 /*!
  * @fn LocalAlignmentEnumerator#getScore
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Get current alignment score.
  *
  * @signature TScoreVal getScore(enumerator);
@@ -200,7 +200,7 @@ class LocalAlignmentEnumerator;
 
 /*!
  * @fn LocalAlignmentEnumerator#nextLocalAlignment
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Compute next suboptimal local alignment.
  *
  * @signature bool nextLocalAlignment(align,        enumerator);
@@ -215,6 +215,6 @@ class LocalAlignmentEnumerator;
  *              otherwise.
  */
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_LOCAL_ALIGNMENT_ENUMERATION_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_LOCAL_ALIGNMENT_ENUMERATION_H_

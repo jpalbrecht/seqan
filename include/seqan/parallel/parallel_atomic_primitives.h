@@ -33,16 +33,16 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-// SEQAN_NO_GENERATED_FORWARDS: No forwards are generated for this file.
+// SEQAN2_NO_GENERATED_FORWARDS: No forwards are generated for this file.
 
-#ifndef SEQAN_PARALLEL_PARALLEL_ATOMIC_PRIMITIVES_H_
-#define SEQAN_PARALLEL_PARALLEL_ATOMIC_PRIMITIVES_H_
+#ifndef SEQAN2_PARALLEL_PARALLEL_ATOMIC_PRIMITIVES_H_
+#define SEQAN2_PARALLEL_PARALLEL_ATOMIC_PRIMITIVES_H_
 
 #if defined(STDLIB_VS)
 #include <intrin.h>
 #endif  // #if defined(STDLIB_VS)
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -74,7 +74,7 @@ struct Atomic
 
 /*!
  * @fn AtomicPrimitives#atomicInc
- * @headerfile <seqan/parallel.h>
+ * @headerfile <seqan2/parallel.h>
  * @brief Atomically increment an integer.
  *
  * @signature TResult atomicInc(x);
@@ -95,7 +95,7 @@ struct Atomic
 
 /*!
  * @fn AtomicPrimitives#atomicDec
- * @headerfile <seqan/parallel.h>
+ * @headerfile <seqan2/parallel.h>
  * @brief Atomically decrement an integer.
  *
  * @signature TResult atomicDec(x);
@@ -116,7 +116,7 @@ struct Atomic
 
 /*!
  * @fn AtomicPrimitives#atomicAdd
- * @headerfile <seqan/parallel.h>
+ * @headerfile <seqan2/parallel.h>
  * @brief Atomically add an integer to another integer.
  *
  * @signature TResult atomicAdd(x, y)
@@ -139,7 +139,7 @@ struct Atomic
 
 /*!
  * @fn AtomicPrimitives#atomicOr
- * @headerfile <seqan/parallel.h>
+ * @headerfile <seqan2/parallel.h>
  * @brief Atomically combine two integers with <tt>OR</tt> operation.
  *
  * @signature TResult atomicOr(x, y);
@@ -164,7 +164,7 @@ struct Atomic
 
 /*!
  * @fn AtomicPrimitives#atomicXor
- * @headerfile <seqan/parallel.h>
+ * @headerfile <seqan2/parallel.h>
  * @brief Atomically combine two integers with <tt>XOR</tt> operation.
  *
  * @signature TResult atomicXor(x, y);
@@ -189,7 +189,7 @@ struct Atomic
 
 /*!
  * @fn AtomicPrimitives#atomicCas
- * @headerfile <seqan/parallel.h>
+ * @headerfile <seqan2/parallel.h>
  * @brief Atomic ompare-and-Swap operation.
  *
  * @signature TResult atomicCas(x, cmp, y)
@@ -221,8 +221,8 @@ struct Atomic
 
 // TODO(holtgrew): What about correct alignment?!
 
-#ifndef SEQAN_CACHE_LINE_SIZE
-#define SEQAN_CACHE_LINE_SIZE 128
+#ifndef SEQAN2_CACHE_LINE_SIZE
+#define SEQAN2_CACHE_LINE_SIZE 128
 #endif
 
 #if defined(STDLIB_VS)
@@ -456,6 +456,6 @@ template <typename T>   inline T atomicCas(std::atomic<T>        & x, T cmp, T y
 template <typename T>   inline bool atomicCasBool(std::atomic<T> & x, T    , T y, Serial)   { x = y; return true;                          }
 template <typename T>   inline bool atomicCasBool(std::atomic<T> & x, T cmp, T y, Parallel) { return x.compare_exchange_weak(cmp, y);      }
 
-} // namespace seqan
+} // namespace seqan2
 
 #endif  // #if defined(STDLIB_VS)

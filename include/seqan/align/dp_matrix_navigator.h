@@ -45,10 +45,10 @@
 
 // TODO(holtgrew): Documentation in this header necessary or internal only?
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_MATRIX_NAVIGATOR_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_DP_MATRIX_NAVIGATOR_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_MATRIX_NAVIGATOR_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_MATRIX_NAVIGATOR_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -225,6 +225,6 @@ container(DPMatrixNavigator_<TDPMatrix, TDPMatrixType, TNavigationSpec> const & 
     return *dpNavigator._ptrDataContainer;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_MATRIX_NAVIGATOR_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_MATRIX_NAVIGATOR_H_

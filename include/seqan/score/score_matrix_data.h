@@ -68,17 +68,17 @@ M6 = [M5(:,1:20), M5(:,25), M5(:,21:26)];
 M6 = [M6(1:20,:); M6(25,:); M6(21:26,:)];
  */
 
-#ifndef SEQAN_SSCORE_MATRIX_DATA_H_
-#define SEQAN_SSCORE_MATRIX_DATA_H_
+#ifndef SEQAN2_SSCORE_MATRIX_DATA_H_
+#define SEQAN2_SSCORE_MATRIX_DATA_H_
 
-namespace seqan {
+namespace seqan2 {
 
 struct Blosum30_ {};
 typedef Blosum30_ ScoreSpecBlosum30;
 
 /*!
  * @typedef Blosum30
- * @headerfile <seqan/score.h>
+ * @headerfile <seqan2/score.h>
  * @brief BLOSUM30 scoring matrix.
  *
  * @signature typedef Score<int, ScoreMatrix<AminoAcid, ScoreSpecBlosum30> > Blosum30;
@@ -172,7 +172,7 @@ typedef Blosum45_ ScoreSpecBlosum45;
 
 /*!
  * @typedef Blosum45
- * @headerfile <seqan/score.h>
+ * @headerfile <seqan2/score.h>
  * @brief BLOSUM45 scoring matrix.
  *
  * @signature typedef Score<int, ScoreMatrix<AminoAcid, ScoreSpecBlosum45> > Blosum45;
@@ -266,7 +266,7 @@ typedef Blosum62_ ScoreSpecBlosum62;
 
 /*!
  * @typedef Blosum62
- * @headerfile <seqan/score.h>
+ * @headerfile <seqan2/score.h>
  * @brief BLOSUM62 scoring matrix.
  *
  * @signature typedef Score<int, ScoreMatrix<AminoAcid, ScoreSpecBlosum62> > Blosum62;
@@ -359,7 +359,7 @@ typedef Blosum80_ ScoreSpecBlosum80;
 
 /*!
  * @typedef Blosum80
- * @headerfile <seqan/score.h>
+ * @headerfile <seqan2/score.h>
  * @brief BLOSUM80 scoring matrix.
  *
  * @signature typedef Score<int, ScoreMatrix<AminoAcid, ScoreSpecBlosum80> > Blosum80;
@@ -452,7 +452,7 @@ typedef Pam40_ ScoreSpecPam40;
 
 /*!
  * @typedef Pam40
- * @headerfile <seqan/score.h>
+ * @headerfile <seqan2/score.h>
  * @brief PAM40 scoring matrix.
  *
  * @signature typedef Score<int, ScoreMatrix<AminoAcid, ScoreSpecPam40> > Pam40;
@@ -548,7 +548,7 @@ typedef Pam120_ ScoreSpecPam120;
 
 /*!
  * @typedef Pam120
- * @headerfile <seqan/score.h>
+ * @headerfile <seqan2/score.h>
  * @brief PAM120 scoring matrix.
  *
  * @signature typedef Score<int, ScoreMatrix<AminoAcid, ScoreSpecPam120> > Pam120;
@@ -643,7 +643,7 @@ typedef Pam200_ ScoreSpecPam200;
 
 /*!
  * @typedef Pam200
- * @headerfile <seqan/score.h>
+ * @headerfile <seqan2/score.h>
  * @brief PAM200 scoring matrix.
  *
  * @signature typedef Score<int, ScoreMatrix<AminoAcid, ScoreSpecPam200> > Pam200;
@@ -738,7 +738,7 @@ typedef Pam250_ ScoreSpecPam250;
 
 /*!
  * @typedef Pam250
- * @headerfile <seqan/score.h>
+ * @headerfile <seqan2/score.h>
  * @brief PAM250 scoring matrix.
  *
  * @signature typedef Score<int, ScoreMatrix<AminoAcid, ScoreSpecPam250> > Pam250;
@@ -833,7 +833,7 @@ typedef Vtml200_ ScoreSpecVtml200;
 
 /*!
  * @typedef Vtml200
- * @headerfile <seqan/score.h>
+ * @headerfile <seqan2/score.h>
  * @brief VTML200 scoring matrix.
  *
  * @signature typedef Score<int, ScoreMatrix<AminoAcid, ScoreSpecVtml200> > Vtml200;
@@ -940,6 +940,6 @@ struct ScoringMatrixData_<int, AminoAcid, ScoreSpecVtml200> {
     }
 };
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_SSCORE_MATRIX_DATA_H_
+#endif  // SEQAN2_SSCORE_MATRIX_DATA_H_

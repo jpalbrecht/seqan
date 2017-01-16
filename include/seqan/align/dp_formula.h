@@ -36,10 +36,10 @@
 
 // TODO(holtgrew): Documentation in this header necessary or internal only?
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_FORMULA_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_DP_FORMULA_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_FORMULA_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_FORMULA_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -112,7 +112,7 @@ typedef Tag<RecursionDirectionZero_> RecursionDirectionZero;
 
 template <typename TScoreValue, typename TGapCosts, typename TSequenceHValue, typename TSequenceVValue,
           typename TScoringScheme, typename TRecursionDirection, typename TDPProfile>
-inline SEQAN_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
 _computeScore(DPCell_<TScoreValue, TGapCosts> & activeCell,
               DPCell_<TScoreValue, TGapCosts> const & previousDiagonal,
               DPCell_<TScoreValue, TGapCosts> const & previousHorizontal,
@@ -141,7 +141,7 @@ _computeScore(DPCell_<TScoreValue, TGapCosts> & activeCell,
 
 template <typename TScoreValue, typename TGapCosts, typename TSequenceHValue, typename TSequenceVValue,
           typename TScoringScheme, typename TRecursionDirection, typename TDPProfile>
-inline SEQAN_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
 _computeScore(DPCell_<TScoreValue, TGapCosts> & activeCell,
               DPCell_<TScoreValue, TGapCosts> const & previousDiagonal,
               DPCell_<TScoreValue, TGapCosts> const & previousHorizontal,
@@ -215,6 +215,6 @@ _doComputeScore(DPCell_<TScoreValue, TGapCosts> & activeCell,
     return TraceBitMap_<TScoreValue>::NONE;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_FORMULA_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_FORMULA_H_

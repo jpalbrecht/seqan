@@ -34,10 +34,10 @@
 // Implementation of Breadth-First-Search.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_GRAPH_ALGORITHMS_BREADTH_FIRST_SEARCH_H_
-#define INCLUDE_SEQAN_GRAPH_ALGORITHMS_BREADTH_FIRST_SEARCH_H_
+#ifndef INCLUDE_SEQAN2_GRAPH_ALGORITHMS_BREADTH_FIRST_SEARCH_H_
+#define INCLUDE_SEQAN2_GRAPH_ALGORITHMS_BREADTH_FIRST_SEARCH_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -61,7 +61,7 @@ namespace seqan {
 
 /*!
  * @fn breadthFirstSearch
- * @headerfile <seqan/graph_algorithms.h>
+ * @headerfile <seqan2/graph_algorithms.h>
  * @brief Implements a breadth-first search on a graph.
  *
  * @signature void breadthFirstSearch(predecessor, distance, g, source);
@@ -133,6 +133,6 @@ void breadthFirstSearch(TPredecessorMap & predecessor,
     }
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_GRAPH_ALGORITHMS_BREADTH_FIRST_SEARCH_H_
+#endif  // #ifndef INCLUDE_SEQAN2_GRAPH_ALGORITHMS_BREADTH_FIRST_SEARCH_H_

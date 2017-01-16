@@ -32,16 +32,16 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_INDEX_MANUAL_FORWARDS_H
-#define SEQAN_HEADER_INDEX_MANUAL_FORWARDS_H
+#ifndef SEQAN2_HEADER_SEQAN2_INDEX_MANUAL_FORWARDS_H
+#define SEQAN2_HEADER_SEQAN2_INDEX_MANUAL_FORWARDS_H
 
-//SEQAN_NO_GENERATED_FORWARDS: no forwards are generated for this file
+//SEQAN2_NO_GENERATED_FORWARDS: no forwards are generated for this file
 
 //////////////////////////////////////////////////////////////////////////////
 // CLASSES
 //////////////////////////////////////////////////////////////////////////////
 
-namespace seqan {
+namespace seqan2 {
 
     struct FibreText_;        // Original text. Can be a String or a StringSet
     struct FibreRawText_;    // Concatenation of the strings above

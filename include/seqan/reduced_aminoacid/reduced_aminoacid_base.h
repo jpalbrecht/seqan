@@ -34,10 +34,10 @@
 // Reduced Versions of the 24-letter amino acid alphabet
 // ==========================================================================
 
-#ifndef SEQAN_REDUCED_AMINOACID_BASE_H_
-#define SEQAN_REDUCED_AMINOACID_BASE_H_
+#ifndef SEQAN2_REDUCED_AMINOACID_BASE_H_
+#define SEQAN2_REDUCED_AMINOACID_BASE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -55,7 +55,7 @@ namespace seqan {
  * @class ReducedAminoAcid
  * @extends SimpleType
  * @brief Reduced versions of the amino acid alphabet.
- * @headerfile seqan/reduced_aminoacid.h
+ * @headerfile seqan2/reduced_aminoacid.h
  *
  * @signature template <typename TReductionSpec>
  * using ReducedAminoAcid = SimpleType<unsigned char, ReducedAminoAcid_<TReductionSpec> >;
@@ -128,4 +128,4 @@ struct TranslateTableRedAAToChar_;
 // ============================================================================
 
 }
-#endif // def SEQAN_REDUCED_AMINOACID_BASE_H_
+#endif // def SEQAN2_REDUCED_AMINOACID_BASE_H_

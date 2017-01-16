@@ -18,8 +18,8 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // Author: Enrico Siragusa <enrico.siragusa@fu-berlin.de>
 
-#ifndef INCLUDE_SEQAN_STREAM_IOSTREAM_ZIP_H_
-#define INCLUDE_SEQAN_STREAM_IOSTREAM_ZIP_H_
+#ifndef INCLUDE_SEQAN2_STREAM_IOSTREAM_ZIP_H_
+#define INCLUDE_SEQAN2_STREAM_IOSTREAM_ZIP_H_
 
 namespace zlib_stream {
 
@@ -380,4 +380,4 @@ typedef basic_zip_istream<wchar_t>  zip_wistream;
 
 } // namespace zlib_stream
 
-#endif // INCLUDE_SEQAN_STREAM_IOSTREAM_ZIP_H_
+#endif // INCLUDE_SEQAN2_STREAM_IOSTREAM_ZIP_H_

@@ -34,10 +34,10 @@
 // This file contains the BlastIOContext's code
 // ==========================================================================
 
-#ifndef SEQAN_BLAST_BLAST_IO_CONTEXT_H__
-#define SEQAN_BLAST_BLAST_IO_CONTEXT_H__
+#ifndef SEQAN2_BLAST_BLAST_IO_CONTEXT_H__
+#define SEQAN2_BLAST_BLAST_IO_CONTEXT_H__
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -71,7 +71,7 @@ struct BlastIOContextStringType_
 
 /*!
  * @class BlastIOContext
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  * @signature template <typename TScore_ = Blosum62,
  * BlastProgram p = BlastProgram::UNKNOWN, BlastTabularSpec h = BlastTabularSpec::UNKNOWN>
  * struct BlastIOContext { ... };
@@ -161,12 +161,12 @@ struct BlastIOContext
         if (!legacyFormat)
             append(versionString, "+");
         append(versionString, " [I/O Module of SeqAn-");
-        append(versionString, std::to_string(SEQAN_VERSION_MAJOR));
+        append(versionString, std::to_string(SEQAN2_VERSION_MAJOR));
         append(versionString, '.');
-        append(versionString, std::to_string(SEQAN_VERSION_MINOR));
+        append(versionString, std::to_string(SEQAN2_VERSION_MINOR));
         append(versionString, '.');
-        append(versionString, std::to_string(SEQAN_VERSION_PATCH));
-        append(versionString, ", http://www.seqan.de]");
+        append(versionString, std::to_string(SEQAN2_VERSION_PATCH));
+        append(versionString, ", http://www.seqan2.de]");
     }
 
     /*!

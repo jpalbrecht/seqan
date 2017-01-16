@@ -34,10 +34,10 @@
 // Implements the iterator over the delta map.
 // ==========================================================================
 
-#ifndef EXTRAS_INCLUDE_SEQAN_JOURNALED_STRING_TREE_DELTA_MAP_ITERATOR_H_
-#define EXTRAS_INCLUDE_SEQAN_JOURNALED_STRING_TREE_DELTA_MAP_ITERATOR_H_
+#ifndef EXTRAS_INCLUDE_SEQAN2_JOURNALED_STRING_TREE_DELTA_MAP_ITERATOR_H_
+#define EXTRAS_INCLUDE_SEQAN2_JOURNALED_STRING_TREE_DELTA_MAP_ITERATOR_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -55,7 +55,7 @@ template <typename TType, typename TOtherType> struct IsConstructible;
  * @implements BidirectionalIteratorConcept
  * @extends Iter
  *
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  *
  * @brief Bidirectional iterator over a @link DeltaMap @endlink.
  *
@@ -84,7 +84,7 @@ public:
     // Copy C'tor.
     template <typename TDeltaMapOther>
     Iter(Iter<TDeltaMapOther, DeltaMapIteratorSpec> const & other,
-         SEQAN_CTOR_ENABLE_IF(IsConstructible<TDeltaMap, TDeltaMapOther>)) :
+         SEQAN2_CTOR_ENABLE_IF(IsConstructible<TDeltaMap, TDeltaMapOther>)) :
         _mapPtr(other._mapPtr),
         _mapIter(other._mapIter)
     {
@@ -100,7 +100,7 @@ public:
 
     // Assignment Operator.
     template <typename TDeltaMapOther>
-    SEQAN_FUNC_DISABLE_IF(IsConstructible<TDeltaMap, TDeltaMapOther>, Iter<TDeltaMap, DeltaMapIteratorSpec> &)
+    SEQAN2_FUNC_DISABLE_IF(IsConstructible<TDeltaMap, TDeltaMapOther>, Iter<TDeltaMap, DeltaMapIteratorSpec> &)
     operator=(Iter<TDeltaMapOther, DeltaMapIteratorSpec> const & other)
     {
         _mapPtr = other._mapPtr;
@@ -158,7 +158,7 @@ container(Iter<TDeltaMap, DeltaMapIteratorSpec> const & iter)
 /*!
  * @fn DeltaMapIterator#deltaType
  *
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  *
  * @brief Returns the delta type associated with the current value the iterator is pointing to.
  *
@@ -183,7 +183,7 @@ deltaType(Iter<TDeltaMap, DeltaMapIteratorSpec> const & iter)
 /*!
  * @fn DeltaMapIterator#deltaValue
  *
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  *
  * @brief Returns the delta value associated with the current iterator position.
  *
@@ -199,7 +199,7 @@ template <typename TDeltaMap, typename TTag>
 inline typename DeltaValue<typename Container<Iter<TDeltaMap, DeltaMapIteratorSpec> >::Type, TTag>::Type &
 deltaValue(Iter<TDeltaMap, DeltaMapIteratorSpec> & iter, TTag const & tag)
 {
-    SEQAN_ASSERT(isDeltaType(deltaType(iter), TTag()));
+    SEQAN2_ASSERT(isDeltaType(deltaType(iter), TTag()));
     return deltaValue(container(iter)._deltaStore, getDeltaRecord(value(iter)).i2, tag);
 }
 
@@ -595,6 +595,6 @@ position(Iter<TDeltaMap, DeltaMapIteratorSpec> const & iter)
 //    swap(lhs._mapIter, rhs._mapIter);
 //}
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // EXTRAS_INCLUDE_SEQAN_JOURNALED_STRING_TREE_DELTA_MAP_ITERATOR_H_
+#endif  // EXTRAS_INCLUDE_SEQAN2_JOURNALED_STRING_TREE_DELTA_MAP_ITERATOR_H_

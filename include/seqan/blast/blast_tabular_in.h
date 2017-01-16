@@ -34,8 +34,8 @@
 // This file contains routines to read BLAST tab-seperated output
 // ==========================================================================
 
-#ifndef SEQAN_BLAST_BLAST_TABULAR_READ_H_
-#define SEQAN_BLAST_BLAST_TABULAR_READ_H_
+#ifndef SEQAN2_BLAST_BLAST_TABULAR_READ_H_
+#define SEQAN2_BLAST_BLAST_TABULAR_READ_H_
 
 /* IMPLEMENTATION NOTES
 
@@ -79,7 +79,7 @@ COMMENTLINES always ends after the "Fields" line and NCBI Blast+ COMMENTLINES en
 the "number of hits"-line.
 */
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -99,7 +99,7 @@ namespace seqan
  * @signature template <typename TBlastIOContext>
  * using BlastTabularFileIn = FormattedFile<BlastTabular, Input, TBlastIOContext>;
  * @extends FormattedFileIn
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  * @brief FormattedFileIn abstraction for @link BlastTabular @endlink
  *
  * This is a @link FormattedFile @endlink specialization for reading @link BlastTabular @endlink formats. For details
@@ -118,7 +118,7 @@ namespace seqan
  * </ul>
  *
  * For a detailed example have a look at the
- * <a href="http://seqan.readthedocs.io/en/develop/Tutorial/InputOutput/BlastIO.html">Blast IO tutorial</a>.
+ * <a href="http://seqan2.readthedocs.io/en/develop/Tutorial/InputOutput/BlastIO.html">Blast IO tutorial</a>.
  *
  * @see BlastRecord
  */
@@ -193,7 +193,7 @@ _onMatch(BlastIOContext<TScore, p, h> & context,
  * @fn BlastTabularFileIn#onRecord
  * @brief Returns whether the currently buffered line looks like the start of a record.
  * @signature bool onRecord(blastTabularIn);
- * @headerfile seqan/blast.h
+ * @headerfile seqan2/blast.h
  *
  * @param[in,out] blastTabularIn A @link BlastTabularFileIn @endlink formattedFile.
  *
@@ -259,7 +259,7 @@ _readCommentLinesImpl(BlastRecord<TSpecs...> & r,
 {
     // this is a match instead of comment lines
     if (_onMatch(context, BlastTabular()))
-        SEQAN_THROW(ParseError("Commen lines expected, but not found."));
+        SEQAN2_THROW(ParseError("Commen lines expected, but not found."));
     else
         context.tabularSpec = BlastTabularSpec::COMMENTS;
 
@@ -275,9 +275,9 @@ _readCommentLinesImpl(BlastRecord<TSpecs...> & r,
                               std::regex("^# T?BLAST")))
         {
             // last line of file
-            if (SEQAN_UNLIKELY(startsWith(context._lineBuffer, "# BLAST processed ") && !context.legacyFormat))
+            if (SEQAN2_UNLIKELY(startsWith(context._lineBuffer, "# BLAST processed ") && !context.legacyFormat))
             {
-                SEQAN_FAIL("ERROR: You called readRecord() when you should have called readFooter()."
+                SEQAN2_FAIL("ERROR: You called readRecord() when you should have called readFooter()."
                            "Always check onRecord() before calling readRecord().");
             }
             else // first line of the comments
@@ -563,7 +563,7 @@ _readField(BlastMatch<TAlignRow0, TAlignRow1, TPos, TQId, TSId> & match,
             clear(context._setBuffer2);
             strSplit(context._setBuffer2, context._stringBuffer, EqualsChar<'/'>());
             if (length(context._setBuffer2) != 2)
-                SEQAN_THROW(ParseError("Could not process frame string."));
+                SEQAN2_THROW(ParseError("Could not process frame string."));
             match.qFrameShift = lexicalCast<int8_t>(context._setBuffer2[0]);
             match.sFrameShift = lexicalCast<int8_t>(context._setBuffer2[1]);
         } break;
@@ -597,7 +597,7 @@ _readField(BlastMatch<TAlignRow0, TAlignRow1, TPos, TQId, TSId> & match,
             record.lcaTaxId = lexicalCast<uint32_t>(context._stringBuffer);
             break;
         default:
-            SEQAN_THROW(ParseError("The requested column type is not yet "
+            SEQAN2_THROW(ParseError("The requested column type is not yet "
                                    "implemented."));
     };
 }
@@ -625,7 +625,7 @@ _readMatch(BlastMatch<TAlignRow0, TAlignRow1, TPos, TQId, TSId> & match,
 {
     if (context.legacyFormat)
     {
-        #if SEQAN_ENABLE_DEBUG
+        #if SEQAN2_ENABLE_DEBUG
         if ((length(context.fields) != 1) || (context.fields[0] != BlastMatchField<>::Enum::STD))
             std::cerr << "Warning: custom fields set, but will be reset, because legacyFormat is also set.\n";
         #endif
@@ -635,8 +635,8 @@ _readMatch(BlastMatch<TAlignRow0, TAlignRow1, TPos, TQId, TSId> & match,
     }
 
     // comments should have been read or skipped
-    if (SEQAN_UNLIKELY(!_onMatch(context, BlastTabular())))
-        SEQAN_THROW(ParseError("Not on beginning of Match (you should have skipped comments)."));
+    if (SEQAN2_UNLIKELY(!_onMatch(context, BlastTabular())))
+        SEQAN2_THROW(ParseError("Not on beginning of Match (you should have skipped comments)."));
 
     match._maxInitialize(); // mark all members as "not set"
 
@@ -656,16 +656,16 @@ _readMatch(BlastMatch<TAlignRow0, TAlignRow1, TPos, TQId, TSId> & match,
         {
             for (typename BlastMatchField<>::Enum const f2 : BlastMatchField<>::defaults)
             {
-                if (SEQAN_UNLIKELY(n >= length(fields)))
-                    SEQAN_THROW(ParseError("More columns expected than were present in file."));
+                if (SEQAN2_UNLIKELY(n >= length(fields)))
+                    SEQAN2_THROW(ParseError("More columns expected than were present in file."));
 
                 context._stringBuffer = static_cast<decltype(context._stringBuffer)>(fields[n++]);
                 _readField(match, record, context, f2);
             }
         } else
         {
-            if (SEQAN_UNLIKELY(n >= length(fields)))
-                SEQAN_THROW(ParseError("More columns expected than were present in file."));
+            if (SEQAN2_UNLIKELY(n >= length(fields)))
+                SEQAN2_THROW(ParseError("More columns expected than were present in file."));
 
             context._stringBuffer = static_cast<decltype(context._stringBuffer)>(fields[n++]);
             _readField(match, record, context, f);
@@ -764,7 +764,7 @@ _readRecordWithoutCommentLines(BlastRecord<TSpecs...> & blastRecord,
 
     clear(blastRecord);
 
-    auto it = begin(context._lineBuffer, Rooted()); // move into line below when seqan supports && properly
+    auto it = begin(context._lineBuffer, Rooted()); // move into line below when seqan2 supports && properly
     readUntil(blastRecord.qId, it, IsTab());
 
     auto curIdPlusTab = blastRecord.qId;
@@ -773,7 +773,7 @@ _readRecordWithoutCommentLines(BlastRecord<TSpecs...> & blastRecord,
     if ((context.fields[0] != BlastMatchField<>::Enum::STD) &&
         (context.fields[0] != BlastMatchField<>::Enum::Q_SEQ_ID))
     {
-        SEQAN_FAIL("ERROR: readRecord interface on comment-less format with custom "
+        SEQAN2_FAIL("ERROR: readRecord interface on comment-less format with custom "
                    "fields not supported, unless first custom field is "
                    "Q_SEQ_ID. Use the lowlevel readMatch interface instead.");
     }
@@ -789,13 +789,13 @@ _readRecordWithoutCommentLines(BlastRecord<TSpecs...> & blastRecord,
     }
 
     if (empty(blastRecord.matches))
-        SEQAN_THROW(ParseError("No Matches could be read."));
+        SEQAN2_THROW(ParseError("No Matches could be read."));
 }
 
 /*!
  * @fn BlastTabularFileIn#readRecord
  * @brief Read a record from a file in BlastTabular format.
- * @headerfile seqan/blast.h
+ * @headerfile seqan2/blast.h
  * @signature void readRecord(blastRecord, blastTabularIn);
  *
  * @param[out]    blastRecord  A @link BlastRecord @endlink to hold all information related to one query sequence.
@@ -904,7 +904,7 @@ readRecord(BlastRecord<TSpecs...> & blastRecord,
 
 /*!
  * @fn BlastTabularFileIn#readHeader
- * @headerfile seqan/blast.h
+ * @headerfile seqan2/blast.h
  * @brief Read the header (top-most section) of a BlastTabular file.
  * @signature void readHeader(blastTabularIn);
  *
@@ -947,7 +947,7 @@ readHeader(BlastTabularFileIn<TContext> & formattedFile)
 
 /*!
  * @fn BlastTabularFileIn#readFooter
- * @headerfile seqan/blast.h
+ * @headerfile seqan2/blast.h
  * @brief Read the footer (bottom-most section) of a BlastTabular file.
  * @signature void readFooter(blastTabularIn);
  *
@@ -973,13 +973,13 @@ readFooter(BlastIOContext<TScore, p, h> & context,
 
     if ((context.tabularSpec == BlastTabularSpec::COMMENTS) && !context.legacyFormat)
     {
-        if (SEQAN_UNLIKELY(!startsWith(context._lineBuffer, "# BLAST processed")))
+        if (SEQAN2_UNLIKELY(!startsWith(context._lineBuffer, "# BLAST processed")))
         {
             std::cout << "\"" << context._lineBuffer << "\"" << std::endl;
-            SEQAN_FAIL("ERROR: Tried to read footer, but was not on footer.");
+            SEQAN2_FAIL("ERROR: Tried to read footer, but was not on footer.");
         }
         clear(context._stringBuffer);
-        auto it = seqan::begin(context._lineBuffer);
+        auto it = seqan2::begin(context._lineBuffer);
         it += 18; // skip "BLAST processed "
         readUntil(context._stringBuffer, it,  IsBlank());
 
@@ -1005,6 +1005,6 @@ readFooter(BlastTabularFileIn<TContext> & formattedFile)
     readFooter(context(formattedFile), formattedFile.iter, BlastTabular());
 }
 
-} // namespace seqan
+} // namespace seqan2
 
-#endif // SEQAN_BLAST_READ_BLAST_TABULAR_H_
+#endif // SEQAN2_BLAST_READ_BLAST_TABULAR_H_

@@ -34,10 +34,10 @@
 // Implementation of Single-Source-Shortest-Path algorithm.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_GRAPH_ALGORITHMS_SINGLE_SOURCE_SHORTEST_PATH_H_
-#define INCLUDE_SEQAN_GRAPH_ALGORITHMS_SINGLE_SOURCE_SHORTEST_PATH_H_
+#ifndef INCLUDE_SEQAN2_GRAPH_ALGORITHMS_SINGLE_SOURCE_SHORTEST_PATH_H_
+#define INCLUDE_SEQAN2_GRAPH_ALGORITHMS_SINGLE_SOURCE_SHORTEST_PATH_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -175,7 +175,7 @@ _relax(Graph<TSpec> const& g,
 
 /*!
  * @fn dagShortestPath
- * @headerfile <seqan/graph_algorithms.h>
+ * @headerfile <seqan2/graph_algorithms.h>
  * @brief Computes shortest paths from a single source in a directed acyclic graph (DAG).
  *
  * @signature void dagShortestPath(predecessor, distance, g, source, weight);
@@ -228,6 +228,6 @@ void dagShortestPath(TPredecessorMap & predecessor,
     }
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_GRAPH_ALGORITHMS_SINGLE_SOURCE_SHORTEST_PATH_H_
+#endif  // #ifndef INCLUDE_SEQAN2_GRAPH_ALGORITHMS_SINGLE_SOURCE_SHORTEST_PATH_H_

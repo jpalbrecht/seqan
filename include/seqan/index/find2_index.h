@@ -35,10 +35,10 @@
 // Approximate string matching via backtracking on a substring index.
 // ==========================================================================
 
-#ifndef SEQAN_INDEX_FIND_INDEX_H_
-#define SEQAN_INDEX_FIND_INDEX_H_
+#ifndef SEQAN2_SEQAN2_INDEX_FIND_SEQAN2_INDEX_H_
+#define SEQAN2_SEQAN2_INDEX_FIND_SEQAN2_INDEX_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags
@@ -263,4 +263,4 @@ _find(Finder_<Index<TText, TIndexSpec>, TPattern, Backtracking<HammingDistance, 
 
 }
 
-#endif  // #ifndef SEQAN_INDEX_FIND_INDEX_H_
+#endif  // #ifndef SEQAN2_SEQAN2_INDEX_FIND_SEQAN2_INDEX_H_

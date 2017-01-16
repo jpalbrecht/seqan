@@ -35,10 +35,10 @@
 // specializations.
 // ==========================================================================
 
-#ifndef SEQAN_SEQUENCE_STRING_ARRAY_BASE_H_
-#define SEQAN_SEQUENCE_STRING_ARRAY_BASE_H_
+#ifndef SEQAN2_SEQUENCE_STRING_ARRAY_BASE_H_
+#define SEQAN2_SEQUENCE_STRING_ARRAY_BASE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -63,7 +63,7 @@ struct Alloc {};
 /*!
  * @concept TextConcept
  * @brief Concept for a type that can be as text of an index.
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  *
  * @signature concept TextConcept;
  *
@@ -154,7 +154,7 @@ struct Alloc {};
  * @implements StringConcept
  * @implements TextConcept
  * @implements SegmentableConcept
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief @link StringConcept Sequence @endlink container class.
  *
  * @signature template <typename TValue, typename TSpec>
@@ -226,7 +226,7 @@ struct Alloc {};
 /*!
  * @fn TextConcept#posLocalize
  * @brief Converts a local/global to a local position.
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  *
  * @signature void posLocalize(result, pos, limits)
  *
@@ -239,7 +239,7 @@ struct Alloc {};
 /*!
  * @fn TextConcept#posGlobalize
  * @brief Converts a local/global to a global position.
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  *
  * @signature TPos posGlobalize(pos, limits)
  *
@@ -255,7 +255,7 @@ struct Alloc {};
 /*!
  * @fn TextConcept#getSeqNo
  * @brief Returns the sequence number of a position.
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  *
  * @signature TSeqNo getSeqNo(pos[, limits]);
  *
@@ -272,7 +272,7 @@ struct Alloc {};
 /*!
  * @fn TextConcept#getSeqOffset
  * @brief Returns the local sequence offset of a position.
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  *
  * @signature TOffset getSeqOffset(pos[, limits]);
  *
@@ -372,10 +372,10 @@ struct IsSequence<String<TValue, TSpec> > : True {};
 // ----------------------------------------------------------------------------
 
 template <typename TValue, typename TSpec>
-SEQAN_CONCEPT_IMPL((String<TValue, TSpec>), (StringConcept));         // resizable container
+SEQAN2_CONCEPT_IMPL((String<TValue, TSpec>), (StringConcept));         // resizable container
 
 template <typename TValue, typename TSpec>
-SEQAN_CONCEPT_IMPL((String<TValue, TSpec> const), (ContainerConcept));  // read-only container
+SEQAN2_CONCEPT_IMPL((String<TValue, TSpec> const), (ContainerConcept));  // read-only container
 
 // ----------------------------------------------------------------------------
 // Internal Metafunction TempCopy_
@@ -442,10 +442,10 @@ inline typename Reference< String<TValue, TSpec> >::Type
 value(String<TValue, TSpec> & me,
       TPos const & pos)
 {
-#if SEQAN_ENABLE_DEBUG
-    typedef typename Position< String<TValue, TSpec> >::Type TStringPos SEQAN_TYPEDEF_FOR_DEBUG;
+#if SEQAN2_ENABLE_DEBUG
+    typedef typename Position< String<TValue, TSpec> >::Type TStringPos SEQAN2_TYPEDEF_FOR_DEBUG;
 #endif
-    SEQAN_ASSERT_LT_MSG(static_cast<TStringPos>(pos), static_cast<TStringPos>(length(me)), "Trying to access an element behind the last one!");
+    SEQAN2_ASSERT_LT_MSG(static_cast<TStringPos>(pos), static_cast<TStringPos>(length(me)), "Trying to access an element behind the last one!");
     return *(begin(me, Standard()) + pos);
 }
 
@@ -454,10 +454,10 @@ inline typename Reference< String<TValue, TSpec> const >::Type
 value(String<TValue, TSpec> const & me,
       TPos const & pos)
 {
-#if SEQAN_ENABLE_DEBUG
-    typedef typename Position< String<TValue, TSpec> const >::Type TStringPos SEQAN_TYPEDEF_FOR_DEBUG;
+#if SEQAN2_ENABLE_DEBUG
+    typedef typename Position< String<TValue, TSpec> const >::Type TStringPos SEQAN2_TYPEDEF_FOR_DEBUG;
 #endif
-    SEQAN_ASSERT_LT_MSG(static_cast<TStringPos>(pos), static_cast<TStringPos>(length(me)), "Trying to access an element behind the last one!");
+    SEQAN2_ASSERT_LT_MSG(static_cast<TStringPos>(pos), static_cast<TStringPos>(length(me)), "Trying to access an element behind the last one!");
     return *(begin(me, Standard()) + pos);
 }
 
@@ -752,8 +752,8 @@ struct ClearSpaceExpandStringBase_
         typename Size<T>::Type removed_size = end - start;
         typename Size<T>::Type new_length = old_length - removed_size + size;
 
-        SEQAN_ASSERT_LEQ(start, end);
-        SEQAN_ASSERT_LEQ(start, old_length);
+        SEQAN2_ASSERT_LEQ(start, end);
+        SEQAN2_ASSERT_LEQ(start, old_length);
 
         typename Size<T>::Type old_capacity = capacity(seq);
         typename Value<T>::Type * old_array = _reallocateStorage(seq, new_length, TExpand());
@@ -789,8 +789,8 @@ struct ClearSpaceExpandStringBase_
         typename Size<T>::Type removed_size = end - start;
         typename Size<T>::Type need_length = old_length - removed_size + size;
 
-        SEQAN_ASSERT_LEQ(start, end);
-        SEQAN_ASSERT_LEQ(start, old_length);
+        SEQAN2_ASSERT_LEQ(start, end);
+        SEQAN2_ASSERT_LEQ(start, old_length);
 
         typename Size<T>::Type new_length = need_length;
         typename Size<T>::Type length_to_copy = old_length;
@@ -1942,7 +1942,7 @@ operator>=(TLeftValue * left,
 
 /*!
  * @fn String#beginPosition
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Return 0 for compatibility with @link Segment @endlink.
  *
  * @signature TPos beginPosition(str);
@@ -1959,7 +1959,7 @@ operator>=(TLeftValue * left,
 
 /*!
  * @fn String#endPosition
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Return length of string for compatibility with @link Segment @endlink.
  *
  * @signature TPos endPosition(str);
@@ -2053,7 +2053,7 @@ operator>>(TStream & source,
 // ----------------------------------------------------------------------------
 
 template<typename TValue, typename TSpec, typename TId, typename TValue2>
-inline SEQAN_FUNC_ENABLE_IF(Is<IntegerConcept<TId> >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Is<IntegerConcept<TId> >, void)
 assignValueById(String<TValue, TSpec> & me,
                 TId id,
                 TValue2 const & obj)
@@ -2068,7 +2068,7 @@ assignValueById(String<TValue, TSpec> & me,
 // ----------------------------------------------------------------------------
 
 template<typename TValue, typename TSpec, typename TId>
-inline SEQAN_FUNC_ENABLE_IF(Is<IntegerConcept<TId> >, TValue)
+inline SEQAN2_FUNC_ENABLE_IF(Is<IntegerConcept<TId> >, TValue)
 getValueById(String<TValue, TSpec> & me,
              TId id)
 {
@@ -2078,6 +2078,6 @@ getValueById(String<TValue, TSpec> & me,
         return TValue();
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_SEQUENCE_STRING_ARRAY_BASE_H_
+#endif  // #ifndef SEQAN2_SEQUENCE_STRING_ARRAY_BASE_H_

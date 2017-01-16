@@ -32,13 +32,13 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_INDEX_CHILDTAB_H
-#define SEQAN_HEADER_INDEX_CHILDTAB_H
+#ifndef SEQAN2_HEADER_SEQAN2_INDEX_CHILDTAB_H
+#define SEQAN2_HEADER_SEQAN2_INDEX_CHILDTAB_H
 
-namespace seqan
+namespace seqan2
 {
 
-//namespace SEQAN_NAMESPACE_PIPELINING
+//namespace SEQAN2_NAMESPACE_PIPELINING
 //{
 
     struct Childtab {};
@@ -65,7 +65,7 @@ namespace seqan
         TStack stack_updown;
         TStack stack_nextl;
 
-        #ifdef SEQAN_DEBUG_INDEX
+        #ifdef SEQAN2_DEBUG_INDEX
             std::cerr << "--- CREATE CHILD TABLE ---" << std::endl;
             std::cerr << "Start stack-processing [pipelining]" << std::endl;
         #endif
@@ -199,7 +199,7 @@ namespace seqan
 
 /*!
  * @fn IndexEsa#createChildtab
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Creates a child table from a given lcp table.
  *
  * @signature void createChildtab(childTab, lcp[, algoTag]);
@@ -236,7 +236,7 @@ namespace seqan
         typedef Pair<TSize, TValue>                            TPair;        // (i, lcptab[i])
         typedef String<TPair>                                TStack;
 
-        #ifdef SEQAN_DEBUG_INDEX
+        #ifdef SEQAN2_DEBUG_INDEX
             std::cerr << "--- CREATE CHILD TABLE ---" << std::endl;
             std::cerr << "Start stack-processing [random access]" << std::endl;
         #endif

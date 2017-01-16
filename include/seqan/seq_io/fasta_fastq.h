@@ -35,10 +35,10 @@
 // Input/Output on FASTA and FASTQ files.
 // ==========================================================================
 
-#ifndef SEQAN_SEQ_IO_FASTA_FASTQ_H_
-#define SEQAN_SEQ_IO_FASTA_FASTQ_H_
+#ifndef SEQAN2_SEQ_IO_FASTA_FASTQ_H_
+#define SEQAN2_SEQ_IO_FASTA_FASTQ_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags
@@ -182,7 +182,7 @@ struct FastaIgnoreOrAssertFunctor_
 
 /*!
  * @class SequenceOutputOptions
- * @headerfile <seqan/seq_io.h>
+ * @headerfile <seqan2/seq_io.h>
  * @signature struct SequenceOutputOptions
  * @brief Configuration for writing sequence (FASTA/FASTQ) files.
  *
@@ -235,7 +235,7 @@ struct QualityExtractor : public std::unary_function<TValue, char>
 // ----------------------------------------------------------------------------
 
 template <typename TIdString, typename TSeqString, typename TFwdIterator>
-inline SEQAN_FUNC_ENABLE_IF(Not<IsSameType<TFwdIterator, FormattedFile<Fastq, Input> > >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Not<IsSameType<TFwdIterator, FormattedFile<Fastq, Input> > >, void)
 readRecord(TIdString & meta, TSeqString & seq, TFwdIterator & iter, Raw)
 {
     typedef typename Value<TSeqString>::Type                        TAlphabet;
@@ -252,7 +252,7 @@ readRecord(TIdString & meta, TSeqString & seq, TFwdIterator & iter, Raw)
 // ----------------------------------------------------------------------------
 
 template <typename TIdString, typename TSeqString, typename TQualString, typename TFwdIterator>
-inline SEQAN_FUNC_ENABLE_IF(Not<IsSameType<TFwdIterator, FormattedFile<Fastq, Input> > >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Not<IsSameType<TFwdIterator, FormattedFile<Fastq, Input> > >, void)
 readRecord(TIdString & meta, TSeqString & seq, TQualString & qual, TFwdIterator & iter, Raw const & raw)
 {
     clear(qual);
@@ -264,7 +264,7 @@ readRecord(TIdString & meta, TSeqString & seq, TQualString & qual, TFwdIterator 
 // ----------------------------------------------------------------------------
 
 template <typename TIdString, typename TSeqString, typename TFwdIterator>
-inline SEQAN_FUNC_ENABLE_IF(Not<IsSameType<TFwdIterator, FormattedFile<Fastq, Input> > >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Not<IsSameType<TFwdIterator, FormattedFile<Fastq, Input> > >, void)
 readRecord(TIdString & meta, TSeqString & seq, TFwdIterator & iter, Fasta)
 {
     typedef typename Value<TSeqString>::Type                        TAlphabet;
@@ -286,7 +286,7 @@ readRecord(TIdString & meta, TSeqString & seq, TFwdIterator & iter, Fasta)
 // ----------------------------------------------------------------------------
 
 template <typename TIdString, typename TSeqString, typename TQualString, typename TFwdIterator>
-inline SEQAN_FUNC_ENABLE_IF(Not<IsSameType<TFwdIterator, FormattedFile<Fastq, Input> > >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Not<IsSameType<TFwdIterator, FormattedFile<Fastq, Input> > >, void)
 readRecord(TIdString & meta, TSeqString & seq, TQualString & qual, TFwdIterator & iter, Fasta)
 {
     clear(qual);
@@ -298,7 +298,7 @@ readRecord(TIdString & meta, TSeqString & seq, TQualString & qual, TFwdIterator 
 // ----------------------------------------------------------------------------
 
 template <typename TIdString, typename TSeqString, typename TFwdIterator >
-inline SEQAN_FUNC_ENABLE_IF(Not<IsSameType<TFwdIterator, FormattedFile<Fastq, Input> > >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Not<IsSameType<TFwdIterator, FormattedFile<Fastq, Input> > >, void)
 readRecord(TIdString & meta, TSeqString & seq, TFwdIterator & iter, Fastq)
 {
     typedef typename Value<TSeqString>::Type                                TAlphabet;
@@ -349,7 +349,7 @@ readRecord(TIdString & meta, TSeqString & seq, TFwdIterator & iter, Fastq)
 // ----------------------------------------------------------------------------
 
 template <typename TIdString, typename TSeqString, typename TQualString, typename TFwdIterator>
-inline SEQAN_FUNC_ENABLE_IF(Not<IsSameType<TFwdIterator, FormattedFile<Fastq, Input> > >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Not<IsSameType<TFwdIterator, FormattedFile<Fastq, Input> > >, void)
 readRecord(TIdString & meta, TSeqString & seq, TQualString & qual, TFwdIterator & iter, Fastq)
 {
     typedef typename Value<TSeqString>::Type                                TSeqAlphabet;
@@ -393,7 +393,7 @@ readRecord(TIdString & meta, TSeqString & seq, TQualString & qual, TFwdIterator 
 // ----------------------------------------------------------------------------
 
 template <typename TFwdIterator, typename TIdString, typename TSeqString>
-inline SEQAN_FUNC_ENABLE_IF(Not<IsSameType<TFwdIterator, FormattedFile<Fastq, Output> > >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Not<IsSameType<TFwdIterator, FormattedFile<Fastq, Output> > >, void)
 writeRecord(TFwdIterator & iter, TIdString const & /* meta */, TSeqString const & seq, Raw const &,
             SequenceOutputOptions const & = SequenceOutputOptions())
 {
@@ -406,7 +406,7 @@ writeRecord(TFwdIterator & iter, TIdString const & /* meta */, TSeqString const 
 // ----------------------------------------------------------------------------
 
 template <typename TFwdIterator, typename TIdString, typename TSeqString, typename TQualString>
-inline SEQAN_FUNC_ENABLE_IF(Not<IsSameType<TFwdIterator, FormattedFile<Fastq, Output> > >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Not<IsSameType<TFwdIterator, FormattedFile<Fastq, Output> > >, void)
 writeRecord(TFwdIterator & iter, TIdString const & /* meta */, TSeqString const & seq, TQualString const & /* qual */, Raw const &,
             SequenceOutputOptions const & = SequenceOutputOptions())
 {
@@ -420,7 +420,7 @@ writeRecord(TFwdIterator & iter, TIdString const & /* meta */, TSeqString const 
 // ----------------------------------------------------------------------------
 
 template <typename TTarget, typename TIdString, typename TSeqString>
-inline SEQAN_FUNC_ENABLE_IF(Not<IsSameType<TTarget, FormattedFile<Fastq, Output> > >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Not<IsSameType<TTarget, FormattedFile<Fastq, Output> > >, void)
 writeRecord(TTarget & target,
             TIdString const & meta,
             TSeqString const & seq,
@@ -435,7 +435,7 @@ writeRecord(TTarget & target,
 }
 
 template <typename TTarget, typename TIdString, typename TSeqString, typename TQualString>
-inline SEQAN_FUNC_ENABLE_IF(Not<IsSameType<TTarget, FormattedFile<Fastq, Output> > >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Not<IsSameType<TTarget, FormattedFile<Fastq, Output> > >, void)
 writeRecord(TTarget & target,
             TIdString const & meta,
             TSeqString const & seq,
@@ -452,7 +452,7 @@ writeRecord(TTarget & target,
 // ----------------------------------------------------------------------------
 
 template <typename TTarget, typename TIdString, typename TSeqString, typename TQualString>
-inline SEQAN_FUNC_ENABLE_IF(Not<IsSameType<TTarget, FormattedFile<Fastq, Output> > >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Not<IsSameType<TTarget, FormattedFile<Fastq, Output> > >, void)
 writeRecord(TTarget & target,
             TIdString const & meta,
             TSeqString const & seq,
@@ -480,7 +480,7 @@ writeRecord(TTarget & target,
 // ----------------------------------------------------------------------------
 
 template <typename TTarget, typename TIdString, typename TSeqString>
-inline SEQAN_FUNC_ENABLE_IF(Not<IsSameType<TTarget, FormattedFile<Fastq, Output> > >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Not<IsSameType<TTarget, FormattedFile<Fastq, Output> > >, void)
 writeRecord(TTarget & target,
             TIdString const & meta,
             TSeqString const & seq,
@@ -492,6 +492,6 @@ writeRecord(TTarget & target,
     writeRecord(target, meta, seq, quals, tag, options);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_SEQ_IO_FASTA_FASTQ_H_
+#endif  // #ifndef SEQAN2_SEQ_IO_FASTA_FASTQ_H_

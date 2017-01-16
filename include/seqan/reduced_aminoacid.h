@@ -34,22 +34,22 @@
 // Module with reduced versions of alphabets
 // ==========================================================================
 
-#ifndef SEQAN_REDUCED_AMINOACID_H_
-#define SEQAN_REDUCED_AMINOACID_H_
+#ifndef SEQAN2_REDUCED_AMINOACID_H_
+#define SEQAN2_REDUCED_AMINOACID_H_
 
-#include <seqan/basic.h>
-#include <seqan/score.h>
+#include <seqan2/basic.h>
+#include <seqan2/score.h>
 
-#include <seqan/reduced_aminoacid/reduced_aminoacid_base.h>
+#include <seqan2/reduced_aminoacid/reduced_aminoacid_base.h>
 
-#include <seqan/reduced_aminoacid/reduced_aminoacid_murphy10_base.h>
-#include <seqan/reduced_aminoacid/reduced_aminoacid_murphy10_tables.h>
+#include <seqan2/reduced_aminoacid/reduced_aminoacid_murphy10_base.h>
+#include <seqan2/reduced_aminoacid/reduced_aminoacid_murphy10_tables.h>
 
-// #include <seqan/reduced_aminoacid/reduced_aminoacid_cluster_red_base.h>
-// #include <seqan/reduced_aminoacid/reduced_aminoacid_cluster_red_tables_20_to_n_b62.h>
-// #include <seqan/reduced_aminoacid/reduced_aminoacid_cluster_red_tables_22_to_n_b62.h>
-// #include <seqan/reduced_aminoacid/reduced_aminoacid_cluster_red_tables_24_to_n_b62.h>
+// #include <seqan2/reduced_aminoacid/reduced_aminoacid_cluster_red_base.h>
+// #include <seqan2/reduced_aminoacid/reduced_aminoacid_cluster_red_tables_20_to_n_b62.h>
+// #include <seqan2/reduced_aminoacid/reduced_aminoacid_cluster_red_tables_22_to_n_b62.h>
+// #include <seqan2/reduced_aminoacid/reduced_aminoacid_cluster_red_tables_24_to_n_b62.h>
 
-#include <seqan/reduced_aminoacid/reduced_aminoacid_base_late.h>
+#include <seqan2/reduced_aminoacid/reduced_aminoacid_base_late.h>
 
-#endif // def SEQAN_REDUCED_AMINOACID_H_
+#endif // def SEQAN2_REDUCED_AMINOACID_H_

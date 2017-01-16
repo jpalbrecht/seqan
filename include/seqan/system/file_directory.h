@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-//SEQAN_NO_GENERATED_FORWARDS: no forwards are generated for this file
+//SEQAN2_NO_GENERATED_FORWARDS: no forwards are generated for this file
 
-#ifndef SEQAN_HEADER_FILE_DIRECTORY_H
-#define SEQAN_HEADER_FILE_DIRECTORY_H
+#ifndef SEQAN2_HEADER_FILE_DIRECTORY_H
+#define SEQAN2_HEADER_FILE_DIRECTORY_H
 
 #ifdef STDLIB_VS
 # include <io.h>
@@ -60,7 +60,7 @@
 
 //////////////////////////////////////////////////////////////////////////////
 
-namespace seqan
+namespace seqan2
 {
 
 #ifdef STDLIB_VS

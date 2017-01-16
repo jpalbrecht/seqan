@@ -32,10 +32,10 @@
 // Author: Rene Rahn <rene.rahn@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_SCORE_SCORE_SIMD_WRAPPER_H_
-#define INCLUDE_SEQAN_SCORE_SCORE_SIMD_WRAPPER_H_
+#ifndef INCLUDE_SEQAN2_SCORE_SCORE_SIMD_WRAPPER_H_
+#define INCLUDE_SEQAN2_SCORE_SCORE_SIMD_WRAPPER_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -55,7 +55,7 @@ struct ScoreSimdWrapper;
 
 /*!
  * @class ScoreSimdWrapper
- * @headerfile <seqan/score.h>
+ * @headerfile <seqan2/score.h>
  * @extends SimpleScore
  * @brief A wrapper class to extend score calsses for SIMD usage.
  *
@@ -89,7 +89,7 @@ public:
     // Constructing from base score.
     template <typename TScoreVal2, typename TScoreSpec2>
     Score(Score<TScoreVal2, TScoreSpec2> const & pScore,
-          SEQAN_CTOR_ENABLE_IF(And<IsSameType<TScoreSpec2, Simple>, IsSameType<TScoreSpec2, TBaseScoreSpec> >)) :
+          SEQAN2_CTOR_ENABLE_IF(And<IsSameType<TScoreSpec2, Simple>, IsSameType<TScoreSpec2, TBaseScoreSpec> >)) :
             data_match(createVector<TScoreVec>(scoreMatch(pScore))),
             data_mismatch(createVector<TScoreVec>(scoreMismatch(pScore))),
             data_gap_extend(createVector<TScoreVec>(scoreGapExtend(pScore))),
@@ -101,7 +101,7 @@ public:
 
     template <typename TScoreVal2, typename TScoreSpec2>
     Score(Score<TScoreVal2, TScoreSpec2> const & pScore,
-          SEQAN_CTOR_ENABLE_IF(And<IsScoreMatrix_<TScoreSpec2>, IsSameType<TScoreSpec2, TBaseScoreSpec> >)) :
+          SEQAN2_CTOR_ENABLE_IF(And<IsScoreMatrix_<TScoreSpec2>, IsSameType<TScoreSpec2, TBaseScoreSpec> >)) :
             data_gap_extend(createVector<TScoreVec>(scoreGapExtend(pScore))),
             data_gap_open(createVector<TScoreVec>(scoreGapOpen(pScore))),
             _baseScorePtr(&pScore)
@@ -123,7 +123,7 @@ public:
 // ----------------------------------------------------------------------------
 
 template <typename TValue, typename TScore, typename TSeqHVal, typename TSeqVVal>
-inline SEQAN_FUNC_DISABLE_IF(IsScoreMatrix_<TScore>, TValue)
+inline SEQAN2_FUNC_DISABLE_IF(IsScoreMatrix_<TScore>, TValue)
 score(Score<TValue, ScoreSimdWrapper<TScore> > const & me, TSeqHVal const & valH, TSeqVVal const & valV)
 {
     return blend(scoreMismatch(me), scoreMatch(me), cmpEq(valH, valV));
@@ -137,16 +137,16 @@ template <unsigned LENGTH>
 struct VectorLength_
 {};
 
-#define SEQAN_FIXED_VECTOR_FILL_VALUE_IMPL_2(t, d, pos)     d[t[1 + pos]], d[t[pos]]
-#define SEQAN_FIXED_VECTOR_FILL_VALUE_IMPL_4(t, d, pos)     SEQAN_FIXED_VECTOR_FILL_VALUE_IMPL_2(t, d, pos + 2), SEQAN_FIXED_VECTOR_FILL_VALUE_IMPL_2(t, d, pos)
-#define SEQAN_FIXED_VECTOR_FILL_VALUE_IMPL_8(t, d, pos)     SEQAN_FIXED_VECTOR_FILL_VALUE_IMPL_4(t, d, pos + 4), SEQAN_FIXED_VECTOR_FILL_VALUE_IMPL_4(t, d, pos)
-#define SEQAN_FIXED_VECTOR_FILL_VALUE_IMPL_16(t, d, pos)    SEQAN_FIXED_VECTOR_FILL_VALUE_IMPL_8(t, d, pos + 8), SEQAN_FIXED_VECTOR_FILL_VALUE_IMPL_8(t, d, pos)
-#define SEQAN_FIXED_VECTOR_FILL_VALUE_IMPL_32(t, d, pos)    SEQAN_FIXED_VECTOR_FILL_VALUE_IMPL_16(t, d, pos + 16), SEQAN_FIXED_VECTOR_FILL_VALUE_IMPL_16(t, d, pos)
+#define SEQAN2_FIXED_VECTOR_FILL_VALUE_IMPL_2(t, d, pos)     d[t[1 + pos]], d[t[pos]]
+#define SEQAN2_FIXED_VECTOR_FILL_VALUE_IMPL_4(t, d, pos)     SEQAN2_FIXED_VECTOR_FILL_VALUE_IMPL_2(t, d, pos + 2), SEQAN2_FIXED_VECTOR_FILL_VALUE_IMPL_2(t, d, pos)
+#define SEQAN2_FIXED_VECTOR_FILL_VALUE_IMPL_8(t, d, pos)     SEQAN2_FIXED_VECTOR_FILL_VALUE_IMPL_4(t, d, pos + 4), SEQAN2_FIXED_VECTOR_FILL_VALUE_IMPL_4(t, d, pos)
+#define SEQAN2_FIXED_VECTOR_FILL_VALUE_IMPL_16(t, d, pos)    SEQAN2_FIXED_VECTOR_FILL_VALUE_IMPL_8(t, d, pos + 8), SEQAN2_FIXED_VECTOR_FILL_VALUE_IMPL_8(t, d, pos)
+#define SEQAN2_FIXED_VECTOR_FILL_VALUE_IMPL_32(t, d, pos)    SEQAN2_FIXED_VECTOR_FILL_VALUE_IMPL_16(t, d, pos + 16), SEQAN2_FIXED_VECTOR_FILL_VALUE_IMPL_16(t, d, pos)
 
-#define SEQAN_FIXED_VECTOR_FILL_VALUE_IMPL_DELEGATE(MACRO, t, d) MACRO(t, d, 0)
-#define SEQAN_FIXED_VECTOR_FILL_VALUE_IMPL(t, d, SIZE) SEQAN_FIXED_VECTOR_FILL_VALUE_IMPL_DELEGATE(SEQAN_FIXED_VECTOR_FILL_VALUE_IMPL_##SIZE, t, d)
+#define SEQAN2_FIXED_VECTOR_FILL_VALUE_IMPL_DELEGATE(MACRO, t, d) MACRO(t, d, 0)
+#define SEQAN2_FIXED_VECTOR_FILL_VALUE_IMPL(t, d, SIZE) SEQAN2_FIXED_VECTOR_FILL_VALUE_IMPL_DELEGATE(SEQAN2_FIXED_VECTOR_FILL_VALUE_IMPL_##SIZE, t, d)
 
-#define SEQAN_FIXED_VECTOR_FILL_IMPL(SIZE)                                        \
+#define SEQAN2_FIXED_VECTOR_FILL_IMPL(SIZE)                                        \
 template <typename TTarget, typename TPos, typename TData>                        \
 inline void                                                                       \
 _fixedSizeVectorFill(TTarget & target,                                            \
@@ -154,21 +154,21 @@ _fixedSizeVectorFill(TTarget & target,                                          
                      TData const & data,                                          \
                      VectorLength_<SIZE> const & /*scope*/)                       \
 {                                                                                 \
-    fillVector(target, SEQAN_FIXED_VECTOR_FILL_VALUE_IMPL(pos, data, SIZE));      \
+    fillVector(target, SEQAN2_FIXED_VECTOR_FILL_VALUE_IMPL(pos, data, SIZE));      \
 }
 
-SEQAN_FIXED_VECTOR_FILL_IMPL(2)
-SEQAN_FIXED_VECTOR_FILL_IMPL(4)
-SEQAN_FIXED_VECTOR_FILL_IMPL(8)
-SEQAN_FIXED_VECTOR_FILL_IMPL(16)
-SEQAN_FIXED_VECTOR_FILL_IMPL(32)
+SEQAN2_FIXED_VECTOR_FILL_IMPL(2)
+SEQAN2_FIXED_VECTOR_FILL_IMPL(4)
+SEQAN2_FIXED_VECTOR_FILL_IMPL(8)
+SEQAN2_FIXED_VECTOR_FILL_IMPL(16)
+SEQAN2_FIXED_VECTOR_FILL_IMPL(32)
 
 // TODO(rrahn): We should make the fixedSizeVectorFill the fall back gather interface, if gather is not implemented.
 template <typename TValue, typename TScore, typename TVal1, typename TVal2>
-inline SEQAN_FUNC_ENABLE_IF(IsScoreMatrix_<TScore>, TValue)
+inline SEQAN2_FUNC_ENABLE_IF(IsScoreMatrix_<TScore>, TValue)
 score(Score<TValue, ScoreSimdWrapper<TScore> > const & sc, TVal1 const & val1, TVal2 const & val2)
 {
-    SEQAN_ASSERT(sc._baseScorePtr != nullptr);
+    SEQAN2_ASSERT(sc._baseScorePtr != nullptr);
 #ifdef __AVX2__
     return gather(&sc._baseScorePtr->data_tab[0], val1 + val2);
 #else
@@ -180,4 +180,4 @@ score(Score<TValue, ScoreSimdWrapper<TScore> > const & sc, TVal1 const & val1, T
 
 }
 
-#endif  // #ifndef INCLUDE_SEQAN_SCORE_SCORE_SIMD_WRAPPER_H_
+#endif  // #ifndef INCLUDE_SEQAN2_SCORE_SCORE_SIMD_WRAPPER_H_

@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_BAM_IO_CIGAR_H_
-#define INCLUDE_SEQAN_BAM_IO_CIGAR_H_
+#ifndef INCLUDE_SEQAN2_BAM_IO_CIGAR_H_
+#define INCLUDE_SEQAN2_BAM_IO_CIGAR_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -51,7 +51,7 @@ namespace seqan {
 
 /*!
  * @class CigarElement
- * @headerfile <seqan/bam_io.h>
+ * @headerfile <seqan2/bam_io.h>
  * @brief One entry of a CIGAR string.
  *
  * @signature template <[typename TOperation[, typename TCount]]>
@@ -150,14 +150,14 @@ uint32_t toBamCigarElement(CigarElement<TOperation, TCount> const & cigarElement
 {
     char operation = 0;
     switch (cigarElement.operation) {
-        case 'X': operation += 1; SEQAN_FALLTHROUGH
-        case '=': operation += 1; SEQAN_FALLTHROUGH
-        case 'P': operation += 1; SEQAN_FALLTHROUGH
-        case 'H': operation += 1; SEQAN_FALLTHROUGH
-        case 'S': operation += 1; SEQAN_FALLTHROUGH
-        case 'N': operation += 1; SEQAN_FALLTHROUGH
-        case 'D': operation += 1; SEQAN_FALLTHROUGH
-        case 'I': operation += 1; SEQAN_FALLTHROUGH
+        case 'X': operation += 1; SEQAN2_FALLTHROUGH
+        case '=': operation += 1; SEQAN2_FALLTHROUGH
+        case 'P': operation += 1; SEQAN2_FALLTHROUGH
+        case 'H': operation += 1; SEQAN2_FALLTHROUGH
+        case 'S': operation += 1; SEQAN2_FALLTHROUGH
+        case 'N': operation += 1; SEQAN2_FALLTHROUGH
+        case 'D': operation += 1; SEQAN2_FALLTHROUGH
+        case 'I': operation += 1; SEQAN2_FALLTHROUGH
         case 'M': break;
     }
     return (cigarElement.count << 4) | operation;
@@ -244,7 +244,7 @@ getMDString(
         lastOp = op;
         ++numOps;
     }
-    SEQAN_ASSERT_EQ(atEnd(it1), atEnd(it2));
+    SEQAN2_ASSERT_EQ(atEnd(it1), atEnd(it2));
     if (lastOp == 'M')
     {
         std::stringstream num;
@@ -326,7 +326,7 @@ getCigarString(
     }
 //  if (atEnd(it1) != atEnd(it2))
 //        std::cerr << "Invalid pairwise alignment:" << std::endl << gaps1 << std::endl << gaps2 << std::endl;
-    SEQAN_CHECK(atEnd(it1) == atEnd(it2), "Cannot get CIGAR from invalid pairwise alignment!");
+    SEQAN2_CHECK(atEnd(it1) == atEnd(it2), "Cannot get CIGAR from invalid pairwise alignment!");
     if (lastOp == 'D' && numOps >= (unsigned)splicedGapThresh)
         lastOp = 'N';
     if (numOps > 0)
@@ -412,7 +412,7 @@ getCigarString(
         }
         ++numOps;
     }
-    SEQAN_ASSERT_EQ(atEnd(it1), atEnd(it2));
+    SEQAN2_ASSERT_EQ(atEnd(it1), atEnd(it2));
     if (lastOp == 'D' && numOps >= (unsigned)splicedGapThresh)
         lastOp = 'N';
     if (numOps > 0)
@@ -507,7 +507,7 @@ _alignAndGetCigarString(
     TErrors mdErrors = getMDString(md, contigGaps, readGaps);
 
     ignoreUnusedVariableWarning(mdErrors);
-    SEQAN_ASSERT_EQ(errors, mdErrors);
+    SEQAN2_ASSERT_EQ(errors, mdErrors);
 }
 
 template <
@@ -649,7 +649,7 @@ unsigned cigarToGapAnchorRead(TGaps & gaps, TCigarString const & cigar)
                 if (atBegin)
                     beginGaps += cigar[i].count;
                 insertGaps(it, cigar[i].count);
-                SEQAN_FALLTHROUGH
+                SEQAN2_FALLTHROUGH
             case 'I':
             case 'M':
             case 'S':
@@ -679,7 +679,7 @@ unsigned cigarToGapAnchorContig(TGaps & gaps, TCigarString const & cigar)
                 if (atBegin)
                     beginGaps += cigar[i].count;
                 insertGaps(it, cigar[i].count);
-                SEQAN_FALLTHROUGH
+                SEQAN2_FALLTHROUGH
             case 'D':
             case 'M':
             case 'N':
@@ -691,6 +691,6 @@ unsigned cigarToGapAnchorContig(TGaps & gaps, TCigarString const & cigar)
     return beginGaps;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_BAM_IO_CIGAR_H_
+#endif  // #ifndef INCLUDE_SEQAN2_BAM_IO_CIGAR_H_

@@ -30,10 +30,10 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_GRAPH_IMPL_HMM_H
-#define SEQAN_HEADER_GRAPH_IMPL_HMM_H
+#ifndef SEQAN2_HEADER_GRAPH_IMPL_HMM_H
+#define SEQAN2_HEADER_GRAPH_IMPL_HMM_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -45,7 +45,7 @@ namespace seqan
 /*!
  * @class HmmGraph
  * @extends Graph
- * @headerfile <seqan/graph_types.h>
+ * @headerfile <seqan2/graph_types.h>
  * @brief A grap representing a Hidden Markov Model (HMM).
  *
  * An HMM is a directed graph with edges labeled with transition probabilities and emission profiles for each vertex.
@@ -329,7 +329,7 @@ addVertex(Graph<Hmm<TAlphabet, TCargo, TSpec> > & g,
     typedef typename Iterator<String<TEmission> const, Standard>::Type TInputIter;
     TSize alph_size = ValueSize<TAlphabet>::VALUE;
 
-    SEQAN_ASSERT_EQ(alph_size, length(emis));
+    SEQAN2_ASSERT_EQ(alph_size, length(emis));
 
     TVertexDescriptor vd = addVertex(g);
     TEmisIter it = begin(g.data_emission, Standard());
@@ -590,7 +590,7 @@ write(TFile & target,
 
 /*!
  * @fn HmmGraph#assignBeginState
- * @headerfile <seqan/graph_types.h>
+ * @headerfile <seqan2/graph_types.h>
  * @brief Assigns a begin state.
  *
  * @signature void assignBeginState(hmm, v);
@@ -604,7 +604,7 @@ inline void
 assignBeginState(Graph<Hmm<TAlphabet, TCargo, TSpec> >& g,
                  TVertexDescriptor const vertex)
 {
-    SEQAN_ASSERT(idInUse(_getVertexIdManager(g), vertex));
+    SEQAN2_ASSERT(idInUse(_getVertexIdManager(g), vertex));
 
     g.data_begin = vertex;
     g.data_silent[vertex] = true;
@@ -614,7 +614,7 @@ assignBeginState(Graph<Hmm<TAlphabet, TCargo, TSpec> >& g,
 
 /*!
  * @fn HmmGraph#assignEndState
- * @headerfile <seqan/graph_types.h>
+ * @headerfile <seqan2/graph_types.h>
  * @brief Assigns a end state.
  *
  * @signature void assignEndState(hmm, v);
@@ -628,7 +628,7 @@ inline void
 assignEndState(Graph<Hmm<TAlphabet, TCargo, TSpec> >& g,
                TVertexDescriptor const vertex)
 {
-    SEQAN_ASSERT(idInUse(_getVertexIdManager(g), vertex));
+    SEQAN2_ASSERT(idInUse(_getVertexIdManager(g), vertex));
 
     g.data_end = vertex;
     g.data_silent[vertex] = true;
@@ -928,7 +928,7 @@ assignSilentStatus(Graph<Hmm<TAlphabet, TCargo, TSpec> >& g,
                    TVertexDescriptor const vertex,
                    bool const silent)
 {
-    SEQAN_ASSERT(idInUse(_getVertexIdManager(g), vertex));
+    SEQAN2_ASSERT(idInUse(_getVertexIdManager(g), vertex));
     g.data_silent[vertex] = silent;
 }
 
@@ -978,6 +978,6 @@ isSilent(Graph<Hmm<TAlphabet, TCargo, TSpec> > const& g,
 }
 
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

@@ -30,13 +30,13 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_MISC_BASE_H
-#define SEQAN_HEADER_MISC_BASE_H
+#ifndef SEQAN2_HEADER_MISC_BASE_H
+#define SEQAN2_HEADER_MISC_BASE_H
 
 
 //////////////////////////////////////////////////////////////////////////////
 
-namespace seqan
+namespace seqan2
 {
 
     //////////////////////////////////////////////////////////////////////////////

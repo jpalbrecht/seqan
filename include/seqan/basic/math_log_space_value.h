@@ -39,10 +39,10 @@
 
 // TODO(holtgrew): Rename to "LogSpaceValue"?
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_MATH_LOG_SPACE_VALUE_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_MATH_LOG_SPACE_VALUE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_MATH_LOG_SPACE_VALUE_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_MATH_LOG_SPACE_VALUE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -54,7 +54,7 @@ namespace seqan {
 
 /*!
  * @class LogProb
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Value type for computation in log-space.
  *
  * @signature template <[typename T]>
@@ -476,6 +476,6 @@ operator<<(TStream & stream, LogProb<TValue, TSpec> const & rhs)
     return stream << std::exp(rhs.data_value);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_MATH_LOG_SPACE_VALUE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_MATH_LOG_SPACE_VALUE_H_

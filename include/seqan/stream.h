@@ -36,8 +36,8 @@
 // Facade header for the stream module.
 // ==========================================================================
 
-#ifndef SEQAN_STREAM_H_
-#define SEQAN_STREAM_H_
+#ifndef SEQAN2_STREAM_H_
+#define SEQAN2_STREAM_H_
 
 // ===========================================================================
 // Prerequisites.
@@ -58,58 +58,58 @@
 #include <unistd.h>
 #endif
 
-#include <seqan/basic.h>
-#include <seqan/file.h>
-#include <seqan/sequence.h>
+#include <seqan2/basic.h>
+#include <seqan2/file.h>
+#include <seqan2/sequence.h>
 
 // ===========================================================================
 // Basic Definitions.
 // ===========================================================================
 
-#include <seqan/stream/stream_base.h>
+#include <seqan2/stream/stream_base.h>
 
 // ===========================================================================
 // File Format and Type Guessing.
 // ===========================================================================
 
-#include <seqan/stream/guess_format.h>
+#include <seqan2/stream/guess_format.h>
 
 // ===========================================================================
 // Stream Iterators.
 // ===========================================================================
 
-#include <seqan/stream/iter_stream.h>
+#include <seqan2/stream/iter_stream.h>
 
 // ===========================================================================
 // Stream Implementations and Adaptions.
 // ===========================================================================
 
-#include <seqan/stream/adapt_ios.h>
-#include <seqan/stream/file_stream.h>
-#include <seqan/stream/stream_compressor.h>
-#include <seqan/stream/buffered_stream.h>
+#include <seqan2/stream/adapt_ios.h>
+#include <seqan2/stream/file_stream.h>
+#include <seqan2/stream/stream_compressor.h>
+#include <seqan2/stream/buffered_stream.h>
 
-#if SEQAN_HAS_ZLIB
+#if SEQAN2_HAS_ZLIB
 #include <zlib.h>
-#include <seqan/stream/iostream_zutil.h>
-#include <seqan/stream/iostream_zip.h>
-#include <seqan/stream/iostream_zip_impl.h>
-#include <seqan/stream/iostream_bgzf.h>
+#include <seqan2/stream/iostream_zutil.h>
+#include <seqan2/stream/iostream_zip.h>
+#include <seqan2/stream/iostream_zip_impl.h>
+#include <seqan2/stream/iostream_bgzf.h>
 #endif
 
-#if SEQAN_HAS_BZIP2
-#include <seqan/stream/iostream_bzip2.h>
+#if SEQAN2_HAS_BZIP2
+#include <seqan2/stream/iostream_bzip2.h>
 #endif
 
-#include <seqan/stream/virtual_stream.h>
-#include <seqan/stream/formatted_file.h>
+#include <seqan2/stream/virtual_stream.h>
+#include <seqan2/stream/formatted_file.h>
 
 // ===========================================================================
 // Tokenization and Lexical Cast.
 // ===========================================================================
 // TODO(esiragusa): move these files into basic - they are not unique to streams.
 
-#include <seqan/stream/tokenization.h>
-#include <seqan/stream/lexical_cast.h>
+#include <seqan2/stream/tokenization.h>
+#include <seqan2/stream/lexical_cast.h>
 
-#endif  // SEQAN_STREAM_H_
+#endif  // SEQAN2_STREAM_H_

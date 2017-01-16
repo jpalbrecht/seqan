@@ -39,10 +39,10 @@
 // These functions can be called with alignmentFreeComparison().
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGNMENT_FREE_AF_D2STAR_ORIGINAL_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGNMENT_FREE_AF_D2STAR_ORIGINAL_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGNMENT_FREE_AF_D2STAR_ORIGINAL_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGNMENT_FREE_AF_D2STAR_ORIGINAL_H_
 
-namespace seqan {
+namespace seqan2 {
 
 /*
  * _alignmentFreeComparison is called by alignmentFreeComparison() (see alignment_free_comparison.h)
@@ -219,6 +219,6 @@ void _d2star(TValue & result,
     }
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_INCLUDE_SEQAN_ALIGNMENT_FREE_AF_D2STAR_ORIGINAL_H_
+#endif  // SEQAN2_INCLUDE_SEQAN2_ALIGNMENT_FREE_AF_D2STAR_ORIGINAL_H_

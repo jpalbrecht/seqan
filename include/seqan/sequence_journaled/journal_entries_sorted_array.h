@@ -34,10 +34,10 @@
 // Journal entries implementation using a sorted string of journal elements.
 // ==========================================================================
 
-#ifndef SEQAN_SEQUENCE_JOURNALED_JOURNAL_ENTRIES_SORTED_ARRAY_H_
-#define SEQAN_SEQUENCE_JOURNALED_JOURNAL_ENTRIES_SORTED_ARRAY_H_
+#ifndef SEQAN2_SEQUENCE_JOURNALED_JOURNAL_ENTRIES_SORTED_ARRAY_H_
+#define SEQAN2_SEQUENCE_JOURNALED_JOURNAL_ENTRIES_SORTED_ARRAY_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags, Classes
@@ -250,7 +250,7 @@ findInJournalEntries(JournalEntries<TCargo, SortedArray> const & journalEntries,
                                       end(journalEntries._journalNodes, Standard()),
                                       refCargo,
                                       TCmp());
-    SEQAN_ASSERT(iter != begin(journalEntries._journalNodes, Standard()));
+    SEQAN2_ASSERT(iter != begin(journalEntries._journalNodes, Standard()));
     --iter;
 
     return iter;
@@ -276,7 +276,7 @@ findInJournalEntries(JournalEntries<TCargo, SortedArray> & journalEntries,
                                       end(journalEntries._journalNodes, Standard()),
                                       refCargo,
                                       TCmp());
-    SEQAN_ASSERT(iter != begin(journalEntries._journalNodes, Standard()));
+    SEQAN2_ASSERT(iter != begin(journalEntries._journalNodes, Standard()));
     --iter;
 
     return iter;
@@ -321,7 +321,7 @@ void _doRecordInsertion(JournalEntries<TCargo, SortedArray> & tree,
     // Handle special case that the entry list is empty.
     if (empty(tree._journalNodes))
     {
-        SEQAN_ASSERT_EQ(virtualPosition, 0u);
+        SEQAN2_ASSERT_EQ(virtualPosition, 0u);
         if (len == 0)
             return;
         appendValue(tree._journalNodes, TCargo(SOURCE_PATCH, physicalBeginPos, virtualPosition, 0, len));
@@ -338,7 +338,7 @@ void _doRecordInsertion(JournalEntries<TCargo, SortedArray> & tree,
         TPos pos = iter - begin(tree._journalNodes, Standard());
         TPos shiftRightOf = pos;
         // Found node that contains virtualPos.
-        SEQAN_ASSERT_LEQ(iter->virtualPosition, virtualPosition);
+        SEQAN2_ASSERT_LEQ(iter->virtualPosition, virtualPosition);
         if (iter->virtualPosition == virtualPosition)
         {
             // Simple case:  Insert left of iter.
@@ -375,13 +375,13 @@ void _doRecordInsertion(JournalEntries<TCargo, SortedArray> & tree,
     else
     {
         // Insert at end.
-        SEQAN_ASSERT_EQ(virtualPosition, iter->virtualPosition + iter->length);
+        SEQAN2_ASSERT_EQ(virtualPosition, iter->virtualPosition + iter->length);
         TPos physicalOriginPosition = back(tree._journalNodes).physicalOriginPosition;
         appendValue(tree._journalNodes, TCargo(SOURCE_PATCH, physicalBeginPos, virtualPosition, physicalOriginPosition, len));
     }
     //std::cerr << __FILE__ << ":" << __LINE__ << " -- " << tree << std::endl;
 
-    SEQAN_ASSERT(_checkSortedArrayTree(tree));
+    SEQAN2_ASSERT(_checkSortedArrayTree(tree));
 }
 
 // ----------------------------------------------------------------------------
@@ -395,7 +395,7 @@ void recordInsertion(JournalEntries<TCargo, SortedArray> & tree,
                      typename Position<TCargo>::Type physicalBeginPos,
                      typename Size<TCargo>::Type len)
 {
-    typedef typename Position<TCargo>::Type TPos SEQAN_TYPEDEF_FOR_DEBUG;
+    typedef typename Position<TCargo>::Type TPos SEQAN2_TYPEDEF_FOR_DEBUG;
     typedef typename Iterator<String<TCargo>, Standard>::Type TIterator;
 
     //std::cerr << __FILE__ << ":" << __LINE__ << " -- INSERT(" << virtualPosition << ", " << physicalBeginPos << ", " << len << ")" << std::endl;
@@ -404,7 +404,7 @@ void recordInsertion(JournalEntries<TCargo, SortedArray> & tree,
     // Handle special case that the entry list is empty.
     if (empty(tree._journalNodes))
     {
-        SEQAN_ASSERT_EQ(virtualPosition, static_cast<TPos>(0));
+        SEQAN2_ASSERT_EQ(virtualPosition, static_cast<TPos>(0));
         if (len == 0)
             return;
         appendValue(tree._journalNodes, TCargo(SOURCE_PATCH, physicalBeginPos, virtualPosition, 0, len));
@@ -441,8 +441,8 @@ void _doRecordErase(JournalEntries<TCargo, SortedArray> & tree,
     // Handle case of an empty journal.
     if (empty(tree._journalNodes))
     {
-        SEQAN_ASSERT_EQ(pos, 0u);
-        SEQAN_ASSERT_EQ(posEnd, 0u);
+        SEQAN2_ASSERT_EQ(pos, 0u);
+        SEQAN2_ASSERT_EQ(posEnd, 0u);
         return;
     }
 
@@ -465,7 +465,7 @@ void _doRecordErase(JournalEntries<TCargo, SortedArray> & tree,
     else if (it->virtualPosition == pos && (TPos)it->length > posEnd - pos)
     {
         // Remove a prefix of the entry.
-        SEQAN_ASSERT_LT(pos, it->virtualPosition + it->length);
+        SEQAN2_ASSERT_LT(pos, it->virtualPosition + it->length);
         delta = posEnd - pos;
         it->physicalPosition += delta;
         if (it->segmentSource == SOURCE_ORIGINAL)
@@ -476,7 +476,7 @@ void _doRecordErase(JournalEntries<TCargo, SortedArray> & tree,
     else if (it->virtualPosition < pos && it->virtualPosition + it->length == posEnd)
     {
         // Remove a suffix of the entry.
-        SEQAN_ASSERT_GT(pos, it->virtualPosition);
+        SEQAN2_ASSERT_GT(pos, it->virtualPosition);
         delta = posEnd - pos;
         it->length -= delta;
         beginShiftPos = itPos + 1;
@@ -535,7 +535,7 @@ void _doRecordErase(JournalEntries<TCargo, SortedArray> & tree,
         else
         {
             // Do not remove all of last.
-            SEQAN_ASSERT_GT(it->virtualPosition + it->length, posEnd);
+            SEQAN2_ASSERT_GT(it->virtualPosition + it->length, posEnd);
             TSize tmpDelta = delta;
             delta += posEnd - it->virtualPosition;
             it->physicalPosition += posEnd - it->virtualPosition;
@@ -551,7 +551,7 @@ void _doRecordErase(JournalEntries<TCargo, SortedArray> & tree,
 
     // Perform left-shift of the virtual positions.
     for (TIter it = begin(tree._journalNodes, Standard()) + beginShiftPos; it != end(tree._journalNodes, Standard()); ++it) {
-        SEQAN_ASSERT_GEQ(it->virtualPosition, delta);
+        SEQAN2_ASSERT_GEQ(it->virtualPosition, delta);
         it->virtualPosition -= delta;
     }
     // Perform update of physical host positions.
@@ -565,7 +565,7 @@ void _doRecordErase(JournalEntries<TCargo, SortedArray> & tree,
     }
 //    std::cerr << __FILE__ << ":" << __LINE__ << " -- " << tree << std::endl;
 
-    SEQAN_ASSERT(_checkSortedArrayTree(tree));
+    SEQAN2_ASSERT(_checkSortedArrayTree(tree));
 }
 
 // ----------------------------------------------------------------------------
@@ -592,8 +592,8 @@ void recordErase(JournalEntries<TCargo, SortedArray> & tree,
     // Handle case of an empty journal.
     if (empty(tree._journalNodes))
     {
-        SEQAN_ASSERT_EQ(pos, static_cast<TPos>(0));
-        SEQAN_ASSERT_EQ(posEnd, static_cast<TPos>(0));
+        SEQAN2_ASSERT_EQ(pos, static_cast<TPos>(0));
+        SEQAN2_ASSERT_EQ(posEnd, static_cast<TPos>(0));
         return;
     }
 
@@ -626,7 +626,7 @@ virtualToHostPosition(JournalEntries<TNode, TJournalSpec> const & journalEntries
     // The harder case is to find a segment from the patch sequence.  We first
     // try to find an original segment right of it, if this fails a segment
     // left of it.  If this fails, 0 is returned.
-    SEQAN_ASSERT_EQ(value(it).segmentSource, SOURCE_PATCH);
+    SEQAN2_ASSERT_EQ(value(it).segmentSource, SOURCE_PATCH);
     TIterator it2 = it;
     for (++it; it != end(journalEntries, Standard()); ++it) {
         if (value(it).segmentSource == SOURCE_ORIGINAL)
@@ -642,7 +642,7 @@ virtualToHostPosition(JournalEntries<TNode, TJournalSpec> const & journalEntries
         --it;
     }
 
-    SEQAN_ASSERT_FAIL("Should never reach here!");
+    SEQAN2_ASSERT_FAIL("Should never reach here!");
     return 0;
 }
 
@@ -700,7 +700,7 @@ hostToVirtualPosition(JournalEntries<TCargo, SortedArray> const & journalEntries
     // If we end up at the beginning, finding no original node then return result.
     if (it == begin(journalEntries._journalNodes, Standard()) && it->segmentSource == SOURCE_PATCH)
         return result;
-    SEQAN_ASSERT_NEQ(it->segmentSource, SOURCE_PATCH);
+    SEQAN2_ASSERT_NEQ(it->segmentSource, SOURCE_PATCH);
     // If hostPos is not in the found node then return result.
     if ((TCargoPos)hostPos >= (TCargoPos)(it->physicalPosition + it->length))
         return result;
@@ -745,6 +745,6 @@ empty(JournalEntries<TNode, SortedArray> const & journalEntries)
     return empty(journalEntries._journalNodes);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_SEQUENCE_JOURNALED_JOURNAL_ENTRIES_SORTED_ARRAY_H_
+#endif  // SEQAN2_SEQUENCE_JOURNALED_JOURNAL_ENTRIES_SORTED_ARRAY_H_

@@ -34,12 +34,12 @@
 // Facade header for module ucsc_io.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_UCSC_IO_H_
-#define SEQAN_INCLUDE_SEQAN_UCSC_IO_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_UCSC_IO_H_
+#define SEQAN2_INCLUDE_SEQAN2_UCSC_IO_H_
 
-#include <seqan/ucsc_io/ucsc_record.h>
-#include <seqan/ucsc_io/ucsc_io.h>
-#include <seqan/ucsc_io/ucsc_file.h>
+#include <seqan2/ucsc_io/ucsc_record.h>
+#include <seqan2/ucsc_io/ucsc_io.h>
+#include <seqan2/ucsc_io/ucsc_file.h>
 
-#endif  // SEQAN_INCLUDE_SEQAN_UCSC_IO_H_
+#endif  // SEQAN2_INCLUDE_SEQAN2_UCSC_IO_H_
 

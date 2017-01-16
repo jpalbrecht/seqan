@@ -34,59 +34,59 @@
 // Facade header for basic_iterator submodule.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_BASIC_ITERATOR_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_BASIC_ITERATOR_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_ITERATOR_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_ITERATOR_H_
 
 // --------------------------------------------------------------------------
 // Dependencies
 // --------------------------------------------------------------------------
 
-#include <seqan/platform.h>
-#include <seqan/basic/basic_fundamental.h>
-#include <seqan/basic/basic_concept.h>
-#include <seqan/basic/basic_alphabet.h>
+#include <seqan2/platform.h>
+#include <seqan2/basic/basic_fundamental.h>
+#include <seqan2/basic/basic_concept.h>
+#include <seqan2/basic/basic_alphabet.h>
 
-#include <seqan/basic/basic_type.h>  // TODO(holtgrew): Temporary dependency
+#include <seqan2/basic/basic_type.h>  // TODO(holtgrew): Temporary dependency
 
 // --------------------------------------------------------------------------
 // Sub Module Headers
 // --------------------------------------------------------------------------
 
 // Iterator interface definition.
-#include <seqan/basic/iterator_interface.h>
+#include <seqan2/basic/iterator_interface.h>
 
 // Iter base class.
-#include <seqan/basic/iterator_base.h>
+#include <seqan2/basic/iterator_base.h>
 
 // Iterator concept.
-#include <seqan/basic/iterator_concept.h>
+#include <seqan2/basic/iterator_concept.h>
 
 // PropertyMap concept.
-#include <seqan/basic/property_map_concept.h>
+#include <seqan2/basic/property_map_concept.h>
 
 // Container concept.
-#include <seqan/basic/container_concept.h>
+#include <seqan2/basic/container_concept.h>
 
 // Counting iterator.
-#include <seqan/basic/iterator_counting.h>
+#include <seqan2/basic/iterator_counting.h>
 
 // Positional iterator.
-#include <seqan/basic/iterator_position.h>
+#include <seqan2/basic/iterator_position.h>
 
 // Makes a container out of begin/end iterators
-#include <seqan/basic/iterator_range.h>
+#include <seqan2/basic/iterator_range.h>
 
 // Iterator for adapting iterators to Rooted Iterators.
-#include <seqan/basic/iterator_adaptor.h>
+#include <seqan2/basic/iterator_adaptor.h>
 
 // Adaption between STL iterators and SeqAn iterators.
-#include <seqan/basic/iterator_adapt_std.h>
+#include <seqan2/basic/iterator_adapt_std.h>
 
 // TODO(holtgrew): Does proxy really belong here?
-#include <seqan/basic/proxy_base.h>
-#include <seqan/basic/proxy_iterator.h>
+#include <seqan2/basic/proxy_base.h>
+#include <seqan2/basic/proxy_iterator.h>
 
 // Zip iterator. Requires C++11
-#include <seqan/basic/iterator_zip.h>
+#include <seqan2/basic/iterator_zip.h>
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_BASIC_ITERATOR_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_ITERATOR_H_

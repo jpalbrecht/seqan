@@ -32,10 +32,10 @@
 // Author: Manuel Holtgrewe <manuel.holtgrewe@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_BED_IO_BED_RECORD_H_
-#define INCLUDE_SEQAN_BED_IO_BED_RECORD_H_
+#ifndef INCLUDE_SEQAN2_BED_IO_BED_RECORD_H_
+#define INCLUDE_SEQAN2_BED_IO_BED_RECORD_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags, Classes, Enums
@@ -63,7 +63,7 @@ typedef Tag<Bed12_> Bed12;
 /*!
  * @class BedRecord
  * @implements FormattedFileRecordConcept
- * @headerfile <seqan/bed_io.h>
+ * @headerfile <seqan2/bed_io.h>
  * @brief Data structure for storing BED records.
  *
  * @signature template <typename TSpec>
@@ -127,7 +127,7 @@ class BedRecord;
 /*!
  * @class Bed3Record
  * @extends BedRecord
- * @headerfile <seqan/bed_io.h>
+ * @headerfile <seqan2/bed_io.h>
  * @brief BedRecord with 3 fields.
  *
  * @signature template <>
@@ -174,7 +174,7 @@ public:
 /*!
  * @class Bed4Record
  * @extends Bed3Record
- * @headerfile <seqan/bed_io.h>
+ * @headerfile <seqan2/bed_io.h>
  * @brief BedRecord with 4 fields.
  *
  * @signature template <>
@@ -210,7 +210,7 @@ public:
 /*!
  * @class Bed5Record
  * @extends Bed4Record
- * @headerfile <seqan/bed_io.h>
+ * @headerfile <seqan2/bed_io.h>
  *
  * @brief BedRecord with 5 fields.
  *
@@ -251,7 +251,7 @@ public:
 /*!
  * @class Bed6Record
  * @extends Bed5Record
- * @headerfile <seqan/bed_io.h>
+ * @headerfile <seqan2/bed_io.h>
  *
  * @brief BedRecord with 6 fields.
  *
@@ -289,7 +289,7 @@ public:
 
 /*!
  * @class BedRgb
- * @headerfile <seqan/bed_io.h>
+ * @headerfile <seqan2/bed_io.h>
  * @brief RGB color for @link Bed12Record @endlink.
  *
  * @signature class BedRgb;
@@ -345,7 +345,7 @@ public:
 /*!
  * @class Bed12Record
  * @extends BedRecord
- * @headerfile <seqan/bed_io.h>
+ * @headerfile <seqan2/bed_io.h>
  * @brief BedRecord with 12 fields.
  *
  * @signature template <>
@@ -427,6 +427,6 @@ void clear(BedRecord<TSpec> & record)
     record._clear();
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_BED_IO_BED_RECORD_H_
+#endif  // #ifndef INCLUDE_SEQAN2_BED_IO_BED_RECORD_H_

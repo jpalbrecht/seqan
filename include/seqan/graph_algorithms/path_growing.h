@@ -36,10 +36,10 @@
 // WARNING: Functionality not carefully tested!
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_GRAPH_ALGORITHMS_PATH_GROWING_H_
-#define INCLUDE_SEQAN_GRAPH_ALGORITHMS_PATH_GROWING_H_
+#ifndef INCLUDE_SEQAN2_GRAPH_ALGORITHMS_PATH_GROWING_H_
+#define INCLUDE_SEQAN2_GRAPH_ALGORITHMS_PATH_GROWING_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -129,6 +129,6 @@ pathGrowingAlgorithm(TEdgeMap & edgeMap1,
     return edgeMap1Sum;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_GRAPH_ALGORITHMS_PATH_GROWING_H_
+#endif  // #ifndef INCLUDE_SEQAN2_GRAPH_ALGORITHMS_PATH_GROWING_H_

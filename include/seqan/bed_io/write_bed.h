@@ -36,10 +36,10 @@
 
 // TODO(holtgrew): Add overload with BedIOContext.
 
-#ifndef INCLUDE_SEQAN_BED_IO_WRITE_BED_H_
-#define INCLUDE_SEQAN_BED_IO_WRITE_BED_H_
+#ifndef INCLUDE_SEQAN2_BED_IO_WRITE_BED_H_
+#define INCLUDE_SEQAN2_BED_IO_WRITE_BED_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Functions
@@ -143,6 +143,6 @@ writeRecord(TTarget & target, BedRecord<TRecordSpec> const & record, Bed const &
     writeValue(target, '\n');
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_BED_IO_WRITE_BED_H_
+#endif  // #ifndef INCLUDE_SEQAN2_BED_IO_WRITE_BED_H_

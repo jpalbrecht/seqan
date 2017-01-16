@@ -35,26 +35,26 @@
 // assert macros double for test checks.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_BASIC_DEBUG_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_BASIC_DEBUG_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_DEBUG_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_DEBUG_H_
 
 // --------------------------------------------------------------------------
 // Prerequisites
 // --------------------------------------------------------------------------
 
-#include <seqan/platform.h>
+#include <seqan2/platform.h>
 
 // --------------------------------------------------------------------------
 // Sub Module Headers
 // --------------------------------------------------------------------------
 
 // The debug system with assertions.
-#include <seqan/basic/debug_test_system.h>
+#include <seqan2/basic/debug_test_system.h>
 
 // Test and debug helpers.
-#include <seqan/basic/debug_helper.h>
+#include <seqan2/basic/debug_helper.h>
 
 // Code for profiling.
-#include <seqan/basic/profiling.h>
+#include <seqan2/basic/profiling.h>
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_BASIC_DEBUG_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_DEBUG_H_

@@ -34,11 +34,11 @@
 // Implementation of efficient lexical sequence comparison.
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_LEXICAL_H
-#define SEQAN_HEADER_LEXICAL_H
+#ifndef SEQAN2_HEADER_LEXICAL_H
+#define SEQAN2_HEADER_LEXICAL_H
 
 
-namespace seqan
+namespace seqan2
 {
 //////////////////////////////////////////////////////////////////////////////
 // Switches for prefix ordering mode
@@ -50,14 +50,14 @@ namespace seqan
  *
  *
  * @tag PrefixOrderTags#TagPrefixLess
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief A prefix is smaller.
  *
  * @signature typedef Tag<TagPrefixLess_> const TagPrefixLess;
  *
  *
  * @tag PrefixOrderTags#TagPrefixGreater
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief A prefix is larger.
  *
  * @signature typedef Tag<TagPrefixGreater_> const TagPrefixGreater;
@@ -72,7 +72,7 @@ typedef Tag<TagPrefixGreater_> const TagPrefixGreater;
 
 /*!
  * @mfn DefaultPrefixOrder
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief The default prefix order.
  *
  * @signature DefaultPrefixOrder<T>::Type;
@@ -94,7 +94,7 @@ struct DefaultPrefixOrder
 
 /*!
  * @class Lexical
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Comparator for lexical comparison.
  *
  * @signature template <[typename TSpec]>
@@ -206,7 +206,7 @@ public:
 
 /*!
  * @mfn Comparator
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Type of comparator object
  *
  * @signature Comparator<T>::Type;
@@ -264,7 +264,7 @@ struct Spec<Lexical<TSpec> const>
 
 /*!
  * @fn Lexical#compare
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Compares two objects.
  *
  * @signature void compare(comparator, left, right);
@@ -358,7 +358,7 @@ compare(Lexical<TSpec> & lexical,
 
 /*!
  * @fn Lexical#isEqual
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Operator "==".
  *
  * @signature bool isEqual(left, right);
@@ -392,7 +392,7 @@ isEqual(Lexical<TSpec> const & _lex)
 
 /*!
  * @fn Lexical#isNotEqual
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Operator "!=".
  *
  * @signature bool isNotEqual(left, right);
@@ -426,7 +426,7 @@ isNotEqual(Lexical<TSpec> const & _lex)
 
 /*!
  * @fn Lexical#isLess
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Operator "&lt;".
  *
  * @signature bool isLess(left, right);
@@ -483,7 +483,7 @@ isLess(Lexical<TSpec> const & _lex)
 
 /*!
  * @fn Lexical#isLessOrEqual
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Operator "&lt;=".
  *
  * @signature bool isLessOrEqual(left, right);
@@ -540,7 +540,7 @@ isLessOrEqual(Lexical<TSpec> const & _lex)
 
 /*!
  * @fn Lexical#isGreater
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Operator "&gt;".
  *
  * @signature bool isGreater(left, right);
@@ -597,7 +597,7 @@ isGreater(Lexical<TSpec> const & _lex)
 
 /*!
  * @fn Lexical#isGreaterOrEqual
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Operator "&gt;=".
  *
  * @signature bool isGreaterOrEqual(left, right);
@@ -654,7 +654,7 @@ isGreaterOrEqual(Lexical<TSpec> const & _lex)
 
 /*!
  * @fn Lexical#isPrefix
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Test whether a sequence is the prefix of another sequence.
  *
  * @signature bool isPrefix(left, right);
@@ -691,7 +691,7 @@ isPrefix(Lexical<TSpec> const & _lex)
 
 /*!
  * @fn Lexical#hasPrefix
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Test whether a sequence is the prefix of another sequence.
  *
  * @signature bool isPrefix(left, right);
@@ -727,7 +727,7 @@ hasPrefix(Lexical<TSpec> const & _lex)
 
 /*!
  * @fn Lexical#lcpLength
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Length of the longest common prefix.
  *
  * @signature TSize lcpLength(left, right);
@@ -758,6 +758,6 @@ lcpLength(Lexical<TSpec> const & _lex)
     return _lex.data_lcp;
 }
 
-} //namespace seqan
+} //namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

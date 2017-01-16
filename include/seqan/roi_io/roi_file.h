@@ -34,10 +34,10 @@
 // Class for reading/writing files in ROI format.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ROI_IO_ROI_STREAM_H_
-#define SEQAN_INCLUDE_SEQAN_ROI_IO_ROI_STREAM_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ROI_IO_ROI_STREAM_H_
+#define SEQAN2_INCLUDE_SEQAN2_ROI_IO_ROI_STREAM_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Typedefs
@@ -51,7 +51,7 @@ namespace seqan {
  * @class RoiFileIn
  * @signature typedef FormattedFile<Roi, Input> RoiFileIn;
  * @extends FormattedFileIn
- * @headerfile <seqan/roi_io.h>
+ * @headerfile <seqan2/roi_io.h>
  * @brief Class for reading ROI files.
  */
 
@@ -65,7 +65,7 @@ typedef FormattedFile<Roi, Input>   RoiFileIn;
  * @class RoiFileOut
  * @signature typedef FormattedFile<Roi, Output> RoiFileOut;
  * @extends FormattedFileOut
- * @headerfile <seqan/roi_io.h>
+ * @headerfile <seqan2/roi_io.h>
  * @brief Class for writing ROI files.
  */
 
@@ -141,7 +141,7 @@ writeRecord(FormattedFile<Roi, Output, TSpec> & file, RoiRecord const & record)
     writeRecord(file.iter, record, file.format);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif // SEQAN_INCLUDE_SEQAN_ROI_IO_ROI_STREAM_H_
+#endif // SEQAN2_INCLUDE_SEQAN2_ROI_IO_ROI_STREAM_H_
 

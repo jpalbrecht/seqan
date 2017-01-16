@@ -32,10 +32,10 @@
 // Author: Manuel Holtgrewe <manuel.holtgrewe@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_PROFILE_SPROFILE_SEQ_H_
-#define SEQAN_INCLUDE_PROFILE_SPROFILE_SEQ_H_
+#ifndef SEQAN2_INCLUDE_PROFILE_SPROFILE_SEQ_H_
+#define SEQAN2_INCLUDE_PROFILE_SPROFILE_SEQ_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -79,7 +79,7 @@ typedef Tag<ProfileSeqScore_> ProfileSeqScore;
 /*!
  * @class ProfileSeqScore ProfileSeq Score
  * @extends Score
- * @headerfile <seqan/align_profile.h>
+ * @headerfile <seqan2/align_profile.h>
  * @brief Score for sequence-to-profile alignments.
  *
  * Using this class, you can align sequences to profiles.  The profile is assumed to be in the horizontal direction
@@ -87,7 +87,7 @@ typedef Tag<ProfileSeqScore_> ProfileSeqScore;
  *
  * Scoring works as follows.
  *
- * The integer <tt>SEQAN_CONSENSUS_UNITY</tt> and fractions thereof are used to express scores.  Gap opens in the
+ * The integer <tt>SEQAN2_CONSENSUS_UNITY</tt> and fractions thereof are used to express scores.  Gap opens in the
  * profile are scored proportional to the number of gaps in the profile with two times unity, gap extends with one times
  * unity at the position.
  *
@@ -163,7 +163,7 @@ typedef Tag<ProfileSeqFracScore_> ProfileSeqFracScore;
 /*!
  * @class ProfileSeqFracScore ProfileSeqFrac Score
  * @extends Score
- * @headerfile <seqan/align_profile.h>
+ * @headerfile <seqan2/align_profile.h>
  * @brief Score for sequence-to-profile alignments.
  *
  * Using this class, you can align sequences to profiles.  The profile is assumed to be in the horizontal direction
@@ -171,7 +171,7 @@ typedef Tag<ProfileSeqFracScore_> ProfileSeqFracScore;
  *
  * Scoring works as follows.
  *
- * The integer <tt>SEQAN_CONSENSUS_UNITY</tt> and fractions thereof are used to express scores.  Gap opens in the
+ * The integer <tt>SEQAN2_CONSENSUS_UNITY</tt> and fractions thereof are used to express scores.  Gap opens in the
  * profile are scored proportional to the number of gaps in the profile two times unity, gap extends are scored
  * proportional to the number of gaps in the profile at the position.  Gap opens in the sequence are scored with two
  * times unity, gap extends with one times unity.
@@ -325,7 +325,7 @@ assignProfile(Score<TValue, ProfileSeqScore> & me,
             if ((TSize)(*it).count[i] > maxCount)
                 maxCount = (*it).count[i];
         for (TSize i = 0; i<alphSize; ++i, ++itConsSet)
-            *itConsSet = ((TSize)(*it).count[i] == maxCount)? 0 : (-SEQAN_CONSENSUS_UNITY);
+            *itConsSet = ((TSize)(*it).count[i] == maxCount)? 0 : (-SEQAN2_CONSENSUS_UNITY);
     }
 }
 
@@ -342,7 +342,7 @@ scoreGapExtendHorizontal(
 {
     typedef typename Value<TSeq1>::Type TValue1;
     if ((int)position(entry2) < 0)
-        return -SEQAN_CONSENSUS_UNITY;
+        return -SEQAN2_CONSENSUS_UNITY;
     else
         return me.consensusSet[position(entry1) * (ValueSize<TValue1>::VALUE) + (ValueSize<TValue1>::VALUE - 1)];
 }
@@ -360,7 +360,7 @@ scoreGapOpenHorizontal(
 {
     typedef typename Value<TSeq1>::Type TValue1;
     if ((int)position(entry2) < 0)
-        return -2 * SEQAN_CONSENSUS_UNITY;
+        return -2 * SEQAN2_CONSENSUS_UNITY;
     else
         return 2 * me.consensusSet[position(entry1) * (ValueSize<TValue1>::VALUE) + (ValueSize<TValue1>::VALUE - 1)];
 }
@@ -376,7 +376,7 @@ scoreGapOpenVertical(
         ConsensusScoreSequenceEntry<TSeq1> const & /*entry1*/,
         ConsensusScoreSequenceEntry<TSeq2> const & /*entry2*/)
 {
-    return -2 * SEQAN_CONSENSUS_UNITY;
+    return -2 * SEQAN2_CONSENSUS_UNITY;
 }
 
 // --------------------------------------------------------------------------
@@ -390,7 +390,7 @@ scoreGapExtendVertical(
         ConsensusScoreSequenceEntry<TSeq1> const & /*entry1*/,
         ConsensusScoreSequenceEntry<TSeq2> const & /*entry2*/)
 {
-    return -SEQAN_CONSENSUS_UNITY;
+    return -SEQAN2_CONSENSUS_UNITY;
 }
 
 // --------------------------------------------------------------------------
@@ -465,9 +465,9 @@ scoreGapExtendHorizontal(
         ConsensusScoreSequenceEntry<TSeq2> const & entry2)
 {
     if (((int)position(entry2) < 0) || (!me.sum[position(entry1)]))
-        return -SEQAN_CONSENSUS_UNITY;
+        return -SEQAN2_CONSENSUS_UNITY;
     else
-        return ((TValue) (( (int)value(entry1).count[ValueSize<typename Value<TSeq1>::Type>::VALUE - 1] - me.sum[position(entry1)]) * SEQAN_CONSENSUS_UNITY) / me.sum[position(entry1)]);
+        return ((TValue) (( (int)value(entry1).count[ValueSize<typename Value<TSeq1>::Type>::VALUE - 1] - me.sum[position(entry1)]) * SEQAN2_CONSENSUS_UNITY) / me.sum[position(entry1)]);
 }
 
 // --------------------------------------------------------------------------
@@ -482,9 +482,9 @@ scoreGapOpenHorizontal(
         ConsensusScoreSequenceEntry<TSeq2> const & entry2)
 {
     if (((int)position(entry2) < 0) || (!me.sum[position(entry1)]))
-        return -SEQAN_CONSENSUS_UNITY;
+        return -SEQAN2_CONSENSUS_UNITY;
     else
-        return ((TValue) (((int)value(entry1).count[ValueSize<typename Value<TSeq1>::Type>::VALUE - 1] - me.sum[position(entry1)]) * SEQAN_CONSENSUS_UNITY) / me.sum[position(entry1)]);
+        return ((TValue) (((int)value(entry1).count[ValueSize<typename Value<TSeq1>::Type>::VALUE - 1] - me.sum[position(entry1)]) * SEQAN2_CONSENSUS_UNITY) / me.sum[position(entry1)]);
 }
 
 // --------------------------------------------------------------------------
@@ -498,7 +498,7 @@ scoreGapOpenVertical(
         ConsensusScoreSequenceEntry<TSeq1> const & /*entry1*/,
         ConsensusScoreSequenceEntry<TSeq2> const & /*entry2*/)
 {
-    return -SEQAN_CONSENSUS_UNITY;
+    return -SEQAN2_CONSENSUS_UNITY;
 }
 
 // --------------------------------------------------------------------------
@@ -512,7 +512,7 @@ scoreGapExtendVertical(
         ConsensusScoreSequenceEntry<TSeq1> const & /*entry1*/,
         ConsensusScoreSequenceEntry<TSeq2> const & /*entry2*/)
 {
-    return -SEQAN_CONSENSUS_UNITY;
+    return -SEQAN2_CONSENSUS_UNITY;
 }
 
 // --------------------------------------------------------------------------
@@ -526,11 +526,11 @@ score(Score<TValue, ProfileSeqFracScore> const & me,
       ConsensusScoreSequenceEntry<TSeq2> const & entry2)
 {
     if (!me.sum[position(entry1)])
-        return -SEQAN_CONSENSUS_UNITY;
+        return -SEQAN2_CONSENSUS_UNITY;
     else
-        return ((TValue) (((int)value(entry1).count[ordValue(value(entry2))] - me.sum[position(entry1)]) * SEQAN_CONSENSUS_UNITY) / me.sum[position(entry1)]);
+        return ((TValue) (((int)value(entry1).count[ordValue(value(entry2))] - me.sum[position(entry1)]) * SEQAN2_CONSENSUS_UNITY) / me.sum[position(entry1)]);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_PROFILE_SPROFILE_SEQ_H_
+#endif  // #ifndef SEQAN2_INCLUDE_PROFILE_SPROFILE_SEQ_H_

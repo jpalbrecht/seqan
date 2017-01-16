@@ -36,10 +36,10 @@
 // linear expansion
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_GRAPH_STACK_H
-#define SEQAN_HEADER_GRAPH_STACK_H
+#ifndef SEQAN2_HEADER_GRAPH_STACK_H
+#define SEQAN2_HEADER_GRAPH_STACK_H
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -52,7 +52,7 @@ namespace seqan {
 /*!
  * @class BlockString Block String
  * @extends String
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief String optimized for appendValue, back, and eraseBack (Stack behaviour).
  *
  * @signature template <typename TValue, unsigned SPACE = 4096>
@@ -423,7 +423,7 @@ template<typename TValue, size_t SPACE>
 inline TValue &
 back(String<TValue, Block<SPACE> > & me)
 {
-    SEQAN_ASSERT_NOT_MSG(empty(me), "back() called on an empty string.");
+    SEQAN2_ASSERT_NOT_MSG(empty(me), "back() called on an empty string.");
 
     return *me.lastValue;
 }
@@ -432,7 +432,7 @@ template<typename TValue, size_t SPACE>
 inline TValue const &
 back(String<TValue, Block<SPACE> > const & me)
 {
-    SEQAN_ASSERT_NOT_MSG(empty(me), "back() called on an empty string.");
+    SEQAN2_ASSERT_NOT_MSG(empty(me), "back() called on an empty string.");
 
     return *me.lastValue;
 }
@@ -445,7 +445,7 @@ template<typename TValue, size_t SPACE>
 inline TValue &
 backPrev(String<TValue, Block<SPACE> > & me)
 {
-    SEQAN_ASSERT_GEQ_MSG(length(me), 2u, "backPrev() called on a string with less than 2 elements.");
+    SEQAN2_ASSERT_GEQ_MSG(length(me), 2u, "backPrev() called on a string with less than 2 elements.");
 
     if (me.lastValue != me.blockFirst)
         return *(me.lastValue - 1);
@@ -457,7 +457,7 @@ template<typename TValue, size_t SPACE>
 inline TValue const &
 backPrev(String<TValue, Block<SPACE> > const& me)
 {
-    SEQAN_ASSERT_GEQ_MSG(length(me), 2u, "backPrev() called on a string with less than 2 elements.");
+    SEQAN2_ASSERT_GEQ_MSG(length(me), 2u, "backPrev() called on a string with less than 2 elements.");
 
    if (me.lastValue != me.blockFirst)
         return *(me.lastValue - 1);
@@ -475,7 +475,7 @@ eraseBack(String<TValue, Block<SPACE> >& me)
 {
     typedef typename String<TValue, Block<SPACE> >::TBlockIter TBlockIter;
 
-    SEQAN_ASSERT_NOT_MSG(empty(me), "eraseBack() called on an empty string.");
+    SEQAN2_ASSERT_NOT_MSG(empty(me), "eraseBack() called on an empty string.");
 
     if (me.lastValue == me.blockFirst) {
         typename Size< String<TValue, Block<SPACE> > >::Type last = length(me.blocks);
@@ -540,6 +540,6 @@ capacity(String<TValue, Block<SPACE> > const & me)
         return 0;
 }
 
-} // namespace seqan
+} // namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

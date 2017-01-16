@@ -34,10 +34,10 @@
 // Implements the delta map entry.
 // ==========================================================================
 
-#ifndef EXTRAS_INCLUDE_SEQAN_JOURNALED_STRING_TREE_DELTA_MAP_ENTRY_H_
-#define EXTRAS_INCLUDE_SEQAN_JOURNALED_STRING_TREE_DELTA_MAP_ENTRY_H_
+#ifndef EXTRAS_INCLUDE_SEQAN2_JOURNALED_STRING_TREE_DELTA_MAP_ENTRY_H_
+#define EXTRAS_INCLUDE_SEQAN2_JOURNALED_STRING_TREE_DELTA_MAP_ENTRY_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -299,7 +299,7 @@ getDeltaRecord(DeltaMapEntry<TRefPos, TStorePos> const & deltaEntry)
 /*
  * @fn getStorePosition
  *
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  *
  * @brief Returns the id of the delta event the current iterator points to.
  *
@@ -319,7 +319,7 @@ getStorePosition(DeltaMapEntry<TRefPos, TStorePos> const & deltaEntry)
 /*
  * @fn getDeltaType
  *
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  *
  * @brief Returns the id of the delta event the current iterator points to.
  *
@@ -456,4 +456,4 @@ inline TStream & operator<<(TStream & stream, DeltaMapEntry<TRefPos, TStorePos> 
 
 }
 
-#endif // EXTRAS_INCLUDE_SEQAN_JOURNALED_STRING_TREE_DELTA_MAP_ENTRY_H_
+#endif // EXTRAS_INCLUDE_SEQAN2_JOURNALED_STRING_TREE_DELTA_MAP_ENTRY_H_

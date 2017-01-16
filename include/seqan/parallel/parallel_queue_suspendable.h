@@ -36,10 +36,10 @@
 // This queue suspends the caller if it pops a value when the queue was empty
 // or appends a value to a full fixed-size queue.
 
-#ifndef SEQAN_PARALLEL_PARALLEL_QUEUE_SUSPENDABLE_H_
-#define SEQAN_PARALLEL_PARALLEL_QUEUE_SUSPENDABLE_H_
+#ifndef SEQAN2_PARALLEL_PARALLEL_QUEUE_SUSPENDABLE_H_
+#define SEQAN2_PARALLEL_PARALLEL_QUEUE_SUSPENDABLE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -55,7 +55,7 @@ namespace seqan {
 /*!
  * @class ConcurrentSuspendableQueue Concurrent Suspendable Queue
  * @extends ConcurrentQueue
- * @headerfile <seqan/parallel.h>
+ * @headerfile <seqan2/parallel.h>
  * @brief Thread-safe suspendable queue for multiple producers and multiple consumers.
  *
  * @signature template <typename TValue, typename TSpec>
@@ -107,7 +107,7 @@ public:
 
     ~ConcurrentQueue()
     {
-        SEQAN_ASSERT_EQ(writerCount, 0u);
+        SEQAN2_ASSERT_EQ(writerCount, 0u);
 
         // wait for all pending readers to finish
         while (readerCount != 0u)
@@ -263,7 +263,7 @@ _popFront(TValue & result, ConcurrentQueue<TValue, Suspendable<TSpec> > & me,
     if (me.occupied == 0u)
         return false;
 
-    SEQAN_ASSERT_NEQ(me.occupied, 0u);
+    SEQAN2_ASSERT_NEQ(me.occupied, 0u);
 
     // extract value and destruct it in the data string
     TIter it = begin(me.data, Standard()) + me.front;
@@ -301,7 +301,7 @@ _popBack(TValue & result,
     if (me.occupied == 0u)
         return false;
 
-    SEQAN_ASSERT_NEQ(me.occupied, 0u);
+    SEQAN2_ASSERT_NEQ(me.occupied, 0u);
 
     me.back = (me.back + cap - 1) % cap;
 
@@ -434,7 +434,7 @@ appendValue(ConcurrentQueue<TValue, Suspendable<Limit> > & me,
         if (me.occupied >= cap)
             return false;
 
-        SEQAN_ASSERT_LT(me.occupied, cap);
+        SEQAN2_ASSERT_LT(me.occupied, cap);
 
         valueConstruct(begin(me.data, Standard()) + me.back, val);
         me.back = (me.back + 1) % cap;
@@ -458,6 +458,6 @@ appendValue(ConcurrentQueue<TValue, Suspendable<TSpec> > & me,
     return appendValue(me, val, typename DefaultOverflowImplicit<ConcurrentQueue<TValue, Suspendable<TSpec> > >::Type());
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_PARALLEL_PARALLEL_QUEUE_SUSPENDABLE_H_
+#endif  // #ifndef SEQAN2_PARALLEL_PARALLEL_QUEUE_SUSPENDABLE_H_

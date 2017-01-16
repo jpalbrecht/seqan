@@ -32,13 +32,13 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_PIPE_ECHOER_H
-#define SEQAN_HEADER_PIPE_ECHOER_H
+#ifndef SEQAN2_HEADER_PIPE_ECHOER_H
+#define SEQAN2_HEADER_PIPE_ECHOER_H
 
-namespace seqan
+namespace seqan2
 {
 
-//namespace SEQAN_NAMESPACE_PIPELINING
+//namespace SEQAN2_NAMESPACE_PIPELINING
 //{
 
     //////////////////////////////////////////////////////////////////////////////
@@ -77,7 +77,7 @@ namespace seqan
 /*!
  * @class Echoer
  * @extends Pipe
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  *
  * @brief Outputs tuples of the <tt>echoRepeats</tt> last elements of the input stream.
  *

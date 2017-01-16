@@ -34,14 +34,14 @@
 // This is the facade header for the math module.
 // ==========================================================================
 
-#ifndef SEQAN_MATH_H_
-#define SEQAN_MATH_H_
+#ifndef SEQAN2_MATH_H_
+#define SEQAN2_MATH_H_
 
 // ==========================================================================
 // Prerequisites
 // ==========================================================================
 
-#include <seqan/basic.h>
+#include <seqan2/basic.h>
 #include <limits>
 
 // ==========================================================================
@@ -52,4 +52,4 @@
 #include "math/math_operators.h"
 #include "math/math_rational.h"
 
-#endif  // SEQAN_MATH_H_
+#endif  // SEQAN2_MATH_H_

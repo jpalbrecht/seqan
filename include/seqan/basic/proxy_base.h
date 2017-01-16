@@ -34,10 +34,10 @@
 // Proxy base class definition.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_PROXY_BASE_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_PROXY_BASE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_PROXY_BASE_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_PROXY_BASE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -49,7 +49,7 @@ namespace seqan {
 
 /*!
  * @class Proxy
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Emulates object of another class.
  *
  * @signature template <typename TSpec>
@@ -470,6 +470,6 @@ operator<<(TStream & strm,
     return strm;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_PROXY_BASE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_PROXY_BASE_H_

@@ -37,15 +37,15 @@
 
 #include <iostream>
 
-#include <seqan/sequence.h>
-#include <seqan/store.h>
-#include <seqan/file.h>
-#include <seqan/stream.h>
+#include <seqan2/sequence.h>
+#include <seqan2/store.h>
+#include <seqan2/file.h>
+#include <seqan2/stream.h>
 
-#ifndef SEQAN_APPS_RABEMA_FAI_INDEX_H_
-#define SEQAN_APPS_RABEMA_FAI_INDEX_H_
+#ifndef SEQAN2_APPS_RABEMA_FAI_INDEX_H_
+#define SEQAN2_APPS_RABEMA_FAI_INDEX_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -96,7 +96,7 @@ clear(FaiIndexEntry_ &entry)
 
 /*!
  * @class FaiIndex
- * @headerfile <seqan/seq_io.h>
+ * @headerfile <seqan2/seq_io.h>
  * @brief Data structure for access to FAI indices.
  *
  * @signature class FaiIndex;
@@ -104,7 +104,7 @@ clear(FaiIndexEntry_ &entry)
  * FAI indices allow the rast random access to sequences or parts of sequences in a FASTA file.  Originally, they were
  * introduced in the <a href="http://samtools.sourceforge.net/samtools.shtml">samtools</a> program.
  *
- * Also see the <a href="http://seqan.readthedocs.io/en/develop/Tutorial/InputOutput/IndexedFastaIO.html">Indexed FASTA I/O
+ * Also see the <a href="http://seqan2.readthedocs.io/en/develop/Tutorial/InputOutput/IndexedFastaIO.html">Indexed FASTA I/O
  * Tutorial</a>.
  *
  * @section Example
@@ -345,7 +345,7 @@ inline void readRegion(String<TValue, TSpec> & str,
     skipUntil(reader, countDownIgnore);
     readUntil(str, reader, countDownData, ignWhiteSpace);
     if (!countDownData)
-        SEQAN_THROW(UnexpectedEnd());
+        SEQAN2_THROW(UnexpectedEnd());
 //
 //
 //    typedef typename Iterator<String<char, MMap<> > const, Standard>::Type TSourceIter;
@@ -604,7 +604,7 @@ inline void getRecordInfo(FaiIndexEntry_ & entry, TFwdIterator & iter, Fasta)
         if (cmpPtr->lineLength != entry.lineLength ||
             cmpPtr->overallLineLength != entry.overallLineLength)
         {
-            SEQAN_THROW(ParseError("FastaIndex: Record has inconsistent line lengths or line endings"));
+            SEQAN2_THROW(ParseError("FastaIndex: Record has inconsistent line lengths or line endings"));
         }
 
         clear(countCharsPerLine.func2.func1);
@@ -690,6 +690,6 @@ inline bool build(FaiIndex & index, char const * seqFilename)
     return build(index, seqFilename, toCString(faiFilename));
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_APPS_RABEMA_FAI_INDEX_H_
+#endif  // #ifndef SEQAN2_APPS_RABEMA_FAI_INDEX_H_

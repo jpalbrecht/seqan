@@ -39,10 +39,10 @@
 // the globalFunction() fails is actually meaningful.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_GLOBAL_ALIGNMENT_BANDED_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_GLOBAL_ALIGNMENT_BANDED_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_GLOBAL_ALIGNMENT_BANDED_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_GLOBAL_ALIGNMENT_BANDED_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -486,7 +486,7 @@ TScoreValue globalAlignmentScore(StringSet<TString, TSpec> const & strings,
     typedef AlignConfig2<DPGlobal, DPBandConfig<BandOn>, TFreeEndGaps, TracebackOff> TAlignConfig2;
     typedef typename SubstituteAlgoTag_<TAlgoTag>::Type TGapModel;
 
-    SEQAN_ASSERT_EQ(length(strings), 2u);
+    SEQAN2_ASSERT_EQ(length(strings), 2u);
 
     DPScoutState_<Default> dpScoutState;
     String<TraceSegment_<unsigned, unsigned> > traceSegments;  // Dummy segments.
@@ -504,7 +504,7 @@ TScoreValue globalAlignmentScore(StringSet<TString, TSpec> const & strings,
                                  int upperDiag,
                                  TAlgoTag const & algoTag)
 {
-    SEQAN_ASSERT_EQ(length(strings), 2u);
+    SEQAN2_ASSERT_EQ(length(strings), 2u);
 
     AlignConfig<> alignConfig;
     return globalAlignmentScore(strings[0], strings[1], scoringScheme, alignConfig, lowerDiag, upperDiag, algoTag);
@@ -520,7 +520,7 @@ TScoreValue globalAlignmentScore(StringSet<TString, TSpec> const & strings,
                                  int lowerDiag,
                                  int upperDiag)
 {
-    SEQAN_ASSERT_EQ(length(strings), 2u);
+    SEQAN2_ASSERT_EQ(length(strings), 2u);
 
     if (scoreGapOpen(scoringScheme) == scoreGapExtend(scoringScheme))
         return globalAlignmentScore(strings[0], strings[1], scoringScheme, alignConfig, lowerDiag, upperDiag, NeedlemanWunsch());
@@ -536,7 +536,7 @@ TScoreValue globalAlignmentScore(StringSet<TString, TSpec> const & strings,
                                  int lowerDiag,
                                  int upperDiag)
 {
-    SEQAN_ASSERT_EQ(length(strings), 2u);
+    SEQAN2_ASSERT_EQ(length(strings), 2u);
 
     AlignConfig<> alignConfig;
     return globalAlignmentScore(strings[0], strings[1], scoringScheme, alignConfig, lowerDiag, upperDiag);
@@ -568,7 +568,7 @@ String<TScoreValue> globalAlignmentScore(StringSet<TString, TSpec> const & strin
     typedef AlignConfig2<DPGlobal, DPBandConfig<BandOn>, TFreeEndGaps, TracebackOff> TAlignConfig2;
     typedef typename SubstituteAlgoTag_<TAlgoTag>::Type TGapModel;
 
-    SEQAN_ASSERT_EQ(length(stringsH), length(stringsV));
+    SEQAN2_ASSERT_EQ(length(stringsH), length(stringsV));
     return _alignWrapper(stringsH, stringsV, scoringScheme, TAlignConfig2(lowerDiag, upperDiag), TGapModel());
 }
 
@@ -781,6 +781,6 @@ String<TScoreValue> globalAlignment(StringSet<Align<TSequence, TAlignSpec> > & a
     return globalAlignment(align, scoringScheme, alignConfig, lowerDiag, upperDiag);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_GLOBAL_ALIGNMENT_BANDED_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_GLOBAL_ALIGNMENT_BANDED_H_

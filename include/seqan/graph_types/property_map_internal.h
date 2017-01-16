@@ -33,10 +33,10 @@
 // Author: Tobias Rausch <rausch@embl.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_GRAPH_TYPES_PROPERTY_MAP_INTERNAL_H_
-#define INCLUDE_SEQAN_GRAPH_TYPES_PROPERTY_MAP_INTERNAL_H_
+#ifndef INCLUDE_SEQAN2_GRAPH_TYPES_PROPERTY_MAP_INTERNAL_H_
+#define INCLUDE_SEQAN2_GRAPH_TYPES_PROPERTY_MAP_INTERNAL_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -53,7 +53,7 @@ namespace seqan {
 /*!
  * @class InternalPropertyMap InternalPropertyMap
  * @implements PropertyMapConcept
- * @headerfile <seqan/graph_types.h>
+ * @headerfile <seqan2/graph_types.h>
  * @brief An internal property map with direct access to members.
  *
  * @signature template <typename TMember>
@@ -69,7 +69,7 @@ struct InternalPropertyMap
 {};
 
 template <typename TMember>
-SEQAN_CONCEPT_IMPL((InternalPropertyMap<TMember>), (PropertyMapConcept));
+SEQAN2_CONCEPT_IMPL((InternalPropertyMap<TMember>), (PropertyMapConcept));
 
 // ============================================================================
 // Metafunctions
@@ -222,6 +222,6 @@ getProperty(InternalPropertyMap<TValue> const &, TEdgeDescriptor const e)
     return getCargo(e);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_GRAPH_TYPES_PROPERTY_MAP_INTERNAL_H_
+#endif  // #ifndef INCLUDE_SEQAN2_GRAPH_TYPES_PROPERTY_MAP_INTERNAL_H_

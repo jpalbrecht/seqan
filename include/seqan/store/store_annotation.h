@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_STORE_ANNOTATION_H
-#define SEQAN_HEADER_STORE_ANNOTATION_H
+#ifndef SEQAN2_HEADER_STORE_ANNOTATION_H
+#define SEQAN2_HEADER_STORE_ANNOTATION_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -44,7 +44,7 @@ namespace seqan
 
 /*!
  * @class AnnotationStoreElement
- * @headerfile <seqan/store.h>
+ * @headerfile <seqan2/store.h>
  * @brief Represents an annotation of a genomic feature.
  *
  * @signature template <typename TPos[, typename TSpec]>
@@ -178,7 +178,7 @@ struct AnnotationTree {};
 /*!
  * @class AnnotationTreeIterator
  * @extends Iter
- * @headerfile <seqan/store.h>
+ * @headerfile <seqan2/store.h>
  * @brief Iterator of the annotation tree represetned by a @link FragmentStore @endlink.
  *
  * This iterator can move @link AnnotationTreeIterator#goDown down @endlink, @link AnnotationTreeIterator#goRight right
@@ -1213,6 +1213,6 @@ operator << (std::ostream & out, AnnotationStoreElement<TPos, TSpec> const & ann
     return out;
 }
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

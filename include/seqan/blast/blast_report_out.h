@@ -34,10 +34,10 @@
 // This file contains routines to generate BLAST default output
 // ==========================================================================
 
-#ifndef SEQAN_EXTRAS_BLAST_WRITE_BLAST_REPORT_H_
-#define SEQAN_EXTRAS_BLAST_WRITE_BLAST_REPORT_H_
+#ifndef SEQAN2_EXTRAS_BLAST_WRITE_BLAST_REPORT_H_
+#define SEQAN2_EXTRAS_BLAST_WRITE_BLAST_REPORT_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -54,7 +54,7 @@ namespace seqan {
 /*!
  * @class BlastReport
  * @signature typedef Tag<BlastReport_> BlastReport;
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  * @brief Support for Blast default file format
  *
  * There are three blast format related tags in SeqAn:
@@ -86,7 +86,7 @@ typedef Tag<BlastReport_> BlastReport;
  * @signature template <typename TBlastIOContext = BlastIOContext<>>
  * using BlastReportFileOut = FormattedFile<BlastReport, Output, TBlastIOContext>;
  * @extends FormattedFileOut
- * @headerfile <seqan/blast.h>
+ * @headerfile <seqan2/blast.h>
  * @brief FormattedFileOut abstraction for @link BlastReport @endlink
  *
  * This is a @link FormattedFile @endlink specialization for writing @link BlastReport @endlink formats. For details
@@ -113,7 +113,7 @@ typedef Tag<BlastReport_> BlastReport;
  * </ul>
  *
  * For a detailed example have a look at the
- * <a href="http://seqan.readthedocs.io/en/develop/Tutorial/InputOutput/BlastIO.html">Blast IO tutorial</a>.
+ * <a href="http://seqan2.readthedocs.io/en/develop/Tutorial/InputOutput/BlastIO.html">Blast IO tutorial</a>.
  *
  * @see BlastRecord
  */
@@ -208,7 +208,7 @@ _blastReference()
 }
 
 constexpr const char *
-_seqanReference()
+_seqan2Reference()
 {
     return "Reference for SeqAn: Doering, A., D. Weese, T. Rausch, K. Reinert (2008): "
     "SeqAn --\nAn efficient, generic C++ library for sequence analysis. BMC "
@@ -425,7 +425,7 @@ _writeAlignmentBlockIntermediateChar(TStream & stream,
         write(stream, char1);
     else if ((char1 == '-') || (char2 == '-'))
         write(stream, ' ');
-    else if (score(seqanScheme(context.scoringScheme), char1, char2) > 0)
+    else if (score(seqan2Scheme(context.scoringScheme), char1, char2) > 0)
         write(stream, '+');
     else
         write(stream, ' ');
@@ -663,7 +663,7 @@ _writeRecordFooter(TStream & stream,
 
 /*!
  * @fn BlastReportFileOut#writeRecord
- * @headerfile seqan/blast.h
+ * @headerfile seqan2/blast.h
  * @brief write a @link BlastRecord @endlink including it's @link BlastMatch @endlinkes and possibly comment lines to a file.
  * @signature void writeRecord(blastReportOut, blastRecord);
  *
@@ -699,7 +699,7 @@ writeRecord(TStream & stream,
         for (auto const & m : record.matches)
         {
             CharString str2(m.qId);
-            SEQAN_ASSERT(startsWith(str1, str2));
+            SEQAN2_ASSERT(startsWith(str1, str2));
         }
     }
     #endif// DEBUG
@@ -742,7 +742,7 @@ writeRecord(BlastReportFileOut<TContext> & formattedFile,
 
 /*!
  * @fn BlastReportFileOut#writeHeader
- * @headerfile seqan/blast.h
+ * @headerfile seqan2/blast.h
  * @brief Write the header (top-most section) of a BlastReport file.
  * @signature void writeHeader(blastReportOut);
  *
@@ -772,7 +772,7 @@ writeHeader(TStream & stream,
     // write references
     write(stream, _blastReference());
     write(stream, "\n\n\n");
-    write(stream, _seqanReference());
+    write(stream, _seqan2Reference());
 
     write(stream, "\n\n\nDatabase: ");
     write(stream, context.dbName);
@@ -796,7 +796,7 @@ writeHeader(BlastReportFileOut<TContext> & formattedFile)
 
 /*!
  * @fn BlastReportFileOut#writeFooter
- * @headerfile seqan/blast.h
+ * @headerfile seqan2/blast.h
  * @brief Write the footer of a BlastReport.
  * @signature void writeFooter(blastReportOut);
  *
@@ -844,7 +844,7 @@ writeFooter(TStream & stream,
     write(stream, "\n\n\n\n");
 
     write(stream, "Matrix: ");
-    writeMatrixName(stream, seqanScheme(context.scoringScheme));
+    writeMatrixName(stream, seqan2Scheme(context.scoringScheme));
     write(stream, "\nGap Penalties: Existence: ");
     write(stream, -scoreGapOpenBlast(context.scoringScheme)); // convert scores to penalties
     write(stream, ", Extension: ");
@@ -860,6 +860,6 @@ writeFooter(BlastReportFileOut<TContext> & formattedFile)
     writeFooter(formattedFile.iter, context(formattedFile), BlastReport());
 }
 
-} // namespace seqan
+} // namespace seqan2
 
 #endif // header guard

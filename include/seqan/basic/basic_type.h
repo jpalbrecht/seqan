@@ -38,12 +38,12 @@
 // TODO(holtgrew): Rename to "shared metafunctions.h"?
 // TODO(holtgrew): This could use some cleanup.
 
-#ifndef SEQAN_BASIC_BASIC_TYPE_H_
-#define SEQAN_BASIC_BASIC_TYPE_H_
+#ifndef SEQAN2_BASIC_BASIC_TYPE_H_
+#define SEQAN2_BASIC_BASIC_TYPE_H_
 
 #include <cstddef>
 
-namespace seqan {
+namespace seqan2 {
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -158,7 +158,7 @@ struct Host
 
 /*!
  * @mfn Cargo
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Type of additional data stored in an object.
  *
  * @signature Cargo<T>::Type;
@@ -185,7 +185,7 @@ struct Cargo<T const> {
 
 /*!
  * @mfn VertexDescriptor
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Type of an object that represents a vertex descriptor.
  *
  * @signature VertexDescriptor<T>::Type;
@@ -210,7 +210,7 @@ struct VertexDescriptor<T const>:
 
 /*!
  * @mfn Id
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Type of an object that represents an id.
  *
  * @signature Id<T>::Type
@@ -234,7 +234,7 @@ struct Id<T const> : Id<T> {};
 
 /*!
  * @mfn Key
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Key type of a key to cargo mapping.
  *
  * @signature Key<T>::Type;
@@ -288,7 +288,7 @@ struct Source<T const>:
 
 /*!
  * @mfn IsLightWeight
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Determines whether an object can efficiently be passed by copy.
  *
  * @signature IsLightWeight<T>::Type;
@@ -369,7 +369,7 @@ inline _toParameter(T const & _object)
 
 /*!
  * @mfn Member
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Type of a member of an object.
  *
  * @signature Member<TObject, TSpec>::Type;
@@ -466,14 +466,14 @@ _referenceCast(typename RemoveReference<T>::Type & ptr)
 }
 
 template <typename T>
-inline SEQAN_FUNC_DISABLE_IF(IsSameType<T, typename RemoveReference<T>::Type>, T)
+inline SEQAN2_FUNC_DISABLE_IF(IsSameType<T, typename RemoveReference<T>::Type>, T)
 _referenceCast(typename RemoveReference<T>::Type * ptr)
 {
     return *ptr;
 }
 
 template <typename T>
-inline SEQAN_FUNC_DISABLE_IF(IsSameType<T, typename RemovePointer<T>::Type>, T)
+inline SEQAN2_FUNC_DISABLE_IF(IsSameType<T, typename RemovePointer<T>::Type>, T)
 _referenceCast(typename RemovePointer<T>::Type & ptr)
 {
     return &ptr;
@@ -538,6 +538,6 @@ struct WEIGHT<T const>:
 //////////////////////////////////////////////////////////////////////////////
 
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_BASIC_BASIC_TYPE_H_
+#endif  // #ifndef SEQAN2_BASIC_BASIC_TYPE_H_

@@ -31,17 +31,17 @@
 // ==========================================================================
 
 
-#ifndef SEQAN_HEADER_MAP_VECTOR_H
-#define SEQAN_HEADER_MAP_VECTOR_H
+#ifndef SEQAN2_HEADER_MAP_VECTOR_H
+#define SEQAN2_HEADER_MAP_VECTOR_H
 
 //////////////////////////////////////////////////////////////////////////////
 
-namespace seqan
+namespace seqan2
 {
 /*!
  * @class VectorSet
  * @extends Map
- * @headerfile <seqan/map.h>
+ * @headerfile <seqan2/map.h>
  * @brief A fast map for small key types.
  *
  * @signature template <typename TValue[, typename TSpec]>

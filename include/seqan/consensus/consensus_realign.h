@@ -32,10 +32,10 @@
 // Author: Tobias Rausch <rausch@embl.de>
 // ==========================================================================
 
-#ifndef SEQAN_CONSENSUS_CONSENSUS_REALIGN_H_
-#define SEQAN_CONSENSUS_CONSENSUS_REALIGN_H_
+#ifndef SEQAN2_CONSENSUS_CONSENSUS_REALIGN_H_
+#define SEQAN2_CONSENSUS_CONSENSUS_REALIGN_H_
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -264,7 +264,7 @@ reAlign(FragmentStore<TFragSpec, TConfig>& fragStore,
         if (bandwidth < (TBandwidth) alignIt->beginPos) {
             bandOffset = alignIt->beginPos - bandwidth;
             itCons += bandOffset; itConsPos += bandOffset;
-            SEQAN_ASSERT_LEQ(itCons, itConsEnd);
+            SEQAN2_ASSERT_LEQ(itCons, itConsEnd);
         }
         int leftDiag = (alignIt->beginPos - bandOffset) - bandwidth;
         int rightDiag = leftDiag + 2 * bandwidth;
@@ -289,7 +289,7 @@ reAlign(FragmentStore<TFragSpec, TConfig>& fragStore,
         int diff = 0;
         TReadPos clippedBeginPos = 0;
         TReadPos clippedEndPos = 0;
-        SEQAN_ASSERT_LT(itRead, itReadEnd);
+        SEQAN2_ASSERT_LT(itRead, itReadEnd);
         if ((itGaps != itGapsEnd) && (itGaps->gapPos == 0)) {
             old = itGaps->seqPos;
             clippedBeginPos = old; // gaps at beginning? or really clipped?
@@ -297,20 +297,20 @@ reAlign(FragmentStore<TFragSpec, TConfig>& fragStore,
             itRead += old;
             diff -= old;
             ++itGaps;
-            SEQAN_ASSERT_LT(itRead, itReadEnd);
+            SEQAN2_ASSERT_LT(itRead, itReadEnd);
         }
         for (; itGaps != itGapsEnd && itCons != itConsEnd; ++itGaps) {
             // limit should never be larger than read length
             TReadPos limit = itGaps->seqPos;
-            SEQAN_ASSERT_LT(itGaps->seqPos, (TReadPos)length(fragStore.readSeqStore[alignIt->readId]));
+            SEQAN2_ASSERT_LT(itGaps->seqPos, (TReadPos)length(fragStore.readSeqStore[alignIt->readId]));
             int newDiff = (itGaps->gapPos - limit);
-            SEQAN_ASSERT_LT(itGaps->gapPos, (TReadPos)length(consensus));
+            SEQAN2_ASSERT_LT(itGaps->gapPos, (TReadPos)length(consensus));
             if (diff > newDiff) {
                 clippedEndPos = diff - newDiff;
                 limit -= clippedEndPos;
             }
             for (; old < limit && itCons != itConsEnd && itRead != itReadEnd && bandConsIt != bandConsItEnd; ++old, ++itRead) {
-                //SEQAN_ASSERT_LT(itCons, itConsEnd);
+                //SEQAN2_ASSERT_LT(itCons, itConsEnd);
                 --(*itCons).count[ordValue(*itRead)];
                 if (!empty(*itCons)) {
                     *bandConsIt = *itCons;
@@ -327,11 +327,11 @@ reAlign(FragmentStore<TFragSpec, TConfig>& fragStore,
                 (*myReadIt).count[0] = ordValue(*itRead);
                 ++myReadIt;
                 ++itCons;
-                //SEQAN_ASSERT_LT(itRead, itReadEnd);
+                //SEQAN2_ASSERT_LT(itRead, itReadEnd);
             }
             for (; diff < newDiff && itCons != itConsEnd && bandConsIt != bandConsItEnd; ++diff) {
                 ++increaseBandRight; // deletion --> increaseBandRight, read has gaps here, consensus doesnt
-                //SEQAN_ASSERT_LT(itCons, itConsEnd);
+                //SEQAN2_ASSERT_LT(itCons, itConsEnd);
                 --(*itCons).count[gapPos];
                 if (!empty(*itCons)) {
                     *bandConsIt = *itCons;
@@ -343,8 +343,8 @@ reAlign(FragmentStore<TFragSpec, TConfig>& fragStore,
         }
         if (!clippedEndPos) {
             for (; itRead!=itReadEnd && itCons != itConsEnd && bandConsIt != bandConsItEnd; ++itRead) {
-                //SEQAN_ASSERT_LT(itCons, itConsEnd);
-                //SEQAN_ASSERT_LT(itRead, itReadEnd);
+                //SEQAN2_ASSERT_LT(itCons, itConsEnd);
+                //SEQAN2_ASSERT_LT(itRead, itReadEnd);
                 --(*itCons).count[ordValue(*itRead)];  //subtract the read base to get bandConsensus wo myRead
                 if (!empty(*itCons)) {
                     *bandConsIt = *itCons;
@@ -441,8 +441,8 @@ reAlign(FragmentStore<TFragSpec, TConfig>& fragStore,
                 if (firstMatch) gapLen = 0; // gap between two adjacent segment matches
                 // equivalent to profilePos + fraglen < nextProfilePos
                 while (consPos < (TReadPos)fragIt->begin1) { // cons stretch before newCons start
-                    SEQAN_ASSERT_LT(bandIt, bandItEnd);
-                    SEQAN_ASSERT_LT(newConsIt, end(newConsensus,Standard()));
+                    SEQAN2_ASSERT_LT(bandIt, bandItEnd);
+                    SEQAN2_ASSERT_LT(newConsIt, end(newConsensus,Standard()));
                     if (!firstMatch) ++(*bandIt).count[gapPos]; // fill with gaps if we are between two segment matches
                     *newConsIt = *bandIt;
                     ++newConsIt;
@@ -452,8 +452,8 @@ reAlign(FragmentStore<TFragSpec, TConfig>& fragStore,
                 }
                 // equivalent to refPos + fraglen < nextRefPos
                 while (readPos < (TReadPos)fragIt->begin2) { // read stretch before matching fragment starts
-                    SEQAN_ASSERT_LT(readPos, (TReadPos)length(fragStore.readSeqStore[alignIt->readId]));
-                    SEQAN_ASSERT_LT(newConsIt, end(newConsensus,Standard()));
+                    SEQAN2_ASSERT_LT(readPos, (TReadPos)length(fragStore.readSeqStore[alignIt->readId]));
+                    SEQAN2_ASSERT_LT(newConsIt, end(newConsensus,Standard()));
                     // equivalent to profileDel
                     if (gapLen) {
                         diff += gapLen; // add gap of length gaplen to readGaps
@@ -468,9 +468,9 @@ reAlign(FragmentStore<TFragSpec, TConfig>& fragStore,
                     ++readPos; ++alignPos;
                 }
                 for (TSize i = 0; i<fragIt->len; ++i, ++bandIt, ++consPos, ++readPos, ++alignPos, ++newConsIt) {
-                    SEQAN_ASSERT_LT(bandIt, bandItEnd);
-                    SEQAN_ASSERT_LT(readPos, (TReadPos)length(fragStore.readSeqStore[alignIt->readId]));
-                    SEQAN_ASSERT_LT(newConsIt, end(newConsensus,Standard()));
+                    SEQAN2_ASSERT_LT(bandIt, bandItEnd);
+                    SEQAN2_ASSERT_LT(readPos, (TReadPos)length(fragStore.readSeqStore[alignIt->readId]));
+                    SEQAN2_ASSERT_LT(newConsIt, end(newConsensus,Standard()));
                     if (firstMatch) {
                         firstMatch = false;
                         alignIt->beginPos = bandOffset + consPos;
@@ -479,7 +479,7 @@ reAlign(FragmentStore<TFragSpec, TConfig>& fragStore,
                         appendValue(alignIt->gaps, TGapAnchor(clippedBeginPos + readPos, clippedBeginPos + readPos + diff), Generous() );
                         gapLen = 0;
                     }
-                    SEQAN_ASSERT_LT(bandIt, bandItEnd);
+                    SEQAN2_ASSERT_LT(bandIt, bandItEnd);
                     ++(*bandIt).count[myRead[readPos].count[0]];
                     *newConsIt = *bandIt;
                 }
@@ -491,7 +491,7 @@ reAlign(FragmentStore<TFragSpec, TConfig>& fragStore,
             TProfileChar tmpChar;
             ++tmpChar.count[myRead[readPos].count[0]];
             tmpChar.count[gapPos] += numGaps;
-            SEQAN_ASSERT_LT(newConsIt, end(newConsensus,Standard()));
+            SEQAN2_ASSERT_LT(newConsIt, end(newConsensus,Standard()));
             *newConsIt = tmpChar; ++newConsIt;
             ++alignPos;
         }
@@ -503,7 +503,7 @@ reAlign(FragmentStore<TFragSpec, TConfig>& fragStore,
         }
         for (; bandIt != bandItEnd; ++bandIt, ++newConsIt)
         {
-            SEQAN_ASSERT_LT(newConsIt, end(newConsensus,Standard()));
+            SEQAN2_ASSERT_LT(newConsIt, end(newConsensus,Standard()));
             *newConsIt = *bandIt;
         }
         resize(newConsensus, newConsIt - begin(newConsensus, Standard()), Generous());
@@ -521,7 +521,7 @@ reAlign(FragmentStore<TFragSpec, TConfig>& fragStore,
 
 /*!
  * @fn reAlign
- * @headerfile <seqan/consensus.h>
+ * @headerfile <seqan2/consensus.h>
  * @brief Perform realignment using the Anson-Myers realignment.
  *
  * @deprecated Do not use this function but use the new function @link reAlignment @endlink instead.
@@ -672,14 +672,14 @@ reAlign(FragmentStore<TSpec, TConfig> & fragStore,
         for(;itGaps != itGapsEnd; ++itGaps) {
             TReadPos limit = itGaps->seqPos;
             int newDiff = (itGaps->gapPos - limit);
-            SEQAN_ASSERT_LT(itGaps->gapPos, (int)length(consensus));
+            SEQAN2_ASSERT_LT(itGaps->gapPos, (int)length(consensus));
             if (diff > newDiff) {
                 limit -= (diff - newDiff);
                 clippedEnd = true;
             }
             for(;old < limit && itRead != itReadEnd && itCons != itConsEnd; ++old, ++itRead)
             {
-                SEQAN_ASSERT_LT(itRead, itReadEnd);
+                SEQAN2_ASSERT_LT(itRead, itReadEnd);
                 ++(value(itCons++)).count[ordValue(*itRead)];
             }
             for(;diff < newDiff; ++diff)
@@ -789,6 +789,6 @@ reAlign(FragmentStore<TSpec, TConfig>& fragStore,
     reAlign(fragStore, consScore, contigId, 0, bandwidth, includeReference);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_CONSENSUS_CONSENSUS_REALIGN_H_
+#endif  // #ifndef SEQAN2_CONSENSUS_CONSENSUS_REALIGN_H_

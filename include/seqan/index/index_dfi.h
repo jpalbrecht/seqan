@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_INDEX_DFI_H
-#define SEQAN_HEADER_INDEX_DFI_H
+#ifndef SEQAN2_HEADER_SEQAN2_INDEX_DFI_H
+#define SEQAN2_HEADER_SEQAN2_INDEX_DFI_H
 
-namespace seqan
+namespace seqan2
 {
 
 
@@ -68,7 +68,7 @@ namespace seqan
 /*!
  * @class IndexDfi
  * @extends IndexWotd
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief The Deferred Frequency Index (see Weese and Schulz, "Efficient string mining under constraints via
  *        the deferred frequency index").
@@ -115,7 +115,7 @@ namespace seqan
 //////////////////////////////////////////////////////////////////////////////
 /*!
  * @fn IndexDfi#indexSA
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>getFibre(.., DfiSA)</tt>.
  *
  * @signature TSa indexSA(index);
@@ -127,7 +127,7 @@ namespace seqan
 
 /*!
  * @fn IndexDfi#indexDir
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>getFibre(.., DfiDir())</tt>.
  * @signature TFibre indexDir(index);
  *
@@ -138,7 +138,7 @@ namespace seqan
 
 /*!
  * @fn IndexDfi#saAt
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @note Advanced functionality, not commonly used.
  * @brief Shortcut for <tt>value(indexSA(..), ..)</tt>.
  *
@@ -154,7 +154,7 @@ namespace seqan
 
 /*!
  * @fn IndexDfi#dirAt
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief Shortcut for <tt>value(indexDir(index), position)</tt>.
  *
  * @signature TFibre dirAt(position, index);
@@ -689,4 +689,4 @@ namespace seqan
     }
 }
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

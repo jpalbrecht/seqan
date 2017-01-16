@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_STORE_STORE_IO_UCSC_H
-#define SEQAN_INCLUDE_STORE_STORE_IO_UCSC_H
+#ifndef SEQAN2_INCLUDE_STORE_STORE_IO_UCSC_H
+#define SEQAN2_INCLUDE_STORE_STORE_IO_UCSC_H
 
-namespace seqan {
+namespace seqan2 {
 
 //////////////////////////////////////////////////////////////////////////////
 // add a UCSC record to FragmentStore
@@ -52,7 +52,7 @@ _storeAnnotationRecord(
     typedef typename Value<TAnnotationStore>::Type      TAnnotation;
     typedef typename TAnnotation::TId                   TId;
 
-    SEQAN_ASSERT_EQ(length(fragStore.annotationStore), length(fragStore.annotationNameStore));
+    SEQAN2_ASSERT_EQ(length(fragStore.annotationStore), length(fragStore.annotationNameStore));
 
     // add transcript and CDS
     TId transId = TAnnotation::INVALID_ID;
@@ -112,7 +112,7 @@ _storeAnnotationRecord(
     typedef typename Value<TAnnotationStore>::Type      TAnnotation;
     typedef typename TAnnotation::TId                   TId;
 
-    SEQAN_ASSERT_EQ(length(fragStore.annotationStore), length(fragStore.annotationNameStore));
+    SEQAN2_ASSERT_EQ(length(fragStore.annotationStore), length(fragStore.annotationNameStore));
 
     TId geneId = TAnnotation::INVALID_ID;
     TId transId = TAnnotation::INVALID_ID;
@@ -142,7 +142,7 @@ _storeAnnotationRecord(
     UcscRecord const & /*record*/,
     TagSelector<> const & /*format*/)
 {
-    SEQAN_FAIL("AnnotationStore: File format not specified.");
+    SEQAN2_FAIL("AnnotationStore: File format not specified.");
 }
 
 template <typename TSpec, typename TConfig, typename TTagList>
@@ -303,6 +303,6 @@ writeRecords(FormattedFile<Ucsc, Output, TSpec> & ucscFile,
     writeRecords(ucscFile, store, format(ucscFile));
 }
 
-} // namespace seqan
+} // namespace seqan2
 
-#endif //#ifndef SEQAN_INCLUDE_STORE_STORE_IO_UCSC_H
+#endif //#ifndef SEQAN2_INCLUDE_STORE_STORE_IO_UCSC_H

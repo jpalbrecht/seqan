@@ -33,10 +33,10 @@
 // Author: Enrico Siragusa <enrico.siragusa@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_SEQUENCE_CONTAINER_VIEW_H
-#define SEQAN_SEQUENCE_CONTAINER_VIEW_H
+#ifndef SEQAN2_SEQUENCE_CONTAINER_VIEW_H
+#define SEQAN2_SEQUENCE_CONTAINER_VIEW_H
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags, Classes, Enums
@@ -56,7 +56,7 @@ struct Resizable;
 /*!
  * @class ContainerView
  * @implements ContainerConcept
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  *
  * @brief Generates a non-resizable view over a container.
  *
@@ -167,7 +167,7 @@ public:
 /*!
  * @class ResizableContainerView
  * @extends ContainerView
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  *
  * @brief Generates a resizable view over a container.
  *
@@ -229,10 +229,10 @@ public:
 // ----------------------------------------------------------------------------
 
 template <typename TContainer, typename TSpec>
-SEQAN_CONCEPT_IMPL((ContainerView<TContainer, TSpec>), (ContainerConcept));
+SEQAN2_CONCEPT_IMPL((ContainerView<TContainer, TSpec>), (ContainerConcept));
 
 template <typename TContainer, typename TSpec>
-SEQAN_CONCEPT_IMPL((ContainerView<TContainer, TSpec> const), (ContainerConcept));
+SEQAN2_CONCEPT_IMPL((ContainerView<TContainer, TSpec> const), (ContainerConcept));
 
 // ----------------------------------------------------------------------------
 // Metafunction View
@@ -450,7 +450,7 @@ inline
 typename Reference<ContainerView<TContainer, TSpec> >::Type
 value(ContainerView<TContainer, TSpec> & view, TPos pos)
 {
-    SEQAN_ASSERT_LT_MSG(pos, static_cast<TPos>(length(view)), "Trying to acces an element behind the last one!");
+    SEQAN2_ASSERT_LT_MSG(pos, static_cast<TPos>(length(view)), "Trying to acces an element behind the last one!");
     return *(view._begin + pos);
 }
 
@@ -459,7 +459,7 @@ inline
 typename Reference<ContainerView<TContainer, TSpec> const>::Type
 value(ContainerView<TContainer, TSpec> const & view, TPos pos)
 {
-    SEQAN_ASSERT_LT_MSG(pos, static_cast<TPos>(length(view)), "Trying to acces an element behind the last one!");
+    SEQAN2_ASSERT_LT_MSG(pos, static_cast<TPos>(length(view)), "Trying to acces an element behind the last one!");
     return *(view._begin + pos);
 }
 
@@ -472,7 +472,7 @@ inline
 typename GetValue<ContainerView<TContainer, TSpec> >::Type
 getValue(ContainerView<TContainer, TSpec> & view, TPos pos)
 {
-    SEQAN_ASSERT_LT_MSG(pos, static_cast<TPos>(length(view)), "Trying to acces an element behind the last one!");
+    SEQAN2_ASSERT_LT_MSG(pos, static_cast<TPos>(length(view)), "Trying to acces an element behind the last one!");
     return getValue(view._begin + pos);
 }
 
@@ -481,7 +481,7 @@ inline
 typename GetValue<ContainerView<TContainer, TSpec> const>::Type
 getValue(ContainerView<TContainer, TSpec> const & view, TPos pos)
 {
-    SEQAN_ASSERT_LT_MSG(pos, static_cast<TPos>(length(view)), "Trying to acces an element behind the last one!");
+    SEQAN2_ASSERT_LT_MSG(pos, static_cast<TPos>(length(view)), "Trying to acces an element behind the last one!");
     return getValue(view._begin + pos);
 }
 
@@ -511,7 +511,7 @@ resize(ContainerView<TContainer, TSpec> & me, TSize new_length, TValue /* val */
 {
     ignoreUnusedVariableWarning(new_length);
 
-    SEQAN_ASSERT_EQ(new_length, (TSize)length(me));
+    SEQAN2_ASSERT_EQ(new_length, (TSize)length(me));
     return length(me);
 }
 
@@ -530,7 +530,7 @@ template <typename TContainer, typename TSpec, typename TSize, typename TValue, 
 inline typename Size< ContainerView<TContainer, Resizable<TSpec> > >::Type
 resize(ContainerView<TContainer, Resizable<TSpec> > & me, TSize new_length, TValue /* val */, Tag<TExpand>)
 {
-    SEQAN_ASSERT_LEQ(new_length, (TSize)capacity(me));
+    SEQAN2_ASSERT_LEQ(new_length, (TSize)capacity(me));
 
     me._end = me._begin + new_length;
 
@@ -719,6 +719,6 @@ operator<<(TStream & target, ContainerView<TContainer, TSpec> const & source)
 //    assign(dest, src);
 //}
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_SEQUENCE_CONTAINER_VIEW_H
+#endif  // #ifndef SEQAN2_SEQUENCE_CONTAINER_VIEW_H

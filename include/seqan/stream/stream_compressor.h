@@ -32,11 +32,11 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_STREAM_STREAM_COMPRESSOR_H_
-#define SEQAN_STREAM_STREAM_COMPRESSOR_H_
+#ifndef SEQAN2_STREAM_STREAM_COMPRESSOR_H_
+#define SEQAN2_STREAM_STREAM_COMPRESSOR_H_
 
 
-#if SEQAN_HAS_ZLIB
+#if SEQAN2_HAS_ZLIB
 // Zlib headers
 #include <zlib.h>
 #include "iostream_zutil.h"
@@ -44,7 +44,7 @@
 
 #include <algorithm>    // copy
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -70,7 +70,7 @@ struct CompressionContext {};
 template <typename TAlgTag>
 struct DefaultPageSize;
 
-#if SEQAN_HAS_ZLIB
+#if SEQAN2_HAS_ZLIB
 
 template <>
 struct CompressionContext<GZFile>
@@ -227,7 +227,7 @@ compress(TTarget & target, TSourceIterator & source, CompressionContext<BgzfFile
 
         tChunk = getChunk(target, Output());
         size_t size = std::min(headerLeft, length(tChunk));
-        SEQAN_ASSERT_GT(size, 0u);
+        SEQAN2_ASSERT_GT(size, 0u);
 
         std::copy(tChunk.begin, sChunk.begin, size);
 
@@ -245,7 +245,7 @@ compress(TTarget & target, TSourceIterator & source, CompressionContext<BgzfFile
         ctx.strm.avail_in = length(sChunk) * sizeof(TSourceValue);
         ctx.strm.avail_out = length(tChunk);
 
-        SEQAN_ASSERT_GT(ctx.strm.avail_out, 0u);
+        SEQAN2_ASSERT_GT(ctx.strm.avail_out, 0u);
 
         int status = deflate(&ctx.strm, Z_NO_FLUSH);
         if (status != Z_OK)
@@ -313,9 +313,9 @@ _compressBlock(TDestValue *dstBegin,   TDestCapacity dstCapacity,
     const size_t BLOCK_HEADER_LENGTH = DefaultPageSize<BgzfFile>::BLOCK_HEADER_LENGTH;
     const size_t BLOCK_FOOTER_LENGTH = DefaultPageSize<BgzfFile>::BLOCK_FOOTER_LENGTH;
 
-    SEQAN_ASSERT_GT(dstCapacity, BLOCK_HEADER_LENGTH + BLOCK_FOOTER_LENGTH);
-    SEQAN_ASSERT_EQ(sizeof(TDestValue), 1u);
-    SEQAN_ASSERT_EQ(sizeof(unsigned), 4u);
+    SEQAN2_ASSERT_GT(dstCapacity, BLOCK_HEADER_LENGTH + BLOCK_FOOTER_LENGTH);
+    SEQAN2_ASSERT_EQ(sizeof(TDestValue), 1u);
+    SEQAN2_ASSERT_EQ(sizeof(unsigned), 4u);
 
     // 1. COPY HEADER
 
@@ -402,7 +402,7 @@ guessFormatFromStream(TStream &istream, BgzfFile)
     char putbackBuf[18];
     bool match = false;
 
-    SEQAN_ASSERT(istream.good());
+    SEQAN2_ASSERT(istream.good());
 
     // try to read and check header
     size_t numRead = istream.readsome(&putbackBuf[0], sizeof(putbackBuf));
@@ -413,7 +413,7 @@ guessFormatFromStream(TStream &istream, BgzfFile)
     for (; numRead > 0; --numRead)
         istream.unget();
 
-    SEQAN_ASSERT(istream.good());
+    SEQAN2_ASSERT(istream.good());
 
     return match;
 }
@@ -430,8 +430,8 @@ _decompressBlock(TDestValue *dstBegin,   TDestCapacity dstCapacity,
     const size_t BLOCK_HEADER_LENGTH = DefaultPageSize<BgzfFile>::BLOCK_HEADER_LENGTH;
     const size_t BLOCK_FOOTER_LENGTH = DefaultPageSize<BgzfFile>::BLOCK_FOOTER_LENGTH;
 
-    SEQAN_ASSERT_EQ(sizeof(TSourceValue), 1u);
-    SEQAN_ASSERT_EQ(sizeof(unsigned), 4u);
+    SEQAN2_ASSERT_EQ(sizeof(TSourceValue), 1u);
+    SEQAN2_ASSERT_EQ(sizeof(unsigned), 4u);
 
     // 1. CHECK HEADER
 
@@ -482,8 +482,8 @@ _decompressBlock(TDestValue *dstBegin,   TDestCapacity dstCapacity,
     return (dstCapacity - ctx.strm.avail_out) / sizeof(TDestValue);
 }
 
-#endif  // #if SEQAN_HAS_ZLIB
+#endif  // #if SEQAN2_HAS_ZLIB
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_STREAM_STREAM_COMPRESSOR_H_
+#endif  // SEQAN2_STREAM_STREAM_COMPRESSOR_H_

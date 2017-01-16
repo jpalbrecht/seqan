@@ -32,10 +32,10 @@
 // Author: Tobias Rausch <rausch@embl.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_FRAGMENT_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_FRAGMENT_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_FRAGMENT_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_FRAGMENT_H_
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -45,7 +45,7 @@ namespace seqan
 /*!
  * @class ExactFragment
  * @extends Fragment
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief A type for ungapped, pairwise segment matches.
  *
  * @signature template <[typename TSize[, typename TSpec]]>
@@ -62,7 +62,7 @@ struct ExactFragment;
 /*!
  * @class ExactReversableFragment
  * @extends Fragment
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief A type for ungapped, pairwise segment matches that maybe in reverse orientation.
  *
  * Compared to the @link ExactFragment @endlink <tt>ExactReversableFragment</tt> is a specialized type of @link Fragment @endlink. A @link
@@ -86,7 +86,7 @@ struct ExactReversableFragment;
 
 /*!
  * @class Fragment
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief A type for pairwise segment matches.
  *
  * @signature template <[typename TSize[, typename TSpec]]>
@@ -420,14 +420,14 @@ getProjectedPosition(Fragment<TSize, ExactFragment<TSpec> > const& f,
     typedef typename Id<Fragment<TSize, TSpec> >::Type TId;
 
     if ((TId) seqId == f.seqId1) {
-        SEQAN_ASSERT((TPosition1)f.begin1<=pos);
-        SEQAN_ASSERT(pos - f.begin1 < f.len)    ;
+        SEQAN2_ASSERT((TPosition1)f.begin1<=pos);
+        SEQAN2_ASSERT(pos - f.begin1 < f.len)    ;
         pos2 = f.begin2 + (pos - f.begin1);
         seqId2 = f.seqId2;
         return;
     } else {
-        SEQAN_ASSERT((TPosition1)f.begin2<=pos);
-        SEQAN_ASSERT(pos - f.begin2 < f.len);
+        SEQAN2_ASSERT((TPosition1)f.begin2<=pos);
+        SEQAN2_ASSERT(pos - f.begin2 < f.len);
         pos2 = f.begin1 + (pos - f.begin2);
         seqId2 = f.seqId1;
         return;
@@ -447,17 +447,17 @@ getProjectedPosition(Fragment<TSize, ExactFragment<TSpec> > const& f,
                      TPosition2& pos2)
 {
     (void) seqId;  // When compiled without assertions.
-    SEQAN_ASSERT((seg_num == 0 && seqId == f.seqId1) || (seg_num == 1 && seqId == f.seqId2));
+    SEQAN2_ASSERT((seg_num == 0 && seqId == f.seqId1) || (seg_num == 1 && seqId == f.seqId2));
 
     if (seg_num == 0) {
-        SEQAN_ASSERT((TPosition1)f.begin1<=pos);
-        SEQAN_ASSERT(pos - f.begin1 < f.len)    ;
+        SEQAN2_ASSERT((TPosition1)f.begin1<=pos);
+        SEQAN2_ASSERT(pos - f.begin1 < f.len)    ;
         pos2 = f.begin2 + (pos - f.begin1);
         seqId2 = f.seqId2;
         return;
     } else {
-        SEQAN_ASSERT((TPosition1)f.begin2<=pos);
-        SEQAN_ASSERT(pos - f.begin2 < f.len);
+        SEQAN2_ASSERT((TPosition1)f.begin2<=pos);
+        SEQAN2_ASSERT(pos - f.begin2 < f.len);
         pos2 = f.begin1 + (pos - f.begin2);
         seqId2 = f.seqId1;
         return;
@@ -479,15 +479,15 @@ getProjectedPosition(Fragment<TSize, ExactReversableFragment<TSpec> > const& f,
     typedef typename Id<Fragment<TSize, TSpec> >::Type TId;
 
     if ((TId) seqId == f.seqId1) {
-        SEQAN_ASSERT((TPosition1)f.begin1<=pos);
-        SEQAN_ASSERT(pos - f.begin1 < f.len)    ;
+        SEQAN2_ASSERT((TPosition1)f.begin1<=pos);
+        SEQAN2_ASSERT(pos - f.begin1 < f.len)    ;
         if (f.reversed) pos2 = (f.begin2 + f.len - 1) - (pos - f.begin1);
         else pos2 = f.begin2 + (pos - f.begin1);
         seqId2 = f.seqId2;
         return;
     } else {
-        SEQAN_ASSERT((TPosition1)f.begin2<=pos);
-        SEQAN_ASSERT(pos - f.begin2 < f.len);
+        SEQAN2_ASSERT((TPosition1)f.begin2<=pos);
+        SEQAN2_ASSERT(pos - f.begin2 < f.len);
         if (f.reversed) pos2 = (f.begin1 + f.len - 1) - (pos - f.begin2);
         else pos2 = f.begin1 + (pos - f.begin2);
         seqId2 = f.seqId1;
@@ -508,18 +508,18 @@ getProjectedPosition(Fragment<TSize, ExactReversableFragment<TSpec> > const& f,
                      TPosition2& pos2)
 {
     (void) seqId;  // When compiled without assertions.
-    SEQAN_ASSERT((seg_num == 0 && seqId==f.seqId1) || (seg_num == 1 && seqId==f.seqId2));
+    SEQAN2_ASSERT((seg_num == 0 && seqId==f.seqId1) || (seg_num == 1 && seqId==f.seqId2));
 
     if (seg_num == 0) {
-        SEQAN_ASSERT((TPosition1)f.begin1<=pos);
-        SEQAN_ASSERT(pos - f.begin1 < f.len)    ;
+        SEQAN2_ASSERT((TPosition1)f.begin1<=pos);
+        SEQAN2_ASSERT(pos - f.begin1 < f.len)    ;
         if (f.reversed) pos2 = (f.begin2 + f.len - 1) - (pos - f.begin1);
         else pos2 = f.begin2 + (pos - f.begin1);
         seqId2 = f.seqId2;
         return;
     } else {
-        SEQAN_ASSERT((TPosition1)f.begin2<=pos);
-        SEQAN_ASSERT(pos - f.begin2 < f.len);
+        SEQAN2_ASSERT((TPosition1)f.begin2<=pos);
+        SEQAN2_ASSERT(pos - f.begin2 < f.len);
         if (f.reversed) pos2 = (f.begin1 + f.len - 1) - (pos - f.begin2);
         else pos2 = f.begin1 + (pos - f.begin2);
         seqId2 = f.seqId1;
@@ -566,6 +566,6 @@ inline bool operator>(Fragment<TSize, ExactFragment<TSpec> > const & lhs,
     return false;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_FRAGMENT_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_FRAGMENT_H_

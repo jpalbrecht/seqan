@@ -32,12 +32,12 @@
 // Author: Rene Rahn <rene.rahn@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_BASIC_ITERATOR_ZIP_H_
-#define INCLUDE_SEQAN_BASIC_ITERATOR_ZIP_H_
+#ifndef INCLUDE_SEQAN2_BASIC_ITERATOR_ZIP_H_
+#define INCLUDE_SEQAN2_BASIC_ITERATOR_ZIP_H_
 
 #include <tuple>
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -48,11 +48,11 @@ namespace seqan
 // in order to call a function on each element of the parameter pack.
 template <typename T>
 inline void
-_seqanUnpackFunc(std::initializer_list<T> const /*unused*/)
+_seqan2UnpackFunc(std::initializer_list<T> const /*unused*/)
 {}
 
 // This macro is used to hide wrapping the function call as an initializer-list.
-#define SEQAN_UNPACK_FUNC(f) _seqanUnpackFunc({(f, 0)...})
+#define SEQAN2_UNPACK_FUNC(f) _seqan2UnpackFunc({(f, 0)...})
 
 // ============================================================================
 // Tags, Classes, Enums
@@ -73,7 +73,7 @@ typedef Tag<ZipIterator_> ZipIterator;
  * @extends Iter
  * @implements IteratorAssociatedTypesConcept
  *
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @brief Zips multiple iterators over different containers into a single iterator.
  *
@@ -157,7 +157,7 @@ struct MakeIndexSequence<0, Indices...>
 
 /*!
  * @mfn ZipIterator#Container
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Retruns the Container type of the @link ZipIterator @endlink.
  *
  * @signature typename Container<TZipIterator>::Type;
@@ -182,7 +182,7 @@ struct Container<Iter<std::tuple<TIteratorPack...>, ZipIterator> >
 
 /*!
  * @mfn ZipIterator#Value
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Retruns the Value type of the @link ZipIterator @endlink.
  *
  * @signature typename Value<TZipIterator>::Type;
@@ -204,7 +204,7 @@ struct Value<Iter<std::tuple<TIteratorPack...>, ZipIterator> >
 
 /*!
  * @mfn ZipIterator#GetValue
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Retruns the GetValue type of the @link ZipIterator @endlink.
  *
  * @signature typename GetValue<TZipIterator>::Type;
@@ -226,7 +226,7 @@ struct GetValue<Iter<std::tuple<TIteratorPack...>, ZipIterator> >
 
 /*!
  * @mfn ZipIterator#Reference
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Retruns the Reference type of the @link ZipIterator @endlink.
  *
  * @signature typename GetValue<TZipIterator>::Type;
@@ -292,7 +292,7 @@ inline void
 increment(std::tuple<TIteratorPack...> & me,
           IndexSequence<INDEX_SEQUENCE...> const)
 {
-    SEQAN_UNPACK_FUNC(++std::get<INDEX_SEQUENCE>(me));
+    SEQAN2_UNPACK_FUNC(++std::get<INDEX_SEQUENCE>(me));
 }
 
 // ----------------------------------------------------------------------------
@@ -305,7 +305,7 @@ inline void
 decrement(std::tuple<TIteratorPack...> & me,
           IndexSequence<INDEX_SEQUENCE...> const)
 {
-    SEQAN_UNPACK_FUNC(--std::get<INDEX_SEQUENCE>(me));
+    SEQAN2_UNPACK_FUNC(--std::get<INDEX_SEQUENCE>(me));
 }
 
 // ----------------------------------------------------------------------------
@@ -319,7 +319,7 @@ advance(std::tuple<TIteratorPack...> & me,
         IndexSequence<INDICES...> const,
         TIntegral const steps)
 {
-    SEQAN_UNPACK_FUNC(std::advance(std::get<INDICES>(me), steps));
+    SEQAN2_UNPACK_FUNC(std::advance(std::get<INDICES>(me), steps));
 }
 
 // ----------------------------------------------------------------------------
@@ -354,7 +354,7 @@ assignValue(std::tuple<TRefPack...> targetPack,
             std::tuple<TValuePack...> const & sourcePack,
             IndexSequence<INDEX_SEQUENCE...> const)
 {
-    SEQAN_UNPACK_FUNC(assign(std::get<INDEX_SEQUENCE>(targetPack), std::get<INDEX_SEQUENCE>(sourcePack)));
+    SEQAN2_UNPACK_FUNC(assign(std::get<INDEX_SEQUENCE>(targetPack), std::get<INDEX_SEQUENCE>(sourcePack)));
 }
 
 // ----------------------------------------------------------------------------
@@ -368,7 +368,7 @@ moveValue(std::tuple<TRefPack...> targetPack,
           std::tuple<TValuePack...> const & sourcePack,
           IndexSequence<INDEX_SEQUENCE...> const)
 {
-    SEQAN_UNPACK_FUNC(move(std::get<INDEX_SEQUENCE>(targetPack), std::get<INDEX_SEQUENCE>(sourcePack)));
+    SEQAN2_UNPACK_FUNC(move(std::get<INDEX_SEQUENCE>(targetPack), std::get<INDEX_SEQUENCE>(sourcePack)));
 }
 
 }  // namespace impl
@@ -636,7 +636,7 @@ moveValue(Iter<std::tuple<TIteratorPack...>, ZipIterator> & target,
 
 /*!
  * @fn makeZipIterator
- * @headerfile <seqan/basic_iterator.h>
+ * @headerfile <seqan2/basic_iterator.h>
  * @brief Creates a @link ZipIterator @endlink, deducing the iterator types from the arguments.
  *
  * @signature iter makeZipIterator(TIteratorTypes... args)
@@ -654,4 +654,4 @@ makeZipIterator(TIteratorPack... iterPack)
 
 }
 
-#endif  // #ifndef INCLUDE_SEQAN_BASIC_ITERATOR_ZIP_H_
+#endif  // #ifndef INCLUDE_SEQAN2_BASIC_ITERATOR_ZIP_H_

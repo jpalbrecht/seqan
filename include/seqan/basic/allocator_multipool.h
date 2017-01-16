@@ -34,12 +34,12 @@
 // Allocator that pools blocks up to a given size.
 // ==========================================================================
 
-#ifndef SEQAN_BASIC_BASIC_ALLOCATOR_MULTIPOOL_H_
-#define SEQAN_BASIC_BASIC_ALLOCATOR_MULTIPOOL_H_
+#ifndef SEQAN2_BASIC_BASIC_ALLOCATOR_MULTIPOOL_H_
+#define SEQAN2_BASIC_BASIC_ALLOCATOR_MULTIPOOL_H_
 
-#include <seqan/basic/allocator_interface.h>
+#include <seqan2/basic/allocator_interface.h>
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -52,7 +52,7 @@ namespace seqan {
 /*!
  * @class MultiPoolAllocator
  * @extends Allocator
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Allocator that pools memory blocks.
  *
  * @signature template <typename TParentAllocator[, unsigned BLOCKING_LIMIT]>
@@ -174,7 +174,7 @@ _allocatorBlockNumber(Allocator<MultiPool<TParentAllocator, BLOCKING_LIMIT> > &,
 {
     typedef Allocator<MultiPool<TParentAllocator, BLOCKING_LIMIT> > TAllocator;
 
-    SEQAN_ASSERT_GT(size_, 0u);
+    SEQAN2_ASSERT_GT(size_, 0u);
 
     if (size_ < BLOCKING_LIMIT)
     {//blocks
@@ -257,6 +257,6 @@ deallocate(Allocator<MultiPool<TParentAllocator, BLOCKING_LIMIT> > & me,
     me.data_recycled_blocks[block_number] = reinterpret_cast<char *>(data);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_BASIC_BASIC_ALLOCATOR_MULTIPOOL_H_
+#endif  // #ifndef SEQAN2_BASIC_BASIC_ALLOCATOR_MULTIPOOL_H_

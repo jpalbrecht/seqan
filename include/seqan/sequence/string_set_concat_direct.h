@@ -37,12 +37,12 @@
 // concatenation of all strings within one string.
 // ==========================================================================
 
-#ifndef SEQAN_SEQUENCE_STRING_SET_CONCAT_DIRECT_H_
-#define SEQAN_SEQUENCE_STRING_SET_CONCAT_DIRECT_H_
+#ifndef SEQAN2_SEQUENCE_STRING_SET_CONCAT_DIRECT_H_
+#define SEQAN2_SEQUENCE_STRING_SET_CONCAT_DIRECT_H_
 
 #include <algorithm>
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -60,7 +60,7 @@ struct ConcatDirect;                    // contains 1 string (the concatenation 
 /*!
  * @class ConcatDirectStringSet ConcatDirect StringSet
  * @extends OwnerStringSet
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Owner StringSet implementation that stores strings in one large underlying string.
  *
  * @signature template <typename TString>
@@ -350,7 +350,7 @@ inline void _refreshStringSetLimits(StringSet<TString, Owner<ConcatDirect<TSpec>
 
 // more efficient overload for concat direct stringsets
 template <typename TString, typename TSpec, typename TStrings2, typename TExpand >
-inline SEQAN_FUNC_ENABLE_IF(And<Is<ContainerConcept<TStrings2> >,
+inline SEQAN2_FUNC_ENABLE_IF(And<Is<ContainerConcept<TStrings2> >,
                                 Is<ContainerConcept<typename Value<TStrings2>::Type > > >, void)
 append(StringSet<TString, Owner<ConcatDirect<TSpec> > > & me,
        TStrings2 const & obj,
@@ -376,7 +376,7 @@ append(StringSet<TString1, Owner<ConcatDirect<TSpec1> > > & me,
     typedef StringSet<TString1, Owner<ConcatDirect<TSpec1> > > TMe;
     typedef typename Iterator<typename StringSetLimits<TMe>::Type>::Type TIt;
 
-    if (SEQAN_UNLIKELY(empty(obj)))
+    if (SEQAN2_UNLIKELY(empty(obj)))
         return;
 
     TSize const oldLimLength = length(me.limits);
@@ -457,7 +457,7 @@ inline void replace(
 
 // // general case
 template <typename TString, typename TSpec, typename TPositionBegin, typename TPositionEnd, typename TSource, typename TExpand >
-inline SEQAN_FUNC_ENABLE_IF(And<Is<ContainerConcept<TSource> >, Is<ContainerConcept<typename Value<TSource>::Type> > >, void)
+inline SEQAN2_FUNC_ENABLE_IF(And<Is<ContainerConcept<TSource> >, Is<ContainerConcept<typename Value<TSource>::Type> > >, void)
 replace(StringSet<TString, Owner<ConcatDirect<TSpec> > > & target,
         TPositionBegin pos_begin,
         TPositionEnd pos_end,
@@ -572,7 +572,7 @@ reserve(StringSet<TString, Owner<ConcatDirect<TSpec> > > & me,
 // --------------------------------------------------------------------------
 
 template <typename TString, typename TSpec, typename TPosition >
-inline SEQAN_FUNC_DISABLE_IF(Is<IntegerConcept<TPosition> >,
+inline SEQAN2_FUNC_DISABLE_IF(Is<IntegerConcept<TPosition> >,
                              typename PrefixOnValue<StringSet<TString, Owner<ConcatDirect<TSpec> > > >::Type)
 prefix(StringSet<TString, Owner<ConcatDirect<TSpec> > > & me, TPosition pos)
 {
@@ -580,7 +580,7 @@ prefix(StringSet<TString, Owner<ConcatDirect<TSpec> > > & me, TPosition pos)
 }
 
 template <typename TString, typename TSpec, typename TPosition >
-inline SEQAN_FUNC_DISABLE_IF(Is<IntegerConcept<TPosition> >,
+inline SEQAN2_FUNC_DISABLE_IF(Is<IntegerConcept<TPosition> >,
                              typename PrefixOnValue<StringSet<TString, Owner<ConcatDirect<TSpec> > > const>::Type)
 prefix(StringSet<TString, Owner<ConcatDirect<TSpec> > > const & me, TPosition pos)
 {
@@ -592,7 +592,7 @@ prefix(StringSet<TString, Owner<ConcatDirect<TSpec> > > const & me, TPosition po
 // --------------------------------------------------------------------------
 
 template <typename TString, typename TSpec, typename TPosition >
-inline SEQAN_FUNC_DISABLE_IF(Is<IntegerConcept<TPosition> >,
+inline SEQAN2_FUNC_DISABLE_IF(Is<IntegerConcept<TPosition> >,
                              typename SuffixOnValue<StringSet<TString, Owner<ConcatDirect<TSpec> > > >::Type)
 suffix(StringSet<TString, Owner<ConcatDirect<TSpec> > > & me, TPosition pos)
 {
@@ -600,7 +600,7 @@ suffix(StringSet<TString, Owner<ConcatDirect<TSpec> > > & me, TPosition pos)
 }
 
 template <typename TString, typename TSpec, typename TPosition >
-inline SEQAN_FUNC_DISABLE_IF(Is<IntegerConcept<TPosition> >,
+inline SEQAN2_FUNC_DISABLE_IF(Is<IntegerConcept<TPosition> >,
                              typename SuffixOnValue<StringSet<TString, Owner<ConcatDirect<TSpec> > > const>::Type)
 suffix(StringSet<TString, Owner<ConcatDirect<TSpec> > > const & me, TPosition pos)
 {
@@ -612,7 +612,7 @@ suffix(StringSet<TString, Owner<ConcatDirect<TSpec> > > const & me, TPosition po
 // --------------------------------------------------------------------------
 
 template <typename TString, typename TSpec, typename TPosBegin, typename TPosEnd >
-inline SEQAN_FUNC_DISABLE_IF(Is<IntegerConcept<TPosBegin> >,
+inline SEQAN2_FUNC_DISABLE_IF(Is<IntegerConcept<TPosBegin> >,
                              typename InfixOnValue<StringSet<TString, Owner<ConcatDirect<TSpec> > > >::Type)
 infix(StringSet<TString, Owner<ConcatDirect<TSpec> > > & me, TPosBegin const & posBegin, TPosEnd const & posEnd)
 {
@@ -620,7 +620,7 @@ infix(StringSet<TString, Owner<ConcatDirect<TSpec> > > & me, TPosBegin const & p
 }
 
 template <typename TString, typename TSpec, typename TPosBegin, typename TPosEnd >
-inline SEQAN_FUNC_DISABLE_IF(Is<IntegerConcept<TPosBegin> >,
+inline SEQAN2_FUNC_DISABLE_IF(Is<IntegerConcept<TPosBegin> >,
                              typename InfixOnValue<StringSet<TString, Owner<ConcatDirect<TSpec> > > const>::Type)
 infix(StringSet<TString, Owner<ConcatDirect<TSpec> > > const & me, TPosBegin const & posBegin, TPosEnd const & posEnd)
 {
@@ -632,7 +632,7 @@ infix(StringSet<TString, Owner<ConcatDirect<TSpec> > > const & me, TPosBegin con
 // --------------------------------------------------------------------------
 
 template <typename TString, typename TSpec, typename TPosition, typename TSize >
-inline SEQAN_FUNC_DISABLE_IF(Is<IntegerConcept<TPosition> >,
+inline SEQAN2_FUNC_DISABLE_IF(Is<IntegerConcept<TPosition> >,
                              typename InfixOnValue<StringSet<TString, Owner<ConcatDirect<TSpec> > > >::Type)
 infixWithLength(StringSet<TString, Owner<ConcatDirect<TSpec> > > & me, TPosition const & pos, TSize const length)
 {
@@ -640,7 +640,7 @@ infixWithLength(StringSet<TString, Owner<ConcatDirect<TSpec> > > & me, TPosition
 }
 
 template <typename TString, typename TSpec, typename TPosition, typename TSize >
-inline SEQAN_FUNC_DISABLE_IF(Is<IntegerConcept<TPosition> >,
+inline SEQAN2_FUNC_DISABLE_IF(Is<IntegerConcept<TPosition> >,
                              typename InfixOnValue<StringSet<TString, Owner<ConcatDirect<TSpec> > > const>::Type)
 infixWithLength(StringSet<TString, Owner<ConcatDirect<TSpec> > > const & me, TPosition const & pos, TSize const length)
 {
@@ -695,6 +695,6 @@ void swap(StringSet<TString, Owner<ConcatDirect<TSpec> > > & lhs,
     swap(lhs.concat, rhs.concat);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_SEQUENCE_STRING_SET_CONCAT_DIRECT_H_
+#endif  // #ifndef SEQAN2_SEQUENCE_STRING_SET_CONCAT_DIRECT_H_

@@ -35,10 +35,10 @@
 // ChainedSeed.
 // ==========================================================================
 
-#ifndef SEQAN_SEEDS_SEEDS_SEED_DIAGONAL_H_
-#define SEQAN_SEEDS_SEEDS_SEED_DIAGONAL_H_
+#ifndef SEQAN2_SEEDS_SEEDS_SEED_DIAGONAL_H_
+#define SEQAN2_SEEDS_SEEDS_SEED_DIAGONAL_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ===========================================================================
 // Enums, Tags, Classes, Specializations
@@ -50,7 +50,7 @@ namespace seqan {
 
 /*!
  * @class SeedDiagonal
- * @headerfile <seqan/seeds.h>
+ * @headerfile <seqan2/seeds.h>
  * @brief Store the information about a seed segment.
  *
  * @signature template <typename TPosition, typename TSize>
@@ -182,6 +182,6 @@ operator==(SeedDiagonal<TPosition, TSize> const & a, SeedDiagonal<TPosition, TSi
             a.length == b.length;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_SEEDS_SEEDS_SEED_DIAGONAL_H_
+#endif  // SEQAN2_SEEDS_SEEDS_SEED_DIAGONAL_H_

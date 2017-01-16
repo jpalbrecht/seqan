@@ -33,14 +33,14 @@
 //       & Christopher Pockrandt <christopher.pockrandt@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INDEX_FM_RANK_DICTIONARY_LEVELS_H_
-#define INDEX_FM_RANK_DICTIONARY_LEVELS_H_
+#ifndef SEQAN2_INDEX_FM_RANK_DICTIONARY_LEVELS_H_
+#define SEQAN2_INDEX_FM_RANK_DICTIONARY_LEVELS_H_
 
 #include <algorithm>
 
 #define TPREFIXLEVELS Levels<TSpec, LevelsPrefixRDConfig<TSize, TFibre, LEVELS, WPB> >
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -126,7 +126,7 @@ struct RankDictionaryEntry_;
 
 /*!
  * @class LevelsRDConfig
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief LevelsRDConfig allows configuring a @link Levels @endlink RankDictionary.
  *
@@ -144,7 +144,7 @@ struct LevelsRDConfig : RDConfig<TSize, TFibre, LEVELS, WORDS_PER_BLOCK> {};
 
 /*!
  * @class LevelsPrefixRDConfig
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief LevelsPrefixRDConfig allows configuring a @link Levels @endlink RankDictionary that is recommended for fast searching in bidirectional indices.
  *
@@ -467,7 +467,7 @@ struct isLevelsPrefixRD<TPREFIXLEVELS>
 /*!
  * @class Levels
  * @extends RankDictionary
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief Levels is a @link RankDictionary @endlink consisting of up to three levels.
  *
@@ -1469,7 +1469,7 @@ getRank(RankDictionary<TValue, TPREFIXLEVELS> const & dict,
     TFibreBlocks const & entry(dict.blocks[_toBlockPos(dict, pos)]);
 
     smaller = 0;
-    if (SEQAN_LIKELY(ordValue(c) > 0 && ordValue(c) < ValueSize<TValue>::VALUE - 1))
+    if (SEQAN2_LIKELY(ordValue(c) > 0 && ordValue(c) < ValueSize<TValue>::VALUE - 1))
     {
         return _getUltraBlockRank(dict, ultraBlock, pos, static_cast<TValue>(c), smaller)
              + _getSuperBlockRank(dict, superBlock, pos, static_cast<TValue>(c), smaller)
@@ -1511,7 +1511,7 @@ getRank(RankDictionary<TValue, TPREFIXLEVELS> const & dict,
     TFibreBlocks const & entry(dict.blocks[_toBlockPos(dict, pos)]);
 
     smaller = 0;
-    if (SEQAN_LIKELY(ordValue(c) > 0 && ordValue(c) < ValueSize<TValue>::VALUE - 1))
+    if (SEQAN2_LIKELY(ordValue(c) > 0 && ordValue(c) < ValueSize<TValue>::VALUE - 1))
     {
 	return _getSuperBlockRank(dict, superBlock, pos, static_cast<TValue>(c), smaller)
              + _getBlockRank(dict, entry.block, pos, static_cast<TValue>(c), smaller)
@@ -1548,7 +1548,7 @@ getRank(RankDictionary<TValue, TPREFIXLEVELS> const & dict,
     TFibreBlocks const & entry(dict.blocks[_toBlockPos(dict, pos)]);
 
     smaller = 0;
-    if (SEQAN_LIKELY(ordValue(c) > 0 && ordValue(c) < (ValueSize<TValue>::VALUE - 1)))
+    if (SEQAN2_LIKELY(ordValue(c) > 0 && ordValue(c) < (ValueSize<TValue>::VALUE - 1)))
     {
         return _getBlockRank(dict, entry.block, pos, static_cast<TValue>(c), smaller)
              + _getValueRank(dict, entry.values, posInBlock, static_cast<TValue>(c), smaller);
@@ -1843,4 +1843,4 @@ inline bool open(RankDictionary<TValue, Levels<TSpec, TConfig> > & dict, const c
 
 #undef TPREFIXLEVELS
 
-#endif  // INDEX_FM_RANK_DICTIONARY_LEVELS_H_
+#endif  // SEQAN2_INDEX_FM_RANK_DICTIONARY_LEVELS_H_

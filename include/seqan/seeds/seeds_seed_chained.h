@@ -34,10 +34,10 @@
 // Specialization "Chained" for class Seed.
 // ==========================================================================
 
-#ifndef SEQAN_SEEDS_SEEDS_SEED_CHAINED_H_
-#define SEQAN_SEEDS_SEEDS_SEED_CHAINED_H_
+#ifndef SEQAN2_SEEDS_SEEDS_SEED_CHAINED_H_
+#define SEQAN2_SEEDS_SEEDS_SEED_CHAINED_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ===========================================================================
 // Enums, Tags, Classes, Specializations
@@ -54,7 +54,7 @@ typedef Tag<Chained_> ChainedSeed;  // TODO(holtgrew): Chained already taken as 
  * @class ChainedSeed
  * @implements ContainerConcept
  * @extends Seed
- * @headerfile <seqan/seeds.h>
+ * @headerfile <seqan2/seeds.h>
  *
  * @brief Describes a seed with start and end position2 and diagonal upper and lower bounds.
  *
@@ -336,8 +336,8 @@ appendDiagonal(Seed<ChainedSeed, TConfig> & seed,
     // TODO(holtgrew): Add empty().
     if (length(seed) > 0)
     {
-        SEQAN_ASSERT_LEQ(back(seed._seedDiagonals).beginPositionH + back(seed._seedDiagonals).length, diagonal.beginPositionH);
-        SEQAN_ASSERT_LEQ(back(seed._seedDiagonals).beginPositionV + back(seed._seedDiagonals).length, diagonal.beginPositionV);
+        SEQAN2_ASSERT_LEQ(back(seed._seedDiagonals).beginPositionH + back(seed._seedDiagonals).length, diagonal.beginPositionH);
+        SEQAN2_ASSERT_LEQ(back(seed._seedDiagonals).beginPositionV + back(seed._seedDiagonals).length, diagonal.beginPositionV);
     }
 
     appendValue(seed._seedDiagonals, diagonal);
@@ -498,6 +498,6 @@ __write(TStream & stream, Seed<ChainedSeed, TConfig> const & seed, Tikz_ const &
         stream << "\\draw[seed diagonal] (" << it->beginDim1 << ", -" << it->beginDim0 << ") -- (" << (it->beginDim1 + it->length - 1) << ", -" << (it->beginDim0 + it->length - 1) << ");" << std::endl;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_SEEDS_SEEDS_SEED_CHAINED_H_
+#endif  // SEQAN2_SEEDS_SEEDS_SEED_CHAINED_H_

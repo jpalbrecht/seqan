@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_STORE_READ_H
-#define SEQAN_HEADER_STORE_READ_H
+#ifndef SEQAN2_HEADER_STORE_READ_H
+#define SEQAN2_HEADER_STORE_READ_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -44,7 +44,7 @@ namespace seqan
 
 /*!
  * @class ReadStoreElement
- * @headerfile <seqan/store.h>
+ * @headerfile <seqan2/store.h>
  * @brief Represents a single read (without sequence).
  *
  * @signature template <[typename TSpec]>
@@ -96,6 +96,6 @@ ReadStoreElement<TSpec>::INVALID_ID = MaxValue<typename Id<ReadStoreElement<TSpe
 
 //////////////////////////////////////////////////////////////////////////////
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

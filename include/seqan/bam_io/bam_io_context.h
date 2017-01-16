@@ -34,10 +34,10 @@
 // Class BamIOContext, accessor functions.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_BAM_IO_BAM_IO_CONTEXT_H_
-#define INCLUDE_SEQAN_BAM_IO_BAM_IO_CONTEXT_H_
+#ifndef INCLUDE_SEQAN2_BAM_IO_BAM_IO_CONTEXT_H_
+#define INCLUDE_SEQAN2_BAM_IO_BAM_IO_CONTEXT_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags
@@ -55,7 +55,7 @@ namespace seqan {
 /*!
  * @tag BamIOContextMemberTag#NameStoreMember
  * @brief Tag used to get the type for the <tt>NameStore</tt>.
- * @headerfile <seqan/stream.h>
+ * @headerfile <seqan2/stream.h>
  *
  * @signature typedef Tag<NameStoreMember_> NameStoreMember;
  */
@@ -70,7 +70,7 @@ typedef Tag<NameStoreMember_> NameStoreMember;
 /*!
  * @tag BamIOContextMemberTag#NameStoreCacheMember
  * @brief Tag used to get the type for the <tt>NameStoreCache</tt>.
- * @headerfile <seqan/stream.h>
+ * @headerfile <seqan2/stream.h>
  *
  * @signature typedef Tag<NameStoreCacheMember_> NameStoreCacheMember;
  */
@@ -85,7 +85,7 @@ typedef Tag<NameStoreCacheMember_> NameStoreCacheMember;
 /*!
  * @tag BamIOContextMemberTag#LengthStoreMember
  * @brief Tag used to get the type for the <tt>LengthStore</tt>.
- * @headerfile <seqan/stream.h>
+ * @headerfile <seqan2/stream.h>
  *
  * @signature typedef Tag<NameStoreMember_> LengthStoreMember;
  */
@@ -99,7 +99,7 @@ typedef Tag<LengthStoreMember_> LengthStoreMember;
 
 /*!
  * @class BamIOContext
- * @headerfile <seqan/bam_io.h>
+ * @headerfile <seqan2/bam_io.h>
  * @brief The I/O context to use for BAM I/O.
  *
  * @signature template <typename TNameStore[, typename TNameStoreCache]>
@@ -136,7 +136,7 @@ typedef Tag<LengthStoreMember_> LengthStoreMember;
 
 /*!
  * @fn BamIOContext::BamIOContext
- * @headerfile <seqan/bam_io.h>
+ * @headerfile <seqan2/bam_io.h>
  * @brief Constructor.
  *
  * @signature BamIOContext::BamIOContext();
@@ -348,6 +348,6 @@ setContigNamesCache(BamIOContext<TNameStore, TNameStoreCache, Dependent<> > & co
     context._contigNamesCache = &contigNamesCache;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_BAM_IO_BAM_IO_CONTEXT_H_
+#endif  // #ifndef INCLUDE_SEQAN2_BAM_IO_BAM_IO_CONTEXT_H_

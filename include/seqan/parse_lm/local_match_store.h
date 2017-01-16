@@ -40,10 +40,10 @@
    index in this string sets.
  */
 
-#ifndef INCLUDE_SEQAN_PARSE_LM_LOCAL_MATCH_STORE_H_
-#define INCLUDE_SEQAN_PARSE_LM_LOCAL_MATCH_STORE_H_
+#ifndef INCLUDE_SEQAN2_PARSE_LM_LOCAL_MATCH_STORE_H_
+#define INCLUDE_SEQAN2_PARSE_LM_LOCAL_MATCH_STORE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -55,7 +55,7 @@ namespace seqan {
 
 /*!
  * @class LocalMatch
- * @headerfile <seqan/parse_lm.h>
+ * @headerfile <seqan2/parse_lm.h>
  * @brief Stores information about local matches.
  *
  * @signature template <typename TId, typename TPosition>
@@ -138,7 +138,7 @@ public:
 
 /*!
  * @class LocalMatchStoreConfig
- * @headerfile <seqan/parse_lm.h>
+ * @headerfile <seqan2/parse_lm.h>
  * @brief Stores information about local matches.
  *
  * @signature template <typename TSpec>
@@ -165,7 +165,7 @@ struct LocalMatchStoreConfig
 
 /*!
  * @class LocalMatchStore
- * @headerfile <seqan/parse_lm.h>
+ * @headerfile <seqan2/parse_lm.h>
  * @brief Stores information about local matches.
  *
  * @signature template <typename TSpec = void, TConfig = LocalMatchStoreConfig<TSpec> >
@@ -221,7 +221,7 @@ struct LocalMatchStoreConfig
 /*!
  * @fn LocalMatchStore#readRecord
  *
- * @headerfile <seqan/parse_lm.h>
+ * @headerfile <seqan2/parse_lm.h>
  *
  * @brief Read Lastz "general" format record.
  *
@@ -331,8 +331,8 @@ appendLocalMatch(TLocalMatchStore & store,
 {
     typedef typename TLocalMatchStore::TLocalMatch TLocalMatch;
 
-    SEQAN_ASSERT_LT(subjectId, length(store.sequenceNameStore));
-    SEQAN_ASSERT_LT(queryId, length(store.sequenceNameStore));
+    SEQAN2_ASSERT_LT(subjectId, length(store.sequenceNameStore));
+    SEQAN2_ASSERT_LT(queryId, length(store.sequenceNameStore));
 
     TLocalMatch localMatch(length(store.matchStore),
                            subjectId,
@@ -413,6 +413,6 @@ appendLocalMatch(TLocalMatchStore & store,
     }
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // INCLUDE_SEQAN_PARSE_LM_LOCAL_MATCH_STORE_H_
+#endif  // INCLUDE_SEQAN2_PARSE_LM_LOCAL_MATCH_STORE_H_

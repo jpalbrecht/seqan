@@ -30,12 +30,12 @@
 //
 // ==========================================================================
 
-// SEQAN_NO_GENERATED_FORWARDS: no forwards are generated for this file
+// SEQAN2_NO_GENERATED_FORWARDS: no forwards are generated for this file
 
-#ifndef SEQAN_HEADER_SUMLIST_SKIP_H
-#define SEQAN_HEADER_SUMLIST_SKIP_H
+#ifndef SEQAN2_HEADER_SUMLIST_SKIP_H
+#define SEQAN2_HEADER_SUMLIST_SKIP_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -1119,6 +1119,6 @@ operator != (Iter<TSumList, SkipSumListIterator> const & left,
 
 //////////////////////////////////////////////////////////////////////////////
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

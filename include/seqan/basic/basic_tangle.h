@@ -34,13 +34,13 @@
 
 // TODO(holtgrew): This header contains code that does not clearly belongs somewhere else.
 
-#ifndef INCLUDE_SEQAN_BASIC_BASIC_TANGLE_H_
-#define INCLUDE_SEQAN_BASIC_BASIC_TANGLE_H_
+#ifndef INCLUDE_SEQAN2_BASIC_BASIC_TANGLE_H_
+#define INCLUDE_SEQAN2_BASIC_BASIC_TANGLE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // TODO(holtgrew): Remove this define.
-#define seqan seqan
+#define seqan2 seqan2
 
 // ============================================================================
 // Forwards
@@ -104,7 +104,7 @@ struct Cargo<Pair<TKey, TCargo, TSpec> >
 
 /*!
  * @fn assignQualities
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Assign quality values between strings.
  *
  * @signature void assignQualities(target, source);
@@ -161,6 +161,6 @@ unknownValueImpl(T *)
     return 'N';
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_BASIC_BASIC_TANGLE_H_
+#endif  // #ifndef INCLUDE_SEQAN2_BASIC_BASIC_TANGLE_H_

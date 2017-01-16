@@ -39,10 +39,10 @@
 // the globalFunction() fails is actually meaningful.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_GLOBAL_ALIGNMENT_UNBANDED_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_GLOBAL_ALIGNMENT_UNBANDED_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_GLOBAL_ALIGNMENT_UNBANDED_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_GLOBAL_ALIGNMENT_UNBANDED_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -75,7 +75,7 @@ class Fragment;
 
 /*!
  * @fn globalAlignment
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Computes the best global pairwise alignment.
  *
  * @signature TScoreVal globalAlignment(align,          scoringScheme, [alignConfig,] [lowerDiag, upperDiag,] [algorithmTag]);
@@ -148,7 +148,7 @@ class Fragment;
  *
  * @include demos/dox/align/global_alignment_banded.cpp.stdout
  *
- * https://seqan.readthedocs.io/en/develop/Tutorial/Algorithms/Alignment/PairwiseSequenceAlignment.html
+ * https://seqan2.readthedocs.io/en/develop/Tutorial/Algorithms/Alignment/PairwiseSequenceAlignment.html
  *
  * @section References
  *
@@ -454,7 +454,7 @@ TScoreValue globalAlignment(String<Fragment<TSize, TFragmentSpec>, TStringSpec> 
 
 /*!
  * @fn globalAlignmentScore
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Computes the best global pairwise alignment score.
  *
  * @signature TScoreVal globalAlignmentScore(seqH, seqV, scoringScheme[, alignConfig][, lowerDiag, upperDiag][, algorithmTag]);
@@ -483,7 +483,7 @@ TScoreValue globalAlignment(String<Fragment<TSize, TFragmentSpec>, TStringSpec> 
  * The same limitations to algorithms as in @link globalAlignment @endlink apply.  Furthermore, the
  * <tt>MyersBitVector</tt> and <tt>MyersHirschberg</tt> variants can only be used without any other parameter.
  *
- * @see https://seqan.readthedocs.io/en/develop/Tutorial/Algorithms/Alignment/PairwiseSequenceAlignment.html
+ * @see https://seqan2.readthedocs.io/en/develop/Tutorial/Algorithms/Alignment/PairwiseSequenceAlignment.html
  * @see globalAlignment
  */
 
@@ -572,7 +572,7 @@ TScoreValue globalAlignmentScore(StringSet<TString, TSpec> const & strings,
     typedef AlignConfig2<DPGlobal, DPBandConfig<BandOff>, TFreeEndGaps, TracebackOff> TAlignConfig2;
     typedef typename SubstituteAlgoTag_<TAlgoTag>::Type TGapModel;
 
-    SEQAN_ASSERT_EQ(length(strings), 2u);
+    SEQAN2_ASSERT_EQ(length(strings), 2u);
 
     DPScoutState_<Default> dpScoutState;
     String<TraceSegment_<unsigned, unsigned> > traceSegments;  // Dummy segments.
@@ -588,7 +588,7 @@ TScoreValue globalAlignmentScore(StringSet<TString, TSpec> const & strings,
                                  Score<TScoreValue, TScoreSpec> const & scoringScheme,
                                  TAlgoTag const & algoTag)
 {
-    SEQAN_ASSERT_EQ(length(strings), 2u);
+    SEQAN2_ASSERT_EQ(length(strings), 2u);
 
     AlignConfig<> alignConfig;
     return globalAlignmentScore(strings[0], strings[1], scoringScheme, alignConfig, algoTag);
@@ -602,7 +602,7 @@ TScoreValue globalAlignmentScore(StringSet<TString, TSpec> const & strings,
                                  Score<TScoreValue, TScoreSpec> const & scoringScheme,
                                  AlignConfig<TOP, LEFT, RIGHT, BOTTOM, TACSpec> const & alignConfig)
 {
-    SEQAN_ASSERT_EQ(length(strings), 2u);
+    SEQAN2_ASSERT_EQ(length(strings), 2u);
 
     if (scoreGapOpen(scoringScheme) == scoreGapExtend(scoringScheme))
         return globalAlignmentScore(strings[0], strings[1], scoringScheme, alignConfig, NeedlemanWunsch());
@@ -616,7 +616,7 @@ template <typename TString, typename TSpec,
 TScoreValue globalAlignmentScore(StringSet<TString, TSpec> const & strings,
                                  Score<TScoreValue, TScoreSpec> const & scoringScheme)
 {
-    SEQAN_ASSERT_EQ(length(strings), 2u);
+    SEQAN2_ASSERT_EQ(length(strings), 2u);
 
     AlignConfig<> alignConfig;
     return globalAlignmentScore(strings[0], strings[1], scoringScheme, alignConfig);
@@ -636,7 +636,7 @@ String<TScoreValue> globalAlignmentScore(StringSet<TString1, TSpec> const & stri
                                          AlignConfig<TOP, LEFT, RIGHT, BOTTOM, TACSpec> const & /*alignConfig*/,
                                          TAlgoTag const & /*algoTag*/)
 {
-    SEQAN_ASSERT_EQ(length(stringsH), length(stringsV));
+    SEQAN2_ASSERT_EQ(length(stringsH), length(stringsV));
     typedef AlignConfig<TOP, LEFT, RIGHT, BOTTOM, TACSpec> TAlignConfig;
     typedef typename SubstituteAlignConfig_<TAlignConfig>::Type TFreeEndGaps;
     typedef AlignConfig2<DPGlobal, DPBandConfig<BandOff>, TFreeEndGaps, TracebackOff> TAlignConfig2;
@@ -836,6 +836,6 @@ String<TScoreValue> globalAlignment(StringSet<Align<TSequence, TAlignSpec> > & a
     return globalAlignment(align, scoringScheme, alignConfig);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_GLOBAL_ALIGNMENT_UNBANDED_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_GLOBAL_ALIGNMENT_UNBANDED_H_

@@ -33,12 +33,12 @@
 //          Joerg Winkler <j.winkler@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_RNA_IO_BPSEQ_READ_WRITE_H_
-#define SEQAN_INCLUDE_SEQAN_RNA_IO_BPSEQ_READ_WRITE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_RNA_IO_BPSEQ_READ_WRITE_H_
+#define SEQAN2_INCLUDE_SEQAN2_RNA_IO_BPSEQ_READ_WRITE_H_
 
-#include <seqan/rna_io.h>
+#include <seqan2/rna_io.h>
 
-namespace seqan {
+namespace seqan2 {
 
 // ==========================================================================
 // Tags, Classes, Enums
@@ -50,7 +50,7 @@ namespace seqan {
 
 /*!
  * @tag FileFormats#Bpseq
- * @headerfile <seqan/rna_io.h>
+ * @headerfile <seqan2/rna_io.h>
  * @brief Bpseq format for RNA structures (*.bpseq).
  * @signature typedef Tag<Bpseq_> Bpseq;
  * @see FileFormats#RnaStruct
@@ -130,9 +130,9 @@ readRecord(RnaRecord & record, TForwardIter & iter, Bpseq const & /*tag*/)
         {
             readUntil(buffer, iter, NextEntry());
             if (empty(buffer))
-                SEQAN_THROW(EmptyFieldError("BEGPOS"));
+                SEQAN2_THROW(EmptyFieldError("BEGPOS"));
             if (!lexicalCast(record.offset, buffer))
-                SEQAN_THROW(BadLexicalCast(record.offset, buffer));
+                SEQAN2_THROW(BadLexicalCast(record.offset, buffer));
 
             currPos = record.offset;
             clear(buffer);
@@ -149,7 +149,7 @@ readRecord(RnaRecord & record, TForwardIter & iter, Bpseq const & /*tag*/)
         appendValue(record.sequence, buffer[0]);
         addVertex(graph.inter);                 // add base to graph
         if (empty(buffer))
-            SEQAN_THROW(EmptyFieldError("SEQUENCE"));
+            SEQAN2_THROW(EmptyFieldError("SEQUENCE"));
 
         clear(buffer);
 
@@ -157,11 +157,11 @@ readRecord(RnaRecord & record, TForwardIter & iter, Bpseq const & /*tag*/)
         skipUntil(iter, NotFunctor<IsBlank>());
         readUntil(buffer, iter, IsWhitespace());
         if (empty(buffer))
-            SEQAN_THROW(EmptyFieldError("PAIR"));
+            SEQAN2_THROW(EmptyFieldError("PAIR"));
 
         unsigned pairPos;
         if (!lexicalCast(pairPos, buffer))
-            SEQAN_THROW(BadLexicalCast(pairPos, buffer));
+            SEQAN2_THROW(BadLexicalCast(pairPos, buffer));
 
         if (pairPos != 0 && currPos > pairPos)    // add edge if base is connected
             addEdge(graph.inter, pairPos - record.offset, currPos - record.offset, 1.0);
@@ -191,9 +191,9 @@ inline void
 writeRecord(TTarget & target, RnaRecord const & record, Bpseq const & /*tag*/)
 {
     if (empty(record.sequence) && length(rows(record.align)) != 1)
-        SEQAN_THROW(ParseError("ERROR: Bpseq formatted file cannot contain an alignment."));
+        SEQAN2_THROW(ParseError("ERROR: Bpseq formatted file cannot contain an alignment."));
     if (length(record.fixedGraphs) != 1)
-        SEQAN_THROW(ParseError("ERROR: Bpseq formatted file cannot contain multiple structure graphs."));
+        SEQAN2_THROW(ParseError("ERROR: Bpseq formatted file cannot contain multiple structure graphs."));
 
     if (!empty(record.name))
     {
@@ -235,6 +235,6 @@ writeRecord(TTarget & target, RnaRecord const & record, RnaIOContext & /*context
     writeRecord(target, record, Bpseq());
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_RNA_IO_BPSEQ_READ_WRITE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_RNA_IO_BPSEQ_READ_WRITE_H_

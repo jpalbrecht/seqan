@@ -32,10 +32,10 @@
 // Author: Rene Rahn <rene.rahn@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_TRAVERSER_UTIL_H_
-#define INCLUDE_SEQAN_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_TRAVERSER_UTIL_H_
+#ifndef INCLUDE_SEQAN2_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_TRAVERSER_UTIL_H_
+#define INCLUDE_SEQAN2_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_TRAVERSER_UTIL_H_
 
-namespace seqan
+namespace seqan2
 {
 
 #if defined(JST_FIND_DEBUG)
@@ -375,7 +375,7 @@ mapBranchPointToVirtual(TIterator & resultIt,
     if (it->segmentSource == SOURCE_PATCH)  // The iterator has to be at the beginning.
     {
         TVarIterator itVar = begin(variantStore, Standard());  // TODO(rrahn): Optimize!
-        SEQAN_ASSERT_LEQ(getDeltaPosition(*itVar), static_cast<TDeltaMapPos const>(hostPos));
+        SEQAN2_ASSERT_LEQ(getDeltaPosition(*itVar), static_cast<TDeltaMapPos const>(hostPos));
 
         TDeltaMapPos virtualOffset = 0;
         // Now we move to the right until we find the node that we are looking for and reconstruct the offset of the virtual positions.
@@ -399,7 +399,7 @@ mapBranchPointToVirtual(TIterator & resultIt,
         return;
     }
 
-    SEQAN_ASSERT_EQ(it->segmentSource, SOURCE_ORIGINAL);
+    SEQAN2_ASSERT_EQ(it->segmentSource, SOURCE_ORIGINAL);
 
     // We assume that the operation begins here!
     resultIt._journalEntriesIterator = it;
@@ -426,7 +426,7 @@ mapBranchPointToVirtual(TIterator & resultIt,
     f.iter = std::upper_bound(begin(variantStore, Standard()), end(variantStore, Standard()), child,
                               DeltaMapEntryPosLessThanComparator_());
 
-    SEQAN_ASSERT_LEQ(getDeltaPosition(*f.iter), static_cast<TDeltaMapPos const>(hostPos));
+    SEQAN2_ASSERT_LEQ(getDeltaPosition(*f.iter), static_cast<TDeltaMapPos const>(hostPos));
 
     // Now we move to the right until we find the node that we are looking for and reconstruct the offset of the virtual positions.
     while (getDeltaPosition(*f.iter) != static_cast<TDeltaMapPos const>(hostPos) && !atEnd(f.iter))
@@ -454,7 +454,7 @@ inline typename Position<THostIter>::Type
 getPos(TraverserImpl<TJst, JstTraversalSpec<TSpec> > const & me,
        THostIter const & it)
 {
-    if (SEQAN_UNLIKELY(atEnd(it)))
+    if (SEQAN2_UNLIKELY(atEnd(it)))
         return length(host(container(me)));
     return getDeltaPosition(*it);
 }
@@ -553,8 +553,8 @@ createBranch(TraverserImpl<TJst, JstTraversalSpec<TSpec> > & me,
              TTraversalNode & child,
              Tag<TProxySelection> const & /*tag*/)
 {
-    typedef typename TTraversalNode::TDeltaIterator TDeltaIt   SEQAN_TYPEDEF_FOR_DEBUG;
-    typedef typename Position<TDeltaIt>::Type       TPos       SEQAN_TYPEDEF_FOR_DEBUG;
+    typedef typename TTraversalNode::TDeltaIterator TDeltaIt   SEQAN2_TYPEDEF_FOR_DEBUG;
+    typedef typename Position<TDeltaIt>::Type       TPos       SEQAN2_TYPEDEF_FOR_DEBUG;
 
     // We set the coverage of the left child to be the one of the parent & coverage(curDelta);
     // If coming from the base we use the base coverage, i.e. all bits true, to avoid
@@ -663,7 +663,7 @@ createBranch(TraverserImpl<TJst, JstTraversalSpec<TSpec> > & me,
         }
     }
 
-    SEQAN_ASSERT(static_cast<TPos>(dSize) <= impl::getPos(me, child.nextDelta) - impl::getPos(me, child.curDelta));
+    SEQAN2_ASSERT(static_cast<TPos>(dSize) <= impl::getPos(me, child.nextDelta) - impl::getPos(me, child.curDelta));
 
     child.begEdgeIt = child.endEdgeIt;
     child.curEdgeIt = child.begEdgeIt;
@@ -722,7 +722,7 @@ inline bool
 advanceParent(TraverserImpl<TJst, JstTraversalSpec<TSpec> > const & me,
              TTraversalNode & parent)
 {
-//    SEQAN_ASSERT_NOT(parent.isBase);        // Should never be the base node.
+//    SEQAN2_ASSERT_NOT(parent.isBase);        // Should never be the base node.
 
 #if defined(DEBUG_JST_TRAVERSAL)
     std::cout << "        EXPAND Parent before --> " << parent << std::endl;
@@ -762,7 +762,7 @@ shiftWindowBy(TNode & node, TSize stepSize)
     typedef typename TNode::TSeqIterator TSeqIter;
     typedef typename Difference<TSeqIter>::Type TDiff;
 
-    SEQAN_ASSERT_GEQ(stepSize, static_cast<TSize>(0));
+    SEQAN2_ASSERT_GEQ(stepSize, static_cast<TSize>(0));
 
     if (stepSize < static_cast<TSize>(node.remainingSize) || node.isBase)
     {
@@ -817,7 +817,7 @@ expandNode(TraverserImpl<TJst, JstTraversalSpec<TSpec> > & it,
 #endif //defined(DEBUG_JST_TRAVERSAL)
     parentPtr->curDelta = parentPtr->nextDelta;
 
-    if (SEQAN_UNLIKELY(atEnd(parentPtr->curDelta)))  // Reached end of tree.
+    if (SEQAN2_UNLIKELY(atEnd(parentPtr->curDelta)))  // Reached end of tree.
     {
         arrayFill(begin(parentPtr->coverage), end(parentPtr->coverage), false);  // Set coverage to 0.
         return stepSize;
@@ -825,14 +825,14 @@ expandNode(TraverserImpl<TJst, JstTraversalSpec<TSpec> > & it,
 
     while (!atEnd(parentPtr->nextDelta) && impl::getPos(it, parentPtr->nextDelta) == impl::getPos(it, parentPtr->curDelta))
     {
-        if (SEQAN_LIKELY(!isRightEnd(*parentPtr->nextDelta)))  // Skip points, where we merge a deletion.
+        if (SEQAN2_LIKELY(!isRightEnd(*parentPtr->nextDelta)))  // Skip points, where we merge a deletion.
         {
             auto child = *parentPtr;
             if (impl::createBranch(it, *parentPtr, child, TProxySelector()) &&
                 impl::moveWindow(it, &child, stepSize, observer, TProxySelector()) == 0 && child.remainingSize >= 0)
             {
-                if (SEQAN_LIKELY(!atEnd(child.curDelta)))  // Skip the node in case we reached the end already.
-                    impl::pushNode(it, SEQAN_MOVE(child), observer);
+                if (SEQAN2_LIKELY(!atEnd(child.curDelta)))  // Skip the node in case we reached the end already.
+                    impl::pushNode(it, SEQAN2_MOVE(child), observer);
             }
         }
         ++parentPtr->nextDelta;  // Move to the next branch point.
@@ -889,12 +889,12 @@ init(TraverserImpl<TJst, JstTraversalSpec<TSpec> > & me,
 {
     typedef typename TraverserImpl<TJst, JstTraversalSpec<TSpec> >::TNode TNode;
 
-    SEQAN_ASSERT(me._contPtr != nullptr);
-    SEQAN_ASSERT(me._contextSize > 0);
-    SEQAN_ASSERT(me._branchLength >= me._contextSize);
+    SEQAN2_ASSERT(me._contPtr != nullptr);
+    SEQAN2_ASSERT(me._contextSize > 0);
+    SEQAN2_ASSERT(me._branchLength >= me._contextSize);
 
-    SEQAN_ASSERT(me._bufferPtr);
-    SEQAN_ASSERT(me._stackPtr);
+    SEQAN2_ASSERT(me._bufferPtr);
+    SEQAN2_ASSERT(me._stackPtr);
 
     clear(buffer(me));
     clear(stack(me));
@@ -927,7 +927,7 @@ init(TraverserImpl<TJst, JstTraversalSpec<TSpec> > & me,
     // After we realized this.
     TNode* basePtr = &impl::activeNode(me);
 
-    SEQAN_ASSERT_GEQ(me._contextSize, 1u);
+    SEQAN2_ASSERT_GEQ(me._contextSize, 1u);
     if (IsSameType<Tag<TProxySelector>, SelectFirstProxy>::VALUE)
         impl::moveWindow(me, basePtr, 0, observer, Tag<TProxySelector>());   // We move the traverser to the first position.
     else
@@ -1040,6 +1040,6 @@ positionBranch(TraverserImpl<TJst, JstTraversalSpec<TSpec> > const & me)
     }
 #endif // JST_FIND_DEBUG
 
-}  // namespace seqan.
+}  // namespace seqan2.
 
-#endif  // #ifndef INCLUDE_SEQAN_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_TRAVERSER_UTIL_H_
+#endif  // #ifndef INCLUDE_SEQAN2_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_TRAVERSER_UTIL_H_

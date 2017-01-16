@@ -32,15 +32,15 @@
 // Author: Manuel Holtgrewe <manuel.holtgrewe@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_CONSENSUS_OVERLAP_INFO_COMPUTATION_H_
-#define INCLUDE_SEQAN_CONSENSUS_OVERLAP_INFO_COMPUTATION_H_
+#ifndef INCLUDE_SEQAN2_CONSENSUS_OVERLAP_INFO_COMPUTATION_H_
+#define INCLUDE_SEQAN2_CONSENSUS_OVERLAP_INFO_COMPUTATION_H_
 
-#include <seqan/index.h>
-#include <seqan/index/find_pigeonhole.h>
+#include <seqan2/index.h>
+#include <seqan2/index/find_pigeonhole.h>
 
 #include "consensus_alignment_options.h"
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -184,7 +184,7 @@ inline OverlapInfo_ OverlapInfoComputation_<TFragmentStore>::computeOverlapInfo(
 
     AlignConfig<true, true, true, true> alignConfig;
 
-    if (lDiag != seqan::minValue<int>() && uDiag != seqan::minValue<int>())
+    if (lDiag != seqan2::minValue<int>() && uDiag != seqan2::minValue<int>())
     {
         if (options.verbosity >= 2)
             std::cerr << "global alignment with bands " << lDiag << ", " << uDiag << "\n";
@@ -229,7 +229,7 @@ inline OverlapInfo_ OverlapInfoComputation_<TFragmentStore>::computeOverlapInfo(
     int numErrors = 0;
     for (; itH != itHEnd; ++itH, ++itV)
         numErrors += (isGap(itH) || isGap(itV) || (*itH != *itV));
-    SEQAN_ASSERT(itV == itVEnd);
+    SEQAN2_ASSERT(itV == itVEnd);
     (void)itVEnd;  // only used when assertions are enabled
 
     // Build result.
@@ -244,7 +244,7 @@ inline void OverlapInfoComputation_<TFragmentStore>::buildGlobalAlignmentOverlap
         for (unsigned j = i + 1; j < length(store.readStore); ++j)
         {
             OverlapInfo_ info = computeOverlapInfo(i, j,
-                                                   seqan::minValue<int>(), seqan::minValue<int>());
+                                                   seqan2::minValue<int>(), seqan2::minValue<int>());
             int ovlLen = length(store.readSeqStore[info.seq0]) - info.pos1;
             // if (ovlLen < options.overlapMinLength || 100.0 * info.numErrors / ovlLen > options.overlapMaxErrorRate)
             // {
@@ -370,7 +370,7 @@ inline void OverlapInfoComputation_<TFragmentStore>::buildAllToAllOverlapInfos(
     _patternInit(filterPattern, maxErrorRate);
 
     // Perform the pigeonhole-based search.
-    for (TStringSetIter it = begin(subSet, seqan::Rooted()); !atEnd(it); ++it)
+    for (TStringSetIter it = begin(subSet, seqan2::Rooted()); !atEnd(it); ++it)
     {
         unsigned seq0 = position(it);
         TFilterFinder filterFinder(*it);
@@ -386,7 +386,7 @@ inline void OverlapInfoComputation_<TFragmentStore>::buildAllToAllOverlapInfos(
             // TODO(holtgrew): bands not tight...
             int64_t lDiag = beginPosition(filterFinder);//.curHit->hstkPos;
             int64_t uDiag = endPosition(filterFinder);//filterFinder.curHit->hstkPos + filterFinder.curHit->bucketWidth - length(subSet[seq1]);
-            SEQAN_ASSERT_GEQ(uDiag, lDiag);
+            SEQAN2_ASSERT_GEQ(uDiag, lDiag);
 
             OverlapInfo_ info(computeOverlapInfo(positionToId(subSet, seq0), positionToId(subSet, seq1),
                                                  lDiag, uDiag));
@@ -420,6 +420,6 @@ inline void OverlapInfoComputation_<TFragmentStore>::buildAllToAllOverlapInfos(
 // Functions
 // ============================================================================
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_CONSENSUS_OVERLAP_INFO_COMPUTATION_H_
+#endif  // #ifndef INCLUDE_SEQAN2_CONSENSUS_OVERLAP_INFO_COMPUTATION_H_

@@ -34,26 +34,26 @@
 // Facade header for module tabix_io.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_TABIX_IO_H_
-#define INCLUDE_SEQAN_TABIX_IO_H_
+#ifndef INCLUDE_SEQAN2_TABIX_IO_H_
+#define INCLUDE_SEQAN2_TABIX_IO_H_
 
 // ===========================================================================
 // Prerequisites.
 // ===========================================================================
 
-#include <seqan/basic.h>
-#include <seqan/file.h>
-#include <seqan/sequence.h>
-#include <seqan/stream.h>
-#include <seqan/misc/name_store_cache.h>
+#include <seqan2/basic.h>
+#include <seqan2/file.h>
+#include <seqan2/sequence.h>
+#include <seqan2/stream.h>
+#include <seqan2/misc/name_store_cache.h>
 
 // ===========================================================================
 // Tabix index
 // ===========================================================================
 
 // Tabix indices are only available when ZLIB is available.
-#if SEQAN_HAS_ZLIB
-#include <seqan/tabix_io/tabix_index_tbi.h>
-#endif  // #if SEQAN_HAS_ZLIB
+#if SEQAN2_HAS_ZLIB
+#include <seqan2/tabix_io/tabix_index_tbi.h>
+#endif  // #if SEQAN2_HAS_ZLIB
 
-#endif  // INCLUDE_SEQAN_TABIX_IO_H_
+#endif  // INCLUDE_SEQAN2_TABIX_IO_H_

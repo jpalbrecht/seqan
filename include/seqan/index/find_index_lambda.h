@@ -32,10 +32,10 @@
 // Author: Enrico Siragusa <enrico.siragusa@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_FIND_INDEX_LAMBDA_H
-#define SEQAN_FIND_INDEX_LAMBDA_H
+#ifndef SEQAN2_FIND_SEQAN2_INDEX_LAMBDA_H
+#define SEQAN2_FIND_SEQAN2_INDEX_LAMBDA_H
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Metafunction
@@ -61,7 +61,7 @@ struct DefaultFind<Index<THaystack, THaystackSpec>, TPattern>
 
 template <typename TState, typename TIndex, typename TNeedle,
           typename TThreshold, typename TDelegate, typename TSpec>
-SEQAN_FUNC_ENABLE_IF(IsSequence<TNeedle>, void)
+SEQAN2_FUNC_ENABLE_IF(IsSequence<TNeedle>, void)
 _findImpl(TState & /* state */,
           TIndex & index,
           TNeedle const & needle,
@@ -142,7 +142,7 @@ _findBacktracking(TIndexIt indexIt,
 
 template <typename TState, typename TIndex, typename TNeedle,
           typename TThreshold, typename TDelegate, typename TDistance, typename TSpec>
-SEQAN_FUNC_ENABLE_IF(And<Is<StringTrieConcept<TIndex> >, IsSequence<TNeedle> >, void)
+SEQAN2_FUNC_ENABLE_IF(And<Is<StringTrieConcept<TIndex> >, IsSequence<TNeedle> >, void)
 _findImpl(TState & /* indexIt */,
           TIndex & index,
           TNeedle const & needle,
@@ -166,7 +166,7 @@ _findImpl(TState & /* indexIt */,
 
 template <typename TState, typename TIndex, typename TNeedle,
           typename TThreshold, typename TDelegate, typename TSpec>
-SEQAN_FUNC_ENABLE_IF(And<Is<StringTreeConcept<TIndex> >, IsSequence<TNeedle> >, void)
+SEQAN2_FUNC_ENABLE_IF(And<Is<StringTreeConcept<TIndex> >, IsSequence<TNeedle> >, void)
 _findImpl(TState & /* indexIt */,
           TIndex & index,
           TNeedle const & needle,
@@ -194,7 +194,7 @@ _findImpl(TState & /* indexIt */,
 
 template <typename TIndex, typename TNeedle,
           typename TThreshold, typename TDelegate, typename TDistance, typename TSpec>
-SEQAN_FUNC_ENABLE_IF(And<Is<StringTreeConcept<TIndex> >, Is<StringTrieConcept<TNeedle> > >, void)
+SEQAN2_FUNC_ENABLE_IF(And<Is<StringTreeConcept<TIndex> >, Is<StringTrieConcept<TNeedle> > >, void)
 find(TIndex & text,
      TNeedle & needle,
      TThreshold threshold,
@@ -224,7 +224,7 @@ find(TIndex & text,
 
 template <typename TIndex, typename TNeedle,
           typename TThreshold, typename TDelegate, typename TDistance, typename TSpec>
-SEQAN_FUNC_ENABLE_IF(And<Is<StringIndexConcept<TIndex> >, Is<StringTreeConcept<TNeedle> > >, void)
+SEQAN2_FUNC_ENABLE_IF(And<Is<StringIndexConcept<TIndex> >, Is<StringTreeConcept<TNeedle> > >, void)
 find(TIndex & index,
      TNeedle & needle,
      TThreshold threshold,
@@ -250,7 +250,7 @@ find(TIndex & index,
 
 template <typename TIndex, typename TNeedle,
           typename TThreshold, typename TDelegate, typename TDistance, typename TSpec>
-SEQAN_FUNC_ENABLE_IF(And<Is<StringTrieConcept<TIndex> >, Is<StringTrieConcept<TNeedle> > >, void)
+SEQAN2_FUNC_ENABLE_IF(And<Is<StringTrieConcept<TIndex> >, Is<StringTrieConcept<TNeedle> > >, void)
 find(TIndex & index,
      TNeedle & needle,
      TThreshold threshold,
@@ -273,4 +273,4 @@ find(TIndex & index,
 
 }
 
-#endif  // #ifndef SEQAN_FIND_INDEX_LAMBDA_H
+#endif  // #ifndef SEQAN2_FIND_SEQAN2_INDEX_LAMBDA_H

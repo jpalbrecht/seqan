@@ -32,10 +32,10 @@
 // Author: Rene Rahn <rene.rahn@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_MODIFIER_MODIFIER_PADDING_H_
-#define INCLUDE_SEQAN_MODIFIER_MODIFIER_PADDING_H_
+#ifndef INCLUDE_SEQAN2_MODIFIER_MODIFIER_PADDING_H_
+#define INCLUDE_SEQAN2_MODIFIER_MODIFIER_PADDING_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -55,7 +55,7 @@ using ModPadding = Tag<ModPadding_>;
 /*!
  * @class ModPaddingIterator
  * @extends ModifiedIterator
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Adds padding characters beyond the end of a string, without modifing the original string.
  *
  * @signature template <typename THost>
@@ -67,7 +67,7 @@ using ModPadding = Tag<ModPadding_>;
 /*!
  * @class ModPaddingString
  * @extends ModifiedString
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Pad characters beyond the end of a string with default value.
  *
  * @signature template <typename THost>
@@ -157,7 +157,7 @@ struct DefaultIteratorSpec< ModifiedString<THost, ModPadding> >
 
 /*!
  * @fn ModPaddingString#expand
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Expands the original string by the given size.
  *
  * @signature void expand(str, size[, pad])
@@ -174,7 +174,7 @@ inline void expand(ModifiedString<THost, ModPadding> & me,
                    TSize const newSize,
                    TPadding const & _padding)
 {
-    SEQAN_ASSERT(me._host != nullptr);
+    SEQAN2_ASSERT(me._host != nullptr);
 
     cargo(me)._numPaddedChar = newSize;
     cargo(me)._paddedValue = _padding;
@@ -206,16 +206,16 @@ template <typename THost, typename TPosition>
 inline typename Reference<ModifiedString<THost, ModPadding> >::Type
 value(ModifiedString<THost, ModPadding> & me, TPosition const pos)
 {
-    SEQAN_ASSERT_LT(pos, static_cast<TPosition>(length(me)));
-    return (SEQAN_LIKELY(pos < static_cast<TPosition>(length(host(me))))) ? host(me)[pos] : cargo(me)._paddedValue;
+    SEQAN2_ASSERT_LT(pos, static_cast<TPosition>(length(me)));
+    return (SEQAN2_LIKELY(pos < static_cast<TPosition>(length(host(me))))) ? host(me)[pos] : cargo(me)._paddedValue;
 }
 
 template <typename THost, typename TPosition>
 inline typename Reference<ModifiedString<THost, ModPadding> const>::Type
 value(ModifiedString<THost, ModPadding> const & me, TPosition const pos)
 {
-    SEQAN_ASSERT_LT(pos, static_cast<TPosition>(length(me)));
-    return (SEQAN_LIKELY(pos < static_cast<TPosition>(length(host(me))))) ? value(host(me), pos) : cargo(me)._paddedValue;
+    SEQAN2_ASSERT_LT(pos, static_cast<TPosition>(length(me)));
+    return (SEQAN2_LIKELY(pos < static_cast<TPosition>(length(host(me))))) ? value(host(me), pos) : cargo(me)._paddedValue;
 }
 
 // ----------------------------------------------------------------------------
@@ -226,8 +226,8 @@ template <typename THost, typename TPosition>
 inline typename GetValue<THost>::Type
 getValue(ModifiedString<THost, ModPadding> const & me, TPosition const pos)
 {
-    SEQAN_ASSERT_LT(pos, static_cast<TPosition>(length(me)));
-    return (SEQAN_LIKELY(pos < static_cast<TPosition>(length(host(me))))) ? host(me)[pos] : cargo(me)._paddedValue;
+    SEQAN2_ASSERT_LT(pos, static_cast<TPosition>(length(me)));
+    return (SEQAN2_LIKELY(pos < static_cast<TPosition>(length(host(me))))) ? host(me)[pos] : cargo(me)._paddedValue;
 }
 
 // --------------------------------------------------------------------------
@@ -290,14 +290,14 @@ template <typename THost>
 inline auto
 operator*(ModifiedIterator<THost, ModPadding> & me)
 {
-    return (SEQAN_UNLIKELY(atEnd(host(me)))) ? cargo(me)._paddedValue : *host(me);
+    return (SEQAN2_UNLIKELY(atEnd(host(me)))) ? cargo(me)._paddedValue : *host(me);
 }
 
 template <typename THost>
 inline auto
 operator*(ModifiedIterator<THost, ModPadding> const & me)
 {
-    return (SEQAN_UNLIKELY(atEnd(host(me)))) ? (cargo(me)._paddedValue) : (*host(me));
+    return (SEQAN2_UNLIKELY(atEnd(host(me)))) ? (cargo(me)._paddedValue) : (*host(me));
 }
 
 // ----------------------------------------------------------------------------
@@ -308,7 +308,7 @@ template <typename THost>
 inline ModifiedIterator<THost, ModPadding> &
 operator++(ModifiedIterator<THost, ModPadding> & me)
 {
-    if (SEQAN_UNLIKELY(atEnd(host(me))))
+    if (SEQAN2_UNLIKELY(atEnd(host(me))))
         --cargo(me)._remainingSteps;
     else
         ++host(me);
@@ -323,14 +323,14 @@ template <typename THost, typename TSize>
 inline ModifiedIterator<THost, ModPadding> &
 operator+=(ModifiedIterator<THost, ModPadding> & me, TSize const steps)
 {
-    if (SEQAN_UNLIKELY(atEnd(host(me))))
+    if (SEQAN2_UNLIKELY(atEnd(host(me))))
     {
         cargo(me)._remainingSteps -= steps;   // Remove 'steps' from remaining steps.
     }
     else
     {
         auto rem = (end(container(host(me)), Rooted()) - host(me));
-        if (SEQAN_LIKELY(static_cast<decltype(rem)>(steps) <= rem))  // Move host by 'steps' forward.
+        if (SEQAN2_LIKELY(static_cast<decltype(rem)>(steps) <= rem))  // Move host by 'steps' forward.
         {
             host(me) += steps;
         }
@@ -351,7 +351,7 @@ template <typename THost>
 inline ModifiedIterator<THost, ModPadding> &
 operator--(ModifiedIterator<THost, ModPadding> & me)
 {
-    if (SEQAN_LIKELY(cargo(me)._remainingSteps == cargo(me)._numPaddedChar))
+    if (SEQAN2_LIKELY(cargo(me)._remainingSteps == cargo(me)._numPaddedChar))
         --host(me);
     else
         ++cargo(me)._remainingSteps;
@@ -366,7 +366,7 @@ template <typename THost, typename TSize>
 inline ModifiedIterator<THost, ModPadding> &
 operator-=(ModifiedIterator<THost, ModPadding> & me, TSize const steps)
 {
-    if (SEQAN_UNLIKELY(atEnd(host(me))))
+    if (SEQAN2_UNLIKELY(atEnd(host(me))))
     {
         auto rem = cargo(me)._numPaddedChar - cargo(me)._remainingSteps;
         if (static_cast<decltype(rem)>(steps) <= rem)
@@ -422,4 +422,4 @@ operator != (ModifiedIterator<THost, ModPadding> const & a, ModifiedIterator<THo
 
 }
 
-#endif  // #ifndef INCLUDE_SEQAN_MODIFIER_MODIFIER_PADDING_H_
+#endif  // #ifndef INCLUDE_SEQAN2_MODIFIER_MODIFIER_PADDING_H_

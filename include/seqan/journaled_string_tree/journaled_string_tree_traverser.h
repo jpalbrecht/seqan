@@ -32,10 +32,10 @@
 // Author: Rene Rahn <rene.rahn@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_TRAVERSER_H_
-#define INCLUDE_SEQAN_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_TRAVERSER_H_
+#ifndef INCLUDE_SEQAN2_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_TRAVERSER_H_
+#define INCLUDE_SEQAN2_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_TRAVERSER_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -108,7 +108,7 @@ public:
     // Copy c'tor.
     template <typename TOtherJst>
     TraverserImpl(TraverserImpl<TOtherJst, JstTraversalSpec<TSpec> > const & other,
-                  SEQAN_CTOR_ENABLE_IF(IsConstructible<TJst, TOtherJst>)) :
+                  SEQAN2_CTOR_ENABLE_IF(IsConstructible<TJst, TOtherJst>)) :
         _contPtr(other._contPtr),
         _contextSize(other._contextSize),
         _branchLength(other._branchLength),
@@ -124,7 +124,7 @@ public:
     // Move c'tor.
     template <typename TOtherJst>
     TraverserImpl(TraverserImpl<TOtherJst, JstTraversalSpec<TSpec> > && other,
-                  SEQAN_CTOR_ENABLE_IF(IsConstructible<TJst, TOtherJst>)) :
+                  SEQAN2_CTOR_ENABLE_IF(IsConstructible<TJst, TOtherJst>)) :
         _contPtr(std::move(other._contPtr)),
         _contextSize(std::move(other._contextSize)),
         _branchLength(std::move(other._branchLength)),
@@ -139,7 +139,7 @@ public:
     // __ Member Functions ____________________________________________________
 
     template <typename TOtherJst>
-    inline SEQAN_FUNC_ENABLE_IF(IsConstructible<TJst, TOtherJst>, TraverserImpl &)
+    inline SEQAN2_FUNC_ENABLE_IF(IsConstructible<TJst, TOtherJst>, TraverserImpl &)
     operator=(TraverserImpl<TOtherJst, JstTraversalSpec<TSpec> > other)
     {
         impl::swap(*this, other);
@@ -431,9 +431,9 @@ advance(TraverserImpl<TJst, JstTraversalSpec<TSpec> > & me,
         TObserver & observer,
         Tag<TProxySelector> const & /*tag*/)
 {
-    SEQAN_ASSERT(me._stackPtr != nullptr);
+    SEQAN2_ASSERT(me._stackPtr != nullptr);
 
-    if (SEQAN_UNLIKELY(me._needInitialization))
+    if (SEQAN2_UNLIKELY(me._needInitialization))
         init(me, observer);
 
     auto nodePtr = &back(*me._stackPtr);
@@ -452,21 +452,21 @@ advance(TraverserImpl<TJst, JstTraversalSpec<TSpec> > & me,
 
     if ((stepSize > 0 && nodePtr->remainingSize == 0))
     {
-        SEQAN_ASSERT_NOT(impl::activeNode(me).isBase);
+        SEQAN2_ASSERT_NOT(impl::activeNode(me).isBase);
         impl::popNode(me, observer);
-        SEQAN_ASSERT(length(impl::stack(me)) >= 1u);
+        SEQAN2_ASSERT(length(impl::stack(me)) >= 1u);
     }
 
     // Check if the condition changed.
     nodePtr = &impl::activeNode(me);
-    if (SEQAN_UNLIKELY(atEnd(nodePtr->curDelta))) // Current branch is at final end.
+    if (SEQAN2_UNLIKELY(atEnd(nodePtr->curDelta))) // Current branch is at final end.
     {
         if (nodePtr->isBase)
             return;
 
         while (atEnd(nodePtr->curDelta) && !(nodePtr->isBase))
         {
-            SEQAN_ASSERT(nodePtr->curEdgeIt == nodePtr->endEdgeIt); // edgeIt must be at end of current branch.
+            SEQAN2_ASSERT(nodePtr->curEdgeIt == nodePtr->endEdgeIt); // edgeIt must be at end of current branch.
             impl::popNode(me, observer);  // Might not be the parent one.
             nodePtr = &impl::activeNode(me);
         }
@@ -514,10 +514,10 @@ template <typename TJst, typename TSpec>
 inline bool
 atEnd(TraverserImpl<TJst, JstTraversalSpec<TSpec> > & me)
 {
-    SEQAN_ASSERT(me._stackPtr != nullptr);
+    SEQAN2_ASSERT(me._stackPtr != nullptr);
     return length(*me._stackPtr) == 1 && back(*me._stackPtr).curEdgeIt == sourceEnd(impl::buffer(me));
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_TRAVERSER_H_
+#endif  // #ifndef INCLUDE_SEQAN2_JOURNALED_STRING_TREE_JOURNALED_STRING_TREE_TRAVERSER_H_

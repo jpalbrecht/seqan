@@ -33,12 +33,12 @@
 // Author: Anne-Katrin Emde <anne-katrin.emde@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_GRAPH_ALGORITHM_REFINE_ANNOTATION_H_
-#define SEQAN_INCLUDE_SEQAN_GRAPH_ALGORITHM_REFINE_ANNOTATION_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_GRAPH_ALGORITHM_REFINE_ANNOTATION_H_
+#define SEQAN2_INCLUDE_SEQAN2_GRAPH_ALGORITHM_REFINE_ANNOTATION_H_
 
-//SEQAN_NO_DDDOC: do not generate documentation for this file
+//SEQAN2_NO_DDDOC: do not generate documentation for this file
 
-namespace seqan {
+namespace seqan2 {
 
 
 template<typename TSequence, typename TValue, typename TSpec = Simple>
@@ -225,7 +225,7 @@ _addNodeAnnotation(TStringSet &,
             String<TLabel> property = getProperty(pm, act_knot);
             appendValue(property,label_);
             assignProperty(pm, act_knot, property);
-            SEQAN_ASSERT(fragmentBegin(ali_g,act_knot)==act_pos);
+            SEQAN2_ASSERT(fragmentBegin(ali_g,act_knot)==act_pos);
 
             //prepare for next interval
             act_pos += fragmentLength(ali_g,act_knot);
@@ -350,6 +350,6 @@ matchRefinement(TAlignmentString & alis,
     matchRefinement(alis,seq,fake_score,ali_graph,1,anno,ExactRefinement());
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_GRAPH_ALGORITHM_REFINE_ANNOTATION_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_GRAPH_ALGORITHM_REFINE_ANNOTATION_H_

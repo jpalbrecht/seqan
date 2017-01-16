@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_SYSTEM_EVENT_WIN_H
-#define SEQAN_HEADER_SYSTEM_EVENT_WIN_H
+#ifndef SEQAN2_HEADER_SYSTEM_EVENT_WIN_H
+#define SEQAN2_HEADER_SYSTEM_EVENT_WIN_H
 
-namespace seqan {
+namespace seqan2 {
 
 // NOTE(rrahn): This calss implements an synchronization event for asynchronous file I/O on windows platforms.
 // This file is required by file_async.
@@ -59,7 +59,7 @@ struct Event        // this class mustn't exceed the size of HANDLE (needed by w
 
     Event(BOOL initial)
     {
-        SEQAN_DO_SYS2(open(initial), "Could not create Event");
+        SEQAN2_DO_SYS2(open(initial), "Could not create Event");
     }
 
     // Move constructors
@@ -77,7 +77,7 @@ struct Event        // this class mustn't exceed the size of HANDLE (needed by w
 
     ~Event()
     {
-        if (*this) SEQAN_DO_SYS2(close(), "Could not destroy Event");
+        if (*this) SEQAN2_DO_SYS2(close(), "Could not destroy Event");
     }
 
     inline Event & operator=(Event const & origin)
@@ -211,7 +211,7 @@ inline bool waitFor(Event & e)
 template <typename TTime>
 inline bool waitFor(Event & e, TTime timeoutMilliSec, bool & inProgress)
 {
-        #ifdef disabledSEQAN_PROFILE
+        #ifdef disabledSEQAN2_PROFILE
     double begin = sysTime();
     bool b = e.wait(timeoutMilliSec, inProgress);
     double end = sysTime();

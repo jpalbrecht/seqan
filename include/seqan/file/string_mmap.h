@@ -35,8 +35,8 @@
 // ==========================================================================
 // NOTE(esiragusa): this file is deprecated.
 
-#ifndef SEQAN_HEADER_STRING_MMAP_H
-#define SEQAN_HEADER_STRING_MMAP_H
+#ifndef SEQAN2_HEADER_STRING_MMAP_H
+#define SEQAN2_HEADER_STRING_MMAP_H
 
 
 /* IOREV
@@ -55,12 +55,12 @@
 
 //////////////////////////////////////////////////////////////////////////////
 
-namespace seqan
+namespace seqan2
 {
 
 /*!
  * @class MMapConfig
- * @headerfile <seqan/file.h>
+ * @headerfile <seqan2/file.h>
  * @brief Configuration for @link MMapString MMapStrings @endlink.
  *
  * @signature template <[typename TFile, [typename TSize]]>
@@ -98,7 +98,7 @@ namespace seqan
 
 /*!
  * @class MMapString MMap String
- * @headerfile <seqan/file.h>
+ * @headerfile <seqan2/file.h>
  * @extends String
  * @brief String that is stored in external memory using direct memory mapping.
  *
@@ -481,8 +481,8 @@ namespace seqan
     inline bool
     _remap(String<TValue, MMap<TConfig> > &me, TCapSize new_capacity)
     {
-        typedef typename Size<String<TValue, MMap<TConfig> > >::Type    TSize SEQAN_UNUSED_TYPEDEF;
-        typedef typename Size<typename TConfig::TFile>::Type            TFileSize SEQAN_UNUSED_TYPEDEF;
+        typedef typename Size<String<TValue, MMap<TConfig> > >::Type    TSize SEQAN2_UNUSED_TYPEDEF;
+        typedef typename Size<typename TConfig::TFile>::Type            TFileSize SEQAN2_UNUSED_TYPEDEF;
 
         bool result = true;
 
@@ -632,7 +632,7 @@ namespace seqan
         if (!me)
         {
             if (!openTemp(me.mapping))
-                SEQAN_FAIL("Memory Mapped String couldn't open temporary file");
+                SEQAN2_FAIL("Memory Mapped String couldn't open temporary file");
         }
     }
 //____________________________________________________________________________
@@ -707,6 +707,6 @@ namespace seqan
 
 
 
-} //namespace seqan
+} //namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

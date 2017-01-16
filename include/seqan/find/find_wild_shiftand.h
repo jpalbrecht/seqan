@@ -32,13 +32,13 @@
 // Author: Stefan Aiche <aiche@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_FIND_WILD_SHIFTAND_H
-#define SEQAN_HEADER_FIND_WILD_SHIFTAND_H
+#ifndef SEQAN2_HEADER_FIND_WILD_SHIFTAND_H
+#define SEQAN2_HEADER_FIND_WILD_SHIFTAND_H
 
 // uncomment this for detailed debug output
-//#define SEQAN_WILD_SHIFTAND_DEBUG
+//#define SEQAN2_WILD_SHIFTAND_DEBUG
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -48,7 +48,7 @@ namespace seqan
 /*!
  * @class WildShiftAndPattern
  * @extends Pattern
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Exact string matching with wildcards using bit parallelism.
  *
  * The Shift-And algorithm is applicable to search small patterns in texts using small alphabets.
@@ -105,7 +105,7 @@ public:
 
     template <typename TNeedle2>
     Pattern(TNeedle2 && ndl,
-            SEQAN_CTOR_DISABLE_IF(IsSameType<typename std::remove_reference<TNeedle2>::type const &, Pattern const &>))
+            SEQAN2_CTOR_DISABLE_IF(IsSameType<typename std::remove_reference<TNeedle2>::type const &, Pattern const &>))
         : _valid(false)
     {
         setHost(*this, std::forward<TNeedle2>(ndl));
@@ -455,7 +455,7 @@ void _reinitPattern(Pattern<TNeedle, WildShiftAnd> & me,
                 if(i > 0)
                     me.i_table[(i-1) / BitsPerValue<TWord>::VALUE] |= 1 << ((i-1) % BitsPerValue<TWord>::VALUE);
                 me.f_table[i / BitsPerValue<TWord>::VALUE] |= 1 << (i % BitsPerValue<TWord>::VALUE);
-#ifdef SEQAN_WILD_SHIFTAND_DEBUG
+#ifdef SEQAN2_WILD_SHIFTAND_DEBUG
                 std::cout << "Update F and I" << std::endl;
                 _printMask(me.f_table,0,"F ");
                 _printMask(me.i_table,0,"I ");
@@ -474,7 +474,7 @@ void _reinitPattern(Pattern<TNeedle, WildShiftAnd> & me,
                 }
                 //me.f_table[i / BitsPerValue<TWord>::VALUE] &= ~(1 << ((i-1) % BitsPerValue<TWord>::VALUE));
                 me.f_table[i / BitsPerValue<TWord>::VALUE] |= 1 << (i % BitsPerValue<TWord>::VALUE);
-#ifdef SEQAN_WILD_SHIFTAND_DEBUG
+#ifdef SEQAN2_WILD_SHIFTAND_DEBUG
                 std::cout << "Update F" << std::endl;
                 _printMask(me.f_table,0,"F ");
                 std::cout << std::endl;
@@ -483,7 +483,7 @@ void _reinitPattern(Pattern<TNeedle, WildShiftAnd> & me,
         }
     }
 
-#ifdef SEQAN_WILD_SHIFTAND_DEBUG
+#ifdef SEQAN2_WILD_SHIFTAND_DEBUG
     // Debug code
     std::cout << "Alphabet size: " << ValueSize<TValue>::VALUE << std::endl;
     std::cout << "Needle length (with wildcards): " << me.needleLength << std::endl;
@@ -600,7 +600,7 @@ inline bool _findShiftAndLargeNeedle(TFinder & finder, Pattern<TNeedle, WildShif
             me.prefSufMatch[block] |= (me.a_table[block] & (~Z ^ me.df[block]));
         }
 
-#ifdef SEQAN_WILD_SHIFTAND_DEBUG
+#ifdef SEQAN2_WILD_SHIFTAND_DEBUG
         std::cout << "reading " << *finder << std::endl;
         _printMask(me.prefSufMatch,position(finder),"D ");
         _printMask(me.df,position(finder),"Df");
@@ -637,6 +637,6 @@ inline bool find(TFinder & finder, Pattern<TNeedle, WildShiftAnd> & me) {
     }
 }
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_FIND_WILD_SHIFTAND_H
+#endif //#ifndef SEQAN2_HEADER_FIND_WILD_SHIFTAND_H

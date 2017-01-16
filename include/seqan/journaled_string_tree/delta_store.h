@@ -34,10 +34,10 @@
 // Implements a data structure to store deltas efficiently.
 // ==========================================================================
 
-#ifndef EXTRAS_INCLUDE_SEQAN_JOURNALED_STRING_TREE_DELTA_STORE_H_
-#define EXTRAS_INCLUDE_SEQAN_JOURNALED_STRING_TREE_DELTA_STORE_H_
+#ifndef EXTRAS_INCLUDE_SEQAN2_JOURNALED_STRING_TREE_DELTA_STORE_H_
+#define EXTRAS_INCLUDE_SEQAN2_JOURNALED_STRING_TREE_DELTA_STORE_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -59,7 +59,7 @@ struct DeltaValue;
 /*!
  * @tag DeltaTypeTags#DeltaTypeSnp
  * @brief Tag used to select SNPs.
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  *
  * @signature struct DeltaTypeSnp_;
  *            typedef Tag<DeltaTypeSnp_> DeltaTypeSnp;
@@ -70,7 +70,7 @@ typedef Tag<DeltaTypeSnp_> DeltaTypeSnp;
 /*!
  * @tag DeltaTypeTags#DeltaTypeDel
  * @brief Tag used to select deletions.
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  *
  * @signature struct DeltaTypeDel_;
  *            typedef Tag<DeltaTypeDel_> DeltaTypeDel;
@@ -81,7 +81,7 @@ typedef Tag<DeltaTypeDel_> DeltaTypeDel;
 /*!
  * @tag DeltaTypeTags#DeltaTypeIns
  * @brief Tag used to select insertions.
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  *
  * @signature struct DeltaTypeIns_;
  *            typedef Tag<DeltaTypeIns_> DeltaTypeIns;
@@ -92,7 +92,7 @@ typedef Tag<DeltaTypeIns_> DeltaTypeIns;
 /*!
  * @tag DeltaTypeTags#DeltaTypeSV
  * @brief Tag used to select SVs.
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  *
  * @signature struct DeltaTypeSV_;
  *            typedef Tag<DeltaTypeSV_> DeltaTypeSV;
@@ -117,7 +117,7 @@ typedef TagSelector<DeltaTypeTagList> DeltaTypeSelector;
 
 /*!
  * @enum DeltaType
- * @headerfile <seqan/journaled_string_tree.h>
+ * @headerfile <seqan2/journaled_string_tree.h>
  * @brief Keys for specifying the delta type to be accessed.
  *
  * @val DeltaType DELTA_TYPE_SNP
@@ -431,7 +431,7 @@ eraseDeltaValue(DeltaStore<TSnp, TDel, TIns, TSV> & store,
                 TTag /*deltaType*/)
 {
     typedef typename Size<DeltaStore<TSnp, TDel, TIns, TSV> >::Type TSize;
-    if (SEQAN_LIKELY(static_cast<TSize>(recordPos) < length(getDeltaStore(store, TTag()))))
+    if (SEQAN2_LIKELY(static_cast<TSize>(recordPos) < length(getDeltaStore(store, TTag()))))
         erase(getDeltaStore(store, TTag()), recordPos);
     return length(getDeltaStore(store, TTag()));
 }
@@ -458,8 +458,8 @@ template <typename TSnp, typename TDel, typename TIns, typename TSV, typename TP
 inline typename DeltaValue<DeltaStore<TSnp, TDel, TIns, TSV>, TTag>::Type &
 deltaValue(DeltaStore<TSnp, TDel, TIns, TSV> & store, TPos pos, TTag const & tag)
 {
-    typedef typename Size<DeltaStore<TSnp, TDel, TIns, TSV> >::Type TSize SEQAN_TYPEDEF_FOR_DEBUG;
-    SEQAN_ASSERT_LT(static_cast<TSize>(pos), length(getDeltaStore(store, tag)));
+    typedef typename Size<DeltaStore<TSnp, TDel, TIns, TSV> >::Type TSize SEQAN2_TYPEDEF_FOR_DEBUG;
+    SEQAN2_ASSERT_LT(static_cast<TSize>(pos), length(getDeltaStore(store, tag)));
 
     return value(getDeltaStore(store, tag), pos);
 }
@@ -468,8 +468,8 @@ template <typename TSnp, typename TDel, typename TIns, typename TSV, typename TP
 inline typename DeltaValue<DeltaStore<TSnp, TDel, TIns, TSV> const, TTag>::Type &
 deltaValue(DeltaStore<TSnp, TDel, TIns, TSV> const & store, TPos pos, TTag const & tag)
 {
-    typedef typename Size<DeltaStore<TSnp, TDel, TIns, TSV> const>::Type TSize SEQAN_TYPEDEF_FOR_DEBUG;
-    SEQAN_ASSERT_LT(static_cast<TSize>(pos), length(getDeltaStore(store, tag)));
+    typedef typename Size<DeltaStore<TSnp, TDel, TIns, TSV> const>::Type TSize SEQAN2_TYPEDEF_FOR_DEBUG;
+    SEQAN2_ASSERT_LT(static_cast<TSize>(pos), length(getDeltaStore(store, tag)));
 
     return value(getDeltaStore(store, tag), pos);
 }
@@ -567,6 +567,6 @@ netSize(TStore const & store, TPos const pos, TTag const & /*tag*/)
 
 }  // namespace impl
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif // EXTRAS_INCLUDE_SEQAN_JOURNALED_STRING_TREE_DELTA_STORE_H_
+#endif // EXTRAS_INCLUDE_SEQAN2_JOURNALED_STRING_TREE_DELTA_STORE_H_

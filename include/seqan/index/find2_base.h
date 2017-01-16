@@ -33,10 +33,10 @@
 // Author: Enrico Siragusa <enrico.siragusa@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_FIND_FIND_BASE_H_
-#define SEQAN_FIND_FIND_BASE_H_
+#ifndef SEQAN2_FIND_FIND_BASE_H_
+#define SEQAN2_FIND_FIND_BASE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -238,4 +238,4 @@ clear(Finder_<TText, TPattern, TSpec> & finder)
 
 }
 
-#endif  // #ifndef SEQAN_FIND_FIND_BASE_H_
+#endif  // #ifndef SEQAN2_FIND_FIND_BASE_H_

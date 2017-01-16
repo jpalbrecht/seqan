@@ -34,10 +34,10 @@
 // Implementation of All-Pairs-Shortest-Path algorithm.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_GRAPH_ALGORITHMS_ALL_PAIRS_SHORTEST_PATH_H_
-#define INCLUDE_SEQAN_GRAPH_ALGORITHMS_ALL_PAIRS_SHORTEST_PATH_H_
+#ifndef INCLUDE_SEQAN2_GRAPH_ALGORITHMS_ALL_PAIRS_SHORTEST_PATH_H_
+#define INCLUDE_SEQAN2_GRAPH_ALGORITHMS_ALL_PAIRS_SHORTEST_PATH_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -155,7 +155,7 @@ _extendShortestPaths(TMatrix& local,
 
 /*!
  * @fn allPairsShortestPath
- * @headerfile <seqan/graph_algorithms.h>
+ * @headerfile <seqan2/graph_algorithms.h>
  * @brief Finds shortest paths between all pairs of vertices in a graph.
  * @signature void allPairsShortestPath(graph, weight, distance, predecessor);
  *
@@ -197,6 +197,6 @@ void allPairsShortestPath(TMatrix & distMatrix,
     distMatrix = local;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_GRAPH_ALGORITHMS_ALL_PAIRS_SHORTEST_PATH_H_
+#endif  // #ifndef INCLUDE_SEQAN2_GRAPH_ALGORITHMS_ALL_PAIRS_SHORTEST_PATH_H_

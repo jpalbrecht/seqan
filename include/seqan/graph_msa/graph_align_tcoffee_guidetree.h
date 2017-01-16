@@ -30,10 +30,10 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_GRAPH_ALIGN_TCOFFEE_GUIDETREE_H
-#define SEQAN_HEADER_GRAPH_ALIGN_TCOFFEE_GUIDETREE_H
+#ifndef SEQAN2_HEADER_GRAPH_ALIGN_TCOFFEE_GUIDETREE_H
+#define SEQAN2_HEADER_GRAPH_ALIGN_TCOFFEE_GUIDETREE_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -68,7 +68,7 @@ _roundToSignificantFigures(double num, int n)
 
 /*!
  * @fn njTree
- * @headerfile <seqan/graph_msa.h>
+ * @headerfile <seqan2/graph_msa.h>
  * @brief computes a guid etree from a distance matrix.
  *
  * @signature void njTree(mat, tree);
@@ -91,10 +91,10 @@ njTree(String<TValue, TStringSpec> const & matIn,
     TSize nseq = (TSize) std::sqrt((double)length(matIn));
 
     // Assert that the input matrix has no negative values.
-// #if SEQAN_ENABLE_DEBUG
+// #if SEQAN2_ENABLE_DEBUG
 //     for (unsigned i = 0; i < length(matIn); ++i)
-//         SEQAN_ASSERT_GEQ_MSG(matIn[i], 0, "i = %u", i);
-// #endif  // #if SEQAN_ENABLE_DEBUG
+//         SEQAN2_ASSERT_GEQ_MSG(matIn[i], 0, "i = %u", i);
+// #endif  // #if SEQAN2_ENABLE_DEBUG
 
     //for(TSize i=0;i<nseq;++i) {
     //    for(TSize j=0;j<nseq;++j) {
@@ -315,25 +315,25 @@ njTree(String<TValue, TStringSpec> const & matIn,
  * @brief Tags for configuring the guide tree construction.
  *
  * @tag UpgmaConfiguratorTags#UpgmaMin
- * @headerfile <seqan/graph_msa.h>
+ * @headerfile <seqan2/graph_msa.h>
  * @brief Uses the min operation in the UPGMA algorithm.
  *
  * @signature typedef Tag<UpgmaMin_> const UpgmaMin;
  *
  * @tag UpgmaConfiguratorTags#UpgmaMax
- * @headerfile <seqan/graph_msa.h>
+ * @headerfile <seqan2/graph_msa.h>
  * @brief Uses the max operation in the UPGMA algorithm.
  *
  * @signature typedef Tag<UpgmaMax_> const UpgmaMax;
  *
  * @tag UpgmaConfiguratorTags#UpgmaAvg
- * @headerfile <seqan/graph_msa.h>
+ * @headerfile <seqan2/graph_msa.h>
  * @brief Uses the avg operation in the UPGMA algorithm.
  *
  * @signature typedef Tag<UpgmaAvg_> const UpgmaAvg;
  *
  * @tag UpgmaConfiguratorTags#UpgmaWeightAvg
- * @headerfile <seqan/graph_msa.h>
+ * @headerfile <seqan2/graph_msa.h>
  * @brief Uses the weighted avg operation in the UPGMA algorithm.
  *
  * @signature typedef Tag<UpgmaAvg_> const UpgmaWeightAvg;
@@ -871,7 +871,7 @@ upgmaTree(Graph<Undirected<TValue, TSpec1> >& pairGraph,
 
 /*!
  * @fn upgmaTree
- * @headerfile <seqan/graph_msa.h>
+ * @headerfile <seqan2/graph_msa.h>
  * @brief Computes a guide tree from a distance matrix.
  *
  * @signature void upgmaTree(mat, tree[, tag]);
@@ -893,6 +893,6 @@ upgmaTree(TDistance& dist,
 }
 
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

@@ -34,10 +34,10 @@
 // Packed triple specialization.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_TRIPLE_PACKED_H_
-#define SEQAN_INCLUDE_SEQAN_TRIPLE_PACKED_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_TRIPLE_PACKED_H_
+#define SEQAN2_INCLUDE_SEQAN2_TRIPLE_PACKED_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -49,7 +49,7 @@ namespace seqan {
 
 /*!
  * @class PackedTriple
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @extends Triple
  * @brief Disable memory alignment to store memory.
  *
@@ -179,6 +179,6 @@ inline void moveValueI3(Triple<T1, T2, T3, Pack> & triple, T const & _i)
     triple.i3 = _i;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_TRIPLE_PACKED_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_TRIPLE_PACKED_H_

@@ -36,10 +36,10 @@
 
 // TODO(holtgrew): What about move construction? Useful for pairs of strings and such. Tricky to implement since ints have no move constructor, for example.
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_TRIPLE_BASE_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_TRIPLE_BASE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_TRIPLE_BASE_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_TRIPLE_BASE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -53,7 +53,7 @@ namespace seqan {
  * @class Triple
  * @implements ComparableConcept
  * @implements LessThanComparableConcept
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Store three arbitrary object.
  *
  * @signature template <typename T1, typename T3, typename T3[, typename TSpec]>
@@ -528,6 +528,6 @@ operator!=(Triple<L1, L2, L3, LPack> const & _left,
 {
     return !operator==(_left, _right);
 }
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_TRIPLE_BASE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_TRIPLE_BASE_H_

@@ -36,12 +36,12 @@
 // LF stores all necessary information for the LF-mapping.
 // ============================================================================
 
-//SEQAN_NO_DDDOC:do not generate documentation for this file
+//SEQAN2_NO_DDDOC:do not generate documentation for this file
 
-#ifndef INDEX_FM_LF_TABLE_H_
-#define INDEX_FM_LF_TABLE_H_
+#ifndef SEQAN2_INDEX_FM_LF_TABLE_H_
+#define SEQAN2_INDEX_FM_LF_TABLE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -178,7 +178,7 @@ struct Fibre<LF<TText, TSpec, TConfig>, FibreTempBwt>
 /*!
  * @class LF
  *
- * @headerfile <seqan/Index.h>
+ * @headerfile <seqan2/Index.h>
  *
  * @signature template <typename TText, typename TSpec, typename TConfig>
  *            struct LF;
@@ -259,7 +259,7 @@ bwtLength(TText const & text)
 /*!
  * @fn LF#getFibre
  *
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief Returns a specific fibre of a LF table.
  *
@@ -319,7 +319,7 @@ getFibre(LF<TText, TSpec, TConfig> const & lf, FibreSentinels)
 /*!
  * @fn LF#empty
  *
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief Clears the LF table.
  *
@@ -353,7 +353,7 @@ inline bool empty(LF<StringSet<TText, TSSetSpec>, TSpec, TConfig> const & lf)
 /*!
  * @fn LF#clear
  *
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief Resets the LF table.
  *
@@ -658,7 +658,7 @@ _createBwt(LF<StringSet<TText, TSSetSpec>, TSpec, TConfig> & lf, TBwt & bwt, TOt
 /*!
  * @fn LF#createLF
  *
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief Creates the LF table
  *
@@ -709,7 +709,7 @@ inline void createLF(LF<TText, TSpec, TConfig> & lf, TOtherText const & text, TS
 
 /*!
  * @fn LF#open
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  * @brief This functions loads a LF table from disk.
  *
  * @signature bool open(lfTable, fileName[, openMode]);
@@ -764,7 +764,7 @@ inline bool open(LF<TText, TSpec, TConfig> & lf, const char * fileName)
 /*!
  * @fn LF#save
  *
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief This functions saves a LF table to disk.
  *
@@ -813,4 +813,4 @@ inline bool save(LF<TText, TSpec, TConfig> const & lf, const char * fileName)
 }
 
 }
-#endif // INDEX_FM_LF_TABLE_H_
+#endif // SEQAN2_INDEX_FM_LF_TABLE_H_

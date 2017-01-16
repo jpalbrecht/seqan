@@ -41,10 +41,10 @@
 
 // TODO(holtgrew): Documentation in this header necessary or internal only?
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_PROFILE_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_DP_PROFILE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_PROFILE_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_PROFILE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -113,13 +113,13 @@ typedef LocalAlignment_<SuboptimalAlignment> DPLocalEnumerate;
 template <typename TVector, __uint8 FILL_VALUE, unsigned SIZE>
 struct InitSimdTrace_;
 
-#define SEQAN_SIMD_INIT_FILL_VALUE_2_ FILL_VALUE, FILL_VALUE
-#define SEQAN_SIMD_INIT_FILL_VALUE_4_ SEQAN_SIMD_INIT_FILL_VALUE_2_, SEQAN_SIMD_INIT_FILL_VALUE_2_
-#define SEQAN_SIMD_INIT_FILL_VALUE_8_ SEQAN_SIMD_INIT_FILL_VALUE_4_, SEQAN_SIMD_INIT_FILL_VALUE_4_
-#define SEQAN_SIMD_INIT_FILL_VALUE_16_ SEQAN_SIMD_INIT_FILL_VALUE_8_, SEQAN_SIMD_INIT_FILL_VALUE_8_
-#define SEQAN_SIMD_INIT_FILL_VALUE_32_ SEQAN_SIMD_INIT_FILL_VALUE_16_, SEQAN_SIMD_INIT_FILL_VALUE_16_
+#define SEQAN2_SIMD_INIT_FILL_VALUE_2_ FILL_VALUE, FILL_VALUE
+#define SEQAN2_SIMD_INIT_FILL_VALUE_4_ SEQAN2_SIMD_INIT_FILL_VALUE_2_, SEQAN2_SIMD_INIT_FILL_VALUE_2_
+#define SEQAN2_SIMD_INIT_FILL_VALUE_8_ SEQAN2_SIMD_INIT_FILL_VALUE_4_, SEQAN2_SIMD_INIT_FILL_VALUE_4_
+#define SEQAN2_SIMD_INIT_FILL_VALUE_16_ SEQAN2_SIMD_INIT_FILL_VALUE_8_, SEQAN2_SIMD_INIT_FILL_VALUE_8_
+#define SEQAN2_SIMD_INIT_FILL_VALUE_32_ SEQAN2_SIMD_INIT_FILL_VALUE_16_, SEQAN2_SIMD_INIT_FILL_VALUE_16_
 
-#define SEQAN_SIMD_TRACE_SETUP_2_(SIZE, ...)                                                        \
+#define SEQAN2_SIMD_TRACE_SETUP_2_(SIZE, ...)                                                        \
 template <typename TVector, __uint8 FILL_VALUE>                                                     \
 struct InitSimdTrace_<TVector, FILL_VALUE, SIZE>                                                    \
 {                                                                                                   \
@@ -129,14 +129,14 @@ struct InitSimdTrace_<TVector, FILL_VALUE, SIZE>                                
 template <typename TVector, __uint8 FILL_VALUE>                                                     \
 const TVector InitSimdTrace_<TVector, FILL_VALUE, SIZE>::VALUE = TVector{__VA_ARGS__};
 
-#define SEQAN_SIMD_TRACE_SETUP_1_(SIZE, MACRO) SEQAN_SIMD_TRACE_SETUP_2_(SIZE, MACRO)
-#define SEQAN_SIMD_TRACE_SETUP_(SIZE) SEQAN_SIMD_TRACE_SETUP_1_(SIZE, SEQAN_SIMD_INIT_FILL_VALUE_ ## SIZE ## _)
+#define SEQAN2_SIMD_TRACE_SETUP_1_(SIZE, MACRO) SEQAN2_SIMD_TRACE_SETUP_2_(SIZE, MACRO)
+#define SEQAN2_SIMD_TRACE_SETUP_(SIZE) SEQAN2_SIMD_TRACE_SETUP_1_(SIZE, SEQAN2_SIMD_INIT_FILL_VALUE_ ## SIZE ## _)
 
-SEQAN_SIMD_TRACE_SETUP_(2)
-SEQAN_SIMD_TRACE_SETUP_(4)
-SEQAN_SIMD_TRACE_SETUP_(8)
-SEQAN_SIMD_TRACE_SETUP_(16)
-SEQAN_SIMD_TRACE_SETUP_(32)
+SEQAN2_SIMD_TRACE_SETUP_(2)
+SEQAN2_SIMD_TRACE_SETUP_(4)
+SEQAN2_SIMD_TRACE_SETUP_(8)
+SEQAN2_SIMD_TRACE_SETUP_(16)
+SEQAN2_SIMD_TRACE_SETUP_(32)
 
 // Scalar version.
 template <typename TValue, typename TIsSimdVector>
@@ -174,20 +174,20 @@ struct TraceValue_<TVector, True>
 
 // Macro expansion to define out-of-class initialization of static members.
 
-#define SEQAN_SIMD_TRACE_OUT_OF_CLASS_INIT_(TRACE_VALUE)                             \
+#define SEQAN2_SIMD_TRACE_OUT_OF_CLASS_INIT_(TRACE_VALUE)                             \
     template <typename TVector>                                                      \
     const TVector TraceValue_<TVector, True>::TRACE_VALUE = InitSimdTrace_<TVector, TraceValue_<__uint8, False>::TRACE_VALUE, LENGTH<TVector>::VALUE>::VALUE;
 
-SEQAN_SIMD_TRACE_OUT_OF_CLASS_INIT_(NONE)
-SEQAN_SIMD_TRACE_OUT_OF_CLASS_INIT_(DIAGONAL)
-SEQAN_SIMD_TRACE_OUT_OF_CLASS_INIT_(HORIZONTAL)
-SEQAN_SIMD_TRACE_OUT_OF_CLASS_INIT_(VERTICAL)
-SEQAN_SIMD_TRACE_OUT_OF_CLASS_INIT_(HORIZONTAL_OPEN)
-SEQAN_SIMD_TRACE_OUT_OF_CLASS_INIT_(VERTICAL_OPEN)
-SEQAN_SIMD_TRACE_OUT_OF_CLASS_INIT_(MAX_FROM_HORIZONTAL_MATRIX)
-SEQAN_SIMD_TRACE_OUT_OF_CLASS_INIT_(MAX_FROM_VERTICAL_MATRIX)
-SEQAN_SIMD_TRACE_OUT_OF_CLASS_INIT_(NO_HORIZONTAL_TRACEBACK)
-SEQAN_SIMD_TRACE_OUT_OF_CLASS_INIT_(NO_VERTICAL_TRACEBACK)
+SEQAN2_SIMD_TRACE_OUT_OF_CLASS_INIT_(NONE)
+SEQAN2_SIMD_TRACE_OUT_OF_CLASS_INIT_(DIAGONAL)
+SEQAN2_SIMD_TRACE_OUT_OF_CLASS_INIT_(HORIZONTAL)
+SEQAN2_SIMD_TRACE_OUT_OF_CLASS_INIT_(VERTICAL)
+SEQAN2_SIMD_TRACE_OUT_OF_CLASS_INIT_(HORIZONTAL_OPEN)
+SEQAN2_SIMD_TRACE_OUT_OF_CLASS_INIT_(VERTICAL_OPEN)
+SEQAN2_SIMD_TRACE_OUT_OF_CLASS_INIT_(MAX_FROM_HORIZONTAL_MATRIX)
+SEQAN2_SIMD_TRACE_OUT_OF_CLASS_INIT_(MAX_FROM_VERTICAL_MATRIX)
+SEQAN2_SIMD_TRACE_OUT_OF_CLASS_INIT_(NO_HORIZONTAL_TRACEBACK)
+SEQAN2_SIMD_TRACE_OUT_OF_CLASS_INIT_(NO_VERTICAL_TRACEBACK)
 
 // Type alias to choose between scalar and simd version of trace value.
 template <typename TValue = __uint8>
@@ -249,7 +249,7 @@ typedef Tag<TracebackOff_> TracebackOff;
 
 /*!
  * @tag AlignmentAlgorithmTags#LinearGaps
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Tag for selecting linear gap cost model. This tag can be used for all standard DP algorithms.
  *
  * @signature struct LinearGaps_;
@@ -264,7 +264,7 @@ typedef Tag<LinearGaps_> LinearGaps;
 
 /*!
  * @tag AlignmentAlgorithmTags#AffineGaps
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Tag for selecting affine gap cost model. This tag can be used for all standard DP algorithms.
  *
  * @signature struct AffineGaps_;
@@ -279,7 +279,7 @@ typedef Tag<AffineGaps_> AffineGaps;
 
 /*!
  * @tag AlignmentAlgorithmTags#DynamicGaps
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Tag for selecting dynamic gap cost model. This tag can be used for all standard DP algorithms.
  *
  * @signature struct DynamicGaps_;
@@ -566,6 +566,6 @@ struct IsFreeEndGap_<FreeEndGaps_<TFirstRow, TFirstColumn, TLastRow, True> const
 // Functions
 // ============================================================================
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_PROFILE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_PROFILE_H_

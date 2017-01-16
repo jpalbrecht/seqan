@@ -34,8 +34,8 @@
 // Definition of basic exceptions.
 // ==========================================================================
 
-#ifndef SEQAN_BASIC_BASIC_EXCEPTION_H_
-#define SEQAN_BASIC_BASIC_EXCEPTION_H_
+#ifndef SEQAN2_BASIC_BASIC_EXCEPTION_H_
+#define SEQAN2_BASIC_BASIC_EXCEPTION_H_
 
 // ============================================================================
 // Prerequisites
@@ -49,7 +49,7 @@
 #include <cxxabi.h>
 #endif
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -71,42 +71,42 @@ struct Tag;
  */
 
 /*!
- * @macro ExceptionHandling#SEQAN_EXCEPTIONS
- * @headerfile <seqan/basic.h>
+ * @macro ExceptionHandling#SEQAN2_EXCEPTIONS
+ * @headerfile <seqan2/basic.h>
  * @brief Determines whether exceptions are enabled or not.
  *
- * @signature #define SEQAN_EXCEPTIONS
+ * @signature #define SEQAN2_EXCEPTIONS
  *
- * @see ExceptionHandling#SEQAN_TRY
- * @see ExceptionHandling#SEQAN_CATCH
- * @see ExceptionHandling#SEQAN_THROW
+ * @see ExceptionHandling#SEQAN2_TRY
+ * @see ExceptionHandling#SEQAN2_CATCH
+ * @see ExceptionHandling#SEQAN2_THROW
  * @see Exception
  */
 
-#define SEQAN_EXCEPTIONS    __EXCEPTIONS
+#define SEQAN2_EXCEPTIONS    __EXCEPTIONS
 
 /*!
- * @macro ExceptionHandling#SEQAN_TRY
- * @headerfile <seqan/basic.h>
+ * @macro ExceptionHandling#SEQAN2_TRY
+ * @headerfile <seqan2/basic.h>
  * @brief Replaces the C++ try keyword.
  *
- * @signature SEQAN_TRY {} SEQAN_CATCH() {}
+ * @signature SEQAN2_TRY {} SEQAN2_CATCH() {}
  *
- * When exceptions are disabled, i.e. SEQAN_EXCEPTIONS is set to false, the code inside the try block is always executed.
+ * When exceptions are disabled, i.e. SEQAN2_EXCEPTIONS is set to false, the code inside the try block is always executed.
  *
- * @see ExceptionHandling#SEQAN_CATCH
- * @see ExceptionHandling#SEQAN_THROW
+ * @see ExceptionHandling#SEQAN2_CATCH
+ * @see ExceptionHandling#SEQAN2_THROW
  * @see Exception
  *
  * @section Examples
  *
  * @code{.cpp}
  *
- * SEQAN_TRY
+ * SEQAN2_TRY
  * {
- *     SEQAN_THROW(Exception)
+ *     SEQAN2_THROW(Exception)
  * }
- * SEQAN_CATCH(Exception const & e)
+ * SEQAN2_CATCH(Exception const & e)
  * {
  *     std::cerr << e.what() << std::endl;
  * }
@@ -115,58 +115,58 @@ struct Tag;
  */
 
 /*!
- * @macro ExceptionHandling#SEQAN_CATCH
- * @headerfile <seqan/basic.h>
+ * @macro ExceptionHandling#SEQAN2_CATCH
+ * @headerfile <seqan2/basic.h>
  * @brief Replaces the C++ catch keyword.
  *
- * @signature SEQAN_TRY {} SEQAN_CATCH() {}
+ * @signature SEQAN2_TRY {} SEQAN2_CATCH() {}
  *
- * When exceptions are disabled, i.e. SEQAN_EXCEPTIONS is set to false, the code inside the catch block is never executed.
+ * When exceptions are disabled, i.e. SEQAN2_EXCEPTIONS is set to false, the code inside the catch block is never executed.
  *
- * @see ExceptionHandling#SEQAN_TRY
- * @see ExceptionHandling#SEQAN_THROW
+ * @see ExceptionHandling#SEQAN2_TRY
+ * @see ExceptionHandling#SEQAN2_THROW
  * @see Exception
  *
  * @section Examples
  *
- * See @link ExceptionHandling#SEQAN_TRY @endlink for a full example.
+ * See @link ExceptionHandling#SEQAN2_TRY @endlink for a full example.
  */
 
 /*!
- * @macro ExceptionHandling#SEQAN_THROW
- * @headerfile <seqan/basic.h>
+ * @macro ExceptionHandling#SEQAN2_THROW
+ * @headerfile <seqan2/basic.h>
  * @brief Replaces the C++ throw keyword.
  *
- * @signature SEQAN_THROW(Exception);
+ * @signature SEQAN2_THROW(Exception);
  *
- * When exceptions are disabled, i.e. AssertMacros#SEQAN_EXCEPTIONS is set to false, the macro turns into SEQAN_FAIL.
+ * When exceptions are disabled, i.e. AssertMacros#SEQAN2_EXCEPTIONS is set to false, the macro turns into SEQAN2_FAIL.
  *
- * @see ExceptionHandling#SEQAN_TRY
- * @see ExceptionHandling#SEQAN_CATCH
- * @see AssertMacros#SEQAN_FAIL
+ * @see ExceptionHandling#SEQAN2_TRY
+ * @see ExceptionHandling#SEQAN2_CATCH
+ * @see AssertMacros#SEQAN2_FAIL
  * @see Exception
  *
  * @section Examples
  *
- * See @link ExceptionHandling#SEQAN_TRY @endlink for a full example.
+ * See @link ExceptionHandling#SEQAN2_TRY @endlink for a full example.
  */
 
-#ifdef SEQAN_EXCEPTIONS
+#ifdef SEQAN2_EXCEPTIONS
 
-#define SEQAN_TRY           try
-#define SEQAN_CATCH(E)      catch(E)
-#define SEQAN_THROW(E)      throw E
-#define SEQAN_RETHROW       throw
+#define SEQAN2_TRY           try
+#define SEQAN2_CATCH(E)      catch(E)
+#define SEQAN2_THROW(E)      throw E
+#define SEQAN2_RETHROW       throw
 
 #else
 
-#define SEQAN_TRY           if (true)
-#define SEQAN_CATCH(E)      if (false)
-//#define SEQAN_CATCH(E)      for (E ; false; )
-#define SEQAN_THROW(E)      SEQAN_FAIL(#E)
-#define SEQAN_RETHROW
+#define SEQAN2_TRY           if (true)
+#define SEQAN2_CATCH(E)      if (false)
+//#define SEQAN2_CATCH(E)      for (E ; false; )
+#define SEQAN2_THROW(E)      SEQAN2_FAIL(#E)
+#define SEQAN2_RETHROW
 
-#endif // #ifdef SEQAN_EXCEPTIONS
+#endif // #ifdef SEQAN2_EXCEPTIONS
 
 // ============================================================================
 // Exceptions
@@ -178,7 +178,7 @@ struct Tag;
 
 /*!
  * @class Exception
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Generic SeqAn exception.
  * @signature typedef std::exception Exception;
  *
@@ -197,7 +197,7 @@ typedef std::exception          Exception;
 
 /*!
  * @class BadAlloc
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Generic SeqAn exception.
  * @signature typedef std::bad_alloc BadAlloc;
  *
@@ -216,7 +216,7 @@ typedef std::bad_alloc          BadAlloc;
 
 /*!
  * @class BadCast
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Generic SeqAn exception.
  * @signature typedef std::bad_cast BadCast;
  *
@@ -245,7 +245,7 @@ typedef std::bad_cast           BadCast;
 
 /*!
  * @class RuntimeError
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Runtime error exception.
  * @signature typedef std::runtime_error RuntimeError;
  *
@@ -262,7 +262,7 @@ typedef std::runtime_error      RuntimeError;
 // ----------------------------------------------------------------------------
 // Exception LogicError
 // ----------------------------------------------------------------------------
-// NOTE(esiragusa): Always prefer SEQAN_ASSERT to logic error exceptions.
+// NOTE(esiragusa): Always prefer SEQAN2_ASSERT to logic error exceptions.
 
 //typedef std::logic_error        LogicError;
 
@@ -335,7 +335,7 @@ struct AssertFunctor
     template <typename TValue>
     bool operator() (TValue const & val)
     {
-        if (SEQAN_UNLIKELY(!func(val)))
+        if (SEQAN2_UNLIKELY(!func(val)))
             throw TException(std::string("Unexpected character '") + escapeChar(val) + "' found. " +
                              getExceptionMessage(func, TContext()));
         return RETURN_VALUE;
@@ -350,29 +350,29 @@ struct AssertFunctor
 // Function globalExceptionHandler()
 // ----------------------------------------------------------------------------
 
-#if defined(SEQAN_EXCEPTIONS) && defined(SEQAN_GLOBAL_EXCEPTION_HANDLER)
+#if defined(SEQAN2_EXCEPTIONS) && defined(SEQAN2_GLOBAL_EXCEPTION_HANDLER)
 // Declare global exception handler.
 inline static void globalExceptionHandler()
 {
-    SEQAN_TRY
+    SEQAN2_TRY
     {
-        SEQAN_RETHROW;
+        SEQAN2_RETHROW;
     }
-    SEQAN_CATCH(Exception & e)
+    SEQAN2_CATCH(Exception & e)
     {
-        SEQAN_FAIL("Uncaught exception of type %s: %s", toCString(Demangler<Exception>(e)), e.what());
+        SEQAN2_FAIL("Uncaught exception of type %s: %s", toCString(Demangler<Exception>(e)), e.what());
     }
-    SEQAN_CATCH(...)
+    SEQAN2_CATCH(...)
     {
-        SEQAN_FAIL("Uncaught exception of unknown type.\n");
+        SEQAN2_FAIL("Uncaught exception of unknown type.\n");
     }
 }
 
 // Install global exception handler.
-static const std::terminate_handler SEQAN_UNUSED _globalExceptionHandler = std::set_terminate(globalExceptionHandler);
+static const std::terminate_handler SEQAN2_UNUSED _globalExceptionHandler = std::set_terminate(globalExceptionHandler);
 
-#endif  // #if defined(SEQAN_EXCEPTIONS) && defined(SEQAN_GLOBAL_EXCEPTION_HANDLER)
+#endif  // #if defined(SEQAN2_EXCEPTIONS) && defined(SEQAN2_GLOBAL_EXCEPTION_HANDLER)
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_BASIC_BASIC_EXCEPTION_H_
+#endif  // #ifndef SEQAN2_BASIC_BASIC_EXCEPTION_H_

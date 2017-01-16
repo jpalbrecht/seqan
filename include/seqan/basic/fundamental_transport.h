@@ -37,10 +37,10 @@
 
 // TODO(holtgrew): Do we want to get rid of move() and HasMoveConstructor<>? Will get rrvalues in C++11 and for everything else, swap() would be better.
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_FUNDAMENTAL_TRANSPORT_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_FUNDAMENTAL_TRANSPORT_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_FUNDAMENTAL_TRANSPORT_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_FUNDAMENTAL_TRANSPORT_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -65,7 +65,7 @@ void assignValue(TDest &, TSource const &);
 
 /*!
  * @mfn HasMoveConstructor
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Query whether a class has a move constructor.
  *
  * @signature HasMoveConstructor<T>::Type;
@@ -91,7 +91,7 @@ struct HasMoveConstructor
 
 /*!
  * @fn AssignableConcept#assign
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Assigns one object to another object.
  *
  * @signature void assign(target, source);
@@ -103,7 +103,7 @@ struct HasMoveConstructor
  */
 
 template <typename TTarget, typename TSource>
-inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<TTarget> >)
+inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<TTarget> >)
 assign(TTarget & target,
        TSource & source)
 {
@@ -111,7 +111,7 @@ assign(TTarget & target,
 }
 
 template <typename TTarget, typename TSource>
-inline SEQAN_FUNC_DISABLE_IF(Is<StlContainerConcept<TTarget> >)
+inline SEQAN2_FUNC_DISABLE_IF(Is<StlContainerConcept<TTarget> >)
 assign(TTarget & target,
        TSource const & source)
 {
@@ -144,7 +144,7 @@ assign(Proxy<TTargetSpec> & target,
 
 /*!
  * @fn AssignableConcept#set
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Assigns one object to another object avoiding to copy contents.
  *
  * @signature set(target, source);
@@ -193,7 +193,7 @@ set(TTarget const & target,
 
 /*!
  * @fn AssignableConcept#move
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Hands over content from one object to another object.
  *
  * @signature void move(target, source);
@@ -239,6 +239,6 @@ move(TTarget const & target,
     assign(target, source);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_FUNDAMENTAL_TRANSPORT_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_FUNDAMENTAL_TRANSPORT_H_

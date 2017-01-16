@@ -32,10 +32,10 @@
 // Author: Rene Rahn <rene.rahn@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_JOURNALED_STRING_TREE_STACK_OBSERVER_H_
-#define INCLUDE_SEQAN_JOURNALED_STRING_TREE_STACK_OBSERVER_H_
+#ifndef INCLUDE_SEQAN2_JOURNALED_STRING_TREE_STACK_OBSERVER_H_
+#define INCLUDE_SEQAN2_JOURNALED_STRING_TREE_STACK_OBSERVER_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -119,4 +119,4 @@ notify(StackObserver<TObject> & me,
 
 }
 
-#endif  // #ifndef INCLUDE_SEQAN_JOURNALED_STRING_TREE_STACK_OBSERVER_H_
+#endif  // #ifndef INCLUDE_SEQAN2_JOURNALED_STRING_TREE_STACK_OBSERVER_H_

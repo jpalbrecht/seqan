@@ -34,26 +34,26 @@
 // Proxy definition.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_BASIC_PROXY_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_BASIC_PROXY_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_PROXY_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_PROXY_H_
 
 // --------------------------------------------------------------------------
 // Dependencies
 // --------------------------------------------------------------------------
 
-#include <seqan/platform.h>
-#include <seqan/basic/basic_fundamental.h>
-#include <seqan/basic/basic_iterator.h>
+#include <seqan2/platform.h>
+#include <seqan2/basic/basic_fundamental.h>
+#include <seqan2/basic/basic_iterator.h>
 
 // --------------------------------------------------------------------------
 // Sub Module Headers
 // --------------------------------------------------------------------------
 
 // Proxy base class.
-#include <seqan/basic/proxy_base.h>
+#include <seqan2/basic/proxy_base.h>
 
 // Implementation of a proxy through an iterator (the latter only needs
 // assignValue() and setValue()).
-#include <seqan/basic/proxy_iterator.h>
+#include <seqan2/basic/proxy_iterator.h>
 
-#endif  // SEQAN_INCLUDE_SEQAN_BASIC_BASIC_PROXY_H_
+#endif  // SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_PROXY_H_

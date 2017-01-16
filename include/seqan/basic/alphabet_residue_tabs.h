@@ -37,11 +37,11 @@
 // Rna5.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_BASIC_ALPHABET_RESIDUE_TABS_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_BASIC_ALPHABET_RESIDUE_TABS_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_ALPHABET_RESIDUE_TABS_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_ALPHABET_RESIDUE_TABS_H_
 
 
-namespace seqan {
+namespace seqan2 {
 
 // --------------------------------------------------------------------------
 // Dna and Dna5
@@ -456,6 +456,6 @@ char const TranslateTableByteToAA_<T>::VALUE[256] =
     25,  25,  25,  25,  25,  25,  25,  25,  25,  25,  25,  25,  25,  25,  25,  25  //15
 };
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_BASIC_ALPHABET_RESIDUE_TABS_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_ALPHABET_RESIDUE_TABS_H_

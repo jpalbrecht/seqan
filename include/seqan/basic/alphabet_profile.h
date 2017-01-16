@@ -34,12 +34,12 @@
 // Profile alphabet character code.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_ALPHABET_PROFILE_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_ALPHABET_PROFILE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ALPHABET_PROFILE_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_ALPHABET_PROFILE_H_
 
-#include <seqan/misc/memset.h>
+#include <seqan2/misc/memset.h>
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -58,7 +58,7 @@ struct IteratorProxy;
 /*!
  * @class ProfileChar
  *
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @brief Alphabet type for profiles over another alphabet.
  *
@@ -377,6 +377,6 @@ operator<<(TStream & os, ProfileChar<TValue, TCount, TSpec> const & rhs)
     return os;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_ALPHABET_PROFILE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ALPHABET_PROFILE_H_

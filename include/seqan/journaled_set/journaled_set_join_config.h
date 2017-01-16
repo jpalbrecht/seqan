@@ -32,10 +32,10 @@
 // Author: Rene Rahn <rene.rahn@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_JOURNALED_SET_JOURNALED_SET_JOIN_CONFIG_H_
-#define INCLUDE_SEQAN_JOURNALED_SET_JOURNALED_SET_JOIN_CONFIG_H_
+#ifndef INCLUDE_SEQAN2_JOURNALED_SET_JOURNALED_SET_JOIN_CONFIG_H_
+#define INCLUDE_SEQAN2_JOURNALED_SET_JOURNALED_SET_JOIN_CONFIG_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -155,6 +155,6 @@ setScoringScheme(JoinConfig<GlobalAlign<JournaledCompact> > & joinConfig, Score<
     setScoreMismatch(joinConfig._score, -100000);   // Explicitly forbid mis matches in context with journaling.
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_JOURNALED_SET_JOURNALED_SET_JOIN_CONFIG_H_
+#endif  // #ifndef INCLUDE_SEQAN2_JOURNALED_SET_JOURNALED_SET_JOIN_CONFIG_H_

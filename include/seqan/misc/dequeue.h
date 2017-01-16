@@ -30,21 +30,21 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_MISC_DEQUEUE_H
-#define SEQAN_HEADER_MISC_DEQUEUE_H
+#ifndef SEQAN2_HEADER_MISC_DEQUEUE_H
+#define SEQAN2_HEADER_MISC_DEQUEUE_H
 
 #include <algorithm>
-#include <seqan/sequence.h>
+#include <seqan2/sequence.h>
 
 //////////////////////////////////////////////////////////////////////////////
 
-namespace seqan
+namespace seqan2
 {
 
 /*!
  * @class Deque
  * @implements ContainerConcept
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief A double-ended queue implementation on top of a @link String @endlink.
  *
  * @signature template <typename TValue[, typename TSpec]>

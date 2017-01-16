@@ -34,10 +34,10 @@
 // Implementation of Strongly-Connected-Compnonents algorithm.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_GRAPH_ALGORITHMS_STRONGLY_CONNECTED_COMPNENTS_H_
-#define INCLUDE_SEQAN_GRAPH_ALGORITHMS_STRONGLY_CONNECTED_COMPNENTS_H_
+#ifndef INCLUDE_SEQAN2_GRAPH_ALGORITHMS_STRONGLY_CONNECTED_COMPNENTS_H_
+#define INCLUDE_SEQAN2_GRAPH_ALGORITHMS_STRONGLY_CONNECTED_COMPNENTS_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -90,7 +90,7 @@ _dfsVisit(Graph<TSpec> const& g,
 
 /*!
  * @fn stronglyConnectedComponents
- * @headerfile <seqan/graph_algorithms.h>
+ * @headerfile <seqan2/graph_algorithms.h>
  * @brief Decomposes a directed graph into its strongly connected components.
  * @signature TSize stronglyConnectedComponents(components, g);
  *
@@ -175,6 +175,6 @@ stronglyConnectedComponents(TComponents & components,
     return label;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_GRAPH_ALGORITHMS_STRONGLY_CONNECTED_COMPNENTS_H_
+#endif  // #ifndef INCLUDE_SEQAN2_GRAPH_ALGORITHMS_STRONGLY_CONNECTED_COMPNENTS_H_

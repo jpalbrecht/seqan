@@ -34,15 +34,15 @@
 // Extras for the align module
 // ==========================================================================
 
-#ifndef SEQAN_ALIGN_EXTEND_H
-#define SEQAN_ALIGN_EXTEND_H
+#ifndef SEQAN2_ALIGN_EXTEND_H
+#define SEQAN2_ALIGN_EXTEND_H
 
-#include <seqan/basic.h>
-#include <seqan/align.h>
-#include <seqan/seeds.h>
+#include <seqan2/basic.h>
+#include <seqan2/align.h>
+#include <seqan2/seeds.h>
 
-#include <seqan/align_extend/align_extend_base.h>
-#include <seqan/align_extend/dp_scout_xdrop.h>
-#include <seqan/align_extend/align_extend.h>
+#include <seqan2/align_extend/align_extend_base.h>
+#include <seqan2/align_extend/dp_scout_xdrop.h>
+#include <seqan2/align_extend/align_extend.h>
 
 #endif

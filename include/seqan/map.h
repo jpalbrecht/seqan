@@ -30,8 +30,8 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_MAP_H
-#define SEQAN_HEADER_MAP_H
+#ifndef SEQAN2_HEADER_MAP_H
+#define SEQAN2_HEADER_MAP_H
 
 //____________________________________________________________________________
 // prerequisites
@@ -39,24 +39,24 @@
 #include <set>
 #include <map>
 
-#include <seqan/sequence.h>
+#include <seqan2/sequence.h>
 
 //____________________________________________________________________________
 
-#include <seqan/map/map_base.h>
-#include <seqan/map/map_vector.h>
-#include <seqan/map/map_skiplist.h>
-#include <seqan/map/map_chooser.h>
-#include <seqan/map/map_adapter_stl.h>
+#include <seqan2/map/map_base.h>
+#include <seqan2/map/map_vector.h>
+#include <seqan2/map/map_skiplist.h>
+#include <seqan2/map/map_chooser.h>
+#include <seqan2/map/map_adapter_stl.h>
 
 //____________________________________________________________________________
 
 /*
-#include <seqan/map/sumlist.h>
-#include <seqan/map/sumlist_mini.h>
-#include <seqan/map/sumlist_skip.h>
+#include <seqan2/map/sumlist.h>
+#include <seqan2/map/sumlist_mini.h>
+#include <seqan2/map/sumlist_skip.h>
 */
 
 //____________________________________________________________________________
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

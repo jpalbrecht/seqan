@@ -35,12 +35,12 @@
 #include <stack>
 
 // TODO(holtgrew): Get rid of this?
-//#define SEQAN_HIRSCHBERG_DEBUG_CUT
+//#define SEQAN2_HIRSCHBERG_DEBUG_CUT
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_GLOBAL_ALIGNMENT_HIRSCHBERG_IMPL_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_GLOBAL_ALIGNMENT_HIRSCHBERG_IMPL_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_GLOBAL_ALIGNMENT_HIRSCHBERG_IMPL_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_GLOBAL_ALIGNMENT_HIRSCHBERG_IMPL_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -205,9 +205,9 @@ _setScore(HirschbergSet_ & me,int new_score) {
 // //////////////////////////////////////////////////////////////////////////////////////////////
 //  Debug Methods
 //        functions are only used for debugging or verbose output, therefore they
-//      are only active in SEQAN_DEBUG
+//      are only active in SEQAN2_DEBUG
 // //////////////////////////////////////////////////////////////////////////////////////////////
-#ifdef SEQAN_DEBUG
+#ifdef SEQAN2_DEBUG
 
 inline
 void
@@ -233,7 +233,7 @@ operator==(HirschbergSet_ const & lhs,
 // Function _writeDebugMatrix()
 // ----------------------------------------------------------------------------
 
-#ifdef SEQAN_HIRSCHBERG_DEBUG_CUT
+#ifdef SEQAN2_HIRSCHBERG_DEBUG_CUT
     template<typename TSource>
     void _writeDebugMatrix(TSource s1,TSource s2)
     {
@@ -340,7 +340,7 @@ operator==(HirschbergSet_ const & lhs,
 #endif
 
 // debug flag .. define to see where Hirschberg cuts the sequences
-//#define SEQAN_HIRSCHBERG_DEBUG_CUT
+//#define SEQAN2_HIRSCHBERG_DEBUG_CUT
 
 // ----------------------------------------------------------------------------
 // Function globalAlignment()
@@ -428,7 +428,7 @@ _globalAlignment(Gaps<TSequenceH, TGapsSpecH> & gapsH,
         else if(_begin1(target) + 1 == _end1(target) || _begin2(target) + 1 == _end2(target))
         {
             /* ALIGN */
-#ifdef SEQAN_HIRSCHBERG_DEBUG_CUT
+#ifdef SEQAN2_HIRSCHBERG_DEBUG_CUT
             std::cout << "align s1 " << _begin1(target) << " to " << _end1(target) << " and s2 " << _begin2(target) << " to " << _end2(target) << std::endl;
             std::cout << "align " << infix(s1,_begin1(target),_end1(target)) << " and " << infix(s2,_begin2(target),_end2(target)) << std::endl << std::endl;
 #endif
@@ -510,7 +510,7 @@ _globalAlignment(Gaps<TSequenceH, TGapsSpecH> & gapsH,
                 }
             }
             total_score += value(matrix_, 0,0);
-#ifdef SEQAN_HIRSCHBERG_DEBUG_CUT
+#ifdef SEQAN2_HIRSCHBERG_DEBUG_CUT
             std::cout << "alignment score is " << total_score << std::endl << std::endl;
 #endif
 
@@ -599,7 +599,7 @@ _globalAlignment(Gaps<TSequenceH, TGapsSpecH> & gapsH,
             */
             unsigned mid = static_cast<unsigned>(floor( static_cast<double>((_begin1(target) + _end1(target))/2) ));
 
-#ifdef SEQAN_HIRSCHBERG_DEBUG_CUT
+#ifdef SEQAN2_HIRSCHBERG_DEBUG_CUT
             std::cout << "calculate cut for s1 " << _begin1(target) << " to " << _end1(target) << " and s2 " << _begin2(target) << " to " << _end2(target) << std::endl;
             std::cout << "calculate cut for " << infix(s1,_begin1(target),_end1(target)) << " and " << infix(s2,_begin2(target),_end2(target)) << std::endl;
             std::cout << "cut is in row " << mid << " symbol is " << getValue(s1,mid-1) << std::endl << std::endl;
@@ -676,7 +676,7 @@ _globalAlignment(Gaps<TSequenceH, TGapsSpecH> & gapsH,
                 }
             }
 
-#ifdef SEQAN_HIRSCHBERG_DEBUG_CUT
+#ifdef SEQAN2_HIRSCHBERG_DEBUG_CUT
             std::cout << "hirschberg calculates cut in column " << mid << " and row " << pointer[_end2(target)] << std::endl;
             std::cout << "requested position in c_score and pointer is " << _end2(target) << std::endl;
             std::cout << "alignment score is " << c_score[_end2(target)] << std::endl << std::endl;
@@ -689,6 +689,6 @@ _globalAlignment(Gaps<TSequenceH, TGapsSpecH> & gapsH,
     return total_score;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_GLOBAL_ALIGNMENT_HIRSCHBERG_IMPL_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_GLOBAL_ALIGNMENT_HIRSCHBERG_IMPL_H_

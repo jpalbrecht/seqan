@@ -35,17 +35,17 @@
 // Declarations related to and implementation of the Segment class.
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_SEGMENT_BASE_H
-#define SEQAN_HEADER_SEGMENT_BASE_H
+#ifndef SEQAN2_HEADER_SEGMENT_BASE_H
+#define SEQAN2_HEADER_SEGMENT_BASE_H
 
 
-namespace seqan
+namespace seqan2
 {
 
 /*!
  * @concept SegmentableConcept
  * @extends ContainerConcept
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief A concept for containers that can be used as the host of a @link Segment segment @endlink.
  *
  * @signature concept Segmentable;
@@ -151,7 +151,7 @@ namespace seqan
  * @class Segment
  * @implements RandomAccessContainerConcept
  * @implements SegmentableConcept
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief A contiguous part of a sequence.
  *
  * @signature template <typename THost, typename TSpec>
@@ -188,7 +188,7 @@ namespace seqan
 
 /*!
  * @fn Segment#beginPosition
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Return segment's begin position.
  *
  * @signature TPos beginPosition(seg);
@@ -201,7 +201,7 @@ namespace seqan
 
 /*!
  * @fn Segment#endPosition
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Return segment's end position.
  *
  * @signature TPos endPosition(seg);
@@ -407,10 +407,10 @@ struct IsSequence< Segment<THost, TSpec> > :
 // ----------------------------------------------------------------------------
 
 template <typename THost, typename TSpec>
-SEQAN_CONCEPT_IMPL((Segment<THost, TSpec>), (ContainerConcept));
+SEQAN2_CONCEPT_IMPL((Segment<THost, TSpec>), (ContainerConcept));
 
 template <typename THost, typename TSpec>
-SEQAN_CONCEPT_IMPL((Segment<THost, TSpec> const), (ContainerConcept));
+SEQAN2_CONCEPT_IMPL((Segment<THost, TSpec> const), (ContainerConcept));
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -826,7 +826,7 @@ resize(
 {
     ignoreUnusedVariableWarning(new_length);
 
-    SEQAN_ASSERT_EQ(new_length, length(me));
+    SEQAN2_ASSERT_EQ(new_length, length(me));
     return length(me);
 }
 
@@ -834,6 +834,6 @@ resize(
 
 // TODO(singer): moveValue still works. Should make the compiler throw an error.
 
-} //namespace seqan
+} //namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

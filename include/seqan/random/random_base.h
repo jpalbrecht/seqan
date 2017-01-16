@@ -34,10 +34,10 @@
 // Basic definitions for the module random.
 // ==========================================================================
 
-#ifndef SEQAN_RANDOM_RANDOM_BASE_H_
-#define SEQAN_RANDOM_RANDOM_BASE_H_
+#ifndef SEQAN2_RANDOM_RANDOM_BASE_H_
+#define SEQAN2_RANDOM_RANDOM_BASE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ===========================================================================
 // Forwards, Tags.
@@ -53,7 +53,7 @@ namespace seqan {
 
 /*!
  * @mfn GetDefaultRng
- * @headerfile <seqan/random.h>
+ * @headerfile <seqan2/random.h>
  * @brief Return the default Rng to use in a given class, specialization, or algorithm.
  *
  * @signature GetDefaultRng<T>::Type;
@@ -77,7 +77,7 @@ struct GetDefaultRng
 
 /*!
  * @fn defaultRng
- * @headerfile <seqan/random.h>
+ * @headerfile <seqan2/random.h>
  * @brief Return the default random number generator object of a given type.
  *
  * @signature TRng defaultRng<TRng>();
@@ -114,6 +114,6 @@ defaultRng(T const &)
     return defaultRng<TRng>();
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_RANDOM_RANDOM_BASE_H_
+#endif  // SEQAN2_RANDOM_RANDOM_BASE_H_

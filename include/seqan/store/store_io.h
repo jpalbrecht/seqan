@@ -32,8 +32,8 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_STORE_IO_H
-#define SEQAN_HEADER_STORE_IO_H
+#ifndef SEQAN2_HEADER_STORE_IO_H
+#define SEQAN2_HEADER_STORE_IO_H
 
 /* IOREV
  *
@@ -49,7 +49,7 @@
 
 
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -595,7 +595,7 @@ read(FragmentStore<TSpec, TConfig>& fragStore,
             TIdMapIter readIdPos = readIdMap.find(alignIt->readId);
             if (readIdPos != readIdMap.end())
             {
-                //SEQAN_ASSERT(readToPairMatchId.find(alignIt->readId) != readToPairMatchId.end());
+                //SEQAN2_ASSERT(readToPairMatchId.find(alignIt->readId) != readToPairMatchId.end());
                 if (readToPairMatchId.find(alignIt->readId) != readToPairMatchId.end())
                     alignIt->pairMatchId = readToPairMatchId[alignIt->readId];
                 alignIt->readId = readIdPos->second;
@@ -648,7 +648,7 @@ write(TTarget & target,
     typename DirectionIterator<TTarget, Output>::Type iter = directionIterator(target, Output());
 
     // Write Header
-    write(iter, "{UNV\niid:1\neid:seqan\ncom:\nafg file created with SeqAn\n.\n}\n");
+    write(iter, "{UNV\niid:1\neid:seqan2\ncom:\nafg file created with SeqAn\n.\n}\n");
 
     // Write Libraries
     typedef typename Iterator<typename TFragmentStore::TLibraryStore, Standard>::Type TLibIter;
@@ -1251,8 +1251,8 @@ bool unlockAndFreeContigs(FragmentStore<TSpec, TConfig> &store)
 template <typename TSpec, typename TConfig, typename TFileName>
 bool loadReads(FragmentStore<TSpec, TConfig> &store, TFileName &fileName)
 {
-    SEQAN_ASSERT_EQ(length(store.readStore), length(store.readSeqStore));
-    SEQAN_ASSERT_EQ(length(store.readStore), length(store.readNameStore));
+    SEQAN2_ASSERT_EQ(length(store.readStore), length(store.readSeqStore));
+    SEQAN2_ASSERT_EQ(length(store.readStore), length(store.readNameStore));
 
     typedef typename FragmentStore<TSpec, TConfig>::TReadStore TReadStore;
     typedef typename Value<TReadStore>::Type TReadStoreElement;
@@ -1270,8 +1270,8 @@ bool loadReads(FragmentStore<TSpec, TConfig> &store, TFileName &fileName)
 template <typename TSpec, typename TConfig, typename TFileName>
 bool loadReads(FragmentStore<TSpec, TConfig> & store, TFileName & fileNameL, TFileName & fileNameR)
 {
-    SEQAN_ASSERT_EQ(length(store.readStore), length(store.readSeqStore));
-    SEQAN_ASSERT_EQ(length(store.readStore), length(store.readNameStore));
+    SEQAN2_ASSERT_EQ(length(store.readStore), length(store.readSeqStore));
+    SEQAN2_ASSERT_EQ(length(store.readStore), length(store.readNameStore));
 
     typedef typename FragmentStore<TSpec, TConfig>::TReadSeq TReadSeq;
 
@@ -1292,6 +1292,6 @@ bool loadReads(FragmentStore<TSpec, TConfig> & store, TFileName & fileNameL, TFi
     return true;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

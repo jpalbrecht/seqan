@@ -35,10 +35,10 @@
 // MyersBitVector, MyersHirschberg.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_GLOBAL_ALIGNMENT_SPECIALIZED_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_GLOBAL_ALIGNMENT_SPECIALIZED_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_GLOBAL_ALIGNMENT_SPECIALIZED_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_GLOBAL_ALIGNMENT_SPECIALIZED_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -68,7 +68,7 @@ TScoreValue globalAlignment(Gaps<TSequenceH, TGapsSpecH> & gapsH,
                             Score<TScoreValue, Simple> const & scoringScheme,
                             Hirschberg const & /*algorithmTag*/)
 {
-    SEQAN_ASSERT_EQ(scoreGapOpen(scoringScheme), scoreGapExtend(scoringScheme));
+    SEQAN2_ASSERT_EQ(scoreGapOpen(scoringScheme), scoreGapExtend(scoringScheme));
     return _globalAlignment(gapsH, gapsV, scoringScheme, Hirschberg());
 }
 
@@ -78,7 +78,7 @@ TScoreValue globalAlignment(Align<TSequence, TAlignSpec> & align,
                             Score<TScoreValue, Simple> const & scoringScheme,
                             Hirschberg const & /*algorithmTag*/)
 {
-    SEQAN_ASSERT_EQ(length(rows(align)), 2u);
+    SEQAN2_ASSERT_EQ(length(rows(align)), 2u);
 
     return globalAlignment(row(align, 0), row(align, 1), scoringScheme, Hirschberg());
 }
@@ -91,7 +91,7 @@ template <typename TSequence, typename TAlignSpec>
 int globalAlignment(Align<TSequence, TAlignSpec> & align,
                     MyersHirschberg const & algorithmTag)
 {
-    SEQAN_ASSERT_EQ(length(rows(align)), 2u);
+    SEQAN2_ASSERT_EQ(length(rows(align)), 2u);
     return _globalAlignment(row(align, 0), row(align, 1), algorithmTag);
 }
 
@@ -112,7 +112,7 @@ template <typename TSequence, typename TAlignSpec>
 int globalAlignment(Align<TSequence, TAlignSpec> & align,
                     MyersBitVector const & algorithmTag)
 {
-    SEQAN_ASSERT_EQ(length(rows(align)), 2u);
+    SEQAN2_ASSERT_EQ(length(rows(align)), 2u);
     return _globalAlignment(row(align, 0), row(align, 1), algorithmTag);
 }
 
@@ -148,7 +148,7 @@ TScoreValue globalAlignmentScore(StringSet<TString, TSpec> const & strings,
                                  Score<TScoreValue, TScoreSpec> const & scoringScheme,
                                  Hirschberg const & algorithmTag)
 {
-    SEQAN_ASSERT_EQ(length(strings), 2u);
+    SEQAN2_ASSERT_EQ(length(strings), 2u);
     return globalAlignmentScore(strings[0], strings[1], scoringScheme, algorithmTag);
 }
 
@@ -171,7 +171,7 @@ template <typename TString, typename TSpec>
 int globalAlignmentScore(StringSet<TString, TSpec> const & strings,
                          MyersHirschberg const & algorithmTag)
 {
-    SEQAN_ASSERT_EQ(length(strings), 2u);
+    SEQAN2_ASSERT_EQ(length(strings), 2u);
     return globalAlignmentScore(strings[0], strings[1], algorithmTag);
 }
 
@@ -192,10 +192,10 @@ template <typename TString, typename TSpec>
 int globalAlignmentScore(StringSet<TString, TSpec> const & strings,
                          MyersBitVector const & algorithmTag)
 {
-    SEQAN_ASSERT_EQ(length(strings), 2u);
+    SEQAN2_ASSERT_EQ(length(strings), 2u);
     return _globalAlignmentScore(strings[0], strings[1], algorithmTag);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_GLOBAL_ALIGNMENT_SPECIALIZED_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_GLOBAL_ALIGNMENT_SPECIALIZED_H_

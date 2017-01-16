@@ -32,18 +32,18 @@
 // Author: Christopher Pockrandt <christopher.pockrandt@fu-berlin.de>
 // ==========================================================================
 
-//SEQAN_NO_DDDOC:do not generate documentation for this file
+//SEQAN2_NO_DDDOC:do not generate documentation for this file
 
-#ifndef INDEX_BIFM_H_
-#define INDEX_BIFM_H_
+#ifndef SEQAN2_INDEX_BIFM_H_
+#define SEQAN2_INDEX_BIFM_H_
 
-namespace seqan {
-
-template <typename TText, typename TSpec, typename TConfig>
-SEQAN_CONCEPT_IMPL((Index<TText, BidirectionalIndex<FMIndex<TSpec, TConfig> > >), (StringTrieConcept));
+namespace seqan2 {
 
 template <typename TText, typename TSpec, typename TConfig>
-SEQAN_CONCEPT_IMPL((Index<TText, BidirectionalIndex<FMIndex<TSpec, TConfig> > > const), (StringTrieConcept));
+SEQAN2_CONCEPT_IMPL((Index<TText, BidirectionalIndex<FMIndex<TSpec, TConfig> > >), (StringTrieConcept));
+
+template <typename TText, typename TSpec, typename TConfig>
+SEQAN2_CONCEPT_IMPL((Index<TText, BidirectionalIndex<FMIndex<TSpec, TConfig> > > const), (StringTrieConcept));
 
 // ============================================================================
 // Functions
@@ -78,4 +78,4 @@ inline bool indexSupplied(Index<TText, BidirectionalIndex<TIndexSpec> > const & 
 }
 
 }
-#endif /* INDEX_BIFM_H_ */
+#endif /* SEQAN2_INDEX_BIFM_H_ */

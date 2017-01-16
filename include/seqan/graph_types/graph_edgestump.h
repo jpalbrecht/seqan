@@ -30,10 +30,10 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_GRAPH_EDGESTUMP_H
-#define SEQAN_HEADER_GRAPH_EDGESTUMP_H
+#ifndef SEQAN2_HEADER_GRAPH_EDGESTUMP_H
+#define SEQAN2_HEADER_GRAPH_EDGESTUMP_H
 
-namespace seqan
+namespace seqan2
 {
 //////////////////////////////////////////////////////////////////////////////
 //    Graph - EdgeStump
@@ -43,7 +43,7 @@ namespace seqan
 
 /*!
  * @class EdgeStump
- * @headerfile <seqan/graph_types.h>
+ * @headerfile <seqan2/graph_types.h>
  * @brief Encapsulate information for a single edge.
  *
  * The EdgeStump either represents a list entry in the adjacency of a graph or an array field if edges are stored in an
@@ -1026,6 +1026,6 @@ _getId(EdgeStump<TCargo, TList, TSource, false, TSpec>*)
 
 
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

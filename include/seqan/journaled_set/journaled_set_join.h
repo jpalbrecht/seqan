@@ -32,10 +32,10 @@
 // Author: Rene Rahn <rene.rahn@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_JOURNALED_SET_JOURNALED_SET_JOIN_H_
-#define INCLUDE_SEQAN_JOURNALED_SET_JOURNALED_SET_JOIN_H_
+#ifndef INCLUDE_SEQAN2_JOURNALED_SET_JOURNALED_SET_JOIN_H_
+#define INCLUDE_SEQAN2_JOURNALED_SET_JOURNALED_SET_JOIN_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -76,7 +76,7 @@ join(StringSet<TString, Owner<JournaledSet> > & journalSet,
      TPosition journalIdx,
      JoinConfig<GlobalAlign<TSpec> > const & joinConfig)
 {
-   SEQAN_ASSERT_LT(journalIdx, static_cast<TPosition>(length(journalSet)));
+   SEQAN2_ASSERT_LT(journalIdx, static_cast<TPosition>(length(journalSet)));
    if (empty(host(journalSet)))
    {
        std::cerr << "No reference set! Join aborted!" << std::endl;
@@ -94,7 +94,7 @@ join(StringSet<TString, Owner<JournaledSet> > & journalSet,
      TPosition journalIdx,
      JoinConfig<GlobalChain<TSpec> > const & joinConfig)
 {
-   SEQAN_ASSERT_LT(journalIdx, static_cast<TPosition>(length(journalSet)));
+   SEQAN2_ASSERT_LT(journalIdx, static_cast<TPosition>(length(journalSet)));
 
    if (empty(host(journalSet)))
    {
@@ -125,6 +125,6 @@ join(StringSet<TString, Owner<JournaledSet> > & journalSet,
    join(journalSet, journalIdx, JoinConfig<GlobalAlign<JournaledManhatten> >());
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_JOURNALED_SET_JOURNALED_SET_JOIN_H_
+#endif  // #ifndef INCLUDE_SEQAN2_JOURNALED_SET_JOURNALED_SET_JOIN_H_

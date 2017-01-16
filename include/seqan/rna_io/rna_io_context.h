@@ -35,12 +35,12 @@
 // Class RnaIOContext, accessor functions.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_RNA_IO_RNA_IO_CONTEXT_H_
-#define INCLUDE_SEQAN_RNA_IO_RNA_IO_CONTEXT_H_
+#ifndef INCLUDE_SEQAN2_RNA_IO_RNA_IO_CONTEXT_H_
+#define INCLUDE_SEQAN2_RNA_IO_RNA_IO_CONTEXT_H_
 
-#include <seqan/store.h>
+#include <seqan2/store.h>
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -52,7 +52,7 @@ namespace seqan {
 
 /*!
  * @class RnaIOContext
- * @headerfile <seqan/rna_io.h>
+ * @headerfile <seqan2/rna_io.h>
  * @brief File context for sharing information between @link RnaRecord @endlink and @link RnaHeader @endlink.
  *
  * @signature class RnaIOCOntext;
@@ -129,6 +129,6 @@ inline void clear(RnaIOContext & context)
     clear(context.typIdent);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_RNA_IO_RNA_IO_CONTEXT_H_
+#endif  // #ifndef INCLUDE_SEQAN2_RNA_IO_RNA_IO_CONTEXT_H_

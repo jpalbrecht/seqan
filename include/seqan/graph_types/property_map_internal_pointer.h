@@ -33,10 +33,10 @@
 // Author: Tobias Rausch <rausch@embl.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_GRAPH_TYPES_PROPERTY_MAP_INTERNAL_POINTER_H_
-#define INCLUDE_SEQAN_GRAPH_TYPES_PROPERTY_MAP_INTERNAL_POINTER_H_
+#ifndef INCLUDE_SEQAN2_GRAPH_TYPES_PROPERTY_MAP_INTERNAL_POINTER_H_
+#define INCLUDE_SEQAN2_GRAPH_TYPES_PROPERTY_MAP_INTERNAL_POINTER_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -53,7 +53,7 @@ namespace seqan {
 /*!
  * @class InternalPointerPropertyMap InternalPointerPropertyMap
  * @implements PropertyMapConcept
- * @headerfile <seqan/graph_types.h>
+ * @headerfile <seqan2/graph_types.h>
  * @brief An internal property map using pointer to members.
  *
  * @signature template <typename TMemberPointer, TMemberPointer const MEMBER_POINTER>
@@ -70,7 +70,7 @@ struct InternalPointerPropertyMap
 {};
 
 template <typename TPointer, TPointer const MEMBER_POINTER>
-SEQAN_CONCEPT_IMPL((InternalPointerPropertyMap<TPointer, MEMBER_POINTER>), (PropertyMapConcept));
+SEQAN2_CONCEPT_IMPL((InternalPointerPropertyMap<TPointer, MEMBER_POINTER>), (PropertyMapConcept));
 
 // ============================================================================
 // Metafunctions
@@ -227,6 +227,6 @@ getProperty(InternalPointerPropertyMap<TValue TClass::*, MEMBER_POINTER> const &
     return (getCargo(e)).*MEMBER_POINTER;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_GRAPH_TYPES_PROPERTY_MAP_INTERNAL_POINTER_H_
+#endif  // #ifndef INCLUDE_SEQAN2_GRAPH_TYPES_PROPERTY_MAP_INTERNAL_POINTER_H_

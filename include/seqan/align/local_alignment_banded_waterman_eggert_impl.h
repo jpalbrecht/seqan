@@ -35,10 +35,10 @@
 // Author: Birte Kehr <birte.kehr@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_LOCAL_ALIGNMENT_BANDED_WATERMAN_EGGERT_IMPL_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_LOCAL_ALIGNMENT_BANDED_WATERMAN_EGGERT_IMPL_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_LOCAL_ALIGNMENT_BANDED_WATERMAN_EGGERT_IMPL_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_LOCAL_ALIGNMENT_BANDED_WATERMAN_EGGERT_IMPL_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -440,7 +440,7 @@ _alignBandedSmithWatermanTrace(LocalAlignmentFinder<TScoreValue> & finder,
             goPrevious(matIt, 1); goNext(matIt, 0);
             goPrevious(matIt2, 1); goNext(matIt2, 0);
         } else {
-            SEQAN_ASSERT_EQ(*matIt, *(matIt-1) +
+            SEQAN2_ASSERT_EQ(*matIt, *(matIt-1) +
                             scoreGapExtendHorizontal(sc, sequenceEntryForScore(sc, str1, (int) actualCol-1),
                                                      sequenceEntryForScore(sc, str2, (int) actualRow-1)));
             nextTraceValue = Horizontal;
@@ -488,7 +488,7 @@ _initLocalAlignmentFinder(TSequenceH const & seqH,
     TSize len0 = length(seqH);
     if (len0 - lowerDiag < hi_row) hi_row = static_cast<TSize>(len0 - lowerDiag);
     TSize height = hi_row - lo_row + 1;
-    SEQAN_ASSERT_GEQ(upperDiag, lowerDiag);
+    SEQAN2_ASSERT_GEQ(upperDiag, lowerDiag);
     TSize diagonalWidth = (TSize) (upperDiag - lowerDiag + 1);
 
     setDimension(finder.matrix, 2);
@@ -596,6 +596,6 @@ _localAlignmentNext(LocalAlignmentFinder<TScoreValue> & finder,
     return maxScore;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_LOCAL_ALIGNMENT_BANDED_WATERMAN_EGGERT_IMPL_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_LOCAL_ALIGNMENT_BANDED_WATERMAN_EGGERT_IMPL_H_

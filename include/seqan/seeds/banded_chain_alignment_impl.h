@@ -38,10 +38,10 @@
 // Genome Res. 2003, 13: 721-731, doi:10.1101/gr.926603
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_SEEDS_BANDED_CHAIN_ALIGNMENT_IMPL_H_
-#define INCLUDE_SEQAN_SEEDS_BANDED_CHAIN_ALIGNMENT_IMPL_H_
+#ifndef INCLUDE_SEQAN2_SEEDS_BANDED_CHAIN_ALIGNMENT_IMPL_H_
+#define INCLUDE_SEQAN2_SEEDS_BANDED_CHAIN_ALIGNMENT_IMPL_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -198,7 +198,7 @@ inline typename Size<TSeed>::Type _horizontalBandShiftBeginPoint(TSeed const & s
 {
     typedef typename Size<TSeed>::Type TSize;
     TSize bandSize = (upperDiagonal(seed) - (beginPositionH(seed) - beginPositionV(seed)));
-    SEQAN_ASSERT_GEQ(bandSize, TSize(0));  // must be greater or equal than zero
+    SEQAN2_ASSERT_GEQ(bandSize, TSize(0));  // must be greater or equal than zero
     return bandSize;
 }
 
@@ -212,7 +212,7 @@ inline typename Size<TSeed>::Type _verticalBandShiftBeginPoint(TSeed const & see
 {
     typedef typename Size<TSeed>::Type TSize;
     TSize bandSize((beginPositionH(seed) - beginPositionV(seed)) - lowerDiagonal(seed));
-    SEQAN_ASSERT_GEQ(bandSize, TSize(0));  // must be greater or equal than zero
+    SEQAN2_ASSERT_GEQ(bandSize, TSize(0));  // must be greater or equal than zero
     return bandSize;
 }
 
@@ -226,7 +226,7 @@ inline typename Size<TSeed>::Type _horizontalBandShiftEndPoint(TSeed const & see
 {
     typedef typename Size<TSeed>::Type TSize;
     TSize bandSize = endPositionH(seed) - endPositionV(seed) - lowerDiagonal(seed);
-    SEQAN_ASSERT_GEQ(bandSize, TSize(0));  // must be greater or equal than zero
+    SEQAN2_ASSERT_GEQ(bandSize, TSize(0));  // must be greater or equal than zero
     return bandSize;
 }
 
@@ -240,7 +240,7 @@ inline typename Size<TSeed>::Type _verticalBandShiftEndPoint(TSeed const & seed)
 {
     typedef typename Size<TSeed>::Type TSize;
     TSize bandSize = upperDiagonal(seed) - endPositionH(seed) + endPositionV(seed);
-    SEQAN_ASSERT_GEQ(bandSize, TSize(0));  // must be greater or equal than zero
+    SEQAN2_ASSERT_GEQ(bandSize, TSize(0));  // must be greater or equal than zero
     return bandSize;
 }
 
@@ -600,7 +600,7 @@ _findFirstAnchor(TSeedSet const & seedSet, int bandExtension)
     typedef typename Iterator<TSeedSet const, Standard>::Type TIterator;
     typedef typename Value<TSeedSet const>::Type TSeed;
 
-    SEQAN_ASSERT_GT_MSG(length(seedSet), 0u, "SeedSet is empty!");
+    SEQAN2_ASSERT_GT_MSG(length(seedSet), 0u, "SeedSet is empty!");
 
     TIterator it = begin(seedSet, Standard());
     TIterator itEnd = end(seedSet, Standard());
@@ -615,7 +615,7 @@ _findFirstAnchor(TSeedSet const & seedSet, int bandExtension)
             continue;
         else
         { // found seed which is not crossing the begin.
-            SEQAN_ASSERT(it != static_cast<TIterator>(begin(seedSet, Standard())));
+            SEQAN2_ASSERT(it != static_cast<TIterator>(begin(seedSet, Standard())));
             return --it;
         }
     }
@@ -636,7 +636,7 @@ _findLastAnchor(typename Iterator<TSeedSet const, Standard>::Type & iterBegin,
     typedef typename Iterator<TSeedSet const, Standard>::Type TIterator;
     typedef typename Value<TSeedSet>::Type TSeed;
 
-    SEQAN_ASSERT_GT_MSG(length(seedSet), 0u, "SeedSet is empty!");
+    SEQAN2_ASSERT_GT_MSG(length(seedSet), 0u, "SeedSet is empty!");
 
     TIterator it = end(seedSet, Standard());
     --it;
@@ -816,7 +816,7 @@ _initializeBandedChain(TTraceSet & globalTraceSet,
     gridEnd.i1 = _min(length(seqH), endPositionH(seed) + bandExtension);
     gridEnd.i2 = _min(length(seqV), endPositionV(seed) + bandExtension);
 
-    SEQAN_ASSERT(_checkScoreOverflow(gridEnd.i1 - gridBegin.i1 + gridEnd.i2 - gridBegin.i2, scoreSchemeGap));
+    SEQAN2_ASSERT(_checkScoreOverflow(gridEnd.i1 - gridBegin.i1 + gridEnd.i2 - gridBegin.i2, scoreSchemeGap));
 
     // Define area covering the infixes.
     infixH = infix(seqH, gridBegin.i1, gridEnd.i1);
@@ -919,7 +919,7 @@ _computeGapArea(TTraceSet & globalTraceSet,
     TGridPoint gridEnd(beginPositionH(currentSeed) + 1 + bandExtension + _horizontalBandShiftBeginPoint(currentSeed),
                        beginPositionV(currentSeed) + 1 + bandExtension + _verticalBandShiftBeginPoint(currentSeed));
 
-    SEQAN_ASSERT(_checkScoreOverflow(gridEnd.i1 - gridBegin.i1 + gridEnd.i2 - gridBegin.i2, scoreScheme));
+    SEQAN2_ASSERT(_checkScoreOverflow(gridEnd.i1 - gridBegin.i1 + gridEnd.i2 - gridBegin.i2, scoreScheme));
 
     // Define infix area for alignment.
     TInfixH infixH = infix(seqH, gridBegin.i1, gridEnd.i1);
@@ -1217,11 +1217,11 @@ _computeAlignment(TTraceSet & globalTraceSet,
     typedef DPScoutState_<BandedChainAlignmentScoutState<TDPCell> > TScoutState;
 
     // handle cases of empty sequences
-    SEQAN_ASSERT_MSG(!empty(seqH), "Cannot compute alignment on empty sequence (horizontal sequence)");
-    SEQAN_ASSERT_MSG(!empty(seqV), "Cannot compute alignment on empty sequence (vertical sequence)");
+    SEQAN2_ASSERT_MSG(!empty(seqH), "Cannot compute alignment on empty sequence (horizontal sequence)");
+    SEQAN2_ASSERT_MSG(!empty(seqV), "Cannot compute alignment on empty sequence (vertical sequence)");
 
     // TODO(rmaerker): At the moment the band must have at least a minimalBandwidth of size three. Maybe we change that.
-    SEQAN_ASSERT_GEQ(bandExtension, 1u);
+    SEQAN2_ASSERT_GEQ(bandExtension, 1u);
 
     // Handle case of empty seed set.
     if (length(seedSet) < 1)
@@ -1233,7 +1233,7 @@ _computeAlignment(TTraceSet & globalTraceSet,
     // Find the last anchor that is not covered by the region between the previous anchor and the end of the matrix.
     TSeedSetIterator itEnd = _findLastAnchor(it, seedSet, seqH, seqV, bandExtension);
 
-    SEQAN_ASSERT(itEnd != static_cast<TSeedSetIterator>(end(seedSet, Standard())));
+    SEQAN2_ASSERT(itEnd != static_cast<TSeedSetIterator>(end(seedSet, Standard())));
     // The scout state stores the current state of the dp scout and is used to store the
     // initialization values for the next intersecting grid.
     TScoutState scoutState;
@@ -1269,20 +1269,20 @@ _computeAlignment(TTraceSet & globalTraceSet,
     // MAIN: Process all inner seeds.
     while (it != itEnd)
     {
-        SEQAN_ASSERT(_checkColinearity(it));
+        SEQAN2_ASSERT(_checkColinearity(it));
         // Process the next gap area that connects to anchors.
         _computeGapArea(globalTraceSet, scoutState, value(++it), bandExtension, seqH, seqV, scoreSchemeGap,
                         profile);
         // Process the folowing anchor.
         _computeAnchorArea(globalTraceSet, scoutState, value(it), bandExtension, seqH, seqV, scoreSchemeAnchor, profile);
     }
-    SEQAN_ASSERT(_checkColinearity(it));
+    SEQAN2_ASSERT(_checkColinearity(it));
     // Finish the banded chain alignment while computing the closing gap.
     score = _finishBandedChain(globalTraceSet, scoutState, value(++it), bandExtension, seqH, seqV, scoreSchemeAnchor,
                                scoreSchemeGap, profile);
     return score;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_SEEDS_BANDED_CHAIN_ALIGNMENT_IMPL_H_
+#endif  // #ifndef INCLUDE_SEQAN2_SEEDS_BANDED_CHAIN_ALIGNMENT_IMPL_H_

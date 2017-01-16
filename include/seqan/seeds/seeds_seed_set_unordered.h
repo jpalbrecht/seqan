@@ -35,12 +35,12 @@
 // in a string and not kept in a particular order.
 // ==========================================================================
 
-#ifndef SEQAN_SEEDS_SEEDS_SEED_SET_UNORDERED_H_
-#define SEQAN_SEEDS_SEEDS_SEED_SET_UNORDERED_H_
+#ifndef SEQAN2_SEEDS_SEEDS_SEED_SET_UNORDERED_H_
+#define SEQAN2_SEEDS_SEEDS_SEED_SET_UNORDERED_H_
 
 #include <cmath>
 
-namespace seqan {
+namespace seqan2 {
 
 // ===========================================================================
 // Enums, Tags, Classes, Specializations
@@ -379,7 +379,7 @@ addSeed(SeedSet<TSeed, Unordered> & seedSet,
     return true;    // Always returns true.
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_SEEDS_SEEDS_SEED_SET_UNORDERED_H_
+#endif  // SEQAN2_SEEDS_SEEDS_SEED_SET_UNORDERED_H_
 

@@ -36,13 +36,13 @@
 // genome, e.g. chr1, chr1:15,000, chr1:100,000-200,000.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_SEQ_IO_GENOMIC_REGION_H_
-#define INCLUDE_SEQAN_SEQ_IO_GENOMIC_REGION_H_
+#ifndef INCLUDE_SEQAN2_SEQ_IO_GENOMIC_REGION_H_
+#define INCLUDE_SEQAN2_SEQ_IO_GENOMIC_REGION_H_
 
-#include <seqan/sequence.h>
-#include <seqan/stream.h>  // for tokenization
+#include <seqan2/sequence.h>
+#include <seqan2/stream.h>  // for tokenization
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -61,7 +61,7 @@ inline void parse(GenomicRegion & region, CharString const & regionString);
 
 /*!
  * @class GenomicRegion
- * @headerfile <seqan/seq_io.h>
+ * @headerfile <seqan2/seq_io.h>
  * @brief Store information about a genomic region.
  *
  * @signature class GenomicRegion;
@@ -84,7 +84,7 @@ inline void parse(GenomicRegion & region, CharString const & regionString);
  * Construct a @link GenomicRegion @endlink object and fill it from different region strings.
  *
  * @code{.cpp}
- * seqan::GenomicRegion genomicRegion;
+ * seqan2::GenomicRegion genomicRegion;
  *
  * parse(genomicRegion, "chr1");
  * // genomicRegion.seqName == "chr1"
@@ -258,7 +258,7 @@ parse(GenomicRegion & region, CharString const & regionString)
     lexicalCastWithException(region.beginPos, buffer);
 
     if (region.beginPos < 1)
-        SEQAN_THROW(ParseError("GenomicRegion: Begin postition less than 1"));
+        SEQAN2_THROW(ParseError("GenomicRegion: Begin postition less than 1"));
 
     region.beginPos--;                      // Adjust to 0-based.
     if (atEnd(reader))  // just one position
@@ -275,9 +275,9 @@ parse(GenomicRegion & region, CharString const & regionString)
     lexicalCastWithException(region.endPos, buffer);
 
     if (region.endPos < 1)
-        SEQAN_THROW(ParseError("GenomicRegion: End postition less than 1"));
+        SEQAN2_THROW(ParseError("GenomicRegion: End postition less than 1"));
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_SEQ_IO_GENOMIC_REGION_H_
+#endif  // #ifndef INCLUDE_SEQAN2_SEQ_IO_GENOMIC_REGION_H_

@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_FIND_MYERS_UKKONEN_H
-#define SEQAN_HEADER_FIND_MYERS_UKKONEN_H
+#ifndef SEQAN2_HEADER_FIND_MYERS_UKKONEN_H
+#define SEQAN2_HEADER_FIND_MYERS_UKKONEN_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -45,7 +45,7 @@ namespace seqan
 /*!
  * @class MyersPattern
  * @extends Pattern
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Provides fast approximate searching of one string in another using Myer's fast bit-parallel algorithm with
  *        application of the Ukkonen- trick.
  *
@@ -83,7 +83,7 @@ struct AlignTextBanded; // search query in a parallelogram
 
 /*!
  * @typedef MyersUkkonen
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Semi-global (query-global, text-local) pattern matching without
  *        findBegin() support.
  *
@@ -96,7 +96,7 @@ typedef Myers<FindInfix, True, void> MyersUkkonen;
 
 /*!
  * @typedef MyersUkkonenGlobal
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Global (query-global, text-global) pattern matching without findBegin() support.
  *
  * @signature typedef Myers<FindInfix, True, void> MyersUkkonenGlobal;
@@ -106,7 +106,7 @@ typedef Myers<FindPrefix, True, void> MyersUkkonenGlobal;
 
 /*!
  * @typedef MyersUkkonenBanded
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Global (query-global, text-local) pattern matching without findBegin() support.
  *
  * @signature Myers<AlignTextBanded<FindInfix, NMatchesN_, NMatchesN_>, True, void> MyersUkkonenBanded;
@@ -114,7 +114,7 @@ typedef Myers<FindPrefix, True, void> MyersUkkonenGlobal;
 
 /*!
  * @typedef MyersUkkonenGlobalBanded
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Global (query-global, text-global) pattern matching without findBegin() support.
  *
  * @signature Myers<AlignTextBanded<FindPrefix, NMatchesN_, NMatchesN_>, True, void> MyersUkkonenGlobalBanded;
@@ -176,7 +176,7 @@ struct FindBegin_< Pattern<TNeedle, Myers<TSpec, THasState, TFindBeginPatternSpe
 template <typename TNeedle, typename TSpec>
 struct MyersSmallState_
 {
-#ifdef SEQAN_SSE2_INT128
+#ifdef SEQAN2_SSE2_INT128
     typedef Sse2Int128 TWord;
 #else
     typedef unsigned long TWord;
@@ -202,10 +202,10 @@ template <typename TNeedle, typename TSpec, typename TFinderCSP, typename TPatte
 struct MyersSmallState_<TNeedle, AlignTextBanded<TSpec, TFinderCSP, TPatternCSP> >:
     public MyersSmallStateBandedShift_<TNeedle, typename MyersSmallAlphabet_<typename Value<TNeedle>::Type>::Type>
 {
-#ifdef SEQAN_SSE2_INT128
+#ifdef SEQAN2_SSE2_INT128
     typedef Sse2Int128 TWord;
 #else
-#ifdef SEQAN_DEBUG_MYERSBITVECTOR
+#ifdef SEQAN2_DEBUG_MYERSBITVECTOR
     typedef unsigned char TWord;
 #else
     typedef unsigned long TWord;
@@ -221,7 +221,7 @@ struct MyersSmallState_<TNeedle, AlignTextBanded<TSpec, TFinderCSP, TPatternCSP>
     unsigned short leftClip;    // clip that many characters from the text begin
 //    unsigned short rightClip;   // stop alignment that many characters before the end   <<<< currently unused (autom. determined)
 
-#ifdef SEQAN_DEBUG_MYERSBITVECTOR
+#ifdef SEQAN2_DEBUG_MYERSBITVECTOR
     String<int> DPMat;
 #endif
     MyersSmallState_() : bitMasks(), VP0(0), VN0(0), errors(0), maxErrors(0), leftClip(0) {}
@@ -231,7 +231,7 @@ struct MyersSmallState_<TNeedle, AlignTextBanded<TSpec, TFinderCSP, TPatternCSP>
 template <typename TNeedle, typename TSpec>
 struct MyersLargeState_
 {
-#ifdef SEQAN_SSE2_INT128
+#ifdef SEQAN2_SSE2_INT128
     typedef Sse2Int128 TWord;
 #else
     typedef unsigned long TWord;
@@ -246,10 +246,10 @@ struct MyersLargeState_
 template <typename TNeedle, typename TSpec, typename TFinderCSP, typename TPatternCSP>
 struct MyersLargeState_<TNeedle, AlignTextBanded<TSpec, TFinderCSP, TPatternCSP> >
 {
-#ifdef SEQAN_SSE2_INT128
+#ifdef SEQAN2_SSE2_INT128
     typedef Sse2Int128 TWord;
 #else
-#ifdef SEQAN_DEBUG_MYERSBITVECTOR
+#ifdef SEQAN2_DEBUG_MYERSBITVECTOR
     typedef unsigned char TWord;
 #else
     typedef unsigned long TWord;
@@ -350,7 +350,7 @@ public:
 template <typename TNeedle, typename TSpec>
 struct MyersSmallPattern_
 {
-#ifdef SEQAN_SSE2_INT128
+#ifdef SEQAN2_SSE2_INT128
     typedef Sse2Int128 TWord;
 #else
     typedef unsigned long TWord;
@@ -366,10 +366,10 @@ struct MyersSmallPattern_
 template <typename TNeedle, typename TSpec, typename TFinderCSP, typename TPatternCSP>
 struct MyersSmallPattern_<TNeedle, AlignTextBanded<TSpec, TFinderCSP, TPatternCSP> >
 {
-#ifdef SEQAN_SSE2_INT128
+#ifdef SEQAN2_SSE2_INT128
     typedef Sse2Int128 TWord;
 #else
-#ifdef SEQAN_DEBUG_MYERSBITVECTOR
+#ifdef SEQAN2_DEBUG_MYERSBITVECTOR
     typedef unsigned char TWord;
 #else
     typedef unsigned long TWord;
@@ -383,7 +383,7 @@ struct MyersSmallPattern_<TNeedle, AlignTextBanded<TSpec, TFinderCSP, TPatternCS
 template <typename TNeedle, typename TSpec>
 struct MyersLargePattern_
 {
-#ifdef SEQAN_SSE2_INT128
+#ifdef SEQAN2_SSE2_INT128
     typedef Sse2Int128 TWord;
 #else
     typedef unsigned long TWord;
@@ -663,7 +663,7 @@ _reinitPattern(Pattern<TNeedle, Myers<TSpec, THasState, TFindBeginPatternSpec> >
 //____________________________________________________________________________
 /*!
  * @fn MyersPattern#scoreLimit
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief The minimal score a match must reach in approximate searching.
  *
  * @signature TScoreValue scoreLimit(pattern);
@@ -691,7 +691,7 @@ scoreLimit(Pattern<TNeedle, Myers<TSpec, True, TFindBeginPatternSpec> > const & 
 //____________________________________________________________________________
 /*!
  * @fn MyersPattern#setSoreLimit
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Set the minimal score a match must reach in approximate serach.
  *
  * @signature void setScoreLimit(pattern, limit);
@@ -726,7 +726,7 @@ setScoreLimit(Pattern<TNeedle, Myers<TSpec, True, TFindBeginPatternSpec> > & pat
 //____________________________________________________________________________
 /*!
  * @fn MyersPattern#getScore
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Score of the last found match in approximate searching.
  *
  * @signature TScoreValue getScore(pattern);
@@ -927,9 +927,9 @@ _patternInitSmallStateBanded(
     typedef typename Iterator<TNeedle2 const, Standard>::Type TIter;
     typedef typename Value<TNeedle>::Type TValue;
 
-#ifdef SEQAN_DEBUG_MYERSBITVECTOR
+#ifdef SEQAN2_DEBUG_MYERSBITVECTOR
     int col = state.leftClip + 1;
-#ifdef SEQAN_DEBUG_MYERSBITVECTOR_DUMP
+#ifdef SEQAN2_DEBUG_MYERSBITVECTOR_DUMP
     std::cerr << "     ";
     for (int i = length(needle); i != 0; --i)
         std::cerr << std::setw(5) << needle[i - 1];
@@ -1101,8 +1101,8 @@ _patternInitSmallStateBanded(
     //    std::cerr << "\t  "<<std::setw(PADDING)<<' '<<"\tVN"<<std::setw(PADDING)<<(uint64_t)VN<<"\tVP"<<std::setw(PADDING)<<(uint64_t)VP << std::endl;
     //    std::cerr << std::dec;
 
-#ifdef SEQAN_DEBUG_MYERSBITVECTOR
-#ifdef SEQAN_DEBUG_MYERSBITVECTOR_DUMP
+#ifdef SEQAN2_DEBUG_MYERSBITVECTOR
+#ifdef SEQAN2_DEBUG_MYERSBITVECTOR_DUMP
         std::cerr << "diag ";
 #endif
         int val = errors;
@@ -1111,7 +1111,7 @@ _patternInitSmallStateBanded(
         {
             if (i > col)
             {
-#ifdef SEQAN_DEBUG_MYERSBITVECTOR_DUMP
+#ifdef SEQAN2_DEBUG_MYERSBITVECTOR_DUMP
                 std::cerr << "     ";
 #endif
             } else
@@ -1126,7 +1126,7 @@ _patternInitSmallStateBanded(
                         val += ((VN & mask) != (TWord)0)? 1:0;
                     }
                     state.DPMat[(col-state.leftClip)*(length(needle)+1)+i] = val;
-#ifdef SEQAN_DEBUG_MYERSBITVECTOR_DUMP
+#ifdef SEQAN2_DEBUG_MYERSBITVECTOR_DUMP
                     std::cerr << std::setw(5) << val;
                 } else
                 {
@@ -1135,7 +1135,7 @@ _patternInitSmallStateBanded(
                 }
             }
         }
-#ifdef SEQAN_DEBUG_MYERSBITVECTOR_DUMP
+#ifdef SEQAN2_DEBUG_MYERSBITVECTOR_DUMP
         std::cerr << std::setw(5) << *finder;
         std::cerr << std::setw(5) << errors << std::endl;
 #endif
@@ -1163,9 +1163,9 @@ bool _stateInit(
 //    unsigned blockCount = diagWidth / state.MACHINE_WORD_SIZE + 1;
     unsigned blockCount = 1;
 
-//    SEQAN_ASSERT_GEQ(length(container(finder)), length(needle));
+//    SEQAN2_ASSERT_GEQ(length(container(finder)), length(needle));
 
-#ifdef SEQAN_DEBUG_MYERSBITVECTOR
+#ifdef SEQAN2_DEBUG_MYERSBITVECTOR
     clear(state.DPMat);
     resize(state.DPMat, (length(container(finder)) + 1) * (length(needle) + 1), -9);
     for (unsigned i = 0; i <= length(needle); ++i)
@@ -1320,7 +1320,7 @@ inline bool _findMyersLargePatterns (TFinder & finder,
                 state.errors--;
         }
 
-//        SEQAN_ASSERT (state.errors >= 0);
+//        SEQAN2_ASSERT (state.errors >= 0);
 
         goNext(finder);
     }
@@ -1415,7 +1415,7 @@ _findMyersSmallPatternsBanded(
     TWord const maxErrors = state.maxErrors;
     unsigned short const shift = length(needle);
 
-#ifdef SEQAN_DEBUG_MYERSBITVECTOR
+#ifdef SEQAN2_DEBUG_MYERSBITVECTOR
     unsigned col = position(finder) + 1;
 #endif
 
@@ -1440,8 +1440,8 @@ _findMyersSmallPatternsBanded(
         errors -= (HN >> (BitsPerValue<TWord>::VALUE - 2)) & 1;
 
         // shift bitmasks and states
-#ifdef SEQAN_DEBUG_MYERSBITVECTOR
-#ifdef SEQAN_DEBUG_MYERSBITVECTOR_DUMP
+#ifdef SEQAN2_DEBUG_MYERSBITVECTOR
+#ifdef SEQAN2_DEBUG_MYERSBITVECTOR_DUMP
         std::cerr << "horiz";
 #endif
         int val = errors;
@@ -1458,14 +1458,14 @@ _findMyersSmallPatternsBanded(
                     val += ((VN & mask) != (TWord)0)? 1:0;
                 }
                 state.DPMat[col*(length(needle)+1)+i] = val;
-#ifdef SEQAN_DEBUG_MYERSBITVECTOR_DUMP
+#ifdef SEQAN2_DEBUG_MYERSBITVECTOR_DUMP
                 std::cerr << std::setw(5) << val;
             } else {
                 std::cerr << "     ";
 #endif
             }
         }
-#ifdef SEQAN_DEBUG_MYERSBITVECTOR_DUMP
+#ifdef SEQAN2_DEBUG_MYERSBITVECTOR_DUMP
         std::cerr << std::setw(5) << *finder;
         std::cerr << std::setw(5) << errors << std::endl;
 #endif
@@ -1654,7 +1654,7 @@ inline bool find (TFinder & finder,
     return find(finder, pattern, pattern, minScore); //static cast
 }
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...
 

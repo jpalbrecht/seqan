@@ -41,10 +41,10 @@
 
 #include <new>
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_ARRAY_CONSTRUCT_DESTRUCT_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_ARRAY_CONSTRUCT_DESTRUCT_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ARRAY_CONSTRUCT_DESTRUCT_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_ARRAY_CONSTRUCT_DESTRUCT_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -66,7 +66,7 @@ namespace seqan {
 
 /*!
  * @mfn IsSimple
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Tests type to be simple.
  *
  * @signature IsSimple<T>::Type;
@@ -218,7 +218,7 @@ getValue(T * me)
 
 /*!
  * @fn valueConstruct
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Constructs an object at specified position.
  *
  * @signature void valueConstruct(iterator [, param [, move_tag]]);
@@ -340,7 +340,7 @@ struct ValueDestructorProxy_
 
 /*!
  * @fn valueDestruct
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Destroys an object at specified position.
  *
  * @signature void valueDestruct(iterator);
@@ -374,7 +374,7 @@ valueDestruct(TIterator it)
 
 /*!
  * @fn arrayConstruct
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Construct objects in a given memory buffer.
  *
  * @signature void arrayConstruct(begin, end[, value]);
@@ -437,7 +437,7 @@ arrayConstruct(TIterator1 begin_,
 
 /*!
  * @fn arrayConstructCopy
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Copy constructs an array of objects into in a given memory buffer.
  *
  * @signature void arrayConstructCopy(sourceBegin, sourceEnd, target);
@@ -483,7 +483,7 @@ arrayConstructCopy(TSource1 source_begin,
 
 /*!
  * @fn arrayConstructMove
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Move constructs an array of objects into in a given memory buffer.
  *
  * @signature void arrayConstructMove(sourceBegin, sourceEnd, target);
@@ -531,7 +531,7 @@ arrayConstructMove(TSource1 source_begin,
 
 /*!
  * @fn arrayDestruct
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Destroys an array of objects.
  *
  * @signature void arrayDestruct(begin, end);
@@ -570,7 +570,7 @@ arrayDestruct(TIterator1 begin_,
 
 /*!
  * @fn arrayFill
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Assigns one object to each element of a range.
  *
  * @signature void arrayFill(begin, end, value[, parallelTag]);
@@ -610,7 +610,7 @@ arrayFill(TIterator begin_,
 
 /*!
  * @fn arrayCopyForward
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Copies a range of objects into another range of objects starting from the first element.
  *
  * @signature void arrayCopyForward(sourceBegin, sourceEnd, target);
@@ -652,7 +652,7 @@ arrayCopyForward(TSource1 source_begin,
 
 /*!
  * @fn arrayCopyBackward
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Copies a range of objects into another range of objects starting from the last element.
  *
  * @signature void arrayCopyBackward(source_begin, source_end, target);
@@ -700,7 +700,7 @@ arrayCopyBackward(TSource1 source_begin,
 /*!
  * @fn arrayCopy
  *
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  *
  * @brief Copies a range of objects into another range of objects.
  *
@@ -735,7 +735,7 @@ inline void arrayCopy(TSource1 source_begin,
 
 /*!
  * @fn arrayMoveForward
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Moves a range of objects into another range of objects starting from the first element.
  *
  * @signature void arrayMoveForward(sourceBegin, sourceEnd, target);
@@ -777,7 +777,7 @@ arrayMoveForward(TSource1 source_begin,
 
 /*!
  * @fn arrayMoveBackward
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Moves a range of objects into another range of objects starting from the last element.
  *
  * @signature void arrayMoveBackward(sourceBegin, sourceEnd, target);
@@ -824,7 +824,7 @@ arrayMoveBackward(TSource1 source_begin,
 
 /*!
  * @fn arrayMove
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Moves a range of objects into another range of objects.
  *
  * @signature void arrayMove(sourceBegin, sourceEnd, target);
@@ -861,7 +861,7 @@ arrayMove(TSource1 source_begin,
 
 /*!
  * @fn arrayClearSpace
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Destroys the begin of an array and keeps the rest.
  *
  * @signature void arrayClearSpace(arrBegin, arrLength, keepFrom, moveTo);
@@ -896,7 +896,7 @@ void _arrayClearSpaceDefault(TIterator array_begin,
     }
 
     // Otherwise, we will perform the destruction & movement.
-    SEQAN_ASSERT_LT(keep_from, array_length);
+    SEQAN2_ASSERT_LT(keep_from, array_length);
     if (keep_from == move_to) {
         // Case 1: No movement, just destroy elements.
         arrayDestruct(array_begin, array_begin + move_to);
@@ -1267,6 +1267,6 @@ void arrayClearSpace(TValue * array_begin,
 }
 
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_ARRAY_CONSTRUCT_DESTRUCT_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_ARRAY_CONSTRUCT_DESTRUCT_H_

@@ -35,10 +35,10 @@
 // in headers.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_BAM_IO_BAM_HEADER_RECORD_H_
-#define INCLUDE_SEQAN_BAM_IO_BAM_HEADER_RECORD_H_
+#ifndef INCLUDE_SEQAN2_BAM_IO_BAM_HEADER_RECORD_H_
+#define INCLUDE_SEQAN2_BAM_IO_BAM_HEADER_RECORD_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags, Classes, Enums
@@ -50,7 +50,7 @@ namespace seqan {
 
 /*!
  * @enum BamHeaderRecordType
- * @headerfile <seqan/bam_io.h>
+ * @headerfile <seqan2/bam_io.h>
  * @brief Enumeration for the header record type.
  *
  * @signature enum BamHeaderRecordType;
@@ -86,7 +86,7 @@ enum BamHeaderRecordType
 
 /*!
  * @enum BamSortOrder
- * @headerfile <seqan/bam_io.h>
+ * @headerfile <seqan2/bam_io.h>
  * @brief Enumeration for the header record type.
  *
  * @signature enum BamSortOrder;
@@ -118,7 +118,7 @@ enum BamSortOrder
 
 /*!
  * @class BamHeaderRecord
- * @headerfile <seqan/bam_io.h>
+ * @headerfile <seqan2/bam_io.h>
  * @brief Represents a header entry in a SAM file or the header section of the BAM header.
  *
  * @signature class BamHeaderRecord;
@@ -180,7 +180,7 @@ public:
 
 /*!
  * @class BamHeader
- * @headerfile <seqan/bam_io.h>
+ * @headerfile <seqan2/bam_io.h>
  * @implements FormattedFileHeaderConcept
  * @signature typedef String<BamHeaderRecord> BamHeader;
  * @brief Represent the information of the BAM header.
@@ -271,7 +271,7 @@ findTagKey(unsigned & idx, TKeyName const & key, BamHeaderRecord const & record)
  */
 
 template <typename TId>
-SEQAN_FUNC_ENABLE_IF(
+SEQAN2_FUNC_ENABLE_IF(
     IsInteger<TId>,
     bool)
 inline getTagValue(CharString & value, TId idx, BamHeaderRecord const & record)
@@ -283,7 +283,7 @@ inline getTagValue(CharString & value, TId idx, BamHeaderRecord const & record)
 }
 
 template <typename TKeyName>
-SEQAN_FUNC_ENABLE_IF(
+SEQAN2_FUNC_ENABLE_IF(
     IsSequence<TKeyName>,
     bool)
 inline getTagValue(CharString & value, TKeyName const & key, BamHeaderRecord const & record)
@@ -309,7 +309,7 @@ inline getTagValue(CharString & value, TKeyName const & key, BamHeaderRecord con
 // TODO(holtgrew): Parameter order!
 
 template <typename TId>
-SEQAN_FUNC_ENABLE_IF(
+SEQAN2_FUNC_ENABLE_IF(
     IsInteger<TId>,
     void)
 inline setTagValue(TId idx, CharString const & value, BamHeaderRecord & record)
@@ -320,7 +320,7 @@ inline setTagValue(TId idx, CharString const & value, BamHeaderRecord & record)
 }
 
 template <typename TKeyName>
-SEQAN_FUNC_ENABLE_IF(
+SEQAN2_FUNC_ENABLE_IF(
     IsSequence<TKeyName>,
     void)
 inline setTagValue(TKeyName const & key, CharString const & value, BamHeaderRecord & record)
@@ -478,6 +478,6 @@ setSortOrder(BamHeader & header, BamSortOrder sortOrder)
     }
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_BAM_IO_BAM_HEADER_RECORD_H_
+#endif  // #ifndef INCLUDE_SEQAN2_BAM_IO_BAM_HEADER_RECORD_H_

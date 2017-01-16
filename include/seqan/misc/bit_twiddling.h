@@ -36,8 +36,8 @@
 // https://graphics.stanford.edu/~seander/bithacks.html
 // ==========================================================================
 
-#ifndef SEQAN_MISC_BIT_TWIDDLING_H_
-#define SEQAN_MISC_BIT_TWIDDLING_H_
+#ifndef SEQAN2_MISC_BIT_TWIDDLING_H_
+#define SEQAN2_MISC_BIT_TWIDDLING_H_
 
 #ifdef STDLIB_VS
 
@@ -53,7 +53,7 @@
 
 // TODO(holtgrew): Test this!
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -119,7 +119,7 @@ struct WordSize_ {};
 
 /*!
  * @fn setBitTo
- * @headerfile <seqan/misc/bit_twiddling.h>
+ * @headerfile <seqan2/misc/bit_twiddling.h>
  * @brief Set the bit with the given index to the given value.
  *
  * @signature void setBitTo(word, index, value);
@@ -143,7 +143,7 @@ setBitTo(TWord & word, TPos index, bool value)
 
 /*!
  * @fn setBit
- * @headerfile <seqan/misc/bit_twiddling.h>
+ * @headerfile <seqan2/misc/bit_twiddling.h>
  * @brief Set the bit with the given index to 1.
  *
  * @signature void setBit(word, index);
@@ -165,7 +165,7 @@ setBit(TWord & word, TPos index)
 
 /*!
  * @fn clearBit
- * @headerfile <seqan/misc/bit_twiddling.h>
+ * @headerfile <seqan2/misc/bit_twiddling.h>
  * @brief Set the bit with the given index to 0.
  *
  * @signature void clearBit(word, index);
@@ -187,7 +187,7 @@ clearBit(TWord & word, TPos index)
 
 /*!
  * @fn clearAllBits
- * @headerfile <seqan/misc/bit_twiddling.h>
+ * @headerfile <seqan2/misc/bit_twiddling.h>
  * @brief Set all bits to 0.
  *
  * @signature void clearAllBits(word);
@@ -208,7 +208,7 @@ clearBits(TWord & word)
 
 /*!
  * @fn isBitSet
- * @headerfile <seqan/misc/bit_twiddling.h>
+ * @headerfile <seqan2/misc/bit_twiddling.h>
  * @brief Returns whether the bit with the given index is set to 1.
  *
  * @signature bool isBitSet(word, index);
@@ -245,7 +245,7 @@ hiBits(TWord word, TPos index)
 
 /*!
  * @fn popCount
- * @headerfile <seqan/misc/bit_twiddling.h>
+ * @headerfile <seqan2/misc/bit_twiddling.h>
  * @brief Returns number of set bits in an integer.
  *
  * @signature unsigned popCount(words);
@@ -406,7 +406,7 @@ _popCountImpl(TWord word, WordSize_<8> const & /*tag*/)
 
 /*!
  * @fn testAllZeros
- * @headerfile <seqan/misc.h>
+ * @headerfile <seqan2/misc.h>
  * @brief Tests whether all bits of the given value are set to <b>0</b>.
  *
  * @signature bool testAllZeros(val)
@@ -430,7 +430,7 @@ inline bool testAllZeros(TWord const & val)
 
 /*!
  * @fn testAllOnes
- * @headerfile <seqan/misc.h>
+ * @headerfile <seqan2/misc.h>
  * @brief Tests whether all bits of the given value are set to <b>1</b>.
  *
  * @signature bool testAllOnes(val)
@@ -555,7 +555,7 @@ _bitScanForward(TWord word, WordSize_<32>)
 
 #elif defined(STDLIB_VS) // #if !(defined(COMPILER_GCC) || defined(COMPILER_CLANG) || defined(COMPILER_LINTEL)) && defined(STDLIB_VS)
 
-#if (SEQAN_IS_64_BIT)
+#if (SEQAN2_IS_64_BIT)
 
 template <typename TWord>
 inline TWord
@@ -605,7 +605,7 @@ _bitScanForward(TWord word, WordSize_<64>)
     _BitScanForward(&index, lo);
     return index;
 }
-#endif  // if (SEQAN_IS_64_BIT)
+#endif  // if (SEQAN2_IS_64_BIT)
 
 template <typename TWord>
 inline TWord
@@ -632,7 +632,7 @@ _bitScanForward(TWord word, WordSize_<32>)
 
 /*!
  * @fn bitScanReverse
- * @headerfile <seqan/misc.h>
+ * @headerfile <seqan2/misc.h>
  * @brief Returns the index of the last set bit in the binary representation of the given value.
  * @note If <tt>val</tt> is 0 the return value is undefined.
  *
@@ -646,10 +646,10 @@ _bitScanForward(TWord word, WordSize_<32>)
  */
 
 template <typename TWord>
-inline SEQAN_FUNC_ENABLE_IF(Is<IntegerConcept<TWord> >, TWord)
+inline SEQAN2_FUNC_ENABLE_IF(Is<IntegerConcept<TWord> >, TWord)
 bitScanReverse(TWord word)
 {
-   SEQAN_ASSERT_NEQ(word, static_cast<TWord>(0));
+   SEQAN2_ASSERT_NEQ(word, static_cast<TWord>(0));
 
    return _bitScanReverse(word, WordSize_<(BitsPerValue<TWord>::VALUE <= 32) ? 32 : BitsPerValue<TWord>::VALUE>());
 }
@@ -660,7 +660,7 @@ bitScanReverse(TWord word)
 
 /*!
  * @fn bitScanForward
- * @headerfile <seqan/misc.h>
+ * @headerfile <seqan2/misc.h>
  * @brief Returns the index of the first set bit in the binary representation of the given value.
  * @note If <tt>val</tt> is 0 the return value is undefined.
  *
@@ -674,13 +674,13 @@ bitScanReverse(TWord word)
  */
 
 template <typename TWord>
-inline SEQAN_FUNC_ENABLE_IF( Is<IntegerConcept<TWord> >, TWord)
+inline SEQAN2_FUNC_ENABLE_IF( Is<IntegerConcept<TWord> >, TWord)
 bitScanForward(TWord word)
 {
-   SEQAN_ASSERT_NEQ(word, static_cast<TWord>(0));
+   SEQAN2_ASSERT_NEQ(word, static_cast<TWord>(0));
    return _bitScanForward(word, WordSize_<(BitsPerValue<TWord>::VALUE <= 32) ? 32 : BitsPerValue<TWord>::VALUE>());
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif // #ifndef SEQAN_MISC_BIT_TWIDDLING_H_
+#endif // #ifndef SEQAN2_MISC_BIT_TWIDDLING_H_

@@ -34,10 +34,10 @@
 // Code for the Journaled string iterator.
 // ==========================================================================
 
-#ifndef SEQAN_SEQUENCE_JOURNAL_SEQUENCE_JOURNAL_ITERATOR_H_
-#define SEQAN_SEQUENCE_JOURNAL_SEQUENCE_JOURNAL_ITERATOR_H_
+#ifndef SEQAN2_SEQUENCE_JOURNAL_SEQUENCE_JOURNAL_ITERATOR_H_
+#define SEQAN2_SEQUENCE_JOURNAL_SEQUENCE_JOURNAL_ITERATOR_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags, Classes
@@ -149,10 +149,10 @@ public:
 
 // Implement concept
 template <typename TJournaledString, typename TJournalSpec>
-SEQAN_CONCEPT_IMPL((Iter<TJournaledString, JournaledStringIterSpec<TJournalSpec> > const), (RootedRandomAccessIteratorConcept));
+SEQAN2_CONCEPT_IMPL((Iter<TJournaledString, JournaledStringIterSpec<TJournalSpec> > const), (RootedRandomAccessIteratorConcept));
 
 template <typename TJournaledString, typename TJournalSpec>
-SEQAN_CONCEPT_IMPL((Iter<TJournaledString, JournaledStringIterSpec<TJournalSpec> >), (MutableRootedRandomAccessIteratorConcept));
+SEQAN2_CONCEPT_IMPL((Iter<TJournaledString, JournaledStringIterSpec<TJournalSpec> >), (MutableRootedRandomAccessIteratorConcept));
 
 // ============================================================================
 // Metafunctions
@@ -456,7 +456,7 @@ _updateSegmentIterators(Iter<TJournaledString, JournaledStringIterSpec<TJournalS
             iterator._currentInsertionBufferIt = iterator._insertionBufferSegmentBegin;
             break;
         default:
-            SEQAN_ASSERT_FAIL("Invalid segment source!");
+            SEQAN2_ASSERT_FAIL("Invalid segment source!");
     }
 }
 
@@ -481,7 +481,7 @@ _updateSegmentIteratorsLeft(Iter<TJournaledString, JournaledStringIterSpec<TJour
             iterator._currentInsertionBufferIt = iterator._insertionBufferSegmentEnd - 1;
             break;
         default:
-            SEQAN_ASSERT_FAIL("Invalid segment source!");
+            SEQAN2_ASSERT_FAIL("Invalid segment source!");
     }
 }
 
@@ -649,7 +649,7 @@ _localEntryPosition(Iter<TJournaledString, JournaledStringIterSpec<TJournalSpec>
             return iterator._currentInsertionBufferIt - iterator._insertionBufferSegmentBegin;
             break;
         default:
-            SEQAN_ASSERT_FAIL("Invalid segment source!");
+            SEQAN2_ASSERT_FAIL("Invalid segment source!");
             return 0;
     }
 }
@@ -679,7 +679,7 @@ _physicalOriginPosition(Iter<TJournaledString, JournaledStringIterSpec<TJournalS
     if (value(iterator._journalEntriesIterator).segmentSource == SOURCE_ORIGINAL)
         return value(iterator._journalEntriesIterator).physicalOriginPosition + _localEntryPosition(iterator);
 
-    SEQAN_ASSERT_EQ(value(iterator._journalEntriesIterator).segmentSource, SOURCE_PATCH);
+    SEQAN2_ASSERT_EQ(value(iterator._journalEntriesIterator).segmentSource, SOURCE_PATCH);
 
     TEntriesIt tmp = iterator._journalEntriesIterator;
     while (value(tmp).segmentSource == SOURCE_PATCH)
@@ -692,7 +692,7 @@ _physicalOriginPosition(Iter<TJournaledString, JournaledStringIterSpec<TJournalS
         }
         --tmp;
     }
-    SEQAN_ASSERT_EQ(tmp->segmentSource, SOURCE_ORIGINAL);
+    SEQAN2_ASSERT_EQ(tmp->segmentSource, SOURCE_ORIGINAL);
     return value(tmp).physicalOriginPosition + value(tmp).length;
 
 }
@@ -729,7 +729,7 @@ inline void
 setPosition(Iter<TJournaledString, JournaledStringIterSpec<TJournalSpec> > & me,
             TPosition pos)
 {
-    SEQAN_ASSERT_GEQ(pos, static_cast<TPosition>(0));
+    SEQAN2_ASSERT_GEQ(pos, static_cast<TPosition>(0));
 
     // Handle case where pos points behind the container.
     if (pos >= static_cast<TPosition>(length(container(me))))
@@ -754,7 +754,7 @@ setPosition(Iter<TJournaledString, JournaledStringIterSpec<TJournalSpec> > & me,
             me._insertionBufferSegmentEnd = me._insertionBufferSegmentBegin + value(me._journalEntriesIterator).length;
             break;
         default:
-            SEQAN_ASSERT_FAIL("Unknown segment source!");
+            SEQAN2_ASSERT_FAIL("Unknown segment source!");
     }
 }
 
@@ -797,7 +797,7 @@ getValue(Iter<TJournaledString, JournaledStringIterSpec<TJournalSpec> > const & 
     if (value(iterator._journalEntriesIterator).segmentSource == SOURCE_ORIGINAL) {
         return getValue(iterator._currentHostIt);
     } else {
-        SEQAN_ASSERT_EQ(value(iterator._journalEntriesIterator).segmentSource, SOURCE_PATCH);
+        SEQAN2_ASSERT_EQ(value(iterator._journalEntriesIterator).segmentSource, SOURCE_PATCH);
         return getValue(iterator._currentInsertionBufferIt);
     }
 }
@@ -810,7 +810,7 @@ getValue(Iter<TJournaledString, JournaledStringIterSpec<TJournalSpec> > & iterat
     if (value(iterator._journalEntriesIterator).segmentSource == SOURCE_ORIGINAL) {
         return getValue(iterator._currentHostIt);
     } else {
-        SEQAN_ASSERT_EQ(value(iterator._journalEntriesIterator).segmentSource, SOURCE_PATCH);
+        SEQAN2_ASSERT_EQ(value(iterator._journalEntriesIterator).segmentSource, SOURCE_PATCH);
         return getValue(iterator._currentInsertionBufferIt);
     }
 }
@@ -836,7 +836,7 @@ operator++(Iter<TJournaledString, JournaledStringIterSpec<TJournalSpec> > & iter
             }
             break;
         default:
-            SEQAN_ASSERT_FAIL("Invalid Segment Source");
+            SEQAN2_ASSERT_FAIL("Invalid Segment Source");
     }
     return iterator;
 }
@@ -879,7 +879,7 @@ operator--(Iter<TJournaledString, JournaledStringIterSpec<TJournalSpec> > & iter
                 break;
             default:
             {
-                SEQAN_ASSERT_FAIL("Invalid segment source!");
+                SEQAN2_ASSERT_FAIL("Invalid segment source!");
             }
         }
     return iterator;
@@ -923,7 +923,7 @@ operator+=(Iter<TJournaledString, JournaledStringIterSpec<TJournalSpec> > & iter
            TLen len_)
 {
 
-    SEQAN_ASSERT_GEQ(len_, static_cast<TLen>(0));
+    SEQAN2_ASSERT_GEQ(len_, static_cast<TLen>(0));
 
     TLen remaining;
     if (value(iterator._journalEntriesIterator).segmentSource == SOURCE_ORIGINAL)
@@ -932,7 +932,7 @@ operator+=(Iter<TJournaledString, JournaledStringIterSpec<TJournalSpec> > & iter
         remaining = iterator._insertionBufferSegmentEnd - iterator._currentInsertionBufferIt;
     while (len_ > 0 && remaining != 0)
     {
-        SEQAN_ASSERT_GT(remaining, static_cast<TLen>(0));
+        SEQAN2_ASSERT_GT(remaining, static_cast<TLen>(0));
         if (len_ >= remaining) {
             len_ -= remaining;
             ++iterator._journalEntriesIterator;
@@ -979,7 +979,7 @@ operator-=(Iter<TJournaledString, JournaledStringIterSpec<TJournalSpec> > & iter
     typedef typename Position<TIterator>::Type TPosition;
 
     // TODO(holtgrew): Handle case where len_ < 0?!
-    SEQAN_ASSERT_GEQ(len_, static_cast<TLen>(0));
+    SEQAN2_ASSERT_GEQ(len_, static_cast<TLen>(0));
     size_t len = len_;
 
     // Handle bad case of len_ pointing before begin.
@@ -1019,7 +1019,7 @@ operator-=(Iter<TJournaledString, JournaledStringIterSpec<TJournalSpec> > & iter
                 break;
             default:
             {
-                SEQAN_ASSERT_FAIL("Invalid segment source!");
+                SEQAN2_ASSERT_FAIL("Invalid segment source!");
             }
         }
     }
@@ -1065,9 +1065,9 @@ operator-(Iter<TJournaledString, JournaledStringIterSpec<TJournalSpec> > const &
                 vPos += it2._currentInsertionBufferIt - it2._insertionBufferSegmentBegin;
                 break;
             default:
-                SEQAN_ASSERT_FAIL("Invalid segment source!");
+                SEQAN2_ASSERT_FAIL("Invalid segment source!");
         }
-        SEQAN_ASSERT_LT(vPos, len);
+        SEQAN2_ASSERT_LT(vPos, len);
         return len - vPos;
     } else if (it2AtEnd) {
         TResult len = length(*it1._journalStringPtr);
@@ -1080,9 +1080,9 @@ operator-(Iter<TJournaledString, JournaledStringIterSpec<TJournalSpec> > const &
                 vPos += it1._currentInsertionBufferIt - it1._insertionBufferSegmentBegin;
                 break;
             default:
-                SEQAN_ASSERT_FAIL("Invalid segment source!");
+                SEQAN2_ASSERT_FAIL("Invalid segment source!");
         }
-        SEQAN_ASSERT_LT(vPos, len);
+        SEQAN2_ASSERT_LT(vPos, len);
         return vPos - len;
     }
 
@@ -1096,7 +1096,7 @@ operator-(Iter<TJournaledString, JournaledStringIterSpec<TJournalSpec> > const &
             vPos1 += it1._currentInsertionBufferIt - it1._insertionBufferSegmentBegin;
             break;
         default:
-            SEQAN_ASSERT_FAIL("Invalid segment source!");
+            SEQAN2_ASSERT_FAIL("Invalid segment source!");
     }
     TResult vPos2 = value(it2._journalEntriesIterator).virtualPosition;
     switch (value(it2._journalEntriesIterator).segmentSource) {
@@ -1107,7 +1107,7 @@ operator-(Iter<TJournaledString, JournaledStringIterSpec<TJournalSpec> > const &
             vPos2 += it2._currentInsertionBufferIt - it2._insertionBufferSegmentBegin;
             break;
         default:
-            SEQAN_ASSERT_FAIL("Invalid segment source!");
+            SEQAN2_ASSERT_FAIL("Invalid segment source!");
     }
     return vPos1 - vPos2;
 }
@@ -1124,7 +1124,7 @@ operator==(Iter<TJournaledString, JournaledStringIterSpec<TJournalSpec> > const 
         if (a._currentHostIt != b._currentHostIt)
             return false;
     } else {
-        SEQAN_ASSERT_EQ(value(a._journalEntriesIterator).segmentSource, SOURCE_PATCH);
+        SEQAN2_ASSERT_EQ(value(a._journalEntriesIterator).segmentSource, SOURCE_PATCH);
         if (a._currentInsertionBufferIt != b._currentInsertionBufferIt)
             return false;
     }
@@ -1231,6 +1231,6 @@ operator>=(Iter<TJournaledString, JournaledStringIterSpec<TJournalSpec> > const 
     return position(a) >= position(b);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // SEQAN_SEQUENCE_JOURNAL_SEQUENCE_JOURNAL_ITERATOR_H_
+#endif  // SEQAN2_SEQUENCE_JOURNAL_SEQUENCE_JOURNAL_ITERATOR_H_

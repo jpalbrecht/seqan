@@ -32,10 +32,10 @@
 // Author: Rene Rahn <rene.rahn@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_SETUP_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_DP_SETUP_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_SETUP_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_SETUP_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -279,8 +279,8 @@ _setUpAndRunAlignment(DPContext<TScoreValue, TGapModel> & dpContext,
                       Score<TScoreValue2, TScoreSpec> const & scoringScheme,
                       AlignConfig2<TDPType, TBand, TFreeEndGaps, TTraceConfig> const & alignConfig)
 {
-    SEQAN_ASSERT_GEQ(length(seqH), 1u);
-    SEQAN_ASSERT_GEQ(length(seqV), 1u);
+    SEQAN2_ASSERT_GEQ(length(seqH), 1u);
+    SEQAN2_ASSERT_GEQ(length(seqV), 1u);
 
     typedef typename SetupAlignmentProfile_<TDPType, TFreeEndGaps, TGapModel, TTraceConfig>::Type TDPProfile;
     return _computeAlignment(dpContext, traceSegments, dpScoutState, seqH, seqV, scoringScheme, alignConfig._band,
@@ -327,6 +327,6 @@ _setUpAndRunAlignment(TTrace & traceSegments,
         return _setUpAndRunAlignment(traceSegments, dpScoutState, seqH, seqV, scoringScheme, alignConfig, LinearGaps());
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_SETUP_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_SETUP_H_

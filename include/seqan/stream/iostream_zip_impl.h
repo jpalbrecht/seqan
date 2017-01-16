@@ -18,8 +18,8 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // Author: Enrico Siragusa <enrico.siragusa@fu-berlin.de>
 
-#ifndef INCLUDE_SEQAN_STREAM_IOSTREAM_ZIP_IMPL_H_
-#define INCLUDE_SEQAN_STREAM_IOSTREAM_ZIP_IMPL_H_
+#ifndef INCLUDE_SEQAN2_STREAM_IOSTREAM_ZIP_IMPL_H_
+#define INCLUDE_SEQAN2_STREAM_IOSTREAM_ZIP_IMPL_H_
 
 namespace zlib_stream {
 
@@ -383,4 +383,4 @@ void basic_unzip_streambuf<Elem, Tr, ElemA, ByteT, ByteAT>::put_back_from_zip_st
 } // namespace zlib_stream
 
 
-#endif // INCLUDE_SEQAN_STREAM_IOSTREAM_ZIP_IMPL_H_
+#endif // INCLUDE_SEQAN2_STREAM_IOSTREAM_ZIP_IMPL_H_

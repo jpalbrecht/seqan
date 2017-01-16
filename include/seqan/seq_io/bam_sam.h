@@ -36,12 +36,12 @@
 // Input on BAM and SAM files.
 // ==========================================================================
 
-#include <seqan/bam_io.h>
+#include <seqan2/bam_io.h>
 
-#ifndef SEQAN_SEQ_IO_BAM_SAM_H_
-#define SEQAN_SEQ_IO_BAM_SAM_H_
+#ifndef SEQAN2_SEQ_IO_BAM_SAM_H_
+#define SEQAN2_SEQ_IO_BAM_SAM_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // ----------------------------------------------------------------------------
@@ -122,7 +122,7 @@ inline int32_t readBamRecord(TIdString & meta,
 
     remainingBytes -= sizeof(BamAlignmentRecordCore) + recordCore._l_qname +
                       recordCore._n_cigar * 4 + (recordCore._l_qseq + 1) / 2 + recordCore._l_qseq;
-    SEQAN_ASSERT_GEQ(remainingBytes, 0);
+    SEQAN2_ASSERT_GEQ(remainingBytes, 0);
 
     // query name.
     resize(meta, recordCore._l_qname - 1, Exact());
@@ -169,7 +169,7 @@ inline bool readSamRecord(TIdString & meta,
 
     // fail, if we read "@" (did you miss to call readRecord(header, bamFile) first?)
     if (nextIs(iter, SamHeader()))
-        SEQAN_THROW(ParseError("Unexpected SAM header encountered."));
+        SEQAN2_THROW(ParseError("Unexpected SAM header encountered."));
 
     OrFunctor<IsTab, AssertFunctor<NotFunctor<IsNewline>, ParseError, Sam> > nextEntry;
 
@@ -210,7 +210,7 @@ inline void _readRecord(TIdString & meta,
     typedef typename Value<TQualString>::Type TQualAlphabet;
     typedef typename SamIgnoreOrAssertFunctor_<TQualAlphabet>::Type TQualIgnoreOrAssert;
 
-    if (SEQAN_UNLIKELY(!(context(file).headerWasRead)))
+    if (SEQAN2_UNLIKELY(!(context(file).headerWasRead)))
     {
         _skipHeader(file, Sam());
         file.context.headerWasRead = true;
@@ -242,9 +242,9 @@ inline void _readRecord(TIdString & meta,
                         Bam const & /* format */)
 {
     typedef typename Iterator<CharString, Standard>::Type                             TCharIter;
-    typedef typename Iterator<TQualString, Standard>::Type SEQAN_RESTRICT             TQualIter;
+    typedef typename Iterator<TQualString, Standard>::Type SEQAN2_RESTRICT             TQualIter;
 
-    if (SEQAN_UNLIKELY(!(context(file).headerWasRead)))
+    if (SEQAN2_UNLIKELY(!(context(file).headerWasRead)))
     {
         _skipHeader(file, Bam());
         file.context.headerWasRead = true;
@@ -285,7 +285,7 @@ inline void _readRecord(TIdString & meta,
 // Function readRecord(SAM); With qualities
 // ----------------------------------------------------------------------------
 template <typename TIdString, typename TSeqString, typename TQualString, typename TSpec>
-inline SEQAN_FUNC_ENABLE_IF(Is<InputStreamConcept<typename FormattedFile<Fastq, Input, TSpec>::TStream> >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Is<InputStreamConcept<typename FormattedFile<Fastq, Input, TSpec>::TStream> >, void)
 readRecord(TIdString & meta,
            TSeqString & seq,
            TQualString & qual,
@@ -299,7 +299,7 @@ readRecord(TIdString & meta,
 // Function readRecord(SAM); Without qualities
 // ----------------------------------------------------------------------------
 template <typename TIdString, typename TSeqString, typename TSpec>
-inline SEQAN_FUNC_ENABLE_IF(Is<InputStreamConcept<typename FormattedFile<Fastq, Input, TSpec>::TStream> >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Is<InputStreamConcept<typename FormattedFile<Fastq, Input, TSpec>::TStream> >, void)
 readRecord(TIdString & meta,
            TSeqString & seq,
            FormattedFile<Fastq, Input, TSpec> & file,
@@ -312,7 +312,7 @@ readRecord(TIdString & meta,
 // Function readRecord(BAM); With qualities
 // ----------------------------------------------------------------------------
 template <typename TIdString, typename TSeqString, typename TQualString, typename TSpec>
-inline SEQAN_FUNC_ENABLE_IF(Is<InputStreamConcept<typename FormattedFile<Fastq, Input, TSpec>::TStream> >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Is<InputStreamConcept<typename FormattedFile<Fastq, Input, TSpec>::TStream> >, void)
 readRecord(TIdString & meta,
            TSeqString & seq,
            TQualString & qual,
@@ -326,7 +326,7 @@ readRecord(TIdString & meta,
 // Function readRecord(BAM); Without qualities
 // ----------------------------------------------------------------------------
 template <typename TIdString, typename TSeqString, typename TSpec>
-inline SEQAN_FUNC_ENABLE_IF(Is<InputStreamConcept<typename FormattedFile<Fastq, Input, TSpec>::TStream> >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Is<InputStreamConcept<typename FormattedFile<Fastq, Input, TSpec>::TStream> >, void)
 readRecord(TIdString & meta,
            TSeqString & seq,
            FormattedFile<Fastq, Input, TSpec> & file,
@@ -374,7 +374,7 @@ inline void _writeRecord(TFile & file,
                          TQualString const & qual,
                          Sam const & /* format */)
 {
-    if (SEQAN_UNLIKELY(!(context(file).headerWasWriten)))
+    if (SEQAN2_UNLIKELY(!(context(file).headerWasWriten)))
     {
         BamHeader header;
         fillHeader(header);
@@ -409,7 +409,7 @@ inline void _writeRecord(TFile & file,
                          TQualString const & qual,
                          Bam const & /* format */)
 {
-    if (SEQAN_UNLIKELY(!(context(file).headerWasWriten)))
+    if (SEQAN2_UNLIKELY(!(context(file).headerWasWriten)))
     {
         BamHeader header;
         fillHeader(header);
@@ -451,7 +451,7 @@ inline void writeRecord(FormattedFile<Fastq, Output, TSpec> & file,
 // Function writeRecord(SAM); Qualities inside seq
 // ----------------------------------------------------------------------------
 template <typename TSpec, typename TIdString, typename TSeqString>
-inline SEQAN_FUNC_ENABLE_IF(HasQualities<typename Value<TSeqString>::Type> , void)
+inline SEQAN2_FUNC_ENABLE_IF(HasQualities<typename Value<TSeqString>::Type> , void)
 writeRecord(FormattedFile<Fastq, Output, TSpec> & file,
             TIdString const & meta,
             TSeqString const & seq,
@@ -466,7 +466,7 @@ writeRecord(FormattedFile<Fastq, Output, TSpec> & file,
 // Function writeRecord(SAM); Without qualities inside seq
 // ----------------------------------------------------------------------------
 template <typename TSpec, typename TIdString, typename TSeqString>
-inline SEQAN_FUNC_ENABLE_IF(Not<HasQualities<typename Value<TSeqString>::Type> >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Not<HasQualities<typename Value<TSeqString>::Type> >, void)
 writeRecord(FormattedFile<Fastq, Output, TSpec> & file,
                         TIdString const & meta,
                         TSeqString const & seq,
@@ -491,7 +491,7 @@ inline void writeRecord(FormattedFile<Fastq, Output, TSpec> & file,
 // Function writeRecord(BAM); Qualities inside seq
 // ----------------------------------------------------------------------------
 template <typename TSpec, typename TIdString, typename TSeqString>
-inline SEQAN_FUNC_ENABLE_IF(HasQualities<typename Value<TSeqString>::Type> , void)
+inline SEQAN2_FUNC_ENABLE_IF(HasQualities<typename Value<TSeqString>::Type> , void)
 writeRecord(FormattedFile<Fastq, Output, TSpec> & file,
             TIdString const & meta,
             TSeqString const & seq,
@@ -507,7 +507,7 @@ writeRecord(FormattedFile<Fastq, Output, TSpec> & file,
 // Function writeRecord(BAM); Without qualities inside seq
 // ----------------------------------------------------------------------------
 template <typename TSpec, typename TIdString, typename TSeqString>
-inline SEQAN_FUNC_ENABLE_IF(Not<HasQualities<typename Value<TSeqString>::Type> >, void)
+inline SEQAN2_FUNC_ENABLE_IF(Not<HasQualities<typename Value<TSeqString>::Type> >, void)
 writeRecord(FormattedFile<Fastq, Output, TSpec> & file,
             TIdString const & meta,
             TSeqString const & seq,
@@ -549,6 +549,6 @@ readRecord(TIdString & /* meta */,
            Sam const & /* format */)
 {}
 
-} // namespace seqan
+} // namespace seqan2
 
-#endif  // #ifndef SEQAN_SEQ_IO_BAM_SAM_H_
+#endif  // #ifndef SEQAN2_SEQ_IO_BAM_SAM_H_

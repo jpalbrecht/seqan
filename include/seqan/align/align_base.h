@@ -35,10 +35,10 @@
 // Gap objects, one for each row of the alignment.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_ALIGN_BASE_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_ALIGN_BASE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_ALIGN_BASE_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_ALIGN_BASE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -55,7 +55,7 @@ namespace seqan {
 /*!
  * @class Align
  * @implements EqualityComparableConcept
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Tabular alignment of same-type sequences.
  *
  * @signature template <typename TSequence, typename TGapSpec>
@@ -735,6 +735,6 @@ inline bool operator!=(Align<TSource, TSpec> const & lhs,
     return !(lhs == rhs);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_ALIGN_BASE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_ALIGN_BASE_H_

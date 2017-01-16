@@ -34,10 +34,10 @@
 // Implements a fast version of the iterator over journal strings.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_SEQUENCE_JOURNALED_SEQUENCE_JOURNALED_ITERATOR_FAST_H_
-#define INCLUDE_SEQAN_SEQUENCE_JOURNALED_SEQUENCE_JOURNALED_ITERATOR_FAST_H_
+#ifndef INCLUDE_SEQAN2_SEQUENCE_JOURNALED_SEQUENCE_JOURNALED_ITERATOR_FAST_H_
+#define INCLUDE_SEQAN2_SEQUENCE_JOURNALED_SEQUENCE_JOURNALED_ITERATOR_FAST_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -76,7 +76,7 @@ public:
 
     template <typename TStringOther>
     Iter(Iter<TStringOther, JournaledStringIterSpec<CommonSegmentIterator> > const & other,
-         SEQAN_CTOR_ENABLE_IF(IsConstructible<TJournaledString, TStringOther>))
+         SEQAN2_CTOR_ENABLE_IF(IsConstructible<TJournaledString, TStringOther>))
             : _journalStringPtr(other._journalStringPtr),
               _journalEntriesIterator(other._journalEntriesIterator),
               _segmentBegin(other._segmentBegin),
@@ -88,7 +88,7 @@ public:
 
 
     template <typename TStringOther>
-    SEQAN_FUNC_ENABLE_IF(IsConstructible<TJournaledString, TStringOther>, TIterator &)
+    SEQAN2_FUNC_ENABLE_IF(IsConstructible<TJournaledString, TStringOther>, TIterator &)
     operator=(Iter<TStringOther, JournaledStringIterSpec<CommonSegmentIterator> > const & other)
     {
         _journalStringPtr = other._journalStringPtr;
@@ -191,7 +191,7 @@ inline void
 setPosition(Iter<TJournaledString, JournaledStringIterSpec<CommonSegmentIterator> > & me,
             TPosition pos)
 {
-    SEQAN_ASSERT_GEQ(pos, static_cast<TPosition>(0));
+    SEQAN2_ASSERT_GEQ(pos, static_cast<TPosition>(0));
 
     // Handle case where pos points behind the container.
     if (pos >= static_cast<TPosition>(length(container(me))))
@@ -254,12 +254,12 @@ Iter<TJournaledString, JournaledStringIterSpec<CommonSegmentIterator> > &
 operator+=(Iter<TJournaledString, JournaledStringIterSpec<CommonSegmentIterator> > & iterator,
            TLen len_)
 {
-    SEQAN_ASSERT_GEQ(len_, static_cast<TLen>(0));
+    SEQAN2_ASSERT_GEQ(len_, static_cast<TLen>(0));
 
     TLen remaining = iterator._segmentEnd - iterator._currentSegmentIt;
     while (len_ > 0  && remaining != 0)
     {
-        SEQAN_ASSERT_GT(remaining, static_cast<TLen>(0));
+        SEQAN2_ASSERT_GT(remaining, static_cast<TLen>(0));
         if (len_ >= remaining)
         {
             len_ -= remaining;
@@ -309,7 +309,7 @@ operator-=(Iter<TJournaledString, JournaledStringIterSpec<CommonSegmentIterator>
     typedef Iter<TJournaledString, JournaledStringIterSpec<CommonSegmentIterator> > TIterator;
     typedef typename Size<TIterator>::Type TSize;
 
-    SEQAN_ASSERT_GEQ(len_, static_cast<TLen>(0));
+    SEQAN2_ASSERT_GEQ(len_, static_cast<TLen>(0));
     TSize len = len_;
 
     while (len > 0 )
@@ -349,12 +349,12 @@ operator-(Iter<TJournaledString, JournaledStringIterSpec<CommonSegmentIterator> 
     }
     else if (it1AtEnd)
     {
-        SEQAN_ASSERT_LT(value(it2._journalEntriesIterator).virtualPosition + _localEntryPosition(it2), length(*it1._journalStringPtr));
+        SEQAN2_ASSERT_LT(value(it2._journalEntriesIterator).virtualPosition + _localEntryPosition(it2), length(*it1._journalStringPtr));
         return length(*it1._journalStringPtr) - (value(it2._journalEntriesIterator).virtualPosition + _localEntryPosition(it2));
     }
     else if (it2AtEnd)
     {
-        SEQAN_ASSERT_LT((value(it1._journalEntriesIterator).virtualPosition + _localEntryPosition(it1)), length(*it1._journalStringPtr));
+        SEQAN2_ASSERT_LT((value(it1._journalEntriesIterator).virtualPosition + _localEntryPosition(it1)), length(*it1._journalStringPtr));
         return (value(it1._journalEntriesIterator).virtualPosition + _localEntryPosition(it1)) - length(*it1._journalStringPtr);
     }
     // Otherwise, we can simply subtract the virtual positions.
@@ -380,4 +380,4 @@ operator==(Iter<TJournaledString, JournaledStringIterSpec<CommonSegmentIterator>
 
 }
 
-#endif // INCLUDE_SEQAN_SEQUENCE_JOURNALED_SEQUENCE_JOURNALED_ITERATOR_FAST_H_
+#endif // INCLUDE_SEQAN2_SEQUENCE_JOURNALED_SEQUENCE_JOURNALED_ITERATOR_FAST_H_

@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_PIPE_BASE_H
-#define SEQAN_HEADER_PIPE_BASE_H
+#ifndef SEQAN2_HEADER_PIPE_BASE_H
+#define SEQAN2_HEADER_PIPE_BASE_H
 
-namespace seqan {
+namespace seqan2 {
 
     // shortcuts to ease pipeline construction
     #define TypeOf_(TObject)  typename Value<TObject>::Type
@@ -43,7 +43,7 @@ namespace seqan {
 
 /*!
  * @class Pipe
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Pipes are pop-passive pipeline modules.
  *
  * @signature template <typename TInput, typename TSpec>
@@ -82,7 +82,7 @@ namespace seqan {
 
 /*!
  * @class Bundle2
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Stores references to two arbitrary objects.
  *
  * @signature template <typename TInput1, typename TInput2>
@@ -114,7 +114,7 @@ namespace seqan {
 
 /*!
  * @fn bundle2
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Returns a bundle of two objects.
  *
  * @signature TBundle bundle2(in1, in2);
@@ -172,7 +172,7 @@ namespace seqan {
 
 /*!
  * @fn bundle3
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Returns a bundle of three objects.
  *
  * @signature TBundle bundle3(in1, in2, in3);
@@ -194,7 +194,7 @@ namespace seqan {
 
 /*!
  * @class Bundle5
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Stores references to five arbitrary objects.
  *
  * @signature template <typename TInput1, typename TInput2, typename TInput3, typename TInput4, typename TInput5>
@@ -241,7 +241,7 @@ namespace seqan {
 
 /*!
  * @fn bundle5
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Returns a bundle of five objects.
  *
  * @signature TBundle bundle5(in1, in2, in3, in4, in5);
@@ -365,7 +365,7 @@ namespace seqan {
 
 /*!
  * @fn Pipe#length
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Length of the pipe.
  *
  * @signature TSize length(pipe);
@@ -428,7 +428,7 @@ namespace seqan {
 
 /*!
  * @fn Pipe#front
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Gets the first element of the remaining stream.
  *
  * @signature TValue front(object);
@@ -451,7 +451,7 @@ namespace seqan {
 
 /*!
  * @fn Pipe#pop
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Pops the first element of the remaining stream.
  *
  * @signature void pop(pipe[, ref]);
@@ -524,7 +524,7 @@ namespace seqan {
 
 /*!
  * @fn Pipe#beginRead
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Initiates a read process.
  *
  * @signature bool beginRead(object);
@@ -549,7 +549,7 @@ namespace seqan {
 
 /*!
  * @fn Pipe#endRead
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Terminates a read process.
  *
  * @signature bool endRead(object);
@@ -599,7 +599,7 @@ namespace seqan {
     }
 /*!
  * @fn Pipe#assign
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Assigns one object to another object.
  *
  * @signature void assign(target, source);
@@ -728,7 +728,7 @@ namespace seqan {
         inline bool begin()
         {
             buffer = handler.first();
-            cur = seqan::begin(buffer, Standard());
+            cur = seqan2::begin(buffer, Standard());
             return true;
         }
 
@@ -739,10 +739,10 @@ namespace seqan {
 
         inline void pop()
         {
-            if (++cur == seqan::end(buffer, Standard()))
+            if (++cur == seqan2::end(buffer, Standard()))
             {
                 buffer = handler.next();
-                cur = seqan::begin(buffer, Standard());
+                cur = seqan2::begin(buffer, Standard());
             }
         }
 
@@ -754,10 +754,10 @@ namespace seqan {
 
         inline void push(TValue const & Val_)
         {
-            if (cur == seqan::end(buffer, Standard()))
+            if (cur == seqan2::end(buffer, Standard()))
             {
                 buffer = handler.next();
-                cur = seqan::begin(buffer, Standard());
+                cur = seqan2::begin(buffer, Standard());
             }
             *cur = Val_;
             ++cur;
@@ -834,8 +834,8 @@ namespace seqan {
                     assignValueI1(pos, i1 + 1);
                     localEnd = (*it - old);
                     // test for overflows
-                    SEQAN_ASSERT_LT_MSG(i1, getValueI1(pos), "Overflow detected. Use a bigger type for the *first* value in the SAValue pair!");
-                    SEQAN_ASSERT_EQ_MSG((TSize)localEnd, (*it - old), "Overflow detected. Use a bigger type for the *second* value in the SAValue pair!");
+                    SEQAN2_ASSERT_LT_MSG(i1, getValueI1(pos), "Overflow detected. Use a bigger type for the *first* value in the SAValue pair!");
+                    SEQAN2_ASSERT_EQ_MSG((TSize)localEnd, (*it - old), "Overflow detected. Use a bigger type for the *second* value in the SAValue pair!");
                     old = *it;
                     ++it;
                 }
@@ -925,8 +925,8 @@ namespace seqan {
                     assignValueI1(pos, i1 + 1);
                     i2 = (*it - old);
                     // test for overflows
-                    SEQAN_ASSERT_LT_MSG(i1, getValueI1(pos), "Overflow detected. Use a bigger type for the *first* value in the SAValue pair!");
-                    SEQAN_ASSERT_EQ_MSG((TSize)i2, *it - old, "Overflow detected. Use a bigger type for the *second* value in the SAValue pair!");
+                    SEQAN2_ASSERT_LT_MSG(i1, getValueI1(pos), "Overflow detected. Use a bigger type for the *first* value in the SAValue pair!");
+                    SEQAN2_ASSERT_EQ_MSG((TSize)i2, *it - old, "Overflow detected. Use a bigger type for the *second* value in the SAValue pair!");
                     old = *it;
                     ++it;
                 }
@@ -991,8 +991,8 @@ namespace seqan {
                     assignValueI1(pos, i1 + 1);
                     i2 = (*it - old);
                     // test for overflows
-                    SEQAN_ASSERT_LT_MSG(i1, getValueI1(pos), "Overflow detected. Use a bigger type for the *first* value in the SAValue pair!");
-                    SEQAN_ASSERT_EQ_MSG((TSize)i2, *it - old, "Overflow detected. Use a bigger type for the *second* value in the SAValue pair!");
+                    SEQAN2_ASSERT_LT_MSG(i1, getValueI1(pos), "Overflow detected. Use a bigger type for the *first* value in the SAValue pair!");
+                    SEQAN2_ASSERT_EQ_MSG((TSize)i2, *it - old, "Overflow detected. Use a bigger type for the *second* value in the SAValue pair!");
                     old = *it;
                     ++it;
                 }

@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_BASIC_CHUNKING_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_BASIC_CHUNKING_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_CHUNKING_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_CHUNKING_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags
@@ -52,7 +52,7 @@ namespace seqan {
 
 /*!
  * @tag DirectionTags#Input
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Tag for selecting the input direction.
  *
  * @signature typedef Tag<Input_> Input;
@@ -63,7 +63,7 @@ typedef Tag<Input_> Input;
 
 /*!
  * @tag DirectionTags#Output
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Tag for selecting the output direction.
  *
  * @signature typedef Tag<Output_> Output;
@@ -74,7 +74,7 @@ typedef Tag<Output_> Output;
 
 /*!
  * @tag DirectionTags#Bidirectional
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Tag for allowing both input and output.
  *
  * @signature typedef Tag<Bidirectional_> Bidirectional;
@@ -93,7 +93,7 @@ typedef Tag<Bidirectional_> Bidirectional;
 
 /*!
  * @mfn Chunk
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Return the chunk type for an object.
  *
  * @signature Chunk<TObject>::Type;
@@ -143,6 +143,6 @@ inline void advanceChunk(TIterator &iter, TSize size)
     iter += size;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_BASIC_CHUNKING_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_CHUNKING_H_

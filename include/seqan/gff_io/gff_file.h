@@ -34,10 +34,10 @@
 // Class for reading/writing files in GFF or GTF format.
 // ==========================================================================
 
-#ifndef SEQAN_GFF_IO_GFF_FILE_H_
-#define SEQAN_GFF_IO_GFF_FILE_H_
+#ifndef SEQAN2_GFF_IO_GFF_FILE_H_
+#define SEQAN2_GFF_IO_GFF_FILE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Typedefs
@@ -51,7 +51,7 @@ namespace seqan {
  * @class GffFileIn
  * @signature typedef FormattedFile<Gff, Input> GffFileIn;
  * @extends FormattedFileIn
- * @headerfile <seqan/gff_io.h>
+ * @headerfile <seqan2/gff_io.h>
  * @brief Class for reading GFF and GTF files.
  *
  * @see GffRecord
@@ -67,7 +67,7 @@ typedef FormattedFile<Gff, Input>   GffFileIn;
  * @class GffFileOut
  * @signature typedef FormattedFile<Gff, Output> GffFileOut;
  * @extends FormattedFileOut
- * @headerfile <seqan/gff_io.h>
+ * @headerfile <seqan2/gff_io.h>
  * @brief Class for writing GFF and GTF files.
  *
  * @see GffRecord
@@ -136,7 +136,7 @@ writeRecord(TTarget & /* target */,
             GffRecord & /* record */,
             TagSelector<> const & /* format */)
 {
-    SEQAN_FAIL("GffFileOut: File format not specified.");
+    SEQAN2_FAIL("GffFileOut: File format not specified.");
 }
 
 template <typename TTarget, typename TTagList>
@@ -160,6 +160,6 @@ writeRecord(FormattedFile<Gff, Output, TSpec> & file, GffRecord & record)
     writeRecord(file.iter, record, file.format);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif // SEQAN_GFF_IO_GFF_FILE_H_
+#endif // SEQAN2_GFF_IO_GFF_FILE_H_

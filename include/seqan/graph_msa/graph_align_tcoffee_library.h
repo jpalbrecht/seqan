@@ -30,10 +30,10 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_GRAPH_ALIGN_TCOFFEE_LIBRARY_H
-#define SEQAN_HEADER_GRAPH_ALIGN_TCOFFEE_LIBRARY_H
+#ifndef SEQAN2_HEADER_GRAPH_ALIGN_TCOFFEE_LIBRARY_H
+#define SEQAN2_HEADER_GRAPH_ALIGN_TCOFFEE_LIBRARY_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -54,26 +54,26 @@ namespace seqan
  *
  *
  * @tag SegmentMatchGenerationTags#GlobalPairwiseLibrary
- * @headerfile <seqan/graph_msa.h>
+ * @headerfile <seqan2/graph_msa.h>
  * @brief Segment matches from pairwise global alignment.
  *
  * @signature typedef Tag<GlobalPairwiseLibrary_> const GlobalPairwiseLibrary;
  *
  *
  * @tag SegmentMatchGenerationTags#LocalPairwiseLibrary
- * @headerfile <seqan/graph_msa.h>
+ * @headerfile <seqan2/graph_msa.h>
  * @brief Segment matches from pairwise local alignment.
  *
  *
  * @tag SegmentMatchGenerationTags#KmerLibrary
- * @headerfile <seqan/graph_msa.h>
+ * @headerfile <seqan2/graph_msa.h>
  * @brief Segment matches from pairwise k-mer library.
  *
  * @signature typedef Tag<KmerLibrary_> const KmerLibrary;
  *
  *
  * @tag SegmentMatchGenerationTags#LcsLibrary
- * @headerfile <seqan/graph_msa.h>
+ * @headerfile <seqan2/graph_msa.h>
  * @brief Segment matches from pairwise longest common subsequence comparison.
  *
  * @signature typedef Tag<LcsLibrary_> const LcsLibrary;
@@ -84,14 +84,14 @@ namespace seqan
  * @brief Tags specifying types of multiple alignment.
  *
  * @tag MultipleSequenceAlignmentTags#DefaultAlignment
- * @headerfile <seqan/graph_msa.h>
+ * @headerfile <seqan2/graph_msa.h>
  * @brief Usual alignment with quite small number of sequences.
  *
  * @signature typedef Tag<DefaultAlignment_> DefaultAlignment;
  *
  *
  * @tag MultipleSequenceAlignmentTags#DeepAlignment
- * @headerfile <seqan/graph_msa.h>
+ * @headerfile <seqan2/graph_msa.h>
  * @brief Deep alignment with large number of sequences.
  *
  * @signature typedef Tag<DeepAlignment_> DeepAlignment;
@@ -620,7 +620,7 @@ appendSegmentMatches(StringSet<TString, Dependent<TSpec> > const& str,
     //typedef typename Value<TScores>::Type TScoreValue;
     typedef typename Iterator<TPairList const, Standard>::Type TPairIter;
 
-    SEQAN_ASSERT_EQ(length(pList) % 2, 0u);
+    SEQAN2_ASSERT_EQ(length(pList) % 2, 0u);
 
     // Pairwise longest common subsequence
     for (TPairIter itPair = begin(pList, Standard()), itPairEnd = end(pList, Standard()); itPair != itPairEnd; itPair += 2) {
@@ -760,7 +760,7 @@ appendSegmentMatches(StringSet<TString, Dependent<TSpec> > const& str,
     typedef String<TSize2, TSpec2> TPairList;
     typedef typename Iterator<TPairList const, Standard>::Type TPairIter;
 
-    SEQAN_ASSERT_EQ(length(pList) % 2, 0u);
+    SEQAN2_ASSERT_EQ(length(pList) % 2, 0u);
 
     // Pairwise alignments
     for (TPairIter itPair = begin(pList, Standard()), itPairEnd = end(pList, Standard()); itPair != itPairEnd; itPair += 2) {
@@ -787,7 +787,7 @@ appendSegmentMatches(StringSet<TString, Dependent<TSpec> > const& str,
     typedef typename Value<TScoreValues>::Type TScoreValue;
     typedef typename Size<TStringSet>::Type TSize;
 
-    SEQAN_ASSERT_EQ(length(pList) % 2, 0u);
+    SEQAN2_ASSERT_EQ(length(pList) % 2, 0u);
 
     // Pairwise alignments
     for (TPairIter itPair = begin(pList, Standard()), itPairEnd = end(pList, Standard()); itPair != itPairEnd; itPair += 2) {
@@ -834,7 +834,7 @@ appendSegmentMatches(StringSet<TString, Dependent<TSpec> > const& str,
     typedef typename Value<TScoreValues>::Type TScoreValue;
     typedef typename Size<TStringSet>::Type TSize;
 
-    SEQAN_ASSERT_EQ(length(pList) % 2, 0u);
+    SEQAN2_ASSERT_EQ(length(pList) % 2, 0u);
 
     // Pairwise alignments
     for (TPairIter itPair = begin(pList, Standard()), itPairEnd = end(pList, Standard()); itPair != itPairEnd; itPair += 2) {
@@ -900,7 +900,7 @@ _setDistanceValue(String<TFragment, TSpec1>& matches,
     getAlignmentStatistics(matches, pairSet, (TPos) from, (TPos) length(matches),  matchLen, overlapLen, alignLen);
 
     // Calculate sequence similarity
-    TValue x = SEQAN_DISTANCE_UNITY - static_cast<TValue>(static_cast<double>(matchLen) / static_cast<double>(alignLen) * static_cast<double>(SEQAN_DISTANCE_UNITY));
+    TValue x = SEQAN2_DISTANCE_UNITY - static_cast<TValue>(static_cast<double>(matchLen) / static_cast<double>(alignLen) * static_cast<double>(SEQAN2_DISTANCE_UNITY));
     if (i < j)
       dist[i * nseq + j] = x;
     else
@@ -927,7 +927,7 @@ _setDistanceValue(String<TFragment, TSpec1>& matches,
     getAlignmentStatistics(matches, pairSet, (TSize) from, (TSize) length(matches),  matchLen, overlapLen, alignLen);
 
     // Calculate sequence similarity
-    TCargo normalizedSimilarity = SEQAN_DISTANCE_UNITY - (TCargo) (((double) matchLen / (double) overlapLen) * ((double) overlapLen / (double) alignLen) * (double) SEQAN_DISTANCE_UNITY);
+    TCargo normalizedSimilarity = SEQAN2_DISTANCE_UNITY - (TCargo) (((double) matchLen / (double) overlapLen) * ((double) overlapLen / (double) alignLen) * (double) SEQAN2_DISTANCE_UNITY);
 
     addEdge(dist, i, j, normalizedSimilarity);
 }
@@ -983,7 +983,7 @@ appendSegmentMatches(StringSet<TString, Dependent<TSpec> > const& str,
     typedef typename Value<TScoreValues>::Type TScoreValue;
     typedef typename Iterator<String<TSize2, TSpec2> const, Standard>::Type TPairIter;
 
-    SEQAN_ASSERT_EQ(length(pList) % 2, 0u);
+    SEQAN2_ASSERT_EQ(length(pList) % 2, 0u);
 
     // Initialization
     TSize nseq = length(str);
@@ -1025,7 +1025,7 @@ appendSegmentMatches(StringSet<TString, Dependent<TSpec> > const& str,
     typedef typename Value<TScoreValues>::Type TScoreValue;
     typedef typename Iterator<String<TSize2, TSpec2> const, Standard>::Type TPairIter;
 
-    SEQAN_ASSERT_EQ(length(pList) % 2, 0u);
+    SEQAN2_ASSERT_EQ(length(pList) % 2, 0u);
 
     // Initialization
     TSize nseq = length(str);
@@ -1081,6 +1081,6 @@ appendSegmentMatches(StringSet<TString, Dependent<TSpec> > const& str,
     appendSegmentMatches(str, pList, score_type, matches, scores, dist, AlignConfig<>(), bandWidth, GlobalPairwiseLibrary(), Banded());
 }
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

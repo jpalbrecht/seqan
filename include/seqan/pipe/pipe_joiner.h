@@ -32,13 +32,13 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_PIPE_JOINER_H
-#define SEQAN_HEADER_PIPE_JOINER_H
+#ifndef SEQAN2_HEADER_PIPE_JOINER_H
+#define SEQAN2_HEADER_PIPE_JOINER_H
 
-namespace seqan
+namespace seqan2
 {
 
-//namespace SEQAN_NAMESPACE_PIPELINING
+//namespace SEQAN2_NAMESPACE_PIPELINING
 //{
 
     struct Joiner;
@@ -63,7 +63,7 @@ namespace seqan
 /*!
  * @class Joiner
  * @extends Pipe
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  * @brief Joins two or three input streams.
  *
  * @signature template <typename TInput1, typename TInput2>

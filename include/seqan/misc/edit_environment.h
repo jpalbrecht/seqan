@@ -38,10 +38,10 @@
 // TODO(holtgrew): It would be nice if the maximal distance would be given as a run time parameter.
 // TODO(holtgrew): Document iterator?
 
-#ifndef SEQAN_INCLUDE_MISC_EDIT_ENVIRONMENT_H_
-#define SEQAN_INCLUDE_MISC_EDIT_ENVIRONMENT_H_
+#ifndef SEQAN2_INCLUDE_MISC_EDIT_ENVIRONMENT_H_
+#define SEQAN2_INCLUDE_MISC_EDIT_ENVIRONMENT_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ==========================================================================
 // Forwards
@@ -60,7 +60,7 @@ struct EditEnvironment;
 
 /*!
  * @class StringEnumerator
- * @headerfile <seqan/misc/edit_environment.h>
+ * @headerfile <seqan2/misc/edit_environment.h>
  * @brief Class to enumerate all strings within a given edit/Hamming distance.
  *
  * @signature template <typename TString, typename TSpec>
@@ -96,7 +96,7 @@ struct EditEnvironment;
 /*!
  * @class HammingStringEnumerator
  * @extends StringEnumerator
- * @headerfile <seqan/misc/edit_environment.h>
+ * @headerfile <seqan2/misc/edit_environment.h>
  * @brief Enumerate all strings within a given edit distance of a "center string".
  *
  * @signature template <typename TString, unsigned DISTANCE>
@@ -111,7 +111,7 @@ struct EditEnvironment;
 /*!
  * @class LevenshteinStringEnumerator
  * @extends StringEnumerator
- * @headerfile <seqan/misc/edit_environment.h>
+ * @headerfile <seqan2/misc/edit_environment.h>
  * @brief Enumerate all strings within a given edit distance of a "center string" (of edit distance &lt; 3).
  *
  * @signature template <typename TString, unsigned DISTANCE>
@@ -1109,7 +1109,7 @@ length(StringEnumerator<TObject, EditEnvironment<LevenshteinDistance, DISTANCE> 
 
     // TODO: length function for DISTANCE >= 3 (if anyone needs should this)
     if (DISTANCE > 2u)
-        SEQAN_FAIL("length() not implemented for DISTANCE >= 3!");
+        SEQAN2_FAIL("length() not implemented for DISTANCE >= 3!");
 
     return sum;
 }
@@ -1230,8 +1230,8 @@ operator!=(
     return false;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_MISC_EDIT_ENVIRONMENT_H_
+#endif  // #ifndef SEQAN2_INCLUDE_MISC_EDIT_ENVIRONMENT_H_
 
 //  LocalWords:  StringEnumerator

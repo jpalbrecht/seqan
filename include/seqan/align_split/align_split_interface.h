@@ -34,12 +34,12 @@
 // Split alignment implementation.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_SPLIT_ALIGN_SPLIT_INTERFACE_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_SPLIT_ALIGN_SPLIT_INTERFACE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_SPLIT_ALIGN_SPLIT_INTERFACE_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_SPLIT_ALIGN_SPLIT_INTERFACE_H_
 
 #include "dp_scout_split.h"
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -352,7 +352,7 @@ void _computeSplitTrace(TTarget & target,
 
     setHost(matrix, getDpTraceMatrix(dpContext));
     resize(matrix);
-    SEQAN_ASSERT_EQ(length(getDpTraceMatrix(dpContext)), length(matrix));
+    SEQAN2_ASSERT_EQ(length(getDpTraceMatrix(dpContext)), length(matrix));
     TDPTraceMatrixNavigator navi;
     _init(navi, matrix, config._band);
     _computeTraceback(target, navi, matPos, seqH, seqV, config._band, TDPProfile());
@@ -413,7 +413,7 @@ auto _splitAlignmentImpl(Gaps<TContigSeqL> & gapsContigL,
     reverse(scoutStateR.splitScore);
     reverse(scoutStateR.splitPos);
 
-    SEQAN_ASSERT_EQ(length(scoutStateL.splitScore), length(scoutStateR.splitScore));
+    SEQAN2_ASSERT_EQ(length(scoutStateL.splitScore), length(scoutStateR.splitScore));
 
     // We will split the left and right alignments into two parts such that the alignment score is optimal.  We compute
     // the leftmost best position for a split (equivalent to the best prefix of the first left alignment).  Note that
@@ -530,7 +530,7 @@ auto _splitAlignmentImpl(Gaps<TContigSeqL> & gapsContigL,
 
 /*!
  * @fn splitAlignment
- * @headerfile <seqan/align_split.h>
+ * @headerfile <seqan2/align_split.h>
  * @brief Compute split alignments.
  *
  * @signature TScoreValue splitAlignment(alignL,         alignR,         scoringScheme[, config][, lowerDiag, upperDiag]);
@@ -631,7 +631,7 @@ int splitAlignment(Align<TSequenceL, TAlignSpecL> & alignL,
                    Score<TScoreVal, TScoreSpec> const & scoringScheme,
                    AlignConfig<TTop, TRight, TLeft, TBottom, TConfigSpec> const & config)
 {
-    SEQAN_ASSERT_EQ_MSG(source(row(alignL, 0)), source(row(alignR, 0)),
+    SEQAN2_ASSERT_EQ_MSG(source(row(alignL, 0)), source(row(alignR, 0)),
                         "Contig must be the same for left and right split alignment.");
 
     auto tmp = _splitAlignmentImpl(row(alignL, 0), row(alignL, 1), row(alignR, 0), row(alignR, 1), scoringScheme, config);
@@ -660,7 +660,7 @@ int splitAlignment(Gaps<TSeqHL, TGapSpecHL> & gapsHL,
                    Score<TScoreVal, TScoreSpec> const & scoringScheme,
                    AlignConfig<TTop, TRight, TLeft, TBottom, TConfigSpec> const & config)
 {
-    SEQAN_ASSERT_EQ_MSG(source(gapsHL), source(gapsHR),
+    SEQAN2_ASSERT_EQ_MSG(source(gapsHL), source(gapsHR),
                         "Contig must be the same for left and right split alignment.");
 
     auto tmp = _splitAlignmentImpl(gapsHL, gapsVL, gapsHR, gapsVR, scoringScheme, config);
@@ -690,7 +690,7 @@ int splitAlignment(Align<TSequenceL, TAlignSpecL> & alignL,
                    int const lowerDiagonal,
                    int const upperDiagonal)
 {
-    SEQAN_ASSERT_EQ_MSG(source(row(alignL, 0)), source(row(alignR, 0)),
+    SEQAN2_ASSERT_EQ_MSG(source(row(alignL, 0)), source(row(alignR, 0)),
                         "Contig must be the same for left and right split alignment.");
 
     auto tmp = _splitAlignmentImpl(row(alignL, 0), row(alignL, 1), row(alignR, 0), row(alignR, 1),
@@ -724,7 +724,7 @@ int splitAlignment(Gaps<TSeqHL, TGapSpecHL> & gapsHL,
                    int const lowerDiagonal,
                    int const upperDiagonal)
 {
-    SEQAN_ASSERT_EQ_MSG(source(gapsHL), source(gapsHR),
+    SEQAN2_ASSERT_EQ_MSG(source(gapsHL), source(gapsHR),
                         "Contig must be the same for left and right split alignment.");
 
     auto tmp = _splitAlignmentImpl(gapsHL, gapsVL, gapsHR, gapsVR, scoringScheme, config, lowerDiagonal, upperDiagonal);
@@ -746,6 +746,6 @@ int splitAlignment(Gaps<TSeqHL, TGapSpecHL> & gapsHL,
                           lowerDiagonal, upperDiagonal);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_SPLIT_ALIGN_SPLIT_INTERFACE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_SPLIT_ALIGN_SPLIT_INTERFACE_H_

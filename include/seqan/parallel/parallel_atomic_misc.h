@@ -34,12 +34,12 @@
 // Misc simple functionality built upon atomic primitives.
 // ==========================================================================
 
-// SEQAN_NO_GENERATED_FORWARDS: No forwards are generated for this file.
+// SEQAN2_NO_GENERATED_FORWARDS: No forwards are generated for this file.
 
-#ifndef SEQAN_PARALLEL_PARALLEL_ATOMIC_MISC_H_
-#define SEQAN_PARALLEL_PARALLEL_ATOMIC_MISC_H_
+#ifndef SEQAN2_PARALLEL_PARALLEL_ATOMIC_MISC_H_
+#define SEQAN2_PARALLEL_PARALLEL_ATOMIC_MISC_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -63,7 +63,7 @@ namespace seqan {
 
 /*!
  * @fn atomicMax
- * @headerfile <seqan/parallel.h>
+ * @headerfile <seqan2/parallel.h>
  * @brief Lock-free implemenattion of <tt>x = max(x, y)</tt>.
  *
  * @signature void atomicMax(x, y);
@@ -97,7 +97,7 @@ atomicMax(T volatile & x, T y)
 
 /*!
  * @fn atomicMin
- * @headerfile <seqan/parallel.h>
+ * @headerfile <seqan2/parallel.h>
  * @brief Lock-free implemenattion of <tt>x = min(x, y)</tt>.
  *
  * @signature void atomicMin(x, y);
@@ -125,6 +125,6 @@ atomicMin(T volatile & x, T y)
     }
 }
 
-} // namespace seqan
+} // namespace seqan2
 
-#endif  // #define SEQAN_PARALLEL_PARALLEL_ATOMIC_MISC_H_
+#endif  // #define SEQAN2_PARALLEL_PARALLEL_ATOMIC_MISC_H_

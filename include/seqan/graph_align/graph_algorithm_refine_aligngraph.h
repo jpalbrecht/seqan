@@ -33,12 +33,12 @@
 // Author: Anne-Katrin Emde <anne-katrin.emde@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_GRAPH_ALIGN_GRAPH_ALGORITHM_REFINE_ALIGNGRAPH_H_
-#define SEQAN_INCLUDE_SEQAN_GRAPH_ALIGN_GRAPH_ALGORITHM_REFINE_ALIGNGRAPH_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_GRAPH_ALIGN_GRAPH_ALGORITHM_REFINE_ALIGNGRAPH_H_
+#define SEQAN2_INCLUDE_SEQAN2_GRAPH_ALIGN_GRAPH_ALGORITHM_REFINE_ALIGNGRAPH_H_
 
-//SEQAN_NO_DDDOC: do not generate documentation for this file
+//SEQAN2_NO_DDDOC: do not generate documentation for this file
 
-namespace seqan {
+namespace seqan2 {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -116,7 +116,7 @@ _getSeqBeginAndEnd(Graph<TAlign> & segment,
 //    int pseudo_map = 0;
 //    TValue pos_j_check,seq_j_id;
 //    _getOtherSequenceAndProject(segment,pseudo_map,seq_i_id,pos_i,seq_j_id,pos_j_check);
-//    SEQAN_ASSERT(pos_j_check==pos_j);
+//    SEQAN2_ASSERT(pos_j_check==pos_j);
 //    TValue last_pos_i = pos_i + len;
 //    TValue last_pos_j;
 //    _getOtherSequenceAndProject(segment,pseudo_map,seq_i_id,last_pos_i,seq_j_id,last_pos_j);
@@ -203,7 +203,7 @@ _getRefinedMatchScore(Score<TScoreValue,TScoreSpec> & score_type,
     int pseudo_map = 0;
     TValue pos_j_check,seq_j_id;
     _getOtherSequenceAndProject(segment,pseudo_map,seq_i_id,pos_i,seq_j_id,pos_j_check);
-    SEQAN_ASSERT(pos_j_check==pos_j);
+    SEQAN2_ASSERT(pos_j_check==pos_j);
     TValue last_pos_j = pos_j + len_j;
 
     TScoreValue ret_score = 0;
@@ -284,6 +284,6 @@ _getRefinedMatchScore(Score<TScoreValue,TScoreSpec> & score_type,
     return ret_score;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_GRAPH_ALIGN_GRAPH_ALGORITHM_REFINE_ALIGNGRAPH_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_GRAPH_ALIGN_GRAPH_ALGORITHM_REFINE_ALIGNGRAPH_H_

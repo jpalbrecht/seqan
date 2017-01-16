@@ -34,10 +34,10 @@
 // Implementation of Weakly-Connected-Components algorithm.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_GRAPH_ALGORITHMS_WEAKLY_CONNECTED_COMPONENTS_H_
-#define INCLUDE_SEQAN_GRAPH_ALGORITHMS_WEAKLY_CONNECTED_COMPONENTS_H_
+#ifndef INCLUDE_SEQAN2_GRAPH_ALGORITHMS_WEAKLY_CONNECTED_COMPONENTS_H_
+#define INCLUDE_SEQAN2_GRAPH_ALGORITHMS_WEAKLY_CONNECTED_COMPONENTS_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -61,7 +61,7 @@ namespace seqan {
 
 /*!
  * @fn weaklyConnectedComponents
- * @headerfile <seqan/graph_algorithms.h>
+ * @headerfile <seqan2/graph_algorithms.h>
  * @brief Compute weakly connected components of a directed graph.
  *
  * @signature TSize weaklyConnectedComponents(components, g);
@@ -116,6 +116,6 @@ weaklyConnectedComponents(TComponents & components,
     return setCount;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_GRAPH_ALGORITHMS_WEAKLY_CONNECTED_COMPONENTS_H_
+#endif  // #ifndef INCLUDE_SEQAN2_GRAPH_ALGORITHMS_WEAKLY_CONNECTED_COMPONENTS_H_

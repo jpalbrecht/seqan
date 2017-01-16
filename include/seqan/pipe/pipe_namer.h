@@ -32,13 +32,13 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_PIPE_NAMER_H
-#define SEQAN_HEADER_PIPE_NAMER_H
+#ifndef SEQAN2_HEADER_PIPE_NAMER_H
+#define SEQAN2_HEADER_PIPE_NAMER_H
 
-namespace seqan
+namespace seqan2
 {
 
-//namespace SEQAN_NAMESPACE_PIPELINING
+//namespace SEQAN2_NAMESPACE_PIPELINING
 //{
 
     template < typename TCompare >
@@ -57,7 +57,7 @@ namespace seqan
 /*!
  * @class Namer
  * @extends Pipe
- * @headerfile <seqan/pipe.h>
+ * @headerfile <seqan2/pipe.h>
  *
  * @brief Extends the input stream by a second field which names the elements.
  *
@@ -113,7 +113,7 @@ namespace seqan
         {
             ++in;
             if (!eof(in) && C(last, *in) != 0) {
-                SEQAN_ASSERT_LT(C(last, *in), 0);
+                SEQAN2_ASSERT_LT(C(last, *in), 0);
                 last = *in;
                 ++tmp.i2;
             }

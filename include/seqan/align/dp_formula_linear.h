@@ -34,10 +34,10 @@
 // Defines the methods to compute the score when using linear gap costs.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_FORMULA_LINEAR_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_DP_FORMULA_LINEAR_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_FORMULA_LINEAR_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_FORMULA_LINEAR_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -60,7 +60,7 @@ namespace seqan {
 // ----------------------------------------------------------------------------
 
 template <typename TScoreValue, typename TTraceValueL, typename TTraceValueR>
-inline SEQAN_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, LinearGaps> & activeCell,
                       TScoreValue const & rightCompare,
                       TTraceValueL,
@@ -73,7 +73,7 @@ _internalComputeScore(DPCell_<TScoreValue, LinearGaps> & activeCell,
 }
 
 template <typename TScoreValue, typename TTraceValueL, typename TTraceValueR>
-inline SEQAN_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, LinearGaps> & activeCell,
                       TScoreValue const & rightCompare,
                       TTraceValueL,
@@ -86,7 +86,7 @@ _internalComputeScore(DPCell_<TScoreValue, LinearGaps> & activeCell,
 }
 
 template <typename TScoreValue, typename TTraceValueL, typename TTraceValueR, typename TGapsPlacement>
-inline SEQAN_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, LinearGaps> & activeCell,
                       TScoreValue const & rightCompare,
                       TTraceValueL leftTrace,
@@ -102,7 +102,7 @@ _internalComputeScore(DPCell_<TScoreValue, LinearGaps> & activeCell,
 }
 
 template <typename TScoreValue, typename TTraceValueL, typename TTraceValueR, typename TGapsPlacement>
-inline SEQAN_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, LinearGaps> & activeCell,
                       TScoreValue const & rightCompare,
                       TTraceValueL const & leftTrace,
@@ -115,7 +115,7 @@ _internalComputeScore(DPCell_<TScoreValue, LinearGaps> & activeCell,
 }
 
 template <typename TScoreValue, typename TTraceValueL, typename TTraceValueR, typename TGapsPlacement>
-    inline SEQAN_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
+    inline SEQAN2_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, LinearGaps> & activeCell,
                       TScoreValue const & rightCompare,
                       TTraceValueL leftTrace,
@@ -131,7 +131,7 @@ _internalComputeScore(DPCell_<TScoreValue, LinearGaps> & activeCell,
 }
 
 template <typename TScoreValue, typename TTraceValueL, typename TTraceValueR, typename TGapsPlacement>
-inline SEQAN_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, LinearGaps> & activeCell,
                       TScoreValue const & rightCompare,
                       TTraceValueL const & leftTrace,
@@ -286,6 +286,6 @@ _doComputeScore(DPCell_<TScoreValue, LinearGaps> & activeCell,
                 | TraceBitMap_<TScoreValue>::MAX_FROM_VERTICAL_MATRIX;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_FORMULA_LINEAR_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_FORMULA_LINEAR_H_

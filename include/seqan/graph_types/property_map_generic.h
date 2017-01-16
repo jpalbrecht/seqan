@@ -37,10 +37,10 @@
 // Strings.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_GRAPH_TYPES_PROPERTY_MAP_GENERIC_H_
-#define INCLUDE_SEQAN_GRAPH_TYPES_PROPERTY_MAP_GENERIC_H_
+#ifndef INCLUDE_SEQAN2_GRAPH_TYPES_PROPERTY_MAP_GENERIC_H_
+#define INCLUDE_SEQAN2_GRAPH_TYPES_PROPERTY_MAP_GENERIC_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -73,7 +73,7 @@ namespace seqan {
  */
 
 template <typename TPropertyMap, typename TSpec>
-SEQAN_FUNC_ENABLE_IF(Is<PropertyMapConcept<TPropertyMap> >, void)
+SEQAN2_FUNC_ENABLE_IF(Is<PropertyMapConcept<TPropertyMap> >, void)
 resizeVertexMap(TPropertyMap & pm, Graph<TSpec> const & g)
 {
     typedef typename Value<TPropertyMap>::Type TValue;
@@ -81,7 +81,7 @@ resizeVertexMap(TPropertyMap & pm, Graph<TSpec> const & g)
 }
 
 template <typename TPropertyMap, typename TSpec, typename TPrototype>
-SEQAN_FUNC_ENABLE_IF(Is<PropertyMapConcept<TPropertyMap> >, void)
+SEQAN2_FUNC_ENABLE_IF(Is<PropertyMapConcept<TPropertyMap> >, void)
 resizeVertexMap(TPropertyMap & pm, Graph<TSpec> const & g, TPrototype const & prototype)
 {
     resize(pm, getIdUpperBound(_getVertexIdManager(g)), prototype, Generous());
@@ -101,7 +101,7 @@ resizeVertexMap(TPropertyMap & pm, Graph<TSpec> const & g, TPrototype const & pr
  */
 
 template <typename TPropertyMap, typename TSpec>
-SEQAN_FUNC_ENABLE_IF(Is<PropertyMapConcept<TPropertyMap> >, void)
+SEQAN2_FUNC_ENABLE_IF(Is<PropertyMapConcept<TPropertyMap> >, void)
 resizeEdgeMap(TPropertyMap & pm, Graph<TSpec> const & g)
 {
     typedef typename Value<TPropertyMap>::Type TValue;
@@ -109,7 +109,7 @@ resizeEdgeMap(TPropertyMap & pm, Graph<TSpec> const & g)
 }
 
 template <typename TPropertyMap, typename TSpec, typename TPrototype>
-SEQAN_FUNC_ENABLE_IF(Is<PropertyMapConcept<TPropertyMap> >, void)
+SEQAN2_FUNC_ENABLE_IF(Is<PropertyMapConcept<TPropertyMap> >, void)
 resizeEdgeMap(TPropertyMap & pm, Graph<TSpec> const & g, TPrototype const & prototype)
 {
     resize(pm, getIdUpperBound(_getEdgeIdManager(g)), prototype, Generous());
@@ -132,7 +132,7 @@ resizeEdgeMap(TPropertyMap & pm, Graph<TSpec> const & g, TPrototype const & prot
  */
 
 template <typename TSpec, typename TPropertyMap, typename TProperties>
-SEQAN_FUNC_ENABLE_IF(Is<PropertyMapConcept<TPropertyMap> >, void)
+SEQAN2_FUNC_ENABLE_IF(Is<PropertyMapConcept<TPropertyMap> >, void)
 assignVertexMap(TPropertyMap & pm,
                 Graph<TSpec> const & g,
                 TProperties const & prop)
@@ -162,7 +162,7 @@ assignVertexMap(TPropertyMap & pm,
  */
 
 template <typename TSpec, typename TPropertyMap, typename TProperties>
-SEQAN_FUNC_ENABLE_IF(Is<PropertyMapConcept<TPropertyMap> >, void)
+SEQAN2_FUNC_ENABLE_IF(Is<PropertyMapConcept<TPropertyMap> >, void)
 assignEdgeMap(TPropertyMap & pm,
               Graph<TSpec> const & g,
               TProperties const & prop)
@@ -180,7 +180,7 @@ assignEdgeMap(TPropertyMap & pm,
 // --------------------------------------------------------------------------
 
 template <typename TPropertyMap, typename TDescriptor, typename TValue>
-SEQAN_FUNC_ENABLE_IF(Is<PropertyMapConcept<TPropertyMap> >, void)
+SEQAN2_FUNC_ENABLE_IF(Is<PropertyMapConcept<TPropertyMap> >, void)
 assignProperty(TPropertyMap & pm, TDescriptor const d, TValue const val)
 {
     assignValue(pm, _getId(d), val);
@@ -191,7 +191,7 @@ assignProperty(TPropertyMap & pm, TDescriptor const d, TValue const val)
 // --------------------------------------------------------------------------
 
 template <typename TPropertyMap, typename TDescriptor>
-SEQAN_FUNC_ENABLE_IF(Is<PropertyMapConcept<TPropertyMap> >,
+SEQAN2_FUNC_ENABLE_IF(Is<PropertyMapConcept<TPropertyMap> >,
                      typename Reference<TPropertyMap>::Type)
 property(TPropertyMap & pm, TDescriptor const d)
 {
@@ -199,7 +199,7 @@ property(TPropertyMap & pm, TDescriptor const d)
 }
 
 template <typename TPropertyMap, typename TDescriptor>
-SEQAN_FUNC_ENABLE_IF(Is<PropertyMapConcept<TPropertyMap> >,
+SEQAN2_FUNC_ENABLE_IF(Is<PropertyMapConcept<TPropertyMap> >,
                      typename Reference<TPropertyMap const>::Type)
 property(TPropertyMap const & pm, TDescriptor const d)
 {
@@ -211,13 +211,13 @@ property(TPropertyMap const & pm, TDescriptor const d)
 // --------------------------------------------------------------------------
 
 template <typename TPropertyMap, typename TDescriptor>
-SEQAN_FUNC_ENABLE_IF(Is<PropertyMapConcept<TPropertyMap> >,
+SEQAN2_FUNC_ENABLE_IF(Is<PropertyMapConcept<TPropertyMap> >,
                      typename GetValue<TPropertyMap const>::Type)
 getProperty(TPropertyMap const & pm, TDescriptor const d)
 {
     return getValue(pm, _getId(d));
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_GRAPH_TYPES_PROPERTY_MAP_GENERIC_H_
+#endif  // #ifndef INCLUDE_SEQAN2_GRAPH_TYPES_PROPERTY_MAP_GENERIC_H_

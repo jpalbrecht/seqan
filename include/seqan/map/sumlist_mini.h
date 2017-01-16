@@ -30,10 +30,10 @@
 //
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_SUMLIST_MINI_H
-#define SEQAN_HEADER_SUMLIST_MINI_H
+#ifndef SEQAN2_HEADER_SUMLIST_MINI_H
+#define SEQAN2_HEADER_SUMLIST_MINI_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -971,6 +971,6 @@ operator != (Iter<TSumList, MiniSumListIterator> const & left,
 
 //////////////////////////////////////////////////////////////////////////////
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

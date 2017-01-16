@@ -32,10 +32,10 @@
 // Author: Rene Rahn <rene.rahn@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_SEQUENCE_CONTAINER_VIEW_ZIP_H_
-#define INCLUDE_SEQAN_SEQUENCE_CONTAINER_VIEW_ZIP_H_
+#ifndef INCLUDE_SEQAN2_SEQUENCE_CONTAINER_VIEW_ZIP_H_
+#define INCLUDE_SEQAN2_SEQUENCE_CONTAINER_VIEW_ZIP_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -53,7 +53,7 @@ struct ZipContainer;
 /*!
  * @class ZipContainerView
  * @extends ContainerView
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  *
  * @brief Ties one or more containers into a non-resizable container view together.
  *
@@ -266,7 +266,7 @@ struct Iterator<ContainerView<std::tuple<TContTypes...>, ZipContainer<TSpec> > c
 
 /*!
  * @fn makeZipView
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  * @brief Creates a @link ZipContainerView @endlink, deducing the container types from the arguments.
  *
  * @signature cont makeZipView(TContainerTypes... args)
@@ -282,7 +282,7 @@ template <typename... TContTypes>
 inline ContainerView<std::tuple<typename std::remove_reference<TContTypes>::type...>, ZipContainer<> >
 makeZipView(TContTypes && ...contArgs)
 {
-#ifdef SEQAN_CLANG35_FREEBSD_BUG
+#ifdef SEQAN2_CLANG35_FREEBSD_BUG
     // the condition always evaluates to false, but ensures that the assertion
     // only fires if the function is actually instantiated
     static_assert(sizeof...(contArgs) == 0, "The Zip Container triggers a bug on FreeBSD+clang-3.5, please upgrade you compiler!");
@@ -292,4 +292,4 @@ makeZipView(TContTypes && ...contArgs)
 
 }
 
-#endif  // #ifndef INCLUDE_SEQAN_SEQUENCE_CONTAINER_VIEW_ZIP_H_
+#endif  // #ifndef INCLUDE_SEQAN2_SEQUENCE_CONTAINER_VIEW_ZIP_H_

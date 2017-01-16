@@ -32,10 +32,10 @@
 // Author: David Weese <david.weese@fu-berlin.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_MODIFIER_SHORTCUTS_H
-#define SEQAN_HEADER_MODIFIER_SHORTCUTS_H
+#ifndef SEQAN2_HEADER_MODIFIER_SHORTCUTS_H
+#define SEQAN2_HEADER_MODIFIER_SHORTCUTS_H
 
-namespace seqan
+namespace seqan2
 {
 
 // ==========================================================================
@@ -46,7 +46,7 @@ namespace seqan
 
 /*!
  * @typedef DnaStringComplement
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Modifier for the complement of DnaString.
  *
  * @signature typedef ModifiedString<DnaString, ModView<FunctorComplementDna> > > DnaStringComplement;
@@ -54,7 +54,7 @@ namespace seqan
 
 /*!
  * @typedef Dna5StringComplement
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Modifier for the complement of Dna5String.
  *
  * @signature typedef ModifiedString<Dna5String, ModView<FunctorComplementDna> > > DnaStringComplement;
@@ -62,7 +62,7 @@ namespace seqan
 
 /*!
  * @typedef RnaStringComplement
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Modifier for the complement of RnaString.
  *
  * @signature typedef ModifiedString<RnaString, ModView<FunctorComplementDna> > > DnaStringComplement;
@@ -70,7 +70,7 @@ namespace seqan
 
 /*!
  * @typedef Rna5StringComplement
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Modifier for the complement of Rna5String.
  *
  * @signature typedef ModifiedString<Rna5String, ModView<FunctorComplementDna> > > DnaStringComplement;
@@ -78,7 +78,7 @@ namespace seqan
 
 /*!
  * @typedef DnaStringReverse
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Modifier for the reverse of a DnaString.
  *
  * @signature typedef ModifiedString<DnaString, ModReverse> DnaStringReverse;
@@ -86,7 +86,7 @@ namespace seqan
 
 /*!
  * @typedef Dna5StringReverse
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Modifier for the reverse of a Dna5String.
  *
  * @signature typedef ModifiedString<Dna5String, ModReverse> DnaStringReverse;
@@ -94,7 +94,7 @@ namespace seqan
 
 /*!
  * @typedef RnaStringReverse
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Modifier for the reverse of a RnaString.
  *
  * @signature typedef ModifiedString<RnaString, ModReverse> DnaStringReverse;
@@ -102,7 +102,7 @@ namespace seqan
 
 /*!
  * @typedef Rna5StringReverse
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Modifier for the reverse of a Rna5String.
  *
  * @signature typedef ModifiedString<Rna5String, ModReverse> DnaStringReverse;
@@ -110,7 +110,7 @@ namespace seqan
 
 /*!
  * @typedef DnaStringReverseComplement
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Modifier for the reverse-complement of a DnaString.
  *
  * @signature typedef ModifiedString<ModifiedString<DnaString, ModView<FunctorComplement<Dna5> >, ModReverse> DnaStringReverseComplement;
@@ -118,7 +118,7 @@ namespace seqan
 
 /*!
  * @typedef Dna5StringReverseComplement
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Modifier for the reverse-complement of a Dna5String.
  *
  * @signature typedef ModifiedString<ModifiedString<Dna5String, ModView<FunctorComplement<Dna55> >, ModReverse> Dna5StringReverseComplement;
@@ -126,7 +126,7 @@ namespace seqan
 
 /*!
  * @typedef RnaStringReverseComplement
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Modifier for the reverse-complement of a RnaString.
  *
  * @signature typedef ModifiedString<ModifiedString<RnaString, ModView<FunctorComplement<Rna5> >, ModReverse> RnaStringReverseComplement;
@@ -134,7 +134,7 @@ namespace seqan
 
 /*!
  * @typedef Rna5StringReverseComplement
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Modifier for the reverse-complement of a Rna5String.
  *
  * @signature typedef ModifiedString<ModifiedString<Rna5String, ModView<FunctorComplement<Rna55> >, ModReverse> Rna5StringReverseComplement;
@@ -186,7 +186,7 @@ typedef ReverseComplementString<Rna5String>::Type    Rna5StringReverseComplement
 
 /*!
  * @fn complement
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Complement a sequence or a StringSet in-place.
  *
  * @signature void complement(sequence);
@@ -255,7 +255,7 @@ complementString(THost const & host)
 
 /*!
  * @fn reverseComplement
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Reverse-complement a sequence or a StringSet in-place.
  *
  * @signature void reverseComplement(sequence);
@@ -292,7 +292,7 @@ template < typename TSequence, typename TSpec, typename TParallelTag >
 inline void reverseComplement(StringSet<TSequence, TSpec> & stringSet, Tag<TParallelTag>)
 {
     int seqCount = length(stringSet);
-    SEQAN_OMP_PRAGMA(parallel for if(IsSameType<Tag<TParallelTag>, Parallel>::VALUE))
+    SEQAN2_OMP_PRAGMA(parallel for if(IsSameType<Tag<TParallelTag>, Parallel>::VALUE))
     for(int seqNo = 0; seqNo < seqCount; ++seqNo)
         reverseComplement(stringSet[seqNo], Serial());
 }
@@ -303,7 +303,7 @@ template < typename TSequence, typename TSpec, typename TParallelTag >
 inline void reverseComplement(StringSet<TSequence, TSpec> const & stringSet, Tag<TParallelTag>)
 {
     int seqCount = length(stringSet);
-    SEQAN_OMP_PRAGMA(parallel for if(IsSameType<Tag<TParallelTag>, Parallel>::VALUE))
+    SEQAN2_OMP_PRAGMA(parallel for if(IsSameType<Tag<TParallelTag>, Parallel>::VALUE))
     for(int seqNo = 0; seqNo < seqCount; ++seqNo)
         reverseComplement(stringSet[seqNo], Serial());
 }
@@ -346,7 +346,7 @@ reverseComplementString(THost const & host)
 
 /*!
  * @fn toLower
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Convert characters in sequence or StringSet to lower case in-place.
  *
  * @signature void toLower(sequence);
@@ -394,7 +394,7 @@ inline void toLower(StringSet<TSequence, TSpec> const & stringSet)
 
 /*!
  * @fn toUpper
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  * @brief Convert characters in sequence or StringSet to upper case in-place.
  *
  * @signature void toUpper(sequence);

@@ -34,8 +34,8 @@
 // Umbrella Header for the sequence_journaleded module.
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_SEQUENCE_JOURNALED_H
-#define SEQAN_HEADER_SEQUENCE_JOURNALED_H
+#ifndef SEQAN2_HEADER_SEQUENCE_JOURNALED_H
+#define SEQAN2_HEADER_SEQUENCE_JOURNALED_H
 
 // ============================================================================
 // Prerequisites.
@@ -47,17 +47,17 @@
 #include <string>
 #include <sstream>
 
-#include <seqan/basic.h>
-#include <seqan/sequence.h>
+#include <seqan2/basic.h>
+#include <seqan2/sequence.h>
 
 // ============================================================================
 // Journaled Sequences.
 // ============================================================================
 
-#include <seqan/sequence_journaled/journal_entry.h>
-#include <seqan/sequence_journaled/journal_entries_sorted_array.h>
-#include <seqan/sequence_journaled/sequence_journaled.h>
-#include <seqan/sequence_journaled/sequence_journaled_iterator.h>
-#include <seqan/sequence_journaled/sequence_journaled_iterator_fast.h>
+#include <seqan2/sequence_journaled/journal_entry.h>
+#include <seqan2/sequence_journaled/journal_entries_sorted_array.h>
+#include <seqan2/sequence_journaled/sequence_journaled.h>
+#include <seqan2/sequence_journaled/sequence_journaled_iterator.h>
+#include <seqan2/sequence_journaled/sequence_journaled_iterator_fast.h>
 
-#endif  // SEQAN_HEADER_SEQUENCE_JOURNALED_H
+#endif  // SEQAN2_HEADER_SEQUENCE_JOURNALED_H

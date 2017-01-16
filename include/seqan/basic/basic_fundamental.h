@@ -37,8 +37,8 @@
 // prototypes for common metafunctions like Value<>, functions assign() etc.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_BASIC_BASIC_FUNDAMENTAL_H_
-#define SEQAN_INCLUDE_SEQAN_BASIC_BASIC_FUNDAMENTAL_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_FUNDAMENTAL_H_
+#define SEQAN2_INCLUDE_SEQAN2_BASIC_BASIC_FUNDAMENTAL_H_
 
 // --------------------------------------------------------------------------
 // Prerequisites
@@ -46,43 +46,43 @@
 
 #include <algorithm>
 
-#include <seqan/platform.h>
-#include <seqan/basic/basic_metaprogramming.h>
+#include <seqan2/platform.h>
+#include <seqan2/basic/basic_metaprogramming.h>
 
 // --------------------------------------------------------------------------
 // Sub Module Headers
 // --------------------------------------------------------------------------
 
 // Macros for deprecating code.
-#include <seqan/basic/macro_deprecated.h>
+#include <seqan2/basic/macro_deprecated.h>
 
 // Pseudo header with documentation for builtin functions.
-#include <seqan/basic/builtin_functions.h>
+#include <seqan2/basic/builtin_functions.h>
 
 // Common metafunctions such as Value<>.
-#include <seqan/basic/fundamental_metafunctions.h>
+#include <seqan2/basic/fundamental_metafunctions.h>
 
 // Basic tag-related code.
-#include <seqan/basic/fundamental_tags.h>
+#include <seqan2/basic/fundamental_tags.h>
 
 // Functions and metafunctions to use contiguous chunks of memory
-#include <seqan/basic/fundamental_chunking.h>
+#include <seqan2/basic/fundamental_chunking.h>
 
 // Definition of assign(), set(), move().
-#include <seqan/basic/fundamental_transport.h>
+#include <seqan2/basic/fundamental_transport.h>
 
 // Code supporting comparison.
-#include <seqan/basic/fundamental_comparison.h>
+#include <seqan2/basic/fundamental_comparison.h>
 
 // Conversion support.
-#include <seqan/basic/fundamental_conversion.h>
+#include <seqan2/basic/fundamental_conversion.h>
 
 // TODO(holtgrew): This is not fundamental.  Should go into sequence module.
 // Construct/destruct functions for arrays.
-#include <seqan/basic/array_construct_destruct.h>
+#include <seqan2/basic/array_construct_destruct.h>
 
 // TODO(holtgrew): This is not really fundamental, either. Should go into its own sub module.
 // Hosted type.
-#include <seqan/basic/hosted_type_interface.h>
+#include <seqan2/basic/hosted_type_interface.h>
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_BASIC_HOSTED_TYPE_INTERFACE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_BASIC_HOSTED_TYPE_INTERFACE_H_

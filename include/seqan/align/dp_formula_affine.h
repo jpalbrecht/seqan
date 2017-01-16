@@ -34,10 +34,10 @@
 // Implements the affine gap cost functions.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_FORMULA_AFFINE_H_
-#define SEQAN_INCLUDE_SEQAN_ALIGN_DP_FORMULA_AFFINE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_FORMULA_AFFINE_H_
+#define SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_FORMULA_AFFINE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -60,7 +60,7 @@ namespace seqan {
 // ----------------------------------------------------------------------------
 
 template <typename TScoreValue, typename TAffineGaps, typename TTraceValueL, typename TTraceValueGap>
-inline SEQAN_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, TAffineGaps> & activeCell,
                       TScoreValue const & rightCompare,
                       TTraceValueL,
@@ -74,7 +74,7 @@ _internalComputeScore(DPCell_<TScoreValue, TAffineGaps> & activeCell,
 }
 
 template <typename TScoreValue, typename TAffineGaps, typename TTraceValueL, typename TTraceValueGap>
-inline SEQAN_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, TAffineGaps> & activeCell,
                       TScoreValue const & rightCompare,
                       TTraceValueL,
@@ -87,7 +87,7 @@ _internalComputeScore(DPCell_<TScoreValue, TAffineGaps> & activeCell,
 }
 
 template <typename TScoreValue, typename TAffineGaps, typename TTraceValueL, typename TTraceValueGap, typename TGapsPlacement>
-inline SEQAN_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, TAffineGaps> & activeCell,
                       TScoreValue const & rightCompare,
                       TTraceValueL leftTrace,
@@ -104,7 +104,7 @@ _internalComputeScore(DPCell_<TScoreValue, TAffineGaps> & activeCell,
 }
 
 template <typename TScoreValue, typename TAffineGaps, typename TTraceValueL, typename TTraceValueGap, typename TGapsPlacement>
-inline SEQAN_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, TAffineGaps> & activeCell,
                       TScoreValue const & rightCompare,
                       TTraceValueL const & leftTrace,
@@ -120,7 +120,7 @@ _internalComputeScore(DPCell_<TScoreValue, TAffineGaps> & activeCell,
 }
 
 template <typename TScoreValue, typename TAffineGaps, typename TTraceValueL, typename TTraceValueGap, typename TGapsPlacement>
-inline SEQAN_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, TAffineGaps> & activeCell,
                       TScoreValue const & rightCompare,
                       TTraceValueL leftTrace,
@@ -139,7 +139,7 @@ _internalComputeScore(DPCell_<TScoreValue, TAffineGaps> & activeCell,
 }
 
 template <typename TScoreValue, typename TAffineGaps, typename TTraceValueL, typename TTraceValueGap, typename TGapsPlacement>
-inline SEQAN_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, TAffineGaps> & activeCell,
                       TScoreValue const & rightCompare,
                       TTraceValueL const & leftTrace,
@@ -160,7 +160,7 @@ _internalComputeScore(DPCell_<TScoreValue, TAffineGaps> & activeCell,
 // ----------------------------------------------------------------------------
 
 template <typename TScoreValue, typename TTraceValueL, typename TTraceValueR>
-inline SEQAN_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
                       TScoreValue const & rightCompare,
                       TTraceValueL,
@@ -176,7 +176,7 @@ _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
 }
 
 template <typename TScoreValue, typename TTraceValueL, typename TTraceValueR>
-inline SEQAN_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
                       TScoreValue const & rightCompare,
                       TTraceValueL,
@@ -191,7 +191,7 @@ _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
 }
 
 template <typename TScoreValue, typename TTraceValueL, typename TTraceValueR, typename TGapsPlacement>
-inline SEQAN_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
                       TScoreValue const & rightCompare,
                       TTraceValueL leftTrace,
@@ -209,7 +209,7 @@ _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
 }
 
 template <typename TScoreValue, typename TTraceValueL, typename TTraceValueR, typename TGapsPlacement>
-inline SEQAN_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
                       TScoreValue const & rightCompare,
                       TTraceValueL leftTrace,
@@ -224,7 +224,7 @@ _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
 }
 
 template <typename TScoreValue, typename TTraceValueL, typename TTraceValueR, typename TGapsPlacement>
-inline SEQAN_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
                       TScoreValue const & rightCompare,
                       TTraceValueL leftTrace,
@@ -244,7 +244,7 @@ _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
 }
 
 template <typename TScoreValue, typename TTraceValueL, typename TTraceValueR, typename TGapsPlacement>
-inline SEQAN_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
                       TScoreValue const & rightCompare,
                       TTraceValueL const & leftTrace,
@@ -267,7 +267,7 @@ _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
 // ----------------------------------------------------------------------------
 
 template <typename TScoreValue, typename TTraceValueL, typename TTraceValueR>
-inline SEQAN_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
                       TScoreValue const & rightCompare,
                       TTraceValueL,
@@ -283,7 +283,7 @@ _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
 }
 
 template <typename TScoreValue, typename TTraceValueL, typename TTraceValueR>
-inline SEQAN_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
                       TScoreValue const & rightCompare,
                       TTraceValueL,
@@ -298,7 +298,7 @@ _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
 }
 
 template <typename TScoreValue, typename TTraceValueL, typename TTraceValueR, typename TGapsPlacement>
-inline SEQAN_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
                       TScoreValue const & rightCompare,
                       TTraceValueL leftTrace,
@@ -316,7 +316,7 @@ _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
 }
 
 template <typename TScoreValue, typename TTraceValueL, typename TTraceValueR, typename TGapsPlacement>
-inline SEQAN_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
                       TScoreValue const & rightCompare,
                       TTraceValueL const & leftTrace,
@@ -331,7 +331,7 @@ _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
 }
 
 template <typename TScoreValue, typename TTraceValueL, typename TTraceValueR, typename TGapsPlacement>
-inline SEQAN_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
                       TScoreValue const & rightCompare,
                       TTraceValueL leftTrace,
@@ -351,7 +351,7 @@ _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
 }
 
 template <typename TScoreValue, typename TTraceValueL, typename TTraceValueR, typename TGapsPlacement>
-inline SEQAN_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
                       TScoreValue const & rightCompare,
                       TTraceValueL leftTrace,
@@ -374,7 +374,7 @@ _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
 // ----------------------------------------------------------------------------
 
 template <typename TScoreValue>
-inline SEQAN_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
                       TracebackOff const &)
 {
@@ -384,7 +384,7 @@ _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
 }
 
 template <typename TScoreValue>
-inline SEQAN_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
                       TracebackOff const &)
 {
@@ -394,7 +394,7 @@ _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
 }
 
 template <typename TScoreValue, typename TGapsPlacement>
-inline SEQAN_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
                       TracebackOn<TracebackConfig_<SingleTrace, TGapsPlacement> >  const &)
 {
@@ -407,7 +407,7 @@ _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
 }
 
 template <typename TScoreValue, typename TGapsPlacement>
-inline SEQAN_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
                       TracebackOn<TracebackConfig_<SingleTrace, TGapsPlacement> >  const &)
 {
@@ -419,7 +419,7 @@ _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
 }
 
 template <typename TScoreValue, typename TGapsPlacement>
-inline SEQAN_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Not<Is<SimdVectorConcept<TScoreValue> > >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
                       TracebackOn<TracebackConfig_<CompleteTrace, TGapsPlacement> >  const &)
 {
@@ -434,7 +434,7 @@ _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
 }
 
 template <typename TScoreValue, typename TGapsPlacement>
-inline SEQAN_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
+inline SEQAN2_FUNC_ENABLE_IF(Is<SimdVectorConcept<TScoreValue> >, typename TraceBitMap_<TScoreValue>::Type)
 _internalComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
                       TracebackOn<TracebackConfig_<CompleteTrace, TGapsPlacement> >  const &)
 {
@@ -631,6 +631,6 @@ _doComputeScore(DPCell_<TScoreValue, AffineGaps> & activeCell,
                                  RecursionDirectionVertical()) | TraceBitMap_<TScoreValue>::MAX_FROM_VERTICAL_MATRIX;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_ALIGN_DP_FORMULA_AFFINE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_ALIGN_DP_FORMULA_AFFINE_H_

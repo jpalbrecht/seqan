@@ -32,10 +32,10 @@
 // Author: Tobias Rausch <rausch@embl.de>
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_FIND_MULTIPLESHIFTAND_H
-#define SEQAN_HEADER_FIND_MULTIPLESHIFTAND_H
+#ifndef SEQAN2_HEADER_FIND_MULTIPLESHIFTAND_H
+#define SEQAN2_HEADER_FIND_MULTIPLESHIFTAND_H
 
-namespace seqan
+namespace seqan2
 {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -45,7 +45,7 @@ namespace seqan
 /*!
  * @class MultipleShiftAndPattern
  * @extends Pattern
- * @headerfile <seqan/find.h>
+ * @headerfile <seqan2/find.h>
  * @brief Multiple exact string matching using bit parallelism.
  *
  * The total size of the patterns should fit into a computer word.
@@ -422,6 +422,6 @@ inline bool find(TFinder & finder, Pattern<TNeedle, MultipleShiftAnd> & me) {
     }
 }
 
-}// namespace seqan
+}// namespace seqan2
 
-#endif //#ifndef SEQAN_HEADER_FIND_MULTIPLESHIFTAND_H
+#endif //#ifndef SEQAN2_HEADER_FIND_MULTIPLESHIFTAND_H

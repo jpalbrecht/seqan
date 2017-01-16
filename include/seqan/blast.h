@@ -34,10 +34,10 @@
 // Module for handling NCBI Blast I/O and E-Value computation
 // ==========================================================================
 
-#ifndef SEQAN_BLAST_H
-#define SEQAN_BLAST_H
+#ifndef SEQAN2_BLAST_H
+#define SEQAN2_BLAST_H
 
-#include <seqan/platform.h>
+#include <seqan2/platform.h>
 
 #ifndef COMPILER_MSVC
 
@@ -50,11 +50,11 @@
 #include <unordered_map>
 #include <regex>
 
-#include <seqan/basic.h>
-#include <seqan/sequence.h>
-#include <seqan/version.h>
-#include <seqan/align.h>
-#include <seqan/score.h>
+#include <seqan2/basic.h>
+#include <seqan2/sequence.h>
+#include <seqan2/version.h>
+#include <seqan2/align.h>
+#include <seqan2/score.h>
 
 #include "blast/blast_base.h"
 #include "blast/blast_tabular_lowlevel.h"

@@ -34,13 +34,13 @@
 // Definition of generic and fixed-at-compile-time CyclicShapes
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_CYCLIC_SHAPE_H
-#define SEQAN_HEADER_CYCLIC_SHAPE_H
+#ifndef SEQAN2_HEADER_CYCLIC_SHAPE_H
+#define SEQAN2_HEADER_CYCLIC_SHAPE_H
 
-#include <seqan/index/shape_base.h>
-#include <seqan/index/shape_gapped.h>
+#include <seqan2/index/shape_base.h>
+#include <seqan2/index/shape_gapped.h>
 
-namespace seqan {
+namespace seqan2 {
 
 // ==========================================================================
 // Forwards
@@ -62,7 +62,7 @@ typedef GappedShape<Default> GenericShape;
 
 /*!
  * @class CyclicShape
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  *
  * @brief A pattern of zeros and ones to mark "don't care"-positions in a text.
  *
@@ -106,7 +106,7 @@ struct FixedShape;
 
 /*!
  * @mfn CyclicShape#Size
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  *
  * @brief Size type for parameters used in CyclicShape.
  *
@@ -131,7 +131,7 @@ struct Size<CyclicShape<TSpec> >
 /*!
  * @class GenericCyclicShape Generic CyclicShape
  * @extends CyclicShape
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  *
  * @brief CyclicShape initiated at runtime.
  *
@@ -212,7 +212,7 @@ public:
 /*!
  * @class FixedCyclicShape Fixed CyclicShape
  * @extends CyclicShape
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  *
  * @brief CyclicShape defined at compile time.
  *
@@ -364,7 +364,7 @@ CyclicShape<FixedShape<L, GappedShape<HardwiredShape
 
 /*!
  * @mfn FixedCyclicShape#WEIGHT
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  *
  * @brief Weight (number of care-positions) of Fixed CyclicShapes
  *
@@ -396,7 +396,7 @@ struct WEIGHT<CyclicShape<FixedShape<L, GappedShape<THardwiredShape>, R> > >
 
 /*!
  * @fn CyclicShape#weight
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  *
  * @brief Return the weight of a CyclicShape
  *
@@ -428,7 +428,7 @@ weight(CyclicShape<FixedShape<L, GappedShape<THardwiredShape>, R> > const &)
 
 /*!
  * @fn GenericCyclicShape#stringToCyclicShape
- * @headerfile <seqan/modifier.h>
+ * @headerfile <seqan2/modifier.h>
  *
  * @brief Converts a 0/1 string to a Generic CyclicShape.
  *
@@ -454,7 +454,7 @@ stringToCyclicShape(CyclicShape<GenericShape> & shape, TString const & bitmap)
         if (*it == '1')
             ++countOnes;
     }
-    SEQAN_ASSERT_GT(countOnes, 0u);
+    SEQAN2_ASSERT_GT(countOnes, 0u);
 
     resize(shape.diffs, countOnes);
 
@@ -600,8 +600,8 @@ inline void cyclicShapeToSuffixLengths(TString & suffLengths, TShape const & sha
     TSize s = shape.span;
     TSize o = shape.loffset;
 
-    SEQAN_ASSERT_GEQ(s, 1u);
-    //SEQAN_ASSERT_EQ(length(suffLengths), s); // Disabled to support arrays too.
+    SEQAN2_ASSERT_GEQ(s, 1u);
+    //SEQAN2_ASSERT_EQ(length(suffLengths), s); // Disabled to support arrays too.
 
     // build cummulative some of distances first
     String<TSize> sums;

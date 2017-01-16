@@ -41,8 +41,8 @@
 //  * Misc sequence-related code such as lexical comparison helpers.
 // ==========================================================================
 
-#ifndef SEQAN_HEADER_SEQUENCE_H
-#define SEQAN_HEADER_SEQUENCE_H
+#ifndef SEQAN2_HEADER_SEQUENCE_H
+#define SEQAN2_HEADER_SEQUENCE_H
 
 // ===========================================================================
 // Prerequisites.
@@ -63,7 +63,7 @@
 #include <algorithm>
 #include <numeric>
 
-#include <seqan/platform.h>
+#include <seqan2/platform.h>
 #include <forward_list>
 #include <array>
 
@@ -71,72 +71,72 @@
 // Basic
 // ----------------------------------------------------------------------------
 
-#include <seqan/basic.h>
-#include <seqan/misc/bit_twiddling_functors.h>
-#include <seqan/misc/bit_twiddling.h>
+#include <seqan2/basic.h>
+#include <seqan2/misc/bit_twiddling_functors.h>
+#include <seqan2/misc/bit_twiddling.h>
 
 // ===========================================================================
 // Forwards.
 // ===========================================================================
 
-#include <seqan/sequence/sequence_forwards.h>
+#include <seqan2/sequence/sequence_forwards.h>
 
 // ===========================================================================
 // Miscellaneous sequence-related code.
 // ===========================================================================
 
-#include <seqan/sequence/sequence_lexical.h>
+#include <seqan2/sequence/sequence_lexical.h>
 
 // ===========================================================================
 // Segments: Suffixes, Infixes, Prefixes.
 // ===========================================================================
 
-#include <seqan/sequence/sequence_interface.h>
-#include <seqan/sequence/segment_base.h>
-#include <seqan/sequence/segment_infix.h>
-#include <seqan/sequence/segment_suffix.h>
-#include <seqan/sequence/segment_prefix.h>
-#include <seqan/sequence/segment_utils.h>
+#include <seqan2/sequence/sequence_interface.h>
+#include <seqan2/sequence/segment_base.h>
+#include <seqan2/sequence/segment_infix.h>
+#include <seqan2/sequence/segment_suffix.h>
+#include <seqan2/sequence/segment_prefix.h>
+#include <seqan2/sequence/segment_utils.h>
 
 // ===========================================================================
 // Strings.
 // ===========================================================================
 
-#include <seqan/sequence/string_base.h>
-#include <seqan/sequence/string_array.h>
-#include <seqan/sequence/string_alloc.h>
-#include <seqan/sequence/string_cstyle.h>
-#include <seqan/sequence/string_block.h>
-#include <seqan/sequence/string_packed.h>
+#include <seqan2/sequence/string_base.h>
+#include <seqan2/sequence/string_array.h>
+#include <seqan2/sequence/string_alloc.h>
+#include <seqan2/sequence/string_cstyle.h>
+#include <seqan2/sequence/string_block.h>
+#include <seqan2/sequence/string_packed.h>
 
-#include <seqan/sequence/sequence_shortcuts.h>
+#include <seqan2/sequence/sequence_shortcuts.h>
 
 // ===========================================================================
 // Lightweight Containers.
 // ===========================================================================
 
-#include <seqan/sequence/container_view.h>
-#include <seqan/sequence/container_view_zip.h>
+#include <seqan2/sequence/container_view.h>
+#include <seqan2/sequence/container_view_zip.h>
 
 // ===========================================================================
 // Adaptions.
 // ===========================================================================
 
-#include <seqan/sequence/adapt_stl_container.h>
-#include <seqan/sequence/adapt_array_pointer.h>
+#include <seqan2/sequence/adapt_stl_container.h>
+#include <seqan2/sequence/adapt_array_pointer.h>
 
 // ===========================================================================
 // StringSets.
 // ===========================================================================
 
-#include <seqan/sequence/iter_concat_virtual.h>
-#include <seqan/sequence/sequence_concatenator.h>
-#include <seqan/sequence/string_set_base.h>
-#include <seqan/sequence/string_set_view.h>
-#include <seqan/sequence/string_set_concat_direct.h>
-#include <seqan/sequence/string_set_dependent_tight.h>
-#include <seqan/sequence/string_set_dependent_generous.h>
-#include <seqan/sequence/string_set_owner.h>
-#include <seqan/sequence/string_set_segment.h>
+#include <seqan2/sequence/iter_concat_virtual.h>
+#include <seqan2/sequence/sequence_concatenator.h>
+#include <seqan2/sequence/string_set_base.h>
+#include <seqan2/sequence/string_set_view.h>
+#include <seqan2/sequence/string_set_concat_direct.h>
+#include <seqan2/sequence/string_set_dependent_tight.h>
+#include <seqan2/sequence/string_set_dependent_generous.h>
+#include <seqan2/sequence/string_set_owner.h>
+#include <seqan2/sequence/string_set_segment.h>
 
-#endif //#ifndef SEQAN_HEADER_...
+#endif //#ifndef SEQAN2_HEADER_...

@@ -36,10 +36,10 @@
 
 // TODO(holtgrew): All the Nothing()'s should not be part of the public interface.
 
-#ifndef SEQAN_SEEDS_SEEDS_COMBINATION_H_
-#define SEQAN_SEEDS_SEEDS_COMBINATION_H_
+#ifndef SEQAN2_SEEDS_SEEDS_COMBINATION_H_
+#define SEQAN2_SEEDS_SEEDS_COMBINATION_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ===========================================================================
 // Enums, Tags, Classes, Specializations
@@ -50,25 +50,25 @@ namespace seqan {
  * @brief Tags for selecting local chaining algorithms.
  *
  * @tag LocalChainingTags#Merge
- * @headerfile <seqan/seeds.h>
+ * @headerfile <seqan2/seeds.h>
  * @brief Try to merge with existing seed.
  *
  * @signature typedef Tag<Merge_> Merge;
  *
  * @tag LocalChainingTags#Chaos
- * @headerfile <seqan/seeds.h>
+ * @headerfile <seqan2/seeds.h>
  * @brief Chain to other seed using CHAOS chaining condition.
  *
  * @signature typedef Tag<Chaos_> Chaos;
  *
  * @tag LocalChainingTags#SimpleChain
- * @headerfile <seqan/seeds.h>
+ * @headerfile <seqan2/seeds.h>
  * @brief Chain to other seed by simple chaining.
  *
  * @signature typedef Tag<SimpleChain_> SimpleChain;
  *
  * @tag LocalChainingTags#Single
- * @headerfile <seqan/seeds.h>
+ * @headerfile <seqan2/seeds.h>
  * @brief Force adding without chaining.
  *
  * @signature typedef Tag<Single_> Single;
@@ -259,8 +259,8 @@ _combineSeeds(Seed<Simple, TSeedConfig> & seed,
     for (TPosition i = 0; i < minGap; ++i)
         tmpScore += score(scoringScheme, sequence0[posLeft0 + i], sequence1[posLeft1 + i]);
 
-    SEQAN_ASSERT_GT(beginPositionH(other), static_cast<TPosition>(0));
-    SEQAN_ASSERT_GT(beginPositionV(other), static_cast<TPosition>(0));
+    SEQAN2_ASSERT_GT(beginPositionH(other), static_cast<TPosition>(0));
+    SEQAN2_ASSERT_GT(beginPositionV(other), static_cast<TPosition>(0));
     TPosition posRight0 = beginPositionH(other);
     TPosition posRight1 = beginPositionV(other);
 
@@ -309,8 +309,8 @@ _combineSeeds(Seed<ChainedSeed, TSeedConfig> & seed,
     // over all diagonals from other.
 
     // std::cout << "Merging chained seeds " << seed << " and " << other << std::endl;
-    SEQAN_ASSERT_LEQ_MSG(beginPositionH(seed), beginPositionH(other), "Monotony in both dimensions required for merging.");
-    SEQAN_ASSERT_LEQ_MSG(beginPositionV(seed), beginPositionV(other), "Monotony in both dimensions required for merging.");
+    SEQAN2_ASSERT_LEQ_MSG(beginPositionH(seed), beginPositionH(other), "Monotony in both dimensions required for merging.");
+    SEQAN2_ASSERT_LEQ_MSG(beginPositionV(seed), beginPositionV(other), "Monotony in both dimensions required for merging.");
 
     _updateSeedsScoreMerge(seed, other);
 
@@ -413,8 +413,8 @@ _combineSeeds(Seed<ChainedSeed, TSeedConfig> & seed,
     for (TPosition i = 0; i < minGap; ++i)
         tmpScore += score(scoringScheme, sequence0[posLeft0 + i], sequence1[posLeft1 + i]);
 
-    SEQAN_ASSERT_GT(beginPositionH(other), static_cast<TPosition>(0));
-    SEQAN_ASSERT_GT(beginPositionV(other), static_cast<TPosition>(0));
+    SEQAN2_ASSERT_GT(beginPositionH(other), static_cast<TPosition>(0));
+    SEQAN2_ASSERT_GT(beginPositionV(other), static_cast<TPosition>(0));
     TPosition posRight0 = beginPositionH(other);
     TPosition posRight1 = beginPositionV(other);
 
@@ -456,6 +456,6 @@ _combineSeeds(Seed<ChainedSeed, TSeedConfig> & seed,
     _updateSeedsScoreChaos(seed, other, bestScore + remainingGap * scoreGap(scoringScheme));
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_SEEDS_SEEDS_COMBINATION_UNORDERED_H_
+#endif  // #ifndef SEQAN2_SEEDS_SEEDS_COMBINATION_UNORDERED_H_

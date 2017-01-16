@@ -34,8 +34,8 @@
 // 2-level spinlock and corresponding scoped locks for each level
 // ==========================================================================
 
-#ifndef SEQAN_PARALLEL_PARALLEL_LOCK_H_
-#define SEQAN_PARALLEL_PARALLEL_LOCK_H_
+#ifndef SEQAN2_PARALLEL_PARALLEL_LOCK_H_
+#define SEQAN2_PARALLEL_PARALLEL_LOCK_H_
 
 #if defined(__SSE2__)
 #include <xmmintrin.h>  // _mm_pause()
@@ -45,7 +45,7 @@
 #include <Windows.h>
 #endif
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -303,6 +303,6 @@ empty(ReadWriteLock & lock)
     return (lock.readers == 0u && lock.writers == 0u);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_PARALLEL_PARALLEL_LOCK_H_
+#endif  // #ifndef SEQAN2_PARALLEL_PARALLEL_LOCK_H_

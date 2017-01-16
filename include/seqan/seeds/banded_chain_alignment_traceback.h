@@ -38,10 +38,10 @@
 // fir the current dp matrix.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_SEEDS_BANDED_CHAIN_ALIGNMENT_TRACEBACK_H_
-#define INCLUDE_SEQAN_SEEDS_BANDED_CHAIN_ALIGNMENT_TRACEBACK_H_
+#ifndef INCLUDE_SEQAN2_SEEDS_BANDED_CHAIN_ALIGNMENT_TRACEBACK_H_
+#define INCLUDE_SEQAN2_SEEDS_BANDED_CHAIN_ALIGNMENT_TRACEBACK_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -198,7 +198,7 @@ inline void _glueTracebacks(TTraceSet & globalTraces, TTraceSet & localTraces)
     {
         erase(globalTraces, elementsToErase[i-1]); // erase from behind to avoid accessing an element beyond the scope
     }
-    SEQAN_ASSERT_EQ_MSG(isGlued, true, "Fatal error while trying to connect trace backs: No glue point available!");
+    SEQAN2_ASSERT_EQ_MSG(isGlued, true, "Fatal error while trying to connect trace backs: No glue point available!");
     ignoreUnusedVariableWarning(isGlued);
 }
 
@@ -270,8 +270,8 @@ void _computeTraceback(TTarget & target,
     // Set to the correct position within the trace matrix.
     _setToPosition(matrixNavigator, maxHostPosition);
 
-    SEQAN_ASSERT_LEQ(coordinate(matrixNavigator, +DPMatrixDimension_::HORIZONTAL), seqHSize);
-    SEQAN_ASSERT_LEQ(coordinate(matrixNavigator, +DPMatrixDimension_::VERTICAL), seqVSize);
+    SEQAN2_ASSERT_LEQ(coordinate(matrixNavigator, +DPMatrixDimension_::HORIZONTAL), seqHSize);
+    SEQAN2_ASSERT_LEQ(coordinate(matrixNavigator, +DPMatrixDimension_::VERTICAL), seqVSize);
 
     TTraceValue traceValue = value(matrixNavigator);
     TTraceValue lastTraceValue = _retrieveInitialTraceDirection(traceValue, dpProfile);
@@ -388,6 +388,6 @@ void _computeTraceback(StringSet<TTarget> & targetSet,
     }
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_SEEDS_BANDED_CHAIN_ALIGNMENT_TRACEBACK_H_
+#endif  // #ifndef INCLUDE_SEQAN2_SEEDS_BANDED_CHAIN_ALIGNMENT_TRACEBACK_H_

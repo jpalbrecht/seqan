@@ -34,10 +34,10 @@
 // Utility Functions for Sequences.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_SEQUENCE_SEQ_UTILS_H_
-#define INCLUDE_SEQAN_SEQUENCE_SEQ_UTILS_H_
+#ifndef INCLUDE_SEQAN2_SEQUENCE_SEQ_UTILS_H_
+#define INCLUDE_SEQAN2_SEQUENCE_SEQ_UTILS_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -76,7 +76,7 @@ struct LengthLess
 /*!
  * @fn endsWith
  * @brief Check whether a string is a suffix of another string.
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  *
  * @signature bool endsWith(str, suffix);
  *
@@ -104,7 +104,7 @@ inline bool endsWith(TLhs const & lhs, TRhs const & rhs)
 /*!
  * @fn startsWith
  * @brief Check whether a string is a prefix of another string.
- * @headerfile <seqan/sequence.h>
+ * @headerfile <seqan2/sequence.h>
  *
  * @signature bool startsWith(str, prefix);
  *
@@ -125,6 +125,6 @@ inline bool startsWith(TLhs const & lhs, TRhs const & rhs)
     return prefix(lhs, rhsLen) == rhs;
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_SEQUENCE_SEQ_UTILS_H_
+#endif  // #ifndef INCLUDE_SEQAN2_SEQUENCE_SEQ_UTILS_H_

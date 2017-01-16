@@ -34,10 +34,10 @@
 
 // TODO(holtgrew): Parse more than just the key/value pair.
 
-#ifndef SEQAN_INCLUDE_SEQAN_VCF_IO_VCF_HEADER_RECORD_H_
-#define SEQAN_INCLUDE_SEQAN_VCF_IO_VCF_HEADER_RECORD_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_VCF_IO_VCF_HEADER_RECORD_H_
+#define SEQAN2_INCLUDE_SEQAN2_VCF_IO_VCF_HEADER_RECORD_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Tags, Classes, Enums
@@ -49,7 +49,7 @@ namespace seqan {
 
 /*!
  * @class VcfHeaderRecord
- * @headerfile <seqan/vcf_io.h>
+ * @headerfile <seqan2/vcf_io.h>
  * @brief Store key/value pair for VCF header records.
  *
  * @signature class VcfHeaderRecord;
@@ -109,6 +109,6 @@ inline void clear(VcfHeaderRecord & record)
     clear(record.value);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_VCF_IO_VCF_HEADER_RECORD_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_VCF_IO_VCF_HEADER_RECORD_H_

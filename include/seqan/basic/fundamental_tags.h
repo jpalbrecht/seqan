@@ -37,10 +37,10 @@
 
 // TODO(holtgrew): This should probably be minimalized, tags should be moved to single modules whenever possible.
 
-#ifndef SEQAN_BASIC_BASIC_TAGS_H_
-#define SEQAN_BASIC_BASIC_TAGS_H_
+#ifndef SEQAN2_BASIC_BASIC_TAGS_H_
+#define SEQAN2_BASIC_BASIC_TAGS_H_
 
-namespace seqan {
+namespace seqan2 {
 
 // ============================================================================
 // Forwards
@@ -56,7 +56,7 @@ namespace seqan {
 
 /*!
  * @class Tag
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Template for tag definition.
  *
  * @signature template <typename T>
@@ -104,7 +104,7 @@ struct Tag {};
 
 /*!
  * @tag Default
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Tag that specifies default behaviour.
  *
  * @signature typedef Tag<Default_> Default;
@@ -121,7 +121,7 @@ typedef Tag<Default_> Default;
 
 /*!
  * @tag Nothing
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Tag tha trepresents an absent parameter or absent type.
  *
  * @signature struct Nothing {};
@@ -145,7 +145,7 @@ typedef Tag<Raw_> Raw;
 
 /*!
  * @tag Move
- * @headerfile <seqan/align.h>
+ * @headerfile <seqan2/align.h>
  * @brief Switch to force move.
  *
  * @signature typedef Tag<Move_> Move;
@@ -169,13 +169,13 @@ typedef Tag<Raw_> Raw;
  * class Klass
  * {
  * public:
- *     seqan::String m;
+ *     seqan2::String m;
  *
  *     // Copy constructor, other is left untouched.
  *     Klass(Klass const & other) { ... }
  *
  *     // Move constructor, leaves other and its members in an "empty" state.
- *     Klass(Klass & other, seqan::Move const &) { ... }
+ *     Klass(Klass & other, seqan2::Move const &) { ... }
  * };
  * @endcode
  *
@@ -228,7 +228,7 @@ typedef Tag<Serial_> Serial;
 
 /*!
  * @class TagList
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief A structure to represent a list of tags.
  *
  * @signature template <[typename TTag[, typename TSubList]]>
@@ -250,7 +250,7 @@ struct TagList
 
 /*!
  * @class TagSelector
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief A structure to select a tag from a @link TagList @endlink.
  *
  * @signature template <typename TTagList>
@@ -261,7 +261,7 @@ struct TagList
 
 /*!
  * @var T TagSelector::tagId
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Stores the index of a Tag in the tag list.
  */
 
@@ -317,7 +317,7 @@ value(TagSelector<TTagList> const &selector)
 
 /*!
  * @tag DotDrawing
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Switch to trigger drawing in dot format.
  *
  * @signature typedef Tag<DotDrawing_> DotDrawing;
@@ -331,7 +331,7 @@ typedef Tag<DotDrawing_> DotDrawing;
 
 /*!
  * @tag HammingDistance
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Hamming distance.
  *
  * @signature typedef Tag<HammingDistance_> HammingDistance;
@@ -341,7 +341,7 @@ typedef Tag<DotDrawing_> DotDrawing;
 
 /*!
  * @tag LevenshteinDistance
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Levenshtein distance.
  *
  * @signature typedef Tag<LevenshteinDistance_> LevenshteinDistance;
@@ -349,7 +349,7 @@ typedef Tag<DotDrawing_> DotDrawing;
 
 /*!
  * @tag EditDistance
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Edit distance.
  *
  * @signature typedef Tag<LevenshteinDistance_> EditDistance;
@@ -450,7 +450,7 @@ struct TagListValue<TagList<TTag, TSubList>, I>:
 
 /*!
  * @mfn Find
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief A metafunction to retrieve the index of a tag in the TagList.
  *
  * @signature Find<TTagList, TSearchTag>::VALUE;
@@ -586,14 +586,14 @@ inline bool tagSelectIntersect(TagSelector<TOutTagList> & outTagList, TagSelecto
 template <typename TTagList, typename TTag>
 inline void assign(TagSelector<TTagList> &selector, TTag &)
 {
-    SEQAN_ASSERT_NEQ(int(Find<TTagList, TTag>::VALUE), -1);
+    SEQAN2_ASSERT_NEQ(int(Find<TTagList, TTag>::VALUE), -1);
     selector.tagId = Find<TTagList, TTag>::VALUE;
 }
 
 template <typename TTagList, typename TTag>
 inline void assign(TagSelector<TTagList> &selector, TTag const &)
 {
-    SEQAN_ASSERT_NEQ(int(Find<TTagList, TTag>::VALUE), -1);
+    SEQAN2_ASSERT_NEQ(int(Find<TTagList, TTag>::VALUE), -1);
     selector.tagId = Find<TTagList, TTag>::VALUE;
 }
 
@@ -653,6 +653,6 @@ tagApply(TContext &ctx, TagSelector<TTagList> &format)
 }
 
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef SEQAN_BASIC_BASIC_TAGS_H_
+#endif  // #ifndef SEQAN2_BASIC_BASIC_TAGS_H_

@@ -33,12 +33,12 @@
 // Author: Jochen Singer <jochen.singer@fu-berlin.de>
 // ==========================================================================
 
-//SEQAN_NO_DDDOC:do not generate documentation for this file
+//SEQAN2_NO_DDDOC:do not generate documentation for this file
 
-#ifndef INDEX_FM_RANKDICTIONARY_WT
-#define INDEX_FM_RANKDICTIONARY_WT
+#ifndef SEQAN2_INDEX_FM_RANKDICTIONARY_WT
+#define SEQAN2_INDEX_FM_RANKDICTIONARY_WT
 
-namespace seqan {
+namespace seqan2 {
 
 // ==========================================================================
 // Tags
@@ -51,7 +51,7 @@ namespace seqan {
 /*!
  * @class WTRDConfig
  * @extends LevelsRDConfig
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief WTRDConfig allows configuring a @link WaveletTree @endlink.
  *
@@ -106,7 +106,7 @@ typedef Tag<FibreTreeStructure_>    const FibreTreeStructure;
 /*!
  * @class WaveletTree
  * @extends RankDictionary
- * @headerfile <seqan/index.h>
+ * @headerfile <seqan2/index.h>
  *
  * @brief A WaveletTree is a hierarchical @link RankDictionary @endlink.
  *
@@ -469,4 +469,4 @@ inline bool save(RankDictionary<TValue, WaveletTree<TSpec, TConfig> > const & di
 }
 
 }
-#endif  // INDEX_FM_RANKDICTIONARY_WT
+#endif  // SEQAN2_INDEX_FM_RANKDICTIONARY_WT

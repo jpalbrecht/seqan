@@ -34,46 +34,46 @@
 // Facade header for module journaled_set.
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_JOURNALED_SET_H_
-#define INCLUDE_SEQAN_JOURNALED_SET_H_
+#ifndef INCLUDE_SEQAN2_JOURNALED_SET_H_
+#define INCLUDE_SEQAN2_JOURNALED_SET_H_
 
 // ===========================================================================
 // Prerequisites.
 // ===========================================================================
 
-#include <seqan/basic.h>  // Include the basics.
-#include <seqan/align.h>  // Include the alignment interface.
-#include <seqan/score.h>
-#include <seqan/journaled_set/score_biaffine.h>
-#include <seqan/sequence.h>
-#include <seqan/sequence_journaled.h>
-#include <seqan/seq_io.h>
+#include <seqan2/basic.h>  // Include the basics.
+#include <seqan2/align.h>  // Include the alignment interface.
+#include <seqan2/score.h>
+#include <seqan2/journaled_set/score_biaffine.h>
+#include <seqan2/sequence.h>
+#include <seqan2/sequence_journaled.h>
+#include <seqan2/seq_io.h>
 
 
 // ===========================================================================
 // First Header Group.
 // ===========================================================================
 
-#include <seqan/journaled_set/journaled_set_base.h>
+#include <seqan2/journaled_set/journaled_set_base.h>
 
-#include <seqan/journaled_set/journaled_set_impl.h>
+#include <seqan2/journaled_set/journaled_set_impl.h>
 
-#include <seqan/journaled_set/journaled_set_journal_trace_descriptor.h>
+#include <seqan2/journaled_set/journaled_set_journal_trace_descriptor.h>
 
 // ----------------------------------------------------------------------------
 // Alignment Extension for Journaled Sequences
 // ----------------------------------------------------------------------------
 
-#include <seqan/journaled_set/journal_alignment_interface.h>
-#include <seqan/journaled_set/journal_alignment_traceback_adaptor.h>
+#include <seqan2/journaled_set/journal_alignment_interface.h>
+#include <seqan2/journaled_set/journal_alignment_traceback_adaptor.h>
 
 // ----------------------------------------------------------------------------
 // Journaled Set Interfaces
 // ----------------------------------------------------------------------------
 
-#include <seqan/journaled_set/journaled_set_join_config.h>
-#include <seqan/journaled_set/journaled_set_join.h>
-#include <seqan/journaled_set/journaled_set_join_global_align_manhatten.h>
-#include <seqan/journaled_set/journaled_set_join_global_align_compact.h>
+#include <seqan2/journaled_set/journaled_set_join_config.h>
+#include <seqan2/journaled_set/journaled_set_join.h>
+#include <seqan2/journaled_set/journaled_set_join_global_align_manhatten.h>
+#include <seqan2/journaled_set/journaled_set_join_global_align_compact.h>
 
-#endif  // INCLUDE_SEQAN_JOURNALED_SET_H_
+#endif  // INCLUDE_SEQAN2_JOURNALED_SET_H_

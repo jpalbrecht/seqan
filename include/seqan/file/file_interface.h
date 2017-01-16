@@ -34,15 +34,15 @@
 // Defines basic tags and flags for file access.
 // ==========================================================================
 
-#ifndef SEQAN_INCLUDE_SEQAN_FILE_INTERFACE_H_
-#define SEQAN_INCLUDE_SEQAN_FILE_INTERFACE_H_
+#ifndef SEQAN2_INCLUDE_SEQAN2_FILE_INTERFACE_H_
+#define SEQAN2_INCLUDE_SEQAN2_FILE_INTERFACE_H_
 
-namespace seqan {
+namespace seqan2 {
 
 /*!
  * @class SyncFile
  * @extends File
- * @headerfile <seqan/file.h>
+ * @headerfile <seqan2/file.h>
  * @brief File structure supporting synchronous input/output access.
  *
  * @signature template <[typename TSpec]>
@@ -60,7 +60,7 @@ struct Sync;
 /*!
  * @class AsyncFile
  * @extends File
- * @headerfile <seqan/file.h>
+ * @headerfile <seqan2/file.h>
  * @brief File structure supporting asynchronous input/output access.
  *
  * @signature template <[typename TSpec]>
@@ -69,7 +69,7 @@ struct Sync;
  * @tparam TSpec Further specializing type.  Default: <tt>void</tt>.
  */
 
-#if SEQAN_ASYNC_IO
+#if SEQAN2_ASYNC_IO
 template <typename TSpec = void>
 struct Async;
 #else
@@ -80,7 +80,7 @@ using Async = Sync<TSpec>;
 
 /*!
  * @class File
- * @headerfile <seqan/file.h>
+ * @headerfile <seqan2/file.h>
  * @brief Represents a file.
  *
  * @signature template <[typename TSpec]>
@@ -94,7 +94,7 @@ class File;
 
 /*!
  * @enum FileOpenMode
- * @headerfile <seqan/file.h>
+ * @headerfile <seqan2/file.h>
  * @brief Flags to select the open mode of a @link File @endlink or external string.
  *
  * These flags can be combined via the <tt>|</tt> operator (bitwise OR).  The defualt open mode is <tt>OPEN_RDWR |
@@ -241,7 +241,7 @@ struct HasMoveConstructor<AsyncDummyRequest> : True {};
 
 /*!
  * @class AsyncRequest
- * @headerfile <seqan/file.h>
+ * @headerfile <seqan2/file.h>
  * @brief Associated with an asynchronous I/O request.
  *
  * @signature template <typenam TFile>
@@ -270,7 +270,7 @@ struct HasMoveConstructor<AsyncDummyRequest> : True {};
 
 /*!
  * @class IOError
- * @headerfile <seqan/basic.h>
+ * @headerfile <seqan2/basic.h>
  * @brief Input/Output error exception.
  *
  * @signature typedef std::ios_base::failure IOError;
@@ -330,6 +330,6 @@ struct UnknownExtensionError : FileOpenError
     {}
 };
 
-}  // namespace seqan;
+}  // namespace seqan2;
 
-#endif  // #ifndef SEQAN_INCLUDE_SEQAN_FILE_INTERFACE_H_
+#endif  // #ifndef SEQAN2_INCLUDE_SEQAN2_FILE_INTERFACE_H_

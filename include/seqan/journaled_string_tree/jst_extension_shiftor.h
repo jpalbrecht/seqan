@@ -32,10 +32,10 @@
 // Author: Rene Rahn <rene.rahn@fu-berlin.de>
 // ==========================================================================
 
-#ifndef INCLUDE_SEQAN_JOURNALED_STRING_TREE_JST_EXTENSION_SHIFT_OR_H_
-#define INCLUDE_SEQAN_JOURNALED_STRING_TREE_JST_EXTENSION_SHIFT_OR_H_
+#ifndef INCLUDE_SEQAN2_JOURNALED_STRING_TREE_JST_EXTENSION_SHIFT_OR_H_
+#define INCLUDE_SEQAN2_JOURNALED_STRING_TREE_JST_EXTENSION_SHIFT_OR_H_
 
-namespace seqan
+namespace seqan2
 {
 
 // ============================================================================
@@ -174,6 +174,6 @@ run(JstExtension<Pattern<TNeedle, ShiftOr> > & me,
     return (me.isLongNeedle) ? impl::runLongNeedle(me, hystkIt) : impl::runShortNeedle(me, hystkIt);
 }
 
-}  // namespace seqan
+}  // namespace seqan2
 
-#endif  // #ifndef INCLUDE_SEQAN_JOURNALED_STRING_TREE_JST_EXTENSION_SHIFT_OR_H_
+#endif  // #ifndef INCLUDE_SEQAN2_JOURNALED_STRING_TREE_JST_EXTENSION_SHIFT_OR_H_
